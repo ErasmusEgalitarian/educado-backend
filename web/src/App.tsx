@@ -4,33 +4,26 @@ import {
   Navigate,
 } from "react-router-dom";
 
-// Non-auth pages
-import AccountDeletionRequest from "./pages/AccountDeletionRequest";
-import Application from "./pages/Application";
-import Certificates from "./pages/Certificates";
-import CourseManager from "./pages/CourseManager";
-import Courses from "./pages/Courses";
-import DataDeletionRequest from "./pages/DataDeletionRequest";
-import EducadoAdmin from "./pages/EducadoAdmin";
-import Feedback from "./pages/Feedback";
-import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
-import Signup from "./pages/Signup";
-import Welcome from "./pages/Welcome";
-
-// Auth Pages
-import Profile from "./pages/Profile";
-
-// Educado Admin
-import SingleApplicantView from "./pages/SingleApplicantView";
-
-// Delete user request for app
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+import AccountDeletionRequest from "./features/auth/components/AccountDeletionRequest";
+import DataDeletionRequest from "./features/auth/components/DataDeletionRequest";
+import Login from "./features/auth/components/Login";
+import PrivacyPolicy from "./features/auth/components/PrivacyPolicy";
+import Signup from "./features/auth/components/Signup";
+import Welcome from "./features/auth/pages/Welcome";
+import Certificates from "./features/certificates/pages/Certificates";
+import CourseManager from "./features/course/pages/CourseManager";
+import Courses from "./features/course/pages/Courses";
+import Profile from "./features/user/components/Profile";
+import Application from "./unplaced/Application";
+import EducadoAdmin from "./unplaced/EducadoAdmin";
+import Feedback from "./unplaced/Feedback";
+import NotFound from "./shared/assets/NotFound";
 import {
   AdminProtectedRoute,
   ProtectedRoute,
   NonProtectedRoute,
-} from "./services/auth.guard";
+} from "./unplaced/services/auth.guard";
+import SingleApplicantView from "./unplaced/SingleApplicantView";
 
 const App = () => {
   // router

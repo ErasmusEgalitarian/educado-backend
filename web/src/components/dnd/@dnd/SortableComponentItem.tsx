@@ -8,18 +8,22 @@ import { mdiDraw, mdiPencilCircle, mdiTextBox, mdiVideo } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { useState, useEffect } from "react";
 
-import { useSections, useLectures, useExercises } from "@contexts/courseStore";
-import { useApi } from "@hooks/useAPI";
+import {
+  useSections,
+  useLectures,
+  useExercises,
+} from "@/course/context/courseStore";
+import { useApi } from "@/shared/hooks/useAPI";
 
 //pop-ups
 
 import { Component, Exercise, Lecture } from "@interfaces/Course";
-import ExerciseServices from "@services/exercise.services";
-import LectureService from "@services/lecture.services";
+import ExerciseServices from "@/unplaced/services/exercise.services";
+import LectureService from "@/unplaced/services/lecture.services";
 
-import { BACKEND_URL } from "../../../helpers/environment";
-import { getUserToken } from "../../../helpers/userInfo";
-import { EditLecture } from "../../EditLecturePopUp";
+import { BACKEND_URL } from "../../../shared/config/environment";
+import { getUserToken } from "../../../features/auth/lib/userInfo";
+import { EditLecture } from "../../../features/lecture/components/EditLecturePopUp";
 import { EditExercise } from "../../Exercise/EditExercisePopUp";
 
 interface Props {
@@ -35,7 +39,7 @@ export const SortableComponentItem = ({ component, sid }: Props) => {
   const [data, setData] = useState<Exercise | Lecture | null>(
     isLectureComponent
       ? getCachedLecture(component.compId)
-      : getCachedExercise(component.compId),
+      : getCachedExercise(component.compId)
   );
   const [newTitle, setNewTitle] = useState("");
   const { deleteCachedSectionComponent } = useSections();
@@ -53,7 +57,7 @@ export const SortableComponentItem = ({ component, sid }: Props) => {
   const { call: getComponentDetails, isLoading: fetchLoading } = useApi(
     isLectureComponent
       ? LectureService.getLectureDetail
-      : ExerciseServices.getExerciseDetail,
+      : ExerciseServices.getExerciseDetail
   );
 
   useEffect(() => {

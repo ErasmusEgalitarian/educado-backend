@@ -17,17 +17,17 @@ import { Icon } from "@mdi/react";
 import { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 
-import { useSections } from "@contexts/courseStore";
+import { useSections } from "@/course/context/courseStore";
 import { Component, Section } from "@interfaces/Course";
 
-import { getUserToken } from "../../../helpers/userInfo";
-import SectionServices from "../../../services/section.services";
+import { getUserToken } from "../../../features/auth/lib/userInfo";
+import SectionServices from "../../../unplaced/services/section.services";
 
 //pop-ups
-import { CreateLecture } from "../../CreateLecturePopUp";
+import { CreateLecture } from "../../../features/lecture/components/CreateLecturePopUp";
 import { CreateExercise } from "../../Exercise/CreateExercisePopUp";
-import { SectionArrowIcon } from "../../SectionArrowIcon";
-import { ToolTipIcon } from "../../ToolTip/ToolTipIcon";
+import { SectionArrowIcon } from "../../../features/section/components/SectionArrowIcon";
+import { ToolTipIcon } from "../../../shared/components/ToolTip/ToolTipIcon";
 import { ComponentList } from "../ComponentList";
 
 interface Props {
@@ -59,7 +59,7 @@ export const SortableItem = ({
   const cachedSection = getCachedSection(sid);
   const cachedComponents = cachedSection?.components;
   const [sectionTitle, setSectionTitle] = useState<string>(
-    cachedSection?.title ?? "",
+    cachedSection?.title ?? ""
   );
   const sectionErrors = {
     title: sectionTitle === "",
@@ -112,7 +112,7 @@ export const SortableItem = ({
   // Used to format PARTIAL section data, meaning that it can be used to update the course data gradually
   const handleFieldChange = (
     field: keyof Section,
-    value: string | number | Component[] | null,
+    value: string | number | Component[] | null
   ) => {
     if (cachedSection) {
       updateCachedSection({ [field]: value }, sid);

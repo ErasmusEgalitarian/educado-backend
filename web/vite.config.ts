@@ -12,16 +12,19 @@ export default defineConfig({
     global: {}, // For working with AWS
   },
   resolve: {
-    alias: {
-      "@assets": path.resolve(__dirname, "src/assets"),
-      "@components": path.resolve(__dirname, "src/components"),
-      "@contexts": path.resolve(__dirname, "src/contexts"),
-      "@helpers": path.resolve(__dirname, "src/helpers"),
-      "@hooks": path.resolve(__dirname, "src/hooks"),
-      "@interfaces": path.resolve(__dirname, "src/interfaces"),
-      "@pages": path.resolve(__dirname, "src/pages"),
-      "@services": path.resolve(__dirname, "src/services"),
-      "@utilities": path.resolve(__dirname, "src/utilities"),
-    },
+    // Use ordered array so specific aliases take precedence over generic '@'
+    alias: [
+      { find: "@/shared", replacement: path.resolve(__dirname, "src/shared") },
+      { find: "@/auth", replacement: path.resolve(__dirname, "src/features/auth") },
+      { find: "@/certificates", replacement: path.resolve(__dirname, "src/features/certificates") },
+      { find: "@/course", replacement: path.resolve(__dirname, "src/features/course") },
+      { find: "@/exercise", replacement: path.resolve(__dirname, "src/features/exercise") },
+      { find: "@/lecture", replacement: path.resolve(__dirname, "src/features/lecture") },
+      { find: "@/section", replacement: path.resolve(__dirname, "src/features/section") },
+      { find: "@/user", replacement: path.resolve(__dirname, "src/features/user") },
+      { find: "@/unplaced", replacement: path.resolve(__dirname, "src/unplaced") },
+      // Keep the generic '@' last to avoid shadowing more specific aliases
+      { find: "@", replacement: path.resolve(__dirname, "src") },
+    ],
   },
 });

@@ -4,7 +4,7 @@ import {
   useLectures,
   useExercises,
   useMedia,
-} from "@contexts/courseStore";
+} from "@/course/context/courseStore";
 
 export const useCombinedHooks = () => {
   const sectionsHook = useSections();

@@ -1,7 +1,7 @@
 import {
   validateEmail,
   validatePasswords,
-} from "../../../src/utilities/validation";
+} from "../../../src/unplaced/validation";
 
 describe("validatePasswords()", () => {
   it("should return true if the passwords are valid and match", () => {

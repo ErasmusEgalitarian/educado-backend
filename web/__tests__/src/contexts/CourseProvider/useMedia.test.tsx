@@ -6,7 +6,7 @@ import {
   useSections,
   useLectures,
   useMedia,
-} from "@contexts/courseStore";
+} from "@/course/context/courseStore";
 import { mockMedia } from "./mockData";
 import { useCombinedHooks } from "./testHelperFunctions";
 

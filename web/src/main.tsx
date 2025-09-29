@@ -1,11 +1,11 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import React, { StrictMode } from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 
 import App from "./App";
 import "./index.css";
-import { NotificationProvider } from "./components/notification/NotificationContext";
+import { NotificationProvider } from "./shared/context/NotificationContext";
 
 const queryClient = new QueryClient();
 

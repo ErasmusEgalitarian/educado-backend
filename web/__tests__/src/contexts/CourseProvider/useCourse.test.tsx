@@ -1,6 +1,6 @@
 import React from "react";
 import { act, renderHook } from "@testing-library/react-hooks";
-import { CourseProvider, useCourse } from "@contexts/courseStore";
+import { CourseProvider, useCourse } from "@/course/context/courseStore";
 import { mockCourse } from "./mockData";
 
 const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
