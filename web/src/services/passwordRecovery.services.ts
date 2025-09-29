@@ -15,14 +15,13 @@ const sendEmail = async (email: string) => {
       email: email,
     });
     return res;
-  } catch (err : any) {
+  } catch (err: any) {
     if (err.response?.data != null) {
       throw err.response.data;
     }
     throw err;
   }
-  
-}
+};
 
 const verifyCode = async (email: string, token: string) => {
   try {
@@ -31,21 +30,25 @@ const verifyCode = async (email: string, token: string) => {
       token: token,
     });
     return res;
-  } catch (err : any) {
+  } catch (err: any) {
     console.error(err);
     if (err.response?.data != null) {
       throw err.response.data;
     }
     throw err;
   }
-}
+};
 
-const updatePassword = async (email: string, password: string, token: string) => {
+const updatePassword = async (
+  email: string,
+  password: string,
+  token: string,
+) => {
   return await client.patch("/api/auth/reset-password", {
     email: email,
     newPassword: password,
     token: token,
   });
-}
+};
 
 export { sendEmail, verifyCode, updatePassword };

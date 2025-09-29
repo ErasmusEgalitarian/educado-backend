@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { FC, useState } from "react";
-import UserDetailsModal from "@components/Admin/Users/DetailsModalUser";
-
-import { getUserToken } from "@helpers/userInfo";
-import AuthServices from "@services/auth.services";
-import AdminServices from "@services/admin.services";
-import { useApi } from "@hooks/useAPI";
-import { toast } from "react-toastify";
-import { Application } from "@interfaces/Application";
-import { User } from "@interfaces/User";
-import { ContentCreator } from "@interfaces/ContentCreator";
 import { MdRemoveRedEye } from "react-icons/md";
+import { toast } from "react-toastify";
+
+import UserDetailsModal from "@components/Admin/Users/DetailsModalUser";
+import { getUserToken } from "@helpers/userInfo";
+import { useApi } from "@hooks/useAPI";
+import { Application } from "@interfaces/Application";
+import { ContentCreator } from "@interfaces/ContentCreator";
+import { User } from "@interfaces/User";
+import AdminServices from "@services/admin.services";
+import AuthServices from "@services/auth.services";
 
 interface ViewUserButtonProps {
   applicationId: string;
@@ -28,14 +28,14 @@ const ViewUserButton: FC<ViewUserButtonProps> = ({
     application: Application;
   } | null>(null);
   const [contentCreator, setContentCreator] = useState<ContentCreator | null>(
-    null
+    null,
   );
 
   const { call: fetchUserDetails, isLoading } = useApi(
     async (applicationId: string, token: string) => {
       const userDetails = await AdminServices.getSingleUserDetails(
         applicationId,
-        token
+        token,
       );
 
       const userApplication =
@@ -43,14 +43,14 @@ const ViewUserButton: FC<ViewUserButtonProps> = ({
 
       const contentCreator = await AdminServices.getContentCreator(
         applicationId,
-        token
+        token,
       );
       return {
         userDetails,
         userApplication: userApplication.data,
         contentCreator,
       };
-    }
+    },
   );
 
   const handleClick = async () => {
@@ -99,7 +99,9 @@ const ViewUserButton: FC<ViewUserButtonProps> = ({
       </button>
       <UserDetailsModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false);
+        }}
         userDetails={userDetails!}
         userApplication={userApplication!}
         contentCreator={contentCreator!}

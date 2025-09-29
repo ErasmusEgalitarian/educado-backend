@@ -1,21 +1,21 @@
-import React from 'react';
-import TestRenderer from 'react-test-renderer';
-import PersonalInsights from '../../../../src/components/Courses/PersonalInsights';
-import { generateTestCourse } from '../../../../__testUtils__/courses/courseTestUtils';
+import React from "react";
+import TestRenderer from "react-test-renderer";
+import PersonalInsights from "../../../../src/components/Courses/PersonalInsights";
+import { generateTestCourse } from "../../../../__testUtils__/courses/courseTestUtils";
 
 let courseList;
 
 // Mock services
-jest.mock('../../../../src/services/contentCreator.services', () => ({
+jest.mock("../../../../src/services/contentCreator.services", () => ({
   getAverageRatingOfCC: jest.fn(() => Promise.resolve(4.5)),
 }));
 
 // Mock user info
-jest.mock('../../../../src/helpers/userInfo', () => ({
+jest.mock("../../../../src/helpers/userInfo", () => ({
   getUserInfo: jest.fn(() => ({
     id: 1,
-    name: 'Test User',
-    email: '',
+    name: "Test User",
+    email: "",
   })),
 }));
 
@@ -32,13 +32,14 @@ beforeAll(() => {
   courseList = [course, course1];
 });
 
-it('matches snapshot for courses', () => {
-  const testRenderer = TestRenderer.create(<PersonalInsights courses={courseList} />);
+it("matches snapshot for courses", () => {
+  const testRenderer = TestRenderer.create(
+    <PersonalInsights courses={courseList} />,
+  );
   expect(testRenderer.toJSON()).toMatchSnapshot();
 });
 
-it('matches snapshot without courses', () => {
+it("matches snapshot without courses", () => {
   const testRenderer = TestRenderer.create(<PersonalInsights courses={[]} />);
   expect(testRenderer.toJSON()).toMatchSnapshot();
 });
-

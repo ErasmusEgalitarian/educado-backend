@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
-import { TableCellInterface } from "./TableCell";
+
 import { HeaderContext } from "./contexts";
+import { TableCellInterface } from "./TableCell";
 
 interface TableRowInterface {
   isHeaderRow?: boolean;
@@ -13,7 +14,7 @@ export const TableRow = ({ isHeaderRow = false, cells }: TableRowInterface) => {
   const rowStyling = isHeaderRow ? headerRowStyling : regularRowStyling;
 
   return (
-    <tr className={`${rowStyling}`}>
+    <tr className={rowStyling}>
       <HeaderContext.Provider value={isHeaderRow}>
         {cells}
       </HeaderContext.Provider>

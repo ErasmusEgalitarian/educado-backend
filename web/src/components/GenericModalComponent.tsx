@@ -67,7 +67,7 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
             {/* Cancel */}
             {cancelBtnText && (
               <button
-                id="confirm-button" 
+                id="confirm-button"
                 type="button"
                 className="flex flex-col btn bg-transparent border-none hover:bg-transparent px-0"
                 onClick={onClose}
@@ -83,11 +83,11 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
               <button
                 type="submit"
                 className="btn bg-primary hover:bg-cyan-900 border-none px-10"
-                onClick={() => onConfirm && onConfirm()}
+                onClick={() => onConfirm?.()}
                 disabled={isConfirmDisabled || loading}
               >
                 {loading ? (
-                  <span className="spinner-border animate-spin inline-block w-4 h-4 border-2 border-t-transparent rounded-full mr-2"></span>
+                  <span className="spinner-border animate-spin inline-block w-4 h-4 border-2 border-t-transparent rounded-full mr-2" />
                 ) : null}
                 <span className="normal-case text-base font-bold">
                   {confirmBtnText}

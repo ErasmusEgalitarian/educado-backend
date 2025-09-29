@@ -2,7 +2,7 @@ import { Course, contentCreator } from "./Course";
 
 export interface Certificate {
   course: Course;
-  creator: contentCreator
+  creator: contentCreator;
 }
 
 export interface CertificateIds {

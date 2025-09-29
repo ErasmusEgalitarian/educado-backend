@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { PropsWithChildren, ReactNode, useContext } from "react";
+
 import { HeaderContext } from "./contexts";
 
 export interface TableCellInterface {

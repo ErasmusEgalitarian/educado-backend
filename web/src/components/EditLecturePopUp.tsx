@@ -1,39 +1,39 @@
+import { mdiInformationSlabCircleOutline } from "@mdi/js";
+import { Icon } from "@mdi/react";
 import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Dropzone } from "./Dropzone/Dropzone";
-import RichTextEditor from "./RichTextEditor";
 
 // Contexts
 import { useLectures, useMedia } from "@contexts/courseStore";
 
 // Hooks
-import { useNotifications } from "./notification/NotificationContext";
+import { convertSrcToFile } from "@helpers/fileHelpers";
 import { useApi } from "@hooks/useAPI";
 
-// Helpers 
-import { convertSrcToFile } from "@helpers/fileHelpers"
+// Helpers
 
 // Services
+import { Lecture } from "../interfaces/Course";
 import StorageServices from "../services/storage.services";
 
 //components
+import { Dropzone } from "./Dropzone/Dropzone";
 import { ModalButtonCompont } from "./ModalButtonCompont";
-import { Lecture } from "../interfaces/Course";
+import { useNotifications } from "./notification/NotificationContext";
+import RichTextEditor from "./RichTextEditor";
 // Icons
-import { Icon } from "@mdi/react";
-import { mdiInformationSlabCircleOutline } from "@mdi/js";
 
 <Icon path={mdiInformationSlabCircleOutline} size={1} />;
 
-type Inputs = {
+interface Inputs {
   title: string;
   description: string;
   contentType: string;
   content: string;
-};
+}
 
 interface Props {
-  lecture : Lecture; // 
+  lecture: Lecture; //
   handleEdit: (title: string) => void;
 }
 /**
@@ -43,7 +43,7 @@ interface Props {
  * @returns HTML Element
  */
 export const EditLecture = ({ lecture, handleEdit }: Props) => {
-  const { getMedia, updateMedia, addMediaToCache} = useMedia();
+  const { getMedia, updateMedia, addMediaToCache } = useMedia();
   const { updateCachedLecture } = useLectures();
   //TODO: When tokens are done, Remove dummy token and uncomment useToken
 
@@ -62,8 +62,12 @@ export const EditLecture = ({ lecture, handleEdit }: Props) => {
   const { addNotification } = useNotifications();
   const cachedVideo = getMedia(lecture._id);
   const [lectureVideo, setLectureVideo] = useState<File | null>(cachedVideo);
-  const previewFileSrc = lectureVideo ? URL.createObjectURL(lectureVideo) : null;
-  const { call: fetchPreviewVideo, isLoading: loadingPreview } = useApi(StorageServices.getMedia);
+  const previewFileSrc = lectureVideo
+    ? URL.createObjectURL(lectureVideo)
+    : null;
+  const { call: fetchPreviewVideo, isLoading: loadingPreview } = useApi(
+    StorageServices.getMedia,
+  );
 
   const toggler = (value: string) => {
     setContentType(value);
@@ -71,27 +75,26 @@ export const EditLecture = ({ lecture, handleEdit }: Props) => {
 
   useEffect(() => {
     setLectureVideo(cachedVideo);
-  }
-  , [cachedVideo]);
-  
+  }, [cachedVideo]);
+
   useEffect(() => {
     if (lecture.contentType !== "video") return;
-    if (lectureVideo) return 
+    if (lectureVideo) return;
     const fetchPreview = async () => {
       const videoId = lecture._id + "_l"; // Assuming `data` is available here
       const fileSrc = await fetchPreviewVideo(videoId);
-      
-      const videoSrc = `data:video/mp4;base64,${fileSrc.split(',')[1]}`; //Quickfix - backend has to be adjusted to do this correctly, lasse don't @ me
+
+      const videoSrc = `data:video/mp4;base64,${fileSrc.split(",")[1]}`; //Quickfix - backend has to be adjusted to do this correctly, lasse don't @ me
       if (fileSrc !== null) {
         const file = await convertSrcToFile(videoSrc, videoId);
         const newMedia = {
           id: lecture._id,
           file: file,
           parentType: "l",
-        }
+        };
         addMediaToCache(newMedia);
       }
-    }
+    };
     fetchPreview();
   }, [lecture._id]);
 
@@ -99,15 +102,14 @@ export const EditLecture = ({ lecture, handleEdit }: Props) => {
   useEffect(() => {
     if (lecture?.content !== "") {
       setEditorValue(lecture.content);
-      setValue('content', lecture.content);  // Initialize form value as well
+      setValue("content", lecture.content); // Initialize form value as well
     }
   }, [lecture, setValue]);
 
   const handleFileChange = (file: File | null) => {
     if (file === null) return;
     setLectureVideo(file);
-  }
-
+  };
 
   /**
    * Function to handle the submit of the form
@@ -122,7 +124,7 @@ export const EditLecture = ({ lecture, handleEdit }: Props) => {
       contentType: newData.contentType,
       content: newData.content,
       parentSection: lecture.parentSection,
-      _id : lecture._id
+      _id: lecture._id,
     };
     updateCachedLecture(updatedLecture);
     if (lectureVideo !== null) {
@@ -130,30 +132,25 @@ export const EditLecture = ({ lecture, handleEdit }: Props) => {
         id: lecture._id,
         file: lectureVideo,
         parentType: "l",
-      } 
+      };
       updateMedia(newMedia);
     }
     handleEdit(newData.title);
     addNotification("Aula atualizada com sucesso");
   };
 
-  const [editorValue, setEditorValue] = useState<string>('');
+  const [editorValue, setEditorValue] = useState<string>("");
 
-
-
-const handleEditorChange = (value: string) => {
-  setEditorValue(value); // Update local state
-  setValue('content', value); // Manually set form value
-  lecture.content = value;
-};
+  const handleEditorChange = (value: string) => {
+    setEditorValue(value); // Update local state
+    setValue("content", value); // Manually set form value
+    lecture.content = value;
+  };
 
   return (
     <>
       {/*Text shown in the top of create lecture*/}
-      <div
-        className="modal"
-        id={`lecture-edit-${lecture._id}`}
-      >
+      <div className="modal" id={`lecture-edit-${lecture._id}`}>
         <div className="modal-box bg-gradient-to-b from-primaryLight w-11/12 max-w-xl rounded-3xl ">
           <h3 className="font-bold text-lg">Editar sua aula</h3>{" "}
           {/*Create your new lecture!*/}
@@ -163,10 +160,13 @@ const handleEditorChange = (value: string) => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="flex flex-col space-y-2 text-left">
-              <label htmlFor="title">Título <span className="text-red-500">*</span></label> {/*Title*/}
+              <label htmlFor="title">
+                Título <span className="text-red-500">*</span>
+              </label>{" "}
+              {/*Title*/}
               <input
                 type="text"
-                placeholder={"Insira o título da aula"}
+                placeholder="Insira o título da aula"
                 defaultValue={lecture.title}
                 className="form-field focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent border-none rounded-lg"
                 {...register("title", { required: true })}
@@ -177,10 +177,13 @@ const handleEditorChange = (value: string) => {
             </div>
             {/*Field to input the description of the lecture*/}
             <div className="flex flex-col space-y-2 text-left">
-              <label htmlFor="description">Descrição <span className="text-red-500">*</span></label> {/*Description*/}
+              <label htmlFor="description">
+                Descrição <span className="text-red-500">*</span>
+              </label>{" "}
+              {/*Description*/}
               <textarea
                 rows={4}
-                placeholder={"Insira o conteúdo escrito dessa aula"}
+                placeholder="Insira o conteúdo escrito dessa aula"
                 defaultValue={lecture.description}
                 className="resize-none form-field focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent border-none rounded-lg"
                 {...register("description", { required: true })}
@@ -190,7 +193,9 @@ const handleEditorChange = (value: string) => {
                 <span className="text-warning">Este campo é obrigatório</span>
               )}
             </div>
-            <label htmlFor="content-type">Tipo de conteúdo <span className="text-red-500">*</span></label>{" "}
+            <label htmlFor="content-type">
+              Tipo de conteúdo <span className="text-red-500">*</span>
+            </label>{" "}
             {/*Content type*/}
             <div className="flex flex-row space-x-8">
               <div>
@@ -201,7 +206,8 @@ const handleEditorChange = (value: string) => {
                     id="radio1"
                     value="video"
                     checked={
-                      (lecture?.contentType === "video" && contentType === "") ||
+                      (lecture?.contentType === "video" &&
+                        contentType === "") ||
                       contentType === "video"
                         ? true
                         : false
@@ -250,21 +256,26 @@ const handleEditorChange = (value: string) => {
                     Upload do video <span className="text-red-500">*</span>
                   </label>{" "}
                   {/*Input file*/}
-                  {!loadingPreview &&
-                  <Dropzone inputType="video" id={lecture._id} previewFile={previewFileSrc} onFileChange={handleFileChange}></Dropzone>}
+                  {!loadingPreview && (
+                    <Dropzone
+                      inputType="video"
+                      id={lecture._id}
+                      previewFile={previewFileSrc}
+                      onFileChange={handleFileChange}
+                    />
+                  )}
                 </>
               ) : (lecture?.contentType === "text" && contentType === "") ||
                 contentType === "text" ? (
                 <>
                   <label htmlFor="content">Formate o seu texto abaixo</label>
-                  <RichTextEditor 
-                    value={editorValue}  // Use the local editorValue for the content
-                    onChange={handleEditorChange} 
+                  <RichTextEditor
+                    value={editorValue} // Use the local editorValue for the content
+                    onChange={handleEditorChange}
                   />
-
                 </>
               ) : (
-                <p></p>
+                <p />
               )}
               {/* {errors.description && <span className='text-warning'>Este campo é obrigatório</span>}*/}
             </div>

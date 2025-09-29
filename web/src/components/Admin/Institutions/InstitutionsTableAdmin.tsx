@@ -1,20 +1,21 @@
 import { useState } from "react";
-import Loading from "@components/general/Loading";
-import { AddInstitutionButton } from "./Actions/AddInstitutionsButton";
-import { UpdateInstitutionButton } from "@components/Admin/Institutions/Actions/UpdateInstitutionsButton";
-import { DeleteInstitutionButton } from "@components/Admin/Institutions/Actions/DeleteInstitutionsButton";
 import {
   GoArrowLeft,
   GoArrowRight,
   GoChevronLeft,
   GoChevronRight,
 } from "react-icons/go";
-import { MdSearch } from "react-icons/md";
 import { IconContext } from "react-icons/lib";
+import { MdSearch } from "react-icons/md";
+import useSWR from "swr";
 
+import { DeleteInstitutionButton } from "@components/Admin/Institutions/Actions/DeleteInstitutionsButton";
+import { UpdateInstitutionButton } from "@components/Admin/Institutions/Actions/UpdateInstitutionsButton";
+import Loading from "@components/general/Loading";
 import { getUserToken } from "@helpers/userInfo";
 import { institutionService } from "@services/Institution.services";
-import useSWR from "swr";
+
+import { AddInstitutionButton } from "./Actions/AddInstitutionsButton";
 
 export const InstitutionsTableAdmin = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,7 +25,7 @@ export const InstitutionsTableAdmin = () => {
   const userToken = getUserToken();
   const { data: institutionsResponse, mutate } = useSWR(
     "api/institutions",
-    () => institutionService.getInstitutions(userToken)
+    () => institutionService.getInstitutions(userToken),
   );
 
   if (!institutionsResponse) return <Loading />;
@@ -50,7 +51,7 @@ export const InstitutionsTableAdmin = () => {
 
   const paginatedData = filteredData.slice(
     (currentPage - 1) * rowsPerPage,
-    currentPage * rowsPerPage
+    currentPage * rowsPerPage,
   );
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
@@ -64,7 +65,7 @@ export const InstitutionsTableAdmin = () => {
   };
 
   const handleRowsPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setRowsPerPage(Number(event.target.value));
     setCurrentPage(1);
@@ -95,7 +96,9 @@ export const InstitutionsTableAdmin = () => {
             className="input input-bordered"
             type="text"
             placeholder="Buscar Instituições"
-            onChange={(event) => setSearchTerm(event.target.value)}
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
           />
           <div className="flex flex-col justify-center">
             <MdSearch className="-ml-6" />
@@ -181,44 +184,48 @@ export const InstitutionsTableAdmin = () => {
             <button
               type="button"
               disabled={currentPage === 1}
-              className={`${
+              className={
                 currentPage === 1
                   ? "text-gray-300 cursor-not-allowed"
                   : "text-gray-600 hover:bg-gray-100 cursor-pointer"
-              }`}
+              }
               onClick={handleFirstPage}
             >
               <GoArrowLeft />
             </button>
             <button
               type="button"
-              className={`${
+              className={
                 currentPage === 1
                   ? "text-gray-300 cursor-not-allowed"
                   : "text-gray-600 hover:bg-gray-100 cursor-pointer"
-              }`}
-              onClick={() => handlePageChange(currentPage - 1)}
+              }
+              onClick={() => {
+                handlePageChange(currentPage - 1);
+              }}
             >
               <GoChevronLeft />
             </button>
             <button
               type="button"
-              className={`${
+              className={
                 currentPage === totalPages
                   ? "text-gray-300 cursor-not-allowed"
                   : "text-gray-600 hover:bg-gray-100 cursor-pointer"
-              }`}
-              onClick={() => handlePageChange(currentPage + 1)}
+              }
+              onClick={() => {
+                handlePageChange(currentPage + 1);
+              }}
             >
               <GoChevronRight />
             </button>
             <button
               type="button"
-              className={`${
+              className={
                 currentPage === totalPages
                   ? "text-gray-300 cursor-not-allowed"
                   : "text-gray-600 hover:bg-gray-100 cursor-pointer"
-              }`}
+              }
               onClick={handleLastPage}
             >
               <GoArrowRight />

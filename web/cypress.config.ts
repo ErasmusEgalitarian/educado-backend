@@ -2,8 +2,8 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   projectId: "aqx4gb",
-  fixturesFolder: 'cypress/fixtures',
-  supportFolder: 'cypress/support',
+  fixturesFolder: "cypress/fixtures",
+  supportFolder: "cypress/support",
   e2e: {
     supportFile: false,
     setupNodeEvents(on, config) {
@@ -17,8 +17,8 @@ export default defineConfig({
       bundler: "vite",
     },
   },
-	env: {
-		BACKEND_URL: 'http://localhost:8888',
-		CERT_URL: 'http://localhost:8080',
-	},
+  env: {
+    BACKEND_URL: "http://localhost:8888",
+    CERT_URL: "http://localhost:8080",
+  },
 });

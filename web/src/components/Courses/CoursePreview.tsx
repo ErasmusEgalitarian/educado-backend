@@ -1,23 +1,21 @@
 import { useState } from "react";
 import { useParams } from "react-router";
-import { useCourse} from '@contexts/courseStore';
-import { PhonePreview } from "./PhonePreview";
+import { useNavigate } from "react-router-dom";
 
+import { useCourse } from "@contexts/courseStore";
 import { useApi } from "@hooks/useAPI";
+import { useCourseManagingHelper } from "@hooks/useCourseManagingHelper";
 
 import CourseServices from "../../services/course.services";
 import { YellowWarning } from "../Courses/YellowWarning";
-import { useNavigate } from "react-router-dom";
 /* import Popup from "./Popup/Popup"; */
-import GenericModalComponent from "../GenericModalComponent";
-
 import Loading from "../general/Loading";
+import GenericModalComponent from "../GenericModalComponent";
 import Layout from "../Layout";
 
-import PhoneCourseSection from "./PhoneCourseSection";
 import ExploreCardPreview from "./ExploreCardPreview";
-
-import { useCourseManagingHelper } from "@hooks/useCourseManagingHelper";
+import PhoneCourseSection from "./PhoneCourseSection";
+import { PhonePreview } from "./PhonePreview";
 
 interface Inputs {
   id: string;
@@ -25,11 +23,7 @@ interface Inputs {
 }
 
 // Create section
-export const CoursePreview = ({
-  id: propId,
-  setTickChange,
-}: Inputs) => {
-
+export const CoursePreview = ({ id: propId, setTickChange }: Inputs) => {
   const { id: urlId } = useParams<{ id: string }>();
   const id = propId === "0" ? urlId : propId;
 
@@ -41,15 +35,18 @@ export const CoursePreview = ({
 
   const [dialogConfirm, setDialogConfirm] = useState<() => void>(() => {});
 
-  const {course } = useCourse();
+  const { course } = useCourse();
   const courseCacheLoading = Object.keys(course).length === 0;
   const existingCourse = id !== "0";
-  const callFunc = existingCourse ? CourseServices.updateCourse : CourseServices.createCourse;
-  const { call: submitCourse, isLoading: submitLoading} = useApi(callFunc);
+  const callFunc = existingCourse
+    ? CourseServices.updateCourse
+    : CourseServices.createCourse;
+  const { call: submitCourse, isLoading: submitLoading } = useApi(callFunc);
 
   const navigate = useNavigate();
 
-  const { handleDialogEvent, handleSaveAsDraft, handlePublishCourse  } = useCourseManagingHelper();
+  const { handleDialogEvent, handleSaveAsDraft, handlePublishCourse } =
+    useCourseManagingHelper();
 
   const status = course.status ?? "draft";
 
@@ -57,13 +54,13 @@ export const CoursePreview = ({
     handleDialogEvent(
       "Você tem certeza de que quer salvar como rascunho as alterações feitas?",
       handleDraftConfirm,
-      "Salvar como rascunho ", 
+      "Salvar como rascunho ",
       setDialogTitle,
       setDialogMessage,
       setDialogConfirm,
       setShowDialog,
     );
-  }
+  };
 
   const handlePublishClick = () => {
     handleDialogEvent(
@@ -71,14 +68,13 @@ export const CoursePreview = ({
         ? "Tem certeza de que deseja publicar o curso? Isso o disponibilizará para os usuários do aplicativo"
         : "Tem certeza de que deseja publicar as alterações feitas no curso",
       handlePublishConfirm,
-      "Publicar curso", 
+      "Publicar curso",
       setDialogTitle,
       setDialogMessage,
       setDialogConfirm,
       setShowDialog,
     );
-  }
-  
+  };
 
   const handleDraftConfirm = async () => {
     await handleSaveAsDraft(submitCourse);
@@ -88,13 +84,10 @@ export const CoursePreview = ({
     await handlePublishCourse(submitCourse);
   };
 
-
   function changeTick(tick: number) {
     setTickChange(tick);
     navigate(`/courses/manager/${id}/${tick}`);
   }
-
-  
 
   if (courseCacheLoading && existingCourse)
     return (
@@ -112,7 +105,7 @@ export const CoursePreview = ({
         confirmBtnText={confirmBtnText}
         isVisible={showDialog}
         onConfirm={async () => {
-         dialogConfirm();
+          dialogConfirm();
         }}
         onClose={() => {
           setShowDialog(false);
@@ -134,11 +127,11 @@ export const CoursePreview = ({
         <div className="flex w-full float-right items-center justify-center space-y-4 my-4">
           {/** Course Sections area  */}
           <div className="flex w-full flex-row justify-around gap-x-8 max-w-5xl">
-            <PhonePreview title="Informações do curso" >
-                <ExploreCardPreview/>
+            <PhonePreview title="Informações do curso">
+              <ExploreCardPreview />
             </PhonePreview>
-            <PhonePreview title="Seções do curso" >
-                <PhoneCourseSection/>
+            <PhonePreview title="Seções do curso">
+              <PhoneCourseSection />
             </PhonePreview>
           </div>
         </div>
@@ -147,7 +140,9 @@ export const CoursePreview = ({
         <div className='className="flex w-full float-right space-y-4 "'>
           <div className="flex items-center justify-between gap-4 w-full mt-8">
             <label
-              onClick={() => changeTick(1)}
+              onClick={() => {
+                changeTick(1);
+              }}
               className="whitespace-nowrap cursor-pointer underline py-2 pr-4 bg-transparent hover:bg-warning-100 text-primary w-full transition ease-in duration-200 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2  rounded"
             >
               Voltar para Seções
@@ -172,7 +167,9 @@ export const CoursePreview = ({
                 onClick={handlePublishClick}
                 className="whitespace-nowrap py-4 px-8 h-full w-full cursor-pointer"
               >
-                {status === "published" ? "Publicar Edições" : "Publicar Curso"}{" "}
+                {status === "published"
+                  ? "Publicar Edições"
+                  : "Publicar Curso"}{" "}
               </label>
             </label>
           </div>

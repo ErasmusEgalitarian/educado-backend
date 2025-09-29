@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React, { useState } from "react";
+
 import GenericModalComponentUser from "@components/Admin/Users/UserGenericContainerComponent";
 import GenericModalComponent from "@components/GenericModalComponent";
 import { Application } from "@interfaces/Application";
-import { User } from "@interfaces/User";
 import { ContentCreator } from "@interfaces/ContentCreator";
+import { User } from "@interfaces/User";
 /*
 
 This component is used to display the user details modal in the admin dashboard.
@@ -137,14 +138,16 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                   ? contentCreator.approved
                     ? "Aprovado"
                     : contentCreator.rejected
-                    ? "Recusado"
-                    : "Aguardando análise"
+                      ? "Recusado"
+                      : "Aguardando análise"
                   : null}
               </dd>
             </div>
           </div>
           <button
-            onClick={() => toggleDropdown(0)}
+            onClick={() => {
+              toggleDropdown(0);
+            }}
             className={`mt-4 py-4 px-2 rounded-lg text-base font-base font-['Lato'] w-full flex items-center transition-colors duration-300 ${
               isDropdownOpen[0]
                 ? "rounded-tl-lg rounded-tr-lg bg-primary text-white"
@@ -165,7 +168,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M19 9l-7 7-7-7"
-              ></path>
+              />
             </svg>
             <span className="ml-2">Motivações</span>
           </button>
@@ -183,7 +186,9 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
             </div>
           </div>
           <button
-            onClick={() => toggleDropdown(1)}
+            onClick={() => {
+              toggleDropdown(1);
+            }}
             className={`mt-4 py-4 px-2 rounded-lg text-base font-base font-['Lato'] w-full flex items-center transition-colors duration-300 ${
               isDropdownOpen[1]
                 ? "rounded-tl-lg rounded-tr-lg bg-primary text-white"
@@ -204,7 +209,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M19 9l-7 7-7-7"
-              ></path>
+              />
             </svg>
             <span className="ml-2">Experiências acadêmicas</span>
           </button>
@@ -252,7 +257,9 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
             )}
           </div>
           <button
-            onClick={() => toggleDropdown(2)}
+            onClick={() => {
+              toggleDropdown(2);
+            }}
             className={`mt-4 py-4 px-2 rounded-lg text-base font-base font-['Lato'] w-full flex items-center transition-colors duration-300 ${
               isDropdownOpen[2]
                 ? "rounded-tl-lg rounded-tr-lg bg-primary text-white"
@@ -273,7 +280,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M19 9l-7 7-7-7"
-              ></path>
+              />
             </svg>
             <span className="ml-2">Experiências profissionais</span>
           </button>

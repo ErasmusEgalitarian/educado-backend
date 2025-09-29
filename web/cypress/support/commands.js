@@ -3,13 +3,12 @@
 //import cypress from "cypress";
 
 Cypress.Commands.add("getBySel", (selector, ...args) => {
-    return cy.get(`[data-test=${selector}]`, ...args)
-}) 
+  return cy.get(`[data-test=${selector}]`, ...args);
+});
 
-Cypress.Commands.add('checkToken', (token) => {
-    cy.window().its('localStorage.token').should('eq', token)
-  })
-  
+Cypress.Commands.add("checkToken", (token) => {
+  cy.window().its("localStorage.token").should("eq", token);
+});
 
 // ***********************************************
 // This example commands.ts shows you how to

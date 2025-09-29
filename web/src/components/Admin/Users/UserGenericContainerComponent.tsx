@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { FC, useState } from "react";
-import GenericModalComponent from "@components/GenericModalComponent";
-import AuthServices from "@services/auth.services";
-import AdminServices from "@services/admin.services";
 import { toast } from "react-toastify";
+
+import GenericModalComponent from "@components/GenericModalComponent";
+import AdminServices from "@services/admin.services";
+import AuthServices from "@services/auth.services";
+
 import "react-toastify/dist/ReactToastify.css";
 import { AxiosError } from "axios";
+
 import { User } from "@interfaces/User";
 /*
 This code bassicly extends the GenericModalCompoent
@@ -73,7 +76,8 @@ const UserGenericContainerComponent: FC<UserGenericContainerComponentProps> = ({
       } else if (error instanceof AxiosError) {
         console.error("Failed to process application:", error);
         toast.error(
-          error.response?.data?.error + ", But we still aproved the application"
+          error.response?.data?.error +
+            ", But we still aproved the application",
         );
       }
     } finally {
@@ -92,7 +96,7 @@ const UserGenericContainerComponent: FC<UserGenericContainerComponentProps> = ({
       onConfirm={handleAction}
       isConfirmDisabled={(isReject && !isInputValid) || Loading}
       loading={Loading}
-      width={"w-[900px]"} // Add this line to define the width
+      width="w-[900px]" // Add this line to define the width
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="flex flex-col bg-white p-4 md:p-6 rounded-l-lg mt-4 relative">
@@ -103,7 +107,7 @@ const UserGenericContainerComponent: FC<UserGenericContainerComponentProps> = ({
           >
             {userDetails.firstName} {userDetails.lastName}
           </dd>
-          <div className="absolute right-0 top-1/4 h-3/5 w-px bg-[#E7F3F6]"></div>
+          <div className="absolute right-0 top-1/4 h-3/5 w-px bg-[#E7F3F6]" />
         </div>
         <div className="flex flex-col bg-white p-4 md:p-6 rounded-r-lg mt-4">
           <dt className="text-[#166276] text-base font-bold font-lato">

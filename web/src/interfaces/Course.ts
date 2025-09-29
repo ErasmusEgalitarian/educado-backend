@@ -1,6 +1,5 @@
-import { User } from "./User";
-
 import { Answer } from "./Answer";
+import { User } from "./User";
 
 export interface Main {
   status: number;
@@ -21,11 +20,11 @@ interface CommonCourse {
   dateUpdated?: Date;
   coverImg?: string;
   category:
-  | ""
-  | "personal finance"
-  | "health and workplace safety"
-  | "sewing"
-  | "electronics";
+    | ""
+    | "personal finance"
+    | "health and workplace safety"
+    | "sewing"
+    | "electronics";
   sections: string[];
   status: "draft" | "published" | "hidden";
   estimatedHours: number;
@@ -80,26 +79,26 @@ export interface Component {
 }
 
 export interface Lecture {
-  parentSection: string,
-  _id: string,
-  title: string,
-  description: string,
-  contentType: string,
-  content: string,
+  parentSection: string;
+  _id: string;
+  title: string;
+  description: string;
+  contentType: string;
+  content: string;
 }
 
 export interface Media {
-  id: string,
-  file: File,
-  parentType: string,
+  id: string;
+  file: File;
+  parentType: string;
 }
 
 export interface Exercise {
-  _id: string,
-  parentSection: string,
-  title: string,
-  question: string,
-  answers?: Answer[]
+  _id: string;
+  parentSection: string;
+  title: string;
+  question: string;
+  answers?: Answer[];
 }
 
 export interface FormattedCourse {
@@ -113,18 +112,21 @@ export interface FormattedCourse {
     status: string;
     creator: string;
   };
-  sections: {
-    _id: string;
-    title: string;
-    description: string;
-    components: {
-      compType: string;
-      component: Lecture | Exercise;
-      video: Media | null;
-    }[]
-  }[] | null;
+  sections:
+    | {
+        _id: string;
+        title: string;
+        description: string;
+        components: {
+          compType: string;
+          component: Lecture | Exercise;
+          video: Media | null;
+        }[];
+      }[]
+    | null;
 }
 
-export interface SubmitFunction {
-  (formData: FormData, token: string): Promise<void>;
-}
+export type SubmitFunction = (
+  formData: FormData,
+  token: string,
+) => Promise<void>;

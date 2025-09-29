@@ -1,15 +1,14 @@
 import { useState } from "react";
-import GenericModalComponent from "@components/GenericModalComponent";
 import { MdDelete } from "react-icons/md";
+import { toast } from "react-toastify";
+import { KeyedMutator } from "swr";
 
+import GenericModalComponent from "@components/GenericModalComponent";
 import { useNotifications } from "@components/notification/NotificationContext";
 import { getUserToken } from "@helpers/userInfo";
 import { useApi } from "@hooks/useAPI";
-import { toast } from "react-toastify";
-import courseService from "@services/course.services";
-
 import { CreatorPopulatedCourse } from "@interfaces/Course";
-import { KeyedMutator } from "swr";
+import courseService from "@services/course.services";
 
 export const CoursesDeleteButton = ({
   courseId,
@@ -40,14 +39,18 @@ export const CoursesDeleteButton = ({
     <>
       <button
         className="btn btn-circle bg-primary hover:bg-cyan-900 border-transparent"
-        onClick={() => setShowModal(true)}
+        onClick={() => {
+          setShowModal(true);
+        }}
       >
         <MdDelete />
       </button>
       {showModal && (
         <GenericModalComponent
           onConfirm={handleConfirm}
-          onClose={() => setShowModal(false)}
+          onClose={() => {
+            setShowModal(false);
+          }}
           isVisible={showModal}
           confirmBtnText="Deletar"
           loading={isLoading}

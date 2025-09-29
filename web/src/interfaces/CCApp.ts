@@ -1,5 +1,4 @@
-export declare module CCApp {
-
+export declare namespace CCApp {
   export interface Datum {
     approved: boolean;
     id: string;
@@ -28,7 +27,6 @@ export declare module CCApp {
     FormData?: any;
   }
 
-
   export interface Config {
     transitional: Transitional;
     transformRequest: any[];
@@ -43,8 +41,7 @@ export declare module CCApp {
     url: string;
   }
 
-  export interface Request {
-  }
+  export interface Request {}
 
   export interface RootObject {
     data: Data;
@@ -55,5 +52,3 @@ export declare module CCApp {
     request: Request;
   }
 }
-
-

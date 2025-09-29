@@ -5,7 +5,7 @@
 const useGenerateRandomColor = () => {
   const getRgb = () => Math.floor(Math.random() * 256);
 
-  const rgbToHex = (r:number, g:number, b:number) =>
+  const rgbToHex = (r: number, g: number, b: number) =>
     "#" +
     [r, g, b]
       .map((x) => {
@@ -14,11 +14,7 @@ const useGenerateRandomColor = () => {
       })
       .join("");
 
-  return rgbToHex(
-    getRgb(),
-    getRgb(),
-    getRgb(),
-  );
+  return rgbToHex(getRgb(), getRgb(), getRgb());
 };
 
 export { useGenerateRandomColor };

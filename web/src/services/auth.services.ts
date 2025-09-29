@@ -1,7 +1,8 @@
 import axios from "axios";
+
 import { BACKEND_URL } from "@helpers/environment";
-import { Institution } from "@interfaces/Institution";
 import { Application } from "@interfaces/Application";
+import { Institution } from "@interfaces/Institution";
 import { User } from "@interfaces/User";
 
 export interface ContentCreatorApplication {
@@ -37,7 +38,7 @@ const GetCCApplications = async () => {
 
 const GetSingleCCApplication = async (id: string | undefined) => {
   return await axios.get<{ applicator: User; application: Application }>(
-    `${BACKEND_URL}/api/applications/${id}`
+    `${BACKEND_URL}/api/applications/${id}`,
   );
 };
 
@@ -47,7 +48,7 @@ const AcceptApplication = async (id: string): Promise<unknown> => {
 
 const RejectApplication = async (
   id: string,
-  rejectionReason: string
+  rejectionReason: string,
 ): Promise<unknown> => {
   return await axios.put(`${BACKEND_URL}/api/applications/${id}reject`, {
     rejectionReason,
@@ -74,14 +75,14 @@ const postNewApplication = async (data: {
 }) => {
   return await axios.post(
     `${BACKEND_URL}/api/applications/newapplication`,
-    data
+    data,
   );
 };
 
 const addInstitution = async (data: Institution) => {
   const res = await axios.post<Institution>(
     `${BACKEND_URL}/api/applications/newinstitution`,
-    data
+    data,
   );
   return res.data;
 };

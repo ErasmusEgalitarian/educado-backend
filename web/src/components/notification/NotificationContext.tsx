@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
+import React, { createContext, useContext, useState, ReactNode } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 
 // Define the notification type
 interface Notification {
@@ -17,13 +17,17 @@ interface NotificationContextType {
 }
 
 // Create the NotificationContext
-const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
+const NotificationContext = createContext<NotificationContextType | undefined>(
+  undefined,
+);
 
 // Hook to use the context in components
 export const useNotifications = (): NotificationContextType => {
   const context = useContext(NotificationContext);
   if (!context) {
-    throw new Error('useNotifications must be used within a NotificationProvider');
+    throw new Error(
+      "useNotifications must be used within a NotificationProvider",
+    );
   }
   return context;
 };
@@ -53,13 +57,15 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
       draggable: true,
       progress: undefined,
       progressStyle: {
-        background: "#166276" 
-      }
+        background: "#166276",
+      },
     });
   };
 
   return (
-    <NotificationContext.Provider value={{ notifications, addNotification, setNotifications }}>
+    <NotificationContext.Provider
+      value={{ notifications, addNotification, setNotifications }}
+    >
       {children}
     </NotificationContext.Provider>
   );

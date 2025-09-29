@@ -1,21 +1,20 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { useState } from "react";
-import Loading from "@components/general/Loading";
-import ViewUserButton from "@components/Admin/Users/Actions/ViewUserButton";
-import AdminToggleButton from "@components/Admin/Users/Actions/AdminToggle";
-import DeleteUserButton from "@components/Admin/Users/Actions/DeleteUserButton";
 import {
   GoArrowLeft,
   GoArrowRight,
   GoChevronLeft,
   GoChevronRight,
 } from "react-icons/go";
-
-import AdminServices from "@services/admin.services";
-import { getUserToken } from "@helpers/userInfo";
 import useSWR from "swr";
+
+import AdminToggleButton from "@components/Admin/Users/Actions/AdminToggle";
+import DeleteUserButton from "@components/Admin/Users/Actions/DeleteUserButton";
+import ViewUserButton from "@components/Admin/Users/Actions/ViewUserButton";
+import Loading from "@components/general/Loading";
+import { getUserToken } from "@helpers/userInfo";
 import { ContentCreator } from "@interfaces/ContentCreator";
 import { User } from "@interfaces/User";
+import AdminServices from "@services/admin.services";
 
 export const UsersTableAdmin = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,7 +23,7 @@ export const UsersTableAdmin = () => {
 
   const userToken = getUserToken();
   const { data, mutate } = useSWR("api/user-info", () =>
-    AdminServices.getUserApplications(userToken)
+    AdminServices.getUserApplications(userToken),
   );
 
   if (!data) return <Loading />;
@@ -66,7 +65,7 @@ export const UsersTableAdmin = () => {
   };
 
   const handleRowsPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setRowsPerPage(Number(event.target.value));
     setCurrentPage(1);
@@ -94,7 +93,7 @@ export const UsersTableAdmin = () => {
 
   const paginatedData = filteredData.slice(
     (currentPage - 1) * rowsPerPage,
-    currentPage * rowsPerPage
+    currentPage * rowsPerPage,
   );
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
@@ -113,7 +112,9 @@ export const UsersTableAdmin = () => {
             type="text"
             id="search-term"
             placeholder="Buscar usuário"
-            onChange={(event) => setSearchTerm(event.target.value)}
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
           />
           <svg
             className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400"
@@ -150,7 +151,7 @@ export const UsersTableAdmin = () => {
             <th scope="col" className="p-5" style={{ width: "30%" }}>
               Enviado em
             </th>
-            <th scope="col" className="p-5" style={{ width: "30%" }}></th>
+            <th scope="col" className="p-5" style={{ width: "30%" }} />
           </tr>
         </thead>
         <tbody>
@@ -193,8 +194,8 @@ export const UsersTableAdmin = () => {
                     {userRecord.approved
                       ? "Aprovado"
                       : userRecord.rejected
-                      ? "Recusado"
-                      : "Aguardando análise"}
+                        ? "Recusado"
+                        : "Aguardando análise"}
                   </p>
                 </td>
                 <td>
@@ -210,12 +211,12 @@ export const UsersTableAdmin = () => {
                           applicationId={userRecord._id}
                           onHandleStatus={refreshUsers}
                         />
-                        <div className="mx-2.5"></div>
+                        <div className="mx-2.5" />
                         <DeleteUserButton
                           applicationId={userRecord._id}
                           onDelete={refreshUsers}
                         />
-                        <div className="-ml-8"></div>
+                        <div className="-ml-8" />
                       </>
                     ) : (
                       <div className="ml-auto -mr-2">
@@ -285,7 +286,9 @@ export const UsersTableAdmin = () => {
                 ? "text-gray-300 cursor-not-allowed"
                 : "text-gray-600 bg-white hover:bg-gray-100 cursor-pointer"
             }`}
-            onClick={() => handlePageChange(currentPage - 1)}
+            onClick={() => {
+              handlePageChange(currentPage - 1);
+            }}
           >
             <GoChevronLeft />
           </button>
@@ -296,7 +299,9 @@ export const UsersTableAdmin = () => {
                 ? "text-gray-300 cursor-not-allowed"
                 : "text-gray-600 bg-white hover:bg-gray-100 cursor-pointer"
             }`}
-            onClick={() => handlePageChange(currentPage + 1)}
+            onClick={() => {
+              handlePageChange(currentPage + 1);
+            }}
           >
             <GoChevronRight />
           </button>

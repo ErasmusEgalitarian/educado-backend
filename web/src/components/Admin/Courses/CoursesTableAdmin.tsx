@@ -1,5 +1,12 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { useEffect, useState } from "react";
+import { IconContext } from "react-icons";
+import { MdStar } from "react-icons/md";
+import useSWR from "swr";
+
+import { CoursesDeleteButton } from "@components/Admin/Courses/Actions/CoursesDeleteButton";
+import { CoursesUpdateButton } from "@components/Admin/Courses/Actions/CoursesUpdateButton";
+import { SearchBar } from "@components/SearchBar/SearchBar";
 import {
   Table,
   TableHead,
@@ -9,17 +16,9 @@ import {
   TableContainer,
   PaginationBottomBar,
 } from "@components/Table";
-import { CoursesUpdateButton } from "@components/Admin/Courses/Actions/CoursesUpdateButton";
-import { CoursesDeleteButton } from "@components/Admin/Courses/Actions/CoursesDeleteButton";
-import { SearchBar } from "@components/SearchBar/SearchBar";
-
-import { IconContext } from "react-icons";
-import { MdStar } from "react-icons/md";
-
+import { usePagination } from "@hooks/usePagination";
 import { CreatorPopulatedCourse } from "@interfaces/Course";
 import courseService from "@services/course.services";
-import useSWR from "swr";
-import { usePagination } from "@hooks/usePagination";
 
 export const CoursesTableAdmin = () => {
   const [filteredCourses, setFilteredCourses] = useState<
@@ -27,7 +26,7 @@ export const CoursesTableAdmin = () => {
   >([]);
 
   const { data: coursesResponse, mutate } = useSWR("api/courses", () =>
-    courseService.getAllCourses()
+    courseService.getAllCourses(),
   );
 
   useEffect(() => {

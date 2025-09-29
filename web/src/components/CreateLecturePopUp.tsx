@@ -1,29 +1,30 @@
+import { mdiInformationSlabCircleOutline } from "@mdi/js";
+import { Icon } from "@mdi/react";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+
+import { useLectures, useMedia } from "../contexts/courseStore";
+import { Component } from "../interfaces/Course";
+
 import { Dropzone } from "./Dropzone/Dropzone";
 
 // Hooks
-import { useLectures, useMedia } from "../contexts/courseStore";
 
+import { ModalButtonCompont } from "./ModalButtonCompont";
 import { useNotifications } from "./notification/NotificationContext";
 
 //components
-import { ModalButtonCompont } from "./ModalButtonCompont";
 import RichTextEditor from "./RichTextEditor";
 // Icons
-import { Icon } from "@mdi/react";
-import { mdiInformationSlabCircleOutline } from "@mdi/js";
-
-import { Component } from "../interfaces/Course";
 
 <Icon path={mdiInformationSlabCircleOutline} size={1} />;
 
-type Inputs = {
+interface Inputs {
   title: string;
   description: string;
   contentType: string;
   content: string;
-};
+}
 
 interface Props {
   savedSID: string;
@@ -36,7 +37,6 @@ interface Props {
  * @returns HTML Element
  */
 export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
-
   // use-form setup
   const {
     register,
@@ -47,12 +47,10 @@ export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
   } = useForm<Inputs>();
 
   const [contentType, setContentType] = useState<string>("");
-  const [editorValue, setEditorValue] = useState<string>('');
+  const [editorValue, setEditorValue] = useState<string>("");
   const [lectureVideo, setLectureVideo] = useState<File | null>(null);
   const { addLectureToCache } = useLectures();
   const { addMediaToCache } = useMedia();
-
-
 
   const { addNotification } = useNotifications();
 
@@ -73,20 +71,20 @@ export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
       contentType: newData.contentType,
       content: newData.content,
       parentSection: savedSID,
-    }
+    };
     const res = addLectureToCache(newLecture);
     const newComponent = {
       compId: res._id,
       compType: "lecture",
-      _id : "0",
-    }
-    handleLectureCreation(newComponent)
+      _id: "0",
+    };
+    handleLectureCreation(newComponent);
     if (lectureVideo !== null) {
       const newMedia = {
         id: res._id,
         file: lectureVideo,
         parentType: "l",
-      }
+      };
       addMediaToCache(newMedia);
       setLectureVideo(null);
     }
@@ -96,15 +94,13 @@ export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
 
   function clearLectureModalContent() {
     reset();
-      setContentType("");
+    setContentType("");
   }
 
   const handleEditorChange = (value: string) => {
     setEditorValue(value); // Update local state
     setValue("content", value); // Manually set form value
   };
-  
-
 
   return (
     <>
@@ -123,11 +119,14 @@ export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="flex flex-col space-y-2 text-left">
-              <label htmlFor="title">Nome <span className="text-red-500">*</span></label> {/*Title*/}
+              <label htmlFor="title">
+                Nome <span className="text-red-500">*</span>
+              </label>{" "}
+              {/*Title*/}
               <input
                 type="text"
-                placeholder={"Noma da aula"}
-                defaultValue={""}
+                placeholder="Noma da aula"
+                defaultValue=""
                 className="form-field focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg border-none"
                 {...register("title", { required: true })}
               />
@@ -137,11 +136,14 @@ export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
             </div>
             {/*Field to input the description of the lecture*/}
             <div className="flex flex-col space-y-2 text-left">
-              <label htmlFor="description">Descrição <span className="text-red-500">*</span></label> {/*Description*/}
+              <label htmlFor="description">
+                Descrição <span className="text-red-500">*</span>
+              </label>{" "}
+              {/*Description*/}
               <textarea
                 rows={4}
-                placeholder={"Descrição da aula"}
-                defaultValue={""}
+                placeholder="Descrição da aula"
+                defaultValue=""
                 className="resize-none form-field focus:outline-none focus:ring-2 focus:ring-primary rounded-lg focus:border-transparent border-none"
                 {...register("description", { required: true })}
               />
@@ -150,8 +152,9 @@ export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
                 <span className="text-warning">Este campo é obrigatório</span>
               )}
             </div>
-            
-            <label htmlFor="content-type">Tipo de conteúdo <span className="text-red-500">*</span></label>{" "}
+            <label htmlFor="content-type">
+              Tipo de conteúdo <span className="text-red-500">*</span>
+            </label>{" "}
             {/*Content type*/}
             <div className="flex flex-row space-x-8">
               <div>
@@ -192,7 +195,6 @@ export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
                 <span className="text-warning">Este campo é obrigatório</span>
               )}
             </div>
-            
             {/*One day this will be file*/}
             <div className="flex flex-col space-y-2 text-left">
               {contentType === "video" ? (
@@ -201,18 +203,22 @@ export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
                     Upload do video <span className="text-red-500">*</span>
                   </label>{" "}
                   {/*Input file*/}
-                  
-                  
-                  <Dropzone inputType="video" id="0" onFileChange={setLectureVideo}/>
+                  <Dropzone
+                    inputType="video"
+                    id="0"
+                    onFileChange={setLectureVideo}
+                  />
                 </>
               ) : contentType === "text" ? (
                 <>
                   <label htmlFor="content">Formate o seu texto abaixo</label>
-                  <RichTextEditor value={editorValue} onChange={handleEditorChange}
+                  <RichTextEditor
+                    value={editorValue}
+                    onChange={handleEditorChange}
                   />
                 </>
               ) : (
-                <p></p>
+                <p />
               )}
               {/* {errors.description && <span className='text-warning'>Este campo é obrigatório</span>}*/}
             </div>
@@ -220,7 +226,7 @@ export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
             <ModalButtonCompont
               isSubmitting={false}
               typeButtons={`lecture-create-${savedSID}`}
-              type={"create"}
+              type="create"
             />
           </form>
         </div>

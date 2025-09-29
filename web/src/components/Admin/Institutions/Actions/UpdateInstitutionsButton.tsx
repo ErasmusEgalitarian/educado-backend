@@ -1,13 +1,14 @@
+import { useState, useEffect, FormEvent } from "react";
+import { MdCreate } from "react-icons/md";
+import { toast } from "react-toastify";
+import { KeyedMutator } from "swr";
+
 import GenericModalComponent from "@components/GenericModalComponent";
 import { useNotifications } from "@components/notification/NotificationContext";
 import { getUserToken } from "@helpers/userInfo";
 import { useApi } from "@hooks/useAPI";
 import { Institution } from "@interfaces/Institution";
 import { institutionService } from "@services/Institution.services";
-import { useState, useEffect, FormEvent } from "react";
-import { MdCreate } from "react-icons/md";
-import { toast } from "react-toastify";
-import { KeyedMutator } from "swr";
 
 export const UpdateInstitutionButton = ({
   institution,
@@ -21,11 +22,11 @@ export const UpdateInstitutionButton = ({
   const [nameInput, setNameInput] = useState(institution.institutionName);
   const [domainInput, setDomainInput] = useState(institution.domain);
   const [secondaryDomainInput, setSecondaryDomainInput] = useState(
-    institution.secondaryDomain
+    institution.secondaryDomain,
   );
 
   const { call: updateInstitution, isLoading } = useApi(
-    institutionService.updateInstitution
+    institutionService.updateInstitution,
   );
 
   useEffect(() => {
@@ -73,7 +74,9 @@ export const UpdateInstitutionButton = ({
     <>
       <button
         className="btn btn-circle bg-primary hover:bg-cyan-900 border-transparent"
-        onClick={() => setShowModal(true)}
+        onClick={() => {
+          setShowModal(true);
+        }}
       >
         <MdCreate />
       </button>
@@ -98,7 +101,9 @@ export const UpdateInstitutionButton = ({
                   required
                   placeholder="Instituição"
                   value={nameInput}
-                  onChange={(e) => setNameInput(e.target.value)}
+                  onChange={(e) => {
+                    setNameInput(e.target.value);
+                  }}
                   className="input"
                 />
 
@@ -113,7 +118,9 @@ export const UpdateInstitutionButton = ({
                   title="@domain.com"
                   placeholder="@domain.com"
                   value={domainInput}
-                  onChange={(e) => setDomainInput(e.target.value)}
+                  onChange={(e) => {
+                    setDomainInput(e.target.value);
+                  }}
                   className="input"
                 />
 
@@ -127,7 +134,9 @@ export const UpdateInstitutionButton = ({
                   title="@domain.com (opcional)"
                   pattern="@([\w\-]+\.)+[\w\-]{2,4}$"
                   value={secondaryDomainInput}
-                  onChange={(e) => setSecondaryDomainInput(e.target.value)}
+                  onChange={(e) => {
+                    setSecondaryDomainInput(e.target.value);
+                  }}
                   className="input"
                 />
               </div>

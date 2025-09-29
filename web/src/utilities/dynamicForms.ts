@@ -2,15 +2,15 @@
 import { useState } from "react";
 
 // import service and utility
-import ProfileServices from "../services/profile.services";
-import useProfileValidation from "../utilities/useProfileValidation"
-// import helpers
-import { getUserInfo } from '../helpers/userInfo';
 import {
   tempObjects,
   useEducationFormData,
   useExperienceFormData,
 } from "../helpers/formStates";
+import { getUserInfo } from "../helpers/userInfo";
+import ProfileServices from "../services/profile.services";
+import useProfileValidation from "../utilities/useProfileValidation";
+// import helpers
 
 export default () => {
   //validation
@@ -27,17 +27,22 @@ export default () => {
   } = useProfileValidation();
 
   //dynamic form states & localstorage details
-  const { educationFormData: educationFormData, setEducationFormData } = useEducationFormData();
-  const { experienceFormData: experienceFormData, setExperienceFormData } = useExperienceFormData();
-  const userInfo:any = getUserInfo();
+  const { educationFormData: educationFormData, setEducationFormData } =
+    useEducationFormData();
+  const { experienceFormData: experienceFormData, setExperienceFormData } =
+    useExperienceFormData();
+  const userInfo: any = getUserInfo();
 
   // assign userID to localstorage ID
   let id: string;
-  userInfo.id ? id = userInfo.id : id = "id";
+  userInfo.id ? (id = userInfo.id) : (id = "id");
   const [userID] = useState(id);
 
   // Get default values for empty forms
-  const { emptyAcademicObject: emptyEducationForm, emptyProfessionalObject: emptyWorkForm } = tempObjects();
+  const {
+    emptyAcademicObject: emptyEducationForm,
+    emptyProfessionalObject: emptyWorkForm,
+  } = tempObjects();
 
   // Fetch data for academic and professional experience forms
   const fetchDynamicData = async () => {
@@ -46,42 +51,57 @@ export default () => {
         ProfileServices.getUserFormTwo(userID),
         ProfileServices.getUserFormThree(userID),
       ]);
-     
-      // Map backend variables to corresponding frontend variables  
-      const transformedEducationData = educationFormResponse.data.length > 0
-        ? educationFormResponse.data.map((item: any) => ({
-            ...item,
-            educationStartDate: item.startDate,
-            educationEndDate: item.endDate,
-          }))
-          // Set empty data if forms don't exist in database
-        : emptyEducationForm;
-    
+
       // Map backend variables to corresponding frontend variables
-      const transformedWorkData = workFormResponse.data.length > 0
-        ? workFormResponse.data.map((item: any) => ({
-            ...item,
-            workStartDate: item.startDate,
-            workEndDate: item.endDate,
-          }))
-          // Set empty data if forms don't exist in database
-        : emptyWorkForm;
+      const transformedEducationData =
+        educationFormResponse.data.length > 0
+          ? educationFormResponse.data.map((item: any) => ({
+              ...item,
+              educationStartDate: item.startDate,
+              educationEndDate: item.endDate,
+            }))
+          : // Set empty data if forms don't exist in database
+            emptyEducationForm;
+
+      // Map backend variables to corresponding frontend variables
+      const transformedWorkData =
+        workFormResponse.data.length > 0
+          ? workFormResponse.data.map((item: any) => ({
+              ...item,
+              workStartDate: item.startDate,
+              workEndDate: item.endDate,
+            }))
+          : // Set empty data if forms don't exist in database
+            emptyWorkForm;
 
       setEducationFormData(transformedEducationData);
-      setExperienceFormData(transformedWorkData); 
+      setExperienceFormData(transformedWorkData);
 
-      setEducationErrors(transformedEducationData.map(() => ({ educationStartDate: "", educationEndDate: "" })));
-      setExperienceErrors(transformedWorkData.map(() => ({ workStartDate: "", workEndDate: "" })));
-    } 
-    catch (error: any) {
+      setEducationErrors(
+        transformedEducationData.map(() => ({
+          educationStartDate: "",
+          educationEndDate: "",
+        })),
+      );
+      setExperienceErrors(
+        transformedWorkData.map(() => ({ workStartDate: "", workEndDate: "" })),
+      );
+    } catch (error: any) {
       console.error("Error fetching dynamic data: ", error);
-      
-      // Handling error in e.g., database access (to avoid crashing page when forms are then expanded) 
-      setEducationFormData(emptyEducationForm);
-      setExperienceFormData(emptyWorkForm); 
 
-      setEducationErrors(emptyEducationForm.map(() => ({ educationStartDate: "", educationEndDate: "" })));
-      setExperienceErrors(emptyWorkForm.map(() => ({ workStartDate: "", workEndDate: "" })));
+      // Handling error in e.g., database access (to avoid crashing page when forms are then expanded)
+      setEducationFormData(emptyEducationForm);
+      setExperienceFormData(emptyWorkForm);
+
+      setEducationErrors(
+        emptyEducationForm.map(() => ({
+          educationStartDate: "",
+          educationEndDate: "",
+        })),
+      );
+      setExperienceErrors(
+        emptyWorkForm.map(() => ({ workStartDate: "", workEndDate: "" })),
+      );
     }
   };
 
@@ -90,10 +110,13 @@ export default () => {
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
-    index: number
+    index: number,
   ) => {
     let { name, value } = event.target;
-    if ((name == "educationStartDate" || name == "educationEndDate") && value.length > 7) {
+    if (
+      (name == "educationStartDate" || name == "educationEndDate") &&
+      value.length > 7
+    ) {
       return;
     }
     if (name == "educationStartDate" || name == "educationEndDate") {
@@ -112,42 +135,50 @@ export default () => {
     });
   };
 
-
-
   // loops through current input fiels displayed on the UI,and assign them to not being null
   const dynamicInputsFilled = (dynamicForm: any) => {
-
     if (dynamicForm === "education") {
-      const EducationInputsFilled = educationFormData.every((item) =>
-          item.educationLevel && String(item.educationLevel).trim() !== "" &&
-          item.status && String(item.status).trim() !== "" &&
-          item.course && String(item.course).trim() !== "" &&
-          item.institution && String(item.institution).trim() !== "" &&
-          item.educationStartDate && String(item.educationStartDate).trim() !== "" &&
-          item.educationEndDate && String(item.educationEndDate).trim() !== ""
+      const EducationInputsFilled = educationFormData.every(
+        (item) =>
+          item.educationLevel &&
+          String(item.educationLevel).trim() !== "" &&
+          item.status &&
+          String(item.status).trim() !== "" &&
+          item.course &&
+          String(item.course).trim() !== "" &&
+          item.institution &&
+          String(item.institution).trim() !== "" &&
+          item.educationStartDate &&
+          String(item.educationStartDate).trim() !== "" &&
+          item.educationEndDate &&
+          String(item.educationEndDate).trim() !== "",
       );
       return EducationInputsFilled;
-    } 
-    else {
-      const ExperienceInputsFilled = experienceFormData.every((item) =>
-          item.company && String(item.company).trim() !== "" &&
-          item.jobTitle && String(item.jobTitle).trim() !== "" &&
-          item.workStartDate && String(item.workStartDate).trim() !== "" &&
-          (item.workEndDate && String(item.workEndDate).trim() !== "" || item.isCurrentJob) && // If isCurrentJob is true, workEndDate can be empty
-          item.description && String(item.description).trim() !== ""
+    } else {
+      const ExperienceInputsFilled = experienceFormData.every(
+        (item) =>
+          item.company &&
+          String(item.company).trim() !== "" &&
+          item.jobTitle &&
+          String(item.jobTitle).trim() !== "" &&
+          item.workStartDate &&
+          String(item.workStartDate).trim() !== "" &&
+          ((item.workEndDate && String(item.workEndDate).trim() !== "") ||
+            item.isCurrentJob) && // If isCurrentJob is true, workEndDate can be empty
+          item.description &&
+          String(item.description).trim() !== "",
       );
       return ExperienceInputsFilled;
     }
   };
 
-
   //Display date errors
- const [submitError, setSubmitError] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const SubmitValidation = () => {
     if (
       !dynamicInputsFilled("education") ||
-      !dynamicInputsFilled("experience") 
+      !dynamicInputsFilled("experience")
     ) {
       setSubmitError(true);
     } else {
@@ -190,7 +221,7 @@ export default () => {
     }
 
     const updatedEducationFormation = educationFormData.filter(
-      (_, i) => i !== index
+      (_, i) => i !== index,
     );
     setEducationFormData(updatedEducationFormation);
 
@@ -256,7 +287,7 @@ export default () => {
     }
 
     const updatedExperienceFormation = experienceFormData.filter(
-      (_, i) => i !== index
+      (_, i) => i !== index,
     );
     setExperienceFormData(updatedExperienceFormation);
 
@@ -277,7 +308,10 @@ export default () => {
   //Count characters written in professional description
   const handleCountExperience = (index: any) => {
     // if description is not existing then return nothing
-    if(experienceFormData.length === 0 || typeof experienceFormData[index].description !== "string") {
+    if (
+      experienceFormData.length === 0 ||
+      typeof experienceFormData[index].description !== "string"
+    ) {
       return 0;
     }
     let text = experienceFormData[index].description;
@@ -289,10 +323,16 @@ export default () => {
   const handleExperienceInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     index: number,
-    isCurrentJob: boolean = false   // Optional parameter with default value
+    isCurrentJob = false, // Optional parameter with default value
   ): void => {
-    let { name, value } = event.target as { name: "workStartDate" | "workEndDate"; value: string };
-    if ((name == "workStartDate" || name == "workEndDate") && value.length > 7) {
+    let { name, value } = event.target as {
+      name: "workStartDate" | "workEndDate";
+      value: string;
+    };
+    if (
+      (name == "workStartDate" || name == "workEndDate") &&
+      value.length > 7
+    ) {
       return;
     }
     if (name == "workStartDate" || name == "workEndDate") {
@@ -328,6 +368,6 @@ export default () => {
     userID,
     experienceFormData: experienceFormData,
     educationFormData: educationFormData,
-    dynamicInputsFilled
+    dynamicInputsFilled,
   };
 };

@@ -1,71 +1,93 @@
 // interfaces
-import { Course } from "../../interfaces/Course"
 
 // Components
-import StarRating from "../general/StarRating";
-import { Icon } from '@mdi/react';
+import { Icon } from "@mdi/react";
 import { BsClockFill } from "react-icons/bs";
 
 // Helpers
 import categories from "../../helpers/courseCategories";
+import { Course } from "../../interfaces/Course";
+import StarRating from "../general/StarRating";
 
 /**
  * Displays a course in a card format
- * 
+ *
  * @param {Course} course The course to be displayed
  * @returns HTML Element
  */
-export const CourseGridCard = ({ course}: { course: Course },) => {
+export const CourseGridCard = ({ course }: { course: Course }) => {
   const maxTitleLength = 20;
   //Only load the picture, when the picture is loaded
- 
+
   return (
     <div className="shadow-courseCard border rounded-lg h-full w-full m-auto">
-        {/* Card content */}
-        <div className="bg-white w-full">
-          <div className='p-4'>
-            {/* Card title */}
-            <div className="flex items-center gap-5 border-b border-lightgray pb-2 my-5">
-
-            <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 18H0V0H2V16H4V14H8V16H10V13H14V16H16V14H20V18ZM16 11H20V13H16V11ZM10 3H14V6H10V3ZM14 12H10V7H14V12ZM4 7H8V9H4V7ZM8 13H4V10H8V13Z" fill="#383838"/>
+      {/* Card content */}
+      <div className="bg-white w-full">
+        <div className="p-4">
+          {/* Card title */}
+          <div className="flex items-center gap-5 border-b border-lightgray pb-2 my-5">
+            <svg
+              width="20"
+              height="18"
+              viewBox="0 0 20 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 18H0V0H2V16H4V14H8V16H10V13H14V16H16V14H20V18ZM16 11H20V13H16V11ZM10 3H14V6H10V3ZM14 12H10V7H14V12ZM4 7H8V9H4V7ZM8 13H4V10H8V13Z"
+                fill="#383838"
+              />
             </svg>
 
-              <h2 className="text-gray-800 text-xl font-medium">
-                {course.title.slice(0, maxTitleLength) + (course.title.length > maxTitleLength ? '...' : '')}
-              </h2>
+            <h2 className="text-gray-800 text-xl font-medium">
+              {course.title.slice(0, maxTitleLength) +
+                (course.title.length > maxTitleLength ? "..." : "")}
+            </h2>
+          </div>
+
+          {/* Card info */}
+          <div className="flex flex-col justify-between mt-8 text-grayMedium">
+            {/* Course category */}
+            <div className="flex flex-row gap-5">
+              <div className="flex flex-row">
+                <Icon
+                  path={
+                    categories[course.category]?.icon ?? categories.default.icon
+                  }
+                  className="w-4 mr-1"
+                />
+                <p>{categories[course.category]?.br ?? course.category}</p>
+              </div>
+              <div className="flex flex-row items-center gap-1">
+                <BsClockFill />
+                <p>
+                  {course.estimatedHours != null ? course.estimatedHours : "?"}{" "}
+                  horas
+                </p>
+              </div>
             </div>
 
+            {/* Course rating */}
+            <div className="w-[8rem]">
+              <StarRating rating={course.rating ?? 0} />
+            </div>
 
-            {/* Card info */}
-            <div className='flex flex-col justify-between mt-8 text-grayMedium'>
-              {/* Course category */}
-              <div className='flex flex-row gap-5'>
-                <div className="flex flex-row">
-                  <Icon
-                    path={categories[course.category]?.icon ?? categories.default.icon}
-                    className='w-4 mr-1'
-                    />
-                  <p>{categories[course.category]?.br ?? course.category}</p>
-                </div>
-                <div className="flex flex-row items-center gap-1">
-                  <BsClockFill />
-                  <p>{(course.estimatedHours != null) ? course.estimatedHours : "?"} horas</p>
-                </div>
-              </div>
-            
-              {/* Course rating */}
-              <div className='w-[8rem]'>
-                <StarRating rating={course.rating ?? 0} />
-              </div>
-              
             <div className="flex gap-3 justify-end mt-5">
-                <button  onClick={()=>window.location.href = `/courses/manager/${course._id}/0`} className="text-primary text-xs font-bold"><span className="border-b border-primary">Editar</span></button>
-                <button className="bg-primary rounded-lg py-3 px-4 font-bold text-white">Visualizar</button>
-            </div>
+              <button
+                onClick={() =>
+                  (window.location.href = `/courses/manager/${course._id}/0`)
+                }
+                className="text-primary text-xs font-bold"
+              >
+                <span className="border-b border-primary">Editar</span>
+              </button>
+              <button className="bg-primary rounded-lg py-3 px-4 font-bold text-white">
+                Visualizar
+              </button>
             </div>
           </div>
         </div>
+      </div>
     </div>
-  )
-}
+  );
+};

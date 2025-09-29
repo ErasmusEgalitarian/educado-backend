@@ -1,15 +1,16 @@
-import React from "react";
-import { useState } from "react";
 import {
   InformationCircleIcon,
   PencilSquareIcon,
   QuestionMarkCircleIcon,
 } from "@heroicons/react/24/outline";
+import React, { useState } from "react";
 
 const CourseGuideButton = () => {
   const [showTutorial, setShowTutorial] = useState(false);
 
-  const toggleTutorial = () => setShowTutorial(!showTutorial);
+  const toggleTutorial = () => {
+    setShowTutorial(!showTutorial);
+  };
 
   return (
     <>
@@ -28,7 +29,9 @@ const CourseGuideButton = () => {
         >
           <div
             className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-xl max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
           >
             <button
               className="absolute top-2 right-5 text-gray-500 hover:text-gray-700 text-3xl"

@@ -1,14 +1,13 @@
 import { useState } from "react";
-import GenericModalComponent from "@components/GenericModalComponent";
-
-import { Institution } from "@interfaces/Institution";
-import AuthServices from "@services/auth.services";
-
-import { useNotifications } from "@components/notification/NotificationContext";
-import { useApi } from "@hooks/useAPI";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
+import GenericModalComponent from "@components/GenericModalComponent";
+import { useNotifications } from "@components/notification/NotificationContext";
+import { useApi } from "@hooks/useAPI";
+import { Institution } from "@interfaces/Institution";
+import AuthServices from "@services/auth.services";
 
 export const AddInstitutionButton = () => {
   const [showModal, setShowModal] = useState(false);
@@ -32,7 +31,7 @@ export const AddInstitutionButton = () => {
       setShowModal(false);
       navigate("/educado-admin/applications");
       addNotification(
-        "Adicionado " + res.institutionName + " como nova instituição"
+        "Adicionado " + res.institutionName + " como nova instituição",
       );
     } catch (err) {
       //apiError from useApi hook

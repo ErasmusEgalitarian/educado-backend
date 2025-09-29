@@ -1,16 +1,15 @@
 import { useState } from "react";
-import GenericModalComponent from "@components/GenericModalComponent";
-import { MdCreate } from "react-icons/md";
-
-import { useNotifications } from "@components/notification/NotificationContext";
-import { useApi } from "@hooks/useAPI";
-import { getUserToken } from "@helpers/userInfo";
-import { toast } from "react-toastify";
-import courseService from "@services/course.services";
-
-import { CreatorPopulatedCourse } from "@interfaces/Course";
-import { KeyedMutator } from "swr";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { MdCreate } from "react-icons/md";
+import { toast } from "react-toastify";
+import { KeyedMutator } from "swr";
+
+import GenericModalComponent from "@components/GenericModalComponent";
+import { useNotifications } from "@components/notification/NotificationContext";
+import { getUserToken } from "@helpers/userInfo";
+import { useApi } from "@hooks/useAPI";
+import { CreatorPopulatedCourse } from "@interfaces/Course";
+import courseService from "@services/course.services";
 
 export const CoursesUpdateButton = ({
   course,
@@ -39,7 +38,7 @@ export const CoursesUpdateButton = ({
   });
 
   const { call: updateCourse, isLoading } = useApi(
-    courseService.updateCourseDetail
+    courseService.updateCourseDetail,
   );
 
   const onSubmit: SubmitHandler<FormInputs> = async (formData) => {
@@ -66,7 +65,9 @@ export const CoursesUpdateButton = ({
     <>
       <button
         className="btn btn-circle bg-primary hover:bg-cyan-900 border-transparent"
-        onClick={() => setShowModal(true)}
+        onClick={() => {
+          setShowModal(true);
+        }}
       >
         <MdCreate />
       </button>
@@ -113,14 +114,12 @@ export const CoursesUpdateButton = ({
                       <span>Categoria</span>
                     </label>
                     <select className="select" {...register("category")}>
-                      <option value={"personal finance"}>
-                        Personal finance
-                      </option>
-                      <option value={"health and workplace safety"}>
+                      <option value="personal finance">Personal finance</option>
+                      <option value="health and workplace safety">
                         Health and workplace safety
                       </option>
-                      <option value={"sewing"}>Sewing</option>
-                      <option value={"electronics"}>Electronics</option>
+                      <option value="sewing">Sewing</option>
+                      <option value="electronics">Electronics</option>
                       <option value={undefined}>No category</option>
                     </select>
                   </div>

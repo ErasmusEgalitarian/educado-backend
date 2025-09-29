@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { UniqueIdentifier } from "@dnd-kit/core";
 
 // DND-KIT
@@ -12,32 +11,30 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-
-import { useNotifications } from "../notification/NotificationContext";
-
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-
-import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { useState } from "react";
 
 // Components
-import { SortableItem } from "./@dnd/SortableItem";
-import { Item } from "./@dnd/Item";
 
 //store"
 import { useSections, useCourse } from "@contexts/courseStore";
 
+import { useNotifications } from "../notification/NotificationContext";
+
+import { Item } from "./@dnd/Item";
+import { SortableItem } from "./@dnd/SortableItem";
+
 interface Props {
-  sections: Array<string>;
+  sections: string[];
 }
- 
-export const SectionList = ({
-  sections,
-}: Props) => {
+
+export const SectionList = ({ sections }: Props) => {
   // States
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [savedSID, setSavedSID] = useState<string>("");
@@ -51,11 +48,11 @@ export const SectionList = ({
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const handleSectionDeletion = (sId: string) => {
-    if (confirm("Tem certeza que deseja excluir?")){
+    if (confirm("Tem certeza que deseja excluir?")) {
       addNotification("Seção excluída");
       deleteCachedSection(sId);
     }
@@ -67,19 +64,17 @@ export const SectionList = ({
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
-    if (over === null || active.id === over.id) return; 
+    if (over === null || active.id === over.id) return;
     const getAdjustedSectionList = () => {
       const oldIndex = sections.findIndex((section) => section === active.id);
       const newIndex = sections.findIndex((section) => section === over.id);
       const result = arrayMove(sections, oldIndex, newIndex);
       return result;
-    }
+    };
     updateCachedCourseSections(getAdjustedSectionList());
-    
+
     setActiveId(null);
   };
-
-  
 
   return (
     <div className="w-full">

@@ -1,5 +1,6 @@
 //Imports
 import { useEffect, useState } from "react";
+
 import Modals from "../../components/ProfileForms/Modals";
 import { BACKEND_URL } from "../../helpers/environment";
 
@@ -25,7 +26,6 @@ export default function PersonalInformationForm({
   register: any;
   handleInputChange: any;
 }) {
-
   //State for pop up modals
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
@@ -43,7 +43,7 @@ export default function PersonalInformationForm({
   };
   const getUserImage = async () => {
     const response = await fetch(
-      `http://localhost:8888/api/bucket/${formData.photo}`
+      `http://localhost:8888/api/bucket/${formData.photo}`,
     );
   };
   useEffect(() => {
@@ -226,7 +226,7 @@ export default function PersonalInformationForm({
 
       {/* Create distance between forms */}
       <div className="hidden sm:block" aria-hidden="true">
-        <div className="py-3"></div>
+        <div className="py-3" />
       </div>
     </>
   );

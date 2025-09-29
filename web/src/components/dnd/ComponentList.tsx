@@ -1,5 +1,3 @@
-import { useState} from "react";
-
 // DND-KIT
 import {
   UniqueIdentifier,
@@ -12,44 +10,40 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { useState } from "react";
 
-import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { useSections } from "@contexts/courseStore";
 
 // Components
-import { SortableComponentItem } from "./@dnd/SortableComponentItem";
+import { Component } from "@interfaces/Course";
+
 import { Item } from "./@dnd/Item";
 
 // Intefaces
-import { Component } from "@interfaces/Course";
-
+import { SortableComponentItem } from "./@dnd/SortableComponentItem";
 
 interface Props {
   sid: string;
   components: Component[];
-
 }
 
-export const ComponentList = ({
-  sid,
-  components
-}: Props) => {
+export const ComponentList = ({ sid, components }: Props) => {
   // States
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
-  const { updateCachedSectionComponents} = useSections();
+  const { updateCachedSectionComponents } = useSections();
   // Setup of pointer and keyboard sensor
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   // handle start of dragging
@@ -62,19 +56,18 @@ export const ComponentList = ({
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (over === null || active.id === over.id) return;
-      const adjustComponents = () => {
-        const oldIndex = components.findIndex(
-          (component) => component.compId === active.id
-        );
-        const newIndex = components.findIndex(
-          (component) => component.compId === over.id
-          
-        );
-        return arrayMove(components, oldIndex, newIndex);
-      }
+    const adjustComponents = () => {
+      const oldIndex = components.findIndex(
+        (component) => component.compId === active.id,
+      );
+      const newIndex = components.findIndex(
+        (component) => component.compId === over.id,
+      );
+      return arrayMove(components, oldIndex, newIndex);
+    };
 
-      const newComponents = adjustComponents();
-      updateCachedSectionComponents(sid, newComponents);
+    const newComponents = adjustComponents();
+    updateCachedSectionComponents(sid, newComponents);
   };
 
   return (
@@ -91,11 +84,7 @@ export const ComponentList = ({
           strategy={verticalListSortingStrategy}
         >
           {components.map((comp) => (
-            <SortableComponentItem
-              key={comp._id}
-              component={comp}
-              sid={sid}
-            />
+            <SortableComponentItem key={comp._id} component={comp} sid={sid} />
           ))}
         </SortableContext>
 

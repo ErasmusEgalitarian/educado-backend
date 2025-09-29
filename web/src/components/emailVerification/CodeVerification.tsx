@@ -1,7 +1,8 @@
 import PinField from "react-pin-field";
+
 import TextInput from "../general/TextInput";
 
-type propsType = {
+interface propsType {
   codeError: string;
   setCode: (code: string) => void;
   setCodeEntered: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,7 +20,7 @@ type propsType = {
  * - `setCodeEntered`: the function that sets the code entered hook
  * @returns {JSX.Element} the screen component
  */
-export default function CodeVerification(props: propsType) : JSX.Element {
+export default function CodeVerification(props: propsType): JSX.Element {
   return (
     <div className="flex h-full flex-col justify-center items-center">
       <div className="flex flex-row justify-center items-center w-[420px] h-[38px] space-x-2.5">
@@ -34,18 +35,20 @@ export default function CodeVerification(props: propsType) : JSX.Element {
             props.setCodeEntered(true);
           }}
           style={{
-            width: '99px', // Width
-            height: '38px', // Height
-            padding: '8px 16px', // Padding: Top 8px, Right 16px, Bottom 8px, Left 16px
-            marginRight: '0px', // Gap
-            borderRadius: '8px', // Border radius
-            borderColor: '#e8effa',
-            opacity: '1', // Opacity
-            textAlign: 'center', // Center text
+            width: "99px", // Width
+            height: "38px", // Height
+            padding: "8px 16px", // Padding: Top 8px, Right 16px, Bottom 8px, Left 16px
+            marginRight: "0px", // Gap
+            borderRadius: "8px", // Border radius
+            borderColor: "#e8effa",
+            opacity: "1", // Opacity
+            textAlign: "center", // Center text
           }}
         />
       </div>
-      <p id="pin-error" className="text-warning h-0">{props.codeError}</p>
+      <p id="pin-error" className="text-warning h-0">
+        {props.codeError}
+      </p>
     </div>
   );
 }

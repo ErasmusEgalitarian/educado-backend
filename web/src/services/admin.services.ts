@@ -1,7 +1,9 @@
 import axios from "axios";
-import { BACKEND_URL } from "../helpers/environment";
-import { User } from "@interfaces/User";
+
 import { ContentCreator } from "@interfaces/ContentCreator";
+import { User } from "@interfaces/User";
+
+import { BACKEND_URL } from "../helpers/environment";
 
 const deleteUser = async (id: string, token: string) => {
   const res = await axios.delete(`${BACKEND_URL}/api/users/${id}`, {
@@ -22,7 +24,7 @@ const getUserApplications = async (token: string) => {
     `${BACKEND_URL}/api/user-info`,
     {
       headers: { Authorization: `Bearer ${token}` },
-    }
+    },
   );
   return res.data.data;
 };
@@ -31,7 +33,7 @@ const changeUserRole = async (id: string, token: string, newRole: string) => {
   const res = await axios.patch(
     `${BACKEND_URL}/api/users/${id}/role`,
     { newRole },
-    { headers: { Authorization: `Bearer ${token}` } }
+    { headers: { Authorization: `Bearer ${token}` } },
   );
   return res.data;
 };
@@ -41,7 +43,7 @@ const getContentCreator = async (id: string, token: string) => {
     `${BACKEND_URL}/api/user-info/${id}`,
     {
       headers: { Authorization: `Bearer ${token}` },
-    }
+    },
   );
   return res.data;
 };

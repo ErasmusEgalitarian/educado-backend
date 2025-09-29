@@ -1,19 +1,21 @@
 import { useContext, useState, useEffect } from "react";
-import { FormDataContext } from "../../pages/Signup"; // Import the context
-import AuthServices from "../../services/auth.services";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { LoginResponseError } from "../../interfaces/LoginResponseError";
-import { ToggleModalContext } from "../../pages/Signup";
-import { HandleContinueContext } from "./EmailVerificationModal";
-import { useApi } from "../../hooks/useAPI";
-import { setUserInfo } from "../../helpers/userInfo";
 
-type propsType = {
+import { setUserInfo } from "../../helpers/userInfo";
+import { useApi } from "../../hooks/useAPI";
+import { LoginResponseError } from "../../interfaces/LoginResponseError";
+import { FormDataContext } from "../../pages/Signup"; // Import the context
+import { ToggleModalContext } from "../../pages/Signup";
+import AuthServices from "../../services/auth.services";
+
+import { HandleContinueContext } from "./EmailVerificationModal";
+
+interface propsType {
   codeVerified: boolean;
   token: string; // Add the token (code) prop
   isLoading?: boolean;
-};
+}
 
 export default function NavigationFooter(props: propsType): JSX.Element {
   const { token, codeVerified, isLoading } = props; // Destructure token from props
@@ -22,12 +24,16 @@ export default function NavigationFooter(props: propsType): JSX.Element {
   const formData = useContext(FormDataContext); // Access form data from context
   const navigate = useNavigate();
   const [error, setError] = useState<LoginResponseError.RootObject | null>(
-    null
+    null,
   );
   const [cooldown, setCooldown] = useState(0); // Cooldown state for resend button
 
-  const { call: verifyUser, isLoading: isVerifyingUser } = useApi(AuthServices.postUserVerification);
-  const { call: loginUser, isLoading: isLoggingIn } = useApi(AuthServices.postUserLogin);
+  const { call: verifyUser, isLoading: isVerifyingUser } = useApi(
+    AuthServices.postUserVerification,
+  );
+  const { call: loginUser, isLoading: isLoggingIn } = useApi(
+    AuthServices.postUserLogin,
+  );
 
   const resendEmail = async () => {
     if (!formData) {
@@ -58,7 +64,9 @@ export default function NavigationFooter(props: propsType): JSX.Element {
       }, 1000);
 
       // Clear interval when cooldown reaches 0
-      return () => clearInterval(timerId);
+      return () => {
+        clearInterval(timerId);
+      };
     }
   }, [cooldown]);
 
@@ -94,7 +102,7 @@ export default function NavigationFooter(props: propsType): JSX.Element {
         setUserInfo(res.data.userInfo);
         navigate("/courses");
       }
-    } catch (err : any) {
+    } catch (err: any) {
       console.error(err);
       setError(err);
       toast.error(err.response?.data.message);
@@ -112,7 +120,8 @@ export default function NavigationFooter(props: propsType): JSX.Element {
           {isLoading || isVerifyingUser || isLoggingIn ? (
             <span className="spinner-border animate-spin rounded-full border-2 border-t-transparent w-4 h-4" />
           ) : null}
-          <span>{!props.codeVerified ? "Continuar" : "Redefinir senha"}</span> {/* Continue or reset password */}
+          <span>{!props.codeVerified ? "Continuar" : "Redefinir senha"}</span>{" "}
+          {/* Continue or reset password */}
         </button>
       </label>
 
@@ -123,9 +132,9 @@ export default function NavigationFooter(props: propsType): JSX.Element {
           onClick={resendEmail} // Call resendEmail when clicked
           disabled={cooldown > 0} // Disable button during cooldown
           className={`text-primary underline transition ease-in duration-200 text-l font-medium 
-            ${cooldown > 0 ? 'opacity-50 cursor-not-allowed' : 'hover:text-primary-dark'}`}
+            ${cooldown > 0 ? "opacity-50 cursor-not-allowed" : "hover:text-primary-dark"}`}
         >
-          {cooldown > 0 ? `Reenviar código em ${cooldown}s` : 'Reenviar código'}
+          {cooldown > 0 ? `Reenviar código em ${cooldown}s` : "Reenviar código"}
         </button>
       </label>
     </div>

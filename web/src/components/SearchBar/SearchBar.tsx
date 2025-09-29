@@ -32,7 +32,9 @@ export const SearchBar = ({
           className="input input-bordered"
           type="text"
           placeholder={placeholderText}
-          onChange={(event) => setSearchTerm(event.target.value)}
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
         />
         <div className="flex flex-col justify-center">
           <MdSearch className="-ml-6" />

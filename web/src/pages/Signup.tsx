@@ -1,10 +1,4 @@
-import { useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createContext, useContext, useState } from "react";
-import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
-import { Icon } from "@mdi/react";
 import {
   mdiEyeOffOutline,
   mdiEyeOutline,
@@ -12,6 +6,14 @@ import {
   mdiCheckBold,
   mdiAlertCircleOutline,
 } from "@mdi/js";
+import { Icon } from "@mdi/react";
+import { createContext, useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate, Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import * as Yup from "yup";
+
+import background from "../assets/background.jpg";
 import Carousel from "../components/archive/Carousel";
 import EmailVerificationModal from "../components/emailVerification/EmailVerificationModal";
 import NavigationFooter from "../components/emailVerification/NavigationFooter";
@@ -21,14 +23,13 @@ export const ToggleModalContext = createContext<() => void>(() => {});
 export const FormDataContext = createContext<any>(null);
 
 // Static assets
-import background from "../assets/background.jpg";
 
 // interfaces
 import { LoginResponseError } from "../interfaces/LoginResponseError";
 
 // services
-import AuthServices from "../services/auth.services";
 import { NonProtectedRoute } from "../services/auth.guard";
+import AuthServices from "../services/auth.services";
 import MiniNavbar from "../components/navbar/MiniNavbar";
 
 // Form input interface
@@ -44,35 +45,45 @@ interface ApplicationInputs {
 // Yup schema for fields (new user registration form)
 const SignupSchema = Yup.object().shape({
   // Registers user first name and removes leading/trailing whitespaces
-  firstName: Yup.string().trim()
-    .required("Seu primeiro nome é obrigatório!"), /*Your first name is Required*/
+  firstName: Yup.string()
+    .trim()
+    .required(
+      "Seu primeiro nome é obrigatório!",
+    ) /*Your first name is Required*/,
 
   // Registers user last name and removes leading/trailing whitespaces
-  lastName: Yup.string().trim()
-    .required("Seu sobrenome é obrigatório!"), /*Your last name is Required*/ 
+  lastName: Yup.string()
+    .trim()
+    .required("Seu sobrenome é obrigatório!") /*Your last name is Required*/,
 
   password: Yup.string()
     .min(8, "Muito curto!")
     .required("A senha não é longa o suficiente"),
   confirmPassword: Yup.string().oneOf(
     [Yup.ref("password"), null],
-    "As senhas não coincidem"
+    "As senhas não coincidem",
   ),
-  email: Yup.string().matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 'Seu email não está correto').required("O email é obrigatório"),
+  email: Yup.string()
+    .matches(
+      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+      "Seu email não está correto",
+    )
+    .required("O email é obrigatório"),
 });
 
 const Signup = () => {
   const [error, setError] = useState<LoginResponseError.RootObject | null>(
-    null
+    null,
   );
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState<ApplicationInputs | null>(null);
   const [email, setEmail] = useState(""); // Replace with actual email logic
 
-
-  // callback 
-  const {call: signup, isLoading : submitLoading} = useApi(AuthServices.postUserSignup);
+  // callback
+  const { call: signup, isLoading: submitLoading } = useApi(
+    AuthServices.postUserSignup,
+  );
   // Navigation hook
   const navigate = useNavigate();
 
@@ -99,7 +110,6 @@ const Signup = () => {
    * @param {JSON} data Includes firstName, lastName, email, password fields.
    */
   const onSubmit = async (data: any) => {
-
     setFormData(data); // Store the form data in state
     setEmail(data.email);
 
@@ -109,18 +119,18 @@ const Signup = () => {
       lastName: data.lastName,
       email: data.email,
       password: data.password,
-      role: 'user',
+      role: "user",
       token: null,
     })
-    
       .then((res) => {
         if (
           res.status === 200 ||
           res.data.message ===
-            "Verification email sent. Please verify to complete registration.") {
+            "Verification email sent. Please verify to complete registration."
+        ) {
           // If the signup is successful, show the modal
           setIsModalVisible(true);
-        } else if ( res.status === 201){
+        } else if (res.status === 201) {
           const id = res.data.contentCreatorProfile.baseUser;
           navigate(`/application/${id}`);
         }
@@ -132,13 +142,13 @@ const Signup = () => {
         } else {
           switch (err.response.data.error.code) {
             case "E0201": // Email already exists
-            setEmailExistError(err);
-            setErrorExistMessage(
-              "Já existe um usuário com o email fornecido"
-            );
-            setPasswordMismatchError(null);
-            setPasswordMismatchErrorMessage("");
-            break;
+              setEmailExistError(err);
+              setErrorExistMessage(
+                "Já existe um usuário com o email fornecido",
+              );
+              setPasswordMismatchError(null);
+              setPasswordMismatchErrorMessage("");
+              break;
             case "E0105": // Password mismatch
               setPasswordMismatchError(err);
               setPasswordMismatchErrorMessage("As senhas não combinam");
@@ -175,22 +185,22 @@ const Signup = () => {
   // Function for validating that all fields are filled in
   function areFieldsFilled() {
     const inputSignupFirstName = document.getElementById(
-      "firstNameField"
+      "firstNameField",
     ) as HTMLInputElement;
     const inputSignupLastName = document.getElementById(
-      "lastNameField"
+      "lastNameField",
     ) as HTMLInputElement;
     const inputSignupEmail = document.getElementById(
-      "email-field"
+      "email-field",
     ) as HTMLInputElement;
     const inputSignupPass = document.getElementById(
-      "password-field"
+      "password-field",
     ) as HTMLInputElement;
     const inputSignupRedoPass = document.getElementById(
-      "password-field-repeat"
+      "password-field-repeat",
     ) as HTMLInputElement;
     const submitSignupButton = document.getElementById(
-      "submit-signup-button"
+      "submit-signup-button",
     ) as HTMLButtonElement;
 
     if (
@@ -214,7 +224,10 @@ const Signup = () => {
 
   return (
     <ToggleModalContext.Provider
-      value={() => setIsModalVisible(!isModalVisible)}>
+      value={() => {
+        setIsModalVisible(!isModalVisible);
+      }}
+    >
       <FormDataContext.Provider value={formData}>
         <main className="bg-gradient-to-br from-[#C9E5EC] 0% to-[#FFF] 100%">
           {/* Mini navbar */}
@@ -245,7 +258,8 @@ const Signup = () => {
                     </Link>
                     <Link
                       to="/welcome"
-                      className="text-lg text-[#383838] font-normal font-['Montserrat']">
+                      className="text-lg text-[#383838] font-normal font-['Montserrat']"
+                    >
                       Voltar
                     </Link>
                   </h1>
@@ -258,12 +272,14 @@ const Signup = () => {
                 <form
                   onSubmit={handleSubmit(onSubmit)}
                   className="stretch flex flex-col"
-                  noValidate>
+                  noValidate
+                >
                   <div className="flex">
                     <div className="relative flex-1">
                       <label
                         className="flex flex-start text-[#383838] text-sm font-normal gap-1 font-['Montserrat'] mt-5 after:content-['*'] after:ml-0.5 after:text-red-500 "
-                        htmlFor="firstNameField">
+                        htmlFor="firstNameField"
+                      >
                         Nome
                       </label>
                       <input
@@ -281,7 +297,8 @@ const Signup = () => {
                     <div className="relative flex-1 ml-2">
                       <label
                         className="flex flex-start text-[#383838] text-sm font-normal gap-1 font-['Montserrat'] mt-5 after:content-['*'] after:ml-0.5 after:text-red-500 "
-                        htmlFor="lastNameField">
+                        htmlFor="lastNameField"
+                      >
                         Sobrenome
                       </label>
                       <input
@@ -300,7 +317,8 @@ const Signup = () => {
                   <div className="relative">
                     <label
                       className="flex flex-start text-[#383838] text-sm font-normal gap-1 font-['Montserrat'] mt-5 after:content-['*'] after:ml-0.5 after:text-red-500 "
-                      htmlFor="email-field">  
+                      htmlFor="email-field"
+                    >
                       Email
                     </label>
                     <input
@@ -313,19 +331,21 @@ const Signup = () => {
                         required: "introduza o seu e-mail.",
                       })}
                     />
-                    {errors.email && 
-                     <div
-                     className="flex items-center font-normal font-['Montserrat']"
-                     role="alert">
-                     <p className="mt-1 ml-1 text-red-500 text-sm">
-                      {errors.email.message}
-                     </p>
-                   </div>
-                    }
+                    {errors.email && (
+                      <div
+                        className="flex items-center font-normal font-['Montserrat']"
+                        role="alert"
+                      >
+                        <p className="mt-1 ml-1 text-red-500 text-sm">
+                          {errors.email.message}
+                        </p>
+                      </div>
+                    )}
                     {emailExistsError && (
                       <div
                         className="flex items-center font-normal font-['Montserrat']"
-                        role="alert">
+                        role="alert"
+                      >
                         <p className="mt-1 ml-1 text-red-500 text-sm">
                           {emailExistsErrorMessage}
                         </p>
@@ -335,7 +355,8 @@ const Signup = () => {
                   <div className="relative">
                     <label
                       className="flex flex-start text-[#383838] text-sm font-normal gap-1 font-['Montserrat'] mt-5 after:content-['*'] after:ml-0.5 after:text-red-500 "
-                      htmlFor="password-field">
+                      htmlFor="password-field"
+                    >
                       Senha
                     </label>
                     <input
@@ -351,7 +372,8 @@ const Signup = () => {
                       type="button"
                       className="absolute right-3 bottom-3"
                       onClick={togglePasswordVisibility}
-                      id="hidePasswordIcon">
+                      id="hidePasswordIcon"
+                    >
                       <Icon
                         path={
                           passwordVisible ? mdiEyeOutline : mdiEyeOffOutline
@@ -391,7 +413,8 @@ const Signup = () => {
                   <div className="relative">
                     <label
                       className="flex flex-start text-[#383838] text-sm font-normal gap-1 font-['Montserrat'] mt-6 after:content-['*'] after:ml-0.5 after:text-red-500 "
-                      htmlFor="password-field-repeat">
+                      htmlFor="password-field-repeat"
+                    >
                       Confirmar Senha
                     </label>
                     <input
@@ -407,7 +430,8 @@ const Signup = () => {
                     <button
                       type="button"
                       className="absolute right-3 bottom-3"
-                      onClick={togglePasswordVisibilityRepeat}>
+                      onClick={togglePasswordVisibilityRepeat}
+                    >
                       <Icon
                         path={
                           passwordVisibleRepeat
@@ -419,19 +443,21 @@ const Signup = () => {
                       />
                     </button>
                   </div>
-                  {errors.confirmPassword && 
-                     <div
-                     className="flex items-center font-normal font-['Montserrat']"
-                     role="alert">
-                     <p className="mt-1 ml-1 text-red-500 text-sm">
-                      {errors.confirmPassword.message}
-                     </p>
-                   </div>
-                    }
+                  {errors.confirmPassword && (
+                    <div
+                      className="flex items-center font-normal font-['Montserrat']"
+                      role="alert"
+                    >
+                      <p className="mt-1 ml-1 text-red-500 text-sm">
+                        {errors.confirmPassword.message}
+                      </p>
+                    </div>
+                  )}
                   {passwordMismatchError && (
                     <div
                       className="flex items-center font-normal font-['Montserrat']"
-                      role="alert">
+                      role="alert"
+                    >
                       <Icon
                         path={mdiAlertCircleOutline}
                         size={0.6}
@@ -449,9 +475,10 @@ const Signup = () => {
                     type="submit"
                     id="submit-signup-button"
                     className="disabled:opacity-20 disabled:bg-slate-600 flex-auto w-[100%] h-[3.3rem] rounded-lg bg-[#166276] text-[#FFF] transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50 text-lg font-bold font-['Montserrat']"
-                    disabled={submitLoading}>
-                    {submitLoading? (
-                    <span className="spinner-border animate-spin inline-block w-4 h-4 border-2 border-t-transparent rounded-full mr-2"></span>
+                    disabled={submitLoading}
+                  >
+                    {submitLoading ? (
+                      <span className="spinner-border animate-spin inline-block w-4 h-4 border-2 border-t-transparent rounded-full mr-2" />
                     ) : null}
                     Cadastrar
                   </button>
@@ -464,7 +491,8 @@ const Signup = () => {
                     </span>
                     <Link
                       to="/login"
-                      className="text-[#383838] text-lg font-normal font-['Montserrat'] underline hover:text-blue-500 gap-6">
+                      className="text-[#383838] text-lg font-normal font-['Montserrat'] underline hover:text-blue-500 gap-6"
+                    >
                       Entre agora
                     </Link>
                   </div>
@@ -473,8 +501,12 @@ const Signup = () => {
             </div>
             {isModalVisible && (
               <EmailVerificationModal
-                toggleModal={() => setIsModalVisible(!isModalVisible)}
-                setErrorMessage={(message: string, error?: string) => setErrorMessage(message)}
+                toggleModal={() => {
+                  setIsModalVisible(!isModalVisible);
+                }}
+                setErrorMessage={(message: string, error?: string) => {
+                  setErrorMessage(message);
+                }}
                 uemail={email}
                 isLoading={submitLoading}
               />

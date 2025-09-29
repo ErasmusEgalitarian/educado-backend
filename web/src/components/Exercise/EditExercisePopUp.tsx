@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+
+import { useExercises } from "@contexts/courseStore";
+import { Answer } from "@interfaces/Answer";
+import { Exercise } from "@interfaces/Course";
+
+import { ModalButtonCompont } from "../ModalButtonCompont";
 import { useNotifications } from "../notification/NotificationContext";
 
 // Components
 import AnswerCards from "./AnswerCards";
-import { ModalButtonCompont } from "../ModalButtonCompont";
 
 // Interfaces
-import { Answer } from "@interfaces/Answer";
-import { Exercise } from "@interfaces/Course";
 
 //hooks
-import { useExercises } from "@contexts/courseStore";
 
 export interface ExercisePartial {
   title: string;
@@ -24,10 +26,10 @@ interface Props {
   handleEdit: (title: string) => void;
 }
 
-type Inputs = {
+interface Inputs {
   title: string;
   question: string;
-};
+}
 
 export const EditExercise = ({ exercise, handleEdit }: Props) => {
   const TempAnswers = [
@@ -35,7 +37,9 @@ export const EditExercise = ({ exercise, handleEdit }: Props) => {
     { text: "", correct: false, feedback: "" },
   ];
 
-  const [answers, setAnswers] = useState<Answer[]>(exercise.answers ?? TempAnswers);
+  const [answers, setAnswers] = useState<Answer[]>(
+    exercise.answers ?? TempAnswers,
+  );
   const { addNotification } = useNotifications();
   const { updateCachedExercise } = useExercises();
 
@@ -58,10 +62,7 @@ export const EditExercise = ({ exercise, handleEdit }: Props) => {
 
   return (
     <>
-      <div
-        className="modal"
-        id={`exercise-edit-${exercise._id}-modal`}
-      >
+      <div className="modal" id={`exercise-edit-${exercise._id}-modal`}>
         <div className="bg-white bg-gradient-to-b rounded w-3/8 h-5/6">
           <div className="p-5 bg-gradient-to-b from-primaryLight overflow-auto h-full">
             <form
@@ -89,13 +90,13 @@ export const EditExercise = ({ exercise, handleEdit }: Props) => {
                     defaultValue={exercise.question}
                     placeholder="Adicione uma pergunta a este exercício" /*Add a question to this exercise*/
                     {...register("question", { required: true })}
-                  ></textarea>
+                  />
                 </div>
               </div>
 
               {/* divider */}
               <div className="flex flex-col w-full">
-                <div className="divider"></div>
+                <div className="divider" />
               </div>
 
               {/* Answers. Answers sometimes doesn't get loaded hence the conditional rendering ... */}
@@ -104,12 +105,10 @@ export const EditExercise = ({ exercise, handleEdit }: Props) => {
                   <div className="rounded-md cursor-pointer p-2 focus:outline-none bg-base-100 border ">
                     <h1 className="text-md font-medium">Resposta</h1>{" "}
                     {/** Answer */}
-                    {
-                      <AnswerCards
-                        update={setAnswers}
-                        initialAnswers={exercise.answers ?? TempAnswers}
-                      />
-                    }
+                    <AnswerCards
+                      update={setAnswers}
+                      initialAnswers={exercise.answers ?? TempAnswers}
+                    />
                   </div>
                 ) : (
                   <p>Carregando ...</p>

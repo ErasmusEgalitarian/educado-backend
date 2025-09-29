@@ -1,13 +1,12 @@
 export interface Profile {
-    id:           string;
-    groups:       any[];
-    firstName:    string;
-    lastName:     string;
-    user:         string;
-    courseMember: any[];
-    institution:  any[];
+  id: string;
+  groups: any[];
+  firstName: string;
+  lastName: string;
+  user: string;
+  courseMember: any[];
+  institution: any[];
 }
-
 
 //Profile page interfaces
 export interface FormData {
@@ -16,7 +15,7 @@ export interface FormData {
   bio: string;
   linkedin: string;
   photo: any;
-  }
+}
 
 export interface EducationFormData {
   educationLevel: string;

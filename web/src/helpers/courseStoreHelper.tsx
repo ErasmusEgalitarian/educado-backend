@@ -1,4 +1,12 @@
-import { Course, Section, Component, Lecture, Exercise, Media, FormattedCourse } from "../interfaces/Course";
+import {
+  Course,
+  Section,
+  Component,
+  Lecture,
+  Exercise,
+  Media,
+  FormattedCourse,
+} from "../interfaces/Course";
 
 export const formatCourse = (
   course: Course,
@@ -8,14 +16,23 @@ export const formatCourse = (
   media: Media[],
 ): FormattedCourse => {
   const courseInfo = formatCourseInfo(course, media);
-  const formattedSections = formatSections(course, sections, lectures, exercises, media);
+  const formattedSections = formatSections(
+    course,
+    sections,
+    lectures,
+    exercises,
+    media,
+  );
   return { courseInfo, sections: formattedSections };
 };
 
 const formatCourseInfo = (course: Course, media: Media[]) => {
-  const coverIMG = media.find((media) => media.parentType === "c" && media.id === course._id) || null
+  const coverIMG =
+    media.find(
+      (media) => media.parentType === "c" && media.id === course._id,
+    ) || null;
   return {
-    _id : course._id ?? "",
+    _id: course._id ?? "",
     title: course.title,
     category: course.category,
     difficulty: course.difficulty,
@@ -31,19 +48,27 @@ const formatSections = (
   sections: Section[],
   lectures: Lecture[],
   exercises: Exercise[],
-  media: Media[]
+  media: Media[],
 ) => {
   if (course.sections.length === 0) return [];
   let haventCachedSections = false;
   const formattedSections = course.sections.map((sectionId) => {
     const section = sections.find((sec) => sec._id === sectionId);
-    if (!section) { haventCachedSections = true; return {_id: "", title: "", description: "", components: [] }; }
+    if (!section) {
+      haventCachedSections = true;
+      return { _id: "", title: "", description: "", components: [] };
+    }
 
     return {
       _id: section._id,
       title: section.title,
       description: section.description,
-      components: formatComponents(section.components, lectures, exercises, media),
+      components: formatComponents(
+        section.components,
+        lectures,
+        exercises,
+        media,
+      ),
     };
   });
   // This is in case that the sectionspage hasn't been accessed yet and courseInfo changes are tried to be made, then the sections are not cached yet.
@@ -54,9 +79,9 @@ const formatComponents = (
   components: Component[],
   lectures: Lecture[],
   exercises: Exercise[],
-  media: Media[]
+  media: Media[],
 ) => {
-    return components
+  return components
     .map((component) => {
       const isLecture = component.compType === "lecture";
       const comp = isLecture
@@ -70,12 +95,14 @@ const formatComponents = (
           }
         : null;
     })
-    .filter((comp) => comp !== null) as { compType: string; component: Lecture | Exercise; video: Media | null }[];
+    .filter((comp) => comp !== null) as {
+    compType: string;
+    component: Lecture | Exercise;
+    video: Media | null;
+  }[];
 };
 
 const lookForMedia = (media: Media[], lookupId: string): Media | null => {
-  const foundMedia = media.find((media) => media.id === lookupId)
+  const foundMedia = media.find((media) => media.id === lookupId);
   return foundMedia ? foundMedia : null;
 };
-
-

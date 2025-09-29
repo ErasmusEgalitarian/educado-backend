@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+
 import { Answer } from "../../interfaces/Answer";
 interface Props {
   update: any;
   initialAnswers: Answer[];
 }
 
-function AnswerCards({ update: updateAnswers, initialAnswers }: Props) {
+const AnswerCards = ({ update: updateAnswers, initialAnswers }: Props) => {
   const [answers, setAnswers] = useState(initialAnswers);
   useEffect(() => {
     setAnswers(initialAnswers);
@@ -101,7 +102,7 @@ function AnswerCards({ update: updateAnswers, initialAnswers }: Props) {
                   </label>
                 </div>
               ) : (
-                <div></div>
+                <div />
               )}
 
               <div className="w-1/3 flex flex-col space-y-2 text-left">
@@ -119,7 +120,9 @@ function AnswerCards({ update: updateAnswers, initialAnswers }: Props) {
                     type="checkbox"
                     className="toggle"
                     checked={answer.correct}
-                    onChange={() => toggler(index)}
+                    onChange={() => {
+                      toggler(index);
+                    }}
                   />
                 </div>
               </div>
@@ -142,8 +145,10 @@ function AnswerCards({ update: updateAnswers, initialAnswers }: Props) {
                   required={true}
                   name="answer"
                   defaultValue={answer.text || ""}
-                  onChange={(e) => handleAnswerCardChange(e, index)}
-                ></textarea>
+                  onChange={(e) => {
+                    handleAnswerCardChange(e, index);
+                  }}
+                />
               </div>
 
               <div className="flex flex-col space-y-2 text-left">
@@ -154,8 +159,10 @@ function AnswerCards({ update: updateAnswers, initialAnswers }: Props) {
                   required={true}
                   name="feedback"
                   defaultValue={answer.feedback || ""}
-                  onChange={(e) => handleQuestionCardChange(e, index)}
-                ></textarea>
+                  onChange={(e) => {
+                    handleQuestionCardChange(e, index);
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -194,6 +201,6 @@ function AnswerCards({ update: updateAnswers, initialAnswers }: Props) {
       )}
     </div>
   );
-}
+};
 
 export default AnswerCards;

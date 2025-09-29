@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+
 import { useExercises } from "@contexts/courseStore";
-import { useNotifications } from "../notification/NotificationContext";
+
 // Components
+import { Answer } from "@interfaces/Answer";
+import { Component } from "@interfaces/Course";
+
 import AnswerCards from "../../components/Exercise/AnswerCards";
 import { ModalButtonCompont } from "../ModalButtonCompont";
 
 // Interfaces
-import { Answer } from "@interfaces/Answer";
-import { Component } from "@interfaces/Course";
+
+import { useNotifications } from "../notification/NotificationContext";
 
 export interface ExercisePartial {
   title: string;
@@ -21,10 +25,10 @@ interface Props {
   handleExerciseCreation: (newComponent: Component) => void;
 }
 
-type Inputs = {
+interface Inputs {
   title: string;
   question: string;
-};
+}
 
 export const CreateExercise = ({ savedSID, handleExerciseCreation }: Props) => {
   const TempAnswers = [
@@ -46,13 +50,13 @@ export const CreateExercise = ({ savedSID, handleExerciseCreation }: Props) => {
       answers: answers,
       parentSection: savedSID,
       _id: "0",
-    }
+    };
     const res = addExerciseToCache(updatedExercise);
     const newComponent = {
       compId: res._id,
       compType: "exercise",
-      _id : "0",
-    }
+      _id: "0",
+    };
     handleExerciseCreation(newComponent);
     clearExerciseModalContent();
     setIsSubmitting(false);
@@ -80,7 +84,7 @@ export const CreateExercise = ({ savedSID, handleExerciseCreation }: Props) => {
                   <input
                     type="text"
                     placeholder="Adicione um título a este exercício" /*Add a title to this exercise*/
-                    defaultValue={""}
+                    defaultValue=""
                     className="input input-bordered w-full max-w-xs"
                     {...register("title", { required: true })}
                   />
@@ -90,32 +94,25 @@ export const CreateExercise = ({ savedSID, handleExerciseCreation }: Props) => {
                   </label>
                   <textarea
                     className="textarea textarea-bordered h-24"
-                    defaultValue={""}
+                    defaultValue=""
                     placeholder="Adicione uma pergunta a este exercício" /*Add a question to this exercise*/
                     {...register("question", { required: true })}
-                  ></textarea>
+                  />
                 </div>
               </div>
 
               {/* divider */}
               <div className="flex flex-col w-full">
-                <div className="divider"></div>
+                <div className="divider" />
               </div>
 
               {/* Answers. Answers sometimes doesn't get loaded hence the conditional rendering ... */}
               {
-                (
-                  <div className="rounded-md cursor-pointer p-2 focus:outline-none bg-base-100 border ">
-                    <h1 className="text-md font-medium">Resposta</h1>{" "}
-                    {/** Answer */}
-                    {
-                      <AnswerCards
-                        update={setAnswers}
-                        initialAnswers={answers}
-                      />
-                    }
-                  </div>
-                ) 
+                <div className="rounded-md cursor-pointer p-2 focus:outline-none bg-base-100 border ">
+                  <h1 className="text-md font-medium">Resposta</h1>{" "}
+                  {/** Answer */}
+                  <AnswerCards update={setAnswers} initialAnswers={answers} />
+                </div>
               }
               {/*Create and cancel buttons*/}
               <ModalButtonCompont

@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { useEffect, useState } from "react";
 
 export const usePagination = <T>(
   itemsToPaginate: T[],
-  initialItemsPerPage: number = 10
+  initialItemsPerPage = 10,
 ) => {
   const [paginatedItems, setPaginatedItems] = useState(itemsToPaginate);
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,8 +19,8 @@ export const usePagination = <T>(
       setPaginatedItems(
         itemsToPaginate.slice(
           (currentPage - 1) * itemsPerPage,
-          currentPage * itemsPerPage
-        )
+          currentPage * itemsPerPage,
+        ),
       );
     }
   }, [itemsToPaginate, currentPage, totalPages]);

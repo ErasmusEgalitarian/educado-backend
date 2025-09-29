@@ -1,6 +1,8 @@
-import React, { useState} from "react";
-import GenericModalComponentUser from "./UserGenericContainerComponent";
+import React, { useState } from "react";
+
 import GenericModalComponent from "../../GenericModalComponent";
+
+import GenericModalComponentUser from "./UserGenericContainerComponent";
 /*
 
 This component is used to display the user details modal in the admin dashboard.
@@ -98,7 +100,8 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
         onConfirm={() => {}}
         isConfirmDisabled={false}
         loading={loading}
-        width="900px">
+        width="900px"
+      >
         <div className="overflow-y-auto max-h-[600px]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="flex flex-col items-center bg-white p-2 md:p-4 rounded-l-lg mt-4 relative">
@@ -107,7 +110,8 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               </dt>
               <dd
                 id="name"
-                className="text-base font-['Montserrat'] text-gray-900 break-all">
+                className="text-base font-['Montserrat'] text-gray-900 break-all"
+              >
                 {userDetails.firstName} {userDetails.lastName}
               </dd>
             </div>
@@ -117,7 +121,8 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               </dt>
               <dd
                 id="email"
-                className="text-base font-['Montserrat'] text-gray-900 break-all">
+                className="text-base font-['Montserrat'] text-gray-900 break-all"
+              >
                 {userDetails.email}
               </dd>
             </div>
@@ -127,24 +132,28 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               </dt>
               <dd
                 id="status"
-                className="text-base font-['Montserrat'] text-gray-900 break-all">
+                className="text-base font-['Montserrat'] text-gray-900 break-all"
+              >
                 {contentCreator
                   ? contentCreator.approved
                     ? "Aprovado"
                     : contentCreator.rejected
-                    ? "Recusado"
-                    : "Aguardando análise"
+                      ? "Recusado"
+                      : "Aguardando análise"
                   : null}
               </dd>
             </div>
           </div>
           <button
-            onClick={() => toggleDropdown(0)}
+            onClick={() => {
+              toggleDropdown(0);
+            }}
             className={`mt-4 py-4 px-2 rounded-lg text-base font-base font-['Lato'] w-full flex items-center transition-colors duration-300 ${
               isDropdownOpen[0]
                 ? "rounded-tl-lg rounded-tr-lg bg-primary text-white"
                 : "rounded-lg bg-white text-neutral-700 text-grayDark"
-            }`}>
+            }`}
+          >
             <svg
               className={`w-4 h-4 ml-2 transform transition-transform ${
                 isDropdownOpen[0] ? "rotate-180" : "rotate-0"
@@ -152,19 +161,22 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M19 9l-7 7-7-7"></path>
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
             <span className="ml-2">Motivações</span>
           </button>
           <div
             className={`overflow-hidden transition-max-height duration-500 ease-in-out ${
               isDropdownOpen[0] ? "max-h-screen" : "max-h-0"
-            }`}>
+            }`}
+          >
             <div className="p-4 bg-white rounded-b-lg shadow break-all">
               <p className="text-base font-['Montserrat'] text-gray-900">
                 {userApplication?.application?.motivation !== undefined
@@ -174,12 +186,15 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
             </div>
           </div>
           <button
-            onClick={() => toggleDropdown(1)}
+            onClick={() => {
+              toggleDropdown(1);
+            }}
             className={`mt-4 py-4 px-2 rounded-lg text-base font-base font-['Lato'] w-full flex items-center transition-colors duration-300 ${
               isDropdownOpen[1]
                 ? "rounded-tl-lg rounded-tr-lg bg-primary text-white"
                 : "rounded-lg bg-white text-neutral-700 text-grayDark"
-            }`}>
+            }`}
+          >
             <svg
               className={`w-4 h-4 ml-2 transform transition-transform ${
                 isDropdownOpen[1] ? "rotate-180" : "rotate-0"
@@ -187,25 +202,29 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M19 9l-7 7-7-7"></path>
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
             <span className="ml-2">Experiências acadêmicas</span>
           </button>
           <div
             className={`overflow-hidden transition-max-height duration-500 ease-in-out ${
               isDropdownOpen[1] ? "max-h-screen" : "max-h-0"
-            }`}>
+            }`}
+          >
             {userApplication?.application?.academicLevel?.length > 0 ? (
               userApplication.application.academicLevel.map(
                 (_: any, index: any) => (
                   <div
                     key={index}
-                    className="p-4 bg-white rounded-b-lg shadow break-all mt-2">
+                    className="p-4 bg-white rounded-b-lg shadow break-all mt-2"
+                  >
                     <p className="text-base font-['Montserrat'] text-gray-900">
                       Academic level:{" "}
                       {userApplication.application.academicLevel[index] ||
@@ -232,7 +251,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                         "Not provided"}
                     </p>
                   </div>
-                )
+                ),
               )
             ) : (
               <p className="p-4 bg-white rounded-b-lg shadow break-all mt-2 text-base font-['Montserrat'] text-gray-900">
@@ -241,12 +260,15 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
             )}
           </div>
           <button
-            onClick={() => toggleDropdown(2)}
+            onClick={() => {
+              toggleDropdown(2);
+            }}
             className={`mt-4 py-4 px-2 rounded-lg text-base font-base font-['Lato'] w-full flex items-center transition-colors duration-300 ${
               isDropdownOpen[2]
                 ? "rounded-tl-lg rounded-tr-lg bg-primary text-white"
                 : "rounded-lg bg-white text-neutral-700 text-grayDark"
-            }`}>
+            }`}
+          >
             <svg
               className={`w-4 h-4 ml-2 transform transition-transform ${
                 isDropdownOpen[2] ? "rotate-180" : "rotate-0"
@@ -254,24 +276,28 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M19 9l-7 7-7-7"></path>
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
             <span className="ml-2">Experiências profissionais</span>
           </button>
           <div
             className={`overflow-hidden transition-max-height duration-500 ease-in-out ${
               isDropdownOpen[2] ? "max-h-screen" : "max-h-0"
-            }`}>
+            }`}
+          >
             {userApplication?.application?.company?.length > 0 ? (
               userApplication.application.company.map((_: any, index: any) => (
                 <div
                   key={index}
-                  className="p-4 bg-white rounded-b-lg shadow break-all mt-2">
+                  className="p-4 bg-white rounded-b-lg shadow break-all mt-2"
+                >
                   <p className="text-base font-['Montserrat'] text-gray-900">
                     Company:{" "}
                     {userApplication.application.company[index] ||
@@ -305,7 +331,8 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
         <div className="flex justify-between mt-4">
           <button
             onClick={onClose}
-            className="text-[#166276] rounded text-base font-base font-['Lato'] underline underline-offset-4">
+            className="text-[#166276] rounded text-base font-base font-['Lato'] underline underline-offset-4"
+          >
             Fechar
           </button>
           <div className="flex space-x-4">
@@ -316,7 +343,8 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-[#FE4949] hover:bg-[#E44040] text-white"
               }`}
-              disabled={contentCreator?.rejected}>
+              disabled={contentCreator?.rejected}
+            >
               Recusar
             </button>
             <button
@@ -326,7 +354,8 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-[#49A04A] hover:bg-[#418A42] text-white"
               }`}
-              disabled={contentCreator?.approved}>
+              disabled={contentCreator?.approved}
+            >
               Aprovar
             </button>
           </div>

@@ -35,9 +35,9 @@ export const PaginationBottomBar = ({
           <select
             className="select"
             value={itemsPerPage}
-            onChange={(event) =>
-              onChangeItemsPerPage(Number(event.target.value))
-            }
+            onChange={(event) => {
+              onChangeItemsPerPage(Number(event.target.value));
+            }}
           >
             <option value={10}>10</option>
             <option value={20}>20</option>
@@ -53,25 +53,33 @@ export const PaginationBottomBar = ({
         <IconContext.Provider value={{ size: "20" }}>
           <NavigationButton
             isDisabled={currentPage === 1}
-            onPageChange={() => onChangePage(1)}
+            onPageChange={() => {
+              onChangePage(1);
+            }}
             icon={<GoArrowLeft />}
           />
 
           <NavigationButton
             isDisabled={currentPage === 1}
-            onPageChange={() => onChangePage(currentPage - 1)}
+            onPageChange={() => {
+              onChangePage(currentPage - 1);
+            }}
             icon={<GoChevronLeft />}
           />
 
           <NavigationButton
             isDisabled={currentPage === totalPages}
-            onPageChange={() => onChangePage(currentPage + 1)}
+            onPageChange={() => {
+              onChangePage(currentPage + 1);
+            }}
             icon={<GoChevronRight />}
           />
 
           <NavigationButton
             isDisabled={currentPage === totalPages}
-            onPageChange={() => onChangePage(totalPages)}
+            onPageChange={() => {
+              onChangePage(totalPages);
+            }}
             icon={<GoArrowRight />}
           />
         </IconContext.Provider>
@@ -93,11 +101,11 @@ const NavigationButton = ({
     <button
       type="button"
       disabled={isDisabled}
-      className={`${
+      className={
         isDisabled
           ? "text-gray-300 cursor-not-allowed"
           : "text-gray-600 hover:bg-gray-100 cursor-pointer"
-      }`}
+      }
       onClick={onPageChange}
     >
       {icon}

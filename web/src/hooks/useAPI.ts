@@ -1,7 +1,7 @@
 // hooks/useApi.js
 // eslint-disable @typescript-eslint/no-explicit-any
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export interface ApiError extends Error {
   response?: {

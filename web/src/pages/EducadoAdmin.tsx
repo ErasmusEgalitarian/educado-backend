@@ -1,9 +1,10 @@
 import { useState } from "react";
-import Layout from "../components/Layout";
+
+import { CoursesTableAdmin } from "@components/Admin/Courses/CoursesTableAdmin";
 
 import { InstitutionsTableAdmin } from "../components/Admin/Institutions/InstitutionsTableAdmin";
 import { UsersTableAdmin } from "../components/Admin/Users/UsersTableAdmin";
-import { CoursesTableAdmin } from "@components/Admin/Courses/CoursesTableAdmin";
+import Layout from "../components/Layout";
 
 const EducadoAdmin = () => {
   type TableOptions = "users" | "institutions" | "courses";
@@ -34,7 +35,9 @@ const EducadoAdmin = () => {
                 ? ""
                 : "bg-white text-normal font-normal text-[#166276]"
             }`}
-            onClick={() => setSelectedTable("users")}
+            onClick={() => {
+              setSelectedTable("users");
+            }}
           >
             <span>Usuários</span>
           </button>
@@ -45,7 +48,9 @@ const EducadoAdmin = () => {
                 ? ""
                 : "bg-white text-normal font-normal text-[#166276]"
             }`}
-            onClick={() => setSelectedTable("institutions")}
+            onClick={() => {
+              setSelectedTable("institutions");
+            }}
           >
             <span>Instituições</span>
           </button>
@@ -56,7 +61,9 @@ const EducadoAdmin = () => {
                 ? ""
                 : "bg-white text-normal font-normal text-[#166276]"
             }`}
-            onClick={() => setSelectedTable("courses")}
+            onClick={() => {
+              setSelectedTable("courses");
+            }}
           >
             <span>Cursos</span>
           </button>

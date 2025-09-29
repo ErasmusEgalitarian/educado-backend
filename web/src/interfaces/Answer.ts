@@ -1,5 +1,5 @@
 export interface Answer {
-    text: string,
-    feedback: string,
-    correct: boolean,
+  text: string;
+  feedback: string;
+  correct: boolean;
 }
