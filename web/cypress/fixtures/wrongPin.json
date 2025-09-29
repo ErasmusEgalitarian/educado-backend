@@ -1,0 +1,10 @@
+{
+  "status": 401,
+  "message": "Unauthorized",
+  "data": {
+    "error": {
+      "code": "E0405",
+      "message": "Invalid token"
+    }
+  }
+}

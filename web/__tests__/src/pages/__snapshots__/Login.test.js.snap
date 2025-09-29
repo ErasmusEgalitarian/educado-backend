@@ -1,0 +1,338 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Component can render login page without errors 1`] = `
+<main
+  className="flex bg-gradient-to-br from-[#C9E5EC] 0% to-[#FFF] 100%"
+>
+  <nav
+    className="flex fixed w-full items-center justify-between bg-secondary box-shadow-md bg-fixed top-0 left-0 right-0 z-10"
+    style={
+      {
+        "background": "var(--secondary, #F1F9FB)",
+        "boxShadow": "0px 4px 4px 0px rgba(35, 100, 130, 0.25)",
+      }
+    }
+  >
+    <div
+      className="w-[165.25px] h-6 justify-start items-center gap-[7.52px] flex py-6 px-12"
+    >
+      <div
+        className="navbar-start"
+      >
+        <a
+          className="w-[165.25px] h-6 justify-start items-center gap-[6px] inline-flex space-x-1 normal-case text-xl"
+          href="/"
+          onClick={[Function]}
+        >
+          <img
+            alt="logo"
+            className="w-[24.43px] h-6"
+            src="/logo.svg"
+          />
+          <img
+            alt="educado"
+            className="h-6"
+            src="/educado.svg"
+          />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div
+    className="grid grid-cols-1 md:grid-cols-2 m-auto w-full h-screen"
+  >
+    <div
+      className="relative w-full h-screen hidden md:block container overflow-hidden"
+    >
+      <img
+        alt="w-[42.375rem]"
+        className="object-cover w-full h-full"
+        src=""
+      />
+      <div
+        className="absolute inset-0 flex flex-col items-center justify-center"
+      >
+        <div
+          className="flex flex-row h-screen relative"
+        >
+          <div
+            className="flex flex-row"
+          >
+            <div
+              className="flex items-center p-1 sm:px-4"
+            >
+              <button
+                onClick={[Function]}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-9 h-9 p-1 rounded-full bg-white/80 text-gray-800 hover:bg-white"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              className="flex items-center"
+            >
+              <div
+                className="py-10 parent-container relative"
+              >
+                <div
+                  className="p-4 px-8 sm:px-0 self-stretch text-center text-sky-50 text-[32px] font-bold font-['Montserrat']"
+                >
+                  Bem-vindo ao nosso portal de aprendizado Educado
+                  <div
+                    className="self-stretch text-center text-sky-50 text-lg font-bold font-['Montserrat']"
+                  >
+                    Junte-se a nós para transformar vidas. Oferecemos acesso a conteúdo personalizado para pessoas que precisam, melhorando condições de vida e oportunidades de emprego.
+                  </div>
+                </div>
+                <div
+                  className="child-container right-0 left-0 justify-center absolute bottom-0"
+                >
+                  <div
+                    className="flex right-0 left-0 items-center justify-center space-x-2"
+                  >
+                    <div
+                      className="
+              transition-all w-3 h-3 bg-white rounded-full
+              p-2
+            "
+                    />
+                    <div
+                      className="
+              transition-all w-3 h-3 bg-white rounded-full
+              bg-opacity-50
+            "
+                    />
+                    <div
+                      className="
+              transition-all w-3 h-3 bg-white rounded-full
+              bg-opacity-50
+            "
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="flex items-center p-1 sm:px-4"
+            >
+              <button
+                onClick={[Function]}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="items-center w-9 h-9 p-1 rounded-full bg-white/80 text-gray-800 hover:bg-white"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+         
+      </div>
+    </div>
+    <div
+      className="relative right-0 h-screen flex flex-col justify-center items-center"
+    >
+      <div
+        className="fixed right-0 top-[4rem] z-10"
+      />
+      <div
+        className="Toastify"
+      />
+      <div
+        className="relative py-8 px-10 w-full"
+      >
+        <div
+          className=""
+        >
+          <h1
+            className="mb-10 flex text-lg text-[#383838] font-normal font-['Montserrat'] underline"
+          >
+            <a
+              href="/welcome"
+              onClick={[Function]}
+            >
+              <svg
+                role="presentation"
+                style={
+                  {
+                    "height": "1.5rem",
+                    "width": "1.5rem",
+                  }
+                }
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
+                  style={
+                    {
+                      "fill": "#383838",
+                    }
+                  }
+                />
+              </svg>
+            </a>
+            <a
+              className="text-lg text-[#383838] font-normal font-['Montserrat']"
+              href="/welcome"
+              onClick={[Function]}
+            >
+              Voltar 
+            </a>
+          </h1>
+        </div>
+        <h1
+          className="text-[#383838] text-3xl font-bold font-['Lato'] leading-normal self-stretch mb-10 "
+        >
+          Bem-vindo de volta ao Educado! 
+        </h1>
+        <form
+          className="stretch flex flex-col space-y-2"
+          onSubmit={[Function]}
+        >
+          <div>
+            <div
+              className="relative"
+            >
+              <label
+                className="after:content-['*'] after:ml-0.5 after:text-red-500 text-[#383838] text-sm font-normal font-['Montserrat'] mt-6"
+                htmlFor="email-field"
+              >
+                Email
+              </label>
+              <input
+                className="flex border-gray-300 w-[100%] py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-none focus:ring-2  focus:border-transparent focus:ring-sky-200 rounded-lg"
+                id="email-field"
+                name="email"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onInput={[Function]}
+                placeholder="usuario@gmail.com"
+                type="email"
+              />
+            </div>
+          </div>
+          <div>
+            <div
+              className="relative"
+            >
+              <label
+                className="after:content-['*'] after:ml-0.5 after:text-red-500 text-[#383838] text-sm font-normal font-['Montserrat'] mt-6"
+                htmlFor="password-field"
+              >
+                Senha 
+              </label>
+              <input
+                className="w-[100%] flex border-gray-300 gap-2.5 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-none focus:ring-2  focus:border-transparent focus:ring-sky-200 rounded-lg"
+                id="password-field"
+                name="password"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onInput={[Function]}
+                placeholder="**********"
+                type="password"
+              />
+              <button
+                className="absolute right-3 bottom-3"
+                id="hidePasswordIcon"
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  role="presentation"
+                  style={
+                    {
+                      "height": "1.5rem",
+                      "width": "1.5rem",
+                    }
+                  }
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M2,5.27L3.28,4L20,20.72L18.73,22L15.65,18.92C14.5,19.3 13.28,19.5 12,19.5C7,19.5 2.73,16.39 1,12C1.69,10.24 2.79,8.69 4.19,7.46L2,5.27M12,9A3,3 0 0,1 15,12C15,12.35 14.94,12.69 14.83,13L11,9.17C11.31,9.06 11.65,9 12,9M12,4.5C17,4.5 21.27,7.61 23,12C22.18,14.08 20.79,15.88 19,17.19L17.58,15.76C18.94,14.82 20.06,13.54 20.82,12C19.17,8.64 15.76,6.5 12,6.5C10.91,6.5 9.84,6.68 8.84,7L7.3,5.47C8.74,4.85 10.33,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C12.69,17.5 13.37,17.43 14,17.29L11.72,15C10.29,14.85 9.15,13.71 9,12.28L5.6,8.87C4.61,9.72 3.78,10.78 3.18,12Z"
+                    style={
+                      {
+                        "fill": "#A1ACB2",
+                      }
+                    }
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div
+            className=" flex flex-col items-end gap-3"
+          >
+            <span
+              className="text-neutral-700 text-right text-lg font-normal font-['Montserrat']"
+            />
+             
+            <label
+              className="text-[#383838] text-lg font-normal font-['Montserrat'] underline hover:text-blue-500"
+              id="modalToggle"
+              onClick={[Function]}
+            >
+              Esqueceu sua senha? 
+            </label>
+          </div>
+          <span
+            className="h-12"
+          />
+           
+          <button
+            className="disabled:opacity-20 disabled:bg-slate-600 flex-auto w-[100%] h-[3.3rem] rounded-lg bg-[#166276] text-white transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50 text-lg font-bold font-['Montserrat']"
+            disabled={true}
+            id="submit-login-button"
+            type="submit"
+          >
+            Entrar 
+          </button>
+          <span
+            className="h-4"
+          />
+           
+          <div
+            className="flex justify-center space-x-1"
+          >
+            <span
+              className="text-[#A1ACB2] text-lg font-normal font-['Montserrat']"
+            >
+              Ainda não tem conta? 
+            </span>
+            <a
+              className="text-[#383838] text-lg font-normal font-['Montserrat'] underline hover:text-blue-500 gap-6"
+              href="/signup"
+              onClick={[Function]}
+            >
+              Cadastre-se agora 
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+`;

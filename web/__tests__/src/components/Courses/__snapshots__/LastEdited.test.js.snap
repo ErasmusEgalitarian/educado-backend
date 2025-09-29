@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`last edited time shows days if difference is below 1 week 1`] = `
+<div
+  className="flex flex-row"
+>
+  <svg
+    className="w-4 mr-1 inline-block mr-1"
+    role="presentation"
+    style={{}}
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"
+      style={
+        {
+          "fill": "currentColor",
+        }
+      }
+    />
+  </svg>
+  <p
+    className="text-md italic"
+  >
+    6 dias atrás
+  </p>
+</div>
+`;
+
+exports[`last edited time shows hours if difference is below 24 hours 1`] = `
+<div
+  className="flex flex-row"
+>
+  <svg
+    className="w-4 mr-1 inline-block mr-1"
+    role="presentation"
+    style={{}}
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"
+      style={
+        {
+          "fill": "currentColor",
+        }
+      }
+    />
+  </svg>
+  <p
+    className="text-md italic"
+  >
+    23 horas atrás
+  </p>
+</div>
+`;
+
+exports[`last edited time shows minutes if difference is below 1 hour 1`] = `
+<div
+  className="flex flex-row"
+>
+  <svg
+    className="w-4 mr-1 inline-block mr-1"
+    role="presentation"
+    style={{}}
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"
+      style={
+        {
+          "fill": "currentColor",
+        }
+      }
+    />
+  </svg>
+  <p
+    className="text-md italic"
+  >
+    59 minutos atrás
+  </p>
+</div>
+`;
+
+exports[`last edited time shows months if difference is below 1 year 1`] = `
+<div
+  className="flex flex-row"
+>
+  <svg
+    className="w-4 mr-1 inline-block mr-1"
+    role="presentation"
+    style={{}}
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"
+      style={
+        {
+          "fill": "currentColor",
+        }
+      }
+    />
+  </svg>
+  <p
+    className="text-md italic"
+  >
+    12 meses atrás
+  </p>
+</div>
+`;
+
+exports[`last edited time shows weeks if difference is below 30 days 1`] = `
+<div
+  className="flex flex-row"
+>
+  <svg
+    className="w-4 mr-1 inline-block mr-1"
+    role="presentation"
+    style={{}}
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"
+      style={
+        {
+          "fill": "currentColor",
+        }
+      }
+    />
+  </svg>
+  <p
+    className="text-md italic"
+  >
+    29 semanas atrás
+  </p>
+</div>
+`;

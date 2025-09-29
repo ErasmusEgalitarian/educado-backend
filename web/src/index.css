@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .form-field {
+        @apply rounded flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-lg
+    }
+
+    .std-button {
+        @apply flex space-x-2 flex-shrink-0 px-4 py-2 text-lg font-semibold text-white bg-primary rounded shadow-md hover:bg-primaryHover focus:outline-none focus:ring-2 focus:ring-primaryHover focus:ring-offset-2 focus:ring-offset-primaryHover
+    }
+
+    .auth-form-field {
+        @apply flex items-center h-12 px-4 w-64 bg-gray-100 mt-2 rounded focus:outline-none focus:ring-2
+    }
+
+    .educardo-gradient {
+        @apply bg-gradient-to-tl from-sky-600 to-blue-600
+    }
+
+    .oceanic-gradient {
+        @apply bg-gradient-to-r from-green-300 via-blue-500 to-purple-600
+    }
+
+    @variants responsive {
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+    }
+}

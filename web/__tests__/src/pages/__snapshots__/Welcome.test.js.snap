@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Welcome Component renders without errors 1`] = `
+<main
+  className="self-stretch flex flex-col items-center justify-center gap-20 overflow-hidden flex-1 rounded-sm bg-gradient-to-br from-[#C9E5EC] 0% to-[#FFF] 100%"
+>
+  <nav
+    className="flex fixed w-full items-center justify-between bg-secondary box-shadow-md bg-fixed top-0 left-0 right-0 z-10"
+    style={
+      {
+        "background": "var(--secondary, #F1F9FB)",
+        "boxShadow": "0px 4px 4px 0px rgba(35, 100, 130, 0.25)",
+      }
+    }
+  >
+    <div
+      className="w-[165.25px] h-6 justify-start items-center gap-[7.52px] flex py-6 px-12"
+    >
+      <div
+        className="navbar-start"
+      >
+        <a
+          className="w-[165.25px] h-6 justify-start items-center gap-[6px] inline-flex space-x-1 normal-case text-xl"
+          href="/"
+          onClick={[Function]}
+        >
+          <img
+            alt="logo"
+            className="w-[24.43px] h-6"
+            src="/logo.svg"
+          />
+          <img
+            alt="educado"
+            className="h-6"
+            src="/educado.svg"
+          />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <body
+    className="w-full h-screen"
+  >
+    <div
+      className="grid grid-cols-1 md:grid-cols-2 m-auto h-screen sm:max-w-956"
+    >
+      <div
+        className="relative w-full h-screen hidden md:block container overflow-hidden"
+      >
+        <img
+          alt="w-[42.375rem]"
+          className="object-cover w-full h-full"
+          src=""
+        />
+        <div
+          className="absolute inset-0 flex flex-col items-center justify-center"
+        >
+          <div
+            className="flex flex-row h-screen relative"
+          >
+            <div
+              className="flex flex-row"
+            >
+              <div
+                className="flex items-center p-1 sm:px-4"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="w-9 h-9 p-1 rounded-full bg-white/80 text-gray-800 hover:bg-white"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15.75 19.5L8.25 12l7.5-7.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div
+                className="flex items-center"
+              >
+                <div
+                  className="py-10 parent-container relative"
+                >
+                  <div
+                    className="p-4 px-8 sm:px-0 self-stretch text-center text-sky-50 text-[32px] font-bold font-['Montserrat']"
+                  >
+                    Bem-vindo ao nosso portal de aprendizado Educado
+                    <div
+                      className="self-stretch text-center text-sky-50 text-lg font-bold font-['Montserrat']"
+                    >
+                      Junte-se a nós para transformar vidas. Oferecemos acesso a conteúdo personalizado para pessoas que precisam, melhorando condições de vida e oportunidades de emprego.
+                    </div>
+                  </div>
+                  <div
+                    className="child-container right-0 left-0 justify-center absolute bottom-0"
+                  >
+                    <div
+                      className="flex right-0 left-0 items-center justify-center space-x-2"
+                    >
+                      <div
+                        className="
+              transition-all w-3 h-3 bg-white rounded-full
+              p-2
+            "
+                      />
+                      <div
+                        className="
+              transition-all w-3 h-3 bg-white rounded-full
+              bg-opacity-50
+            "
+                      />
+                      <div
+                        className="
+              transition-all w-3 h-3 bg-white rounded-full
+              bg-opacity-50
+            "
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="flex items-center p-1 sm:px-4"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="items-center w-9 h-9 p-1 rounded-full bg-white/80 text-gray-800 hover:bg-white"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+           
+        </div>
+      </div>
+      <div
+        className="relative right-0 h-screen flex flex-col justify-center items-center"
+      >
+        <h1
+          className="relative text-4xl font-['Lato'] text-[#383838] text-center mb-6 mt-4 font-black px-10"
+        >
+          Boas vindas à plataforma de aprendizagem!
+        </h1>
+         
+        <h1
+          className="relative text-2xl font-['Montserrat'] text-[#A1ACB2] text-center mb-6 mt-4 px-20"
+        >
+          Cadastre-se agora e ajude a promover seu trabalho e atingir um público mais amplo por meio da criação de conteúdo.
+        </h1>
+         
+        <div
+          className="relative flex gap-4 px-[5rem] flex-row items-center justify-center w-full mt-10"
+        >
+          <a
+            className="flex-auto w-[18rem] h-[3.3rem] items-center justify-center rounded-lg text-lg font-bold font-['Montserrat'] bg-[#166276] inline-flex text-[#FFFFFF] transform transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50"
+            href="/login"
+            onClick={[Function]}
+          >
+            <button
+              type="submit"
+            >
+              Entrar
+            </button>
+          </a>
+          <a
+            className="flex-auto w-[18rem] h-[3.3rem] items-center justify-center rounded-lg text-lg font-bold font-['Montserrat'] bg-[#166276] inline-flex text-[#FFFFFF] transform transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50"
+            href="/signup"
+            onClick={[Function]}
+          >
+            <button
+              type="submit"
+            >
+              Cadastrar
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</main>
+`;
