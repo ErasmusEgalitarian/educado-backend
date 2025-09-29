@@ -1,1 +1,1 @@
-## New updated backend (Web an Strapi)
+## New updated backend (Web and Strapi)
