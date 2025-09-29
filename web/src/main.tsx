@@ -1,19 +1,25 @@
-import React from "react";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
+import { ToastContainer } from "react-toastify";
 
 import App from "./App";
-
-// styles
 import "./index.css";
 import { NotificationProvider } from "./components/notification/NotificationContext";
 
-import { ToastContainer } from "react-toastify";
+const queryClient = new QueryClient();
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <NotificationProvider>
-      <ToastContainer />
-      <App />
-    </NotificationProvider>
-  </React.StrictMode>,
-);
+const rootElement = document.getElementById("root");
+if (rootElement && rootElement.innerHTML === "") {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <NotificationProvider>
+          <ToastContainer />
+          <App />
+        </NotificationProvider>
+      </QueryClientProvider>
+    </StrictMode>
+  );
+}
