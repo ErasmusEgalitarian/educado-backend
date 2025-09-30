@@ -8,7 +8,7 @@ import {
   mdiPlus,
 } from "@mdi/js";
 import { Icon } from "@mdi/react";
-import { useState, useEffect, useRef, Component } from "react";
+import { useState, useEffect, useRef, type Component } from "react";
 import { toast } from "react-toastify";
 
 import { getUserToken } from "@/auth/lib/userInfo";
