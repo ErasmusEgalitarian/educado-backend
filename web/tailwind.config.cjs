@@ -9,23 +9,10 @@ module.exports = {
         personalInsights: "Montserrat, sans-serif",
       },
       colors: {
-        primary: "#166276",
-        secondary: "#F1F9FB",
-        primaryHover: " #4DAACB",
-        primaryLight: "#c9e4eb",
-        warning: "#FF4949",
-        white: "#FFFFFF",
-        grayLight: "#E4E4E4",
-        grayMedium: "#A1ACB2",
-        grayDark: "#383838",
-        error: "#CF6679",
-        success: "#4AA04A",
-        disabled: "#E4F2F5",
         star: "#F1CC4F",
         guideYellow: "#FFF3D6",
         warningOrange: "#FA9F47",
-        toggleChecked: "#8AB0BA",
-        success1: {
+        success: {
           surface: {
             subtle: "#E6FAC8",
             lighter: "#C6F27E",
@@ -33,7 +20,7 @@ module.exports = {
             darker: "#4D6E16",
           },
         },
-        error1: {
+        error: {
           surface: {
             subtle: "#FFDECC",
             lighter: "#F28985",
@@ -41,7 +28,7 @@ module.exports = {
             darker: "#600000",
           },
         },
-        primary1: {
+        primary: {
           surface: {
             subtle: "#FAFEFF",
             lighter: "#D8EFF3",
