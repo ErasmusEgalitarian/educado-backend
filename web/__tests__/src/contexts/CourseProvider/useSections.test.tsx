@@ -1,6 +1,10 @@
 import React from "react";
 import { act, renderHook } from "@testing-library/react-hooks";
-import { CourseProvider, useCourse, useSections } from "@contexts/courseStore";
+import {
+  CourseProvider,
+  useCourse,
+  useSections,
+} from "@/course/context/courseStore";
 import {
   mockCourse,
   mockSection,
@@ -54,7 +58,7 @@ describe("useSection", () => {
     });
     expect(result.current.sectionsHook.sections.length).toBe(1);
     expect(
-      result.current.courseHook.course.sections.includes(newSection._id),
+      result.current.courseHook.course.sections.includes(newSection._id)
     ).toBe(true);
     // expect(result.current.course.sections).toContain(newSection._id);
   });
@@ -79,10 +83,10 @@ describe("useSection", () => {
     expect(secondSection._id).toBe("2");
     expect(result.current.courseHook.course.sections.length).toBe(2);
     expect(result.current.courseHook.course.sections).toContain(
-      firstSection._id,
+      firstSection._id
     );
     expect(result.current.courseHook.course.sections).toContain(
-      secondSection._id,
+      secondSection._id
     );
   });
 
@@ -135,13 +139,13 @@ describe("useSection", () => {
     act(() => {
       result.current.sectionsHook.addCachedSectionComponent(
         mockSection._id,
-        mockLectureComponent,
+        mockLectureComponent
       );
     });
     act(() => {
       result.current.sectionsHook.deleteCachedSectionComponent(
         mockSection._id,
-        mockLectureComponent.compId,
+        mockLectureComponent.compId
       );
     });
     const section = result.current.sectionsHook.getCachedSection("0");
@@ -160,17 +164,17 @@ describe("useSection", () => {
     act(() => {
       result.current.sectionsHook.addCachedSectionComponent(
         mockSection._id,
-        mockExerciseComponent,
+        mockExerciseComponent
       );
     });
     act(() => {
       result.current.sectionsHook.deleteCachedSectionComponent(
         mockSection._id,
-        mockExerciseComponent.compId,
+        mockExerciseComponent.compId
       );
     });
     const section = result.current.sectionsHook.getCachedSection(
-      mockSection._id,
+      mockSection._id
     );
     expect(section?.components).toEqual([]);
     const exercises = result.current.exercisesHook.exercises;
@@ -190,7 +194,7 @@ describe("useSection", () => {
 
     const newComponent = result.current.sectionsHook.addCachedSectionComponent(
       "1",
-      mockLectureComponent,
+      mockLectureComponent
     );
     const section = result.current.sectionsHook.getCachedSection("1");
     expect(section?.components).toContainEqual(newComponent);
@@ -207,7 +211,7 @@ describe("useSection", () => {
     });
     const res = result.current.sectionsHook.addCachedSectionComponent(
       "3",
-      mockLectureComponent,
+      mockLectureComponent
     );
     expect(res).toBeNull();
   });

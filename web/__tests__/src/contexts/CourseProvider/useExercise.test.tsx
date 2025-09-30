@@ -6,7 +6,7 @@ import {
   useSections,
   useLectures,
   useExercises,
-} from "@contexts/courseStore";
+} from "@/course/context/courseStore";
 import {
   mockCourse,
   mockSection,

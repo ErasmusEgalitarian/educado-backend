@@ -1,42 +1,45 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2023",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "types": ["jest", "cypress", "vite/client"],
     "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": [
-      "jest",
-      "cypress"
-    ],
-    "baseUrl": "./", 
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+
+    /* Paths */
+    "baseUrl": "./",
     "paths": {
-      "@assets/*": ["src/assets/*"],
-      "@components/*": ["src/components/*"],
-      "@contexts/*": ["src/contexts/*"],
-      "@helpers/*": ["src/helpers/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@interfaces/*": ["src/interfaces/*"],
-      "@pages/*": ["src/pages/*"],
-      "@services/*": ["src/services/*"],
-      "@utilities/*": ["src/utilities/*"]
+      "@/shared/*": ["src/shared/*"],
+      "@/auth/*": ["src/features/auth/*"],
+      "@/certificates/*": ["src/features/certificates/*"],
+      "@/course/*": ["src/features/course/*"],
+      "@/exercise/*": ["src/features/exercise/*"],
+      "@/lecture/*": ["src/features/lecture/*"],
+      "@/section/*": ["src/features/section/*"],
+      "@/user/*": ["src/features/user/*"],
+      "@/unplaced/*": ["src/unplaced/*"],
+      "@/*": ["src/*"]
     }
   },
-  "include": [
-    "src",
-    "__tests__",
-    "cypress"
-  ],
+  "include": ["src", "__tests__", "cypress"],
   "references": [{ "path": "./tsconfig.node.json" }],
-	"exclude": ["cypress.config.ts", "cypress", "node_modules"]
+  "exclude": ["cypress.config.ts", "cypress", "node_modules", "dist"]
 }
