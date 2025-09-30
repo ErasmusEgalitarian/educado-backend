@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Dropzone } from "@/shared/components/dnd/Dropzone";
 import { useCourseManagingHelper } from "@/course/hooks/useCourseManagingHelper";
+import { Dropzone } from "@/shared/components/dnd/Dropzone";
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import { ToolTipIcon } from "../../../shared/components/ToolTip/ToolTipIcon";

@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 
 import { useApi } from "@/shared/hooks/useAPI";
+import { convertSrcToFile } from "@/shared/lib/fileHelpers";
 
+import NotFound from "../../../shared/assets/NotFound";
 import Checklist from "../../../shared/components/Checklist";
 import FeedbackBox from "../../../shared/components/FeedbackBox";
 import Layout from "../../../shared/components/Layout";
 import Loading from "../../../shared/components/Loading";
-import NotFound from "../../../shared/assets/NotFound";
 import CourseServices from "../../../unplaced/services/course.services";
 import StorageServices from "../../../unplaced/services/storage.services";
 import { getUserToken } from "../../auth/lib/userInfo";
@@ -15,7 +16,6 @@ import { SectionCreation } from "../../section/components/SectionCreation";
 import { CourseComponent } from "../components/CourseComponent";
 import { CoursePreview } from "../components/CoursePreview";
 import { CourseProvider, useCourse, useMedia } from "../context/courseStore";
-import { convertSrcToFile } from "@/shared/lib/fileHelpers";
 import { Course } from "../types/Course";
 
 /**

@@ -16,5 +16,5 @@ export const Item = forwardRef(
         </div>
       </div>
     );
-  },
+  }
 );

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
+import { useExercises } from "@/course/context/courseStore";
 import { Exercise } from "@/course/types/Course";
 import { ModalButtonCompont } from "@/shared/components/ModalButtonCompont";
 import { useNotifications } from "@/shared/context/NotificationContext";
-import { useExercises } from "@/course/context/courseStore";
 
 import { Answer } from "../types/Answer";
 

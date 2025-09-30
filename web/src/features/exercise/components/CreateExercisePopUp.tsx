@@ -1,10 +1,10 @@
 import { Component, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { ModalButtonCompont } from "@/shared/components/ModalButtonCompont";
-import { useNotifications } from "@/shared/context/NotificationContext";
 import { useExercises } from "@/course/context/courseStore";
 import { Answer } from "@/exercise/types/Answer";
+import { ModalButtonCompont } from "@/shared/components/ModalButtonCompont";
+import { useNotifications } from "@/shared/context/NotificationContext";
 
 import AnswerCards from "./AnswerCards";
 

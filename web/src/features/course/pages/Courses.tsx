@@ -139,7 +139,7 @@ const Courses = () => {
                   >
                     <p className="font-normal flex items-center ">
                       <span className="text-3xl mr-2">+</span> Novo Curso
-                    </p>{" "}
+                    </p>
                     {/** Create new course */}
                   </label>
                   {/* Course guide button shows a tutorial*/}

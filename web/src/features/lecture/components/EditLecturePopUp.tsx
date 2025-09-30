@@ -3,15 +3,15 @@ import { Icon } from "@mdi/react";
 import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { Lecture } from "@/course/types/Course";
 import { useLectures, useMedia } from "@/course/context/courseStore";
+import { Lecture } from "@/course/types/Course";
 import { useApi } from "@/shared/hooks/useAPI";
+import { convertSrcToFile } from "@/shared/lib/fileHelpers";
 
 import { ModalButtonCompont } from "../../../shared/components/ModalButtonCompont";
 import RichTextEditor from "../../../shared/components/RichTextEditor";
 import { useNotifications } from "../../../shared/context/NotificationContext";
 import StorageServices from "../../../unplaced/services/storage.services";
-import { convertSrcToFile } from "@/shared/lib/fileHelpers";
 
 // Icons
 
