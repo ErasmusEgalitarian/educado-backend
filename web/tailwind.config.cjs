@@ -35,6 +35,7 @@ module.exports = {
             default: "#35A1B1",
             darker: "#246670",
           },
+          hover: "#21616aff",
           border: {
             subtle: "#D8EFF3",
             lighter: "#87CED9",
