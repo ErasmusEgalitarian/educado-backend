@@ -7,10 +7,6 @@
         @apply rounded flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-lg
     }
 
-    .std-button {
-        @apply btn bg-primary-surface-default text-greyscale-texticon-negative hover:bg-primary-surface-lighter hover:text-greyscale-texticon-caption border-none font-bold;
-    }
-
     .auth-form-field {
         @apply flex items-center h-12 px-4 w-64 bg-gray-100 mt-2 rounded focus:outline-none focus:ring-2
     }
