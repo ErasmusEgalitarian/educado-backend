@@ -132,7 +132,7 @@ const Courses = () => {
                   Confira seus cursos
                 </h1>
                 <div className="flex flex-row gap-5">
-                  <button onClick={CourseManager} className="std-button">
+                  <button onClick={CourseManager} className="btn btn-primary">
                     <p className="font-normal flex items-center ">
                       <span className="text-3xl mr-2">+</span> Novo Curso
                     </p>

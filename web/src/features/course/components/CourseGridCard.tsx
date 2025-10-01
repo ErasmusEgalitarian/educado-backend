@@ -77,7 +77,7 @@ export const CourseGridCard = ({ course }: { course: Course }) => {
               >
                 <span className="border-b border-primary">Editar</span>
               </button>
-              <button className="bg-primary rounded-lg py-3 px-4 font-bold text-white">
+              <button className="btn btn-secondary">
                 Visualizar
               </button>
             </div>
