@@ -1,5 +1,64 @@
 const { text } = require("stream/consumers");
 
+const colors = {
+  star: "#F1CC4F",
+  guideYellow: "#FFF3D6",
+  warningOrange: "#FA9F47",
+  success: {
+    surface: {
+      subtle: "#E6FAC8",
+      lighter: "#C6F27E",
+      default: "#70A31F",
+      darker: "#4D6E16",
+    },
+  },
+  error: {
+    surface: {
+      subtle: "#FFDECC",
+      lighter: "#F28985",
+      default: "#D62B25",
+      darker: "#600000",
+    },
+  },
+  primary: {
+    surface: {
+      subtle: "#FAFEFF",
+      lighter: "#D8EFF3",
+      default: "#35A1B1",
+      darker: "#246670",
+    },
+    hover: "#21616aff",
+    border: {
+      subtle: "#D8EFF3",
+      lighter: "#87CED9",
+      default: "#35A1B1",
+      darker: "#246670",
+    },
+    texticon: "#246670",
+  },
+  greyscale: {
+    surface: {
+      subtle: "#FDFEFF",
+      default: "#EBF0F2",
+      disabled: "#C1CFD7",
+    },
+    border: {
+      default: "#809CAD",
+      disabled: "#9FB4C1",
+      darker: "#3A4E5A",
+    },
+    texticon: {
+      title: "#141B1F",
+      body: "#28363E",
+      subtitle: "#4E6879",
+      caption: "#628397",
+      negative: "#FDFEFF",
+      disabled: "#C1CFD7",
+    },
+  }
+}
+
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -8,63 +67,7 @@ module.exports = {
       fontFamily: {
         personalInsights: "Montserrat, sans-serif",
       },
-      colors: {
-        star: "#F1CC4F",
-        guideYellow: "#FFF3D6",
-        warningOrange: "#FA9F47",
-        success: {
-          surface: {
-            subtle: "#E6FAC8",
-            lighter: "#C6F27E",
-            default: "#70A31F",
-            darker: "#4D6E16",
-          },
-        },
-        error: {
-          surface: {
-            subtle: "#FFDECC",
-            lighter: "#F28985",
-            default: "#D62B25",
-            darker: "#600000",
-          },
-        },
-        primary: {
-          surface: {
-            subtle: "#FAFEFF",
-            lighter: "#D8EFF3",
-            default: "#35A1B1",
-            darker: "#246670",
-          },
-          hover: "#21616aff",
-          border: {
-            subtle: "#D8EFF3",
-            lighter: "#87CED9",
-            default: "#35A1B1",
-            darker: "#246670",
-          },
-          texticon: "#246670",
-        },
-        greyscale: {
-          surface: {
-            subtle: "#FDFEFF",
-            default: "#EBF0F2",
-            disabled: "#C1CFD7",
-          },
-          border: {
-            default: "#809CAD",
-            disabled: "#9FB4C1",
-            darker: "#3A4E5A",
-          },
-          texticon: {
-            title: "#141B1F",
-            body: "#28363E",
-            subtitle: "#4E6879",
-            caption: "#628397",
-            negative: "#FDFEFF",
-            disabled: "#C1CFD7",
-          },
-        },
-      },
+      colors: colors,
       boxShadow: {
         courseCard: "0px 1px 4px 0px rgba(0, 0, 0, 0.25)", // #00000040 is equivalent to rgba(0, 0, 0, 0.25)
       },
@@ -87,6 +90,27 @@ module.exports = {
 
   // TODO: Add educado theme for daisyui?
   daisyui: {
-    themes: ["light"],
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/colors/themes")["[data-theme=light]"],
+
+          "--rounded-btn": "0.8rem",
+
+          "primary": colors.primary.surface.default,
+          "primary-focus": colors.primary.surface.lighter,
+          "primary-content": "white",
+          "neutral": "red",
+          '.btn-primary:hover': { color: "black" },
+          "--btn-text-case": "none",
+
+          "secondary": colors.greyscale.surface.subtle,
+          "secondary-content": "#000000",
+          '.btn-secondary': { border: 'solid', 'border-color': colors.primary.border.default },
+
+
+        }
+      }
+    ],
   },
 };
