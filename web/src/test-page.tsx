@@ -1,5 +1,4 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -7,15 +6,11 @@ import { z } from "zod";
 import { Form, InputSize } from "@/shared/components/shadcn/form";
 
 import FormActions from "./shared/components/form/form-actions";
-import { FormDropdown } from "./shared/components/form/form-dropdown";
 import { FormInput } from "./shared/components/form/form-input";
 import { FormPasswordInput } from "./shared/components/form/form-password-input";
 import { FormTextarea } from "./shared/components/form/form-textarea";
 import { Button } from "./shared/components/shadcn/button";
-import { is } from "node_modules/cypress/types/bluebird";
 import { useState } from "react";
-import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
-import { DropdownMenuTrigger } from "./shared/components/shadcn/dropdown-menu";
 import {
   Select,
   SelectContent,

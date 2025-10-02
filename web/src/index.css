@@ -119,49 +119,48 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  --greyscale-surface-subtle: #FDFEFF;
-  --greyscale-surface-default: #EBF0F2;
-  --greyscale-surface-disabled: #C1CFD7;
-  --greyscale-border-default: #809CAD;
-  --greyscale-border-disabled: #9FB4C1;
-  --greyscale-border-darker: #3A4E5A;
-  --greyscale-text-title: #141B1F;
-  --greyscale-text-body: #28363E;
-  --greyscale-text-subtle: #4E6879;
+  --greyscale-surface-subtle: #fdfeff;
+  --greyscale-surface-default: #ebf0f2;
+  --greyscale-surface-disabled: #c1cfd7;
+  --greyscale-border-default: #809cad;
+  --greyscale-border-disabled: #9fb4c1;
+  --greyscale-border-darker: #3a4e5a;
+  --greyscale-text-title: #141b1f;
+  --greyscale-text-body: #28363e;
+  --greyscale-text-subtle: #4e6879;
   --greyscale-text-caption: #628397;
-  --greyscale-text-negative: #FDFEFF;
-  --greyscale-text-disabled: #C1CFD7;
+  --greyscale-text-negative: #fdfeff;
+  --greyscale-text-disabled: #c1cfd7;
 
-  --primary-surface-subtle: #FAFEFF;
-  --primary-surface-lighter: #D8EFF3;
-  --primary-surface-default: #35A1B1;
+  --primary-surface-subtle: #fafeff;
+  --primary-surface-lighter: #d8eff3;
+  --primary-surface-default: #35a1b1;
   --primary-surface-darker: #246670;
-  --primary-border-subtle: #D8EFF3;
-  --primary-border-lighter: #87CED9;
-  --primary-border-default: #35A1B1;
+  --primary-border-subtle: #d8eff3;
+  --primary-border-lighter: #87ced9;
+  --primary-border-default: #35a1b1;
   --primary-border-darker: #246670;
   --primary-text-label: #246670;
 
-  --success-surface-subtle: #E6FAC8;
-  --success-surface-lighter: #C6F27E;
-  --success-surface-default: #70A31F;
-  --success-surface-darker: #3A5313;
-  --success-border-subtle: #E6FAC8;
-  --success-border-lighter: #C6F27E;
-  --success-border-default: #C6F27E;
-  --success-border-darker: #3A5313;
-  --success-text-label: #3A5313;
+  --success-surface-subtle: #e6fac8;
+  --success-surface-lighter: #c6f27e;
+  --success-surface-default: #70a31f;
+  --success-surface-darker: #3a5313;
+  --success-border-subtle: #e6fac8;
+  --success-border-lighter: #c6f27e;
+  --success-border-default: #c6f27e;
+  --success-border-darker: #3a5313;
+  --success-text-label: #3a5313;
 
-  --error-surface-subtle: #FFDECC;
-  --error-surface-lighter: #F28985;
-  --error-surface-default: #D62B25;
+  --error-surface-subtle: #ffdecc;
+  --error-surface-lighter: #f28985;
+  --error-surface-default: #d62b25;
   --error-surface-darker: #600000;
-  --error-border-subtle: #FFDECC;
-  --error-border-lighter: #F28985;
-  --error-border-default: #D62B25;
+  --error-border-subtle: #ffdecc;
+  --error-border-lighter: #f28985;
+  --error-border-default: #d62b25;
   --error-border-darker: #600000;
   --error-text-label: #600000;
-  
 }
 @layer base {
   * {

@@ -14,7 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuIconItem,
   DropdownMenuTrigger,
-} from "@/shared/components/shadcn/dropdown-menu"
+} from "@/shared/components/shadcn/dropdown-menu";
 
 import { Icon } from "@mdi/react";
 import { useState } from "react";
@@ -24,8 +24,6 @@ import useAuthStore from "@/auth/hooks/useAuthStore";
 
 import { getUserInfo } from "../../features/auth/lib/userInfo";
 import { useNotifications } from "../context/NotificationContext";
-
-
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -202,7 +200,8 @@ export const Navbar = () => {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <div className="
+              <div
+                className="
                 bg-primary-surface-lighter text-primary-border-lighter 
                 border-1 border-primary-border-lighter rounded-full w-10 h-10 
                 flex items-center justify-center cursor-pointer"
@@ -211,27 +210,33 @@ export const Navbar = () => {
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-50" align="end">
-              <DropdownMenuIconItem 
-                onClick={() => {navigate("/profile")}} 
-                icon={() => <Icon path={mdiAccountCog} size={1} />} 
+              <DropdownMenuIconItem
+                onClick={() => {
+                  navigate("/profile");
+                }}
+                icon={() => <Icon path={mdiAccountCog} size={1} />}
               >
                 Editar perfil
               </DropdownMenuIconItem>
-              <DropdownMenuIconItem 
-                onClick={() => {navigate("/certificates")} } 
+              <DropdownMenuIconItem
+                onClick={() => {
+                  navigate("/certificates");
+                }}
                 icon={() => <Icon path={mdiCertificate} size={1} />}
               >
                 Meus certificados
               </DropdownMenuIconItem>
-              <DropdownMenuIconItem 
-                onClick={() => {navigate("/feedback")}}
+              <DropdownMenuIconItem
+                onClick={() => {
+                  navigate("/feedback");
+                }}
                 icon={() => <Icon path={mdiChatQuestionOutline} size={1} />}
               >
                 Feedback
               </DropdownMenuIconItem>
-              <DropdownMenuSeparator/>
-              <DropdownMenuIconItem 
-                onClick={handleLogout} 
+              <DropdownMenuSeparator />
+              <DropdownMenuIconItem
+                onClick={handleLogout}
                 icon={() => <Icon path={mdiLogoutVariant} size={1} />}
                 variant="destructive"
               >
