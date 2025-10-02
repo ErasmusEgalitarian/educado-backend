@@ -1,8 +1,9 @@
 //Imports
 import { useEffect, useState } from "react";
 
-import { BACKEND_URL } from "../../../shared/config/environment";
 import Modals from "@/auth/components/Modals";
+
+import { BACKEND_URL } from "../../../shared/config/environment";
 
 //Exporting UI content&structure of
 export default function PersonalInformationForm({

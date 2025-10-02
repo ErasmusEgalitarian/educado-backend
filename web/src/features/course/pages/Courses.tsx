@@ -132,16 +132,12 @@ const Courses = () => {
                   Confira seus cursos
                 </h1>
                 <div className="flex flex-row gap-5">
-                  <label
-                    htmlFor="course-create"
-                    onClick={CourseManager}
-                    className="std-button flex modal-button space-x-2 cursor-pointer px-12 py-2.5"
-                  >
+                  <button onClick={CourseManager} className="btn btn-primary">
                     <p className="font-normal flex items-center ">
                       <span className="text-3xl mr-2">+</span> Novo Curso
-                    </p>{" "}
+                    </p>
                     {/** Create new course */}
-                  </label>
+                  </button>
                   {/* Course guide button shows a tutorial*/}
                   {/* <CourseGuideButton /> */}
                 </div>

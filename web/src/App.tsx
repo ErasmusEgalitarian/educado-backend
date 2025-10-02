@@ -14,10 +14,10 @@ import Certificates from "./features/certificates/pages/Certificates";
 import CourseManager from "./features/course/pages/CourseManager";
 import Courses from "./features/course/pages/Courses";
 import Profile from "./features/user/components/Profile";
+import NotFound from "./shared/assets/NotFound";
 import Application from "./unplaced/Application";
 import EducadoAdmin from "./unplaced/EducadoAdmin";
 import Feedback from "./unplaced/Feedback";
-import NotFound from "./shared/assets/NotFound";
 import {
   AdminProtectedRoute,
   ProtectedRoute,

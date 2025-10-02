@@ -17,8 +17,8 @@ import {
 import { Icon } from "@mdi/react";
 import React from "react";
 
-import singleIcon from "@/shared/assets/singleIcon.png";
 import { useCourse } from "@/course/context/courseStore";
+import singleIcon from "@/shared/assets/singleIcon.png";
 
 interface CardLabelProps {
   title: string;

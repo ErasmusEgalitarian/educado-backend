@@ -8,11 +8,11 @@ import {
 import useSWR from "swr";
 
 import { getUserToken } from "@/auth/lib/userInfo";
-import { ContentCreator } from "@/user/types/ContentCreator";
-import { User } from "@/user/types/User";
 import Loading from "@/shared/components/Loading";
 import AdminServices from "@/unplaced/services/admin.services";
 import ViewUserButton from "@/unplaced/ViewUserButton";
+import { ContentCreator } from "@/user/types/ContentCreator";
+import { User } from "@/user/types/User";
 
 import AdminToggleButton from "../AdminToggle";
 import DeleteUserButton from "../DeleteUserButton";
