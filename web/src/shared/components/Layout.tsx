@@ -20,12 +20,12 @@ const Layout = ({
   return (
     <>
       <div className="flex w-screen h-screen text-gray-700">
-        <div className="flex flex-col flex-grow">
+        <div className="flex flex-col grow">
           {/** Top Nav bar */}
           <Navbar />
 
           {/** Content */}
-          <main className=" bg-gradient-to-br from-[#c8e5ec] to-[white]">
+          <main className=" bg-linear-to-br from-[#c8e5ec] to-[white]">
             {children}
           </main>
         </div>

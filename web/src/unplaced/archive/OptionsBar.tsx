@@ -36,7 +36,7 @@ const course_lectures = [
 export const OptionsBar = () => {
   return (
     <div className="flex flex-col w-56 border-r border-gray-300">
-      <button className="relative text-sm focus:outline-none group">
+      <button className="relative text-sm focus:outline-hidden group">
         <div className="flex items-center justify-between w-full h-16 px-4 border-b border-gray-300 hover:bg-gray-300">
           <span className="font-medium">Dropdown</span>
           <ChevronDownIcon className="w-4 h-4" />
@@ -55,12 +55,12 @@ export const OptionsBar = () => {
           })}
         </div>
       </button>
-      <div className="flex flex-col flex-grow p-4 overflow-auto">
+      <div className="flex flex-col grow p-4 overflow-auto">
         {course_lectures.map((lecture, key) => {
           return (
             <a
               key={key}
-              className="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300"
+              className="flex items-center shrink-0 h-10 px-2 text-sm font-medium rounded-sm hover:bg-gray-300"
               href="#"
             >
               <span className="leading-none">
@@ -71,7 +71,7 @@ export const OptionsBar = () => {
         })}
 
         <a
-          className="flex items-center flex-shrink-0 h-10 px-3 mt-auto text-sm font-medium bg-gray-200 rounded hover:bg-gray-300"
+          className="flex items-center shrink-0 h-10 px-3 mt-auto text-sm font-medium bg-gray-200 rounded-sm hover:bg-gray-300"
           href="#"
         >
           <PlusIcon className="h-5 w-5" />

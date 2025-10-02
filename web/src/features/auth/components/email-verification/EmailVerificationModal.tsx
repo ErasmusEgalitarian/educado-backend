@@ -71,7 +71,7 @@ const EmailVerificationModal = (props: propTypes): JSX.Element => {
       />
 
       <div
-        className="relative bg-[#F1F9FB] p-10 rounded-xl max-h-[100%] z-20"
+        className="relative bg-[#F1F9FB] p-10 rounded-xl max-h-full z-20"
         style={{ width: "500px" }}
       >
         <h3 className="font-bold text-xl mb-4">Confirmar email</h3>

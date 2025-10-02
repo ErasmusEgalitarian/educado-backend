@@ -6,8 +6,8 @@ import FrontLogo from "@/shared/assets/WelEdnew.png";
 
 const NotFound = () => {
   return (
-    <main className="relative min-h-screen bg-gradient-to-br from-[#c8e5ec] to-[white] overflow-hidden">
-      <nav className="navbar bg-base-100 border-b shadow fixed top-0 z-10">
+    <main className="relative min-h-screen bg-linear-to-br from-[#c8e5ec] to-[white] overflow-hidden">
+      <nav className="navbar bg-base-100 border-b shadow-sm fixed top-0 z-10">
         <div className="w-[165.25px] h-6 justify-start items-center gap-[7.52px] flex py-6 px-12">
           <div className="navbar-start">
             <Link
@@ -26,7 +26,7 @@ const NotFound = () => {
           src={FrontLogo}
           alt="Front Logo"
         />
-        <div className="w-[762px] h-[952px] px-5 rounded-sm flex-col justify-center items-center gap-2 inline-flex">
+        <div className="w-[762px] h-[952px] px-5 rounded-xs flex-col justify-center items-center gap-2 inline-flex">
           <h1 className="w-600px text-neutral-700 text-[55px] font-bold font-['Lato'] translate-x-[370px] translate-y-[-90px]">
             Erro 404! algo deu errado.
           </h1>

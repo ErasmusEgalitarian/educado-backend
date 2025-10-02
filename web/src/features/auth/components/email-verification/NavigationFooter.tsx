@@ -116,7 +116,7 @@ export default function NavigationFooter(props: propsType): JSX.Element {
         <button
           id="continue"
           onClick={onSubmit1} // Call onSubmit when clicked
-          className="py-2 px-7 mt-8 bg-primary hover:bg-gray-100 border border-primary hover:text-primary text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:ring-offset-2 rounded flex justify-center items-center space-x-2"
+          className="py-2 px-7 mt-8 bg-primary hover:bg-gray-100 border border-primary hover:text-primary text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:ring-offset-2 rounded-sm flex justify-center items-center space-x-2"
         >
           {isLoading || isVerifyingUser || isLoggingIn ? (
             <span className="spinner-border animate-spin rounded-full border-2 border-t-transparent w-4 h-4" />

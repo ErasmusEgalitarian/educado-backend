@@ -15,6 +15,7 @@ import CourseManager from "./features/course/pages/CourseManager";
 import Courses from "./features/course/pages/Courses";
 import Profile from "./features/user/components/Profile";
 import NotFound from "./shared/assets/NotFound";
+import TestPage from "./test-page";
 import Application from "./unplaced/Application";
 import EducadoAdmin from "./unplaced/EducadoAdmin";
 import Feedback from "./unplaced/Feedback";
@@ -28,6 +29,14 @@ import SingleApplicantView from "./unplaced/SingleApplicantView";
 const App = () => {
   // router
   const router = createBrowserRouter([
+    {
+      path: "/test",
+      element: (
+        <NonProtectedRoute>
+          <TestPage />
+        </NonProtectedRoute>
+      ),
+    },
     {
       // Homepage is left unused
       path: "/",

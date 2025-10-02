@@ -142,7 +142,7 @@ export const CoursePreview = ({ id: propId, setTickChange }: Inputs) => {
               onClick={() => {
                 changeTick(1);
               }}
-              className="whitespace-nowrap cursor-pointer underline py-2 pr-4 bg-transparent hover:bg-warning-100 text-primary w-full transition ease-in duration-200 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2  rounded"
+              className="whitespace-nowrap cursor-pointer underline py-2 pr-4 bg-transparent hover:bg-warning-100 text-primary w-full transition ease-in duration-200 text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2  rounded-sm"
             >
               Voltar para Seções
               {/** GO BACK TO COURSE CREATION PAGE 2/3 IN THE CHECKLIST */}
@@ -151,7 +151,7 @@ export const CoursePreview = ({ id: propId, setTickChange }: Inputs) => {
             <label
               className={` ${
                 status === "published" ? "invisible pointer-events-none" : ""
-              } pl-32  underline py-2 bg-transparent hover:bg-primary-100 text-primary w-full transition ease-in duration-200 text-center text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2  rounded `}
+              } pl-32  underline py-2 bg-transparent hover:bg-primary-100 text-primary w-full transition ease-in duration-200 text-center text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2  rounded `}
             >
               <label
                 onClick={handleDraftClick}
@@ -161,7 +161,7 @@ export const CoursePreview = ({ id: propId, setTickChange }: Inputs) => {
               </label>
             </label>
 
-            <label className="h-12 p-2 bg-primary hover:bg-primary focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-lg font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">
+            <label className="h-12 p-2 bg-primary hover:bg-primary focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-lg font-semibold shadow-md focus:outline-hidden focus:ring-2 focus:ring-offset-2  rounded-lg">
               <label
                 onClick={handlePublishClick}
                 className="whitespace-nowrap py-4 px-8 h-full w-full cursor-pointer"

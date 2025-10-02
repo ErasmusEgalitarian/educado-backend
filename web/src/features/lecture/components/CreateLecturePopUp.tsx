@@ -99,7 +99,7 @@ export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
     <>
       {/*Text shown in the top of create lecture*/}
       <div className="modal" id={`lecture-create-${savedSID}-modal`}>
-        <div className="modal-box bg-gradient-to-b from-primaryLight rounded-3xl w-11/12 max-w-xl">
+        <div className="modal-box bg-linear-to-b from-primaryLight rounded-3xl w-11/12 max-w-xl">
           <h3 className="font-bold text-lg">Crie sua nova aula </h3>{" "}
           {/*Create your new lecture!*/}
           <p className="py-4">
@@ -120,7 +120,7 @@ export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
                 type="text"
                 placeholder="Noma da aula"
                 defaultValue=""
-                className="form-field focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg border-none"
+                className="form-field focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg border-none"
                 {...register("title", { required: true })}
               />
               {errors.title && (
@@ -137,7 +137,7 @@ export const CreateLecture = ({ savedSID, handleLectureCreation }: Props) => {
                 rows={4}
                 placeholder="Descrição da aula"
                 defaultValue=""
-                className="resize-none form-field focus:outline-none focus:ring-2 focus:ring-primary rounded-lg focus:border-transparent border-none"
+                className="resize-none form-field focus:outline-hidden focus:ring-2 focus:ring-primary rounded-lg focus:border-transparent border-none"
                 {...register("description", { required: true })}
               />
               {/*defaultValue=Add a description to your lecture*/}

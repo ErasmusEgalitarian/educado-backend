@@ -143,7 +143,7 @@ export const EditLecture = ({ lecture, handleEdit }: Props) => {
     <>
       {/*Text shown in the top of create lecture*/}
       <div className="modal" id={`lecture-edit-${lecture._id}`}>
-        <div className="modal-box bg-gradient-to-b from-primaryLight w-11/12 max-w-xl rounded-3xl ">
+        <div className="modal-box bg-linear-to-b from-primaryLight w-11/12 max-w-xl rounded-3xl ">
           <h3 className="font-bold text-lg">Editar sua aula</h3>{" "}
           {/*Create your new lecture!*/}
           {/*Field to input the title of the new lecture*/}
@@ -160,7 +160,7 @@ export const EditLecture = ({ lecture, handleEdit }: Props) => {
                 type="text"
                 placeholder="Insira o título da aula"
                 defaultValue={lecture.title}
-                className="form-field focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent border-none rounded-lg"
+                className="form-field focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent border-none rounded-lg"
                 {...register("title", { required: true })}
               />
               {errors.title && (
@@ -177,7 +177,7 @@ export const EditLecture = ({ lecture, handleEdit }: Props) => {
                 rows={4}
                 placeholder="Insira o conteúdo escrito dessa aula"
                 defaultValue={lecture.description}
-                className="resize-none form-field focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent border-none rounded-lg"
+                className="resize-none form-field focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent border-none rounded-lg"
                 {...register("description", { required: true })}
               />
               {/*defaultValue=Add a description to your lecture*/}

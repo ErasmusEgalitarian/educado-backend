@@ -41,7 +41,7 @@ const Checklist: React.FC<ChecklistProps> = ({
           }}
         >
           <input
-            className={`mr-2 text-primary rounded ${highestTick >= 0 ? "cursor-pointer" : ""}`}
+            className={`mr-2 text-primary rounded-sm ${highestTick >= 0 ? "cursor-pointer" : ""}`}
             type="checkbox"
             id="check1"
             disabled={highestTick < 0}
@@ -60,7 +60,7 @@ const Checklist: React.FC<ChecklistProps> = ({
           }}
         >
           <input
-            className={`mr-2 text-primary rounded ${highestTick >= 1 ? "cursor-pointer" : ""}`}
+            className={`mr-2 text-primary rounded-sm ${highestTick >= 1 ? "cursor-pointer" : ""}`}
             type="checkbox"
             id="check2"
             disabled={highestTick < 1}
@@ -79,7 +79,7 @@ const Checklist: React.FC<ChecklistProps> = ({
           }}
         >
           <input
-            className={`mr-2 text-primary rounded ${highestTick >= 2 ? "cursor-pointer" : ""}`}
+            className={`mr-2 text-primary rounded-sm ${highestTick >= 2 ? "cursor-pointer" : ""}`}
             type="checkbox"
             id="check3"
             disabled={highestTick < 2}

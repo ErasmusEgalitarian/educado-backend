@@ -123,7 +123,7 @@ export const SortableComponentItem = ({ component, sid }: Props) => {
 
   //Else show the sections.
   return (
-    <div className="w-full rounded border bg-secondary rounded-lg mb-4">
+    <div className="w-full rounded-sm border bg-secondary rounded-lg mb-4">
       <div className="flex justify-between ">
         <div className="flex space-x-2 text-primary items-center ml-5 text-right">
           {getIcon()}
@@ -134,7 +134,7 @@ export const SortableComponentItem = ({ component, sid }: Props) => {
           {/**edit a lecture or exercise and pencil icon*/}
           <label
             htmlFor={component.compType + "-edit-" + data._id}
-            className="btn btn-ghost hover:bg-transparent hover:text-primaryHover p-0"
+            className="btn btn-ghost hover:bg-transparent hover:text-primary-hover p-0"
           >
             <Icon path={mdiPencilCircle} size={1.2} />
           </label>
@@ -152,7 +152,7 @@ export const SortableComponentItem = ({ component, sid }: Props) => {
 
           {/**delete a lecture or exercise and trash icon*/}
           <div
-            className="btn btn-ghost hover:bg-transparent hover:text-primaryHover"
+            className="btn btn-ghost hover:bg-transparent hover:text-primary-hover"
             onClick={() => handleComponentDeletion()}
           >
             <Icon path={mdiDeleteCircle} size={1.2} />
@@ -166,7 +166,7 @@ export const SortableComponentItem = ({ component, sid }: Props) => {
             {...listeners}
           >
             {/**Move a lecture or exercise and "move" icon*/}
-            <div className="btn btn-ghost hover:bg-transparent hover:text-primaryHover">
+            <div className="btn btn-ghost hover:bg-transparent hover:text-primary-hover">
               <Icon path={mdiDotsVerticalCircle} size={1.2} />
             </div>
           </div>

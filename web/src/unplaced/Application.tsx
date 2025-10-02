@@ -132,7 +132,7 @@ const Application = () => {
   };
 
   return (
-    <main className="flex-grow overflow-x-hidden bg-secondary h-screen font-['Montserrat']">
+    <main className="grow overflow-x-hidden bg-secondary h-screen font-['Montserrat']">
       {/* Mini navbar */}
       <MiniNavbar />
 

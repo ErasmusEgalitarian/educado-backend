@@ -7,7 +7,7 @@ export const SectionArea = ({ sections }: { sections: unknown[] }) => {
       {sections.map((section: any, key) => {
         return (
           <div
-            className="flex flex-row justify-between border rounded py-2 px-4 cursor-pointer"
+            className="flex flex-row justify-between border rounded-sm py-2 px-4 cursor-pointer"
             key={key}
           >
             <p className="font-semibold">{section.title}</p>

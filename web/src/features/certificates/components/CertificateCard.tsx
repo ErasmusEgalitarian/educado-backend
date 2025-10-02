@@ -53,7 +53,7 @@ export default function CertificateCard(props: {
   return (
     <div className="overflow-hidden w-full m-auto duration-200 shadow-md rounded-xl hover:shadow-lg group">
       <div className="bg-white w-full">
-        <div className="mt-5 grid grid-cols-[50fr,1fr] rounded-xl border">
+        <div className="mt-5 grid grid-cols-[50fr_1fr] rounded-xl border">
           {/* Card info */}
           <div className="px-5 py-6 grid grid-cols-4 justify-space-between -mr-20">
             {/* Course title */}
@@ -92,9 +92,9 @@ export default function CertificateCard(props: {
               className="w-8 h-8 text-grayMedium hover:text-primary mr-5 float-right cursor-pointer"
             />
           </button>
-          {isOpen && <div className="col-span-2 bg-grayLight h-[1px]" />}
+          {isOpen && <div className="col-span-2 bg-grayLight h-px" />}
           {isOpen && (
-            <div className="w-full col-span-2 px-5 py-4 rounded-b-xl bg-[rgb(250,_250,_250)] grid grid-cols-2">
+            <div className="w-full col-span-2 px-5 py-4 rounded-b-xl bg-[rgb(250,250,250)] grid grid-cols-2">
               {/** Export certificate */}
               <p className="text-xl translate-y-2 text-grayDark">
                 Exportar certificado:{" "}

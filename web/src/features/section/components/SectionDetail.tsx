@@ -40,7 +40,7 @@ export const SectionDetail = ({ selfDestroy, index }: Inputs): JSX.Element => {
   function changeOrder() {}
 
   return (
-    <div className="collapse w-full rounded border bg-white shadow-lg rounded-lg ">
+    <div className="collapse w-full rounded-sm border bg-white shadow-lg rounded-lg ">
       <input
         type="checkbox"
         className="peer w-3/4"
@@ -68,7 +68,7 @@ export const SectionDetail = ({ selfDestroy, index }: Inputs): JSX.Element => {
       </label>
 
       <div className="collapse-content w-full">
-        <div className="flex flex-col rounded-lg h-100  w-full rounded space-2  p-4 px-128 space-y-5">
+        <div className="flex flex-col rounded-lg h-100  w-full rounded-sm space-2  p-4 px-128 space-y-5">
           <div className=" ">
             <label htmlFor="title">Nome </label> {/*Title of section*/}
             <input
@@ -77,7 +77,7 @@ export const SectionDetail = ({ selfDestroy, index }: Inputs): JSX.Element => {
               onChange={(e) => {
                 setSectionTitle(e.target.value);
               }}
-              className="text-gray-500 form-field bg-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="text-gray-500 form-field bg-secondary focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
 
@@ -87,7 +87,7 @@ export const SectionDetail = ({ selfDestroy, index }: Inputs): JSX.Element => {
             <input
               type="text"
               placeholder="Descrição da seção"
-              className="text-gray-500 form-field bg-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="text-gray-500 form-field bg-secondary focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
 

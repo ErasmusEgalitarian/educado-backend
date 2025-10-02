@@ -190,7 +190,7 @@ const ExploreCardPreview: React.FC = () => {
 
                 {/* Description */}
                 {course.description !== "" && (
-                  <p className="text-projectBlack text-xs overflow-y-auto whitespace-normal h-[5rem] pr-1 break-words">
+                  <p className="text-projectBlack text-xs overflow-y-auto whitespace-normal h-20 pr-1 break-words">
                     {course.description}
                   </p>
                 )}

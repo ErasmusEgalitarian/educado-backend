@@ -150,7 +150,7 @@ export default function PersonalInformationForm({
                     data-cy="password-field"
                     type={passwordVisible ? "text" : "password"}
                     id="passwordField"
-                    className="w-[100%] hflex border-gray-300  py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-none focus:ring-2  focus:border-transparent focus:ring-sky-200 rounded-lg"
+                    className="w-full hflex border-gray-300  py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2  focus:border-transparent focus:ring-sky-200 rounded-lg"
                     placeholder="**********"
                   />
 
@@ -213,7 +213,7 @@ export default function PersonalInformationForm({
                     type={passwordVisibleRepeat ? "text" : "password"}
                     id="passwordFieldRepeat"
                     placeholder="********** "
-                    className="w-[100%] flex border-gray-300 gap-2.5 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-none focus:ring-2  focus:border-transparent focus:ring-sky-200 rounded-lg"
+                    className="w-full flex border-gray-300 gap-2.5 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2  focus:border-transparent focus:ring-sky-200 rounded-lg"
                   />
                   <button
                     type="button"
