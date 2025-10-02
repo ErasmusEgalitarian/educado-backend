@@ -195,7 +195,7 @@ export const Navbar = () => {
                 className="btn btn-ghost hover:bg-transparent"
               >
                 <div className="avatar placeholder">
-                  <div className="bg-[#166276] text-white rounded-full hover:rounded w-11">
+                  <div className="bg-[#166276] text-white rounded-full hover:rounded-sm w-11">
                     <span className="text-md">{`${firstName.charAt(0)}${lastName.charAt(0)}`}</span>
                   </div>
                 </div>

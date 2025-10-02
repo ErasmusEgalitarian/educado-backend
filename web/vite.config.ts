@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite"
 import path from "path";
 
 // https://vitejs.dev/config/
@@ -8,7 +9,7 @@ export default defineConfig({
     port: 5173,
     host: true,
   },
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   define: {
     global: {}, // For working with AWS
   },

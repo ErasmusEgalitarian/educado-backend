@@ -103,7 +103,7 @@ const SingleApplicantView = () => {
   return (
     <Layout meta={`Applicant: ${id?.slice(0, 10)}...`}>
       <div className="grid place-items-center h-screen pt-20">
-        <div className="bg-white shadow overflow-hidden rounded-xl">
+        <div className="bg-white shadow-sm overflow-hidden rounded-xl">
           <div className="px-4 py-8 sm:px-10">
             <h3 className="leading-6 text-2xl font-bold text-gray-900">
               Candidato:{" "}
@@ -127,7 +127,7 @@ const SingleApplicantView = () => {
               onClick={openRejectModal}
               id="reject-button"
               type="button"
-              className="py-3 px-4 flex justify-center items-center bg-red-600 hover:bg-red-700 text-white w-full text-lg font-semibold shadow-md rounded"
+              className="py-3 px-4 flex justify-center items-center bg-red-600 hover:bg-red-700 text-white w-full text-lg font-semibold shadow-md rounded-sm"
               disabled={isAccepting} // Disable if accepting to prevent interaction during accept action
             >
               Negar
@@ -136,7 +136,7 @@ const SingleApplicantView = () => {
               onClick={handleAccept}
               id="approve-button"
               type="button"
-              className="py-3 px-4 flex justify-center items-center bg-green-600 hover:bg-green-700 text-white w-full text-lg font-semibold shadow-md rounded"
+              className="py-3 px-4 flex justify-center items-center bg-green-600 hover:bg-green-700 text-white w-full text-lg font-semibold shadow-md rounded-sm"
               disabled={isAccepting} // Disable while accepting
             >
               {isAccepting ? (
@@ -176,7 +176,7 @@ const SingleApplicantView = () => {
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <h2 className="text-xl font-bold mb-4">Motivo da Rejeição</h2>
                 <textarea
-                  className="w-full h-32 border rounded p-2"
+                  className="w-full h-32 border rounded-sm p-2"
                   value={rejectionReason}
                   onChange={(e) => {
                     setRejectionReason(e.target.value);
@@ -188,7 +188,7 @@ const SingleApplicantView = () => {
                     onClick={() => {
                       setShowRejectModal(false);
                     }}
-                    className="px-4 py-2 bg-gray-300 rounded mr-2"
+                    className="px-4 py-2 bg-gray-300 rounded-sm mr-2"
                     disabled={isRejecting} // Disable if rejecting
                   >
                     Cancelar

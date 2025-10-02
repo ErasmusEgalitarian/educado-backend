@@ -187,7 +187,7 @@ const Login = () => {
   };
 
   return (
-    <main className="flex bg-gradient-to-br from-[#C9E5EC] 0% to-[#FFF] 100%">
+    <main className="flex bg-linear-to-br from-[#C9E5EC] 0% to-[#FFF] 100%">
       {/* Mini navbar */}
       <MiniNavbar />
 
@@ -197,7 +197,7 @@ const Login = () => {
         <div className="relative w-full h-screen hidden md:block container overflow-hidden">
           <img
             src={background}
-            alt="w-[42.375rem]"
+            alt="w-169.5"
             className="object-cover w-full h-full"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -208,10 +208,10 @@ const Login = () => {
         {/*Container for right side of the page - frame 2332*/}
         <div className="relative right-0 h-screen flex flex-col justify-center items-center">
           {/*Error message for when email or password is incorrect*/}
-          <div className="fixed right-0 top-[4rem] z-10">
+          <div className="fixed right-0 top-16 z-10">
             {error && (
               <div
-                className="bg-white shadow border-t-4 p-4 w-52 rounded text-center animate-bounce-short"
+                className="bg-white shadow-sm border-t-4 p-4 w-52 rounded-sm text-center animate-bounce-short"
                 role="alert"
               >
                 <p className="font-bold text-lg">{error.toString()}</p>
@@ -262,7 +262,7 @@ const Login = () => {
                     onInput={areFieldsFilled}
                     type="email"
                     id="email-field"
-                    className="flex border-gray-300 w-[100%] py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-none focus:ring-2  focus:border-transparent focus:ring-sky-200 rounded-lg"
+                    className="flex border-gray-300 w-full py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2  focus:border-transparent focus:ring-sky-200 rounded-lg"
                     placeholder="usuario@gmail.com"
                     {...register("email", { required: true })}
                   />
@@ -292,7 +292,7 @@ const Login = () => {
                     onInput={areFieldsFilled}
                     type={passwordVisible ? "text" : "password"}
                     id="password-field"
-                    className="w-[100%] flex border-gray-300 gap-2.5 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-none focus:ring-2  focus:border-transparent focus:ring-sky-200 rounded-lg"
+                    className="w-full flex border-gray-300 gap-2.5 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2  focus:border-transparent focus:ring-sky-200 rounded-lg"
                     placeholder="**********"
                     {...register("password", { required: true })}
                   />
@@ -341,7 +341,7 @@ const Login = () => {
               <button
                 type="submit"
                 id="submit-login-button"
-                className="disabled:opacity-20 disabled:bg-slate-600 flex-auto w-[100%] h-[3.3rem] rounded-lg bg-[#166276] text-white transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50 text-lg font-bold font-['Montserrat']"
+                className="disabled:opacity-20 disabled:bg-slate-600 flex-auto w-full h-[3.3rem] rounded-lg bg-[#166276] text-white transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50 text-lg font-bold font-['Montserrat']"
                 disabled={!submitLoading}
               >
                 {submitLoading ? (

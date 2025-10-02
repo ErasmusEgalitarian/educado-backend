@@ -8,7 +8,7 @@ import Carousel from "../../../unplaced/archive/Carousel";
 const Welcome = () => {
   return (
     //background for frame 2332
-    <main className="self-stretch flex flex-col items-center justify-center gap-20 overflow-hidden flex-1 rounded-sm bg-gradient-to-br from-[#C9E5EC] 0% to-[#FFF] 100%">
+    <main className="self-stretch flex flex-col items-center justify-center gap-20 overflow-hidden flex-1 rounded-xs bg-linear-to-br from-[#C9E5EC] 0% to-[#FFF] 100%">
       {/* Mini navbar */}
       <MiniNavbar />
 
@@ -18,7 +18,7 @@ const Welcome = () => {
           <div className="relative w-full h-screen hidden md:block container overflow-hidden">
             <img
               src={background}
-              alt="w-[42.375rem]"
+              alt="w-169.5"
               className="object-cover w-full h-full"
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -38,7 +38,7 @@ const Welcome = () => {
             </h1>{" "}
             {/*Sign up now and help promote your work and reach a wider audience through content creation*/}
             {/*Container for the buttons*/}
-            <div className="relative flex gap-4 px-[5rem] flex-row items-center justify-center w-full mt-10">
+            <div className="relative flex gap-4 px-20 flex-row items-center justify-center w-full mt-10">
               {/*Button for routing to the Login page*/}
               <Link
                 className="flex-auto w-[18rem] h-[3.3rem] items-center justify-center rounded-lg text-lg font-bold font-['Montserrat'] bg-[#166276] inline-flex text-[#FFFFFF] transform transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50"

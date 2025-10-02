@@ -28,6 +28,7 @@ export default defineConfig([
       "tailwind.config.cjs",
       "postcss.config.js",
       "babel.config.cjs",
+      "src/shared/components/shadcn"
     ],
   },
 

@@ -44,7 +44,7 @@ const FeedbackBox: React.FC<FeedbackBoxProps> = ({ id, token }) => {
   if (loading) return <Loading />;
 
   return (
-    <div className="feedback-box bg-transparent p-4 rounded overflow-y-auto max-h-[500px] w-[80%]">
+    <div className="feedback-box bg-transparent p-4 rounded-sm overflow-y-auto max-h-[500px] w-[80%]">
       {feedbacks.length > 0 ? (
         feedbacks.map((feedback, index) => (
           <React.Fragment key={feedback._id}>

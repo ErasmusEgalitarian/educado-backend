@@ -110,7 +110,7 @@ const PhoneCourseSession: React.FC = () => {
         </h2>
       </div>
 
-      <div className="flex-grow" />
+      <div className="grow" />
       <nav
         className="bg-white p-1 shadow-lg"
         style={{
