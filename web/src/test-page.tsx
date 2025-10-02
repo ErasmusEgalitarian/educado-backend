@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -8,9 +9,9 @@ import { Form, InputSize } from "@/shared/components/shadcn/form";
 import FormActions from "./shared/components/form/form-actions";
 import { FormInput } from "./shared/components/form/form-input";
 import { FormPasswordInput } from "./shared/components/form/form-password-input";
+import { FormSelect } from "./shared/components/form/form-select";
 import { FormTextarea } from "./shared/components/form/form-textarea";
 import { Button } from "./shared/components/shadcn/button";
-import { useState } from "react";
 import {
   Select,
   SelectContent,
@@ -18,7 +19,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./shared/components/shadcn/select";
-import { FormSelect } from "./shared/components/form/form-select";
 
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({
