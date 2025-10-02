@@ -4,11 +4,11 @@ import { toast } from "react-toastify";
 import { KeyedMutator } from "swr";
 
 import { getUserToken } from "@/auth/lib/userInfo";
-import { Institution } from "@/user/types/Institution";
 import GenericModalComponent from "@/shared/components/GenericModalComponent";
 import { useNotifications } from "@/shared/context/NotificationContext";
 import { useApi } from "@/shared/hooks/useAPI";
 import { institutionService } from "@/unplaced/services/Institution.services";
+import { Institution } from "@/user/types/Institution";
 
 export const UpdateInstitutionButton = ({
   institution,

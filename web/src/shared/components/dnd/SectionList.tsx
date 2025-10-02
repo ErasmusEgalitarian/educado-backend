@@ -18,8 +18,8 @@ import {
 } from "@dnd-kit/sortable";
 import { useState } from "react";
 
-import { useNotifications } from "@/shared/context/NotificationContext";
 import { useSections, useCourse } from "@/course/context/courseStore";
+import { useNotifications } from "@/shared/context/NotificationContext";
 
 import { Item } from "./@dnd/Item";
 import { SortableItem } from "./@dnd/SortableItem";

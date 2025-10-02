@@ -1,5 +1,6 @@
 import { mdiPencil } from "@mdi/js";
 import { Icon } from "@mdi/react";
+
 import { Course } from "../types/Course";
 
 /**

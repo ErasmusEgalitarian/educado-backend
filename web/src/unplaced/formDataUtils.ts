@@ -1,6 +1,6 @@
 
-import { FormattedCourse } from "@/course/types/Course";
 import { getUserInfo } from "@/auth/lib/userInfo";
+import { FormattedCourse } from "@/course/types/Course";
 
 // Prepare form data for course creation or update
 export const prepareFormData = (course: FormattedCourse): FormData => {

@@ -14,8 +14,8 @@ import Loading from "@/shared/components/Loading";
 import { institutionService } from "@/unplaced/services/Institution.services";
 
 import { AddInstitutionButton } from "./Actions/AddInstitutionsButton";
-import { UpdateInstitutionButton } from "./Actions/UpdateInstitutionsButton";
 import { DeleteInstitutionButton } from "./Actions/DeleteInstitutionsButton";
+import { UpdateInstitutionButton } from "./Actions/UpdateInstitutionsButton";
 
 export const InstitutionsTableAdmin = () => {
   const [searchTerm, setSearchTerm] = useState("");

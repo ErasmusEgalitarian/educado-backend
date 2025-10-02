@@ -5,8 +5,10 @@ import { toast } from "react-toastify";
 import GenericModalComponent from "@/shared/components/GenericModalComponent";
 import AdminServices from "@/unplaced/services/admin.services";
 import AuthServices from "@/unplaced/services/auth.services";
+
 import "react-toastify/dist/ReactToastify.css";
 import { AxiosError } from "axios";
+
 import { User } from "@/user/types/User";
 /*
 This code bassicly extends the GenericModalCompoent

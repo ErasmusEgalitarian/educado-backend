@@ -12,8 +12,6 @@ import {
 import { Icon } from "@mdi/react";
 import { useState, useEffect, Component } from "react";
 
-import { BACKEND_URL } from "@/shared/config/environment";
-import { useApi } from "@/shared/hooks/useAPI";
 import { getUserToken } from "@/features/auth/lib/userInfo";
 import {
   useLectures,
@@ -23,6 +21,8 @@ import {
 import { Exercise, Lecture } from "@/features/course/types/Course";
 import { EditExercise } from "@/features/exercise/components/EditExercisePopUp";
 import { EditLecture } from "@/features/lecture/components/EditLecturePopUp";
+import { BACKEND_URL } from "@/shared/config/environment";
+import { useApi } from "@/shared/hooks/useAPI";
 import ExerciseServices from "@/unplaced/services/exercise.services";
 import LectureService from "@/unplaced/services/lecture.services";
 

@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 
 import { useCourseManagingHelper } from "@/course/hooks/useCourseManagingHelper";
+import { SectionForm } from "@/shared/components/dnd/SectionForm";
+import { SectionList } from "@/shared/components/dnd/SectionList";
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import Layout from "../../../shared/components/Layout";
@@ -14,8 +16,7 @@ import CourseService from "../../../unplaced/services/course.services";
 import CourseGuideButton from "../../course/components/GuideToCreatingCourse";
 import { YellowWarning } from "../../course/components/YellowWarning";
 import { useCourse } from "../../course/context/courseStore";
-import { SectionList } from "@/shared/components/dnd/SectionList";
-import { SectionForm } from "@/shared/components/dnd/SectionForm";
+
 
 // Notification
 

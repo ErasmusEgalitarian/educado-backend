@@ -1,5 +1,6 @@
-import { useNotifications } from "@/shared/context/NotificationContext";
 import { FC, useEffect, useState, useRef } from "react";
+
+import { useNotifications } from "@/shared/context/NotificationContext";
 
 interface DropzoneProps {
   inputType: string;
