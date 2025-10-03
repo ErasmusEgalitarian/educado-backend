@@ -1,5 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { HiArrowCircleRight } from "react-icons/hi";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { Button } from "@/shared/components/shadcn/button";
@@ -13,7 +15,6 @@ import {
   FormMessage,
 } from "@/shared/components/shadcn/form";
 import { Input } from "@/shared/components/shadcn/input";
-import { toast } from "sonner";
 
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({
@@ -48,9 +49,9 @@ const TestPage = () => {
     <div className="w-2xl mx-auto mt-10 flex flex-col gap-4">
       <h2 className="text-2xl font-bold">Button Testing</h2>
       <div className="flex flex-col gap-4 w-48 mb-8">
-        <Button variant="ghost">Foo</Button>
-        <Button variant="outline">Foo</Button>
-        <Button variant="destructive">Foo</Button>
+        <Button variant="primary"><HiArrowCircleRight/>Test</Button>
+        <Button variant="secondary"><HiArrowCircleRight/>Foo</Button>
+        <Button variant="outline"><HiArrowCircleRight/>Foo</Button>
       </div>
       <h2 className="text-2xl font-bold">Form Testing</h2>
       <Form {...form}>
