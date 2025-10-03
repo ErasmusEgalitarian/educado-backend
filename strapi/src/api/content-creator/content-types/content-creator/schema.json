@@ -1,0 +1,14 @@
+{
+  "kind": "collectionType",
+  "collectionName": "content_creators",
+  "info": {
+    "singularName": "content-creator",
+    "pluralName": "content-creators",
+    "displayName": "Content Creator"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}
