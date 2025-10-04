@@ -73,6 +73,7 @@ const examples: Example[] = [
       <div className="flex flex-wrap gap-3">
         <Button>Primary</Button>
         <Button variant="secondary">Secondary</Button>
+        <Button variant="success">Success</Button>
         <Button variant="destructive">Destructive</Button>
         <Button variant="outline">Outline</Button>
         <Button variant="ghost">Ghost</Button>
