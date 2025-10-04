@@ -9,14 +9,24 @@ import {
 } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 
 import { getUserInfo } from "../../features/auth/lib/userInfo";
 import { useNotifications } from "../context/NotificationContext";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/shared/components/shadcn/dropdown-menu"
+
 export const Navbar = () => {
+  const navigate = useNavigate();
   const { clearToken } = useAuthStore((state) => state);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { addNotification, notifications, setNotifications } =
@@ -26,6 +36,7 @@ export const Navbar = () => {
   const handleLogout = () => {
     clearToken();
     localStorage.removeItem("token");
+    navigate("/welcome");
   };
 
   // Fetch user info
@@ -179,79 +190,32 @@ export const Navbar = () => {
 
           {/* User Info */}
           <div className="flex flex-col items-start">
-            <span className="hidden sm:block text-lg font-bold text-grayMedium font-['Montserrat']">
+            <span className="hidden sm:block text-sm font-bold text-grayMedium font-['Montserrat']">
               {`${firstName} ${lastName}`}
             </span>
-            <span className="hidden sm:block text-sm font-normal text-grayMedium font-['Montserrat']">
+            <span className="hidden sm:block text-xs font-normal text-grayMedium font-['Montserrat']">
               {email}
             </span>
           </div>
 
-          {/* User Actions Dropdown */}
-          <div className="relative">
-            <div className="dropdown dropdown-end">
-              <label
-                tabIndex={0}
-                className="btn btn-ghost hover:bg-transparent"
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <label tabIndex={0} className="btn btn-ghost hover:bg-transparent"
               >
                 <div className="avatar placeholder">
-                  <div className="bg-[#166276] text-white rounded-full hover:rounded-sm w-11">
-                    <span className="text-md">{`${firstName.charAt(0)}${lastName.charAt(0)}`}</span>
+                  <div className="bg-primary-surface-lighter text-primary-border-lighter border-1 border-primary-border-lighter rounded-full w-10 h-10 flex items-center justify-center">
+                    <span className="text-md text-center font-bold">{`${firstName.charAt(0)}${lastName.charAt(0)}`}</span>
                   </div>
                 </div>
               </label>
-
-              <ul
-                tabIndex={0}
-                className="menu dropdown-content flex flex-col items-start p-2 absolute w-[245px] mt-2 bg-white rounded-lg shadow-md"
-              >
-                <li className="w-full">
-                  <Link
-                    to="/profile"
-                    className="text-grayDark text-lg hover:bg-grayLight"
-                  >
-                    <Icon path={mdiAccountCog} size={1} color="grayMedium" />
-                    <span>Editar perfil</span>
-                  </Link>
-                </li>
-                <hr className="w-full border-grayLight my-3" />
-                <li className="w-full">
-                  <Link
-                    to="/certificates"
-                    className="text-grayDark text-lg hover:bg-grayLight"
-                  >
-                    <Icon path={mdiCertificate} size={1} color="grayMedium" />
-                    <span>Meus certificados</span>
-                  </Link>
-                </li>
-                <hr className="w-full border-grayLight my-3" />
-                <li className="w-full">
-                  <Link
-                    to="/feedback"
-                    className="text-grayDark text-lg hover:bg-grayLight"
-                  >
-                    <Icon
-                      path={mdiChatQuestionOutline}
-                      size={1}
-                      color="grayMedium"
-                    />
-                    <span>Feedback</span>
-                  </Link>
-                </li>
-                <hr className="w-full border-grayLight my-3" />
-                <li className="w-full">
-                  <Link
-                    to="/welcome"
-                    onClick={handleLogout}
-                    className="text-warning text-lg font-bold hover:bg-grayLight"
-                  >
-                    <Icon path={mdiLogoutVariant} size={1} color="warning" />
-                    <span>Sair</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => navigate("/profile") }>Editar perfil</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/certificates") }>Meus certificados</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/feedback") }>Feedback</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleLogout} variant={"destructive"}>Sair</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </nav>
 

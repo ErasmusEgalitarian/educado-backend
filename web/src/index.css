@@ -73,6 +73,16 @@
   --color-success-border-default: var(--success-border-default);
   --color-success-border-darker: var(--success-border-darker);
   --color-success-text-label: var(--success-text-label);
+
+  --color-error-surface-subtle: var(--error-surface-subtle);
+  --color-error-surface-lighter: var(--error-surface-lighter);
+  --color-error-surface-default: var(--error-surface-default);
+  --color-error-surface-darker: var(--error-surface-darker);
+  --color-error-border-subtle: var(--error-border-subtle);
+  --color-error-border-lighter: var(--error-border-lighter);
+  --color-error-border-default: var(--error-border-default);
+  --color-error-border-darker: var(--error-border-darker);
+  --color-error-text-label: var(--error-text-label);
 }
 
 :root {
@@ -141,6 +151,16 @@
   --success-border-default: #C6F27E;
   --success-border-darker: #3A5313;
   --success-text-label: #3A5313;
+
+  --error-surface-subtle: #FFDECC;
+  --error-surface-lighter: #F28985;
+  --error-surface-default: #D62B25;
+  --error-surface-darker: #600000;
+  --error-border-subtle: #FFDECC;
+  --error-border-lighter: #F28985;
+  --error-border-default: #D62B25;
+  --error-border-darker: #600000;
+  --error-text-label: #600000;
   
 }
 @layer base {
