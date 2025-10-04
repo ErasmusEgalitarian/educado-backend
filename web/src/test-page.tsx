@@ -1,20 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { HiArrowCircleRight } from "react-icons/hi";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { Button } from "@/shared/components/shadcn/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/shared/components/shadcn/form";
-import { Input } from "@/shared/components/shadcn/input";
+import { Form } from "@/shared/components/shadcn/form";
+
+import FormActions from "./shared/components/form/form-actions";
+import { FormInput } from "./shared/components/form/form-input";
 
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({
@@ -33,7 +25,6 @@ const TestPage = () => {
 
   // Submit handler. Data shape can be inferred from the schema.
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // eslint-disable-next-line no-console
     console.log(values);
 
     // Wait 2 seconds to simulate a network request and to see "submitting..."
@@ -41,43 +32,22 @@ const TestPage = () => {
     toast.success("Submitted values: " + JSON.stringify(values));
   }
 
-  // Helpers for the submit button state
-  const { isDirty, isValid, isSubmitting } = form.formState;
-  const canSubmit = isDirty && isValid && !isSubmitting;
-
   return (
     <div className="w-2xl mx-auto mt-10 flex flex-col gap-4">
-      <h2 className="text-2xl font-bold">Button Testing</h2>
-      <div className="flex flex-col gap-4 w-48 mb-8">
-        <Button variant="primary"><HiArrowCircleRight/>Test</Button>
-        <Button variant="secondary"><HiArrowCircleRight/>Foo</Button>
-        <Button variant="outline"><HiArrowCircleRight/>Foo</Button>
-      </div>
       <h2 className="text-2xl font-bold">Form Testing</h2>
       <Form {...form}>
         <form
           onSubmit={(e) => void form.handleSubmit(onSubmit)(e)}
           className="space-y-8"
         >
-          <FormField
+          <FormInput
             control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input placeholder="shadcn" {...field} />
-                </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
+            fieldName="username"
+            title="Username"
+            placeholder="johndoe"
+            label="This is the label"
           />
-          <Button type="submit" disabled={!canSubmit}>
-            {isSubmitting ? "Submitting..." : "Submit"}
-          </Button>
+          <FormActions formState={form.formState} />
         </form>
       </Form>
     </div>
