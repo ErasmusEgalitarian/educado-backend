@@ -59,7 +59,7 @@ export const Navbar = () => {
 
   return (
     <main>
-      <nav className="relative navbar fixed items-center justify-between py-3.5 px-6 bg-white shadow-md">
+      <nav className="relative flex navbar items-center justify-between py-3.5 px-6 bg-white shadow-md">
         {/* Navbar Logo */}
         <div className="w-[165.25px] h-6 justify-start items-center gap-[7.52px] flex py-6 px-8">
           <Link
@@ -73,7 +73,7 @@ export const Navbar = () => {
 
         {/* Navbar Links */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">
+          <ul className="flex gap-6">
             <li>
               <Link
                 to="/courses"

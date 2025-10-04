@@ -13,6 +13,12 @@ import { getUserToken } from "../../auth/lib/userInfo";
 import { CourseGridCard } from "../components/CourseGridCard";
 import { CourseListCard } from "../components/CourseListCard";
 import PersonalInsights from "../components/PersonalInsights";
+import { Button } from "@/shared/components/shadcn/button";
+import Icon from "@mdi/react";
+
+import {
+  mdiPlus,
+} from "@mdi/js";
 
 /**
  * @returns HTML Element
@@ -131,16 +137,13 @@ const Courses = () => {
                 <h1 className="text-3xl font-bold flex-1">
                   Confira seus cursos
                 </h1>
-                <div className="flex flex-row gap-5">
-                  <button onClick={CourseManager} className="btn btn-primary">
-                    <p className="font-normal flex items-center ">
-                      <span className="text-3xl mr-2">+</span> Novo Curso
-                    </p>
-                    {/** Create new course */}
-                  </button>
-                  {/* Course guide button shows a tutorial*/}
-                  {/* <CourseGuideButton /> */}
-                </div>
+                <Button 
+                  onClick={CourseManager} 
+                  icon={() => <Icon path={mdiPlus} size={1} />}
+                  iconPlacement="left"
+                >
+                  Novo Curso
+                </Button>
               </div>
               {/* Card/compact view toggle and filters */}
               <div className="my-8 flex justify-between">
