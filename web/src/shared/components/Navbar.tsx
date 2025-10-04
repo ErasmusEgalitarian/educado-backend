@@ -7,6 +7,14 @@ import {
   mdiAccountCog,
   mdiChatQuestionOutline,
 } from "@mdi/js";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuIconItem,
+  DropdownMenuTrigger,
+} from "@/shared/components/shadcn/dropdown-menu"
+
 import { Icon } from "@mdi/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,14 +24,7 @@ import useAuthStore from "@/auth/hooks/useAuthStore";
 import { getUserInfo } from "../../features/auth/lib/userInfo";
 import { useNotifications } from "../context/NotificationContext";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/shared/components/shadcn/dropdown-menu"
+
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -118,7 +119,7 @@ export const Navbar = () => {
         </div>
 
         {/* Notification Bell and User Info */}
-        <div className="relative flex items-center gap-6 pr-12 z-50">
+        <div className="relative flex items-center gap-6 pr-10 z-50">
           {/* Notification Bell */}
           <div className="relative flex items-center gap-6">
             <button
@@ -200,20 +201,40 @@ export const Navbar = () => {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <label tabIndex={0} className="btn btn-ghost hover:bg-transparent"
+              <div className="
+                bg-primary-surface-lighter text-primary-border-lighter 
+                border-1 border-primary-border-lighter rounded-full w-10 h-10 
+                flex items-center justify-center cursor-pointer"
               >
-                <div className="avatar placeholder">
-                  <div className="bg-primary-surface-lighter text-primary-border-lighter border-1 border-primary-border-lighter rounded-full w-10 h-10 flex items-center justify-center">
-                    <span className="text-md text-center font-bold">{`${firstName.charAt(0)}${lastName.charAt(0)}`}</span>
-                  </div>
-                </div>
-              </label>
+                <span className="text-md text-center font-bold select-none">{`${firstName.charAt(0)}${lastName.charAt(0)}`}</span>
+              </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem onClick={() => navigate("/profile") }>Editar perfil</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate("/certificates") }>Meus certificados</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate("/feedback") }>Feedback</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleLogout} variant={"destructive"}>Sair</DropdownMenuItem>
+            <DropdownMenuContent align="end">
+              <DropdownMenuIconItem 
+                onClick={() => navigate("/profile")} 
+                icon={() => <Icon path={mdiAccountCog} size={1} />} 
+              >
+                Editar perfil
+              </DropdownMenuIconItem>
+              <DropdownMenuIconItem 
+                onClick={() => navigate("/certificates") } 
+                icon={() => <Icon path={mdiCertificate} size={1} />}
+              >
+                Meus certificados
+              </DropdownMenuIconItem>
+              <DropdownMenuIconItem 
+                onClick={() => navigate("/feedback") }
+                icon={() => <Icon path={mdiChatQuestionOutline} size={1} />}
+              >
+                Feedback
+              </DropdownMenuIconItem>
+              <DropdownMenuIconItem 
+                onClick={handleLogout} 
+                icon={() => <Icon path={mdiLogoutVariant} size={1} />}
+                variant={"destructive"}
+              >
+                Sair
+              </DropdownMenuIconItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
