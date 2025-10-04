@@ -1,7 +1,11 @@
+import { mdiEyeOffOutline, mdiEyeOutline } from "@mdi/js";
+import Icon from "@mdi/react";
 import * as React from "react";
+import { useState } from "react";
 import { FieldValues } from "react-hook-form";
 
-import { Input, InputIconProps } from "../shadcn/input";
+import { Button } from "../shadcn/button";
+import { Input } from "../shadcn/input";
 
 import { FormElementWrapper } from "./form-element-wrapper";
 
@@ -9,12 +13,9 @@ import type { FormElementProps } from "../shadcn/form";
 
 interface FormInputProps<TFieldValues extends FieldValues>
   extends Omit<React.ComponentProps<typeof Input>, "inputSize" | "label">,
-    FormElementProps<TFieldValues>,
-    InputIconProps {
-  readonly type?: "text" | "email";
-}
+    FormElementProps<TFieldValues> {}
 
-export const FormInput = <TFieldValues extends FieldValues>({
+export const FormPasswordInput = <TFieldValues extends FieldValues>({
   control,
   fieldName,
   inputSize = "md",
@@ -24,11 +25,26 @@ export const FormInput = <TFieldValues extends FieldValues>({
   description,
   isRequired,
   hintTooltip,
-  type = "text",
-  startIcon,
-  endIcon,
   ...inputProps
 }: FormInputProps<TFieldValues>) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const icon = (
+    <Button
+      variant="blank"
+      size="icon"
+      onClick={(e) => {
+        e.preventDefault();
+        setShowPassword((s) => !s);
+      }}
+    >
+      <Icon
+        path={showPassword ? mdiEyeOutline : mdiEyeOffOutline}
+        size={1}
+        color="#A1ACB2"
+      />
+    </Button>
+  );
   return (
     <FormElementWrapper
       control={control}
@@ -43,11 +59,10 @@ export const FormInput = <TFieldValues extends FieldValues>({
       childProps={inputProps}
     >
       <Input
-        type={type}
+        type={showPassword ? "text" : "password"}
         inputSize={inputSize}
         label={label}
-        startIcon={startIcon}
-        endIcon={endIcon}
+        endIcon={icon}
       />
     </FormElementWrapper>
   );
