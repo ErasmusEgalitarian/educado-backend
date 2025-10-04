@@ -4,16 +4,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/shared/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-0 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         primary:
-          "bg-primary-surface-default text-greyscale-text-negative hover:bg-primary-surface-lighter hover:text-primary",
+          "bg-primary-surface-default text-greyscale-text-negative hover:bg-primary-surface-lighter hover:text-greyscale-text-caption focus-visible:ring-primary-border-subtle",
         secondary:
-          "border-2 border-primary-border-default bg-greyscale-surface-subtle text-secondary-foreground hover:border-primary-border-lighter",
+          "border-2 border-primary-border-default bg-greyscale-surface-subtle text-greyscale-text-body hover:border-primary-border-lighter focus-visible:ring-primary-border-subtle",
+        success:
+          "bg-success-surface-default text-greyscale-text-negative hover:bg-success-surface-lighter hover:text-success-text-label focus-visible:ring-success-border-subtle",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "bg-destructive text-greyscale-text-negative hover:bg-destructive/90 focus-visible:ring-destructive/50",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         ghost: "hover:bg-accent hover:text-accent-foreground",
