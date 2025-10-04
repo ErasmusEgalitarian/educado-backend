@@ -68,7 +68,7 @@ const examples: Example[] = [
   {
     title: "Variants",
     description: "All standard variant styles.",
-    code: `<Button>Primary</Button>\n<Button variant="secondary">Secondary</Button>\n<Button variant="destructive">Destructive</Button>\n<Button variant="outline">Outline</Button>\n<Button variant="ghost">Ghost</Button>\n<Button variant="link">Link</Button>`,
+    code: `<Button>Primary</Button>\n<Button variant="secondary">Secondary</Button>\n<Button variant="success">Success</Button>\n<Button variant="destructive">Destructive</Button>\n<Button variant="outline">Outline</Button>\n<Button variant="ghost">Ghost</Button>\n<Button variant="link">Link</Button>`,
     preview: (
       <div className="flex flex-wrap gap-3">
         <Button>Primary</Button>
