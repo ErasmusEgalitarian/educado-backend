@@ -8,12 +8,17 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-primary-surface-default text-greyscale-text-negative hover:bg-primary-surface-lighter hover:text-primary",
-        secondary: "border-2 border-primary-border-default bg-greyscale-surface-subtle text-secondary-foreground hover:border-primary-border-lighter",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        primary:
+          "bg-primary-surface-default text-greyscale-text-negative hover:bg-primary-surface-lighter hover:text-primary",
+        secondary:
+          "border-2 border-primary-border-default bg-greyscale-surface-subtle text-secondary-foreground hover:border-primary-border-lighter",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        blank: "bg-transparent p-0 hover:bg-transparent hover:text-primary",
       },
       effect: {
         expandIcon: "group gap-0 relative",

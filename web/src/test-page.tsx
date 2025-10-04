@@ -7,10 +7,13 @@ import { Form } from "@/shared/components/shadcn/form";
 
 import FormActions from "./shared/components/form/form-actions";
 import { FormInput } from "./shared/components/form/form-input";
+import { FormPasswordInput } from "./shared/components/form/form-password-input";
+import { Button } from "./shared/components/shadcn/button";
 
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({
   username: z.string().min(2, "Username must be at least 2 characters."),
+  password: z.string().min(6, "Password must be at least 6 characters."),
 });
 
 const TestPage = () => {
@@ -32,6 +35,10 @@ const TestPage = () => {
     toast.success("Submitted values: " + JSON.stringify(values));
   }
 
+  const handleForgotPassword = () => {
+    toast.info("Forgot password functionality is not implemented yet.");
+  };
+
   return (
     <div className="w-2xl mx-auto mt-10 flex flex-col gap-4">
       <h2 className="text-2xl font-bold">Form Testing</h2>
@@ -43,11 +50,34 @@ const TestPage = () => {
           <FormInput
             control={form.control}
             fieldName="username"
-            title="Username"
             placeholder="johndoe"
-            label="This is the label"
+            label="Username"
           />
-          <FormActions formState={form.formState} />
+          <FormPasswordInput
+            control={form.control}
+            fieldName="password"
+            placeholder="••••••••"
+            label="Password"
+            labelAction={
+              <Button
+                variant="blank"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleForgotPassword();
+                }}
+                className="ml-auto text-sm underline-offset-4 hover:underline"
+              >
+                Forgot password?
+              </Button>
+            }
+          />
+          <FormActions
+            formState={form.formState}
+            showReset={true}
+            onReset={() => {
+              form.reset();
+            }}
+          />
         </form>
       </Form>
     </div>

@@ -7,6 +7,8 @@ import { z } from "zod";
 
 import FormActions from "@/shared/components/form/form-actions";
 import { FormInput } from "@/shared/components/form/form-input";
+import { FormPasswordInput } from "@/shared/components/form/form-password-input";
+import { Button } from "@/shared/components/shadcn/button";
 import { Card } from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
 import { Input } from "@/shared/components/shadcn/input";
@@ -61,46 +63,75 @@ const standaloneInputProps = [
 ];
 
 /* ----------------- Form Input (composed) props of interest ---------------- */
+// NOTE: FormInput abstracts the primitive Input. Only a curated subset of props are exposed.
 const formInputProps = [
   {
-    name: "title",
-    type: "string",
-    description: "Visible field label (optional).",
+    name: "control",
+    type: "Control<TFieldValues>",
+    description: "React Hook Form control instance (required).",
   },
   {
     name: "fieldName",
     type: "FieldPath<TFieldValues>",
-    description: "Form field path registered with RHF.",
+    description: "Field path registered with RHF schema.",
   },
   {
-    name: "control",
-    type: "Control<TFieldValues>",
-    description: "React Hook Form control instance.",
+    name: "label",
+    type: "string",
+    description: "Visible label text. Optional; omit for label-less fields.",
+  },
+  {
+    name: "labelAction",
+    type: "ReactNode",
+    description: "Inline element rendered beside the label (e.g. link button).",
   },
   {
     name: "description",
     type: "string | string[]",
-    description: "Optional help text or bullet list (array).",
-  },
-  {
-    name: "hintTooltip",
-    type: "string",
-    description: "Tooltip content displayed next to the title.",
+    description: "Helper text or bullet list (array renders as list).",
   },
   {
     name: "isRequired",
     type: "boolean",
-    description: "Adds a required indicator (does not enforce validation).",
+    description:
+      "Adds visual + aria required indicators (validation via schema).",
+  },
+  {
+    name: "hintTooltip",
+    type: "string",
+    description: "Shows an info icon with provided tooltip content.",
   },
   {
     name: "inputSize",
     type: '"xs" | "sm" | "md" | "lg"',
-    description: "Size applied to label, description and input.",
+    default: '"md"',
+    description: "Scales label, control and description typography & spacing.",
   },
   {
-    name: "startIcon / endIcon",
+    name: "startIcon",
     type: "ReactNode",
-    description: "Optional icons inside the input control.",
+    description: "Icon element rendered inside the left side of the input.",
+  },
+  {
+    name: "endIcon",
+    type: "ReactNode",
+    description: "Icon element rendered inside the right side of the input.",
+  },
+  {
+    name: "placeholder",
+    type: "string",
+    description: "Placeholder text for the underlying input.",
+  },
+  {
+    name: "type",
+    type: '"text" | "email"',
+    default: '"text"',
+    description: "HTML input type constraint exposed by FormInput.",
+  },
+  {
+    name: "wrapperClassName",
+    type: "string",
+    description: "Custom classes applied to the wrapper FormItem container.",
   },
 ];
 
@@ -347,6 +378,62 @@ const formExamples = formExampleConfigs.map((cfg) => {
   };
 });
 
+/* ------------------------- Password Field Example ------------------------ */
+const PasswordExampleForm = () => {
+  const form = useForm<{ password: string }>({
+    defaultValues: { password: "" },
+    mode: "onTouched",
+  });
+  const handleForgotPassword = () => {
+    toast.info("Forgot password functionality is not implemented yet.");
+  };
+  const onSubmit = (vals: { password: string }) => {
+    // eslint-disable-next-line no-console
+    console.log("[Password Field]", vals);
+    toast.success("Password submitted: " + JSON.stringify(vals));
+  };
+  return (
+    <Card className="p-4">
+      <Form {...form}>
+        <form
+          onSubmit={(e) => void form.handleSubmit(onSubmit)(e)}
+          className="space-y-4"
+        >
+          <FormPasswordInput
+            control={form.control}
+            fieldName="password"
+            placeholder="••••••••"
+            label="Password"
+            labelAction={
+              <Button
+                variant="blank"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleForgotPassword();
+                }}
+                className="ml-auto text-sm underline-offset-4 hover:underline"
+              >
+                Forgot password?
+              </Button>
+            }
+          />
+          <FormActions formState={form.formState} />
+        </form>
+      </Form>
+    </Card>
+  );
+};
+
+const passwordExample = {
+  title: "Password Field",
+  description:
+    "Password input with show/hide toggle and a 'Forgot password?' action.",
+  code: `import { useForm } from 'react-hook-form';\nimport { toast } from 'sonner';\nimport { Form } from '@/shared/components/shadcn/form';\nimport { FormPasswordInput } from '@/shared/components/form/form-password-input';\nimport FormActions from '@/shared/components/form/form-actions';\nimport { Button } from '@/shared/components/shadcn/button';\n\nconst form = useForm<{ password: string }>({ defaultValues: { password: '' } });\n\nconst handleForgotPassword = () => {\n  toast.info('Forgot password functionality is not implemented yet.');\n};\n\n<form onSubmit={form.handleSubmit(values => { toast.success('Password submitted'); })}>\n  <FormPasswordInput\n    control={form.control}\n    fieldName="password"\n    label="Password"\n    placeholder="••••••••"\n    labelAction={<Button variant="blank" onClick={(e) => { e.preventDefault(); handleForgotPassword(); }} className="ml-auto text-sm underline-offset-4 hover:underline">Forgot password?</Button>}\n  />\n  <FormActions formState={form.formState} />\n</form>`,
+  preview: <PasswordExampleForm />,
+};
+
+const allFormExamples = [...formExamples, passwordExample];
+
 export const FormInputDemo = () => (
   <ComponentDemo
     componentName="Input"
@@ -354,7 +441,7 @@ export const FormInputDemo = () => (
     props={standaloneInputProps}
     examples={primitiveExamples}
     formProps={formInputProps}
-    formExamples={formExamples}
+    formExamples={allFormExamples}
   />
 );
 
