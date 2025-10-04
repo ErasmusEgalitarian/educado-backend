@@ -20,9 +20,8 @@ export const FormInput = <TFieldValues extends FieldValues>({
   fieldName,
   inputSize = "md",
   wrapperClassName,
-  title,
-  titleAction,
   label,
+  labelAction,
   description,
   isRequired,
   hintTooltip,
@@ -37,8 +36,8 @@ export const FormInput = <TFieldValues extends FieldValues>({
       fieldName={fieldName}
       inputSize={inputSize}
       wrapperClassName={wrapperClassName}
-      title={title}
-      titleAction={titleAction}
+      label={label}
+      labelAction={labelAction}
       description={description}
       isRequired={isRequired}
       hintTooltip={hintTooltip}
