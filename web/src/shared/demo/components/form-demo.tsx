@@ -35,7 +35,7 @@ const formSchema = z.object({
 const UsernameForm = () => {
 
  // Initialize the form with React Hook Form and Zod resolver.
-  const form = useForm<{ username: string }>({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { username: '' },
     mode: 'onTouched',
@@ -147,9 +147,8 @@ const FormDemo = () => {
                 <FormInput
                   control={form.control}
                   fieldName="username"
-                  title="Username"
+                  label="Username"
                   placeholder="johndoe"
-                  label="This is the label"
                   isRequired
                   description="Your public handle"
                 />
