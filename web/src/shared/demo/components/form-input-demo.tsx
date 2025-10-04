@@ -182,7 +182,7 @@ const primitiveExamples = [
 ];
 
 interface SingleFieldFormProps {
-  title: string;
+  label: string;
   required?: boolean;
   description?: string | string[];
   hintTooltip?: string;
@@ -193,7 +193,7 @@ interface SingleFieldFormProps {
 }
 
 const SingleFieldForm = ({
-  title,
+  label,
   required,
   description,
   hintTooltip,
@@ -212,8 +212,8 @@ const SingleFieldForm = ({
 
   const onSubmit = (vals: Values) => {
     // eslint-disable-next-line no-console
-    console.log(`[${title}]`, vals);
-    toast.success(`${title} submitted: ${JSON.stringify(vals)}`);
+    console.log(`[${label}]`, vals);
+    toast.success(`${label} submitted: ${JSON.stringify(vals)}`);
   };
 
   return (
@@ -226,7 +226,7 @@ const SingleFieldForm = ({
           <FormInput
             control={form.control}
             fieldName="value"
-            title={title}
+            label={label}
             description={description}
             isRequired={required === true}
             hintTooltip={hintTooltip}
@@ -250,7 +250,7 @@ const SingleFieldForm = ({
 
 // Form example configs to produce both code and preview.
 const formExampleConfigs: {
-  title: string;
+  label: string;
   required?: boolean;
   description?: string | string[];
   hintTooltip?: string;
@@ -259,50 +259,50 @@ const formExampleConfigs: {
   endIcon?: boolean;
   placeholder?: string;
 }[] = [
-  { title: "Basic", placeholder: "Basic field" },
+  { label: "Basic", placeholder: "Basic field" },
   {
-    title: "Required",
+    label: "Required",
     required: true,
     placeholder: "At least 2 chars",
     description: "Validation enforced via schema. The prop is only cosmetic.",
   },
   {
-    title: "With Hint",
+    label: "With Hint",
     placeholder: "Hover the icon",
     hintTooltip: "This is additional contextual information.",
     description: "Includes tooltip hint next to the label",
     startIcon: true,
   },
   {
-    title: "Bullet Description",
+    label: "Bullet Description",
     placeholder: "Bullet list",
     description: ["First helpful point", "Second helpful point"],
   },
   {
-    title: "Single Description",
+    label: "Single Description",
     placeholder: "Single description",
     description: "A concise single-line description",
   },
   {
-    title: "Extra Small Size",
+    label: "Extra Small Size",
     inputSize: "xs",
     placeholder: "XS sized",
     description: "Tiny form control variant",
   },
   {
-    title: "Small Size",
+    label: "Small Size",
     inputSize: "sm",
     placeholder: "Small sized",
     description: "Compact label, input & description",
   },
   {
-    title: "Medium Size",
+    label: "Medium Size",
     inputSize: "md",
     placeholder: "Medium sized",
     description: "Compact label, input & description",
   },
   {
-    title: "Large Size",
+    label: "Large Size",
     inputSize: "lg",
     placeholder: "Large sized",
     description: "Enlarged label, input & description",
@@ -315,7 +315,7 @@ const buildFormUsageCode = (cfg: (typeof formExampleConfigs)[number]) => {
     "<FormInput",
     "  control={form.control}",
     '  fieldName="value"',
-    `  title="${cfg.title}"`,
+    `  label="${cfg.label}"`,
   ];
   if (cfg.placeholder != null && cfg.placeholder !== "")
     lines.push(`  placeholder="${cfg.placeholder}"`);
@@ -353,13 +353,13 @@ const formExamples = formExampleConfigs.map((cfg) => {
     descText = "Bullet list description example";
   }
   return {
-    title: cfg.title,
+    title: cfg.label,
     description: descText,
     code: buildFormUsageCode(cfg),
     preview: (
       <SingleFieldForm
-        key={cfg.title}
-        title={cfg.title}
+        key={cfg.label}
+        label={cfg.label}
         required={cfg.required === true}
         description={cfg.description}
         hintTooltip={cfg.hintTooltip}
