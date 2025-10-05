@@ -11,6 +11,7 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuSeparator,
   DropdownMenuIconItem,
   DropdownMenuTrigger,
 } from "@/shared/components/shadcn/dropdown-menu"
@@ -209,29 +210,30 @@ export const Navbar = () => {
                 <span className="text-md text-center font-bold select-none">{`${firstName.charAt(0)}${lastName.charAt(0)}`}</span>
               </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent className="w-50" align="end">
               <DropdownMenuIconItem 
-                onClick={() => navigate("/profile")} 
+                onClick={() => {navigate("/profile")}} 
                 icon={() => <Icon path={mdiAccountCog} size={1} />} 
               >
                 Editar perfil
               </DropdownMenuIconItem>
               <DropdownMenuIconItem 
-                onClick={() => navigate("/certificates") } 
+                onClick={() => {navigate("/certificates")} } 
                 icon={() => <Icon path={mdiCertificate} size={1} />}
               >
                 Meus certificados
               </DropdownMenuIconItem>
               <DropdownMenuIconItem 
-                onClick={() => navigate("/feedback") }
+                onClick={() => {navigate("/feedback")}}
                 icon={() => <Icon path={mdiChatQuestionOutline} size={1} />}
               >
                 Feedback
               </DropdownMenuIconItem>
+              <DropdownMenuSeparator/>
               <DropdownMenuIconItem 
                 onClick={handleLogout} 
                 icon={() => <Icon path={mdiLogoutVariant} size={1} />}
-                variant={"destructive"}
+                variant="destructive"
               >
                 Sair
               </DropdownMenuIconItem>
