@@ -19,6 +19,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./shared/components/shadcn/select";
+import { LanguageSwitcher } from "./shared/components/language-switcher";
+import { useTranslation } from "react-i18next";
 
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({
@@ -56,9 +58,12 @@ const TestPage = () => {
     toast.info("Forgot password functionality is not implemented yet.");
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className="w-2xl mx-auto mt-10 flex flex-col gap-4">
-      <h2 className="text-2xl font-bold">Form Testing</h2>
+      <LanguageSwitcher />
+      <h2 className="text-2xl font-bold">{t("common.edit")}</h2>
       <Select
         onValueChange={(value) => {
           setInputSize(value as InputSize);

@@ -1,4 +1,5 @@
 {
+  "formTesting": "Testando Formulário",
   "language": {
     "portuguese": "Português",
     "english": "Inglês",
@@ -11,37 +12,5 @@
     "more": "Mais",
     "openMenu": "Abrir Menu",
     "actions": "Ações"
-  },
-  "login": {
-    "title": "Faça login na sua conta",
-    "subtitle": "Digite seu email abaixo para fazer login na sua conta",
-    "email": "Email",
-    "emailPlaceholder": "m@exemplo.com",
-    "invalidEmail": "Email inválido",
-    "password": "Senha",
-    "passwordPlaceholder": "********",
-    "passwordMinLength": "A senha deve ter pelo menos 8 caracteres",
-    "forgotPassword": "Esqueceu sua senha?",
-    "role": "Função",
-    "roleAuthor": "Autor",
-    "roleAdmin": "Admin",
-    "selectRole": "Selecione uma função",
-    "loginButton": "Entrar",
-    "loadingLogin": "Entrando...",
-    "orContinueWith": "Ou continue com",
-    "loginWithGitHub": "Entrar com GitHub",
-    "noAccount": "Não tem uma conta?",
-    "signUp": "Cadastre-se"
-  },
-  "course": {
-    "course": "Curso",
-    "courseName": "Nome do Curso"
-  },
-  "category": {
-    "categories": "Categorias",
-    "categoriesNotFound": "Nenhuma categoria encontrada"
-  },
-  "rating": {
-    "rating": "Avaliação"
   }
 }
