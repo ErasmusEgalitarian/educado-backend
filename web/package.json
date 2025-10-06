@@ -18,7 +18,7 @@
     "cypress-server": "vite --port 3000",
     "cypress_local": "npx cypress run --browser chrome --env BACKEND_URL=http://localhost:8888",
     "cypress_staging": "npx cypress run --browser chrome  --env BACKEND_URL=https://educado-backend-staging-x7rgvjso4a-ew.a.run.app/",
-    "generate-strapi-client": "openapi --input ./openapi/strapi-spec.json --output ./src/shared/api --client fetch"
+    "generate-strapi-client": "openapi --input ../openapi/strapi-spec.json --output ./src/shared/api --client fetch"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.398.0",
