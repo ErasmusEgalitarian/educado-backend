@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "course_selections",
+  "info": {
+    "singularName": "course-selection",
+    "pluralName": "course-selections",
+    "displayName": "Course Selection"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "exercises": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::exercise.exercise"
+    },
+    "lectures": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lecture.lecture"
+    }
+  }
+}
