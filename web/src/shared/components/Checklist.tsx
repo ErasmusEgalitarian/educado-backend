@@ -41,7 +41,7 @@ const Checklist: React.FC<ChecklistProps> = ({
           }}
         >
           <input
-            className={`mr-2 text-primary rounded-sm ${highestTick >= 0 ? "cursor-pointer" : ""}`}
+            className={`mr-2 text-greyscale-text-body text-primary rounded-sm ${highestTick >= 0 ? "cursor-pointer" : ""}`}
             type="checkbox"
             id="check1"
             disabled={highestTick < 0}
