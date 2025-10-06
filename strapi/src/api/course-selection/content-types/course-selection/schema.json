@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "course_selections",
+  "info": {
+    "singularName": "course-selection",
+    "pluralName": "course-selections",
+    "displayName": "Course Section"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 400
+    },
+    "exercises": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::exercise.exercise"
+    },
+    "lectures": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lecture.lecture"
+    },
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "inversedBy": "course_sections"
+    }
+  }
+}

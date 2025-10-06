@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exercise_options",
+  "info": {
+    "singularName": "exercise-option",
+    "pluralName": "exercise-options",
+    "displayName": "Exercise Option"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 400,
+      "required": true
+    },
+    "explanation": {
+      "type": "text",
+      "minLength": 1,
+      "maxLength": 4000,
+      "required": true
+    },
+    "isCorrect": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "exercise": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::exercise.exercise",
+      "inversedBy": "exercise_options"
+    }
+  }
+}

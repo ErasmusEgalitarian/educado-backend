@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exercises",
+  "info": {
+    "singularName": "exercise",
+    "pluralName": "exercises",
+    "displayName": "Exercise"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "required": true
+    },
+    "exercise_options": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::exercise-option.exercise-option",
+      "mappedBy": "exercise"
+    }
+  }
+}

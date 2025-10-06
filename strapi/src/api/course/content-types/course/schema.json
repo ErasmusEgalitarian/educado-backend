@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "singularName": "course",
+    "pluralName": "courses",
+    "displayName": "Course"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 400
+    },
+    "difficulty": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "max": 3
+    },
+    "numOfRatings": {
+      "type": "integer",
+      "default": 0
+    },
+    "numOfSubscriptions": {
+      "type": "integer",
+      "default": 0
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "feedbacks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::feedback.feedback",
+      "mappedBy": "course"
+    },
+    "course_sections": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course-selection.course-selection",
+      "mappedBy": "course"
+    },
+    "course_categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::course-category.course-category",
+      "mappedBy": "courses"
+    },
+    "student": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::student.student",
+      "inversedBy": "courses"
+    },
+    "content_creators": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::content-creator.content-creator",
+      "mappedBy": "courses"
+    }
+  }
+}

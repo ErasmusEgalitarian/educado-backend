@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lectures",
+  "info": {
+    "singularName": "lecture",
+    "pluralName": "lectures",
+    "displayName": "Lecture"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "required": true,
+      "unique": false
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.video",
+        "content.description"
+      ]
+    }
+  }
+}

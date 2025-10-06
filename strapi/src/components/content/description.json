@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_content_descriptions",
+  "info": {
+    "displayName": "Text"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text",
+      "minLength": 1,
+      "maxLength": 4000,
+      "required": true
+    }
+  },
+  "config": {}
+}
