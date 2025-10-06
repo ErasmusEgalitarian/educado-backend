@@ -251,6 +251,39 @@ function DropdownMenuSubTrigger({
   );
 }
 
+function DropdownMenuIconSubTrigger({
+  className,
+  children,
+  inset,
+  variant = "default",
+  icon: Icon,
+  ...props
+}: React.ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & {
+  inset?: boolean
+  variant?: "default" | "destructive"
+  icon: React.ElementType
+}) {
+  return (
+    <DropdownMenuPrimitive.SubTrigger
+      data-slot="dropdown-menu-item"
+      data-inset={inset}
+      data-variant={variant}
+      className={cn(
+        "focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 relative flex cursor-pointer items-center gap-2 rounded-sm py-3 pr-2 pl-10 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        className
+      )}
+      {...props}
+    >
+      <span className="pointer-events-none absolute left-3 flex size-3.5 items-center justify-center">      
+        <Icon/>    
+      </span>
+      {children}
+      <ChevronRightIcon className="ml-auto size-4" />
+    </DropdownMenuPrimitive.SubTrigger>
+  )
+}
+
+
 function DropdownMenuSubContent({
   className,
   ...props
@@ -283,5 +316,6 @@ export {
   DropdownMenuShortcut,
   DropdownMenuSub,
   DropdownMenuSubTrigger,
+  DropdownMenuIconSubTrigger,
   DropdownMenuSubContent,
 };
