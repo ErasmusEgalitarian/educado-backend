@@ -1,23 +1,27 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useCourseManagingHelper } from "@/course/hooks/useCourseManagingHelper";
 import { Dropzone } from "@/shared/components/dnd/Dropzone";
+import { Form } from "@/shared/components/shadcn/form";
+import { FormInput } from "@/shared/components/form/form-input";
+import { FormTextarea } from "@/shared/components/form/form-textarea";
+import { FormDropdown } from "@/shared/components/form/form-dropdown";
+import {
+  CourseBasicInfoFormValues,
+  courseBasicInfoSchema,
+} from "@/course/lib/courseValidationSchema";
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import { ToolTipIcon } from "../../../shared/components/ToolTip/ToolTipIcon";
 import { useApi } from "../../../shared/hooks/useAPI";
 import CourseServices from "../../../unplaced/services/course.services";
 import { useCourse, useMedia } from "../context/courseStore";
-// Services
 import { Course } from "../types/Course";
 import categories from "../types/courseCategories";
-
 import CourseGuideButton from "./GuideToCreatingCourse";
-// Helperss
-
-// Components
-// Interface
 
 interface CourseComponentProps {
   id: string;
@@ -34,20 +38,31 @@ interface CourseComponentProps {
  * @param updateHighestTick The function to update the highest tick
  * @returns HTML Element
  */
-
 export const CourseComponent = ({
   id,
   setTickChange,
 }: CourseComponentProps) => {
   const { course, updateCourseField } = useCourse();
   const { getMedia, getPreviewCourseImg } = useMedia();
+
+  // Init form with React Hook Form + Zod
+  const form = useForm<CourseBasicInfoFormValues>({
+    resolver: zodResolver(courseBasicInfoSchema),
+    defaultValues: {
+      title: course.title || "",
+      difficulty: course.difficulty || 0,
+      category: course.category || "",
+      description: course.description || "",
+    },
+    mode: "onTouched",
+  });
   const [categoriesOptions, setCategoriesOptions] = useState<JSX.Element[]>([]);
   const [toolTipIndex, setToolTipIndex] = useState<number>(4);
   const [showDialog, setShowDialog] = useState<boolean>(false);
   const [dialogMessage, setDialogMessage] = useState<string>("");
   const [dialogConfirm, setDialogConfirm] = useState<() => void>(
     async () => {}
-  );
+  );  
   const [cancelBtnText] = useState("Cancelar");
   const [confirmBtnText] = useState("Confirmar");
   const [dialogTitle, setDialogTitle] = useState("Cancelar alterações");
@@ -71,8 +86,6 @@ export const CourseComponent = ({
   const { call: submitCourse, isLoading: submitLoading } = useApi(submitCall);
 
   const { errors, isMissingRequiredFields } = courseMissingRequiredFields();
-
-  const charCount = course?.description?.length ?? 0;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -91,6 +104,27 @@ export const CourseComponent = ({
       ))
     );
   }, []);
+
+  // Sync form changes to context
+  useEffect(() => {
+    const subscription = form.watch((formData) => {
+      if (formData.title) updateCourseField({ title: formData.title });
+      if (formData.difficulty)
+        updateCourseField({ difficulty: formData.difficulty as 0 | 1 | 2 | 3 });
+      if (formData.category)
+        updateCourseField({
+          category: formData.category as
+            | ""
+            | "personal finance"
+            | "health and workplace safety"
+            | "sewing"
+            | "electronics",
+        });
+      if (formData.description)
+        updateCourseField({ description: formData.description });
+    });
+    return () => subscription.unsubscribe();
+  }, [form, updateCourseField]);
 
   //Used to format PARTIAL course data, meaning that it can be used to update the course data gradually
   const handleFieldChange = (
@@ -126,8 +160,9 @@ export const CourseComponent = ({
   };
 
   return (
-    <div>
-      <GenericModalComponent
+    <Form {...form}>
+      <div>
+        <GenericModalComponent
         title={dialogTitle}
         contentText={dialogMessage}
         cancelBtnText={cancelBtnText}
@@ -147,7 +182,7 @@ export const CourseComponent = ({
             alignLeftTop={false}
             index={0}
             toolTipIndex={toolTipIndex}
-            text="👩🏻‍🏫Nossos cursos são separados em seções e você pode adicionar quantas quiser!"
+            text="👩🏻Nossos cursos são separados em seções e você pode adicionar quantas quiser!"
             tooltipAmount={2}
             callBack={setToolTipIndex}
           />
@@ -157,120 +192,62 @@ export const CourseComponent = ({
 
       <div className="flex h-full flex-col justify-between space-y-4">
         <div className="w-full float-right bg-white rounded-2xl shadow-lg justify-between space-y-4 p-6">
-          <div className="flex flex-col space-y-2 text-left">
-            <label htmlFor="title">
-              Nome do curso <span className="text-red-500">*</span>
-            </label>{" "}
-            {/*Title*/}
-            <input
-              id="title-field"
-              type="text"
-              placeholder="Nome do curso"
-              defaultValue={course.title}
-              className="form-field  bg-secondary border-none focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg"
-              onChange={(e) => {
-                handleFieldChange("title", e.target.value);
-              }}
-            />
-            {errors.title && (
-              <span className="text-warning">Este campo é obrigatório</span>
-            )}{" "}
-            {/** This field is required */}
-          </div>
+          <FormInput
+            control={form.control}
+            fieldName="title"
+            label="Nome do curso"
+            placeholder="Nome do curso"
+            type="text"
+            isRequired
+          />
 
           <div className="flex items-center gap-8 w-full mt-8">
             {/*Field to select a level from a list of options*/}
-            <div className="flex flex-col w-1/2 space-y-2 text-left  ">
-              <label htmlFor="level">
-                {" "}
-                Nível <span className="text-red-500">*</span>
-              </label>{" "}
-              {/*asteric should not be hard coded*/}
-              <select
-                id="difficulty-field"
-                defaultValue={course.difficulty}
-                className="bg-secondary border-none focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg"
-                onChange={(e) => {
-                  handleFieldChange("difficulty", parseInt(e.target.value));
-                }}
-              >
-                {/*Hard coded options by PO, should be changed to get from db*/}
-                <option value="" disabled>
-                  {" "}
-                  Selecione o nível
-                </option>
-                <option value={1}>Iniciante</option> {/** Beginner */}
-                <option value={2}>Intermediário</option> {/** Intermediate */}
-                <option value={3}>Avançado</option> {/** Advanced */}
-              </select>
-              <span className="text-warning min-h-[24px]">
-                {errors.difficulty ? "Este campo é obrigatório" : ""}
-              </span>
+            <div className="flex flex-col w-1/2 space-y-2 text-left ">
+              <FormDropdown
+                control={form.control}
+                fieldName="difficulty"
+                label="Nível"
+                placeholder="Selecione o nível"
+                options={[
+                  { label: "Iniciante", value: "1" },
+                  { label: "Intermediário", value: "2" },
+                  { label: "Avançado", value: "3" },
+                ]}
+              />
+
             </div>
 
             {/*Field to choose a category from a list of options*/}
             <div className="flex flex-col w-1/2 space-y-2 text-left  ">
-              <label htmlFor="category">
-                Categoria <span className="text-red-500">*</span>
-              </label>
-              <select
-                id="category-field"
-                defaultValue={course.category}
-                className="bg-secondary border-none focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg"
-                onChange={(e) => {
-                  handleFieldChange("category", e.target.value);
-                }}
-              >
-                {/*Hard coded options by PO, should be changed to get from db*/}
-                <option value="" disabled>
-                  {" "}
-                  Selecione a categoria
-                </option>
-                ,{categoriesOptions}
-              </select>
-              <span className="text-warning min-h-[24px]">
-                {errors.category
-                  ? "Este campo é obrigatório"
-                  : "               "}
-              </span>
+              <FormDropdown
+                control={form.control}
+                fieldName="category"
+                label="Categoria"
+                placeholder="Selecione a categoria"
+                options={categoriesOptions.map((option) => ({
+                  label: option.props.children,
+                  value: option.props.value,
+                }))}
+              />
+
             </div>
           </div>
 
           {/*Field to input the description of the course*/}
-          <div className="flex flex-col space-y-2 ">
-            <div className="flex items-center space-x-2">
-              {" "}
-              {/* Container for label and icon */}
-              <label className="text-left" htmlFor="description">
-                Descrição <span className="text-red-500">*</span>{" "}
-              </label>{" "}
-              {/** Description */}
-              <ToolTipIcon
-                alignLeftTop={false}
-                index={1}
-                toolTipIndex={toolTipIndex}
-                text="😉 Dica: insira uma descrição que desperte a curiosidade e o interesse dos alunos"
-                tooltipAmount={2}
-                callBack={setToolTipIndex}
-              />
-            </div>
-            <textarea
-              id="description-field"
+          <div>
+            <FormTextarea
+              control={form.control}
+              fieldName="description"
+              label="Descrição"
+              placeholder="Conte mais sobre o curso"
               maxLength={400}
               rows={4}
-              placeholder="Conte mais sobre o curso"
-              defaultValue={course.description}
-              className="resize-none form-field border-none focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent bg-secondary rounded-lg"
-              onChange={(e) => {
-                handleFieldChange("description", e.target.value);
-              }}
+              isRequired
+              className="resize-none"
             />
-            {errors.description && (
-              <span className="text-warning">Este campo é obrigatório</span>
-            )}{" "}
-            {/** This field is required */}
-            <div className="text-right">
-              <label htmlFor="">{charCount} / 400 caracteres</label>
+            <div className="text-right text-sm text-gray-600 mt-1">
+              {form.watch("description")?.length || 0} / 400 caracteres
             </div>
           </div>
 
@@ -342,6 +319,7 @@ export const CourseComponent = ({
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </Form>
   );
 };
