@@ -140,7 +140,7 @@ export const Dropzone: FC<DropzoneProps> = ({
         </div>
       </div>
       <div className="text-right">
-        <label>
+        <label className="text-greyscale-text-caption text-sm font-thin">
           o arquivo deve conter no maximo {(maxSize / (1024 * 1024)).toFixed(1)}
           MB
         </label>

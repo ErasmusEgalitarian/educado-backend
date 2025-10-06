@@ -29,10 +29,10 @@ const Checklist: React.FC<ChecklistProps> = ({
   return (
     <div className="w-full h-[20%] items-center justify-left space-y-4 grid grid-flow-row auto-rows-max">
       <div>
-        <p className="text-2xl font-medium text-greyscale-text-caption">Novo Curos</p>
+        <p className="text-2xl text-grayMedium">Novo Curos</p>
       </div>
 
-      <div className="border-y py-8 w-5/6 border-grayMedium flex flex-col space-y-4">
+      <div className="border-y py-8 w-5/6 border-grayMedium text-greyscale-text-body flex flex-col space-y-4">
         <label
           htmlFor="check1"
           className={`${getLabelClass(0)} ${highestTick >= 0 ? "cursor-pointer" : ""}`}
@@ -41,7 +41,7 @@ const Checklist: React.FC<ChecklistProps> = ({
           }}
         >
           <input
-            className={`mr-2 text-greyscale-text-body text-primary rounded-sm ${highestTick >= 0 ? "cursor-pointer" : ""}`}
+            className={`mr-2 text-primary rounded-sm ${highestTick >= 0 ? "cursor-pointer" : ""}`}
             type="checkbox"
             id="check1"
             disabled={highestTick < 0}

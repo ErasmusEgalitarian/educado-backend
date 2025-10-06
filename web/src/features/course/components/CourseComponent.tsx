@@ -85,7 +85,7 @@ export const CourseComponent = ({
     : CourseServices.createCourse;
   const { call: submitCourse, isLoading: submitLoading } = useApi(submitCall);
 
-  const { errors, isMissingRequiredFields } = courseMissingRequiredFields();
+  const { isMissingRequiredFields } = courseMissingRequiredFields();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -186,6 +186,7 @@ export const CourseComponent = ({
           <FormInput
             control={form.control}
             fieldName="title"
+            inputSize="sm"
             label="Nome do curso"
             placeholder="Nome do curso"
             type="text"
@@ -197,6 +198,7 @@ export const CourseComponent = ({
             <div className="flex flex-col w-1/2 space-y-2 text-left ">
               <FormDropdown
                 control={form.control}
+                inputSize="sm"
                 isRequired
                 fieldName="difficulty"
                 label="Nível"
@@ -215,6 +217,7 @@ export const CourseComponent = ({
               <FormDropdown
                 control={form.control}
                 isRequired
+                inputSize="sm"
                 fieldName="category"
                 label="Categoria"
                 placeholder="Selecione a categoria"
@@ -232,6 +235,7 @@ export const CourseComponent = ({
             <FormTextarea
               control={form.control}
               fieldName="description"
+              inputSize="sm"
               label="Descrição"
               placeholder="Conte mais sobre o curso"
               maxLength={400}
@@ -259,10 +263,6 @@ export const CourseComponent = ({
               onFileChange={handleImageUpload}
               maxSize={5 * 1024 * 1024 /* 5mb */}
             />
-            {errors.coverimg && (
-              <span className="text-warning">Este campo é obrigatório</span>
-            )}{" "}
-            {/** This field is required */}
           </div>
         </div>
         {/*Create and cancel buttons*/}
