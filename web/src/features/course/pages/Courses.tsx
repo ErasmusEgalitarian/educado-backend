@@ -12,6 +12,7 @@ import Loading from "../../../shared/components/Loading";
 import { getUserToken } from "../../auth/lib/userInfo";
 import { CourseGridCard } from "../components/CourseGridCard";
 import { CourseListCard } from "../components/CourseListCard";
+import { CourseCard } from "../components/CourseCard";
 import PersonalInsights from "../components/PersonalInsights";
 import { Button } from "@/shared/components/shadcn/button";
 import Icon from "@mdi/react";
@@ -23,19 +24,15 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/shared/components/shadcn/command"
+} from "@/shared/components/shadcn/command";
 
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/shared/components/shadcn/popover"
+} from "@/shared/components/shadcn/popover";
 
-
-import {
-  mdiPlus,
-  mdiUnfoldMoreHorizontal,
-} from "@mdi/js";
+import { mdiPlus, mdiUnfoldMoreHorizontal } from "@mdi/js";
 
 const frameworks = [
   {
@@ -58,7 +55,7 @@ const frameworks = [
     value: "astro",
     label: "Astro",
   },
-]
+];
 
 /**
  * @returns HTML Element
@@ -75,9 +72,8 @@ const Courses = () => {
   const navigate = useNavigate();
   const token = getUserToken();
 
-  const [open, setOpen] = useState(false)
-  const [value, setValue] = useState("")
-
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
 
   // Fetch all courses
 
@@ -179,17 +175,14 @@ const Courses = () => {
             <>
               {/* Header and create course button */}
               <div className="flex flex-row no-wrap items-center">
-                <h1 className="text-3xl flex-1">
-                  Confira seus cursos
-                </h1>
-                <Button 
-                  onClick={CourseManager} 
+                <h1 className="text-3xl flex-1">Confira seus cursos</h1>
+                <Button
+                  onClick={CourseManager}
                   icon={() => <Icon path={mdiPlus} size={1} />}
                   iconPlacement="left"
                 >
                   Novo Curso
                 </Button>
-                
               </div>
               {/* Card/compact view toggle and filters */}
               <div className="my-8 flex justify-between">
@@ -286,7 +279,7 @@ const Courses = () => {
                 {isGridView ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-6 pb-4">
                     {filteredCourses.map((course: any, key: number) => (
-                      <CourseGridCard course={course} key={key} />
+                      <CourseCard course={course} key={key} />
                     ))}
                   </div>
                 ) : (
