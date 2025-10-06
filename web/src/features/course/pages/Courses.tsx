@@ -17,8 +17,48 @@ import { Button } from "@/shared/components/shadcn/button";
 import Icon from "@mdi/react";
 
 import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/shared/components/shadcn/command"
+
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/shared/components/shadcn/popover"
+
+
+import {
   mdiPlus,
+  mdiUnfoldMoreHorizontal,
 } from "@mdi/js";
+
+const frameworks = [
+  {
+    value: "next.js",
+    label: "Next.js",
+  },
+  {
+    value: "sveltekit",
+    label: "SvelteKit",
+  },
+  {
+    value: "nuxt.js",
+    label: "Nuxt.js",
+  },
+  {
+    value: "remix",
+    label: "Remix",
+  },
+  {
+    value: "astro",
+    label: "Astro",
+  },
+]
 
 /**
  * @returns HTML Element
@@ -34,6 +74,11 @@ const Courses = () => {
   // States and Hooks
   const navigate = useNavigate();
   const token = getUserToken();
+
+  const [open, setOpen] = useState(false)
+  const [value, setValue] = useState("")
+
+
   // Fetch all courses
 
   // TODO: Implement proper backend call once backend is ready
@@ -144,6 +189,7 @@ const Courses = () => {
                 >
                   Novo Curso
                 </Button>
+                
               </div>
               {/* Card/compact view toggle and filters */}
               <div className="my-8 flex justify-between">
