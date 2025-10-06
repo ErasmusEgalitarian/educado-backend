@@ -22,7 +22,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 
-import { getUserInfo } from "../../features/auth/lib/userInfo";
+import { getUserInfo, userInfo } from "../../features/auth/lib/userInfo";
 import { useNotifications } from "../context/NotificationContext";
 
 
@@ -31,8 +31,7 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const { clearToken } = useAuthStore((state) => state);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { addNotification, notifications, setNotifications } =
-    useNotifications();
+  const { notifications, setNotifications } = useNotifications();
 
   // Logout handler
   const handleLogout = () => {
@@ -42,18 +41,7 @@ export const Navbar = () => {
   };
 
   // Fetch user info
-  const userInfo: any = getUserInfo();
-
-  let firstName;
-  userInfo.firstName
-    ? (firstName = userInfo.firstName)
-    : (firstName = "Firstname");
-
-  let lastName = "Lastname";
-  userInfo.lastName ? (lastName = userInfo.lastName) : (lastName = "Lastname");
-
-  let email = "email";
-  userInfo.email ? (email = userInfo.email) : (email = "Email");
+  const userInfo: userInfo = getUserInfo();
 
   // Notification handlers
   const toggleDropdown = () => {
@@ -82,41 +70,6 @@ export const Navbar = () => {
             <img src="/logo.svg" alt="logo" className="w-[24.43px] h-6" />
             <img src="/educado.svg" alt="educado" className="h-6" />
           </Link>
-        </div>
-
-        {/* Navbar Links */}
-        <div className="navbar-center hidden lg:flex">
-          <ul className="flex gap-6">
-            <li>
-              <Link
-                to="/courses"
-                className="flex items-center text-lg font-['Montserrat']"
-              >
-                <Icon path={mdiNotebookOutline} size={1} color="grayMedium" />
-                <span>Cursos</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/certificates"
-                className="flex items-center text-lg font-['Montserrat']"
-              >
-                <Icon path={mdiCertificate} size={1} color="grayMedium" />
-                <span>Meus certificados</span>
-              </Link>
-            </li>
-            <li>
-              {userInfo.role === "admin" && (
-                <Link
-                  to="/educado-admin/applications"
-                  className="flex items-center text-lg font-['Montserrat']"
-                >
-                  <Icon path={mdiAccount} size={1} color="grayMedium" />
-                  <span>Admin</span>
-                </Link>
-              )}
-            </li>
-          </ul>
         </div>
 
         {/* Notification Bell and User Info */}
@@ -193,10 +146,10 @@ export const Navbar = () => {
           {/* User Info */}
           <div className="flex flex-col items-start">
             <span className="hidden sm:block text-sm font-bold text-grayMedium font-['Montserrat']">
-              {`${firstName} ${lastName}`}
+              {`${userInfo.firstName} ${userInfo.lastName}`}
             </span>
             <span className="hidden sm:block text-xs font-normal text-grayMedium font-['Montserrat']">
-              {email}
+              {userInfo.email}
             </span>
           </div>
 
@@ -207,7 +160,7 @@ export const Navbar = () => {
                 border-1 border-primary-border-lighter rounded-full w-10 h-10 
                 flex items-center justify-center cursor-pointer"
               >
-                <span className="text-md text-center font-bold select-none">{`${firstName.charAt(0)}${lastName.charAt(0)}`}</span>
+                <span className="text-md text-center font-bold select-none">{`${userInfo.firstName.charAt(0)}${userInfo.lastName.charAt(0)}`}</span>
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-50" align="end">
@@ -229,6 +182,19 @@ export const Navbar = () => {
               >
                 Feedback
               </DropdownMenuIconItem>
+
+              {userInfo.role === "admin" && (
+              <>
+              <DropdownMenuSeparator/>
+              <DropdownMenuIconItem 
+                onClick={() => {navigate("/educado-admin/applications")}}
+                icon={() => <Icon path={mdiAccount} size={1} />}
+              >
+                Admin
+              </DropdownMenuIconItem>
+              </>
+              )}
+
               <DropdownMenuSeparator/>
               <DropdownMenuIconItem 
                 onClick={handleLogout} 
