@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "students",
+  "collectionName": "content_creators",
   "info": {
-    "singularName": "student",
-    "pluralName": "students",
-    "displayName": "Student"
+    "singularName": "content-creator",
+    "pluralName": "content-creators",
+    "displayName": "Content Creator"
   },
   "options": {
     "draftAndPublish": true
@@ -31,12 +31,8 @@
     "courses": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::course.course"
-    },
-    "feedbacks": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::feedback.feedback"
+      "target": "api::course.course",
+      "mappedBy": "content_creator"
     }
   }
 }
