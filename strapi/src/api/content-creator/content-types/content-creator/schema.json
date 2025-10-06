@@ -11,12 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "courses": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::course.course",
-      "inversedBy": "content_creators"
-    },
     "firstName": {
       "type": "string",
       "minLength": 1,
@@ -109,6 +103,12 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 400
+    },
+    "courses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::course.course",
+      "inversedBy": "content_creators"
     }
   }
 }
