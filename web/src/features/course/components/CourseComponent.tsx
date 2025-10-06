@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useCourseManagingHelper } from "@/course/hooks/useCourseManagingHelper";
 import { Dropzone } from "@/shared/components/dnd/Dropzone";
+import { Button } from "@/shared/components/shadcn/button";
 import { Form } from "@/shared/components/shadcn/form";
 import { FormInput } from "@/shared/components/form/form-input";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
@@ -21,7 +22,6 @@ import CourseServices from "../../../unplaced/services/course.services";
 import { useCourse, useMedia } from "../context/courseStore";
 import { Course } from "../types/Course";
 import categories from "../types/courseCategories";
-import CourseGuideButton from "./GuideToCreatingCourse";
 
 interface CourseComponentProps {
   id: string;
@@ -177,17 +177,8 @@ export const CourseComponent = ({
       />
       <div className="w-full flex flex-row items-center justify-between py-5">
         <div className="flex items-center gap-2">
-          <h1 className="text-2xl font-bold"> Informações gerais </h1>
-          <ToolTipIcon
-            alignLeftTop={false}
-            index={0}
-            toolTipIndex={toolTipIndex}
-            text="👩🏻Nossos cursos são separados em seções e você pode adicionar quantas quiser!"
-            tooltipAmount={2}
-            callBack={setToolTipIndex}
-          />
+          <h1 className="text-2xl font-bold mt-10"> Informações gerais </h1>
         </div>
-        <CourseGuideButton />
       </div>
 
       <div className="flex h-full flex-col justify-between space-y-4">
@@ -206,6 +197,7 @@ export const CourseComponent = ({
             <div className="flex flex-col w-1/2 space-y-2 text-left ">
               <FormDropdown
                 control={form.control}
+                isRequired
                 fieldName="difficulty"
                 label="Nível"
                 placeholder="Selecione o nível"
@@ -222,6 +214,7 @@ export const CourseComponent = ({
             <div className="flex flex-col w-1/2 space-y-2 text-left  ">
               <FormDropdown
                 control={form.control}
+                isRequired
                 fieldName="category"
                 label="Categoria"
                 placeholder="Selecione a categoria"
@@ -280,7 +273,7 @@ export const CourseComponent = ({
                 navigate("/courses");
               }}
               htmlFor="course-create"
-              className="cursor-pointer underline py-2 pr-4 bg-transparent hover:bg-warning-100 text-warning w-full transition ease-in duration-200 text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2  rounded-sm"
+              className="cursor-pointer underline text-error-surface-default py-2 pr-4 bg-transparent hover:bg-warning-100 text-warning w-full transition ease-in duration-200 text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2  rounded-sm"
             >
               Cancelar e Voltar {/** Cancel */}
             </label>
@@ -291,7 +284,7 @@ export const CourseComponent = ({
                 course.status === "published"
                   ? "invisible pointer-events-none"
                   : ""
-              } whitespace-nowrap ml-42 underline py-2 px-4 bg-transparent hover:bg-primary-100 text-primary w-full transition ease-in duration-200 text-center text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2 rounded ${isMissingRequiredFields ? "opacity-70" : ""}`}
+              } whitespace-nowrap ml-42 underline py-2 bg-transparent hover:bg-primary-100 text-primary-text-label w-full transition ease-in duration-200 text-center text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2 rounded ${isMissingRequiredFields ? "opacity-70" : ""}`}
             >
               <button
                 id="SaveAsDraft"
@@ -302,20 +295,14 @@ export const CourseComponent = ({
                 Salvar como Rascunho {/** Save as draft */}
               </button>
             </label>
-
-            <label
-              htmlFor="course-create"
-              className={`whitespace-nowrap h-12 p-2 bg-primary hover:bg-primary-hover focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-lg font-semibold shadow-md focus:outline-hidden focus:ring-2 focus:ring-offset-2 rounded-lg ${isMissingRequiredFields ? "opacity-70" : ""}`}
-            >
-              <button
+              <Button
                 onClick={navigateToSections}
                 disabled={isMissingRequiredFields}
                 id="addCourse"
-                className="flex items-center justify-center py-4 px-8 h-full w-full cursor-pointer "
+                className="font-bold px-6"
               >
-                Adicionar seções
-              </button>
-            </label>
+                Criar Seções
+              </Button>
           </div>
         </div>
       </div>

@@ -179,7 +179,7 @@ const Courses = () => {
             <>
               {/* Header and create course button */}
               <div className="flex flex-row no-wrap items-center">
-                <h1 className="text-3xl font-bold flex-1">
+                <h1 className="text-3xl flex-1">
                   Confira seus cursos
                 </h1>
                 <Button 

@@ -138,8 +138,7 @@ const CourseManager = () => {
             id={id ?? ""}
             setTickChange={handleTickChange}
           />
-          <p className="text-2xl text-grayMedium my-4">Feedbacks</p>
-          <FeedbackBox id={id ?? ""} token={token} />
+        
         </div>
         <div className="flex-none w-2/3 mr-20">
           {tickChange === 0 && (

@@ -29,7 +29,7 @@ const Checklist: React.FC<ChecklistProps> = ({
   return (
     <div className="w-full h-[20%] items-center justify-left space-y-4 grid grid-flow-row auto-rows-max">
       <div>
-        <p className="text-2xl text-grayMedium">Novo Curos</p>
+        <p className="text-2xl font-medium text-greyscale-text-caption">Novo Curos</p>
       </div>
 
       <div className="border-y py-8 w-5/6 border-grayMedium flex flex-col space-y-4">
