@@ -12,10 +12,12 @@
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "generate-spec": "cross-env ENV_PATH=../.env strapi openapi generate --output ../openapi/strapi-spec.json"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.25.0",
+    "@strapi/plugin-documentation": "^5.25.0",
     "@strapi/plugin-users-permissions": "5.25.0",
     "@strapi/strapi": "5.25.0",
     "pg": "8.8.0",
