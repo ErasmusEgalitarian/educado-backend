@@ -31,9 +31,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const variantStyles = {
       default:
-        "border-[#c1cfd7] focus-visible:border-[#35a1b1] focus-visible:ring-[#35a1b1]/20",
+        "border-geryscale-border-lighter focus-visible:border-[#35a1b1] focus-visible:ring-[#35a1b1]/20",
       error:
-        "border-[#ff0000] bg-[#ff0000]/10 focus-visible:border-[#ff0000] focus-visible:ring-[#ff0000]/20",
+        "border-error-border-default bg-error-surface-subtle focus-visible:border-[#ff0000] focus-visible:ring-[#ff0000]/20",
     };
 
     const inputSizes = {

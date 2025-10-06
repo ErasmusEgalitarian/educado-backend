@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { Form } from "@/shared/components/shadcn/form";
+import { Form, InputSize } from "@/shared/components/shadcn/form";
 
 import FormActions from "./shared/components/form/form-actions";
 import { FormDropdown } from "./shared/components/form/form-dropdown";
@@ -13,12 +13,23 @@ import { FormPasswordInput } from "./shared/components/form/form-password-input"
 import { FormTextarea } from "./shared/components/form/form-textarea";
 import { Button } from "./shared/components/shadcn/button";
 import { is } from "node_modules/cypress/types/bluebird";
+import { useState } from "react";
+import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenuTrigger } from "./shared/components/shadcn/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./shared/components/shadcn/select";
+import { FormSelect } from "./shared/components/form/form-select";
 
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({
   username: z.string().min(2, "Username must be at least 2 characters."),
   password: z.string().min(6, "Password must be at least 6 characters."),
-  message: z.string().optional(),
+  message: z.string().min(2).max(200, "Message must"),
   role: z
     .string({
       required_error: "You must select a role.",
@@ -27,6 +38,7 @@ const formSchema = z.object({
 });
 
 const TestPage = () => {
+  const [inputSize, setInputSize] = useState<InputSize>("md");
   // Use React Hook Form and Zod to manage the form state and validation.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -52,6 +64,22 @@ const TestPage = () => {
   return (
     <div className="w-2xl mx-auto mt-10 flex flex-col gap-4">
       <h2 className="text-2xl font-bold">Form Testing</h2>
+      <Select
+        onValueChange={(value) => {
+          setInputSize(value as InputSize);
+        }}
+        value={inputSize}
+      >
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="md" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="xs">Extra Small</SelectItem>
+          <SelectItem value="sm">Small</SelectItem>
+          <SelectItem value="md">Medium</SelectItem>
+          <SelectItem value="lg">Large</SelectItem>
+        </SelectContent>
+      </Select>
       <Form {...form}>
         <form
           onSubmit={(e) => void form.handleSubmit(onSubmit)(e)}
@@ -63,6 +91,7 @@ const TestPage = () => {
             placeholder="johndoe"
             label="Username"
             isRequired={true}
+            inputSize={inputSize}
           />
           <FormPasswordInput
             control={form.control}
@@ -88,20 +117,21 @@ const TestPage = () => {
             fieldName="message"
             label="Message"
             placeholder="Write your message here..."
+            inputSize={inputSize}
             rows={4}
           />
-          <FormDropdown
+
+          <FormSelect
             control={form.control}
             fieldName="role"
             label="Role"
-            placeholder="Select your role"
+            placeholder="Choose a role"
             options={[
               { label: "Admin", value: "admin" },
               { label: "User", value: "user" },
             ]}
-            startIcon={<UserIcon className="mr-2" />}
-            isRequired={true}
           />
+
           <FormActions
             formState={form.formState}
             showReset={true}
