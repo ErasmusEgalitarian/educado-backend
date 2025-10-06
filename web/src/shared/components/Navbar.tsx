@@ -60,7 +60,7 @@ export const Navbar = () => {
 
   return (
     <main>
-      <nav className="relative flex navbar items-center justify-between py-3.5 px-6 bg-white shadow-md">
+      <nav className="relative flex navbar items-center justify-between py-3 px-6 bg-white shadow-md">
         {/* Navbar Logo */}
         <div className="w-[165.25px] h-6 justify-start items-center gap-[7.52px] flex py-6 px-8">
           <Link
@@ -144,23 +144,28 @@ export const Navbar = () => {
           </div>
 
           {/* User Info */}
-          <div className="flex flex-col items-start">
-            <span className="hidden sm:block text-sm font-bold text-grayMedium font-['Montserrat']">
-              {`${userInfo.firstName} ${userInfo.lastName}`}
-            </span>
-            <span className="hidden sm:block text-xs font-normal text-grayMedium font-['Montserrat']">
-              {userInfo.email}
-            </span>
-          </div>
+
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <div className="
-                bg-primary-surface-lighter text-primary-border-lighter 
-                border-1 border-primary-border-lighter rounded-full w-10 h-10 
-                flex items-center justify-center cursor-pointer"
-              >
-                <span className="text-md text-center font-bold select-none">{`${userInfo.firstName.charAt(0)}${userInfo.lastName.charAt(0)}`}</span>
+              <div className="flex gap-3 cursor-pointer rounded-md p-2 hover:bg-[#222]/10">
+                <div className="flex items-center">
+                  <div>
+                  <span className="hidden sm:block text-sm font-bold text-grayMedium font-['Montserrat']">
+                    {`${userInfo.firstName} ${userInfo.lastName}`}
+                  </span>
+                  <span className="hidden sm:block text-xs font-normal text-grayMedium font-['Montserrat']">
+                    {userInfo.email}
+                  </span>
+                  </div>
+                </div>
+                <div className="
+                  bg-primary-surface-lighter text-primary-border-lighter 
+                  border-1 border-primary-border-lighter rounded-full w-10 h-10 
+                  flex items-center justify-center "
+                >
+                  <span className="text-md text-center font-bold select-none">{`${userInfo.firstName.charAt(0)}${userInfo.lastName.charAt(0)}`}</span>
+                </div>
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-50" align="end">
