@@ -1,22 +1,21 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import { useCourseManagingHelper } from "@/course/hooks/useCourseManagingHelper";
-import { Dropzone } from "@/shared/components/dnd/Dropzone";
-import { Button } from "@/shared/components/shadcn/button";
-import { Form } from "@/shared/components/shadcn/form";
-import { FormInput } from "@/shared/components/form/form-input";
-import { FormTextarea } from "@/shared/components/form/form-textarea";
-import { FormDropdown } from "@/shared/components/form/form-dropdown";
 import {
   CourseBasicInfoFormValues,
   courseBasicInfoSchema,
 } from "@/course/lib/courseValidationSchema";
+import { Dropzone } from "@/shared/components/dnd/Dropzone";
+import { FormInput } from "@/shared/components/form/form-input";
+import { FormSelect } from "@/shared/components/form/form-select";
+import { FormTextarea } from "@/shared/components/form/form-textarea";
+import { Button } from "@/shared/components/shadcn/button";
+import { Form } from "@/shared/components/shadcn/form";
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
-import { ToolTipIcon } from "../../../shared/components/ToolTip/ToolTipIcon";
 import { useApi } from "../../../shared/hooks/useAPI";
 import CourseServices from "../../../unplaced/services/course.services";
 import { useCourse, useMedia } from "../context/courseStore";
@@ -62,7 +61,7 @@ export const CourseComponent = ({
   const [dialogMessage, setDialogMessage] = useState<string>("");
   const [dialogConfirm, setDialogConfirm] = useState<() => void>(
     async () => {}
-  );  
+  );
   const [cancelBtnText] = useState("Cancelar");
   const [confirmBtnText] = useState("Confirmar");
   const [dialogTitle, setDialogTitle] = useState("Cancelar alterações");
@@ -123,7 +122,9 @@ export const CourseComponent = ({
       if (formData.description)
         updateCourseField({ description: formData.description });
     });
-    return () => subscription.unsubscribe();
+    return () => {
+      subscription.unsubscribe();
+    };
   }, [form, updateCourseField]);
 
   //Used to format PARTIAL course data, meaning that it can be used to update the course data gradually
@@ -163,138 +164,136 @@ export const CourseComponent = ({
     <Form {...form}>
       <div>
         <GenericModalComponent
-        title={dialogTitle}
-        contentText={dialogMessage}
-        cancelBtnText={cancelBtnText}
-        confirmBtnText={confirmBtnText}
-        isVisible={showDialog}
-        width="w-[500px]"
-        onConfirm={dialogConfirm}
-        onClose={() => {
-          setShowDialog(false);
-        }}
-        loading={submitLoading}
-      />
-      <div className="w-full flex flex-row items-center justify-between py-5">
-        <div className="flex items-center gap-2">
-          <h1 className="text-2xl font-bold mt-10"> Informações gerais </h1>
-        </div>
-      </div>
-
-      <div className="flex h-full flex-col justify-between space-y-4">
-        <div className="w-full float-right bg-white rounded-2xl shadow-lg justify-between space-y-6 p-6">
-          <FormInput
-            control={form.control}
-            fieldName="title"
-            inputSize="md"
-            label="Nome do curso"
-            placeholder="Nome do curso"
-            type="text"
-            isRequired
-          />
-
-          <div className="flex items-center gap-8 w-full">
-            {/*Field to select a level from a list of options*/}
-            <div className="flex flex-col w-1/2 space-y-2 text-left ">
-              <FormDropdown
-                control={form.control}
-                inputSize="md"
-                isRequired
-                fieldName="difficulty"
-                label="Nível"
-                placeholder="Selecione o nível"
-                options={[
-                  { label: "Iniciante", value: "1" },
-                  { label: "Intermediário", value: "2" },
-                  { label: "Avançado", value: "3" },
-                ]}
-              />
-
-            </div>
-
-            {/*Field to choose a category from a list of options*/}
-            <div className="flex flex-col w-1/2 space-y-2 text-left  ">
-              <FormDropdown
-                control={form.control}
-                isRequired
-                inputSize="md"
-                fieldName="category"
-                label="Categoria"
-                placeholder="Selecione a categoria"
-                options={categoriesOptions.map((option) => ({
-                  label: option.props.children,
-                  value: option.props.value,
-                }))}
-              />
-
-            </div>
+          title={dialogTitle}
+          contentText={dialogMessage}
+          cancelBtnText={cancelBtnText}
+          confirmBtnText={confirmBtnText}
+          isVisible={showDialog}
+          width="w-[500px]"
+          onConfirm={dialogConfirm}
+          onClose={() => {
+            setShowDialog(false);
+          }}
+          loading={submitLoading}
+        />
+        <div className="w-full flex flex-row items-center justify-between py-5">
+          <div className="flex items-center gap-2">
+            <h1 className="text-2xl font-bold mt-10"> Informações gerais </h1>
           </div>
+        </div>
 
-          {/*Field to input the description of the course*/}
-          <div>
-            <FormTextarea
+        <div className="flex h-full flex-col justify-between space-y-4">
+          <div className="w-full float-right bg-white rounded-2xl shadow-lg justify-between space-y-6 p-6">
+            <FormInput
               control={form.control}
-              fieldName="description"
-              inputSize="sm"
-              label="Descrição"
-              placeholder="Conte mais sobre o curso"
-              maxLength={400}
-              rows={4}
+              fieldName="title"
+              inputSize="md"
+              label="Nome do curso"
+              placeholder="Nome do curso"
+              type="text"
               isRequired
-              className="resize-none"
             />
-            <div className="text-right text-sm mt-1 text-greyscale-text-caption">
-              {form.watch("description")?.length || 0} / 400 caracteres
+
+            <div className="flex items-center gap-8 w-full">
+              {/*Field to select a level from a list of options*/}
+              <div className="flex flex-col w-1/2 space-y-2 text-left ">
+                <FormSelect
+                  control={form.control}
+                  inputSize="md"
+                  isRequired
+                  fieldName="difficulty"
+                  label="Nível"
+                  placeholder="Selecione o nível"
+                  options={[
+                    { label: "Iniciante", value: "1" },
+                    { label: "Intermediário", value: "2" },
+                    { label: "Avançado", value: "3" },
+                  ]}
+                />
+              </div>
+
+              {/*Field to choose a category from a list of options*/}
+              <div className="flex flex-col w-1/2 space-y-2 text-left  ">
+                <FormSelect
+                  control={form.control}
+                  isRequired
+                  inputSize="md"
+                  fieldName="category"
+                  label="Categoria"
+                  placeholder="Selecione a categoria"
+                  options={categoriesOptions.map((option) => ({
+                    label: option.props.children,
+                    value: option.props.value,
+                  }))}
+                />
+              </div>
+            </div>
+
+            {/*Field to input the description of the course*/}
+            <div>
+              <FormTextarea
+                control={form.control}
+                fieldName="description"
+                inputSize="sm"
+                label="Descrição"
+                placeholder="Conte mais sobre o curso"
+                maxLength={400}
+                rows={4}
+                isRequired
+                className="resize-none"
+              />
+              <div className="text-right text-sm mt-1 text-greyscale-text-caption">
+                {form.watch("description")?.length || 0} / 400 caracteres
+              </div>
+            </div>
+
+            <div>
+              {/*Cover image field*/}
+              <div className="flex flex-col space-y-2 text-left">
+                <label htmlFor="cover-image">
+                  Imagem de capa <span className="text-red-500">*</span>
+                </label>{" "}
+                {/** Cover image */}
+              </div>
+              <Dropzone
+                inputType="image"
+                id={id ?? "0"}
+                previewFile={previewCourseImg}
+                onFileChange={handleImageUpload}
+                maxSize={5 * 1024 * 1024 /* 5mb */}
+              />
             </div>
           </div>
-
-          <div>
-            {/*Cover image field*/}
-            <div className="flex flex-col space-y-2 text-left">
-              <label htmlFor="cover-image">
-                Imagem de capa <span className="text-red-500">*</span>
-              </label>{" "}
-              {/** Cover image */}
-            </div>
-            <Dropzone
-              inputType="image"
-              id={id ?? "0"}
-              previewFile={previewCourseImg}
-              onFileChange={handleImageUpload}
-              maxSize={5 * 1024 * 1024 /* 5mb */}
-            />
-          </div>
-        </div>
-        {/*Create and cancel buttons*/}
-        <div className="modal-action pb-10">
-          <div className="whitespace-nowrap flex items-center justify-between w-full mt-8">
-            <label
-              onClick={() => {
-                navigate("/courses");
-              }}
-              htmlFor="course-create"
-              className="cursor-pointer underline text-error-surface-default py-2 pr-4 bg-transparent hover:bg-warning-100 text-warning w-full transition ease-in duration-200 text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2  rounded-sm"
-            >
-              Cancelar e Voltar {/** Cancel */}
-            </label>
-
-            <label
-              htmlFor="course-create"
-              className={`${
-                course.status === "published"
-                  ? "invisible pointer-events-none"
-                  : ""
-              } whitespace-nowrap ml-42 underline py-2 bg-transparent hover:bg-primary-100 text-primary-text-label w-full transition ease-in duration-200 text-center text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2 rounded ${isMissingRequiredFields ? "opacity-70" : ""}`}
-            >
-              <button
-                id="SaveAsDraft"
-                onClick={handleSave}
-                disabled={isMissingRequiredFields}
-                className="underline"
+          {/*Create and cancel buttons*/}
+          <div className="modal-action pb-10">
+            <div className="whitespace-nowrap flex items-center justify-between w-full mt-8">
+              <label
+                onClick={() => {
+                  navigate("/courses");
+                }}
+                htmlFor="course-create"
+                className="cursor-pointer underline text-error-surface-default py-2 pr-4 bg-transparent hover:bg-warning-100 text-warning w-full transition ease-in duration-200 text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2  rounded-sm"
               >
-                Salvar como Rascunho {/** Save as draft */}
-              </button>
-            </label>
+                Cancelar e Voltar {/** Cancel */}
+              </label>
+
+              <label
+                htmlFor="course-create"
+                className={`${
+                  course.status === "published"
+                    ? "invisible pointer-events-none"
+                    : ""
+                } whitespace-nowrap ml-42 underline py-2 bg-transparent hover:bg-primary-100 text-primary-text-label w-full transition ease-in duration-200 text-center text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2 rounded ${isMissingRequiredFields ? "opacity-70" : ""}`}
+              >
+                <button
+                  id="SaveAsDraft"
+                  onClick={handleSave}
+                  disabled={isMissingRequiredFields}
+                  className="underline"
+                >
+                  Salvar como Rascunho {/** Save as draft */}
+                </button>
+              </label>
               <Button
                 onClick={navigateToSections}
                 disabled={isMissingRequiredFields}
@@ -303,9 +302,9 @@ export const CourseComponent = ({
               >
                 Criar Seções
               </Button>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </Form>
   );

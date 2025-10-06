@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -11,6 +12,7 @@ import { FormInput } from "./shared/components/form/form-input";
 import { FormPasswordInput } from "./shared/components/form/form-password-input";
 import { FormSelect } from "./shared/components/form/form-select";
 import { FormTextarea } from "./shared/components/form/form-textarea";
+import { LanguageSwitcher } from "./shared/components/language-switcher";
 import { Button } from "./shared/components/shadcn/button";
 import {
   Select,
@@ -19,8 +21,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./shared/components/shadcn/select";
-import { LanguageSwitcher } from "./shared/components/language-switcher";
-import { useTranslation } from "react-i18next";
 
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({
