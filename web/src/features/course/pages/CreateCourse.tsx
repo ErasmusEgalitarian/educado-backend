@@ -167,7 +167,7 @@ const CreateCourse = () => {
                 <div className="flex flex-col space-y-2 text-left">
                   <label htmlFor="cover-image">
                     {t('courseManager.coverImage')} <span className="text-red-500">*</span>
-                  </label>{" "}
+                  </label>
                   {/** Cover image */}
                 </div>
                 <Dropzone
@@ -184,7 +184,7 @@ const CreateCourse = () => {
                 <div className="whitespace-nowrap flex items-center justify-between w-full mt-8">
                   <Link
                     to="/courses"
-                    className="cursor-pointer underline text-error-surface-default py-2 pr-4 bg-transparent hover:bg-warning-100 text-warning w-full transition ease-in duration-200 text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2  rounded-sm"
+                    className="cursor-pointer underline text-error-surface-default py-2 pr-4 bg-transparent hover:bg-warning-100 text-warning transition ease-in duration-200 text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2  rounded-sm"
                   >
                     {t('courseManager.cancelAndReturn')}
                   </Link>
