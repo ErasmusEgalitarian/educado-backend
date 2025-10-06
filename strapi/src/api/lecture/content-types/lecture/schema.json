@@ -18,32 +18,16 @@
       "required": true,
       "unique": false
     },
-    "description": {
-      "type": "text"
-    },
-    "image": {
-      "type": "media",
-      "multiple": true,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "video": {
-      "type": "media",
-      "multiple": true,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "completed": {
       "type": "boolean",
       "default": false
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.video",
+        "content.description"
+      ]
     }
   }
 }

@@ -24,6 +24,12 @@
     "dateCreated": {
       "type": "date",
       "required": true
+    },
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "inversedBy": "feedbacks"
     }
   }
 }

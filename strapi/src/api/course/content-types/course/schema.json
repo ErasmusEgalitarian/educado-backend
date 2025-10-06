@@ -11,47 +11,21 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "feedbacks": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::feedback.feedback"
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "required": true
     },
-    "content_creator": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::content-creator.content-creator",
-      "inversedBy": "courses"
-    },
-    "course_selections": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::course-selection.course-selection"
+    "description": {
+      "type": "text",
+      "maxLength": 400
     },
     "difficulty": {
       "type": "integer",
       "required": true,
       "min": 1,
       "max": 3
-    },
-    "statusEnum": {
-      "type": "enumeration",
-      "required": true,
-      "default": "draft",
-      "enum": [
-        "draft",
-        "published",
-        "hidden"
-      ]
-    },
-    "category": {
-      "type": "enumeration",
-      "required": true,
-      "enum": [
-        "personal finance",
-        "health and workplace safety",
-        "sewing",
-        "electronics"
-      ]
     },
     "numOfRatings": {
       "type": "integer",
@@ -60,6 +34,31 @@
     "numOfSubscriptions": {
       "type": "integer",
       "default": 0
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "feedbacks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::feedback.feedback",
+      "mappedBy": "course"
+    },
+    "course_sections": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course-selection.course-selection",
+      "mappedBy": "course"
+    },
+    "course_categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::course-category.course-category",
+      "mappedBy": "courses"
     }
   }
 }
