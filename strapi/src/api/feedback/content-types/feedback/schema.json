@@ -30,6 +30,12 @@
       "relation": "manyToOne",
       "target": "api::course.course",
       "inversedBy": "feedbacks"
+    },
+    "student": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::student.student",
+      "inversedBy": "feedbacks"
     }
   }
 }

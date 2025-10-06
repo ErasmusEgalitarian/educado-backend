@@ -65,52 +65,6 @@
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
-    },
-    "joinedAt": {
-      "type": "date",
-      "required": true
-    },
-    "updatedDate": {
-      "type": "date"
-    },
-    "educadoRole": {
-      "type": "enumeration",
-      "required": true,
-      "enum": [
-        "student",
-        "contentCreator",
-        "admin"
-      ]
-    },
-    "student": {
-      "type": "component",
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "educadoRole"
-            },
-            "student"
-          ]
-        }
-      },
-      "component": "role.student",
-      "repeatable": true
-    },
-    "contentCreator": {
-      "type": "component",
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "educadoRole"
-            },
-            "contentCreator"
-          ]
-        }
-      },
-      "component": "role.content-creator",
-      "repeatable": true
     }
   }
 }

@@ -59,6 +59,12 @@
       "relation": "manyToMany",
       "target": "api::course-category.course-category",
       "mappedBy": "courses"
+    },
+    "student": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::student.student",
+      "inversedBy": "courses"
     }
   }
 }
