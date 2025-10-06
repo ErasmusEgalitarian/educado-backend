@@ -65,6 +65,12 @@
       "relation": "manyToOne",
       "target": "api::student.student",
       "inversedBy": "courses"
+    },
+    "content_creators": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::content-creator.content-creator",
+      "mappedBy": "courses"
     }
   }
 }

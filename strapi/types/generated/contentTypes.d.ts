@@ -430,6 +430,91 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiContentCreatorContentCreator
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'content_creators';
+  info: {
+    displayName: 'Content Creator';
+    pluralName: 'content-creators';
+    singularName: 'content-creator';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    biography: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 400;
+      }>;
+    companyEnd: Schema.Attribute.Date;
+    companyStart: Schema.Attribute.Date & Schema.Attribute.Required;
+    courseExperience: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 40;
+        minLength: 1;
+      }>;
+    courses: Schema.Attribute.Relation<'manyToMany', 'api::course.course'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    currentCompany: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 40;
+        minLength: 1;
+      }>;
+    currentJobTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 40;
+        minLength: 1;
+      }>;
+    education: Schema.Attribute.Enumeration<['TODO1', 'TODO2', 'TODO3']> &
+      Schema.Attribute.Required;
+    eduEnd: Schema.Attribute.Date & Schema.Attribute.Required;
+    eduStart: Schema.Attribute.Date & Schema.Attribute.Required;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    firstName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+        minLength: 1;
+      }>;
+    institution: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 40;
+        minLength: 1;
+      }>;
+    jobDescription: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 400;
+        minLength: 1;
+      }>;
+    joinedAt: Schema.Attribute.Date & Schema.Attribute.Required;
+    lastName: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+        minLength: 1;
+      }>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::content-creator.content-creator'
+    > &
+      Schema.Attribute.Private;
+    password: Schema.Attribute.Password & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    statusValue: Schema.Attribute.Enumeration<['TODO1', 'TODO2', 'TODO3']> &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    verifiedAt: Schema.Attribute.Date;
+  };
+}
+
 export interface ApiCourseCategoryCourseCategory
   extends Struct.CollectionTypeSchema {
   collectionName: 'course_categories';
@@ -518,6 +603,10 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    content_creators: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::content-creator.content-creator'
+    >;
     course_categories: Schema.Attribute.Relation<
       'manyToMany',
       'api::course-category.course-category'
@@ -1293,6 +1382,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::content-creator.content-creator': ApiContentCreatorContentCreator;
       'api::course-category.course-category': ApiCourseCategoryCourseCategory;
       'api::course-selection.course-selection': ApiCourseSelectionCourseSelection;
       'api::course.course': ApiCourseCourse;

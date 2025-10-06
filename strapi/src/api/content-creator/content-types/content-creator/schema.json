@@ -1,0 +1,114 @@
+{
+  "kind": "collectionType",
+  "collectionName": "content_creators",
+  "info": {
+    "singularName": "content-creator",
+    "pluralName": "content-creators",
+    "displayName": "Content Creator"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "courses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::course.course",
+      "inversedBy": "content_creators"
+    },
+    "firstName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "joinedAt": {
+      "type": "date",
+      "required": true
+    },
+    "verifiedAt": {
+      "type": "date"
+    },
+    "biography": {
+      "type": "text",
+      "maxLength": 400,
+      "required": false
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "password": {
+      "type": "password",
+      "required": true
+    },
+    "education": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "TODO1",
+        "TODO2",
+        "TODO3"
+      ]
+    },
+    "statusValue": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "TODO1",
+        "TODO2",
+        "TODO3"
+      ]
+    },
+    "courseExperience": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "required": true
+    },
+    "institution": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "required": true
+    },
+    "eduStart": {
+      "type": "date",
+      "required": true
+    },
+    "eduEnd": {
+      "type": "date",
+      "required": true
+    },
+    "currentCompany": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "required": true
+    },
+    "currentJobTitle": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "required": true
+    },
+    "companyStart": {
+      "type": "date",
+      "required": true
+    },
+    "companyEnd": {
+      "type": "date"
+    },
+    "jobDescription": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 400
+    }
+  }
+}
