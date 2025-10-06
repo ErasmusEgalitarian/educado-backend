@@ -10,5 +10,20 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "rating": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "max": 5
+    },
+    "feedbackText": {
+      "type": "text",
+      "maxLength": 600
+    },
+    "dateCreated": {
+      "type": "date",
+      "required": true
+    }
+  }
 }

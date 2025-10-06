@@ -10,5 +10,16 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "required": true
+    }
+  }
 }
