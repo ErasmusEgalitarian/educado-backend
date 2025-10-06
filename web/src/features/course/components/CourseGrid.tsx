@@ -1,6 +1,5 @@
 import { Main } from "../types/Course";
 
-import { CourseGridCard } from "./CourseGridCard";
 import { CourseCard } from "./CourseCard";
 
 export const CourseGrid = (data: Main) => {
