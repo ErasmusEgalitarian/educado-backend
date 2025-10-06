@@ -182,23 +182,23 @@ export const CourseComponent = ({
       </div>
 
       <div className="flex h-full flex-col justify-between space-y-4">
-        <div className="w-full float-right bg-white rounded-2xl shadow-lg justify-between space-y-4 p-6">
+        <div className="w-full float-right bg-white rounded-2xl shadow-lg justify-between space-y-6 p-6">
           <FormInput
             control={form.control}
             fieldName="title"
-            inputSize="sm"
+            inputSize="md"
             label="Nome do curso"
             placeholder="Nome do curso"
             type="text"
             isRequired
           />
 
-          <div className="flex items-center gap-8 w-full mt-8">
+          <div className="flex items-center gap-8 w-full">
             {/*Field to select a level from a list of options*/}
             <div className="flex flex-col w-1/2 space-y-2 text-left ">
               <FormDropdown
                 control={form.control}
-                inputSize="sm"
+                inputSize="md"
                 isRequired
                 fieldName="difficulty"
                 label="Nível"
@@ -217,7 +217,7 @@ export const CourseComponent = ({
               <FormDropdown
                 control={form.control}
                 isRequired
-                inputSize="sm"
+                inputSize="md"
                 fieldName="category"
                 label="Categoria"
                 placeholder="Selecione a categoria"
@@ -243,7 +243,7 @@ export const CourseComponent = ({
               isRequired
               className="resize-none"
             />
-            <div className="text-right text-sm text-gray-600 mt-1">
+            <div className="text-right text-sm mt-1 text-greyscale-text-caption">
               {form.watch("description")?.length || 0} / 400 caracteres
             </div>
           </div>
