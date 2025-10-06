@@ -26,6 +26,7 @@ import {
   NonProtectedRoute,
 } from "./unplaced/services/auth.guard";
 import SingleApplicantView from "./unplaced/SingleApplicantView";
+import CreateCourse from "@/course/pages/CreateCourse";
 
 const App = () => {
   // router
@@ -62,7 +63,16 @@ const App = () => {
       errorElement: <NotFound />,
     },
     {
-      path: "/courses/manager/:id/:tick",
+      path: "/courses/create-course",
+      element: (
+        <ProtectedRoute>
+          <CreateCourse />
+        </ProtectedRoute>
+      ),
+      errorElement: <NotFound />,
+    },
+    {
+      path: "/old-manager",
       element: (
         <ProtectedRoute>
           <CourseManager />

@@ -73,16 +73,15 @@ const Courses = () => {
   const navigate = useNavigate();
   const token = getUserToken();
   const { t } = useTranslation();
-  const [open, setOpen] = useState(false)
-  const [value, setValue] = useState("")
-
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
 
   // Fetch all courses
 
   // TODO: Implement proper backend call once backend is ready
 
   const CourseManager = () => {
-    navigate("/courses/manager/0/0");
+    navigate("/courses/create-course");
   };
 
   const [showTutorial, setShowTutorial] = useState(false);
@@ -178,14 +177,14 @@ const Courses = () => {
               {/* Header and create course button */}
               <div className="flex flex-row no-wrap items-center">
                 <h1 className="text-3xl flex-1">
-                  {t('courses.checkYourCourses')}
+                  {t("courses.checkYourCourses")}
                 </h1>
-                <Button 
-                  onClick={CourseManager} 
+                <Button
+                  onClick={CourseManager}
                   icon={() => <Icon path={mdiPlus} size={1} />}
                   iconPlacement="left"
                 >
-                  {t('courses.newCourse')}
+                  {t("courses.newCourse")}
                 </Button>
               </div>
               {/* Card/compact view toggle and filters */}
@@ -247,7 +246,7 @@ const Courses = () => {
                       className="placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-xs focus:outline-hidden hover:bg-white focus:border-sky-500 focus:ring-1 sm:text-sm"
                       type="text"
                       id="search-term"
-                      placeholder={t('courses.searchCourse')}
+                      placeholder={t("courses.searchCourse")}
                       onChange={(event) => {
                         setSearchTerm(event.target.value);
                       }}
@@ -273,9 +272,9 @@ const Courses = () => {
                     }}
                     className="block bg-white min-w-[175px] grow-0 border border-slate-300 rounded-md py-2 pr-3 shadow-xs focus:outline-hidden hover:bg-white focus:border-sky-500 focus:ring-1 sm:text-sm"
                   >
-                    <option value="newest">{t('courses.lastAdded')}</option>
-                    <option value="oldest">{t('courses.mostOld')}</option>
-                    <option value="popular">{t('courses.mostPopular')}</option>
+                    <option value="newest">{t("courses.lastAdded")}</option>
+                    <option value="oldest">{t("courses.mostOld")}</option>
+                    <option value="popular">{t("courses.mostPopular")}</option>
                   </select>
                 </form>
               </div>

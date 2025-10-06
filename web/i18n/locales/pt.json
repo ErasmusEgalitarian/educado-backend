@@ -24,7 +24,7 @@
     "noNotifications": "Nenhuma notificação",
     "clearAll": "Limpar Todos"
   },
-  "courseManager": {
+  "createCourse": {
     "generalInfo": "Informações Gerais",
     "courseName": "Nome do Curso",
     "courseNamePlaceholder": "Digite o nome do curso",
@@ -34,7 +34,7 @@
     "selectCategory": "Selecione a categoria",
     "description": "Descrição",
     "descriptionPlaceholder": "Digite a descrição",
-    "coverImage": "Imagem de Capa", 
+    "coverImage": "Imagem de Capa",
     "beginner": "Iniciante",
     "intermediate": "Intermediário",
     "advanced": "Avançado",
@@ -45,7 +45,28 @@
     "saveAsDraft": "Salvar como Rascunho",
     "reviewCourse": "Revisar Curso"
   },
-  "courses" : {
+  "courseManager": {
+    "generalInfo": "Informações Gerais",
+    "courseName": "Nome do Curso",
+    "courseNamePlaceholder": "Digite o nome do curso",
+    "level": "Nível",
+    "selectLevel": "Selecione o nível",
+    "category": "Categoria",
+    "selectCategory": "Selecione a categoria",
+    "description": "Descrição",
+    "descriptionPlaceholder": "Digite a descrição",
+    "coverImage": "Imagem de Capa",
+    "beginner": "Iniciante",
+    "intermediate": "Intermediário",
+    "advanced": "Avançado",
+    "characters": "caracteres",
+    "newCourse": "Novo Curso",
+    "createSections": "Criar Seções",
+    "cancelAndReturn": "Cancelar e Voltar",
+    "saveAsDraft": "Salvar como Rascunho",
+    "reviewCourse": "Revisar Curso"
+  },
+  "courses": {
     "checkYourCourses": "Confira seus cursos",
     "newCourse": "Novo Curso",
     "searchCourse": "Buscar Curso",
@@ -60,7 +81,5 @@
     "activities": "Atividades",
     "hello": "Olá",
     "hours": "Horas"
-
   }
-
 }
