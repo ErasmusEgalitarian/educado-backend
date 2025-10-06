@@ -1,5 +1,6 @@
 import { mdiStar } from "@mdi/js";
 import { Icon } from "@mdi/react";
+import { useTranslation } from "react-i18next";
 
 import { Course } from "../types/Course";
 
@@ -10,6 +11,7 @@ import { Course } from "../types/Course";
  * @returns HTML Element
  */
 export const CourseListCard = ({ course }: { course: Course }) => {
+  const { t } = useTranslation();
   //only load coursecard if ti exists
   if (!course?.title) {
     return null;
@@ -38,7 +40,7 @@ export const CourseListCard = ({ course }: { course: Course }) => {
       </td>
       <td>
         <p className="text-gray-900 whitespace-no-wrap px-5 py-5">
-          {course.estimatedHours != null ? course.estimatedHours : "?"} horas
+          {course.estimatedHours != null ? course.estimatedHours : "?"} {t('courses.hours')}
         </p>
       </td>
       <td>

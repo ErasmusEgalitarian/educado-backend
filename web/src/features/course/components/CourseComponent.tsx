@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { useCourseManagingHelper } from "@/course/hooks/useCourseManagingHelper";
 import {
@@ -43,6 +44,8 @@ export const CourseComponent = ({
 }: CourseComponentProps) => {
   const { course, updateCourseField } = useCourse();
   const { getMedia, getPreviewCourseImg } = useMedia();
+
+  const { t } = useTranslation();
 
   // Init form with React Hook Form + Zod
   const form = useForm<CourseBasicInfoFormValues>({
@@ -178,7 +181,7 @@ export const CourseComponent = ({
         />
         <div className="w-full flex flex-row items-center justify-between py-5">
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold mt-10"> Informações gerais </h1>
+            <h1 className="text-2xl font-bold mt-10"> {t('courseManager.generalInfo')} </h1>
           </div>
         </div>
 
@@ -188,8 +191,8 @@ export const CourseComponent = ({
               control={form.control}
               fieldName="title"
               inputSize="md"
-              label="Nome do curso"
-              placeholder="Nome do curso"
+              label={t('courseManager.courseName')}
+              placeholder={t('courseManager.courseNamePlaceholder')}
               type="text"
               isRequired
             />
@@ -202,8 +205,8 @@ export const CourseComponent = ({
                   inputSize="md"
                   isRequired
                   fieldName="difficulty"
-                  label="Nível"
-                  placeholder="Selecione o nível"
+                  label={t('courseManager.level')}
+                  placeholder={t('courseManager.selectLevel')}
                   options={[
                     { label: "Iniciante", value: "1" },
                     { label: "Intermediário", value: "2" },
@@ -219,8 +222,8 @@ export const CourseComponent = ({
                   isRequired
                   inputSize="md"
                   fieldName="category"
-                  label="Categoria"
-                  placeholder="Selecione a categoria"
+                  label={t('courseManager.category')}
+                  placeholder={t('courseManager.selectCategory')}
                   options={categoriesOptions.map((option) => ({
                     label: option.props.children,
                     value: option.props.value,
@@ -235,15 +238,15 @@ export const CourseComponent = ({
                 control={form.control}
                 fieldName="description"
                 inputSize="sm"
-                label="Descrição"
-                placeholder="Conte mais sobre o curso"
+                label={t('courseManager.description')}
+                placeholder={t('courseManager.descriptionPlaceholder')}
                 maxLength={400}
                 rows={4}
                 isRequired
                 className="resize-none"
               />
               <div className="text-right text-sm mt-1 text-greyscale-text-caption">
-                {form.watch("description")?.length || 0} / 400 caracteres
+                {form.watch("description")?.length || 0} / 400 {t('courseManager.characters')}
               </div>
             </div>
 
@@ -251,7 +254,7 @@ export const CourseComponent = ({
               {/*Cover image field*/}
               <div className="flex flex-col space-y-2 text-left">
                 <label htmlFor="cover-image">
-                  Imagem de capa <span className="text-red-500">*</span>
+                  {t('courseManager.coverImage')} <span className="text-red-500">*</span>
                 </label>{" "}
                 {/** Cover image */}
               </div>
@@ -274,7 +277,7 @@ export const CourseComponent = ({
                 htmlFor="course-create"
                 className="cursor-pointer underline text-error-surface-default py-2 pr-4 bg-transparent hover:bg-warning-100 text-warning w-full transition ease-in duration-200 text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2  rounded-sm"
               >
-                Cancelar e Voltar {/** Cancel */}
+                {t('courseManager.cancelAndReturn')}
               </label>
 
               <label
@@ -291,7 +294,7 @@ export const CourseComponent = ({
                   disabled={isMissingRequiredFields}
                   className="underline"
                 >
-                  Salvar como Rascunho {/** Save as draft */}
+                  {t('courseManager.saveAsDraft')}
                 </button>
               </label>
               <Button
@@ -300,7 +303,7 @@ export const CourseComponent = ({
                 id="addCourse"
                 className="font-bold px-6"
               >
-                Criar Seções
+                {t('courseManager.createSections')}
               </Button>
             </div>
           </div>

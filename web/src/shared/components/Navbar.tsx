@@ -6,6 +6,7 @@ import {
   mdiNotebookOutline,
   mdiAccountCog,
   mdiChatQuestionOutline,
+  mdiTranslate,
 } from "@mdi/js";
 
 import {
@@ -14,11 +15,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuIconItem,
   DropdownMenuTrigger,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuItem,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuIconSubTrigger,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
 } from "@/shared/components/shadcn/dropdown-menu";
 
 import { Icon } from "@mdi/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 
@@ -30,7 +40,8 @@ export const Navbar = () => {
   const { clearToken } = useAuthStore((state) => state);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { notifications, setNotifications } = useNotifications();
-
+  const [position, setPosition] = useState("portuguese");
+  const { t, i18n } = useTranslation();
   // Logout handler
   const handleLogout = () => {
     clearToken();
@@ -121,7 +132,7 @@ export const Navbar = () => {
                       ))
                     ) : (
                       <li className="p-2 text-gray-500 text-sm">
-                        No notifications
+                        {t("navbar.noNotifications")}
                       </li>
                     )}
                   </ul>
@@ -133,7 +144,7 @@ export const Navbar = () => {
                       onClick={handleClearAll}
                       className="text-sm text-red-600 hover:underline"
                     >
-                      Clear All
+                      {t("navbar.clearAll")}
                     </button>
                   </div>
                 )}
@@ -148,6 +159,12 @@ export const Navbar = () => {
               <div className="flex gap-3 cursor-pointer rounded-md p-2 hover:bg-[#222]/10">
                 <div className="flex items-center">
                   <div>
+                    <span className="hidden sm:block text-sm font-bold text-grayMedium font-['Montserrat']">
+                      {`${userInfo.firstName} ${userInfo.lastName}`}
+                    </span>
+                    <span className="hidden sm:block text-xs font-normal text-grayMedium font-['Montserrat']">
+                      {userInfo.email}
+                    </span>
                     <span className="hidden sm:block text-sm font-bold text-grayMedium font-['Montserrat']">
                       {`${userInfo.firstName} ${userInfo.lastName}`}
                     </span>
@@ -173,7 +190,7 @@ export const Navbar = () => {
                 }}
                 icon={() => <Icon path={mdiAccountCog} size={1} />}
               >
-                Editar perfil
+                {t("navbar.editProfile")}
               </DropdownMenuIconItem>
               <DropdownMenuIconItem
                 onClick={() => {
@@ -181,7 +198,7 @@ export const Navbar = () => {
                 }}
                 icon={() => <Icon path={mdiCertificate} size={1} />}
               >
-                Meus certificados
+                {t("navbar.myCertificates")}
               </DropdownMenuIconItem>
               <DropdownMenuIconItem
                 onClick={() => {
@@ -189,11 +206,36 @@ export const Navbar = () => {
                 }}
                 icon={() => <Icon path={mdiChatQuestionOutline} size={1} />}
               >
-                Feedback
+                {t("navbar.feedback")}
               </DropdownMenuIconItem>
 
               {userInfo.role === "admin" && (
                 <>
+                  <DropdownMenuSub>
+                    <DropdownMenuIconSubTrigger
+                      icon={() => <Icon path={mdiTranslate} size={1} />}
+                    >
+                      {t("language.switchLanguage")}
+                    </DropdownMenuIconSubTrigger>
+                    <DropdownMenuPortal>
+                      <DropdownMenuSubContent>
+                        <DropdownMenuRadioGroup
+                          value={i18n.language}
+                          onValueChange={(value) => {
+                            void i18n.changeLanguage(value);
+                            setPosition(value);
+                          }}
+                        >
+                          <DropdownMenuRadioItem value="pt">
+                            Português 🇧🇷
+                          </DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="en">
+                            English 🇺🇸
+                          </DropdownMenuRadioItem>
+                        </DropdownMenuRadioGroup>
+                      </DropdownMenuSubContent>
+                    </DropdownMenuPortal>
+                  </DropdownMenuSub>
                   <DropdownMenuSeparator />
                   <DropdownMenuIconItem
                     onClick={() => {
@@ -201,7 +243,7 @@ export const Navbar = () => {
                     }}
                     icon={() => <Icon path={mdiAccount} size={1} />}
                   >
-                    Admin
+                    {t("navbar.admin")}
                   </DropdownMenuIconItem>
                 </>
               )}
@@ -212,7 +254,7 @@ export const Navbar = () => {
                 icon={() => <Icon path={mdiLogoutVariant} size={1} />}
                 variant="destructive"
               >
-                Sair
+                {t("navbar.logout")}
               </DropdownMenuIconItem>
             </DropdownMenuContent>
           </DropdownMenu>

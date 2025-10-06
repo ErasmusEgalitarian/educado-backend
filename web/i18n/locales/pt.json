@@ -8,9 +8,59 @@
   "common": {
     "edit": "Editar",
     "delete": "Deletar",
-    "view": "Ver",
+    "view": "Visualizar",
     "more": "Mais",
     "openMenu": "Abrir Menu",
-    "actions": "Ações"
+    "actions": "Ações",
+    "mandatory": "Este campo é obrigatório"
+  },
+  "navbar": {
+    "editProfile": "Editar Perfil",
+    "myCertificates": "Meus Certificados",
+    "feedback": "Feedback",
+    "admin": "Admin",
+    "logout": "Sair",
+    "notifications": "Notificações",
+    "noNotifications": "Nenhuma notificação",
+    "clearAll": "Limpar Todos"
+  },
+  "courseManager": {
+    "generalInfo": "Informações Gerais",
+    "courseName": "Nome do Curso",
+    "courseNamePlaceholder": "Digite o nome do curso",
+    "level": "Nível",
+    "selectLevel": "Selecione o nível",
+    "category": "Categoria",
+    "selectCategory": "Selecione a categoria",
+    "description": "Descrição",
+    "descriptionPlaceholder": "Digite a descrição",
+    "coverImage": "Imagem de Capa", 
+    "beginner": "Iniciante",
+    "intermediate": "Intermediário",
+    "advanced": "Avançado",
+    "characters": "caracteres",
+    "newCourse": "Novo Curso",
+    "createSections": "Criar Seções",
+    "cancelAndReturn": "Cancelar e Voltar",
+    "saveAsDraft": "Salvar como Rascunho",
+    "reviewCourse": "Revisar Curso"
+  },
+  "courses" : {
+    "checkYourCourses": "Confira seus cursos",
+    "newCourse": "Novo Curso",
+    "searchCourse": "Buscar Curso",
+    "lastAdded": "Últimos Incluídos",
+    "mostOld": "Mais Antigos",
+    "mostPopular": "Mais Populares",
+    "progress": "Progressos",
+    "totalCourses": "Total de Cursos",
+    "totalStudents": "Total de Alunos",
+    "totalCertificates": "Total de Certificados Emitidos",
+    "avalation": "Avaliação",
+    "activities": "Atividades",
+    "hello": "Olá",
+    "hours": "Horas"
+
   }
+
 }

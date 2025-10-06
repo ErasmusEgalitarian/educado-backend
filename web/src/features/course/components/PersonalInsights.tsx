@@ -5,6 +5,7 @@ import { getAverageRatingOfCC } from "../../../unplaced/services/contentCreator.
 import { getUserInfo } from "../../auth/lib/userInfo";
 import { getNumberOfCourses, getTotalSubscriberCount } from "../lib/courses";
 import { Course } from "../types/Course";
+import { useTranslation } from "react-i18next";
 
 // Helper functions
 
@@ -26,7 +27,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
   const courses = props.courses ?? [];
   const [averageRating, setAverageRating] = useState<number>(0);
   const [selectedPeriod, setSelectedPeriod] = useState("all");
-
+  const { t } = useTranslation();
   // Helper function to filter courses by date
   const filterCoursesByPeriod = (courses: Course[], period: string) => {
     const now = new Date();
@@ -86,7 +87,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
   return (
     <div className="w-full h-full">
       {/* Welcome message */}
-      <h2 className="text-xl font-bold">Olá {userInfo.name}</h2>
+      <h2 className="text-xl font-bold">{t('courses.hello')} {userInfo.firstName} {userInfo.lastName}</h2>
       {/* Progress section (stats) */}
       <div className="border-y border-grayMedium my-4 py-4">
         <div className="grid grid-cols-4 lg:grid-cols-1 gap-y-4">
@@ -97,7 +98,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
                 <div>
                   {/* Dropdown menu */}
                   <div className="flex items-center">
-                    <p className="mr-2 text-grayMedium text-lg">Progressos:</p>
+                    <p className="mr-2 text-grayMedium text-lg">{t('courses.progress')}:</p>
                     <select
                       className="p-1 rounded-md border-grayLight"
                       id="courseStatus"
@@ -117,7 +118,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
                 <div>
                   {/* Total courses */}
                   <div className="">
-                    <p className="font-normal text-lg">Total cursos:</p>
+                    <p className="font-normal text-lg">{t('courses.totalCourses')}:</p>
                     <p className="font-bold" id="courseAmount">
                       {stats.totalCourses}
                     </p>
@@ -125,7 +126,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
                 </div>
                 <div>
                   {/* Total students */}
-                  <p className="font-normal text-lg">Total alunos</p>
+                  <p className="font-normal text-lg">{t('courses.totalStudents')}:</p>
                   <p className="font-bold" id="subscribers">
                     {stats.totalStudents}
                   </p>
@@ -134,7 +135,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
                   {/* Total certificados */}{" "}
                   {/* TO DO: get total amount of certificates that have been giving out */}
                   <p className="font-normal text-lg">
-                    Total certificados emitidos
+                    {t('courses.totalCertificates')}:
                   </p>
                   <p className="font-bold" id="certificateAmount">
                     {stats.totalCertificates}
@@ -142,7 +143,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
                 </div>
                 <div>
                   {/* Rating */}
-                  <p className="font-normal text-lg">Avaliação</p>
+                  <p className="font-normal text-lg">{t('courses.avalation')}:</p>
                   <div className="w-48 max-w-full">
                     <StarRating
                       testId="averageRating"
@@ -163,7 +164,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
       </div>
       {/* Activities section */}
       <div>
-        <p className="font-bold">Atividades</p> {/* */}
+        <p className="font-bold">{t('courses.activities')}</p> 
         <div className="grid grid-cols-4 lg:grid-cols-1 gap-y-2">
           {/* Show activities if the user has > 0 courses */}
           {

@@ -1,5 +1,6 @@
 import { Icon } from "@mdi/react";
 import { BsClockFill } from "react-icons/bs";
+import { useTranslation } from "react-i18next";
 
 import StarRating from "../../../shared/components/StarRating";
 import { Course } from "../types/Course";
@@ -12,6 +13,7 @@ import categories from "../types/courseCategories";
  * @returns HTML Element
  */
 export const CourseGridCard = ({ course }: { course: Course }) => {
+  const { t } = useTranslation();
   const maxTitleLength = 20;
   //Only load the picture, when the picture is loaded
 
@@ -58,7 +60,7 @@ export const CourseGridCard = ({ course }: { course: Course }) => {
                 <BsClockFill />
                 <p>
                   {course.estimatedHours != null ? course.estimatedHours : "?"}{" "}
-                  horas
+                  {t('courses.hours')}
                 </p>
               </div>
             </div>
@@ -75,10 +77,10 @@ export const CourseGridCard = ({ course }: { course: Course }) => {
                 }
                 className="text-primary text-xs font-bold"
               >
-                <span className="border-b border-primary">Editar</span>
+                <span className="border-b border-primary">{t('common.edit')}</span>
               </button>
               <button className="btn btn-secondary">
-                Visualizar
+                {t('common.view')}
               </button>
             </div>
           </div>

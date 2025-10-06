@@ -3,7 +3,7 @@
   "language": {
     "portuguese": "Portuguese",
     "english": "English",
-    "switchLanguage": "Switch Language"
+    "switchLanguage": "Language"
   },
   "common": {
     "edit": "Edit",
@@ -11,6 +11,57 @@
     "view": "View",
     "more": "More",
     "openMenu": "Open Menu",
-    "actions": "Actions"
+    "actions": "Actions",
+    "mandatory": "This field is mandatory"
+
+  },
+  "navbar": {
+    "editProfile": "Edit Profile",
+    "myCertificates": "My Certificates",
+    "feedback": "Feedback",
+    "admin": "Admin",
+    "logout": "Logout",
+    "notifications": "Notifications",
+    "noNotifications": "No notifications",
+    "clearAll": "Clear All"
+  },
+  "courseManager": {
+    "generalInfo": "General Information",
+    "courseName": "Course Name",
+    "courseNamePlaceholder": "Enter the course name",
+    "level": "Level",
+    "selectLevel": "Select the level",
+    "category": "Category",
+    "selectCategory": "Select the category",
+    "description": "Description",
+    "descriptionPlaceholder": "Enter the description",
+    "coverImage": "Cover Image",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "characters": "characters",
+    "newCourse": "New Course",
+    "createSections": "Create Sections",
+    "cancelAndReturn": "Cancel and Return",
+    "saveAsDraft": "Save as Draft",
+    "reviewCourse": "Review Course"
+  },
+  "courses" : {
+    "checkYourCourses": "Check Your Courses",
+    "newCourse": "New Course",
+    "searchCourse": "Search Course",
+    "lastAdded": "Last Added",
+    "mostOld": "Most Old",
+    "mostPopular": "Most Popular",
+    "progress": "Progress",
+    "totalCourses": "Total Courses",
+    "totalStudents": "Total Students",
+    "totalCertificates": "Total Certificates",
+    "avalation": "Avalation",
+    "activities": "Activities",
+    "hello": "Hello",
+    "hours": "Hours"
+
+
   }
 }
