@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-06T12:55:16.119Z"
+    "x-generation-date": "2025-10-06T15:00:17.671Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -6068,20 +6068,6 @@
             ],
             "type": "object",
             "properties": {
-              "courses": {
-                "type": "array",
-                "items": {
-                  "oneOf": [
-                    {
-                      "type": "integer"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ],
-                  "example": "string or id"
-                }
-              },
               "firstName": {
                 "type": "string"
               },
@@ -6154,6 +6140,20 @@
               },
               "jobDescription": {
                 "type": "string"
+              },
+              "courses": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
               },
               "locale": {
                 "type": "string"
@@ -6233,6 +6233,74 @@
             "type": "number"
           },
           "documentId": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "joinedAt": {
+            "type": "string",
+            "format": "date"
+          },
+          "verifiedAt": {
+            "type": "string",
+            "format": "date"
+          },
+          "biography": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "education": {
+            "type": "string",
+            "enum": [
+              "TODO1",
+              "TODO2",
+              "TODO3"
+            ]
+          },
+          "statusValue": {
+            "type": "string",
+            "enum": [
+              "TODO1",
+              "TODO2",
+              "TODO3"
+            ]
+          },
+          "courseExperience": {
+            "type": "string"
+          },
+          "institution": {
+            "type": "string"
+          },
+          "eduStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "eduEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "currentCompany": {
+            "type": "string"
+          },
+          "currentJobTitle": {
+            "type": "string"
+          },
+          "companyStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "companyEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "jobDescription": {
             "type": "string"
           },
           "courses": {
@@ -7485,20 +7553,6 @@
                       "documentId": {
                         "type": "string"
                       },
-                      "courses": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "number"
-                            },
-                            "documentId": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      },
                       "firstName": {
                         "type": "string"
                       },
@@ -7566,6 +7620,20 @@
                       },
                       "jobDescription": {
                         "type": "string"
+                      },
+                      "courses": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "documentId": {
+                              "type": "string"
+                            }
+                          }
+                        }
                       },
                       "createdAt": {
                         "type": "string",
@@ -7674,74 +7742,6 @@
                 }
               }
             }
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "joinedAt": {
-            "type": "string",
-            "format": "date"
-          },
-          "verifiedAt": {
-            "type": "string",
-            "format": "date"
-          },
-          "biography": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string",
-            "format": "email"
-          },
-          "education": {
-            "type": "string",
-            "enum": [
-              "TODO1",
-              "TODO2",
-              "TODO3"
-            ]
-          },
-          "statusValue": {
-            "type": "string",
-            "enum": [
-              "TODO1",
-              "TODO2",
-              "TODO3"
-            ]
-          },
-          "courseExperience": {
-            "type": "string"
-          },
-          "institution": {
-            "type": "string"
-          },
-          "eduStart": {
-            "type": "string",
-            "format": "date"
-          },
-          "eduEnd": {
-            "type": "string",
-            "format": "date"
-          },
-          "currentCompany": {
-            "type": "string"
-          },
-          "currentJobTitle": {
-            "type": "string"
-          },
-          "companyStart": {
-            "type": "string",
-            "format": "date"
-          },
-          "companyEnd": {
-            "type": "string",
-            "format": "date"
-          },
-          "jobDescription": {
-            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -9475,20 +9475,6 @@
                           "documentId": {
                             "type": "string"
                           },
-                          "courses": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          },
                           "firstName": {
                             "type": "string"
                           },
@@ -9556,6 +9542,20 @@
                           },
                           "jobDescription": {
                             "type": "string"
+                          },
+                          "courses": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            }
                           },
                           "createdAt": {
                             "type": "string",
@@ -11196,20 +11196,6 @@
                       "documentId": {
                         "type": "string"
                       },
-                      "courses": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "number"
-                            },
-                            "documentId": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      },
                       "firstName": {
                         "type": "string"
                       },
@@ -11277,6 +11263,20 @@
                       },
                       "jobDescription": {
                         "type": "string"
+                      },
+                      "courses": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "documentId": {
+                              "type": "string"
+                            }
+                          }
+                        }
                       },
                       "createdAt": {
                         "type": "string",
@@ -12640,20 +12640,6 @@
                     "documentId": {
                       "type": "string"
                     },
-                    "courses": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
                     "firstName": {
                       "type": "string"
                     },
@@ -12721,6 +12707,20 @@
                     },
                     "jobDescription": {
                       "type": "string"
+                    },
+                    "courses": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          }
+                        }
+                      }
                     },
                     "createdAt": {
                       "type": "string",
@@ -15427,20 +15427,6 @@
                     "documentId": {
                       "type": "string"
                     },
-                    "courses": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
                     "firstName": {
                       "type": "string"
                     },
@@ -15508,6 +15494,20 @@
                     },
                     "jobDescription": {
                       "type": "string"
+                    },
+                    "courses": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          }
+                        }
+                      }
                     },
                     "createdAt": {
                       "type": "string",
@@ -17303,20 +17303,6 @@
                           "documentId": {
                             "type": "string"
                           },
-                          "courses": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          },
                           "firstName": {
                             "type": "string"
                           },
@@ -17384,6 +17370,20 @@
                           },
                           "jobDescription": {
                             "type": "string"
+                          },
+                          "courses": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            }
                           },
                           "createdAt": {
                             "type": "string",
