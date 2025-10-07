@@ -28,11 +28,11 @@ export const CourseCard = ({ course }: { course: Course }) => {
   return (
     <Card>
       <CardHeader className="w-full max-w-sm flex flex-col justify-between h-full">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 text-[#28363E]">
           <svg width="20" height="18" viewBox="0 0 20 18" fill="none">
             <path
               d="M20 18H0V0H2V16H4V14H8V16H10V13H14V16H16V14H20V18ZM16 11H20V13H16V11ZM10 3H14V6H10V3ZM14 12H10V7H14V12ZM4 7H8V9H4V7ZM8 13H4V10H8V13Z"
-              fill="#383838"
+              fill="currentColor"
             />
           </svg>
           <CardTitle>
