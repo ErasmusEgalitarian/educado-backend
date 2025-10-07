@@ -40,7 +40,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
               (course.title.length > maxTitleLength ? "..." : "")}
           </CardTitle>
         </div>
-        <div className="w-9/10 border-t border-[#C1CFD7] my-2 mx-auto"></div>
+        <div className="w-full border-t border-[#C1CFD7] my-2 mx-auto"></div>
       </CardHeader>
       <CardContent>
         <div className="flex items-center justify-between">
