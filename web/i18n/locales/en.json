@@ -62,6 +62,7 @@
     "reviewCourse": "Review Course"
   },
   "courses": {
+    "pageTitle": "Courses list",
     "checkYourCourses": "Check Your Courses",
     "newCourse": "New Course",
     "searchCourse": "Search Course",

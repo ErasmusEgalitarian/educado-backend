@@ -11,7 +11,7 @@ export const PageContainer = ({
   children: ReactNode;
   title: string;
 }) => {
-  useDocumentTitle(title);
+  useDocumentTitle("Educado: " + title);
 
   return (
     <div className="min-h-screen">

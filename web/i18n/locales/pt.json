@@ -83,6 +83,7 @@
     "reviewCourse": "Revisar Curso"
   },
   "courses": {
+    "pageTitle": "Lista de Cursos",
     "checkYourCourses": "Confira seus cursos",
     "newCourse": "Novo Curso",
     "searchCourse": "Buscar Curso",

@@ -19,7 +19,7 @@ const CourseOverviewPage = () => {
   );
 
   return (
-    <PageContainer title={t("courseOverviewPage.title")}>
+    <PageContainer title={t("courses.pageTitle")}>
       <DataDisplay
         urlPath="/courses"
         columns={courseColumns}
@@ -30,8 +30,8 @@ const CourseOverviewPage = () => {
         populate={["course_categories"]}
         initialPageSize={20}
         config={{
-          overrideRenderMode: "client",
-          overrideClientModeThreshold: 50,
+          renderMode: "client",
+          clientModeThreshold: 50,
         }}
       />
     </PageContainer>
