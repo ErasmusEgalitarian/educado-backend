@@ -1,4 +1,5 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { ToastContainer } from "react-toastify";
@@ -26,6 +27,7 @@ if (rootElement && rootElement.innerHTML === "") {
           <Toaster position="top-right" richColors={true} />
           <App />
         </NotificationProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </StrictMode>
   );

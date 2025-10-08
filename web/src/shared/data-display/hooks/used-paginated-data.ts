@@ -7,68 +7,132 @@ import {
 import {
     SortingState,
     ColumnFiltersState,
-    OnChangeFn,
     PaginationState,
+    OnChangeFn,
 } from "@tanstack/react-table";
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 
-import { ExtendedPagination, RenderMode, ResolvedRenderMode, ServerRequestParams } from "../types/data-display-types";
+import { OpenAPI } from "@/shared/api";
+import { fetchHeaders } from "@/shared/config/api-config";
+
+import { buildApiQueryParams } from "../lib/query-params-builder";
 import { PaginatedData } from "../types/paginated-data";
 
-// Function to convert request parameters to URLSearchParams for Strapi
-export const buildApiQueryParams = (
-    params: Partial<ServerRequestParams>,
-    fields?: string[],
-    populate?: string | string[],
-): URLSearchParams => {
-    const searchParams = new URLSearchParams();
+/* ----------------------------- Exported types ----------------------------- */
 
-    // Strapi uses 1-based page indexing
-    const pageIndex = params.pageIndex ?? 0;
-    searchParams.set("pagination[page]", String(pageIndex + 1));
-    searchParams.set("pagination[pageSize]", String(params.pageSize ?? 10));
-
-    if (params.sorting !== undefined && params.sorting.length > 0) {
-        const sortField = params.sorting[0].id;
-        const sortOrder = params.sorting[0].desc ? "desc" : "asc";
-        searchParams.set("sort", `${sortField}:${sortOrder}`);
-    }
-
-    // Add fields selection if provided
-    if (fields !== undefined && fields.length > 0) {
-        fields.forEach(field => {
-            searchParams.append("fields", field);
-        });
-    }
-
-    // Add populate if provided
-    if (populate !== undefined) {
-        if (typeof populate === "string") {
-            searchParams.set("populate", populate);
-        } else if (Array.isArray(populate) && populate.length > 0) {
-            populate.forEach(pop => {
-                searchParams.append("populate", pop);
-            });
-        }
-    }
-
-    return searchParams;
-};
-
-interface UsePaginatedDataConfig {
-    overrideRenderMode?: RenderMode;
-    overrideClientModeThreshold?: number;
+export type RenderMode = "auto" | "client" | "server";
+export type ResolvedRenderMode = "client" | "server";
+export interface ExtendedPagination extends PaginationState {
+    totalItems: number;
+    filteredTotalItems?: number;
+    totalPages: number;
 }
 
-interface UsePaginatedDataProps {
+export interface ServerRequestParams extends PaginationState {
+    sorting?: SortingState;
+    columnFilters?: ColumnFiltersState;
+    globalFilter?: string;
+}
+
+/* ------------------------------- Hook types ------------------------------- */
+
+// Common base props for all usage modes
+interface BaseUsePaginatedDataProps {
+    /** Unique key for React Query caching. Defaults to urlPath if not provided. */
     queryKey?: string | readonly unknown[];
-    baseUrl: string;
-    config?: UsePaginatedDataConfig;
-    initialPageSize?: number;
-    externalSorting?: SortingState;
-    externalColumnFilters?: ColumnFiltersState;
+    /** API endpoint path (relative to BASE_URL) */
+    urlPath: string;
+    /** Strapi fields to select */
     fields?: string[];
+    /** Strapi populate configuration for relations */
     populate?: string | string[];
+}
+
+// Mode configuration
+export interface UsePaginatedDataConfig {
+    /** 
+     * Render mode determines where data processing happens:
+     * - "auto": Automatically choose based on data size (default threshold: 1000 items)
+     * - "client": Fetch all data once, handle sorting/filtering/pagination in browser
+     * - "server": Server-side pagination, sorting, and filtering (best for large datasets)
+     */
+    renderMode?: RenderMode;
+    /** Threshold for auto mode. If total items <= threshold, use client mode. Default: 1000 */
+    clientModeThreshold?: number;
+}
+
+/**
+ * INTEGRATED MODE (with TanStack Table)
+ * Use this when the hook is integrated with a TanStack Table instance.
+ * The parent component (e.g., DataDisplay) manages all table state.
+ * 
+ * @example
+ * ```tsx
+ * const table = useReactTable({ ... });
+ * const { data, extendedPagination } = usePaginatedData({
+ *   urlPath: '/courses',
+ *   mode: 'integrated',
+ *   tableState: {
+ *     pagination: table.getState().pagination,
+ *     sorting: table.getState().sorting,
+ *     columnFilters: table.getState().columnFilters,
+ *     globalFilter: table.getState().globalFilter,
+ *   }
+ * });
+ * ```
+ */
+interface IntegratedModeProps extends BaseUsePaginatedDataProps {
+    mode: 'integrated';
+    /** TanStack Table state - all required for integrated mode */
+    tableState: {
+        pagination: PaginationState;
+        sorting: SortingState;
+        columnFilters: ColumnFiltersState;
+        globalFilter: string;
+    };
+    config?: UsePaginatedDataConfig;
+}
+
+/**
+ * STANDALONE MODE (independent usage)
+ * Use this for simpler use cases like dropdowns, lists, or components without full table functionality.
+ * The hook manages its own pagination state internally.
+ * 
+ * Typically used with client mode to fetch all items at once.
+ * 
+ * @example
+ * ```tsx
+ * // Simple dropdown - fetch all users
+ * const { data, isLoading } = usePaginatedData({
+ *   urlPath: '/users',
+ *   mode: 'standalone',
+ *   config: { renderMode: 'client' } // Fetch all at once
+ * });
+ * 
+ * // Paginated list with manual controls
+ * const { data, extendedPagination, setPagination } = usePaginatedData({
+ *   urlPath: '/users',
+ *   mode: 'standalone',
+ *   initialPageSize: 25,
+ *   config: { renderMode: 'server' } // Server-side pagination
+ * });
+ * ```
+ */
+interface StandaloneModeProps extends BaseUsePaginatedDataProps {
+    mode: 'standalone';
+    /** Initial page size for internal pagination. Default: 10 */
+    initialPageSize?: number;
+    config?: UsePaginatedDataConfig;
+}
+
+// Discriminated union for type-safe props
+export type UsePaginatedDataProps = IntegratedModeProps | StandaloneModeProps;
+
+// Legacy interface kept for backward compatibility (deprecated)
+/** @deprecated Use discriminated union with 'mode' property instead */
+export interface LegacyUsePaginatedDataConfig {
+    overrideRenderMode?: RenderMode;
+    overrideClientModeThreshold?: number;
 }
 
 interface UsePaginatedDataReturn<T> {
@@ -77,45 +141,62 @@ interface UsePaginatedDataReturn<T> {
     isFetching: boolean; // True for any subsequent fetch
     error: Error | null;
     extendedPagination: ExtendedPagination;
-    setPagination: OnChangeFn<PaginationState>;
+    setPagination: OnChangeFn<PaginationState>; // For uncontrolled mode
     refetch: () => Promise<QueryObserverResult<PaginatedData<T>>>;
     resolvedMode: ResolvedRenderMode | null;
 }
 
-export default function usePaginatedData<T>({
-    queryKey,
-    baseUrl,
-    config,
-    initialPageSize = 10,
-    externalSorting = [],
-    externalColumnFilters = [],
-    fields,
-    populate,
-}: UsePaginatedDataProps): UsePaginatedDataReturn<T> {
-    const { overrideRenderMode, overrideClientModeThreshold } = config ?? {};
+/* ----------------------------- The hook itself ---------------------------- */
 
-    const [pagination, setPagination] = useState<PaginationState>({
+export default function usePaginatedData<T>(
+    props: UsePaginatedDataProps
+): UsePaginatedDataReturn<T> {
+    const { queryKey, urlPath, fields, populate, config } = props;
+
+    // Extract mode-specific props
+    const isIntegratedMode = props.mode === 'integrated';
+    const tableState = isIntegratedMode ? props.tableState : undefined;
+    const initialPageSize = !isIntegratedMode ? (props.initialPageSize ?? 10) : 10;
+
+    // Construct the full base URL for API requests
+    const baseUrl = OpenAPI.BASE + urlPath;
+    console.debug("usePaginatedData: Using baseUrl:", baseUrl);
+
+    const { renderMode, clientModeThreshold } = config ?? {};
+
+    // Internal state for STANDALONE mode only
+    const [internalPagination, setInternalPagination] = useState<PaginationState>({
         pageIndex: 0,
         pageSize: initialPageSize,
     });
 
+    // Use external state if integrated mode, otherwise use internal state
+    const pagination = isIntegratedMode ? tableState!.pagination : internalPagination;
+    const sorting = isIntegratedMode ? tableState!.sorting : [];
+    const columnFilters = isIntegratedMode ? tableState!.columnFilters : [];
+    const globalFilter = isIntegratedMode ? tableState!.globalFilter : "";
+
     // --- Mode Resolution ---
-    const effectiveMode = overrideRenderMode ?? "auto";
-    const effectiveClientModeThreshold =
-        overrideClientModeThreshold ?? 1000;
+    const effectiveMode = renderMode ?? "auto";
+    console.debug("usePaginatedData: Effective mode:", effectiveMode);
+    const effectiveClientModeThreshold = clientModeThreshold ?? 1000;
 
     // 1. DETECTION QUERY: Runs only in "auto" mode to determine the total number of items.
     const detectionQuery = useQuery({
         queryKey: [queryKey ?? baseUrl, "detect", fields, populate],
         queryFn: async ({ signal }) => {
             console.debug("usePaginatedData: Auto-detecting mode...");
+
+            // Fetch just one item to get the total count from Strapi's pagination meta
+            // NOTE: Detection ignores globalFilter - we want total item count, not filtered count
             const params = buildApiQueryParams(
-                { pageIndex: 0, pageSize: 1 },
+                { pageIndex: 0, pageSize: 1, globalFilter: undefined },
                 fields,
                 populate,
             );
             const response = await fetch(`${baseUrl}?${params.toString()}`, {
                 signal,
+                headers: fetchHeaders(),
             });
             if (!response.ok) {
                 throw new Error(`Detection request failed: ${response.statusText}`);
@@ -123,24 +204,28 @@ export default function usePaginatedData<T>({
             // We only need the total from Strapi's meta.pagination
             return response.json() as Promise<PaginatedData<T>>;
         },
-        enabled: effectiveMode === "auto",
+        enabled: effectiveMode === "auto" && renderMode === undefined, // Only run in auto mode when no override
         staleTime: 1000 * 60 * 5, // Cache the total count for 5 minutes
         retry: 1, // Don't retry detection failures aggressively
     });
 
     // Determine the final, resolved mode.
     const resolvedMode = useMemo<ResolvedRenderMode | null>(() => {
-        if (effectiveMode !== "auto") {
-            return effectiveMode;
+        // If override is set, use it immediately (don't wait for detection)
+        if (renderMode !== undefined && renderMode !== "auto") {
+            console.debug(`usePaginatedData: Using explicit render mode: ${renderMode}`);
+            return renderMode;
         }
+
+        // In auto mode, wait for detection to complete
         if (detectionQuery.isSuccess) {
-            const total = detectionQuery.data.meta.pagination.total;
+            const totalElements = detectionQuery.data.meta.pagination.total;
             const newMode =
-                total <= effectiveClientModeThreshold
+                totalElements <= effectiveClientModeThreshold
                     ? "client"
                     : "server";
             console.debug(
-                `usePaginatedData: Auto-detected mode: ${newMode} (Total: ${String(total)})`,
+                `usePaginatedData: Auto-detected mode: ${newMode} (Total: ${String(totalElements)}, Threshold: ${String(effectiveClientModeThreshold)})`,
             );
             return newMode;
         }
@@ -153,7 +238,7 @@ export default function usePaginatedData<T>({
         }
         return null; // Still detecting
     }, [
-        effectiveMode,
+        renderMode,
         detectionQuery.isSuccess,
         detectionQuery.isError,
         detectionQuery.data,
@@ -165,25 +250,41 @@ export default function usePaginatedData<T>({
     const mainQuery = useQuery({
         // The query key is crucial for caching. It changes based on the mode.
         queryKey: [
-            queryKey ?? baseUrl,
+            queryKey ?? baseUrl, // Default to URL if no key provided. Makes it more difficult to invalidate cache without.
             resolvedMode, // 'client' or 'server'
-            fields,
-            populate,
-            // For server mode, these dependencies trigger a refetch.
+            fields, // What to fetch from Strapi
+            populate, // What relations to populate
+            // For server mode, include pagination, sorting, and filtering in the key
+            // For client mode, pageSize doesn't matter (we fetch all), so exclude it
             ...(resolvedMode === "server"
-                ? [pagination, externalSorting, externalColumnFilters]
-                : []),
+                ? [
+                    { pageIndex: pagination.pageIndex, pageSize: pagination.pageSize },
+                    sorting,
+                    columnFilters,
+                    globalFilter,
+                ]
+                : []), // Client mode fetches all data once, no need for pagination in key
         ],
+        // The query function fetches data based on the current mode and state
         queryFn: async ({ signal }) => {
+            console.debug(`usePaginatedData: Fetching data in ${String(resolvedMode)} mode`, {
+                pageIndex: pagination.pageIndex,
+                pageSize: pagination.pageSize,
+                globalFilter,
+            });
             let params: URLSearchParams;
+
+            // Handle client vs server mode fetching
             if (resolvedMode === "client") {
                 // In client mode, fetch ALL data. The total is known from the detection query.
+                // Exclude sorting/filtering as they are client-side only.
                 const sizeToFetch =
                     detectionQuery.data?.meta.pagination.total ?? effectiveClientModeThreshold;
                 params = buildApiQueryParams(
                     {
                         pageIndex: 0,
                         pageSize: sizeToFetch,
+                        globalFilter: undefined, // client mode fetches all
                     },
                     fields,
                     populate,
@@ -194,8 +295,9 @@ export default function usePaginatedData<T>({
                     {
                         pageIndex: pagination.pageIndex,
                         pageSize: pagination.pageSize,
-                        sorting: externalSorting,
-                        columnFilters: externalColumnFilters,
+                        sorting,
+                        columnFilters,
+                        globalFilter: globalFilter !== "" ? globalFilter : undefined,
                     },
                     fields,
                     populate,
@@ -203,6 +305,7 @@ export default function usePaginatedData<T>({
             }
             const response = await fetch(`${baseUrl}?${params.toString()}`, {
                 signal,
+                headers: fetchHeaders(),
             });
             if (!response.ok) {
                 throw new Error(`Data request failed: ${response.statusText}`);
@@ -211,52 +314,67 @@ export default function usePaginatedData<T>({
         },
         enabled: resolvedMode !== null, // Only run this query once the mode is resolved.
         placeholderData: keepPreviousData, // Shows old data while fetching new, preventing UI flicker.
+        staleTime: 1000 * 60, // Cache data for 60 seconds - allows toggling sort/filters without refetch
     });
 
-    // --- Pagination Reset Logic ---
-    const prevSortString = useRef(JSON.stringify(externalSorting));
-    const prevFilterString = useRef(JSON.stringify(externalColumnFilters));
+    // --- Pagination Reset Logic (for STANDALONE mode only) ---
+    // In integrated mode, parent (DataDisplay with useReactTable) handles resets
+    const prevSortString = useRef(JSON.stringify(sorting));
+    const prevFilterString = useRef(JSON.stringify(columnFilters));
+    const prevGlobalFilter = useRef(globalFilter);
 
     useEffect(() => {
-        const currentSortString = JSON.stringify(externalSorting);
-        const currentFilterString = JSON.stringify(externalColumnFilters);
+        // Skip reset logic if integrated mode (parent manages it)
+        if (isIntegratedMode) return;
+
+        const currentSortString = JSON.stringify(sorting);
+        const currentFilterString = JSON.stringify(columnFilters);
 
         if (
             prevSortString.current !== currentSortString ||
-            prevFilterString.current !== currentFilterString
+            prevFilterString.current !== currentFilterString ||
+            prevGlobalFilter.current !== globalFilter
         ) {
+            // Reset to page 0 when filters/sorting change
             if (pagination.pageIndex !== 0) {
-                console.debug("dataTable",
-                    "usePaginatedData: Sorting/filtering changed, resetting to page 0.",
+                console.debug(
+                    "usePaginatedData: Sorting/filtering changed in standalone mode, resetting to page 0.",
                 );
-                setPagination((p) => ({ ...p, pageIndex: 0 }));
+                setInternalPagination((p) => ({ ...p, pageIndex: 0 }));
             }
         }
+
+        // Update refs for next comparison
         prevSortString.current = currentSortString;
         prevFilterString.current = currentFilterString;
-    }, [externalSorting, externalColumnFilters, pagination.pageIndex]);
+        prevGlobalFilter.current = globalFilter;
+    }, [sorting, columnFilters, globalFilter, pagination.pageIndex, isIntegratedMode]);
 
-    // --- Exposed Setters and Refetch ---
+    // --- Exposed Setters ---
     const setPaginationCallback: OnChangeFn<PaginationState> = useCallback(
         (updater) => {
-            setPagination((prev) => {
-                const newPaginationState =
-                    typeof updater === "function" ? updater(prev) : updater;
+            // In integrated mode, this is a no-op (parent should manage state)
+            // In standalone mode, update internal state
+            if (!isIntegratedMode) {
+                setInternalPagination((prev) => {
+                    const newPaginationState =
+                        typeof updater === "function" ? updater(prev) : updater;
 
-                // If page size changes, always reset to the first page.
-                if (newPaginationState.pageSize !== prev.pageSize) {
-                    console.debug(
-                        `Page size changed to ${String(newPaginationState.pageSize)}. Resetting to page 0.`,
-                    );
-                    return {
-                        pageSize: newPaginationState.pageSize,
-                        pageIndex: 0,
-                    };
-                }
-                return newPaginationState;
-            });
+                    // If page size changes, always reset to the first page.
+                    if (newPaginationState.pageSize !== prev.pageSize) {
+                        console.debug(
+                            `Page size changed to ${String(newPaginationState.pageSize)}. Resetting to page 0.`,
+                        );
+                        return {
+                            pageSize: newPaginationState.pageSize,
+                            pageIndex: 0,
+                        };
+                    }
+                    return newPaginationState;
+                });
+            }
         },
-        [],
+        [isIntegratedMode],
     );
 
     // Construct the extended pagination object from the query result and local state.

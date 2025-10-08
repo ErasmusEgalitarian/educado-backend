@@ -1,62 +1,47 @@
-"use client";
+import { type Table as ReactTableType } from "@tanstack/react-table";
 
 import {
-  getCoreRowModel,
-  getSortedRowModel,
-  useReactTable,
-  type ColumnDef,
-  type ColumnFiltersState,
-  type SortingState,
-  type VisibilityState,
-} from "@tanstack/react-table";
-import { useState } from "react";
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/shared/components/shadcn/table";
 
-import DataTableBase from "./data-table-base";
+import DataTableHeaderCell from "./data-table-header-cell";
+import DataTableRows from "./data-table-rows";
 
-import type { DataDisplayItem } from "./types/data-display-types";
+import type { DataDisplayItem } from "./data-display";
 
-interface DataTableProps<T extends DataDisplayItem> {
-  data: T[];
-  columns: ColumnDef<T>[];
-  isLoading?: boolean;
+interface DataTableProps<TData extends DataDisplayItem> {
+  table: ReactTableType<TData>;
+  isLoading: boolean;
   className?: string;
 }
 
-const DataTable = <T extends DataDisplayItem>({
-  data,
-  columns,
+const DataTable = <TData extends DataDisplayItem>({
+  table,
   isLoading,
   className,
-}: Readonly<DataTableProps<T>>) => {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-
-  // Create the table instance using TanStack Table
-  // For now, we'll use client-side mode (server mode can be added later)
-  const table = useReactTable({
-    data,
-    columns,
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-    },
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onColumnVisibilityChange: setColumnVisibility,
-    // For now, let TanStack handle everything client-side
-    // Later we can add manualSorting/manualFiltering based on renderMode
-    manualSorting: false,
-    manualFiltering: false,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    // Note: Filtering will be added later
-  });
-
+}: Readonly<DataTableProps<TData>>) => {
   return (
-    <div className={className}>
-      <DataTableBase table={table} isLoading={isLoading ?? false} />
+    <div className={`rounded-md border ${className ?? ""}`}>
+      <Table>
+        <TableHeader>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <TableHead key={header.id}>
+                  <DataTableHeaderCell header={header} table={table} />
+                </TableHead>
+              ))}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          <DataTableRows table={table} isLoading={isLoading} />
+        </TableBody>
+      </Table>
     </div>
   );
 };

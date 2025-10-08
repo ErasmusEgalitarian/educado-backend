@@ -3,11 +3,10 @@ import {
   type Row,
   type Table as ReactTableType,
 } from "@tanstack/react-table";
-import { memo } from "react";
 
 import { TableRow, TableCell } from "@/shared/components/shadcn/table";
 
-import type { DataDisplayItem } from "./types/data-display-types";
+import { DataDisplayItem } from "./data-display";
 
 interface DataTableRowsProps<TData extends DataDisplayItem> {
   table: ReactTableType<TData>;
@@ -21,17 +20,11 @@ const DataTableRows = <TData extends DataDisplayItem>({
   const rows = table.getRowModel().rows;
   const columnsLength = table.getAllLeafColumns().length;
 
-  const hasRows = rows.length > 0;
-
   if (isLoading) {
     return <SkeletonRows columnsLength={columnsLength} rowsCount={10} />;
   }
 
-  if (!hasRows) {
-    return <NoResultsRow columnsLength={columnsLength} />;
-  }
-
-  return <TableRowsComponent rows={rows} />;
+  return <TableRowsBase rows={rows} />;
 };
 
 // ————————————————
@@ -58,24 +51,6 @@ const SkeletonRows = ({
   </>
 );
 
-const NoResultsRow = ({ columnsLength }: { columnsLength: number }) => (
-  <TableRow>
-    <TableCell colSpan={columnsLength} className="h-24 text-center">
-      <div className="flex justify-center items-center h-32">
-        <div>
-          <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-            Nothing to see here...
-          </h3>
-          <p>
-            There is nothing to show here... yet. Submit some entries to get
-            started.
-          </p>
-        </div>
-      </div>
-    </TableCell>
-  </TableRow>
-);
-
 const TableRowsBase = <TData extends DataDisplayItem>({
   rows,
 }: {
@@ -93,7 +68,5 @@ const TableRowsBase = <TData extends DataDisplayItem>({
     ))}
   </>
 );
-
-const TableRowsComponent = memo(TableRowsBase) as typeof TableRowsBase;
 
 export default DataTableRows;

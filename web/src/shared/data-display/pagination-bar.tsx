@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/shared/components/shadcn/button";
 import {
@@ -19,57 +19,18 @@ import {
 } from "@/shared/components/shadcn/select";
 import type { PaginationState } from "@tanstack/react-table";
 
-import type { ExtendedPagination } from "./types/data-display-types";
+import { ViewMode } from "./data-display";
+import { ExtendedPagination } from "./hooks/used-paginated-data";
+import { calculatePages, PageElement } from "./lib/calculate-pages";
 
 interface PaginationBarProperties {
   pagination: ExtendedPagination;
   onChange: (pagination: PaginationState) => void;
+  viewMode: ViewMode;
   pageSizePresets?: number[];
-  totalItemsPreFiltered?: number; // Optional prop for total items before filtering.
+  totalItemsPreFiltered?: number; // Total items before filtering for client-mode (for "X of Y (filtered) of Z" display)
   header?: React.ReactNode; // Optional header for additional context.
 }
-
-type PageElement = number | "...";
-
-const calculatePageNumbers = (
-  currentPage: number,
-  totalPages: number
-): PageElement[] => {
-  const maxPageNumbersToShow = 7;
-  let pages: PageElement[];
-
-  if (totalPages <= maxPageNumbersToShow) {
-    pages = Array.from<number>({ length: totalPages }).map((_, index) => index);
-  } else {
-    pages = Array.from<PageElement>({ length: maxPageNumbersToShow }).fill(0);
-    pages[0] = 0;
-    pages[maxPageNumbersToShow - 1] = totalPages - 1;
-
-    if (currentPage <= 3) {
-      for (let index = 1; index < maxPageNumbersToShow - 2; index++) {
-        pages[index] = index;
-      }
-      pages[maxPageNumbersToShow - 2] = "...";
-    } else if (currentPage >= totalPages - 4) {
-      pages[1] = "...";
-      for (
-        let index = 2, index_ = totalPages - 5;
-        index < maxPageNumbersToShow - 1;
-        index++, index_++
-      ) {
-        pages[index] = index_;
-      }
-    } else {
-      pages[1] = "...";
-      pages[maxPageNumbersToShow - 2] = "...";
-      pages[2] = currentPage - 1;
-      pages[3] = currentPage;
-      pages[4] = currentPage + 1;
-    }
-  }
-
-  return pages;
-};
 
 const pagePresets = [10, 25, 50, 100, 250, 500, 1000];
 
@@ -80,24 +41,21 @@ const scrollToTop = () => {
 export const PaginationBar: React.FC<PaginationBarProperties> = ({
   pagination,
   onChange,
+  viewMode,
   pageSizePresets = pagePresets,
-  totalItemsPreFiltered = 0, // 0 means no filtering applied
+  totalItemsPreFiltered = 0, // Total items before filtering
   header,
 }) => {
   const { pageIndex, pageSize, totalItems, totalPages } = pagination;
-  const adjustedPageSizes = pageSizePresets.filter(
-    (size) => size <= totalItems || size === totalItems
-  );
-  const isTotalItemsPreset = pageSizePresets.includes(totalItems);
+  const { t } = useTranslation();
+  // Always show standard page size options, regardless of current total
+  // Only filter when we have a massive dataset to avoid showing irrelevant large sizes
+  const adjustedPageSizes =
+    totalItems > 1000
+      ? pageSizePresets.filter((size) => size <= totalItems)
+      : pageSizePresets;
 
-  if (
-    totalItems < pageSizePresets[0] &&
-    totalItems > 0 &&
-    pageSize !== totalItems
-  ) {
-    // Force page size to all items when fewer than the smallest preset
-    onChange({ pageIndex: 0, pageSize: totalItems });
-  }
+  const isTotalItemsPreset = pageSizePresets.includes(totalItems);
 
   // --- State and Effects ---
   const [pageNumbers, setPageNumbers] = useState<PageElement[]>([]);
@@ -105,7 +63,7 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
 
   useEffect(() => {
     if (totalPages > 0) {
-      setPageNumbers(calculatePageNumbers(pageIndex, totalPages));
+      setPageNumbers(calculatePages(pageIndex, totalPages));
     } else {
       setPageNumbers([]);
     }
@@ -141,26 +99,30 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
   const canGoBack = pageIndex > 0;
   const canGoForward = pageIndex < totalPages - 1;
 
-  const activeClass = "bg-primary text-primary-foreground";
-
+  const activeClass =
+    "bg-primary-surface-default text-greyscale-text-negative hover:bg-primary-surface-lighter hover:text-greyscale-text-caption focus-visible:ring-primary-border-subtle";
   const totalItemsDisplay = () => {
     const bold = (value: React.ReactNode) => (
       <span style={{ fontWeight: "bold" }}>{value}</span>
     );
 
+    // Show "X-Y of Z (filtered) of W" when filtering is active
     if (totalItemsPreFiltered !== 0 && totalItemsPreFiltered !== totalItems) {
       return (
         <>
           {bold(itemRange.first)}-{bold(itemRange.last)}{" "}
-          <span className="text-muted-foreground"> of </span>
-          {bold(pagination.totalItems)} <span> (filtered) </span> of{" "}
-          {bold(totalItemsPreFiltered)}
+          <span className="text-muted-foreground"> {t("pagination.of")} </span>
+          {bold(totalItems)} <span> ({t("pagination.filtered")}) </span>{" "}
+          {t("pagination.of")} {bold(totalItemsPreFiltered)}
         </>
       );
     }
+
+    // Default: show "X-Y of Z"
     return (
       <>
-        {bold(itemRange.first)}-{bold(itemRange.last)} of {bold(totalItems)}
+        {bold(itemRange.first)}-{bold(itemRange.last)} {t("pagination.of")}{" "}
+        {bold(totalItems)}
       </>
     );
   };
@@ -171,19 +133,24 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
       <div className="flex w-full items-center justify-between px-4 py-3">
         {/* LEFT SECTION: Item Count */}
         <div className="text-sm text-muted-foreground">
-          {totalItemsDisplay()} items
+          {totalItemsDisplay()} {t("pagination.items")}
         </div>
 
         {/* RIGHT SECTION: All Controls */}
         <div className="flex items-center gap-x-6 lg:gap-x-8">
           <div className="flex items-center gap-x-2">
-            <p className="text-sm font-medium">Rows per page</p>
+            <p className="text-sm font-medium">
+              {viewMode === "table"
+                ? t("pagination.rows")
+                : t("pagination.items")}{" "}
+              {t("pagination.perPage")}
+            </p>
             <Select
               value={String(pageSize)}
               onValueChange={handlePageSizeChange}
             >
-              <SelectTrigger className="h-8">
-                <SelectValue placeholder={pageSize} />
+              <SelectTrigger className="h-8 w-20">
+                <SelectValue>{pageSize}</SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {adjustedPageSizes.map((size) => (
@@ -191,7 +158,7 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
                     {size}
                   </SelectItem>
                 ))}
-                {!isTotalItemsPreset && (
+                {!isTotalItemsPreset && totalItems > 0 && (
                   <SelectItem value={String(totalItems)}>
                     All ({totalItems})
                   </SelectItem>

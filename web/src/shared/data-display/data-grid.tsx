@@ -1,13 +1,40 @@
-"use client";
-
 import { Card, CardContent } from "@/shared/components/shadcn/card";
 import { cn } from "@/shared/lib/utils";
 
-import type {
-  DataGridProps,
-  DataDisplayItem,
-} from "./types/data-display-types";
+import { DataDisplayItem } from "./data-display";
 
+export interface DataGridProps<T extends DataDisplayItem> {
+  data: T[];
+  gridItemRender?: (item: T) => React.ReactNode;
+  isLoading?: boolean;
+  className?: string;
+}
+
+/**
+ * A generic grid component that displays data items in a responsive grid layout.
+ *
+ * @template T - The type of data items to display, must extend DataDisplayItem
+ *
+ * @param {Readonly<DataGridProps<T>>} props - The component props
+ * @param {T[]} props.data - Array of data items to display in the grid
+ * @param {(item: T) => React.ReactNode} props.gridItemRender - Function to render each grid item
+ * @param {boolean} [props.isLoading] - Whether the grid is in a loading state
+ * @param {string} [props.className] - Additional CSS classes to apply to the grid container
+ *
+ * @returns {JSX.Element} A responsive grid with 1-4 columns based on screen size
+ *
+ * @throws {Error} When gridItemRender is not provided and isLoading is false
+ *
+ * @example
+ * ```tsx
+ * <DataGrid
+ *   data={users}
+ *   gridItemRender={(user) => <UserCard user={user} />}
+ *   isLoading={false}
+ *   className="my-custom-class"
+ * />
+ * ```
+ */
 const DataGrid = <T extends DataDisplayItem>({
   data,
   gridItemRender,
@@ -29,7 +56,7 @@ const DataGrid = <T extends DataDisplayItem>({
     </Card>
   );
 
-  if (isLoading) {
+  if (isLoading === true) {
     return (
       <div
         className={cn(
@@ -60,7 +87,7 @@ const DataGrid = <T extends DataDisplayItem>({
       )}
     >
       {data.map((item) => (
-        <div key={item.id}>{gridItemRender(item)}</div>
+        <div key={item.documentId}>{gridItemRender(item)}</div>
       ))}
     </div>
   );

@@ -1,51 +1,232 @@
+import {
+  ColumnDef,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+  type ColumnFiltersState,
+  type SortingState,
+  type VisibilityState,
+  type PaginationState,
+} from "@tanstack/react-table";
 import { useState } from "react";
 
+import DataDisplayEmptyState from "./data-display-empty-state";
 import DataDisplayToolbar from "./data-display-toolbar";
 import DataGrid from "./data-grid";
 import DataTable from "./data-table";
 import usePaginatedData from "./hooks/used-paginated-data";
+import { getDefaultColumnVisibility } from "./lib/visibility-utility";
 import PaginationBar from "./pagination-bar";
 
-import type {
-  DataDisplayProps,
-  DataDisplayItem,
-  ViewMode,
-} from "./types/data-display-types";
+import type { UsePaginatedDataConfig } from "./hooks/used-paginated-data";
 
+/* ----------------------------- Exported types ----------------------------- */
+
+// In order to reference an object (i.e. delete, edit), we NEED an entity with the documentId field. This is what Strapi accept for requests.
+export interface DataDisplayItem {
+  documentId: string;
+  [key: string]: unknown; // We dont care about the other fields for this, this will be inferred by T.
+}
+
+export type ViewMode = "table" | "grid";
+
+/* --------------------------- data-display types --------------------------- */
+
+// Base props that are common to all configurations
+interface BaseDataDisplayProps<T extends DataDisplayItem> {
+  queryKey?: string | readonly unknown[];
+  urlPath: string;
+  columns: ColumnDef<T>[]; // Always required for sorting/filtering
+  initialPageSize?: number;
+  fields?: string[];
+  populate?: string | string[];
+  config?: UsePaginatedDataConfig;
+  emptyState?: React.ReactNode;
+  className?: string;
+}
+
+// Discriminated union based on allowedViewModes
+type DataDisplayProps<T extends DataDisplayItem> =
+  | (BaseDataDisplayProps<T> & {
+      allowedViewModes: "table";
+      gridItemRender?: never; // Grid render not allowed for table-only mode
+    })
+  | (BaseDataDisplayProps<T> & {
+      allowedViewModes: "grid";
+      gridItemRender: (item: T) => React.ReactNode; // Required for grid-only mode
+    })
+  | (BaseDataDisplayProps<T> & {
+      allowedViewModes: "both";
+      gridItemRender: (item: T) => React.ReactNode; // Required when both modes allowed
+    });
+
+/* --------------------------- Exported component --------------------------- */
+
+/**
+ * A flexible data display component that supports table and/or grid view modes.
+ *
+ * @template T - The type of data items to display, must extend DataDisplayItem (Strapi entity with at least a documentId field)
+ *
+ * @param props - The component props
+ * @param props.queryKey - Unique key for React Query to cache and manage the data fetching
+ * @param props.urlPath - API endpoint path to fetch data from
+ * @param props.columns - Column definitions (always required for sorting/filtering)
+ * @param props.allowedViewModes - Which view mode(s) to allow: "table", "grid", or "both"
+ * @param props.gridItemRender - Render function for grid items (required when allowedViewModes is "grid" or "both")
+ * @param props.emptyState - Custom component to display when no data is available
+ * @param props.className - Additional CSS classes to apply to the container
+ * @param props.initialPageSize - Number of items per page (default: 20)
+ * @param props.fields - Strapi fields to select in the query
+ * @param props.populate - Strapi population configuration for related data
+ * @param props.config - Additional configuration for data fetching (render mode, threshold)
+ *
+ * @returns A data display component with pagination, search, and view mode switching
+ *
+ * @example
+ * // Table only
+ * <DataDisplay
+ *   queryKey={['courses']}
+ *   urlPath="/courses"
+ *   columns={courseColumns}
+ *   allowedViewModes="table"
+ * />
+ *
+ * @example
+ * // Grid only
+ * <DataDisplay
+ *   queryKey={['courses']}
+ *   urlPath="/courses"
+ *   columns={courseColumns}
+ *   allowedViewModes="grid"
+ *   gridItemRender={(course) => <CourseCard course={course} />}
+ * />
+ *
+ * @example
+ * // Both modes with switcher
+ * <DataDisplay
+ *   queryKey={['courses']}
+ *   urlPath="/courses"
+ *   columns={courseColumns}
+ *   allowedViewModes="both"
+ *   gridItemRender={(course) => <CourseCard course={course} />}
+ *   initialPageSize={20}
+ * />
+ */
 export const DataDisplay = <T extends DataDisplayItem>({
   queryKey,
-  baseUrl,
+  urlPath,
   columns,
   gridItemRender,
+  allowedViewModes,
   emptyState,
   className,
-  initialPageSize = 10,
+  initialPageSize = 20,
   fields,
   populate,
   config,
 }: DataDisplayProps<T>) => {
-  const [viewMode, setViewMode] = useState<ViewMode>("grid");
-  const [searchValue, setSearchValue] = useState("");
+  const hasTable = allowedViewModes === "table" || allowedViewModes === "both";
+  const hasGrid = allowedViewModes === "grid" || allowedViewModes === "both";
 
-  // Use the Strapi-compatible usePaginatedData hook
-  const { data, isLoading, error, extendedPagination, setPagination } =
+  // Determine initial view mode based on allowed modes
+  const getInitialViewMode = (): ViewMode => {
+    if (allowedViewModes === "table") return "table";
+    if (allowedViewModes === "grid") return "grid";
+    return "grid"; // Default to grid when both are allowed
+  };
+
+  const [viewMode, setViewMode] = useState<ViewMode>(getInitialViewMode());
+
+  // TanStack Table state
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [globalFilter, setGlobalFilter] = useState("");
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
+    getDefaultColumnVisibility(columns)
+  );
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: initialPageSize,
+  });
+
+  // Fetch data with integrated mode
+  const { data, isLoading, error, extendedPagination, resolvedMode } =
     usePaginatedData<T>({
+      mode: "integrated",
       queryKey,
-      baseUrl,
-      initialPageSize,
+      urlPath,
       fields,
       populate,
       config,
+      tableState: {
+        pagination,
+        sorting,
+        columnFilters,
+        globalFilter,
+      },
     });
+
+  const isUsingServerMode = resolvedMode === "server";
+
+  // Pre-calculate pageCount for client mode (needed for table initialization)
+  // In client mode, we need to count filtered rows; in server mode, use API value
+  const getCalculatedPageCount = () => {
+    if (isUsingServerMode) {
+      return extendedPagination.totalPages;
+    }
+    return data.length > 0 ? Math.ceil(data.length / pagination.pageSize) : 0;
+  };
+
+  // Create TanStack Table instance (drives both table AND grid views)
+  // How much Tanstack Table handles, depends on mode (server vs client)
+  // In server mode, Tanstack only handles state; data is fetched/processed externally
+  // In client mode, Tanstack handles sorting/filtering/pagination internally
+
+  // By having state outside, we can get manual control and pass it to usePaginatedData. etc,
+  // while still leveraging TanStack's APIs for modifications.
+  const table = useReactTable({
+    data,
+    columns,
+    state: {
+      sorting,
+      columnFilters,
+      globalFilter,
+      columnVisibility,
+      pagination,
+    },
+    // Core
+    getCoreRowModel: getCoreRowModel(),
+    // Sorting
+    onSortingChange: setSorting,
+    getSortedRowModel: isUsingServerMode ? undefined : getSortedRowModel(),
+    manualSorting: isUsingServerMode,
+    // Filtering
+    onColumnFiltersChange: setColumnFilters,
+    onGlobalFilterChange: setGlobalFilter,
+    getFilteredRowModel: isUsingServerMode ? undefined : getFilteredRowModel(),
+    manualFiltering: isUsingServerMode,
+    // Column visibility
+    onColumnVisibilityChange: setColumnVisibility,
+    // Pagination
+    onPaginationChange: setPagination,
+    getPaginationRowModel: isUsingServerMode
+      ? undefined
+      : getPaginationRowModel(),
+    manualPagination: isUsingServerMode, // Only manual in server mode; client mode uses TanStack pagination
+    pageCount: getCalculatedPageCount(), // Use pre-calculated pageCount
+  });
 
   const handleViewModeChange = (mode: ViewMode) => {
     setViewMode(mode);
   };
 
   const handleSearchChange = (value: string) => {
-    setSearchValue(value);
+    setGlobalFilter(value); // TanStack Table handles empty string correctly
   };
 
+  // TODO: Create a better error component
   if (error != null) {
     return (
       <div className="text-center py-12">
@@ -54,43 +235,94 @@ export const DataDisplay = <T extends DataDisplayItem>({
     );
   }
 
+  // Get processed rows from TanStack Table (respects client-side sorting/filtering in client mode)
+  const processedRows = table.getRowModel().rows;
+  const processedData = processedRows.map((row) => row.original);
+
+  // Get filtered (but not paginated) rows for calculating total in client mode
+  const filteredRows = isUsingServerMode
+    ? []
+    : table.getFilteredRowModel().rows;
+
+  // Calculate display pagination based on mode
+  const displayPagination = isUsingServerMode
+    ? extendedPagination // Server mode: use API values directly
+    : {
+        // Client mode: recalculate based on ALL filtered results (before pagination)
+        pageIndex: pagination.pageIndex,
+        pageSize: pagination.pageSize,
+        totalItems: filteredRows.length,
+        totalPages: Math.max(
+          1,
+          Math.ceil(filteredRows.length / pagination.pageSize)
+        ),
+      };
+
+  // In client mode, we need to show filtered count; in server mode, use API total
+  const displayedItemCount = isUsingServerMode
+    ? data.length
+    : processedRows.length;
+
+  // Determine if we should show empty state
+  const showEmptyState = displayedItemCount === 0 && !isLoading;
+
+  /* --------------------------- Rendered component --------------------------- */
   function getDataComponent(): React.ReactElement {
-    if (data.length === 0 && !isLoading) {
-      return (
-        <div className="text-center py-12">
-          {emptyState ?? (
-            <p className="text-muted-foreground">No items found</p>
-          )}
-        </div>
-      );
+    if (showEmptyState) {
+      return <DataDisplayEmptyState customEmptyState={emptyState} />;
     }
 
-    return viewMode === "grid" ? (
-      <DataGrid
-        data={data}
-        gridItemRender={gridItemRender}
-        isLoading={isLoading}
-      />
-    ) : (
-      <DataTable data={data} columns={columns} isLoading={isLoading} />
-    );
+    if (viewMode === "grid") {
+      // Grid uses TanStack's processed data (sorted/filtered in client mode)
+      return (
+        <DataGrid
+          data={processedData as DataDisplayItem[]}
+          gridItemRender={
+            gridItemRender as
+              | ((item: DataDisplayItem) => React.ReactNode)
+              | undefined
+          }
+          isLoading={isLoading}
+        />
+      );
+    }
+    // Table uses the TanStack Table instance directly
+    return <DataTable table={table} isLoading={isLoading} />;
   }
 
   return (
     <div className={`space-y-4 ${className ?? ""}`}>
+      <div>
+        <p className="text-sm text-muted-foreground">Debug Bar</p>
+        <ul>
+          <li>View mode: {viewMode}</li>
+          <li>Render mode: {resolvedMode}</li>
+          <li>Data items: {data.length}</li>
+          <li>Processed rows: {processedRows.length}</li>
+          <li>Displayed items: {displayedItemCount}</li>
+          <li>Page index: {displayPagination.pageIndex + 1}</li>
+          <li>Page size: {displayPagination.pageSize}</li>
+        </ul>
+      </div>
       {/* Toolbar for view mode switching and search */}
       <DataDisplayToolbar
+        table={table}
         viewMode={viewMode}
         onViewModeChange={handleViewModeChange}
-        searchValue={searchValue}
+        hasTable={hasTable}
+        hasGrid={hasGrid}
+        searchValue={globalFilter}
         onSearchChange={handleSearchChange}
       />
-
       {/* Data display */}
       {getDataComponent()}
-
       {/* Pagination */}
-      <PaginationBar pagination={extendedPagination} onChange={setPagination} />
+      <PaginationBar
+        pagination={displayPagination}
+        onChange={setPagination}
+        viewMode={viewMode}
+        totalItemsPreFiltered={isUsingServerMode ? 0 : data.length}
+      />
     </div>
   );
 };

@@ -12,8 +12,20 @@
     "more": "More",
     "openMenu": "Open Menu",
     "actions": "Actions",
-    "mandatory": "This field is mandatory"
-
+    "mandatory": "This field is mandatory",
+    "search": "Search",
+    "columns": "Columns",
+    "sort": "Sort",
+    "sortBy": "Sort By",
+    "ascending": "Asc",
+    "descending": "Desc"
+  },
+  "pagination": {
+    "items": "items",
+    "rows": "rows",
+    "perPage": "per page",
+    "of": "of",
+    "filtered": "filtered"
   },
   "navbar": {
     "editProfile": "Edit Profile",
@@ -26,12 +38,15 @@
     "clearAll": "Clear All"
   },
   "courseManager": {
+    "course": "Course",
     "generalInfo": "General Information",
     "courseName": "Course Name",
     "courseNamePlaceholder": "Enter the course name",
     "level": "Level",
     "selectLevel": "Select the level",
     "category": "Category",
+    "categories": "Categories",
+    "categoryNotFound": "Category not found",
     "selectCategory": "Select the category",
     "description": "Description",
     "descriptionPlaceholder": "Enter the description",
@@ -46,7 +61,7 @@
     "saveAsDraft": "Save as Draft",
     "reviewCourse": "Review Course"
   },
-  "courses" : {
+  "courses": {
     "checkYourCourses": "Check Your Courses",
     "newCourse": "New Course",
     "searchCourse": "Search Course",
@@ -61,6 +76,5 @@
     "activities": "Activities",
     "hello": "Hello",
     "hours": "Hours"
-
   }
 }

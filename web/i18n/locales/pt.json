@@ -12,7 +12,20 @@
     "more": "Mais",
     "openMenu": "Abrir Menu",
     "actions": "Ações",
-    "mandatory": "Este campo é obrigatório"
+    "mandatory": "Este campo é obrigatório",
+    "search": "Buscar",
+    "columns": "Colunas",
+    "sort": "Ordenar",
+    "sortBy": "Ordenar Por",
+    "ascending": "Asc",
+    "descending": "Desc"
+  },
+  "pagination": {
+    "items": "itens",
+    "rows": "linhas",
+    "perPage": "por página",
+    "of": "de",
+    "filtered": "filtrados"
   },
   "navbar": {
     "editProfile": "Editar Perfil",
@@ -31,6 +44,7 @@
     "level": "Nível",
     "selectLevel": "Selecione o nível",
     "category": "Categoria",
+    "categoryNotFound": "Categoria não encontrada",
     "selectCategory": "Selecione a categoria",
     "description": "Descrição",
     "descriptionPlaceholder": "Digite a descrição",
@@ -46,11 +60,13 @@
     "reviewCourse": "Revisar Curso"
   },
   "courseManager": {
+    "course": "Curso",
     "generalInfo": "Informações Gerais",
     "courseName": "Nome do Curso",
     "courseNamePlaceholder": "Digite o nome do curso",
     "level": "Nível",
     "selectLevel": "Selecione o nível",
+    "categories": "Categorias",
     "category": "Categoria",
     "selectCategory": "Selecione a categoria",
     "description": "Descrição",
