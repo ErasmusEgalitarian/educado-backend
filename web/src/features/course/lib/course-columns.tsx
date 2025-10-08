@@ -2,6 +2,7 @@ import { type CellContext, type ColumnDef } from "@tanstack/react-table";
 import { BookOpen, MoreHorizontal, Star, Edit, Eye } from "lucide-react";
 import { toast } from "sonner";
 
+import { ApiCourseCourseDocument } from "@/shared/api";
 import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
 import {
@@ -12,8 +13,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/shared/components/shadcn/dropdown-menu";
-
-import { ApiCourseCourseDocument } from "../types/api-course-document";
 
 interface CoursesColumnsProps {
   t: (key: string) => string;
@@ -26,8 +25,21 @@ export const createCourseColumns = ({
 }: CoursesColumnsProps): ColumnDef<ApiCourseCourseDocument>[] => {
   return [
     {
+      accessorKey: "documentId",
+      header: "ID",
+      cell: ({ row }) => {
+        const course = row.original;
+        return <span className="font-mono text-sm">{course.documentId}</span>;
+      },
+      meta: {
+        sortable: true,
+        filterable: true,
+        visibleByDefault: false,
+      },
+    },
+    {
       accessorKey: "title",
-      header: t("course.courseName"),
+      header: t("courseManager.courseName"),
       cell: ({ row }) => {
         const course = row.original;
         return (
@@ -45,7 +57,7 @@ export const createCourseColumns = ({
     },
     {
       accessorKey: "course_categories",
-      header: t("category.categories"),
+      header: t("courseManager.categories"),
       cell: ({ row }) => {
         const course = row.original;
         const categories = course.course_categories ?? [];
@@ -53,7 +65,7 @@ export const createCourseColumns = ({
         if (categories.length === 0) {
           return (
             <span className="text-muted-foreground">
-              {t("category.categoriesNotFound")}
+              {t("courseManager.categoryNotFound")}
             </span>
           );
         }
@@ -64,16 +76,7 @@ export const createCourseColumns = ({
               <Badge
                 key={category.id}
                 variant="secondary"
-                className={
-                  category.badge_color
-                    ? "text-white"
-                    : "bg-[#c1cfd7] text-[#246670]"
-                }
-                style={
-                  category.badge_color
-                    ? { backgroundColor: category.badge_color }
-                    : undefined
-                }
+                className="bg-[#c1cfd7] text-[#246670]"
               >
                 {category.name}
               </Badge>
@@ -145,18 +148,18 @@ export const createCourseColumns = ({
               <DropdownMenuLabel>{t("common.actions")}</DropdownMenuLabel>
               <DropdownMenuItem onClick={handleView}>
                 <Eye className="mr-2 h-4 w-4" />
-                {t("common.view")} {t("course.course").toLowerCase()}
+                {t("common.view")} {t("courseManager.course").toLowerCase()}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleEdit}>
                 <Edit className="mr-2 h-4 w-4" />
-                {t("common.edit")} {t("course.course").toLowerCase()}
+                {t("common.edit")} {t("courseManager.course").toLowerCase()}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={handleDelete}
                 className="text-destructive"
               >
-                {t("common.delete")} {t("course.course").toLowerCase()}
+                {t("common.delete")} {t("courseManager.course").toLowerCase()}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

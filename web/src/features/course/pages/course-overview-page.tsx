@@ -1,35 +1,40 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-import Layout from "@/shared/components/Layout";
+import { ApiCourseCourseDocument } from "@/shared/api";
+import { PageContainer } from "@/shared/components/page-container";
 import { DataDisplay } from "@/shared/data-display/data-display";
 
-import { createCourseColumns } from "../lib/course-columns";
 import { CourseCard } from "../components/CourseCard";
+import { createCourseColumns } from "../lib/course-columns";
 
 const CourseOverviewPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   const courseColumns = createCourseColumns({ t, navigate });
+
+  const courseCard = (course: ApiCourseCourseDocument) => (
+    <CourseCard course={course} />
+  );
+
   return (
-    <Layout meta="course overview">
+    <PageContainer title={t("courseOverviewPage.title")}>
       <DataDisplay
-        baseUrl="https://strapi.ollioddi.dev/api/courses"
+        urlPath="/courses"
         columns={courseColumns}
         queryKey={["courses"]}
-        gridItemRender={(course: ApiCourseCourseDocument) => (
-          <CourseCard course={course} />
-        )}
-        fields={["title", "level", "description", "publishedAt"]}
-        populate={["cover_image", "course_categories"]}
+        allowedViewModes="both"
+        gridItemRender={courseCard}
+        fields={["title", "difficulty", "description"]}
+        populate={["course_categories"]}
         initialPageSize={20}
         config={{
-          overrideRenderMode: "auto",
+          overrideRenderMode: "client",
           overrideClientModeThreshold: 50,
         }}
       />
-    </Layout>
+    </PageContainer>
   );
 };
 

@@ -1,3 +1,7 @@
+import { Icon } from "@mdi/react";
+
+import { ApiCourseCourseDocument } from "@/shared/api";
+import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
 import {
   Card,
@@ -8,12 +12,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/components/shadcn/card";
-import { Badge } from "@/shared/components/shadcn/badge";
 
-import { Icon } from "@mdi/react";
 import StarRating from "../../../shared/components/StarRating";
 import categories from "../types/courseCategories";
-import { Course } from "../types/Course";
 
 /**
  * Displays a course in a card format
@@ -21,7 +22,7 @@ import { Course } from "../types/Course";
  * @param {Course} course The course to be displayed
  * @returns HTML Element
  */
-export const CourseCard = ({ course }: { course: Course }) => {
+export const CourseCard = ({ course }: { course: ApiCourseCourseDocument }) => {
   const maxTitleLength = 20;
   const maxDescLength = 40;
 
@@ -40,7 +41,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
               (course.title.length > maxTitleLength ? "..." : "")}
           </CardTitle>
         </div>
-        <div className="w-full border-t border-[#C1CFD7] my-2 mx-auto"></div>
+        <div className="w-full border-t border-[#C1CFD7] my-2 mx-auto" />
       </CardHeader>
       <CardContent>
         <div className="flex items-center justify-between">
@@ -63,7 +64,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
             className="w-5 shrink-0 text-[#628397]"
             path={categories[course.category]?.icon ?? categories.default.icon}
           />
-          <span class="w-40 text-[#628397] truncate">
+          <span className="w-40 text-[#628397] truncate">
             {categories[course.category]?.br ?? course.category}
           </span>
 
