@@ -3,12 +3,16 @@ import {
   mdiAccount,
   mdiLogoutVariant,
   mdiCertificate,
-  mdiNotebookOutline,
   mdiAccountCog,
   mdiChatQuestionOutline,
   mdiTranslate,
 } from "@mdi/js";
+import { Icon } from "@mdi/react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
 
+import useAuthStore from "@/auth/hooks/useAuthStore";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,20 +21,11 @@ import {
   DropdownMenuTrigger,
   DropdownMenuPortal,
   DropdownMenuSub,
-  DropdownMenuItem,
   DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuIconSubTrigger,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "@/shared/components/shadcn/dropdown-menu";
-
-import { Icon } from "@mdi/react";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-
-import useAuthStore from "@/auth/hooks/useAuthStore";
 
 import { getUserInfo, userInfo } from "../../features/auth/lib/userInfo";
 import { useNotifications } from "../context/NotificationContext";
@@ -159,12 +154,6 @@ export const Navbar = () => {
               <div className="flex gap-3 cursor-pointer rounded-md p-2 hover:bg-[#222]/10">
                 <div className="flex items-center">
                   <div>
-                    <span className="hidden sm:block text-sm font-bold text-grayMedium font-['Montserrat']">
-                      {`${userInfo.firstName} ${userInfo.lastName}`}
-                    </span>
-                    <span className="hidden sm:block text-xs font-normal text-grayMedium font-['Montserrat']">
-                      {userInfo.email}
-                    </span>
                     <span className="hidden sm:block text-sm font-bold text-grayMedium font-['Montserrat']">
                       {`${userInfo.firstName} ${userInfo.lastName}`}
                     </span>
