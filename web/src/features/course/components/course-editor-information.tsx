@@ -109,7 +109,7 @@ const CourseEditorInformation = ({ course }: CourseEditorInformationProps) => {
               <FormMultiSelect
                 control={form.control}
                 fieldName="categories"
-                label="Foo"
+                label={t("courseManager.categories")}
                 disabled={isLoading || !!error}
                 options={data.map(
                   (category: ApiCourseCategoryCourseCategoryDocument) => ({
