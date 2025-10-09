@@ -146,6 +146,14 @@ const CourseEditorPage = () => {
     (informationFormRef.current?.isDirty() ?? false) ||
     (sectionsFormRef.current?.isDirty() ?? false);
 
+  const handleBack = () => {
+    if (hasChanges) {
+      openAlert();
+    } else {
+      handleReturnToCourses();
+    }
+  };
+
   const handleReturnToCourses = () => {
     navigate("/courses");
   };
@@ -161,7 +169,7 @@ const CourseEditorPage = () => {
             </h1>
             <Button
               variant="outline"
-              onClick={openAlert}
+              onClick={handleBack}
               iconPlacement="left"
               size="sm"
               icon={() => <Icon path={mdiArrowLeft} size={1} />}
@@ -199,16 +207,8 @@ const CourseEditorPage = () => {
       {/* Leave confirmation alert */}
       <ReusableAlertDialog
         {...alertProps}
-        title={
-          hasChanges
-            ? t("courseManager.unsavedChangesTitle")
-            : t("courseManager.leavePageTitle")
-        }
-        description={
-          hasChanges
-            ? t("courseManager.unsavedChangesMessage")
-            : t("courseManager.leavePageMessage")
-        }
+        title={t("courseManager.unsavedChangesTitle")}
+        description={t("courseManager.unsavedChangesMessage")}
         confirmAction={{
           label: t("common.leave"),
           onClick: handleReturnToCourses,
