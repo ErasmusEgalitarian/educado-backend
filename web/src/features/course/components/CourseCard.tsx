@@ -1,13 +1,11 @@
 import { Icon } from "@mdi/react";
+import { useNavigate } from "react-router-dom";
 
 import { ApiCourseCourseDocument } from "@/shared/api";
-import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
 import {
   Card,
-  CardAction,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -23,6 +21,7 @@ import categories from "../types/courseCategories";
  * @returns HTML Element
  */
 export const CourseCard = ({ course }: { course: ApiCourseCourseDocument }) => {
+  const navigate = useNavigate();
   const maxTitleLength = 20;
   const maxDescLength = 40;
 
@@ -82,9 +81,9 @@ export const CourseCard = ({ course }: { course: ApiCourseCourseDocument }) => {
       <CardFooter className="flex justify-end items-center">
         <Button
           variant="link"
-          onClick={() =>
-            (window.location.href = `/courses/manager/${course._id}/0`)
-          }
+          onClick={() => {
+            navigate(`/courses/${course.documentId}/edit`);
+          }}
           className="text-[#246670] decoration-[#246670] underline"
         >
           Editar

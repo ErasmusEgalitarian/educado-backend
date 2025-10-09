@@ -5,7 +5,6 @@ import {
 } from "react-router-dom";
 
 import CourseOverviewPage from "@/course/pages/course-overview-page";
-import CreateCourse from "@/course/pages/CreateCourse";
 
 import AccountDeletionRequest from "./features/auth/components/AccountDeletionRequest";
 import DataDeletionRequest from "./features/auth/components/DataDeletionRequest";
@@ -28,6 +27,7 @@ import {
   NonProtectedRoute,
 } from "./unplaced/services/auth.guard";
 import SingleApplicantView from "./unplaced/SingleApplicantView";
+import CourseEditorPage from "@/course/pages/course-editor-page";
 
 const App = () => {
   // router
@@ -64,10 +64,19 @@ const App = () => {
       errorElement: <NotFound />,
     },
     {
-      path: "/courses/create-course",
+      path: "/courses/create",
       element: (
         <ProtectedRoute>
-          <CreateCourse />
+          <CourseEditorPage />
+        </ProtectedRoute>
+      ),
+      errorElement: <NotFound />,
+    },
+    {
+      path: "/courses/:courseId/edit",
+      element: (
+        <ProtectedRoute>
+          <CourseEditorPage />
         </ProtectedRoute>
       ),
       errorElement: <NotFound />,

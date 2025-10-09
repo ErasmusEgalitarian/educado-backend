@@ -292,18 +292,6 @@ export const DataDisplay = <T extends DataDisplayItem>({
 
   return (
     <div className={`space-y-4 ${className ?? ""}`}>
-      <div>
-        <p className="text-sm text-muted-foreground">Debug Bar</p>
-        <ul>
-          <li>View mode: {viewMode}</li>
-          <li>Render mode: {resolvedMode}</li>
-          <li>Data items: {data.length}</li>
-          <li>Processed rows: {processedRows.length}</li>
-          <li>Displayed items: {displayedItemCount}</li>
-          <li>Page index: {displayPagination.pageIndex + 1}</li>
-          <li>Page size: {displayPagination.pageSize}</li>
-        </ul>
-      </div>
       {/* Toolbar for view mode switching and search */}
       <DataDisplayToolbar
         table={table}

@@ -1,8 +1,11 @@
+import { mdiPlus } from "@mdi/js";
+import Icon from "@mdi/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import { ApiCourseCourseDocument } from "@/shared/api";
 import { PageContainer } from "@/shared/components/page-container";
+import { Button } from "@/shared/components/shadcn/button";
 import { DataDisplay } from "@/shared/data-display/data-display";
 
 import { CourseCard } from "../components/CourseCard";
@@ -20,6 +23,19 @@ const CourseOverviewPage = () => {
 
   return (
     <PageContainer title={t("courses.pageTitle")}>
+      <div className="mb-4 flex items-center justify-between">
+        <h1>{t("courses.pageHeader")}</h1>
+        <Button
+          variant="primary"
+          iconPlacement="left"
+          icon={() => <Icon path={mdiPlus} size={1} />}
+          onClick={() => {
+            navigate("create");
+          }}
+        >
+          {t("courses.newCourse")}
+        </Button>
+      </div>
       <DataDisplay
         urlPath="/courses"
         columns={courseColumns}
