@@ -121,17 +121,15 @@ export const createCourseColumns = ({
         const documentId = row.original.documentId;
 
         const handleView = () => {
-          navigate(`/courses/${documentId}`);
+          toast.info("View course feature coming soon!");
         };
 
         const handleEdit = () => {
-          toast.success(
-            "Edit functionality is not implemented yet: " + documentId
-          );
+          navigate(`/courses/${documentId}/edit`);
         };
 
         const handleDelete = () => {
-          toast.success(
+          toast.info(
             "Delete functionality is not implemented yet: " + documentId
           );
         };
