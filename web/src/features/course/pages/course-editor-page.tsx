@@ -141,12 +141,12 @@ const CourseEditorPage = () => {
     return `${t("common.create")} ${t("courseManager.course")}`;
   };
 
-  // Check if any form is dirty to warn about unsaved changes
-  const hasChanges =
-    (informationFormRef.current?.isDirty() ?? false) ||
-    (sectionsFormRef.current?.isDirty() ?? false);
-
   const handleBack = () => {
+    // Check isDirty at the moment of click
+    const hasChanges =
+      (informationFormRef.current?.isDirty() ?? false) ||
+      (sectionsFormRef.current?.isDirty() ?? false);
+
     if (hasChanges) {
       openAlert();
     } else {
