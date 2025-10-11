@@ -6,7 +6,6 @@ export interface InputIconProps {
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
 }
-
 interface InputProps extends React.ComponentProps<"input">, InputIconProps {
   variant?: "default" | "error";
   readonly inputSize?: InputSize;
@@ -31,9 +30,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const variantStyles = {
       default:
-        "border-geryscale-border-lighter focus-visible:border-[#35a1b1] focus-visible:ring-[#35a1b1]/20",
+        "border-greyscale-border-default focus-visible:border-primary-surface-default focus-visible:ring-primary-surface-default/20",
       error:
-        "border-error-border-default bg-error-surface-subtle focus-visible:border-[#ff0000] focus-visible:ring-[#ff0000]/20",
+        "border-error-border-default bg-error-surface-subtle focus-visible:border-error-surface-default focus-visible:ring-error-surface-default/20",
     };
 
     const inputSizes = {
@@ -48,7 +47,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         type={type}
         data-slot="input"
         className={cn(
-          "file:text-foreground placeholder:text-[#628397] selection:bg-primary selection:text-primary-foreground flex h-11 w-full min-w-0 rounded-lg border bg-white px-3 py-2 text-base text-[#141b1f] shadow-sm transition-[color,box-shadow,border-color] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-[#c1cfd7]/20",
+          "file:text-foreground placeholder:text-greyscale-text-caption selection:bg-primary selection:text-primary-foreground flex h-11 w-full min-w-0 rounded-lg border bg-white px-3 py-2 text-base text-greyscale-text-title shadow-sm transition-[color,box-shadow,border-color] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-greyscale-surface-disabled/20",
           "focus-visible:ring-[3px]",
           variantStyles[variant],
           inputSizes[inputSize],
@@ -70,7 +69,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {startIcon && (
           <div
             aria-hidden="true"
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4e6879] pointer-events-none [&>svg]:w-5 [&>svg]:h-5"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-greyscale-text-subtle pointer-events-none [&>svg]:w-5 [&>svg]:h-5"
           >
             {startIcon}
           </div>
@@ -79,7 +78,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {endIcon && (
           <div
             aria-hidden="true"
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#4e6879] [&>svg]:w-5 [&>svg]:h-5"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-greyscale-text-subtle [&>svg]:w-5 [&>svg]:h-5"
           >
             {endIcon}
           </div>

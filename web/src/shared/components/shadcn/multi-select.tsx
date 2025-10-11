@@ -55,6 +55,8 @@ const multiSelectVariants = cva("m-1 transition-all duration-300 ease-in-out", {
         "border-foreground/10 bg-secondary text-secondary-foreground hover:bg-secondary/80",
       destructive:
         "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+      error:
+        "border-error-border-default text-greyscale-text-title bg-error-surface-subtle hover:bg-error-surface-subtle/80",
       inverted: "inverted",
     },
     badgeAnimation: {
@@ -808,6 +810,8 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
               } options selected. ${placeholder}`}
               className={cn(
                 "flex p-1 rounded-md border min-h-10 h-auto items-center justify-between bg-inherit hover:bg-inherit [&_svg]:pointer-events-auto",
+                variant === "error" &&
+                  "border-error-border-default bg-error-surface-subtle hover:bg-error-surface-subtle/80",
                 autoSize ? "w-auto" : "w-full",
                 responsiveSettings.compactMode && "min-h-8 text-sm",
                 screenSize === "mobile" && "min-h-12 text-base",
@@ -853,7 +857,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                           }),
                           ...(customStyle?.gradient && {
                             background: customStyle.gradient,
-                            color: "white",
+                            color: "var(--greyscale-text-negative)",
                           }),
                         };
                         return (
@@ -863,7 +867,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                               getBadgeAnimationClass(),
                               multiSelectVariants({ variant }),
                               customStyle?.gradient &&
-                                "text-white border-transparent",
+                                "text-greyscale-text-negative border-transparent",
                               responsiveSettings.compactMode &&
                                 "text-xs px-1.5 py-0.5",
                               screenSize === "mobile" &&
@@ -917,7 +921,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                                 }
                               }}
                               aria-label={`Remove ${option.label} from selection`}
-                              className="ml-2 h-4 w-4 cursor-pointer hover:bg-white/20 rounded-sm p-0.5 -m-0.5 focus:outline-none focus:ring-1 focus:ring-white/50"
+                              className="ml-2 h-4 w-4 cursor-pointer hover:bg-greyscale-surface-default/20 rounded-sm p-0.5 -m-0.5 focus:outline-none focus:ring-1 focus:ring-greyscale-border-default/50"
                             >
                               <XCircle
                                 className={cn(
