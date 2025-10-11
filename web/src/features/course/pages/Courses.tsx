@@ -294,35 +294,35 @@ const Courses = () => {
                           className="p-7"
                           style={{ width: "20%" }}
                         >
-                          Nome
+                          {t("common.name")}
                         </th>
                         <th
                           scope="col"
                           className="p-5"
                           style={{ width: "20%" }}
                         >
-                          Categoria
+                          {t("common.category")}
                         </th>
                         <th
                           scope="col"
                           className="p-5"
                           style={{ width: "25%" }}
                         >
-                          Carga Horária
+                          {t("courses.workload")}
                         </th>
                         <th
                           scope="col"
                           className="p-5"
                           style={{ width: "20%" }}
                         >
-                          Inscritos
+                          {t("courses.enrolled")}
                         </th>
                         <th
                           scope="col"
                           className="p-5"
                           style={{ width: "30%" }}
                         >
-                          Nota
+                          {t("courses.grade")}
                         </th>
                         <th
                           scope="col"
@@ -345,14 +345,13 @@ const Courses = () => {
             <div className="grid place-content-center w-full h-full text-center">
               <div className="md:mx-40 xl:mx-64">
                 <img src={noCoursesImage} className="w-full" />
-                <h1 className="text-xl font-bold my-4">Comece agora</h1>
+                <h1 className="text-xl font-bold my-4">
+                  {t("courses.startNow")}
+                </h1>
                 {/* You haven't created any courses yet.
               Click the button below and follow the
               step-by-step instructions to develop your first course. */}
-                <p>
-                  Você ainda não criou nenhum curso. Clique no botão abaixo e
-                  siga o passo a passo para desenolver o seu primeiro curso.
-                </p>
+                <p>{t("courses.noCoursesYet")}</p>
                 {/* Create course button */}
                 <label
                   htmlFor="course-create"
@@ -360,7 +359,9 @@ const Courses = () => {
                   className="std-button flex modal-button  space-x-2"
                 >
                   <PencilSquareIcon className="w-5 h-5" />
-                  <p className="font-normal ">Criar novo curso</p>{" "}
+                  <p className="font-normal ">
+                    {t("courses.createNewCourse")}
+                  </p>{" "}
                   {/** Create new course */}
                 </label>
               </div>

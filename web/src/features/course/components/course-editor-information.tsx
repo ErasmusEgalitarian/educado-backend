@@ -24,6 +24,7 @@ import {
   useCreateCourseMutation,
   useUpdateCourseMutation,
 } from "../api/course-mutations";
+import { t } from "i18next";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -37,12 +38,14 @@ export interface CourseEditorInformationRef {
 
 /* --------------------------------- Schema --------------------------------- */
 const courseBasicInfoSchema = z.object({
-  title: z.string().min(1, "Title is required"),
+  title: z.string().min(1, t("validation.title")),
   difficulty: z.union([z.literal("1"), z.literal("2"), z.literal("3")]),
-  categories: z.array(z.string()).min(1, "At least one category is required"),
+  categories: z
+    .array(z.string())
+    .min(1, t("validation.minCategories", { count: 1 })),
   description: z
     .string()
-    .max(400, "Description must be 400 characters or less")
+    .max(400, t("validation.maxDescription", { count: 400 }))
     .optional(),
 });
 

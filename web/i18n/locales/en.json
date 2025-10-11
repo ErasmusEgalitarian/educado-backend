@@ -18,6 +18,7 @@
     "saving": "Saving...",
     "saved": "Saved!",
     "cancel": "Cancel",
+    "loading": "Loading...",
     "view": "View",
     "more": "More",
     "openMenu": "Open Menu",
@@ -40,7 +41,8 @@
     "back": "Back",
     "leave": "Leave",
     "stay": "Stay",
-    "dismiss": "Dismiss"
+    "dismiss": "Dismiss",
+    "name": "Name"
   },
   "pagination": {
     "items": "items",
@@ -48,6 +50,16 @@
     "perPage": "per page",
     "of": "of",
     "filtered": "filtered"
+  },
+  "validation": {
+    "required": "This field is required",
+    "title": "Title is required",
+    "minLength": "Must be at least {{count}} characters",
+    "maxLength": "Must be at most {{count}} characters",
+    "minCategories": "Select at least {{count}} categories",
+    "maxCategories": "Select at most {{count}} categories",
+    "invalidLevel": "Invalid level",
+    "maxDescription": "Description cannot be longer than {{count}} characters"
   },
   "navbar": {
     "editProfile": "Edit Profile",
@@ -112,6 +124,15 @@
     "avalation": "Avalation",
     "activities": "Activities",
     "hello": "Hello",
-    "hours": "Hours"
+    "hours": "Hours",
+    "workload": "Workload",
+    "enrolled": "Enrolled",
+    "grade": "Grade",
+    "startNow": "Start Now",
+    "noCoursesYet": "You haven't created any courses yet. Click the button below and follow the step-by-step instructions to develop your first course.",
+    "createNewCourse": "Create New Course"
+  },
+  "courseEditor": {
+    "fetchCourseDataError": "Error loading Course Data: {{message}}"
   }
 }

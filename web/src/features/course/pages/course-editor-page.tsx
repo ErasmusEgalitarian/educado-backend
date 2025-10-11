@@ -88,13 +88,13 @@ const CourseEditorPage = () => {
     if (error) {
       return (
         <div className="text-red-500">
-          Error loading course data: {error.message}
+          {t("courseEditor.fetchCourseDataError", { message: error.message })}
         </div>
       );
     }
 
     if (isLoading && isEditMode) {
-      return <div>Loading...</div>;
+      return <div>{t("common.loading")}</div>;
     }
 
     switch (currentStep) {

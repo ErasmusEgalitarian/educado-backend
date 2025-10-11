@@ -154,19 +154,19 @@ export const CoursesTableAdmin = () => {
             isHeaderRow
             cells={[
               <TableCell key="name">
-                <p>Nome</p>
+                <p>{t("common.name")}</p>
               </TableCell>,
               <TableCell key="creator">
                 <p>Criador de Conteúdo</p>
               </TableCell>,
               <TableCell key="category">
-                <p>Categoria</p>
+                <p>{t("courseManager.category")}</p>
               </TableCell>,
               <TableCell key="subscribers">
-                <p>Inscritos</p>
+                <p>{t("courses.enrolled")}</p>
               </TableCell>,
               <TableCell key="rating">
-                <p>Nota</p>
+                <p>{t("courses.grade")}</p>
               </TableCell>,
               <TableCell key="actions">
                 {/* Empty col for actions */}

@@ -18,6 +18,7 @@
     "saving": "Salvando...",
     "saved": "Salvo!",
     "cancel": "Cancelar",
+    "loading": "Carregando...",
     "view": "Visualizar",
     "more": "Mais",
     "openMenu": "Abrir Menu",
@@ -40,7 +41,8 @@
     "back": "Voltar",
     "leave": "Sair",
     "stay": "Ficar",
-    "dismiss": "Dispensar"
+    "dismiss": "Dispensar",
+    "name": "Nome"
   },
   "pagination": {
     "items": "itens",
@@ -48,6 +50,16 @@
     "perPage": "por página",
     "of": "de",
     "filtered": "filtrados"
+  },
+  "validation": {
+    "required": "Este campo é obrigatório",
+    "title": "O título é obrigatório",
+    "minLength": "Deve ter no mínimo {{count}} caracteres",
+    "maxLength": "Deve ter no máximo {{count}} caracteres",
+    "invalidLevel": "Nível inválido",
+    "minCategories": "Selecione no mínimo {{count}} categorias",
+    "maxCategories": "Selecione no máximo {{count}} categorias",
+    "maxDescription": "A descrição não pode ter mais de {{count}} caracteres"
   },
   "navbar": {
     "editProfile": "Editar Perfil",
@@ -133,6 +145,15 @@
     "avalation": "Avaliação",
     "activities": "Atividades",
     "hello": "Olá",
-    "hours": "Horas"
+    "hours": "Horas",
+    "workload": "Carga Horária",
+    "enrolled": "Inscritos",
+    "grade": "Nota",
+    "startNow": "Começar Agora",
+    "noCoursesYet": "Você ainda não criou nenhum curso. Clique no botão abaixo e siga as instruções passo a passo para desenvolver seu primeiro curso.",
+    "createNewCourse": "Criar Novo Curso"
+  },
+  "courseEditor": {
+    "fetchCourseDataError": "Erro ao carregar dados do curso: {{message}}"
   }
 }
