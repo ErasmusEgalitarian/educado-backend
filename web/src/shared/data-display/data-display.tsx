@@ -12,6 +12,10 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 
+import { ErrorBoundary } from "../components/error/error-boundary";
+import { ErrorDisplay } from "../components/error/error-display";
+import { toAppError } from "../lib/error-utilities";
+
 import DataDisplayEmptyState from "./data-display-empty-state";
 import DataDisplayToolbar from "./data-display-toolbar";
 import DataGrid from "./data-grid";
@@ -224,11 +228,8 @@ export const DataDisplay = <T extends DataDisplayItem>({
 
   // TODO: Create a better error component
   if (error != null) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-destructive">Error loading data: {error.message}</p>
-      </div>
-    );
+    const appError = toAppError(error);
+    return <ErrorDisplay error={appError} variant="card" />;
   }
 
   // Get processed rows from TanStack Table (respects client-side sorting/filtering in client mode)
@@ -287,26 +288,28 @@ export const DataDisplay = <T extends DataDisplayItem>({
   }
 
   return (
-    <div className={`space-y-4 ${className ?? ""}`}>
-      {/* Toolbar for view mode switching and search */}
-      <DataDisplayToolbar
-        table={table}
-        viewMode={viewMode}
-        onViewModeChange={handleViewModeChange}
-        hasTable={hasTable}
-        hasGrid={hasGrid}
-        searchValue={globalFilter}
-        onSearchChange={handleSearchChange}
-      />
-      {/* Data display */}
-      {getDataComponent()}
-      {/* Pagination */}
-      <PaginationBar
-        pagination={displayPagination}
-        onChange={setPagination}
-        viewMode={viewMode}
-        totalItemsPreFiltered={isUsingServerMode ? 0 : data.length}
-      />
-    </div>
+    <ErrorBoundary>
+      <div className={`space-y-4 ${className ?? ""}`}>
+        {/* Toolbar for view mode switching and search */}
+        <DataDisplayToolbar
+          table={table}
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
+          hasTable={hasTable}
+          hasGrid={hasGrid}
+          searchValue={globalFilter}
+          onSearchChange={handleSearchChange}
+        />
+        {/* Data display */}
+        {getDataComponent()}
+        {/* Pagination */}
+        <PaginationBar
+          pagination={displayPagination}
+          onChange={setPagination}
+          viewMode={viewMode}
+          totalItemsPreFiltered={isUsingServerMode ? 0 : data.length}
+        />
+      </div>
+    </ErrorBoundary>
   );
 };

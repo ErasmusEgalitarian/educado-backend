@@ -1,5 +1,6 @@
 import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { t } from "i18next";
 import { useEffect, useImperativeHandle, forwardRef } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -10,21 +11,22 @@ import {
   ApiCourseCourseDocument,
 } from "@/shared/api";
 import { Dropzone } from "@/shared/components/dnd/Dropzone";
+import { ErrorDisplay } from "@/shared/components/error/error-display";
 import FormActions from "@/shared/components/form/form-actions";
 import { FormInput } from "@/shared/components/form/form-input";
 import { FormMultiSelect } from "@/shared/components/form/form-multi-select";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
-import { Button } from "@/shared/components/shadcn/button";
+import { Card, CardContent, CardFooter } from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
 import usePaginatedData from "@/shared/data-display/hooks/used-paginated-data";
+import { toAppError } from "@/shared/lib/error-utilities";
 
 import {
   useCreateCourseMutation,
   useUpdateCourseMutation,
 } from "../api/course-mutations";
-import { t } from "i18next";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -52,7 +54,9 @@ const courseBasicInfoSchema = z.object({
 // Infer the form type from the schema
 type CourseBasicInfoFormValues = z.infer<typeof courseBasicInfoSchema>;
 
-/* -------------------------------- Component ------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                  Component                                 */
+/* -------------------------------------------------------------------------- */
 const CourseEditorInformation = forwardRef<
   CourseEditorInformationRef,
   CourseEditorInformationProps
@@ -60,20 +64,24 @@ const CourseEditorInformation = forwardRef<
   const { t } = useTranslation();
   const isEditMode = course !== undefined;
 
-  // Mutations
+  /* -------------------------------- Mutations ------------------------------- */
   const createMutation = useCreateCourseMutation();
   const updateMutation = useUpdateCourseMutation();
 
   const mutationLoading = createMutation.isPending || updateMutation.isPending;
   const mutationSuccess = createMutation.isSuccess || updateMutation.isSuccess;
 
-  const mutationError = createMutation.error ?? updateMutation.error;
+  const mutationError = toAppError(
+    createMutation.error ?? updateMutation.error ?? undefined
+  );
 
-  // Fetch course categories for the multi-select
+  /* ------------------------------- Categories ------------------------------- */
+
   const {
     data,
-    error,
+    error: categoriesError,
     isLoading: categoriesLoading,
+    refetch: refetchCategories,
   } = usePaginatedData<ApiCourseCategoryCourseCategoryDocument>({
     mode: "standalone",
     queryKey: ["course-categories"],
@@ -83,6 +91,8 @@ const CourseEditorInformation = forwardRef<
       renderMode: "client",
     },
   });
+
+  /* ------------------------------- Form setup ------------------------------- */
 
   // Determine default form values based on whether we are editing or creating
   // If editing, populate with existing course data
@@ -129,6 +139,8 @@ const CourseEditorInformation = forwardRef<
     }
   }, [course, form]);
 
+  /* -------------------------------- Handlers -------------------------------- */
+
   const onSubmit = async (values: CourseBasicInfoFormValues) => {
     try {
       // Edit = update mutation
@@ -168,13 +180,25 @@ const CourseEditorInformation = forwardRef<
 
   return (
     <>
-      <OverlayStatusWrapper
-        isLoading={mutationLoading}
-        isSuccess={mutationSuccess}
-        loadingMessage={
-          isEditMode ? t("common.updating") : t("common.creating")
-        }
-        successMessage={isEditMode ? t("common.updated") : t("common.created")}
+      {/* Loading state and error states for categories are passed as props to the card. Mutations are handled inside the card, and through wrapper */}
+      <Card
+        isLoading={categoriesLoading}
+        error={toAppError(categoriesError)}
+        loadingProps={{
+          message: t("courseManager.loadingCategories"),
+          description: t("courseManager.loadingCategoriesDescription"),
+        }}
+        errorProps={{
+          actions: [
+            {
+              label: t("common.retry"),
+              onClick: () => {
+                void refetchCategories();
+              },
+              variant: "primary",
+            },
+          ],
+        }}
       >
         <Form {...form}>
           <form
@@ -182,119 +206,124 @@ const CourseEditorInformation = forwardRef<
               void form.handleSubmit(onSubmit)(e);
             }}
           >
-            <div className="flex flex-col gap-y-5 mt-5 rounded-xl p-6 shadow-lg">
-              <FormInput
-                control={form.control}
-                fieldName="title"
-                inputSize="md"
-                label={t("courseManager.courseName")}
-                placeholder={t("courseManager.courseNamePlaceholder")}
-                type="text"
-                isRequired
-              />
-
-              <div className="flex items-start gap-8 w-full">
-                {/*Field to select a level from a list of options*/}
-                <div className="flex flex-col w-1/2 space-y-2 text-left ">
-                  <FormSelect
+            <CardContent>
+              {/* The overlay replaces the content by measuring height. */}
+              <OverlayStatusWrapper
+                isLoading={mutationLoading}
+                isSuccess={mutationSuccess}
+                loadingMessage={
+                  isEditMode ? t("common.updating") : t("common.creating")
+                }
+                successMessage={
+                  isEditMode ? t("common.updated") : t("common.created")
+                }
+              >
+                <div className="flex flex-col gap-y-5">
+                  <FormInput
                     control={form.control}
+                    fieldName="title"
                     inputSize="md"
+                    label={t("courseManager.courseName")}
+                    placeholder={t("courseManager.courseNamePlaceholder")}
+                    type="text"
                     isRequired
-                    fieldName="difficulty"
-                    label={t("courseManager.level")}
-                    placeholder={t("courseManager.selectLevel")}
-                    options={[
-                      { label: "Iniciante", value: "1" },
-                      { label: "Intermediário", value: "2" },
-                      { label: "Avançado", value: "3" },
-                    ]}
                   />
-                </div>
 
-                {/*Field to choose a category from a list of options*/}
-                <div className="flex flex-col w-1/2 space-y-2 text-left">
-                  <FormMultiSelect
-                    control={form.control}
-                    fieldName="categories"
-                    label={t("courseManager.categories")}
-                    disabled={categoriesLoading || !!error}
-                    options={data.map(
-                      (category: ApiCourseCategoryCourseCategoryDocument) => ({
-                        label: category.name,
-                        value: category.documentId,
-                      })
-                    )}
-                  />
-                </div>
-              </div>
-
-              {/*Field to input the description of the course*/}
-              <div>
-                <FormTextarea
-                  control={form.control}
-                  fieldName="description"
-                  inputSize="sm"
-                  label={t("courseManager.description")}
-                  placeholder={t("courseManager.descriptionPlaceholder")}
-                  maxLength={400}
-                  rows={4}
-                  isRequired
-                  className="resize-none"
-                />
-                <div className="text-right text-sm mt-1 text-greyscale-text-caption">
-                  {form.watch("description")?.length ?? 0} / 400{" "}
-                  {t("courseManager.characters")}
-                </div>
-              </div>
-
-              {/* Error Display */}
-              {mutationError && (
-                <div className="rounded-lg bg-error-surface-default/10 border border-error-surface-default p-4">
-                  <div className="flex items-start gap-3">
-                    <div className="flex-1">
-                      <p className="text-sm font-semibold text-error-surface-default mb-1">
-                        {isEditMode
-                          ? t("courseManager.updateError")
-                          : t("courseManager.createError")}
-                      </p>
-                      <p className="text-sm text-greyscale-text-body">
-                        {mutationError.message.length > 0
-                          ? mutationError.message
-                          : t("courseManager.genericError")}
-                      </p>
+                  <div className="flex items-start gap-8 w-full">
+                    {/*Field to select a level from a list of options*/}
+                    <div className="flex flex-col w-1/2 space-y-2 text-left ">
+                      <FormSelect
+                        control={form.control}
+                        inputSize="md"
+                        isRequired
+                        fieldName="difficulty"
+                        label={t("courseManager.level")}
+                        placeholder={t("courseManager.selectLevel")}
+                        options={[
+                          { label: "Iniciante", value: "1" },
+                          { label: "Intermediário", value: "2" },
+                          { label: "Avançado", value: "3" },
+                        ]}
+                      />
                     </div>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => {
-                        createMutation.reset();
-                        updateMutation.reset();
-                      }}
-                      className="text-error-surface-default hover:text-error-surface-default/80"
-                    >
-                      {t("common.dismiss")}
-                    </Button>
-                  </div>
-                </div>
-              )}
 
+                    {/*Field to choose a category from a list of options*/}
+                    <div className="flex flex-col w-1/2 space-y-2 text-left">
+                      <FormMultiSelect
+                        control={form.control}
+                        fieldName="categories"
+                        label={t("courseManager.categories")}
+                        disabled={categoriesLoading || !!categoriesError}
+                        options={data.map(
+                          (
+                            category: ApiCourseCategoryCourseCategoryDocument
+                          ) => ({
+                            label: category.name,
+                            value: category.documentId,
+                          })
+                        )}
+                      />
+                    </div>
+                  </div>
+
+                  {/*Field to input the description of the course*/}
+                  <div>
+                    <FormTextarea
+                      control={form.control}
+                      fieldName="description"
+                      inputSize="sm"
+                      label={t("courseManager.description")}
+                      placeholder={t("courseManager.descriptionPlaceholder")}
+                      maxLength={400}
+                      rows={4}
+                      isRequired
+                      className="resize-none"
+                    />
+                    <div className="text-right text-sm mt-1 text-greyscale-text-caption">
+                      {form.watch("description")?.length ?? 0} / 400{" "}
+                      {t("courseManager.characters")}
+                    </div>
+                  </div>
+
+                  {/* Show mutation errors inline, so the form doesnt disappear */}
+                  {mutationError && (
+                    <ErrorDisplay
+                      error={mutationError}
+                      variant="bar"
+                      actions={[
+                        {
+                          label: t("common.dismiss"),
+                          onClick: () => {
+                            createMutation.reset();
+                            updateMutation.reset();
+                          },
+                        },
+                      ]}
+                    />
+                  )}
+                </div>
+              </OverlayStatusWrapper>
+            </CardContent>
+            <CardFooter className="flex justify-end mt-4">
               {/*Create and cancel buttons*/}
-              <div className="flex justify-end">
-                <FormActions
-                  formState={form.formState}
-                  submitLabel={
-                    isEditMode
-                      ? t("common.saveChanges")
-                      : t("courseManager.createAndContinue")
-                  }
-                  disableSubmit={!!mutationError}
-                />
-              </div>
-            </div>
+              <FormActions
+                formState={form.formState}
+                submitLabel={
+                  isEditMode
+                    ? t("common.saveChanges")
+                    : t("courseManager.createAndContinue")
+                }
+                submittingLabel={
+                  isEditMode
+                    ? t("common.saving") + "..."
+                    : t("common.creating") + "..."
+                }
+                disableSubmit={!!mutationError}
+              />
+            </CardFooter>
           </form>
         </Form>
-      </OverlayStatusWrapper>
+      </Card>
       <DevTool control={form.control} />
     </>
   );

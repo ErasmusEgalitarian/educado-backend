@@ -5,11 +5,15 @@ import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, useNavigate } from "react-router-dom";
 
+import { ErrorBoundary } from "@/shared/components/error/error-boundary";
+import { ErrorDisplay } from "@/shared/components/error/error-display";
+import { GlobalLoader } from "@/shared/components/global-loader";
 import ReusableAlertDialog from "@/shared/components/modals/reusable-alert-dialog";
 import { useAlertDialog } from "@/shared/components/modals/use-alert-dialog";
 import { PageContainer } from "@/shared/components/page-container";
 import { Button } from "@/shared/components/shadcn/button";
 import { Separator } from "@/shared/components/shadcn/seperator";
+import { toAppError } from "@/shared/lib/error-utilities";
 
 import { CourseQueryFunction } from "../api/course-queries";
 import CourseEditorInformation, {
@@ -45,7 +49,7 @@ const CourseEditorPage = () => {
   const isEditMode = actualCourseId !== undefined;
 
   // Fetch existing course data if we have a course ID
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading, refetch } = useQuery({
     ...CourseQueryFunction(actualCourseId ?? ""),
     enabled: isEditMode, // Only run query in edit mode
   });
@@ -86,15 +90,31 @@ const CourseEditorPage = () => {
   /* ---------------------------- Render component ---------------------------- */
   const getSectionComponent = () => {
     if (error) {
+      const appError = toAppError(error);
+      console.error("Error loading course:", appError);
+
       return (
-        <div className="text-red-500">
-          {t("courseEditor.fetchCourseDataError", { message: error.message })}
-        </div>
+        <ErrorDisplay
+          error={appError}
+          variant="page"
+          actions={[
+            {
+              label: t("common.retry"),
+              onClick: () => void refetch(),
+              variant: "primary",
+            },
+          ]}
+        />
       );
     }
 
     if (isLoading && isEditMode) {
-      return <div>{t("common.loading")}</div>;
+      return (
+        <GlobalLoader
+          variant="container"
+          message={`${t("common.loading")} ${t("courseManager.course").toLowerCase()}...`}
+        />
+      );
     }
 
     switch (currentStep) {
@@ -201,7 +221,7 @@ const CourseEditorPage = () => {
           <h1 className="font-bold text-3xl text-greyscale-text-title mb-6">
             {steps.find((s) => s.id === currentStep)?.label}
           </h1>
-          {getSectionComponent()}
+          <ErrorBoundary>{getSectionComponent()}</ErrorBoundary>
         </div>
       </div>
 
