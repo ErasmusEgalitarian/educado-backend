@@ -4,6 +4,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import CourseEditorPage from "@/course/pages/course-editor-page";
 import CourseOverviewPage from "@/course/pages/course-overview-page";
 
 import AccountDeletionRequest from "./features/auth/components/AccountDeletionRequest";
@@ -27,26 +28,17 @@ import {
   NonProtectedRoute,
 } from "./unplaced/services/auth.guard";
 import SingleApplicantView from "./unplaced/SingleApplicantView";
-import CourseEditorPage from "@/course/pages/course-editor-page";
 
 const App = () => {
   // router
   const router = createBrowserRouter([
     {
       path: "/test",
-      element: (
-        <NonProtectedRoute>
-          <TestPage />
-        </NonProtectedRoute>
-      ),
+      element: <TestPage />,
     },
     {
       path: "/demo",
-      element: (
-        <NonProtectedRoute>
-          <DemoPage />
-        </NonProtectedRoute>
-      ),
+      element: <DemoPage />,
     },
     {
       // Homepage is left unused
