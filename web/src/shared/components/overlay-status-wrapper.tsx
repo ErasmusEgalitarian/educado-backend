@@ -51,16 +51,19 @@ export const OverlayStatusWrapper = ({
   customOverlay,
   className = "",
 }: Readonly<OverlayStatusWrapperProps>) => {
-  const [height, setHeight] = useState<number | null>(null);
+  const [lockedHeight, setLockedHeight] = useState<number | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // Measure the content height on first render or when children change
+  // Lock height when entering loading/success state, unlock when leaving
   useEffect(() => {
-    if (contentRef.current) {
-      setHeight(contentRef.current.offsetHeight);
+    if ((isLoading || isSuccess) && contentRef.current) {
+      // Capture current height before showing overlay
+      setLockedHeight(contentRef.current.offsetHeight);
+    } else {
+      // Allow natural height when not showing overlay
+      setLockedHeight(null);
     }
-    // Re-measure if children change (e.g., content loads)
-  }, [children]);
+  }, [isLoading, isSuccess]);
 
   let activeOverlay = null;
   let showOverlay = false;
@@ -87,14 +90,14 @@ export const OverlayStatusWrapper = ({
   return (
     <div
       className="relative w-full transition-all"
-      style={{ height: height ?? "auto" }}
+      style={{ height: lockedHeight ?? "auto" }}
     >
       {/* Base Layer */}
       <div
         ref={contentRef}
         className={cn(
           `transition-opacity duration-300 ${showOverlay ? "opacity-0 pointer-events-none" : "opacity-100"}`,
-          className,
+          className
         )}
       >
         {children}
