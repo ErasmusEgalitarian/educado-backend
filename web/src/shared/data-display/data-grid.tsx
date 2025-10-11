@@ -61,7 +61,7 @@ const DataGrid = <T extends DataDisplayItem>({
       <div
         className={cn(
           "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4",
-          className
+          className,
         )}
       >
         {Array.from({ length: 12 }, (_, index) => (
@@ -75,7 +75,7 @@ const DataGrid = <T extends DataDisplayItem>({
 
   if (!gridItemRender) {
     throw new Error(
-      "DataGrid requires a gridItemRender function to render items"
+      "DataGrid requires a gridItemRender function to render items",
     );
   }
 
@@ -83,7 +83,7 @@ const DataGrid = <T extends DataDisplayItem>({
     <div
       className={cn(
         "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4",
-        className
+        className,
       )}
     >
       {data.map((item) => (

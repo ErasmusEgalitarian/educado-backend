@@ -29,10 +29,10 @@ const PhoneExercisesAndLectures: React.FC<PhoneExercisesAndLecturesProps> = ({
   const { getAllSectionExercises, getAllSectionLectures } = useSections();
 
   const [lectureData] = useState<Lecture[]>(
-    getAllSectionLectures(selectedSection.id)
+    getAllSectionLectures(selectedSection.id),
   );
   const [exerciseData] = useState<Exercise[]>(
-    getAllSectionExercises(selectedSection.id)
+    getAllSectionExercises(selectedSection.id),
   );
 
   const [showCourseSection, setShowCourseSection] = useState(false);

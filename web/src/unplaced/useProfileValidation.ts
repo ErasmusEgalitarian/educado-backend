@@ -1,5 +1,7 @@
-import { useEducationErrors, useExperienceErrors } from "@/shared/lib/formStates";
-
+import {
+  useEducationErrors,
+  useExperienceErrors,
+} from "@/shared/lib/formStates";
 
 /**
  * Custom hook for validating education and experience forms on /profile and /application endpoints.

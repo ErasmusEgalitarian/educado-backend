@@ -16,7 +16,6 @@ import CourseService from "../../../unplaced/services/course.services";
 import { YellowWarning } from "../../course/components/YellowWarning";
 import { useCourse } from "../../course/context/courseStore";
 
-
 // Notification
 
 interface Inputs {
@@ -60,7 +59,7 @@ export const SectionCreation = ({ setTickChange }: Inputs) => {
       setDialogTitle,
       setDialogMessage,
       setDialogConfirm,
-      setShowDialog
+      setShowDialog,
     );
   };
 

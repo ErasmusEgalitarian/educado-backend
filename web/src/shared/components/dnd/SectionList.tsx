@@ -42,7 +42,7 @@ export const SectionList = ({ sections }: Props) => {
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const handleSectionDeletion = (sId: string) => {

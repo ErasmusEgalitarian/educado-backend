@@ -26,12 +26,12 @@ const CourseOverviewPage = () => {
 
   const courseColumns = useMemo(
     () => createCourseColumns({ t, navigate }),
-    [t, navigate]
+    [t, navigate],
   );
 
   const courseCard = useCallback(
     (course: ApiCourseCourseDocument) => <CourseCard course={course} />,
-    []
+    [],
   );
 
   return (

@@ -43,7 +43,7 @@ const CourseEditorPage = () => {
 
   // Track the actual course ID (from URL or after creation)
   const [actualCourseId, setActualCourseId] = useState<string | undefined>(
-    urlCourseId
+    urlCourseId,
   );
 
   const isEditMode = actualCourseId !== undefined;

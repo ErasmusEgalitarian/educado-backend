@@ -29,6 +29,6 @@ if (rootElement && rootElement.innerHTML === "") {
         </NotificationProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-    </StrictMode>
+    </StrictMode>,
   );
 }

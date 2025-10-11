@@ -174,7 +174,7 @@ const DataDisplayToolbar = <TData,>({
               .filter(
                 (column) =>
                   typeof column.accessorFn !== "undefined" &&
-                  column.getCanHide()
+                  column.getCanHide(),
               )
               .map((column) => {
                 const header =

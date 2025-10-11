@@ -44,7 +44,7 @@ const SingleApplicantView = () => {
           data?.data.applicator.firstName +
             " " +
             data?.data.applicator.lastName +
-            " aprovado"
+            " aprovado",
         ); //CHANGE TO PORTUGUESE
       })
       .catch(() => {
@@ -76,7 +76,7 @@ const SingleApplicantView = () => {
             `${data?.data.applicator.firstName} ${data?.data.applicator.lastName} rejeitado`,
             {
               hideProgressBar: true,
-            }
+            },
           );
         }, 1);
       })

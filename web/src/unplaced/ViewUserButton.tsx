@@ -30,13 +30,13 @@ const ViewUserButton: React.FC<ViewUserButtonProps> = ({
   } = useApi(async (applicationId: string, token: string) => {
     const userDetails = await AdminServices.getSingleUserDetails(
       applicationId,
-      token
+      token,
     );
     const userApplication =
       await AuthServices.GetSingleCCApplication(applicationId);
     const contentCreator = await AdminServices.getContentCreator(
       applicationId,
-      token
+      token,
     );
     return {
       userDetails,

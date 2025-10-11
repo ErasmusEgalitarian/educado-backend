@@ -54,7 +54,7 @@ export const Navbar = () => {
 
   const handleDeleteNotification = (id: number) => {
     setNotifications((prev) =>
-      prev.filter((notification) => notification.id !== id)
+      prev.filter((notification) => notification.id !== id),
     );
   };
 

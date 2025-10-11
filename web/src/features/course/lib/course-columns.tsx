@@ -130,7 +130,7 @@ export const createCourseColumns = ({
 
         const handleDelete = () => {
           toast.info(
-            "Delete functionality is not implemented yet: " + documentId
+            "Delete functionality is not implemented yet: " + documentId,
           );
         };
 

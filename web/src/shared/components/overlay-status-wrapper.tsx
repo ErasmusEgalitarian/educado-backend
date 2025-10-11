@@ -94,7 +94,7 @@ export const OverlayStatusWrapper = ({
         ref={contentRef}
         className={cn(
           `transition-opacity duration-300 ${showOverlay ? "opacity-0 pointer-events-none" : "opacity-100"}`,
-          className
+          className,
         )}
       >
         {children}

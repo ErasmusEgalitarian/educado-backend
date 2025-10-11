@@ -119,7 +119,7 @@ export const GlobalLoader: React.FC<GlobalLoaderProps> = ({
       className={cn(
         "flex items-center justify-center p-8",
         fullHeight && "min-h-screen",
-        className
+        className,
       )}
     >
       <div className="flex flex-col items-center gap-4 text-center max-w-md">

@@ -4,10 +4,7 @@ import { z } from "zod";
 
 export const courseBasicInfoSchema = z.object({
   // Title: Required, cannot be empty string
-  title: z
-    .string()
-    .min(1, "Este campo é obrigatório")
-    .trim(),
+  title: z.string().min(1, "Este campo é obrigatório").trim(),
 
   // Difficulty: Required, must be 1, 2, or 3 (Iniciante, Intermediário, Avançado)
   difficulty: z
@@ -20,10 +17,7 @@ export const courseBasicInfoSchema = z.object({
     .max(3, "Nível inválido"),
 
   // Category: Required, cannot be empty string
-  category: z
-    .string()
-    .min(1, "Este campo é obrigatório")
-    .trim(),
+  category: z.string().min(1, "Este campo é obrigatório").trim(),
 
   // Description: Required, cannot be empty, max 400 characters
   description: z
@@ -34,4 +28,3 @@ export const courseBasicInfoSchema = z.object({
 });
 
 export type CourseBasicInfoFormValues = z.infer<typeof courseBasicInfoSchema>;
-

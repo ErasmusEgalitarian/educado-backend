@@ -25,7 +25,7 @@ const roundHalf = (num: number) => {
 const getValidationError = (
   rating: number,
   starCount: number,
-  maxRating: number
+  maxRating: number,
 ): string | null => {
   if (starCount <= 0) return "Invalid starCount: must be a positive integer.";
   if (maxRating <= 0) return "Invalid maxRating: must be a positive integer.";
@@ -61,7 +61,7 @@ const StarRating = ({
   // Pre-generate stable ids for keys to satisfy lint rules (hook before any early return)
   const starIds = useMemo(
     () => Array.from({ length: starCount }, (_, i) => "star-" + String(i)),
-    [starCount]
+    [starCount],
   );
   // Validate synchronously (avoid setState during render)
   const validationError = getValidationError(rating, starCount, maxRating);
@@ -87,7 +87,7 @@ const StarRating = ({
   const shouldShowHalfStar: boolean = totalFilledStars % 1 === 0.5;
   const emptyStars: number = Math.max(
     0,
-    starCount - fullStars - (shouldShowHalfStar ? 1 : 0)
+    starCount - fullStars - (shouldShowHalfStar ? 1 : 0),
   );
 
   // Determine star size based on size prop
@@ -129,7 +129,7 @@ const StarRating = ({
         {starIds
           .slice(
             fullStars + (shouldShowHalfStar ? 1 : 0),
-            fullStars + (shouldShowHalfStar ? 1 : 0) + Math.max(0, emptyStars)
+            fullStars + (shouldShowHalfStar ? 1 : 0) + Math.max(0, emptyStars),
           )
           .map((id) => (
             <Icon

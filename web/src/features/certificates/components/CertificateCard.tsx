@@ -39,7 +39,7 @@ export default function CertificateCard(props: {
           "/api/student-certificates/download?courseId=" +
           certificate.course._id +
           "&studentId=" +
-          certificate.creator._id
+          certificate.creator._id,
       )
       .then((res) => {
         setPdfPath(res.data);

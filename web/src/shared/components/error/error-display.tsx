@@ -84,7 +84,7 @@ export const ErrorDisplay = ({
         originalError: error.originalError,
       },
       null,
-      2
+      2,
     );
   };
 
@@ -95,7 +95,7 @@ export const ErrorDisplay = ({
         className={cn(
           "flex items-center justify-center p-4",
           fullHeight && "min-h-screen",
-          className
+          className,
         )}
       >
         <div className="w-full max-w-md space-y-6 text-center">
@@ -248,7 +248,7 @@ export const ErrorDisplay = ({
       variant="destructive"
       className={cn(
         "bg-error-surface-default/10 border-error-surface-default",
-        className
+        className,
       )}
     >
       <Icon path={iconPath} size={0.7} className="text-error-surface-default" />

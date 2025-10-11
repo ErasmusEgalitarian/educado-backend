@@ -92,4 +92,4 @@ export const ExampleFormWithMultiSelect = () => {
       <button type="submit">Submit</button>
     </form>
   );
-}
+};

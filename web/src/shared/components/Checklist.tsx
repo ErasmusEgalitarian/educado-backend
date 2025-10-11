@@ -30,7 +30,9 @@ const Checklist: React.FC<ChecklistProps> = ({
   return (
     <div className="w-full h-[20%] items-center justify-left space-y-4 grid grid-flow-row auto-rows-max">
       <div>
-        <p className="text-2xl text-grayMedium">{t('courseManager.newCourse')}</p>
+        <p className="text-2xl text-grayMedium">
+          {t("courseManager.newCourse")}
+        </p>
       </div>
 
       <div className="border-y py-8 w-5/6 border-grayMedium text-greyscale-text-body flex flex-col space-y-4">
@@ -50,7 +52,7 @@ const Checklist: React.FC<ChecklistProps> = ({
             onChange={() => {}}
             style={{ outline: "none", boxShadow: "none" }}
           />
-          {t('courseManager.generalInfo')}
+          {t("courseManager.generalInfo")}
         </label>
 
         <label
@@ -69,7 +71,7 @@ const Checklist: React.FC<ChecklistProps> = ({
             onChange={() => {}}
             style={{ outline: "none", boxShadow: "none" }}
           />
-          {t('courseManager.createSections')}
+          {t("courseManager.createSections")}
         </label>
 
         <label
@@ -88,9 +90,9 @@ const Checklist: React.FC<ChecklistProps> = ({
             onChange={() => {}}
             style={{ outline: "none", boxShadow: "none" }}
           />
-          {t('courseManager.reviewCourse')}
+          {t("courseManager.reviewCourse")}
         </label>
-      </div>  
+      </div>
     </div>
   );
 };

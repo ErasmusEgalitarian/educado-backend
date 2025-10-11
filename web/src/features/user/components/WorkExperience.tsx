@@ -49,7 +49,7 @@ const WorkExperience = ({ data }: { data: any }) => {
         className="mt-1 text-lg font-['Montserrat'] text-gray-900 sm:mt-0"
       >
         <span className="text-lg font-bold font-['Montserrat'] text-gray-900 m-2">
-          {t('courses.activities')}: 
+          {t("courses.activities")}:
         </span>
         {data.data.application.workActivities}
       </dd>

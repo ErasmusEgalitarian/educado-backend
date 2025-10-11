@@ -27,7 +27,7 @@ const FeedbackBox: React.FC<FeedbackBoxProps> = ({ id, token }) => {
         try {
           const response = await CourseServices.getCourseFeedback(
             `${BACKEND_URL}/api/feedback/${id}`,
-            token
+            token,
           );
           setFeedbacks(response.data);
         } catch (error) {

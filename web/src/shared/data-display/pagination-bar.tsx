@@ -200,7 +200,7 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
                       {page + 1}
                     </PaginationLink>
                   </PaginationItem>
-                )
+                ),
               )}
 
               {/* Next Button */}

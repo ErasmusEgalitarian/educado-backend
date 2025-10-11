@@ -67,7 +67,7 @@ const Application = () => {
         !experienceErrorState &&
         isMotivationFilled &&
         dynamicInputsFilled("education") &&
-        dynamicInputsFilled("experience")
+        dynamicInputsFilled("experience"),
     );
   }, [
     submitError,
@@ -79,7 +79,7 @@ const Application = () => {
 
   //callback
   const { call: sendApplication, isLoading: submitLoading } = useApi(
-    AuthService.postNewApplication
+    AuthService.postNewApplication,
   );
 
   // Functions to open and close the confirmation modal
@@ -107,7 +107,7 @@ const Application = () => {
       major: educationFormData.map((data) => data.course),
       institution: educationFormData.map((data) => data.institution),
       educationStartDate: educationFormData.map(
-        (data) => data.educationStartDate
+        (data) => data.educationStartDate,
       ),
       educationEndDate: educationFormData.map((data) => data.educationEndDate),
 

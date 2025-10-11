@@ -72,7 +72,7 @@ const CourseEditorInformation = forwardRef<
   const mutationSuccess = createMutation.isSuccess || updateMutation.isSuccess;
 
   const mutationError = toAppError(
-    createMutation.error ?? updateMutation.error ?? undefined
+    createMutation.error ?? updateMutation.error ?? undefined,
   );
 
   /* ------------------------------- Categories ------------------------------- */
@@ -102,7 +102,7 @@ const CourseEditorInformation = forwardRef<
         title: course.title,
         difficulty: String(course.difficulty) as "1" | "2" | "3",
         categories: course.course_categories?.map(
-          (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId
+          (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId,
         ),
         description: course.description,
       }
@@ -132,7 +132,7 @@ const CourseEditorInformation = forwardRef<
         title: course.title,
         difficulty: String(course.difficulty) as "1" | "2" | "3",
         categories: course.course_categories?.map(
-          (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId
+          (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId,
         ),
         description: course.description,
       });
@@ -256,11 +256,11 @@ const CourseEditorInformation = forwardRef<
                         disabled={categoriesLoading || !!categoriesError}
                         options={data.map(
                           (
-                            category: ApiCourseCategoryCourseCategoryDocument
+                            category: ApiCourseCategoryCourseCategoryDocument,
                           ) => ({
                             label: category.name,
                             value: category.documentId,
-                          })
+                          }),
                         )}
                       />
                     </div>

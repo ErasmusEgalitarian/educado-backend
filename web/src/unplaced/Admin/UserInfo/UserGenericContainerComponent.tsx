@@ -72,7 +72,7 @@ const UserGenericContainerComponent: React.FC<
     } catch (error: any) {
       console.error("Failed to process application:", error);
       toast.error(
-        error.response?.data?.error + ", But we still aproved the application"
+        error.response?.data?.error + ", But we still aproved the application",
       );
     } finally {
       setLoading(false);

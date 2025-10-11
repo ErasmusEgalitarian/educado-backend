@@ -144,7 +144,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
-    getDefaultColumnVisibility(columns)
+    getDefaultColumnVisibility(columns),
   );
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -251,7 +251,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
         totalItems: filteredRows.length,
         totalPages: Math.max(
           1,
-          Math.ceil(filteredRows.length / pagination.pageSize)
+          Math.ceil(filteredRows.length / pagination.pageSize),
         ),
       };
 
