@@ -1,9 +1,9 @@
-import { Icon } from "@mdi/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 import { ApiCourseCourseDocument } from "@/shared/api";
+import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
 import {
   Card,
@@ -13,9 +13,7 @@ import {
   CardTitle,
 } from "@/shared/components/shadcn/card";
 
-import StarRating from "../../../shared/components/StarRating";
-import categories from "../types/courseCategories";
-import { Badge } from "@/shared/components/shadcn/badge";
+import StarRating from "../../../shared/components/star-rating";
 
 /**
  * Displays a course in a card format
@@ -66,11 +64,7 @@ export const CourseCard = ({ course }: { course: ApiCourseCourseDocument }) => {
           </p>
         </div>
 
-        <div className="flex items-center">
-          <div className="w-25 text-[#F1CC4F]">
-            <StarRating rating={5} />
-          </div>
-        </div>
+        <StarRating rating={4.2} size="sm" className="mt-2" />
       </CardContent>
       <CardFooter className="flex justify-end items-center">
         <Button
@@ -78,10 +72,10 @@ export const CourseCard = ({ course }: { course: ApiCourseCourseDocument }) => {
           onClick={handleEdit}
           className="text-[#246670] decoration-[#246670] underline"
         >
-          Editar
+          {t("common.edit")}
         </Button>
         <Button variant="secondary" onClick={handleView}>
-          Visualizar
+          {t("common.view")}
         </Button>
       </CardFooter>
     </Card>
