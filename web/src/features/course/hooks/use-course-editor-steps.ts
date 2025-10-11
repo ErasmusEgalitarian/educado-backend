@@ -36,6 +36,10 @@ export const useCourseEditorSteps = ({
         completed: new Set<CourseEditorStep>(),
     });
 
+    // Course will exist when the query for an initial course has loaded. 
+    // The query will run if a path of "/courses/:courseId/edit" will provide one.
+    // If not, we are in create mode and skip the init below.
+
     // Initialize completed steps based on existing course data (edit mode)
     useEffect(() => {
         if (isEditMode && course) {
@@ -45,11 +49,12 @@ export const useCourseEditorSteps = ({
             const hasBasicInfo = course.title !== "";
             const hasCategories = course.course_categories && course.course_categories.length > 0;
 
+            // 1. Check if "information" is completed
             if (hasBasicInfo && (hasCategories ?? false)) {
                 completed.add("information");
             }
 
-            // Check if sections exist
+            // 2. Check if "sections" is completed
             if (course.course_sections && course.course_sections.length > 0) {
                 completed.add("sections");
             }

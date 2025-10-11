@@ -58,7 +58,11 @@ export const useCreateCourseMutation = () => {
         },
         onSuccess: (data) => {
             // Invalidate course list queries
-            void queryClient.invalidateQueries({ queryKey: ["courses"] });
+            // This will invalidate all queries that start with ["courses"]
+            void queryClient.invalidateQueries({
+                queryKey: ["courses"],
+                exact: false // This ensures all queries starting with ["courses"] are invalidated
+            });
             queryClient.setQueryData(courseQuery(data.documentId), data);
         },
     });
@@ -101,7 +105,11 @@ export const useUpdateCourseMutation = () => {
         },
         onSuccess: (data) => {
             // Invalidate the courses query and set updated course data
-            void queryClient.invalidateQueries({ queryKey: ["courses"] });
+            // exact: false ensures all queries starting with ["courses"] are invalidated
+            void queryClient.invalidateQueries({
+                queryKey: ["courses"],
+                exact: false
+            });
             queryClient.setQueryData(courseQuery(data.documentId), data);
         },
     });
@@ -133,7 +141,11 @@ export const usePublishCourseMutation = () => {
             return response.data;
         },
         onSuccess: (data) => {
-            void queryClient.invalidateQueries({ queryKey: ["courses"] });
+            // Invalidate all courses queries (including compound keys from usePaginatedData)
+            void queryClient.invalidateQueries({
+                queryKey: ["courses"],
+                exact: false
+            });
             queryClient.setQueryData(courseQuery(data.documentId), data);
         },
     });
@@ -165,8 +177,14 @@ export const useUnpublishCourseMutation = () => {
             return response.data;
         },
         onSuccess: (data) => {
-            void queryClient.invalidateQueries({ queryKey: ["course", data.documentId] });
-            void queryClient.invalidateQueries({ queryKey: ["courses"] });
+            void queryClient.invalidateQueries({
+                queryKey: ["course", data.documentId],
+                exact: false
+            });
+            void queryClient.invalidateQueries({
+                queryKey: ["courses"],
+                exact: false
+            });
         },
     });
 };
@@ -184,7 +202,11 @@ export const useDeleteCourseMutation = () => {
             return response.data;
         },
         onSuccess: () => {
-            void queryClient.invalidateQueries({ queryKey: ["courses"] });
+            // Invalidate all courses queries after deletion
+            void queryClient.invalidateQueries({
+                queryKey: ["courses"],
+                exact: false
+            });
         },
     });
 };

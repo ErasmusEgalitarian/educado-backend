@@ -171,10 +171,10 @@ export default function usePaginatedData<T>(
     });
 
     // Use external state if integrated mode, otherwise use internal state
-    const pagination = isIntegratedMode ? tableState!.pagination : internalPagination;
-    const sorting = isIntegratedMode ? tableState!.sorting : [];
-    const columnFilters = isIntegratedMode ? tableState!.columnFilters : [];
-    const globalFilter = isIntegratedMode ? tableState!.globalFilter : "";
+    const pagination = isIntegratedMode ? tableState?.pagination : internalPagination;
+    const sorting = isIntegratedMode ? tableState?.sorting : [];
+    const columnFilters = isIntegratedMode ? tableState?.columnFilters : [];
+    const globalFilter = isIntegratedMode ? tableState?.globalFilter : "";
 
     // --- Mode Resolution ---
     const effectiveMode = renderMode ?? "auto";
@@ -258,7 +258,7 @@ export default function usePaginatedData<T>(
             // For client mode, pageSize doesn't matter (we fetch all), so exclude it
             ...(resolvedMode === "server"
                 ? [
-                    { pageIndex: pagination.pageIndex, pageSize: pagination.pageSize },
+                    { pageIndex: pagination?.pageIndex, pageSize: pagination?.pageSize },
                     sorting,
                     columnFilters,
                     globalFilter,
@@ -268,8 +268,8 @@ export default function usePaginatedData<T>(
         // The query function fetches data based on the current mode and state
         queryFn: async ({ signal }) => {
             console.debug(`usePaginatedData: Fetching data in ${String(resolvedMode)} mode`, {
-                pageIndex: pagination.pageIndex,
-                pageSize: pagination.pageSize,
+                pageIndex: pagination?.pageIndex,
+                pageSize: pagination?.pageSize,
                 globalFilter,
             });
             let params: URLSearchParams;
@@ -293,8 +293,8 @@ export default function usePaginatedData<T>(
                 // In server mode, fetch only the current page with sorting/filtering.
                 params = buildApiQueryParams(
                     {
-                        pageIndex: pagination.pageIndex,
-                        pageSize: pagination.pageSize,
+                        pageIndex: pagination?.pageIndex,
+                        pageSize: pagination?.pageSize,
                         sorting,
                         columnFilters,
                         globalFilter: globalFilter !== "" ? globalFilter : undefined,
@@ -314,7 +314,7 @@ export default function usePaginatedData<T>(
         },
         enabled: resolvedMode !== null, // Only run this query once the mode is resolved.
         placeholderData: keepPreviousData, // Shows old data while fetching new, preventing UI flicker.
-        staleTime: 1000 * 60, // Cache data for 60 seconds - allows toggling sort/filters without refetch
+        staleTime: 0, // Consider data stale immediately - allows invalidation to trigger refetches
     });
 
     // --- Pagination Reset Logic (for STANDALONE mode only) ---
@@ -336,7 +336,7 @@ export default function usePaginatedData<T>(
             prevGlobalFilter.current !== globalFilter
         ) {
             // Reset to page 0 when filters/sorting change
-            if (pagination.pageIndex !== 0) {
+            if (pagination?.pageIndex !== 0) {
                 console.debug(
                     "usePaginatedData: Sorting/filtering changed in standalone mode, resetting to page 0.",
                 );
@@ -348,7 +348,7 @@ export default function usePaginatedData<T>(
         prevSortString.current = currentSortString;
         prevFilterString.current = currentFilterString;
         prevGlobalFilter.current = globalFilter;
-    }, [sorting, columnFilters, globalFilter, pagination.pageIndex, isIntegratedMode]);
+    }, [sorting, columnFilters, globalFilter, pagination?.pageIndex, isIntegratedMode]);
 
     // --- Exposed Setters ---
     const setPaginationCallback: OnChangeFn<PaginationState> = useCallback(
@@ -382,11 +382,12 @@ export default function usePaginatedData<T>(
         const totalItems = mainQuery.data?.meta.pagination.total ?? 0;
         const totalPages = mainQuery.data?.meta.pagination.pageCount ?? 0;
         return {
-            ...pagination,
+            pageIndex: pagination?.pageIndex ?? 0,
+            pageSize: pagination?.pageSize ?? initialPageSize,
             totalItems,
             totalPages,
         };
-    }, [pagination, mainQuery.data]);
+    }, [pagination, mainQuery.data, initialPageSize]);
 
     return {
         data: mainQuery.data?.data ?? [],

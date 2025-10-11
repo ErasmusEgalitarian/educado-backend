@@ -143,9 +143,10 @@ const CourseEditorPage = () => {
 
   const handleBack = () => {
     // Check isDirty at the moment of click
-    const hasChanges =
-      (informationFormRef.current?.isDirty() ?? false) ||
-      (sectionsFormRef.current?.isDirty() ?? false);
+    const informationDirty = informationFormRef.current?.isDirty() ?? false;
+    const sectionsDirty = sectionsFormRef.current?.isDirty() ?? false;
+
+    const hasChanges = informationDirty || sectionsDirty;
 
     if (hasChanges) {
       openAlert();

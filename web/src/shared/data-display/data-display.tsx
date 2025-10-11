@@ -54,12 +54,8 @@ type DataDisplayProps<T extends DataDisplayItem> =
       gridItemRender?: never; // Grid render not allowed for table-only mode
     })
   | (BaseDataDisplayProps<T> & {
-      allowedViewModes: "grid";
-      gridItemRender: (item: T) => React.ReactNode; // Required for grid-only mode
-    })
-  | (BaseDataDisplayProps<T> & {
-      allowedViewModes: "both";
-      gridItemRender: (item: T) => React.ReactNode; // Required when both modes allowed
+      allowedViewModes: "grid" | "both";
+      gridItemRender: (item: T) => React.ReactNode; // Required for grid-only or both mode
     });
 
 /* --------------------------- Exported component --------------------------- */
