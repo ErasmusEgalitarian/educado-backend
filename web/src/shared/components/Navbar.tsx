@@ -54,7 +54,7 @@ export const Navbar = () => {
 
   const handleDeleteNotification = (id: number) => {
     setNotifications((prev) =>
-      prev.filter((notification) => notification.id !== id),
+      prev.filter((notification) => notification.id !== id)
     );
   };
 
@@ -139,7 +139,7 @@ export const Navbar = () => {
                       onClick={handleClearAll}
                       className="text-sm text-red-600 hover:underline"
                     >
-                      {t("navbar.clearAll")}
+                      {t("actions.clearAll")}
                     </button>
                   </div>
                 )}

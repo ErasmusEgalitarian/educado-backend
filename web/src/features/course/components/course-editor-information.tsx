@@ -40,13 +40,14 @@ export interface CourseEditorInformationRef {
 
 /* --------------------------------- Schema --------------------------------- */
 const courseBasicInfoSchema = z.object({
-  title: z.string().min(1, t("validation.title")),
+  title: z.string().min(1, t("validation.required")),
   difficulty: z.union([z.literal("1"), z.literal("2"), z.literal("3")]),
   categories: z
     .array(z.string())
     .min(1, t("validation.minCategories", { count: 1 })),
   description: z
     .string()
+    .min(16, t("validation.minLength", { count: 16 }))
     .max(400, t("validation.maxDescription", { count: 400 }))
     .optional(),
 });
@@ -72,7 +73,7 @@ const CourseEditorInformation = forwardRef<
   const mutationSuccess = createMutation.isSuccess || updateMutation.isSuccess;
 
   const mutationError = toAppError(
-    createMutation.error ?? updateMutation.error ?? undefined,
+    createMutation.error ?? updateMutation.error ?? undefined
   );
 
   /* ------------------------------- Categories ------------------------------- */
@@ -102,7 +103,7 @@ const CourseEditorInformation = forwardRef<
         title: course.title,
         difficulty: String(course.difficulty) as "1" | "2" | "3",
         categories: course.course_categories?.map(
-          (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId,
+          (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId
         ),
         description: course.description,
       }
@@ -132,7 +133,7 @@ const CourseEditorInformation = forwardRef<
         title: course.title,
         difficulty: String(course.difficulty) as "1" | "2" | "3",
         categories: course.course_categories?.map(
-          (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId,
+          (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId
         ),
         description: course.description,
       });
@@ -256,11 +257,11 @@ const CourseEditorInformation = forwardRef<
                         disabled={categoriesLoading || !!categoriesError}
                         options={data.map(
                           (
-                            category: ApiCourseCategoryCourseCategoryDocument,
+                            category: ApiCourseCategoryCourseCategoryDocument
                           ) => ({
                             label: category.name,
                             value: category.documentId,
-                          }),
+                          })
                         )}
                       />
                     </div>
@@ -277,7 +278,6 @@ const CourseEditorInformation = forwardRef<
                       maxLength={400}
                       rows={4}
                       isRequired
-                      className="resize-none"
                     />
                     <div className="text-right text-sm mt-1 text-greyscale-text-caption">
                       {form.watch("description")?.length ?? 0} / 400{" "}

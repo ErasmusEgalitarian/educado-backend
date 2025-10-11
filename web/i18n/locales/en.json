@@ -5,6 +5,12 @@
     "english": "English",
     "switchLanguage": "Language"
   },
+  "actions": {
+    "clearAll": "Clear all",
+    "selectAll": "Select all",
+    "close": "Close",
+    "search": "Search"
+  },
   "common": {
     "edit": "Edit",
     "delete": "Delete",
@@ -24,7 +30,6 @@
     "openMenu": "Open Menu",
     "actions": "Actions",
     "mandatory": "This field is mandatory",
-    "search": "Search",
     "columns": "Columns",
     "sort": "Sort",
     "sortBy": "Sort By",
@@ -69,8 +74,7 @@
     "admin": "Admin",
     "logout": "Logout",
     "notifications": "Notifications",
-    "noNotifications": "No notifications",
-    "clearAll": "Clear All"
+    "noNotifications": "No notifications"
   },
   "courseManager": {
     "course": "Course",

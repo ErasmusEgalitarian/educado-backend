@@ -26,6 +26,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/shared/components/shadcn/command";
+import { useTranslation } from "react-i18next";
 
 /**
  * Animation types and configurations
@@ -337,6 +338,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
     },
     ref
   ) => {
+    const { t } = useTranslation();
     const [selectedValues, setSelectedValues] =
       React.useState<string[]>(defaultValue);
     const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
@@ -1035,7 +1037,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
             <Command>
               {searchable && (
                 <CommandInput
-                  placeholder="Search options..."
+                  placeholder={t("actions.search") + "..."}
                   onKeyDown={handleInputKeyDown}
                   value={searchValue}
                   onValueChange={setSearchValue}
@@ -1087,7 +1089,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                         <CheckIcon className="h-4 w-4" />
                       </div>
                       <span>
-                        (Select All
+                        ({t("actions.selectAll")}
                         {getAllOptions().length > 20
                           ? ` - ${getAllOptions().length} options`
                           : ""}
@@ -1194,7 +1196,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                           onSelect={handleClear}
                           className="flex-1 justify-center cursor-pointer"
                         >
-                          Clear
+                          {t("actions.clearAll")}
                         </CommandItem>
                         <Separator
                           orientation="vertical"
@@ -1206,7 +1208,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                       onSelect={() => setIsPopoverOpen(false)}
                       className="flex-1 justify-center cursor-pointer max-w-full"
                     >
-                      Close
+                      {t("actions.close")}
                     </CommandItem>
                   </div>
                 </CommandGroup>

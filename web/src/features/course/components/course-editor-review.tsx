@@ -255,12 +255,12 @@ const CourseEditorReview = ({
         {isPublished && (
           <div className="flex gap-4 pt-6">
             <Button
-              variant="outline"
+              variant="primary"
               onClick={() => {
                 navigate("/courses");
               }}
             >
-              Back to Courses
+              {t("common.back")}
             </Button>
           </div>
         )}

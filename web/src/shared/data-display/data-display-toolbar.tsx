@@ -174,7 +174,7 @@ const DataDisplayToolbar = <TData,>({
               .filter(
                 (column) =>
                   typeof column.accessorFn !== "undefined" &&
-                  column.getCanHide(),
+                  column.getCanHide()
               )
               .map((column) => {
                 const header =
@@ -207,7 +207,7 @@ const DataDisplayToolbar = <TData,>({
             className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4"
           />
           <Input
-            placeholder={t("common.search") + "..."}
+            placeholder={t("actions.search") + "..."}
             value={searchValue}
             onChange={(e) => {
               onSearchChange(e.target.value);

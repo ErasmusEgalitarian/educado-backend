@@ -14,7 +14,6 @@ import PrivacyPolicy from "./features/auth/components/PrivacyPolicy";
 import Signup from "./features/auth/components/Signup";
 import Welcome from "./features/auth/pages/Welcome";
 import Certificates from "./features/certificates/pages/Certificates";
-import CourseManager from "./features/course/pages/CourseManager";
 import Profile from "./features/user/components/Profile";
 import NotFound from "./shared/assets/NotFound";
 import DemoPage from "./shared/demo/pages/demo-page";
@@ -69,15 +68,6 @@ const App = () => {
       element: (
         <ProtectedRoute>
           <CourseEditorPage />
-        </ProtectedRoute>
-      ),
-      errorElement: <NotFound />,
-    },
-    {
-      path: "/old-manager",
-      element: (
-        <ProtectedRoute>
-          <CourseManager />
         </ProtectedRoute>
       ),
       errorElement: <NotFound />,
