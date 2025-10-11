@@ -1,5 +1,6 @@
 // Export only FormActions. Legacy FormSubmitButton name has been removed intentionally.
 import { FieldValues, FormState } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/shared/components/shadcn/button";
 
@@ -27,15 +28,24 @@ export interface FormActionsProps<
 
 const FormActions = <TFieldValues extends FieldValues = FieldValues>({
   formState,
-  submitLabel = "Submit",
-  submittingLabel = "Submitting...",
+  submitLabel,
+  submittingLabel,
   showReset = false,
-  resetLabel = "Reset",
+  resetLabel,
   onReset,
   allowPristineSubmit = false,
   className,
   disableSubmit,
 }: FormActionsProps<TFieldValues>) => {
+  const { t } = useTranslation();
+
+  /* --------------------------------- Labels --------------------------------- */
+  const finalSubmitLabel = submitLabel ?? t("common.submit");
+  const finalSubmittingLabel =
+    submittingLabel ?? t("common.submitting") + "...";
+  const finalResetLabel = resetLabel ?? t("common.reset");
+
+  /* ------------------------------ Button State ------------------------------ */
   const { isDirty, isValid, isSubmitting } = formState;
   const canSubmitByState =
     (allowPristineSubmit || isDirty) && isValid && !isSubmitting;
@@ -52,10 +62,10 @@ const FormActions = <TFieldValues extends FieldValues = FieldValues>({
     <div className={containerClass}>
       <Button
         type="submit"
-        disabled={submitDisabled}
+        disabled={isSubmitting || submitDisabled}
         aria-disabled={submitDisabled}
       >
-        {isSubmitting ? submittingLabel : submitLabel}
+        {isSubmitting ? finalSubmittingLabel : finalSubmitLabel}
       </Button>
       {showReset && (
         <Button
@@ -65,7 +75,7 @@ const FormActions = <TFieldValues extends FieldValues = FieldValues>({
           aria-disabled={resetDisabled}
           onClick={handleReset}
         >
-          {resetLabel}
+          {finalResetLabel}
         </Button>
       )}
     </div>

@@ -1,6 +1,6 @@
 // eslint.config.ts
 
-import { defineConfig } from "eslint/config";
+import type { Linter } from "eslint";
 import eslint from "@eslint/js";
 import prettierConfig from "eslint-config-prettier";
 import pluginImport from "eslint-plugin-import";
@@ -13,7 +13,7 @@ import sonarjs from "eslint-plugin-sonarjs";
 import reactHooks from "eslint-plugin-react-hooks";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 
-export default defineConfig([
+export default [
   // --- 1. GLOBAL IGNORES ---
   // This block tells ESLint to completely ignore certain files and folders.
   // This is crucial for performance and to prevent linting build artifacts,
@@ -28,7 +28,8 @@ export default defineConfig([
       "tailwind.config.cjs",
       "postcss.config.js",
       "babel.config.cjs",
-      "src/shared/components/shadcn"
+      "src/shared/components/shadcn",
+      "src/shared/api"
     ],
   },
 
@@ -186,4 +187,4 @@ export default defineConfig([
   // This MUST be the last item. It disables any ESLint rules that conflict
   // with Prettier, letting Prettier handle all code formatting.
   prettierConfig,
-]);
+] satisfies Linter.Config[];

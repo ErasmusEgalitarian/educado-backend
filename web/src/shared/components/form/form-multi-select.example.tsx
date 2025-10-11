@@ -6,6 +6,7 @@
  */
 
 import { useForm } from "react-hook-form";
+
 import { FormMultiSelect } from "./form-multi-select";
 
 interface ExampleFormData {
@@ -13,7 +14,7 @@ interface ExampleFormData {
   tags: string[];
 }
 
-export function ExampleFormWithMultiSelect() {
+export const ExampleFormWithMultiSelect = () => {
   const form = useForm<ExampleFormData>({
     defaultValues: {
       categories: [],
