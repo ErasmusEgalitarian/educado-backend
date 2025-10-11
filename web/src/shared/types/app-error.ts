@@ -12,6 +12,14 @@ export interface AppError {
     message: string;
     /** Technical details (for developers/debugging) */
     details?: string;
+    /** Stack trace for frontend errors */
+    stack?: string;
+    /** Request details for API errors */
+    request?: {
+        url: string;
+        method?: string;
+        body?: unknown;
+    };
     /** Original error object */
     originalError?: unknown;
 }
