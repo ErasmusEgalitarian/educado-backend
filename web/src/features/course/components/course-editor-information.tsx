@@ -235,7 +235,7 @@ const CourseEditorInformation = forwardRef<
                     <div className="flex flex-col w-1/2 space-y-2 text-left ">
                       <FormSelect
                         control={form.control}
-                        inputSize="lg"
+                        inputSize="md"
                         isRequired
                         fieldName="difficulty"
                         label={t("courseManager.level")}
