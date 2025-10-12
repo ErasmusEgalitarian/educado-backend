@@ -13,6 +13,9 @@ import FormDemo from "../components/form-demo";
 import FormInputDemo from "../components/form-input-demo";
 import FormTextareaDemo from "../components/form-textarea-demo";
 import GlobalLoaderDemo from "../components/global-loader-demo";
+import InternationalizationDemo from "../components/internationalization-demo";
+import MultiSelectDemo from "../components/multi-select-demo";
+import SelectDemo from "../components/select-demo";
 import UsePaginatedDataDemo from "../components/use-paginated-data-demo";
 
 const DocsPage = () => {
@@ -31,6 +34,7 @@ const DocsPage = () => {
       <Tabs defaultValue="introduction" className="w-full">
         <TabsList>
           <TabsTrigger value="introduction">Introduction</TabsTrigger>
+          <TabsTrigger value="i18n">Internationalization</TabsTrigger>
           <TabsTrigger value="error">Error Handling</TabsTrigger>
           <TabsTrigger value="global-loader">Global Loader</TabsTrigger>
           <TabsTrigger value="use-paginated-data">usePaginatedData</TabsTrigger>
@@ -39,9 +43,14 @@ const DocsPage = () => {
           <TabsTrigger value="form">Form Basics</TabsTrigger>
           <TabsTrigger value="input">Input</TabsTrigger>
           <TabsTrigger value="textarea">Textarea</TabsTrigger>
+          <TabsTrigger value="select">Select</TabsTrigger>
+          <TabsTrigger value="multi-select">Multi-Select</TabsTrigger>
         </TabsList>
         <TabsContent value="introduction" className="mt-6">
           <DemoIntroduction />
+        </TabsContent>
+        <TabsContent value="i18n">
+          <InternationalizationDemo />
         </TabsContent>
         <TabsContent value="error">
           <ErrorDemo />
@@ -66,6 +75,12 @@ const DocsPage = () => {
         </TabsContent>
         <TabsContent value="textarea">
           <FormTextareaDemo />
+        </TabsContent>
+        <TabsContent value="select">
+          <SelectDemo />
+        </TabsContent>
+        <TabsContent value="multi-select">
+          <MultiSelectDemo />
         </TabsContent>
       </Tabs>
     </main>
