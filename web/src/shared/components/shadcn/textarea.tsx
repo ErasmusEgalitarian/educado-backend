@@ -18,10 +18,10 @@ function Textarea({
       "border-error-border-default bg-error-surface-subtle focus-visible:border-error-surface-default focus-visible:ring-error-surface-default/20",
   };
   const inputSizes = {
-    xs: "px-2 py-1 text-sm",
-    sm: "px-2.5 py-1.5 text-sm",
-    md: "px-3 py-2 text-base",
-    lg: "px-4 py-3 text-lg",
+    xs: "p-2 text-sm",
+    sm: "p-3 text-sm",
+    md: "p-4 text-base",
+    lg: "p-5 text-lg",
   };
   return (
     <textarea

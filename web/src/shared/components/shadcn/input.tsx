@@ -36,10 +36,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     const inputSizes = {
-      xs: "h-6 px-2 py-1 text-sm",
-      sm: "h-8 px-2.5 py-1.5 text-sm",
-      md: "h-10 px-3 py-2 text-base",
-      lg: "h-12 px-4 py-3 text-lg",
+      xs: "h-6 p-2 text-sm",
+      sm: "h-8 p-3 text-sm",
+      md: "h-10 p-4 text-base",
+      lg: "h-12 p-5 text-lg",
     };
 
     const element = (
