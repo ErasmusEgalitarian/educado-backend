@@ -32,6 +32,7 @@ import {
   SelectValue,
 } from "./shared/components/shadcn/select";
 import { AppError } from "./shared/types/app-error";
+import { Textarea } from "./shared/components/shadcn/textarea";
 
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({

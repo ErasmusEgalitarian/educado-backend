@@ -229,14 +229,6 @@ const formatErrorDetails = (body: unknown): string | undefined => {
 };
 
 /**
- * Helper to convert mutation errors to AppError
- * Common use case for React Query mutations
- */
-export const getMutationError = (error: unknown): AppError => {
-  return toAppError(error);
-};
-
-/**
  * Helper to check if error is a network error
  */
 export const isNetworkError = (error: AppError): boolean => {

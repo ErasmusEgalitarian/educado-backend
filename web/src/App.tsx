@@ -16,7 +16,7 @@ import Welcome from "./features/auth/pages/Welcome";
 import Certificates from "./features/certificates/pages/Certificates";
 import Profile from "./features/user/components/Profile";
 import NotFound from "./shared/assets/NotFound";
-import DemoPage from "./shared/demo/pages/demo-page";
+import DocsPage from "./shared/docs/pages/docs-page";
 import TestPage from "./test-page";
 import Application from "./unplaced/Application";
 import EducadoAdmin from "./unplaced/EducadoAdmin";
@@ -36,8 +36,8 @@ const App = () => {
       element: <TestPage />,
     },
     {
-      path: "/demo",
-      element: <DemoPage />,
+      path: "/docs",
+      element: <DocsPage />,
     },
     {
       // Homepage is left unused

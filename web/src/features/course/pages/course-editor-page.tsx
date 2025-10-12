@@ -43,13 +43,18 @@ const CourseEditorPage = () => {
 
   // Track the actual course ID (from URL or after creation)
   const [actualCourseId, setActualCourseId] = useState<string | undefined>(
-    urlCourseId,
+    urlCourseId
   );
 
   const isEditMode = actualCourseId !== undefined;
 
   // Fetch existing course data if we have a course ID
-  const { data, error, isLoading, refetch } = useQuery({
+  const {
+    data: queryCourse,
+    error: queryError,
+    isLoading: queryIsLoading,
+    refetch,
+  } = useQuery({
     ...CourseQueryFunction(actualCourseId ?? ""),
     enabled: isEditMode, // Only run query in edit mode
   });
@@ -65,7 +70,7 @@ const CourseEditorPage = () => {
     isStepCompleted,
     isStepActive,
   } = useCourseEditorSteps({
-    course: data,
+    course: queryCourse,
     isEditMode,
   });
 
@@ -89,8 +94,8 @@ const CourseEditorPage = () => {
 
   /* ---------------------------- Render component ---------------------------- */
   const getSectionComponent = () => {
-    if (error) {
-      const appError = toAppError(error);
+    if (queryError) {
+      const appError = toAppError(queryError);
       console.error("Error loading course:", appError);
 
       return (
@@ -108,7 +113,7 @@ const CourseEditorPage = () => {
       );
     }
 
-    if (isLoading && isEditMode) {
+    if (queryIsLoading && isEditMode) {
       return (
         <GlobalLoader
           variant="container"
@@ -122,7 +127,7 @@ const CourseEditorPage = () => {
         return (
           <CourseEditorInformation
             ref={informationFormRef}
-            course={data}
+            course={queryCourse}
             onComplete={(courseId) => {
               handleStepComplete("information", courseId);
             }}
@@ -132,7 +137,7 @@ const CourseEditorPage = () => {
         return (
           <CourseEditorSections
             ref={sectionsFormRef}
-            courseId={data?.documentId}
+            courseId={queryCourse?.documentId}
             onComplete={() => {
               handleStepComplete("sections");
             }}
@@ -141,7 +146,7 @@ const CourseEditorPage = () => {
       case "review":
         return (
           <CourseEditorReview
-            course={data}
+            course={queryCourse}
             onComplete={() => {
               handleStepComplete("review");
             }}
@@ -154,8 +159,9 @@ const CourseEditorPage = () => {
 
   const getPageTitle = () => {
     if (isEditMode) {
-      const hasTitle = data?.title != null && data.title.trim() !== "";
-      return `${t("common.edit")} ${t("courseManager.course")} ${hasTitle ? "'" + data.title + "'" : ""}`;
+      const hasTitle =
+        queryCourse?.title != null && queryCourse.title.trim() !== "";
+      return `${t("common.edit")} ${t("courseManager.course")} ${hasTitle ? "'" + queryCourse.title + "'" : ""}`;
     }
 
     return `${t("common.create")} ${t("courseManager.course")}`;

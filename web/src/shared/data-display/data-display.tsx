@@ -25,6 +25,7 @@ import { getDefaultColumnVisibility } from "./lib/visibility-utility";
 import PaginationBar from "./pagination-bar";
 
 import type { UsePaginatedDataConfig } from "./hooks/used-paginated-data";
+import { useTranslation } from "react-i18next";
 
 /* ----------------------------- Exported types ----------------------------- */
 
@@ -127,6 +128,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
   populate,
   config,
 }: DataDisplayProps<T>) => {
+  const { t } = useTranslation();
   const hasTable = allowedViewModes === "table" || allowedViewModes === "both";
   const hasGrid = allowedViewModes === "grid" || allowedViewModes === "both";
 
@@ -144,7 +146,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
-    getDefaultColumnVisibility(columns),
+    getDefaultColumnVisibility(columns)
   );
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -152,7 +154,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
   });
 
   // Fetch data with integrated mode
-  const { data, isLoading, error, extendedPagination, resolvedMode } =
+  const { data, isLoading, error, extendedPagination, resolvedMode, refetch } =
     usePaginatedData<T>({
       mode: "integrated",
       queryKey,
@@ -226,10 +228,21 @@ export const DataDisplay = <T extends DataDisplayItem>({
     setGlobalFilter(value); // TanStack Table handles empty string correctly
   };
 
-  // TODO: Create a better error component
   if (error != null) {
     const appError = toAppError(error);
-    return <ErrorDisplay error={appError} variant="card" />;
+    return (
+      <ErrorDisplay
+        error={appError}
+        variant="card"
+        actions={[
+          {
+            label: t("common.retry"),
+            onClick: () => void refetch(),
+            variant: "primary",
+          },
+        ]}
+      />
+    );
   }
 
   // Get processed rows from TanStack Table (respects client-side sorting/filtering in client mode)
@@ -251,7 +264,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
         totalItems: filteredRows.length,
         totalPages: Math.max(
           1,
-          Math.ceil(filteredRows.length / pagination.pageSize),
+          Math.ceil(filteredRows.length / pagination.pageSize)
         ),
       };
 

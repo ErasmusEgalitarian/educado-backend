@@ -40,10 +40,9 @@ const FormActions = <TFieldValues extends FieldValues = FieldValues>({
   const { t } = useTranslation();
 
   /* --------------------------------- Labels --------------------------------- */
-  const finalSubmitLabel = submitLabel ?? t("common.submit");
-  const finalSubmittingLabel =
-    submittingLabel ?? t("common.submitting") + "...";
-  const finalResetLabel = resetLabel ?? t("common.reset");
+  const finalSubmitLabel = submitLabel ?? t("form.submit");
+  const finalSubmittingLabel = submittingLabel ?? t("form.submitting") + "...";
+  const finalResetLabel = resetLabel ?? t("form.reset");
 
   /* ------------------------------ Button State ------------------------------ */
   const { isDirty, isValid, isSubmitting } = formState;

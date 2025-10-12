@@ -11,6 +11,11 @@
     "close": "Fechar",
     "search": "Buscar"
   },
+  "form": {
+    "submit": "Submeter",
+    "submitting": "Submetendo",
+    "reset": "Redefinir"
+  },
   "common": {
     "edit": "Editar",
     "delete": "Deletar",
@@ -76,15 +81,21 @@
     "notifications": "Notificações",
     "noNotifications": "Nenhuma notificação"
   },
+  "categories": {
+    "category": "Categoria",
+    "categories": "Categorias",
+    "categoryNotFound": "Categoria não encontrada",
+    "selectCategory": "Selecione a categoria",
+    "loadingCategories": "Carregando Categorias",
+    "loadingCategoriesDescription": "Por favor, aguarde enquanto buscamos as categorias de cursos disponíveis...",
+    "categoriesError": "Erro ao carregar categorias"
+  },
   "createCourse": {
     "generalInfo": "Informações Gerais",
     "courseName": "Nome do Curso",
     "courseNamePlaceholder": "Digite o nome do curso",
     "level": "Nível",
     "selectLevel": "Selecione o nível",
-    "category": "Categoria",
-    "categoryNotFound": "Categoria não encontrada",
-    "selectCategory": "Selecione a categoria",
     "description": "Descrição",
     "descriptionPlaceholder": "Digite a descrição",
     "coverImage": "Imagem de Capa",
@@ -105,9 +116,6 @@
     "courseNamePlaceholder": "Digite o nome do curso",
     "level": "Nível",
     "selectLevel": "Selecione o nível",
-    "categories": "Categorias",
-    "category": "Categoria",
-    "selectCategory": "Selecione a categoria",
     "description": "Descrição",
     "descriptionPlaceholder": "Digite a descrição",
     "coverImage": "Imagem de Capa",
@@ -124,8 +132,6 @@
     "publishCourse": "Publicar Curso",
     "courseDetails": "Detalhes do Curso",
     "noCourse": "Sem dados do curso",
-    "loadingCategories": "Carregando Categorias",
-    "loadingCategoriesDescription": "Por favor, aguarde enquanto buscamos as categorias de cursos disponíveis...",
     "noSections": "Sem seções ainda",
     "publishConfirm": "Tem certeza que deseja publicar este curso? Ele ficará visível para todos os alunos.",
     "unpublishConfirm": "Tem certeza que deseja despublicar este curso? Ele não ficará mais visível para os alunos.",

@@ -185,7 +185,7 @@ export default function usePaginatedData<T>(
   // --- Mode Resolution ---
   const effectiveMode = renderMode ?? "auto";
   console.debug("usePaginatedData: Effective mode:", effectiveMode);
-  const effectiveClientModeThreshold = clientModeThreshold ?? 1000;
+  const effectiveClientModeThreshold = clientModeThreshold ?? 10000;
 
   // 1. DETECTION QUERY: Runs only in "auto" mode to determine the total number of items.
   const detectionQuery = useQuery({
@@ -264,14 +264,14 @@ export default function usePaginatedData<T>(
       // For client mode, pageSize doesn't matter (we fetch all), so exclude it
       ...(resolvedMode === "server"
         ? [
-            {
-              pageIndex: pagination?.pageIndex,
-              pageSize: pagination?.pageSize,
-            },
-            sorting,
-            columnFilters,
-            globalFilter,
-          ]
+          {
+            pageIndex: pagination?.pageIndex,
+            pageSize: pagination?.pageSize,
+          },
+          sorting,
+          columnFilters,
+          globalFilter,
+        ]
         : []), // Client mode fetches all data once, no need for pagination in key
     ],
     // The query function fetches data based on the current mode and state

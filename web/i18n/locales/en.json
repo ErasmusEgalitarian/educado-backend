@@ -11,6 +11,11 @@
     "close": "Close",
     "search": "Search"
   },
+  "form": {
+    "submit": "Submit",
+    "submitting": "Submitting",
+    "reset": "Reset"
+  },
   "common": {
     "edit": "Edit",
     "delete": "Delete",
@@ -76,6 +81,15 @@
     "notifications": "Notifications",
     "noNotifications": "No notifications"
   },
+  "categories": {
+    "category": "Category",
+    "categories": "Categories",
+    "categoryNotFound": "Category not found",
+    "selectCategory": "Select the category",
+    "loadingCategories": "Loading Categories",
+    "loadingCategoriesDescription": "Please wait while we fetch the available course categories...",
+    "categoriesError": "Error loading categories. Please try again."
+  },
   "courseManager": {
     "course": "Course",
     "generalInfo": "General Information",
@@ -83,10 +97,6 @@
     "courseNamePlaceholder": "Enter the course name",
     "level": "Level",
     "selectLevel": "Select the level",
-    "category": "Category",
-    "categories": "Categories",
-    "categoryNotFound": "Category not found",
-    "selectCategory": "Select the category",
     "description": "Description",
     "descriptionPlaceholder": "Enter the description",
     "coverImage": "Cover Image",
@@ -103,8 +113,6 @@
     "publishCourse": "Publish Course",
     "courseDetails": "Course Details",
     "noCourse": "No course data",
-    "loadingCategories": "Loading Categories",
-    "loadingCategoriesDescription": "Please wait while we fetch the available course categories...",
     "noSections": "No sections yet",
     "publishConfirm": "Are you sure you want to publish this course? It will be visible to all students.",
     "unpublishConfirm": "Are you sure you want to unpublish this course? It will no longer be visible to students.",

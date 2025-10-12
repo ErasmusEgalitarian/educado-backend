@@ -44,7 +44,11 @@ const courseBasicInfoSchema = z.object({
   difficulty: z.union([z.literal("1"), z.literal("2"), z.literal("3")]),
   categories: z
     .array(z.string())
-    .min(1, t("validation.minCategories", { count: 1 })),
+    .min(1, t("validation.minCategories", { count: 1 }))
+    .optional()
+    .refine((val) => !val || val.length > 0, {
+      message: t("validation.minCategories", { count: 1 }),
+    }),
   description: z
     .string()
     .min(16, t("validation.minLength", { count: 16 }))
@@ -73,7 +77,7 @@ const CourseEditorInformation = forwardRef<
   const mutationSuccess = createMutation.isSuccess || updateMutation.isSuccess;
 
   const mutationError = toAppError(
-    createMutation.error ?? updateMutation.error ?? undefined
+    createMutation.error ?? updateMutation.error
   );
 
   /* ------------------------------- Categories ------------------------------- */
@@ -140,6 +144,16 @@ const CourseEditorInformation = forwardRef<
     }
   }, [course, form]);
 
+  // Set field error when categories fail to load
+  useEffect(() => {
+    if (categoriesError) {
+      form.setError("categories", {
+        type: "manual",
+        message: t("categories.categoriesError"),
+      });
+    }
+  }, [categoriesError, form, t]);
+
   /* -------------------------------- Handlers -------------------------------- */
 
   const onSubmit = async (values: CourseBasicInfoFormValues) => {
@@ -164,7 +178,7 @@ const CourseEditorInformation = forwardRef<
         const result = await createMutation.mutateAsync({
           title: values.title,
           difficulty: Number(values.difficulty),
-          categories: values.categories,
+          categories: values.categories ?? [],
           description: values.description,
         });
 
@@ -179,16 +193,17 @@ const CourseEditorInformation = forwardRef<
     }
   };
 
+  const handleDismissCategoriesError = () => {
+    // Clear the field error
+    form.clearErrors("categories");
+    // Retry fetching categories
+    void refetchCategories();
+  };
+
   return (
     <>
       {/* Loading state and error states for categories are passed as props to the card. Mutations are handled inside the card, and through wrapper */}
       <Card
-        isLoading={categoriesLoading}
-        error={toAppError(categoriesError)}
-        loadingProps={{
-          message: t("courseManager.loadingCategories"),
-          description: t("courseManager.loadingCategoriesDescription"),
-        }}
         errorProps={{
           actions: [
             {
@@ -253,8 +268,9 @@ const CourseEditorInformation = forwardRef<
                       <FormMultiSelect
                         control={form.control}
                         fieldName="categories"
-                        label={t("courseManager.categories")}
+                        label={t("categories.categories")}
                         disabled={categoriesLoading || !!categoriesError}
+                        isRequired={true}
                         options={data.map(
                           (
                             category: ApiCourseCategoryCourseCategoryDocument
@@ -263,6 +279,11 @@ const CourseEditorInformation = forwardRef<
                             value: category.documentId,
                           })
                         )}
+                        description={
+                          categoriesLoading
+                            ? t("categories.loadingCategoriesDescription")
+                            : ""
+                        }
                       />
                     </div>
                   </div>
@@ -301,6 +322,18 @@ const CourseEditorInformation = forwardRef<
                       ]}
                     />
                   )}
+                  {categoriesError && (
+                    <ErrorDisplay
+                      error={toAppError(categoriesError)}
+                      variant="bar"
+                      actions={[
+                        {
+                          label: `${t("common.retry")} ${t("common.loading").toLowerCase()} ${t("categories.categories").toLowerCase()}`,
+                          onClick: handleDismissCategoriesError,
+                        },
+                      ]}
+                    />
+                  )}
                 </div>
               </OverlayStatusWrapper>
             </CardContent>
@@ -318,7 +351,7 @@ const CourseEditorInformation = forwardRef<
                     ? t("common.saving") + "..."
                     : t("common.creating") + "..."
                 }
-                disableSubmit={!!mutationError}
+                disableSubmit={mutationError !== undefined}
               />
             </CardFooter>
           </form>
