@@ -29,6 +29,7 @@ import {
   useCreateCourseMutation,
   useUpdateCourseMutation,
 } from "../api/course-mutations";
+import { FileWithMetadataSchema } from "@/shared/components/file-upload";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -56,10 +57,7 @@ const courseBasicInfoSchema = z.object({
     .min(16, t("validation.minLength", { count: 16 }))
     .max(400, t("validation.maxDescription", { count: 400 }))
     .optional(),
-  image: z.any().refine((files) => {
-    if (!files || files.length === 0) return true; // Not required
-    return files.length === 1;
-  }),
+  image: z.array(FileWithMetadataSchema).optional(),
 });
 
 // Infer the form type from the schema

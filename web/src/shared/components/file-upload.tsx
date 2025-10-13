@@ -2,7 +2,6 @@ import type React from "react";
 import { useCallback, useState, useEffect } from "react";
 import {
   Upload,
-  File,
   X,
   ImageIcon,
   Video,
@@ -19,6 +18,7 @@ import { Label } from "@/shared/components/shadcn/label";
 import { cn } from "@/shared/lib/utils";
 
 import { useTranslation } from "react-i18next";
+import z from "zod";
 
 export type UploadType = "image" | "video" | "file";
 
@@ -28,6 +28,15 @@ export interface FileWithMetadata {
   alt: string;
   caption: string;
 }
+
+export const FileWithMetadataSchema = z.object({
+  file: z.instanceof(File, {
+    message: "Expected a File object",
+  }),
+  filename: z.string(),
+  alt: z.string(),
+  caption: z.string(),
+});
 
 interface FileUploadProps {
   value?: FileWithMetadata[];
@@ -230,7 +239,7 @@ export function FileUpload({
     updateFiles(files.filter((_, i) => i !== index));
   };
 
-  const handlePreviewFile = (e: React.InputEvent, index: number) => {
+  const handlePreviewFile = (e: React.MouseEvent, index: number) => {
     e.preventDefault();
     setPreviewIndex(index);
     setIsPreviewOpen(true);
