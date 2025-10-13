@@ -430,6 +430,37 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCertificateCertificate extends Struct.CollectionTypeSchema {
+  collectionName: 'certificates';
+  info: {
+    displayName: 'Certificate';
+    pluralName: 'certificates';
+    singularName: 'certificate';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    completionDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    course: Schema.Attribute.Relation<'oneToOne', 'api::course.course'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    link: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::certificate.certificate'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    student: Schema.Attribute.Relation<'manyToOne', 'api::student.student'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiContentCreatorContentCreator
   extends Struct.CollectionTypeSchema {
   collectionName: 'content_creators';
@@ -492,7 +523,6 @@ export interface ApiContentCreatorContentCreator
         maxLength: 400;
         minLength: 1;
       }>;
-    joinedAt: Schema.Attribute.Date & Schema.Attribute.Required;
     lastName: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 50;
@@ -643,7 +673,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
     numOfSubscriptions: Schema.Attribute.Integer &
       Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
-    student: Schema.Attribute.Relation<'manyToOne', 'api::student.student'>;
+    students: Schema.Attribute.Relation<'manyToMany', 'api::student.student'>;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
@@ -833,7 +863,11 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 4000;
       }>;
-    courses: Schema.Attribute.Relation<'oneToMany', 'api::course.course'>;
+    certificates: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::certificate.certificate'
+    >;
+    courses: Schema.Attribute.Relation<'manyToMany', 'api::course.course'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -850,7 +884,6 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
         maxLength: 50;
         minLength: 1;
       }>;
-    joinedAt: Schema.Attribute.Date & Schema.Attribute.Required;
     lastName: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 50;
@@ -1382,6 +1415,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::certificate.certificate': ApiCertificateCertificate;
       'api::content-creator.content-creator': ApiContentCreatorContentCreator;
       'api::course-category.course-category': ApiCourseCategoryCourseCategory;
       'api::course-selection.course-selection': ApiCourseSelectionCourseSelection;
