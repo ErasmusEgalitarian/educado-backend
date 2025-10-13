@@ -5,7 +5,7 @@ export default {
      path: '/test-api',
      handler: 'test-api.exampleAction',
      config: {
-       policies: [],
+       policies: ['global::isStudent'],
        middlewares: [],
      },
     },
