@@ -33,7 +33,7 @@ export const EditExercise = ({ exercise, handleEdit }: Props) => {
   ];
 
   const [answers, setAnswers] = useState<Answer[]>(
-    exercise.answers ?? TempAnswers
+    exercise.answers ?? TempAnswers,
   );
   const { addNotification } = useNotifications();
   const { updateCachedExercise } = useExercises();

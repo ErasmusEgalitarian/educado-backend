@@ -29,7 +29,7 @@ const AdminToggleButton: React.FC<AdminToggleButtonProps> = ({
         setLoading(true);
         const userDetails = await AdminServices.getSingleUserDetails(
           applicationId,
-          token
+          token,
         );
         const role = userDetails.role;
         setIsAdmin(role === "admin");

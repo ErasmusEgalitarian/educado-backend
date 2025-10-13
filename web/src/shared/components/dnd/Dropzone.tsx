@@ -48,7 +48,7 @@ export const Dropzone: FC<DropzoneProps> = ({
 
     if (selectedFile.size > maxSize) {
       addNotification(
-        `O arquivo não deve exceder ${(maxSize / (1024 * 1024)).toFixed(1)} MB.`
+        `O arquivo não deve exceder ${(maxSize / (1024 * 1024)).toFixed(1)} MB.`,
       );
       setPreview(null);
       onFileChange?.(null);
@@ -140,7 +140,7 @@ export const Dropzone: FC<DropzoneProps> = ({
         </div>
       </div>
       <div className="text-right">
-        <label>
+        <label className="text-right text-sm mt-1 text-greyscale-text-caption">
           o arquivo deve conter no maximo {(maxSize / (1024 * 1024)).toFixed(1)}
           MB
         </label>

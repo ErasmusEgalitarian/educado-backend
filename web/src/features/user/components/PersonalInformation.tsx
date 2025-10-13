@@ -44,7 +44,7 @@ export default function PersonalInformationForm({
   };
   const getUserImage = async () => {
     const response = await fetch(
-      `http://localhost:8888/api/bucket/${formData.photo}`
+      `http://localhost:8888/api/bucket/${formData.photo}`,
     );
   };
   useEffect(() => {

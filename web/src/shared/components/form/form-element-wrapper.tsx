@@ -83,6 +83,10 @@ export const FormElementWrapper = <
                       childProps && "onChange" in (childProps as object)
                         ? (childProps as Record<string, unknown>).onChange
                         : field.onChange,
+                    onValueChange:
+                      childProps && "onValueChange" in (childProps as object)
+                        ? (childProps as Record<string, unknown>).onValueChange
+                        : field.onChange, // Use field.onChange as fallback for components like MultiSelect
                     onBlur: field.onBlur,
                     ref: field.ref,
                     "aria-required": isRequired,

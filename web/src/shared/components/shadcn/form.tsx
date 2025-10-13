@@ -135,7 +135,7 @@ function FormLabel({
   const textSize = {
     xs: "font-[600] text-[12px]",
     sm: "font-[600] text-[16px]",
-    md: "font-[600] text-[20px]",
+    md: "font-[600] text-[16px]",
     lg: "font-[600] text-[24px]",
   };
 

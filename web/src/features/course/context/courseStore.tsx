@@ -27,12 +27,12 @@ interface CourseContextProps {
   deleteCachedSection: (sid: string) => void;
   updateCachedSectionComponents: (
     sectionId: string,
-    components: Component[]
+    components: Component[],
   ) => void;
   deleteCachedSectionComponent: (sectionId: string, compId: string) => void;
   addCachedSectionComponent: (
     sectionId: string,
-    component: Component
+    component: Component,
   ) => Component | null;
   getAllSectionLectures: (sid: string) => Lecture[];
   getAllSectionExercises: (sid: string) => Exercise[];
@@ -135,7 +135,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
       sections,
       lectures,
       exercises,
-      media
+      media,
     );
     return formattedCourse;
   };
@@ -209,7 +209,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
 
   const updateCachedSectionComponents = (
     sectionId: string,
-    adjustedComponents: Component[]
+    adjustedComponents: Component[],
   ) => {
     setSections((prevSections) => {
       const index = prevSections.findIndex((s) => s._id === sectionId);
@@ -241,7 +241,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
             deleteCachedExercise(compId);
           }
           return false;
-        }
+        },
       );
       const updatedSections = [...prevSections];
       updatedSections[sectionIndex] = {
@@ -254,7 +254,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
 
   const addCachedSectionComponent = (
     sectionId: string,
-    component: Component
+    component: Component,
   ) => {
     const newId = idMaker.component + 1;
     setIdMaker((prevIdMaker) => ({ ...prevIdMaker, component: newId }));
@@ -282,7 +282,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
 
   const deleteCachedSection = (sid: string) => {
     setExercises((prevExercises) =>
-      prevExercises.filter((exercise) => exercise.parentSection !== sid)
+      prevExercises.filter((exercise) => exercise.parentSection !== sid),
     );
     setLectures((prevLectures) => {
       return prevLectures.filter((lecture) => {
@@ -296,7 +296,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
       });
     });
     setSections((prevSections) =>
-      prevSections.filter((section) => section._id !== sid)
+      prevSections.filter((section) => section._id !== sid),
     );
     setCourse((prevCourse) => {
       return {
@@ -321,7 +321,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   const updateCachedLecture = (newLecture: Lecture) => {
     setLectures((prevLectures) => {
       const index = prevLectures.findIndex(
-        (lecture) => lecture._id === newLecture._id
+        (lecture) => lecture._id === newLecture._id,
       );
       const updatedLectures = [...prevLectures];
       updatedLectures[index] = newLecture;
@@ -342,7 +342,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
           deleteMedia(lid);
         }
         return lecture._id !== lid;
-      })
+      }),
     );
   };
 
@@ -361,7 +361,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   const updateCachedExercise = (newExercise: Exercise) => {
     setExercises((prevExercises) => {
       const index = prevExercises.findIndex(
-        (exercise) => exercise._id === newExercise._id
+        (exercise) => exercise._id === newExercise._id,
       );
       const updatedExercises = [...prevExercises];
       updatedExercises[index] = newExercise;
@@ -378,7 +378,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
 
   const deleteCachedExercise = (eid: string) => {
     setExercises((prevExercises) =>
-      prevExercises.filter((exercise) => exercise._id !== eid)
+      prevExercises.filter((exercise) => exercise._id !== eid),
     );
   };
 

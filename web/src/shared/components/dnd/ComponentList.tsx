@@ -37,7 +37,7 @@ export const ComponentList = ({ sid, components }: Props) => {
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   // handle start of dragging
@@ -52,10 +52,10 @@ export const ComponentList = ({ sid, components }: Props) => {
     if (over === null || active.id === over.id) return;
     const adjustComponents = () => {
       const oldIndex = components.findIndex(
-        (component) => component.compId === active.id
+        (component) => component.compId === active.id,
       );
       const newIndex = components.findIndex(
-        (component) => component.compId === over.id
+        (component) => component.compId === over.id,
       );
       return arrayMove(components, oldIndex, newIndex);
     };

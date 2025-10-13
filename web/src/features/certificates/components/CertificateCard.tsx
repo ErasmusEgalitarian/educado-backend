@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import categories from "@/course/types/courseCategories";
 import { CERT_URL } from "@/shared/config/environment";
 
-import StarRating from "../../../shared/components/StarRating";
+import StarRating from "../../../shared/components/star-rating";
 import { Certificate } from "../types/Certificate";
 
 import ActionButton from "./ActionButton";
@@ -39,7 +39,7 @@ export default function CertificateCard(props: {
           "/api/student-certificates/download?courseId=" +
           certificate.course._id +
           "&studentId=" +
-          certificate.creator._id
+          certificate.creator._id,
       )
       .then((res) => {
         setPdfPath(res.data);

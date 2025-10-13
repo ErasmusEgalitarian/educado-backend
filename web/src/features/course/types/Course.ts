@@ -20,11 +20,11 @@ interface CommonCourse {
   dateUpdated?: Date;
   coverImg?: string;
   category:
-  | ""
-  | "personal finance"
-  | "health and workplace safety"
-  | "sewing"
-  | "electronics";
+    | ""
+    | "personal finance"
+    | "health and workplace safety"
+    | "sewing"
+    | "electronics";
   sections: string[];
   status: "draft" | "published" | "hidden";
   estimatedHours: number;
@@ -113,17 +113,17 @@ export interface FormattedCourse {
     creator: string;
   };
   sections:
-  | {
-    _id: string;
-    title: string;
-    description: string;
-    components: {
-      compType: string;
-      component: Lecture | Exercise;
-      video: Media | null;
-    }[];
-  }[]
-  | null;
+    | {
+        _id: string;
+        title: string;
+        description: string;
+        components: {
+          compType: string;
+          component: Lecture | Exercise;
+          video: Media | null;
+        }[];
+      }[]
+    | null;
 }
 
 export type SubmitFunction = (

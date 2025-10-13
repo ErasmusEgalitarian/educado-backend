@@ -4,6 +4,9 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import CourseEditorPage from "@/course/pages/course-editor-page";
+import CourseOverviewPage from "@/course/pages/course-overview-page";
+
 import AccountDeletionRequest from "./features/auth/components/AccountDeletionRequest";
 import DataDeletionRequest from "./features/auth/components/DataDeletionRequest";
 import Login from "./features/auth/components/Login";
@@ -11,11 +14,9 @@ import PrivacyPolicy from "./features/auth/components/PrivacyPolicy";
 import Signup from "./features/auth/components/Signup";
 import Welcome from "./features/auth/pages/Welcome";
 import Certificates from "./features/certificates/pages/Certificates";
-import CourseManager from "./features/course/pages/CourseManager";
-import Courses from "./features/course/pages/Courses";
 import Profile from "./features/user/components/Profile";
 import NotFound from "./shared/assets/NotFound";
-import DemoPage from "./shared/demo/pages/demo-page";
+import DocsPage from "./shared/docs/pages/docs-page";
 import TestPage from "./test-page";
 import Application from "./unplaced/Application";
 import EducadoAdmin from "./unplaced/EducadoAdmin";
@@ -32,19 +33,11 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/test",
-      element: (
-        <NonProtectedRoute>
-          <TestPage />
-        </NonProtectedRoute>
-      ),
+      element: <TestPage />,
     },
     {
-      path: "/demo",
-      element: (
-        <NonProtectedRoute>
-          <DemoPage />
-        </NonProtectedRoute>
-      ),
+      path: "/docs",
+      element: <DocsPage />,
     },
     {
       // Homepage is left unused
@@ -56,16 +49,25 @@ const App = () => {
       path: "/courses",
       element: (
         <ProtectedRoute>
-          <Courses />
+          <CourseOverviewPage />
         </ProtectedRoute>
       ),
       errorElement: <NotFound />,
     },
     {
-      path: "/courses/manager/:id/:tick",
+      path: "/courses/create",
       element: (
         <ProtectedRoute>
-          <CourseManager />
+          <CourseEditorPage />
+        </ProtectedRoute>
+      ),
+      errorElement: <NotFound />,
+    },
+    {
+      path: "/courses/:courseId/edit",
+      element: (
+        <ProtectedRoute>
+          <CourseEditorPage />
         </ProtectedRoute>
       ),
       errorElement: <NotFound />,

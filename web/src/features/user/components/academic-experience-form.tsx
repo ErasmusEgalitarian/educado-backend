@@ -22,7 +22,7 @@ export default function AcademicExperienceForm({
   }[];
   handleEducationInputChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-    index: number
+    index: number,
   ) => void;
   educationErrors: Record<
     number,
@@ -190,7 +190,7 @@ export default function AcademicExperienceForm({
             {/* Display invalid date input error message */}
             {displayInvalidDateFormatErrMsg(
               educationFormData[index]?.educationStartDate,
-              educationErrors[index].educationStartDate
+              educationErrors[index].educationStartDate,
             )}
           </div>
 
@@ -215,7 +215,7 @@ export default function AcademicExperienceForm({
             {/* Display invalid date input error message */}
             {displayInvalidDateFormatErrMsg(
               educationFormData[index]?.educationEndDate,
-              educationErrors[index].educationEndDate
+              educationErrors[index].educationEndDate,
             )}
           </div>
         </div>
@@ -233,7 +233,7 @@ export default function AcademicExperienceForm({
               onClick={() => {
                 handleEducationDelete(
                   index,
-                  educationFormData[index]?._id?.toString() || ""
+                  educationFormData[index]?._id?.toString() || "",
                 );
               }}
             >

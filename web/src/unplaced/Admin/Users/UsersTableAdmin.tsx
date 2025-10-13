@@ -24,7 +24,7 @@ export const UsersTableAdmin = () => {
 
   const userToken = getUserToken();
   const { data, mutate } = useSWR("api/user-info", () =>
-    AdminServices.getUserApplications(userToken)
+    AdminServices.getUserApplications(userToken),
   );
 
   if (!data) return <Loading />;
@@ -66,7 +66,7 @@ export const UsersTableAdmin = () => {
   };
 
   const handleRowsPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setRowsPerPage(Number(event.target.value));
     setCurrentPage(1);
@@ -94,7 +94,7 @@ export const UsersTableAdmin = () => {
 
   const paginatedData = filteredData.slice(
     (currentPage - 1) * rowsPerPage,
-    currentPage * rowsPerPage
+    currentPage * rowsPerPage,
   );
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 

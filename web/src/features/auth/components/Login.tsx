@@ -48,7 +48,7 @@ const Login = () => {
 
   //Callback
   const { call: login, isLoading: submitLoading } = useApi(
-    AuthServices.postUserLogin
+    AuthServices.postUserLogin,
   );
 
   //Variable determining the error message for both fields.
@@ -106,7 +106,7 @@ const Login = () => {
           case "E1001": //User Not Approved
             setEmailError(err);
             setEmailErrorMessage(
-              "A conta associada a este e-mail não foi aprovada."
+              "A conta associada a este e-mail não foi aprovada.",
             );
             setPasswordError(null);
             setPasswordErrorMessage("");
@@ -116,7 +116,7 @@ const Login = () => {
           case "E1002": //User Rejected
             setEmailError(err);
             setEmailErrorMessage(
-              "A conta associada a este e-mail foi rejeitada."
+              "A conta associada a este e-mail foi rejeitada.",
             );
             setPasswordError(null);
             setPasswordErrorMessage("");
@@ -128,7 +128,7 @@ const Login = () => {
             setEmailErrorMessage("");
             setPasswordError(err);
             setPasswordErrorMessage(
-              "Senha Incorreta. Por favor, tente novamente."
+              "Senha Incorreta. Por favor, tente novamente.",
             );
             setError("");
             break;
@@ -147,14 +147,14 @@ const Login = () => {
 
   function areFieldsFilled() {
     const inputloginEmail = document.getElementById(
-      "email-field"
+      "email-field",
     ) as HTMLInputElement;
     const inputloginPass = document.getElementById(
-      "password-field"
+      "password-field",
     ) as HTMLInputElement;
 
     const submitloginButton = document.getElementById(
-      "submit-login-button"
+      "submit-login-button",
     ) as HTMLButtonElement;
 
     if (inputloginEmail.value.trim() && inputloginPass.value.trim() !== "") {

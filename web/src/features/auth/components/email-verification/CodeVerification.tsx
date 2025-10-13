@@ -19,7 +19,7 @@ interface propsType {
  * @returns {JSX.Element} the screen component
  */
 export default function CodeVerification(
-  props: Readonly<propsType>
+  props: Readonly<propsType>,
 ): JSX.Element {
   return (
     <div className="flex h-full flex-col justify-center items-center">

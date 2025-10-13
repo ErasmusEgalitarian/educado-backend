@@ -251,7 +251,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                         "Not provided"}
                     </p>
                   </div>
-                )
+                ),
               )
             ) : (
               <p className="p-4 bg-white rounded-b-lg shadow-sm break-all mt-2 text-base font-['Montserrat'] text-gray-900">

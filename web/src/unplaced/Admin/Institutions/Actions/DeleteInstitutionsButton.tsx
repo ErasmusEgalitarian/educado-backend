@@ -19,7 +19,7 @@ export const DeleteInstitutionButton = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   const { call: deleteInstitution, isLoading } = useApi(
-    institutionService.deleteInstitution
+    institutionService.deleteInstitution,
   );
 
   const { addNotification } = useNotifications();

@@ -1,8 +1,10 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 import { Toaster } from "sonner";
+import "../i18n/i18n.ts";
 
 import App from "./App";
 import "./index.css";
@@ -25,7 +27,8 @@ if (rootElement && rootElement.innerHTML === "") {
           <Toaster position="top-right" richColors={true} />
           <App />
         </NotificationProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-    </StrictMode>
+    </StrictMode>,
   );
 }

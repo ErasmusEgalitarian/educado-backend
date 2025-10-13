@@ -1,6 +1,6 @@
 // eslint.config.ts
 
-import { defineConfig } from "eslint/config";
+import type { Linter } from "eslint";
 import eslint from "@eslint/js";
 import prettierConfig from "eslint-config-prettier";
 import pluginImport from "eslint-plugin-import";
@@ -13,7 +13,7 @@ import sonarjs from "eslint-plugin-sonarjs";
 import reactHooks from "eslint-plugin-react-hooks";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 
-export default defineConfig([
+export default [
   // --- 1. GLOBAL IGNORES ---
   // This block tells ESLint to completely ignore certain files and folders.
   // This is crucial for performance and to prevent linting build artifacts,
@@ -28,7 +28,8 @@ export default defineConfig([
       "tailwind.config.cjs",
       "postcss.config.js",
       "babel.config.cjs",
-      "src/shared/components/shadcn"
+      "src/shared/components/shadcn",
+      "src/shared/api",
     ],
   },
 
@@ -38,16 +39,22 @@ export default defineConfig([
   eslint.configs.recommended,
   sonarjs.configs.recommended, // General bugs
 
-  // --- 3. TYPESCRIPT SOURCE CODE CONFIGURATION ---
+  // --- 3. TYPESCRIPT STRICT & STYLISTIC CONFIGS ---
+  // TypeScript strict type-checked and stylistic configs
+  ...tseslint.configs.strictTypeChecked.map((config) => ({
+    ...config,
+    files: ["src/**/*.{ts,tsx}", "__testUtils__/**/*.{ts,tsx}"],
+  })),
+  ...tseslint.configs.stylisticTypeChecked.map((config) => ({
+    ...config,
+    files: ["src/**/*.{ts,tsx}", "__testUtils__/**/*.{ts,tsx}"],
+  })),
+
+  // --- 4. TYPESCRIPT SOURCE CODE CONFIGURATION ---
   // This is the most important block. It defines the strict, type-aware linting
   // rules that ONLY apply to your TypeScript source files.
   {
     files: ["src/**/*.{ts,tsx}", "__testUtils__/**/*.{ts,tsx}"],
-    // `extends` merges in pre-configured sets of rules.
-    extends: [
-      ...tseslint.configs.strictTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
-    ],
     // Configures the parser to understand TypeScript and find the tsconfig.json.
     languageOptions: {
       parser: tseslint.parser,
@@ -137,7 +144,7 @@ export default defineConfig([
     },
   },
 
-  // --- 4. REACT-SPECIFIC CONFIGURATION ---
+  // --- 5. REACT-SPECIFIC CONFIGURATION ---
   // This block applies rules specifically for React components (JSX/TSX files).
   {
     files: ["src/**/*.{jsx,tsx}"],
@@ -182,8 +189,8 @@ export default defineConfig([
     },
   },
 
-  // --- 5. PRETTIER CONFIGURATION ---
+  // --- 6. PRETTIER CONFIGURATION ---
   // This MUST be the last item. It disables any ESLint rules that conflict
   // with Prettier, letting Prettier handle all code formatting.
   prettierConfig,
-]);
+] satisfies Linter.Config[];
