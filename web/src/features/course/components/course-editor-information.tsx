@@ -113,8 +113,8 @@ const CourseEditorInformation = forwardRef<
       }
     : {
         title: "",
-        difficulty: undefined as "1" | "2" | "3" | undefined,
-        categories: undefined,
+        difficulty: "1" as "1" | "2" | "3" | undefined,
+        categories: [],
         description: "",
       };
 
