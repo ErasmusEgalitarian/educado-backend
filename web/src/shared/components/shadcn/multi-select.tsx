@@ -111,12 +111,22 @@ interface MultiSelectGroup {
 /**
  * Props for MultiSelect component
  */
-export interface MultiSelectProps
+interface MultiSelectProps
   extends Omit<
       React.ButtonHTMLAttributes<HTMLButtonElement>,
       "animationConfig"
     >,
     VariantProps<typeof multiSelectVariants> {
+  /**
+   * Callback function to create a new option.
+   * Should return the newly created option or undefined if creation failed.
+   */
+  onCreateClick?: () => void;
+  /**
+   * Label for the create button.
+   * Optional, defaults to "Create".
+   */
+  createLabel?: string;
   /**
    * An array of option objects or groups to be displayed in the multi-select component.
    */
@@ -305,6 +315,8 @@ export interface MultiSelectRef {
    * Focus the component
    */
   focus: () => void;
+
+  addOption: (option: MultiSelectOption, select?: boolean) => void;
 }
 
 export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
@@ -334,11 +346,14 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
       deduplicateOptions = false,
       resetOnDefaultValueChange = true,
       closeOnSelect = false,
+      onCreateClick,
+      createLabel,
       ...props
     },
     ref
   ) => {
     const { t } = useTranslation();
+    const [selectOptions, setSelectOptions] = React.useState(options);
     const [selectedValues, setSelectedValues] =
       React.useState<string[]>(defaultValue);
     const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
@@ -425,6 +440,21 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                 buttonRef.current.style.outlineOffset = originalOutlineOffset;
               }
             }, 1000);
+          }
+        },
+        addOption: (option: MultiSelectOption, select = true) => {
+          const allOptions = getAllOptions();
+          if (!allOptions.find((opt) => opt.value === option.value)) {
+            const updatedOptions = isGroupedOptions(selectOptions)
+              ? [...selectOptions]
+              : [...selectOptions, option];
+            setSelectOptions(updatedOptions);
+
+            if (select) {
+              const newSelectedValues = [...selectedValues, option.value];
+              setSelectedValues(newSelectedValues);
+              onValueChange(newSelectedValues);
+            }
           }
         },
       }),
@@ -532,12 +562,12 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
     };
 
     const getAllOptions = React.useCallback((): MultiSelectOption[] => {
-      if (options.length === 0) return [];
+      if (selectOptions.length === 0) return [];
       let allOptions: MultiSelectOption[];
-      if (isGroupedOptions(options)) {
-        allOptions = options.flatMap((group) => group.options);
+      if (isGroupedOptions(selectOptions)) {
+        allOptions = selectOptions.flatMap((group) => group.options);
       } else {
-        allOptions = options;
+        allOptions = selectOptions;
       }
       const valueSet = new Set<string>();
       const duplicates: string[] = [];
@@ -569,7 +599,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
         );
       }
       return deduplicateOptions ? uniqueOptions : allOptions;
-    }, [options, deduplicateOptions, isGroupedOptions]);
+    }, [selectOptions, deduplicateOptions, isGroupedOptions]);
 
     const getOptionByValue = React.useCallback(
       (value: string): MultiSelectOption | undefined => {
@@ -585,10 +615,10 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
     );
 
     const filteredOptions = React.useMemo(() => {
-      if (!searchable || !searchValue) return options;
-      if (options.length === 0) return [];
-      if (isGroupedOptions(options)) {
-        return options
+      if (!searchable || !searchValue) return selectOptions;
+      if (selectOptions.length === 0) return [];
+      if (isGroupedOptions(selectOptions)) {
+        return selectOptions
           .map((group) => ({
             ...group,
             options: group.options.filter(
@@ -601,12 +631,12 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
           }))
           .filter((group) => group.options.length > 0);
       }
-      return options.filter(
+      return selectOptions.filter(
         (option) =>
           option.label.toLowerCase().includes(searchValue.toLowerCase()) ||
           option.value.toLowerCase().includes(searchValue.toLowerCase())
       );
-    }, [options, searchValue, searchable, isGroupedOptions]);
+    }, [selectOptions, searchValue, searchable, isGroupedOptions]);
 
     const handleInputKeyDown = (
       event: React.KeyboardEvent<HTMLInputElement>
@@ -764,6 +794,12 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
         prevSearchValue.current = searchValue;
       }
     }, [selectedValues, isPopoverOpen, searchValue, announce, getAllOptions]);
+
+    const handleCreate = (): void => {
+      if (onCreateClick) {
+        onCreateClick();
+      }
+    };
 
     return (
       <>
@@ -1057,6 +1093,11 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                   "overscroll-behavior-y-contain"
                 )}
               >
+                {onCreateClick != undefined && (
+                  <CommandItem onSelect={handleCreate}>
+                    {createLabel ?? "Foo"}
+                  </CommandItem>
+                )}
                 <CommandEmpty>
                   {emptyIndicator || "No results found."}
                 </CommandEmpty>{" "}
