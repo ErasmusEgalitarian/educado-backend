@@ -13,21 +13,21 @@ function Textarea({
 }) {
   const variantStyles = {
     default:
-      "border-geryscale-border-lighter focus-visible:border-[#35a1b1] focus-visible:ring-[#35a1b1]/20",
+      "border-greyscale-border-default focus-visible:border-primary-surface-default focus-visible:ring-primary-surface-default/20",
     error:
-      "border-error-border-default bg-error-surface-subtle focus-visible:border-[#ff0000] focus-visible:ring-[#ff0000]/20",
+      "border-error-border-default bg-error-surface-subtle focus-visible:border-error-surface-default focus-visible:ring-error-surface-default/20",
   };
   const inputSizes = {
-    xs: "h-6 px-2 py-1 text-sm",
-    sm: "h-8 px-2.5 py-1.5 text-sm",
-    md: "h-10 px-3 py-2 text-base",
-    lg: "h-12 px-4 py-3 text-lg",
+    xs: "p-2 text-sm",
+    sm: "p-3 text-sm",
+    md: "p-4 text-base",
+    lg: "p-5 text-lg",
   };
   return (
     <textarea
       data-slot="textarea"
       className={cn(
-        "placeholder:text-muted-foreground dark:bg-input/30 flex field-sizing-content min-h-16 w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        "placeholder:text-greyscale-text-caption text-greyscale-text-title dark:bg-input/30 block min-h-24 w-full rounded-md border bg-transparent text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 !resize-y",
         variantStyles[variant],
         inputSizes[inputSize],
         className

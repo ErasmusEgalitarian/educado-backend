@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import { CoursesTableAdmin } from "@/course/pages/CoursesTableAdmin";
-
 import Layout from "../shared/components/Layout";
 
 import { InstitutionsTableAdmin } from "./Admin/Institutions/InstitutionsTableAdmin";
@@ -20,7 +18,7 @@ const EducadoAdmin = () => {
       activeTable = <InstitutionsTableAdmin />;
       break;
     case "courses":
-      activeTable = <CoursesTableAdmin />;
+      activeTable = <div>Courses Table Placeholder</div>;
       break;
     default:
       break;

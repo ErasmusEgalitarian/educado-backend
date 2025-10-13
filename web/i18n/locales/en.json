@@ -1,47 +1,153 @@
 {
+  "formTesting": "Form Testing",
   "language": {
     "portuguese": "Portuguese",
     "english": "English",
-    "switchLanguage": "Switch Language"
+    "switchLanguage": "Language"
+  },
+  "actions": {
+    "clearAll": "Clear all",
+    "selectAll": "Select all",
+    "close": "Close",
+    "search": "Search"
+  },
+  "form": {
+    "submit": "Submit",
+    "submitting": "Submitting",
+    "reset": "Reset"
   },
   "common": {
     "edit": "Edit",
     "delete": "Delete",
+    "create": "Create",
+    "creating": "Creating",
+    "created": "Created!",
+    "update": "Update",
+    "updating": "Updating",
+    "updated": "Updated!",
+    "save": "Save",
+    "saving": "Saving",
+    "saved": "Saved!",
+    "cancel": "Cancel",
+    "loading": "Loading",
     "view": "View",
     "more": "More",
     "openMenu": "Open Menu",
-    "actions": "Actions"
+    "actions": "Actions",
+    "mandatory": "This field is mandatory",
+    "columns": "Columns",
+    "sort": "Sort",
+    "sortBy": "Sort By",
+    "ascending": "Asc",
+    "descending": "Desc",
+    "saveChanges": "Save Changes",
+    "publish": "Publish",
+    "publishing": "Publishing...",
+    "published": "Published!",
+    "unpublish": "Unpublish",
+    "unpublishing": "Unpublishing...",
+    "unpublished": "Unpublished!",
+    "continue": "Continue",
+    "back": "Back",
+    "leave": "Leave",
+    "stay": "Stay",
+    "dismiss": "Dismiss",
+    "name": "Name",
+    "retry": "Retry"
   },
-  "login": {
-    "title": "Login to your account",
-    "subtitle": "Enter your email below to login to your account",
-    "email": "Email",
-    "emailPlaceholder": "m@example.com",
-    "invalidEmail": "Invalid email",
-    "password": "Password",
-    "passwordPlaceholder": "********",
-    "passwordMinLength": "Password must be at least 8 characters long",
-    "forgotPassword": "Forgot your password?",
-    "role": "Role",
-    "roleAuthor": "Author",
-    "roleAdmin": "Admin",
-    "selectRole": "Select a role",
-    "loginButton": "Login",
-    "loadingLogin": "Logging in...",
-    "orContinueWith": "Or continue with",
-    "loginWithGitHub": "Login with GitHub",
-    "noAccount": "Don't have an account?",
-    "signUp": "Sign up"
+  "pagination": {
+    "items": "items",
+    "rows": "rows",
+    "perPage": "per page",
+    "of": "of",
+    "filtered": "filtered"
   },
-  "course": {
-    "course": "Course",
-    "courseName": "Course Name"
+  "validation": {
+    "required": "This field is required",
+    "title": "Title is required",
+    "minLength": "Must be at least {{count}} characters",
+    "maxLength": "Must be at most {{count}} characters",
+    "minCategories": "Select at least {{count}} categories",
+    "maxCategories": "Select at most {{count}} categories",
+    "invalidLevel": "Invalid level",
+    "maxDescription": "Description cannot be longer than {{count}} characters"
   },
-  "category": {
+  "navbar": {
+    "editProfile": "Edit Profile",
+    "myCertificates": "My Certificates",
+    "feedback": "Feedback",
+    "admin": "Admin",
+    "logout": "Logout",
+    "notifications": "Notifications",
+    "noNotifications": "No notifications"
+  },
+  "categories": {
+    "category": "Category",
     "categories": "Categories",
-    "categoriesNotFound": "No categories found"
+    "categoryNotFound": "Category not found",
+    "selectCategory": "Select the category",
+    "loadingCategories": "Loading Categories",
+    "loadingCategoriesDescription": "Please wait while we fetch the available course categories...",
+    "categoriesError": "Error loading categories. Please try again."
   },
-  "rating": {
-    "rating": "Rating"
+  "courseManager": {
+    "course": "Course",
+    "generalInfo": "General Information",
+    "courseName": "Course Name",
+    "courseNamePlaceholder": "Enter the course name",
+    "level": "Level",
+    "selectLevel": "Select the level",
+    "description": "Description",
+    "descriptionPlaceholder": "Enter the description",
+    "coverImage": "Cover Image",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "characters": "characters",
+    "newCourse": "New Course",
+    "createSections": "Create Sections",
+    "cancelAndReturn": "Cancel and Return",
+    "saveAsDraft": "Save as Draft",
+    "reviewCourse": "Review Course",
+    "createAndContinue": "Create and Continue",
+    "publishCourse": "Publish Course",
+    "courseDetails": "Course Details",
+    "noCourse": "No course data",
+    "noSections": "No sections yet",
+    "publishConfirm": "Are you sure you want to publish this course? It will be visible to all students.",
+    "unpublishConfirm": "Are you sure you want to unpublish this course? It will no longer be visible to students.",
+    "unsavedChangesTitle": "Unsaved Changes",
+    "unsavedChangesMessage": "You have unsaved changes. Are you sure you want to leave? Your changes will be lost.",
+    "leavePageTitle": "Leave Page?",
+    "leavePageMessage": "Are you sure you want to leave this page?",
+    "createError": "Failed to Create Course",
+    "updateError": "Failed to Update Course",
+    "genericError": "An unexpected error occurred. Please try again."
+  },
+  "courses": {
+    "pageTitle": "Courses list",
+    "checkYourCourses": "Check Your Courses",
+    "newCourse": "New Course",
+    "searchCourse": "Search Course",
+    "lastAdded": "Last Added",
+    "mostOld": "Most Old",
+    "mostPopular": "Most Popular",
+    "progress": "Progress",
+    "totalCourses": "Total Courses",
+    "totalStudents": "Total Students",
+    "totalCertificates": "Total Certificates",
+    "avalation": "Avalation",
+    "activities": "Activities",
+    "hello": "Hello",
+    "hours": "Hours",
+    "workload": "Workload",
+    "enrolled": "Enrolled",
+    "grade": "Grade",
+    "startNow": "Start Now",
+    "noCoursesYet": "You haven't created any courses yet. Click the button below and follow the step-by-step instructions to develop your first course.",
+    "createNewCourse": "Create New Course"
+  },
+  "courseEditor": {
+    "fetchCourseDataError": "Error loading Course Data: {{message}}"
   }
 }

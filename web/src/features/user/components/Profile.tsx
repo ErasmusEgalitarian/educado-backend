@@ -30,7 +30,7 @@ const profileSchema = Yup.object().shape({
     if (value !== null && value !== undefined) {
       return Yup.string().matches(
         /^(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+\/?$/,
-        "Invalid LinkedIn URL"
+        "Invalid LinkedIn URL",
       );
     }
     return Yup.string();
@@ -151,7 +151,7 @@ const Profile = () => {
         await Promise.all(
           educationFormData.map(async (item, index) => {
             if (item._id) await ProfileServices.deleteEducationForm(item._id);
-          })
+          }),
         );
 
         // Send the updated educationData to the backend
@@ -161,7 +161,7 @@ const Profile = () => {
         await Promise.all(
           experienceFormData.map(async (item, index) => {
             if (item._id) await ProfileServices.deleteExperienceForm(item._id);
-          })
+          }),
         );
 
         // Send the updated workData to the backend
@@ -204,7 +204,7 @@ const Profile = () => {
         !educationErrorState &&
         !experienceErrorState &&
         dynamicInputsFilled("education") &&
-        dynamicInputsFilled("experience")
+        dynamicInputsFilled("experience"),
     );
   }, [
     submitError,
@@ -384,7 +384,7 @@ const Profile = () => {
                 }`}
                 onClick={() => {
                   setIsProfessionalExperienceOpen(
-                    !isProfessionalExperienceOpen
+                    !isProfessionalExperienceOpen,
                   );
                 }}
               >

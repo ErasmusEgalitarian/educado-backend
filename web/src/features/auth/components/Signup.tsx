@@ -42,7 +42,7 @@ const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
     .trim()
     .required(
-      "Seu primeiro nome é obrigatório!"
+      "Seu primeiro nome é obrigatório!",
     ) /*Your first name is Required*/,
 
   // Registers user last name and removes leading/trailing whitespaces
@@ -55,19 +55,19 @@ const SignupSchema = Yup.object().shape({
     .required("A senha não é longa o suficiente"),
   confirmPassword: Yup.string().oneOf(
     [Yup.ref("password"), null],
-    "As senhas não coincidem"
+    "As senhas não coincidem",
   ),
   email: Yup.string()
     .matches(
       /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-      "Seu email não está correto"
+      "Seu email não está correto",
     )
     .required("O email é obrigatório"),
 });
 
 const Signup = () => {
   const [error, setError] = useState<LoginResponseError.RootObject | null>(
-    null
+    null,
   );
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -76,7 +76,7 @@ const Signup = () => {
 
   // callback
   const { call: signup, isLoading: submitLoading } = useApi(
-    AuthServices.postUserSignup
+    AuthServices.postUserSignup,
   );
   // Navigation hook
   const navigate = useNavigate();
@@ -138,7 +138,7 @@ const Signup = () => {
             case "E0201": // Email already exists
               setEmailExistError(err);
               setErrorExistMessage(
-                "Já existe um usuário com o email fornecido"
+                "Já existe um usuário com o email fornecido",
               );
               setPasswordMismatchError(null);
               setPasswordMismatchErrorMessage("");
@@ -179,22 +179,22 @@ const Signup = () => {
   // Function for validating that all fields are filled in
   function areFieldsFilled() {
     const inputSignupFirstName = document.getElementById(
-      "firstNameField"
+      "firstNameField",
     ) as HTMLInputElement;
     const inputSignupLastName = document.getElementById(
-      "lastNameField"
+      "lastNameField",
     ) as HTMLInputElement;
     const inputSignupEmail = document.getElementById(
-      "email-field"
+      "email-field",
     ) as HTMLInputElement;
     const inputSignupPass = document.getElementById(
-      "password-field"
+      "password-field",
     ) as HTMLInputElement;
     const inputSignupRedoPass = document.getElementById(
-      "password-field-repeat"
+      "password-field-repeat",
     ) as HTMLInputElement;
     const submitSignupButton = document.getElementById(
-      "submit-signup-button"
+      "submit-signup-button",
     ) as HTMLButtonElement;
 
     if (

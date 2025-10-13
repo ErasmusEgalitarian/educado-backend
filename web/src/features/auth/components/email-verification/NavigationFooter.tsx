@@ -25,15 +25,15 @@ export default function NavigationFooter(props: propsType): JSX.Element {
   const formData = useContext(FormDataContext); // Access form data from context
   const navigate = useNavigate();
   const [error, setError] = useState<LoginResponseError.RootObject | null>(
-    null
+    null,
   );
   const [cooldown, setCooldown] = useState(0); // Cooldown state for resend button
 
   const { call: verifyUser, isLoading: isVerifyingUser } = useApi(
-    AuthServices.postUserVerification
+    AuthServices.postUserVerification,
   );
   const { call: loginUser, isLoading: isLoggingIn } = useApi(
-    AuthServices.postUserLogin
+    AuthServices.postUserLogin,
   );
 
   const resendEmail = async () => {

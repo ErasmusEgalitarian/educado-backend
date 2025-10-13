@@ -58,7 +58,7 @@ export const EditLecture = ({ lecture, handleEdit }: Props) => {
     ? URL.createObjectURL(lectureVideo)
     : null;
   const { call: fetchPreviewVideo, isLoading: loadingPreview } = useApi(
-    StorageServices.getMedia
+    StorageServices.getMedia,
   );
 
   const toggler = (value: string) => {

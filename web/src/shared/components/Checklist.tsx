@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 interface ChecklistProps {
@@ -14,7 +15,7 @@ const Checklist: React.FC<ChecklistProps> = ({
   setTickChange,
 }) => {
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   const handleCheckboxClick = (newTick: number) => {
     if (newTick <= highestTick) {
       setTickChange(newTick);
@@ -29,10 +30,12 @@ const Checklist: React.FC<ChecklistProps> = ({
   return (
     <div className="w-full h-[20%] items-center justify-left space-y-4 grid grid-flow-row auto-rows-max">
       <div>
-        <p className="text-2xl text-grayMedium">Novo Curos</p>
+        <p className="text-2xl text-grayMedium">
+          {t("courseManager.newCourse")}
+        </p>
       </div>
 
-      <div className="border-y py-8 w-5/6 border-grayMedium flex flex-col space-y-4">
+      <div className="border-y py-8 w-5/6 border-grayMedium text-greyscale-text-body flex flex-col space-y-4">
         <label
           htmlFor="check1"
           className={`${getLabelClass(0)} ${highestTick >= 0 ? "cursor-pointer" : ""}`}
@@ -49,7 +52,7 @@ const Checklist: React.FC<ChecklistProps> = ({
             onChange={() => {}}
             style={{ outline: "none", boxShadow: "none" }}
           />
-          Informações gerais
+          {t("courseManager.generalInfo")}
         </label>
 
         <label
@@ -68,7 +71,7 @@ const Checklist: React.FC<ChecklistProps> = ({
             onChange={() => {}}
             style={{ outline: "none", boxShadow: "none" }}
           />
-          Seções do curso
+          {t("courseManager.createSections")}
         </label>
 
         <label
@@ -87,7 +90,7 @@ const Checklist: React.FC<ChecklistProps> = ({
             onChange={() => {}}
             style={{ outline: "none", boxShadow: "none" }}
           />
-          Revisar curso
+          {t("courseManager.reviewCourse")}
         </label>
       </div>
     </div>

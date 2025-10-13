@@ -1,4 +1,3 @@
-
 import { getUserInfo } from "@/auth/lib/userInfo";
 import { FormattedCourse } from "@/course/types/Course";
 

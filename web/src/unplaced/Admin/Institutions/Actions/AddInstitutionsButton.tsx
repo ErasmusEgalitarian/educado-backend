@@ -31,7 +31,7 @@ export const AddInstitutionButton = () => {
       setShowModal(false);
       navigate("/educado-admin/applications");
       addNotification(
-        "Adicionado " + res.institutionName + " como nova instituição"
+        "Adicionado " + res.institutionName + " como nova instituição",
       );
     } catch (err) {
       //apiError from useApi hook

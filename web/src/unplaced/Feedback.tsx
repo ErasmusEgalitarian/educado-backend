@@ -18,7 +18,7 @@ const Feedback = () => {
 
     fetch(
       "http://localhost:8888/api/feedback/getFeedbackForCourse/672b77f5d51069fc04ceb924",
-      requestOptions
+      requestOptions,
     )
       .then((response) => response.json())
       .then((data) => {

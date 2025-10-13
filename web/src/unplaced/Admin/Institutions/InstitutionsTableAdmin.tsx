@@ -25,7 +25,7 @@ export const InstitutionsTableAdmin = () => {
   const userToken = getUserToken();
   const { data: institutionsResponse, mutate } = useSWR(
     "api/institutions",
-    () => institutionService.getInstitutions(userToken)
+    () => institutionService.getInstitutions(userToken),
   );
 
   if (!institutionsResponse) return <Loading />;
@@ -51,7 +51,7 @@ export const InstitutionsTableAdmin = () => {
 
   const paginatedData = filteredData.slice(
     (currentPage - 1) * rowsPerPage,
-    currentPage * rowsPerPage
+    currentPage * rowsPerPage,
   );
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
@@ -65,7 +65,7 @@ export const InstitutionsTableAdmin = () => {
   };
 
   const handleRowsPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setRowsPerPage(Number(event.target.value));
     setCurrentPage(1);

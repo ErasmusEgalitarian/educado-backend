@@ -29,14 +29,14 @@ const ViewUserButton: FC<ViewUserButtonProps> = ({
     application: Application;
   } | null>(null);
   const [contentCreator, setContentCreator] = useState<ContentCreator | null>(
-    null
+    null,
   );
 
   const { call: fetchUserDetails, isLoading } = useApi(
     async (applicationId: string, token: string) => {
       const userDetails = await AdminServices.getSingleUserDetails(
         applicationId,
-        token
+        token,
       );
 
       const userApplication =
@@ -44,14 +44,14 @@ const ViewUserButton: FC<ViewUserButtonProps> = ({
 
       const contentCreator = await AdminServices.getContentCreator(
         applicationId,
-        token
+        token,
       );
       return {
         userDetails,
         userApplication: userApplication.data,
         contentCreator,
       };
-    }
+    },
   );
 
   const handleClick = async () => {

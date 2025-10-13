@@ -22,11 +22,11 @@ export const UpdateInstitutionButton = ({
   const [nameInput, setNameInput] = useState(institution.institutionName);
   const [domainInput, setDomainInput] = useState(institution.domain);
   const [secondaryDomainInput, setSecondaryDomainInput] = useState(
-    institution.secondaryDomain
+    institution.secondaryDomain,
   );
 
   const { call: updateInstitution, isLoading } = useApi(
-    institutionService.updateInstitution
+    institutionService.updateInstitution,
   );
 
   useEffect(() => {

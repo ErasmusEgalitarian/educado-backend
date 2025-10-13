@@ -13,7 +13,7 @@ export default function CertificateList() {
 
   useEffect(() => {
     CertificateService.getUserCertificates(
-      localStorage.getItem("id") || ""
+      localStorage.getItem("id") || "",
     ).then((res: Certificate[]) => {
       setCertificates(res);
     });

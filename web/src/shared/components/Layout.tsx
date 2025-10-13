@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 // Components
 import { Navbar } from "./Navbar";
 
+// TODO: Deprecate in favour of PageContainer
 /**
  * Layout component
  *
@@ -25,9 +26,7 @@ const Layout = ({
           <Navbar />
 
           {/** Content */}
-          <main className=" bg-linear-to-br from-[#c8e5ec] to-[white]">
-            {children}
-          </main>
+          <main className="bg-primary-surface-subtle">{children}</main>
         </div>
       </div>
       <ToastContainer

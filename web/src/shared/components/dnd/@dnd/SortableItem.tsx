@@ -51,7 +51,7 @@ export const SortableItem = ({
   const cachedSection = getCachedSection(sid);
   const cachedComponents = cachedSection?.components;
   const [sectionTitle, setSectionTitle] = useState<string>(
-    cachedSection?.title ?? ""
+    cachedSection?.title ?? "",
   );
   const sectionErrors = {
     title: sectionTitle === "",
@@ -104,7 +104,7 @@ export const SortableItem = ({
   // Used to format PARTIAL section data, meaning that it can be used to update the course data gradually
   const handleFieldChange = (
     field: keyof Section,
-    value: string | number | Component[] | null
+    value: string | number | Component[] | null,
   ) => {
     if (cachedSection) {
       updateCachedSection({ [field]: value }, sid);

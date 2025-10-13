@@ -39,7 +39,7 @@ export const SortableComponentItem = ({ component, sid }: Props) => {
   const [data, setData] = useState<Exercise | Lecture | null>(
     isLectureComponent
       ? getCachedLecture(component.compId)
-      : getCachedExercise(component.compId)
+      : getCachedExercise(component.compId),
   );
   const [newTitle, setNewTitle] = useState("");
   const { deleteCachedSectionComponent } = useSections();
@@ -57,7 +57,7 @@ export const SortableComponentItem = ({ component, sid }: Props) => {
   const { call: getComponentDetails, isLoading: fetchLoading } = useApi(
     isLectureComponent
       ? LectureService.getLectureDetail
-      : ExerciseServices.getExerciseDetail
+      : ExerciseServices.getExerciseDetail,
   );
 
   useEffect(() => {

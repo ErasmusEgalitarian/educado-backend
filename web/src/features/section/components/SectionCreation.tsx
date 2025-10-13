@@ -13,10 +13,8 @@ import { ToolTipIcon } from "../../../shared/components/ToolTip/ToolTipIcon";
 import { useNotifications } from "../../../shared/context/NotificationContext";
 import { useApi } from "../../../shared/hooks/useAPI";
 import CourseService from "../../../unplaced/services/course.services";
-import CourseGuideButton from "../../course/components/GuideToCreatingCourse";
 import { YellowWarning } from "../../course/components/YellowWarning";
 import { useCourse } from "../../course/context/courseStore";
-
 
 // Notification
 
@@ -61,7 +59,7 @@ export const SectionCreation = ({ setTickChange }: Inputs) => {
       setDialogTitle,
       setDialogMessage,
       setDialogConfirm,
-      setShowDialog
+      setShowDialog,
     );
   };
 
@@ -121,7 +119,6 @@ export const SectionCreation = ({ setTickChange }: Inputs) => {
               callBack={setToolTipIndex}
             />
           </div>
-          <CourseGuideButton />
         </div>
 
         <div className="flex w-full float-right space-y-4">

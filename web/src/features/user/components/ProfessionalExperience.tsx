@@ -28,7 +28,7 @@ export default function ProfessionalExperienceForm({
   handleExperienceInputChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     index: number,
-    isCurrentJob?: boolean
+    isCurrentJob?: boolean,
   ) => void;
 
   experienceErrors: Record<string, string>[];
@@ -141,7 +141,7 @@ export default function ProfessionalExperienceForm({
             {/* Display invalid date input error message */}
             {displayInvalidDateFormatErrMsg(
               experienceFormData[index]?.workStartDate,
-              experienceErrors[index].workStartDate
+              experienceErrors[index].workStartDate,
             )}
           </div>
 
@@ -171,7 +171,7 @@ export default function ProfessionalExperienceForm({
                 handleExperienceInputChange(
                   value,
                   index,
-                  experienceFormData[index]?.isCurrentJob
+                  experienceFormData[index]?.isCurrentJob,
                 );
               }}
             />
@@ -179,7 +179,7 @@ export default function ProfessionalExperienceForm({
             {/* Display invalid date input error message */}
             {displayInvalidDateFormatErrMsg(
               experienceFormData[index]?.workEndDate,
-              experienceErrors[index].workEndDate
+              experienceErrors[index].workEndDate,
             )}
           </div>
         </div>
@@ -202,7 +202,7 @@ export default function ProfessionalExperienceForm({
                     target: { name: "workEndDate", value: "" },
                   } as React.ChangeEvent<HTMLInputElement>,
                   index,
-                  !experienceFormData[index]?.isCurrentJob
+                  !experienceFormData[index]?.isCurrentJob,
                 );
               }}
             />
@@ -248,7 +248,7 @@ export default function ProfessionalExperienceForm({
               onClick={() => {
                 handleExperienceDelete(
                   index,
-                  experienceFormData[index]?._id?.toString() || ""
+                  experienceFormData[index]?._id?.toString() || "",
                 );
               }}
             >

@@ -45,13 +45,13 @@ const PasswordRecoveryModal = (props: propTypes): JSX.Element => {
     useState("");
 
   const { call: apiSendEmail, isLoading: isSendingEmail } = useApi(
-    Services.sendEmail
+    Services.sendEmail,
   );
   const { call: apiVerifyCode, isLoading: isVerifyingCode } = useApi(
-    Services.verifyCode
+    Services.verifyCode,
   );
   const { call: apiUpdatePassword, isLoading: isUpdatingPassword } = useApi(
-    Services.updatePassword
+    Services.updatePassword,
   );
 
   /**
@@ -69,7 +69,7 @@ const PasswordRecoveryModal = (props: propTypes): JSX.Element => {
           setEmailError("Email inválido"); // Invalid email
         } else {
           setEmailError(
-            "Formato de email inválido. Deve ser no estilo exemplo@mail.com"
+            "Formato de email inválido. Deve ser no estilo exemplo@mail.com",
           ); // Invalid email format. Should be like example@mail.com
         }
         return;
@@ -129,7 +129,7 @@ const PasswordRecoveryModal = (props: propTypes): JSX.Element => {
           break;
         case "E0406":
           props.setErrorMessage(
-            "Muitas tentativas de reenvio! Espere 5 minutos..."
+            "Muitas tentativas de reenvio! Espere 5 minutos...",
           ); // Too many attempts, wait 5 minutes
           break;
         default:

@@ -50,7 +50,7 @@ export const FormSelect = <TFieldValues extends FieldValues>({
     >
       <Select value={value} onValueChange={onChange} {...rest}>
         <SelectTrigger
-          size={inputSize === "md" ? "default" : "sm"}
+          size={inputSize}
           className={error ? "border-destructive" : undefined}
         >
           <SelectValue placeholder={placeholder} />

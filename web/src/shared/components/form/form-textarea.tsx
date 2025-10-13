@@ -34,9 +34,9 @@ export const FormTextarea = <TFieldValues extends FieldValues>({
       description={description}
       isRequired={isRequired}
       hintTooltip={hintTooltip}
-      childProps={textareaProps}
+      childProps={{ inputSize, ...textareaProps }}
     >
-      <Textarea {...textareaProps} />
+      <Textarea inputSize={inputSize} {...textareaProps} />
     </FormElementWrapper>
   );
 };

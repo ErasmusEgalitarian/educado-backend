@@ -1,0 +1,22 @@
+# Build outputs
+dist/
+build/
+node_modules/
+
+# Test directories
+__tests__/
+cypress/
+
+# Config files
+vite.config.ts
+tailwind.config.cjs
+postcss.config.cjs
+babel.config.cjs
+
+# Generated/External code
+src/shared/components/shadcn
+src/shared/api
+
+# Lock files and cache
+package-lock.json
+.eslintcache

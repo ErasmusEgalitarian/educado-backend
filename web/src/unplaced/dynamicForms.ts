@@ -1,9 +1,12 @@
 import { useState } from "react";
 
-import { useEducationFormData, useExperienceFormData, tempObjects } from "@/shared/lib/formStates";
+import {
+  useEducationFormData,
+  useExperienceFormData,
+  tempObjects,
+} from "@/shared/lib/formStates";
 
 import { getUserInfo } from "../features/auth/lib/userInfo";
-
 
 import ProfileServices from "./services/profile.services";
 import useProfileValidation from "./useProfileValidation";
@@ -52,23 +55,23 @@ export default () => {
       const transformedEducationData =
         educationFormResponse.data.length > 0
           ? educationFormResponse.data.map((item: any) => ({
-            ...item,
-            educationStartDate: item.startDate,
-            educationEndDate: item.endDate,
-          }))
+              ...item,
+              educationStartDate: item.startDate,
+              educationEndDate: item.endDate,
+            }))
           : // Set empty data if forms don't exist in database
-          emptyEducationForm;
+            emptyEducationForm;
 
       // Map backend variables to corresponding frontend variables
       const transformedWorkData =
         workFormResponse.data.length > 0
           ? workFormResponse.data.map((item: any) => ({
-            ...item,
-            workStartDate: item.startDate,
-            workEndDate: item.endDate,
-          }))
+              ...item,
+              workStartDate: item.startDate,
+              workEndDate: item.endDate,
+            }))
           : // Set empty data if forms don't exist in database
-          emptyWorkForm;
+            emptyWorkForm;
 
       setEducationFormData(transformedEducationData);
       setExperienceFormData(transformedWorkData);

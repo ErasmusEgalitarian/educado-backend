@@ -3,35 +3,40 @@ import {
   mdiAccount,
   mdiLogoutVariant,
   mdiCertificate,
-  mdiNotebookOutline,
   mdiAccountCog,
   mdiChatQuestionOutline,
+  mdiTranslate,
 } from "@mdi/js";
+import { Icon } from "@mdi/react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
 
+import useAuthStore from "@/auth/hooks/useAuthStore";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuIconItem,
   DropdownMenuTrigger,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuIconSubTrigger,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
 } from "@/shared/components/shadcn/dropdown-menu";
 
-import { Icon } from "@mdi/react";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
-import useAuthStore from "@/auth/hooks/useAuthStore";
-
-import { getUserInfo } from "../../features/auth/lib/userInfo";
+import { getUserInfo, userInfo } from "../../features/auth/lib/userInfo";
 import { useNotifications } from "../context/NotificationContext";
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const { clearToken } = useAuthStore((state) => state);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { addNotification, notifications, setNotifications } =
-    useNotifications();
-
+  const { notifications, setNotifications } = useNotifications();
+  const [position, setPosition] = useState("portuguese");
+  const { t, i18n } = useTranslation();
   // Logout handler
   const handleLogout = () => {
     clearToken();
@@ -40,18 +45,7 @@ export const Navbar = () => {
   };
 
   // Fetch user info
-  const userInfo: any = getUserInfo();
-
-  let firstName;
-  userInfo.firstName
-    ? (firstName = userInfo.firstName)
-    : (firstName = "Firstname");
-
-  let lastName = "Lastname";
-  userInfo.lastName ? (lastName = userInfo.lastName) : (lastName = "Lastname");
-
-  let email = "email";
-  userInfo.email ? (email = userInfo.email) : (email = "Email");
+  const userInfo: userInfo = getUserInfo();
 
   // Notification handlers
   const toggleDropdown = () => {
@@ -70,7 +64,7 @@ export const Navbar = () => {
 
   return (
     <main>
-      <nav className="relative flex navbar items-center justify-between py-3.5 px-6 bg-white shadow-md">
+      <nav className="relative flex navbar items-center justify-between py-3 px-6 bg-white shadow-md">
         {/* Navbar Logo */}
         <div className="w-[165.25px] h-6 justify-start items-center gap-[7.52px] flex py-6 px-8">
           <Link
@@ -80,41 +74,6 @@ export const Navbar = () => {
             <img src="/logo.svg" alt="logo" className="w-[24.43px] h-6" />
             <img src="/educado.svg" alt="educado" className="h-6" />
           </Link>
-        </div>
-
-        {/* Navbar Links */}
-        <div className="navbar-center hidden lg:flex">
-          <ul className="flex gap-6">
-            <li>
-              <Link
-                to="/courses"
-                className="flex items-center text-lg font-['Montserrat']"
-              >
-                <Icon path={mdiNotebookOutline} size={1} color="grayMedium" />
-                <span>Cursos</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/certificates"
-                className="flex items-center text-lg font-['Montserrat']"
-              >
-                <Icon path={mdiCertificate} size={1} color="grayMedium" />
-                <span>Meus certificados</span>
-              </Link>
-            </li>
-            <li>
-              {userInfo.role === "admin" && (
-                <Link
-                  to="/educado-admin/applications"
-                  className="flex items-center text-lg font-['Montserrat']"
-                >
-                  <Icon path={mdiAccount} size={1} color="grayMedium" />
-                  <span>Admin</span>
-                </Link>
-              )}
-            </li>
-          </ul>
         </div>
 
         {/* Notification Bell and User Info */}
@@ -168,7 +127,7 @@ export const Navbar = () => {
                       ))
                     ) : (
                       <li className="p-2 text-gray-500 text-sm">
-                        No notifications
+                        {t("navbar.noNotifications")}
                       </li>
                     )}
                   </ul>
@@ -180,7 +139,7 @@ export const Navbar = () => {
                       onClick={handleClearAll}
                       className="text-sm text-red-600 hover:underline"
                     >
-                      Clear All
+                      {t("actions.clearAll")}
                     </button>
                   </div>
                 )}
@@ -189,24 +148,28 @@ export const Navbar = () => {
           </div>
 
           {/* User Info */}
-          <div className="flex flex-col items-start">
-            <span className="hidden sm:block text-sm font-bold text-grayMedium font-['Montserrat']">
-              {`${firstName} ${lastName}`}
-            </span>
-            <span className="hidden sm:block text-xs font-normal text-grayMedium font-['Montserrat']">
-              {email}
-            </span>
-          </div>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <div
-                className="
-                bg-primary-surface-lighter text-primary-border-lighter 
-                border-1 border-primary-border-lighter rounded-full w-10 h-10 
-                flex items-center justify-center cursor-pointer"
-              >
-                <span className="text-md text-center font-bold select-none">{`${firstName.charAt(0)}${lastName.charAt(0)}`}</span>
+              <div className="flex gap-3 cursor-pointer rounded-md p-2 hover:bg-[#222]/10">
+                <div className="flex items-center">
+                  <div>
+                    <span className="hidden sm:block text-sm font-bold text-grayMedium font-['Montserrat']">
+                      {`${userInfo.firstName} ${userInfo.lastName}`}
+                    </span>
+                    <span className="hidden sm:block text-xs font-normal text-grayMedium font-['Montserrat']">
+                      {userInfo.email}
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="
+                  bg-primary-surface-lighter text-primary-border-lighter 
+                  border-1 border-primary-border-lighter rounded-full w-10 h-10 
+                  flex items-center justify-center "
+                >
+                  <span className="text-md text-center font-bold select-none">{`${userInfo.firstName.charAt(0)}${userInfo.lastName.charAt(0)}`}</span>
+                </div>
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-50" align="end">
@@ -216,7 +179,7 @@ export const Navbar = () => {
                 }}
                 icon={() => <Icon path={mdiAccountCog} size={1} />}
               >
-                Editar perfil
+                {t("navbar.editProfile")}
               </DropdownMenuIconItem>
               <DropdownMenuIconItem
                 onClick={() => {
@@ -224,7 +187,7 @@ export const Navbar = () => {
                 }}
                 icon={() => <Icon path={mdiCertificate} size={1} />}
               >
-                Meus certificados
+                {t("navbar.myCertificates")}
               </DropdownMenuIconItem>
               <DropdownMenuIconItem
                 onClick={() => {
@@ -232,15 +195,55 @@ export const Navbar = () => {
                 }}
                 icon={() => <Icon path={mdiChatQuestionOutline} size={1} />}
               >
-                Feedback
+                {t("navbar.feedback")}
               </DropdownMenuIconItem>
+
+              {userInfo.role === "admin" && (
+                <>
+                  <DropdownMenuSub>
+                    <DropdownMenuIconSubTrigger
+                      icon={() => <Icon path={mdiTranslate} size={1} />}
+                    >
+                      {t("language.switchLanguage")}
+                    </DropdownMenuIconSubTrigger>
+                    <DropdownMenuPortal>
+                      <DropdownMenuSubContent>
+                        <DropdownMenuRadioGroup
+                          value={i18n.language}
+                          onValueChange={(value) => {
+                            void i18n.changeLanguage(value);
+                            setPosition(value);
+                          }}
+                        >
+                          <DropdownMenuRadioItem value="pt">
+                            Português 🇧🇷
+                          </DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="en">
+                            English 🇺🇸
+                          </DropdownMenuRadioItem>
+                        </DropdownMenuRadioGroup>
+                      </DropdownMenuSubContent>
+                    </DropdownMenuPortal>
+                  </DropdownMenuSub>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuIconItem
+                    onClick={() => {
+                      navigate("/educado-admin/applications");
+                    }}
+                    icon={() => <Icon path={mdiAccount} size={1} />}
+                  >
+                    {t("navbar.admin")}
+                  </DropdownMenuIconItem>
+                </>
+              )}
+
               <DropdownMenuSeparator />
               <DropdownMenuIconItem
                 onClick={handleLogout}
                 icon={() => <Icon path={mdiLogoutVariant} size={1} />}
                 variant="destructive"
               >
-                Sair
+                {t("navbar.logout")}
               </DropdownMenuIconItem>
             </DropdownMenuContent>
           </DropdownMenu>
