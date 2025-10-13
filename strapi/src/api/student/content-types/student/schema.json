@@ -21,10 +21,6 @@
       "type": "string",
       "maxLength": 50
     },
-    "joinedAt": {
-      "type": "date",
-      "required": true
-    },
     "biography": {
       "type": "text",
       "maxLength": 4000
@@ -48,8 +44,14 @@
     },
     "courses": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::course.course",
+      "mappedBy": "students"
+    },
+    "certificates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::certificate.certificate",
       "mappedBy": "student"
     }
   }
