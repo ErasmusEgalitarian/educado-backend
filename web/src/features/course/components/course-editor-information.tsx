@@ -284,6 +284,13 @@ const CourseEditorInformation = forwardRef<
                             ? t("categories.loadingCategoriesDescription")
                             : ""
                         }
+                        createLabel={t("courseManager.addNewCategory")} // valgfri
+                        onCreate={(newCategory) => {
+                          data.push({
+                            ...newCategory,
+                            // cast som Partial<ApiCourseCategoryCourseCategoryDocument>
+                          } as Partial<ApiCourseCategoryCourseCategoryDocument>);
+                        }}
                       />
                     </div>
                   </div>
