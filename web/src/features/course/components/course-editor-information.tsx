@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import z from "zod";
 
+import { FormFileUpload } from "@/shared/components/form/form-file-upload";
+
 import {
   ApiCourseCategoryCourseCategoryDocument,
   ApiCourseCourseDocument,
@@ -315,6 +317,13 @@ const CourseEditorInformation = forwardRef<
                     </div>
                   </div>
 
+                  <FormFileUpload
+                    uploadType="image"
+                    control={form.control}
+                    name="image"
+                    maxFiles={1}
+                  />
+
                   {/* Show mutation errors inline, so the form doesnt disappear */}
                   {mutationError && (
                     <ErrorDisplay
@@ -372,28 +381,5 @@ const CourseEditorInformation = forwardRef<
 });
 
 CourseEditorInformation.displayName = "CourseEditorInformation";
-
-// Temporarily removed because it prevents submission and is not yet functional
-const UploadComponent = () => {
-  return (
-    <div>
-      {/*Cover image field*/}
-      <div className="flex flex-col space-y-2 text-left">
-        <label htmlFor="cover-image">
-          {t("courseManager.coverImage")}{" "}
-          <span className="text-red-500">*</span>
-        </label>
-        {/** Cover image */}
-      </div>
-      <Dropzone
-        inputType="image"
-        id="0"
-        previewFile={null}
-        onFileChange={() => {}}
-        maxSize={5 * 1024 * 1024 /* 5mb */}
-      />
-    </div>
-  );
-};
 
 export default CourseEditorInformation;

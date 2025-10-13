@@ -168,5 +168,25 @@
   },
   "courseEditor": {
     "fetchCourseDataError": "Erro ao carregar dados do curso: {{message}}"
+  },
+  "files": {
+    "upload": "Enviar",
+    "images": "Imagens",
+    "videos": "Vídeos",
+    "files": "Arquivos",
+    "dragAndDrop": "Arraste e solte",
+    "hereOrClick": " aqui, ou clique para procurar",
+    "choose": "Escolher",
+    "maximumFilesReached": "Máximo de arquivos atingido",
+    "youCanUploadUpTo": "Você pode fazer upload de até",
+    "drop": "Derrubar",
+    "here": "aqui",
+    "uploaded": "Enviado",
+    "filename": "Nome do arquivo",
+    "alternativeText": "Texto alternativo",
+    "caption": "Legenda",
+    "describeTheImage": "Descreva a imagem para acessibilidade",
+    "addACaption": "Adicione uma legenda ou descrição",
+    "previewShortcuts": "Pressione ESC para fechar • Setas para navegar • +/- para ampliar"
   }
 }
