@@ -122,7 +122,7 @@ export const Dropzone: FC<DropzoneProps> = ({
           <div className="flex justify-center text-sm text-gray-600 text-center">
             <label
               htmlFor={`file-upload-${id}`}
-              className="relative cursor-pointer rounded-md font-medium text-primary focus-within:outline-none focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:text-primaryHover"
+              className="relative cursor-pointer rounded-md font-medium text-primary focus-within:outline-hidden focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:text-primary-hover"
             >
               <span>Carregamento de arquivo</span>
               <input

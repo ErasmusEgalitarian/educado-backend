@@ -7,9 +7,18 @@ import {
   mdiAccountCog,
   mdiChatQuestionOutline,
 } from "@mdi/js";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuSeparator,
+  DropdownMenuIconItem,
+  DropdownMenuTrigger,
+} from "@/shared/components/shadcn/dropdown-menu";
+
 import { Icon } from "@mdi/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 
@@ -17,6 +26,7 @@ import { getUserInfo } from "../../features/auth/lib/userInfo";
 import { useNotifications } from "../context/NotificationContext";
 
 export const Navbar = () => {
+  const navigate = useNavigate();
   const { clearToken } = useAuthStore((state) => state);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { addNotification, notifications, setNotifications } =
@@ -26,6 +36,7 @@ export const Navbar = () => {
   const handleLogout = () => {
     clearToken();
     localStorage.removeItem("token");
+    navigate("/welcome");
   };
 
   // Fetch user info
@@ -59,7 +70,7 @@ export const Navbar = () => {
 
   return (
     <main>
-      <nav className="relative navbar fixed items-center justify-between py-3.5 px-6 bg-white shadow-md">
+      <nav className="relative flex navbar items-center justify-between py-3.5 px-6 bg-white shadow-md">
         {/* Navbar Logo */}
         <div className="w-[165.25px] h-6 justify-start items-center gap-[7.52px] flex py-6 px-8">
           <Link
@@ -73,7 +84,7 @@ export const Navbar = () => {
 
         {/* Navbar Links */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">
+          <ul className="flex gap-6">
             <li>
               <Link
                 to="/courses"
@@ -107,7 +118,7 @@ export const Navbar = () => {
         </div>
 
         {/* Notification Bell and User Info */}
-        <div className="relative flex items-center gap-6 pr-12 z-50">
+        <div className="relative flex items-center gap-6 pr-10 z-50">
           {/* Notification Bell */}
           <div className="relative flex items-center gap-6">
             <button
@@ -179,79 +190,60 @@ export const Navbar = () => {
 
           {/* User Info */}
           <div className="flex flex-col items-start">
-            <span className="hidden sm:block text-lg font-bold text-grayMedium font-['Montserrat']">
+            <span className="hidden sm:block text-sm font-bold text-grayMedium font-['Montserrat']">
               {`${firstName} ${lastName}`}
             </span>
-            <span className="hidden sm:block text-sm font-normal text-grayMedium font-['Montserrat']">
+            <span className="hidden sm:block text-xs font-normal text-grayMedium font-['Montserrat']">
               {email}
             </span>
           </div>
 
-          {/* User Actions Dropdown */}
-          <div className="relative">
-            <div className="dropdown dropdown-end">
-              <label
-                tabIndex={0}
-                className="btn btn-ghost hover:bg-transparent"
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div
+                className="
+                bg-primary-surface-lighter text-primary-border-lighter 
+                border-1 border-primary-border-lighter rounded-full w-10 h-10 
+                flex items-center justify-center cursor-pointer"
               >
-                <div className="avatar placeholder">
-                  <div className="bg-[#166276] text-white rounded-full hover:rounded w-11">
-                    <span className="text-md">{`${firstName.charAt(0)}${lastName.charAt(0)}`}</span>
-                  </div>
-                </div>
-              </label>
-
-              <ul
-                tabIndex={0}
-                className="menu dropdown-content flex flex-col items-start p-2 absolute w-[245px] mt-2 bg-white rounded-lg shadow-md"
+                <span className="text-md text-center font-bold select-none">{`${firstName.charAt(0)}${lastName.charAt(0)}`}</span>
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-50" align="end">
+              <DropdownMenuIconItem
+                onClick={() => {
+                  navigate("/profile");
+                }}
+                icon={() => <Icon path={mdiAccountCog} size={1} />}
               >
-                <li className="w-full">
-                  <Link
-                    to="/profile"
-                    className="text-grayDark text-lg hover:bg-grayLight"
-                  >
-                    <Icon path={mdiAccountCog} size={1} color="grayMedium" />
-                    <span>Editar perfil</span>
-                  </Link>
-                </li>
-                <hr className="w-full border-grayLight my-3" />
-                <li className="w-full">
-                  <Link
-                    to="/certificates"
-                    className="text-grayDark text-lg hover:bg-grayLight"
-                  >
-                    <Icon path={mdiCertificate} size={1} color="grayMedium" />
-                    <span>Meus certificados</span>
-                  </Link>
-                </li>
-                <hr className="w-full border-grayLight my-3" />
-                <li className="w-full">
-                  <Link
-                    to="/feedback"
-                    className="text-grayDark text-lg hover:bg-grayLight"
-                  >
-                    <Icon
-                      path={mdiChatQuestionOutline}
-                      size={1}
-                      color="grayMedium"
-                    />
-                    <span>Feedback</span>
-                  </Link>
-                </li>
-                <hr className="w-full border-grayLight my-3" />
-                <li className="w-full">
-                  <Link
-                    to="/welcome"
-                    onClick={handleLogout}
-                    className="text-warning text-lg font-bold hover:bg-grayLight"
-                  >
-                    <Icon path={mdiLogoutVariant} size={1} color="warning" />
-                    <span>Sair</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
+                Editar perfil
+              </DropdownMenuIconItem>
+              <DropdownMenuIconItem
+                onClick={() => {
+                  navigate("/certificates");
+                }}
+                icon={() => <Icon path={mdiCertificate} size={1} />}
+              >
+                Meus certificados
+              </DropdownMenuIconItem>
+              <DropdownMenuIconItem
+                onClick={() => {
+                  navigate("/feedback");
+                }}
+                icon={() => <Icon path={mdiChatQuestionOutline} size={1} />}
+              >
+                Feedback
+              </DropdownMenuIconItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuIconItem
+                onClick={handleLogout}
+                icon={() => <Icon path={mdiLogoutVariant} size={1} />}
+                variant="destructive"
+              >
+                Sair
+              </DropdownMenuIconItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </nav>
 

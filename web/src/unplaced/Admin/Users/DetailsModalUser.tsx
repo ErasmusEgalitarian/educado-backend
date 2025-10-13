@@ -178,7 +178,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               isDropdownOpen[0] ? "max-h-screen" : "max-h-0"
             }`}
           >
-            <div className="p-4 bg-white rounded-b-lg shadow break-all">
+            <div className="p-4 bg-white rounded-b-lg shadow-sm break-all">
               <p className="text-base font-['Montserrat'] text-gray-900">
                 {userApplication.application?.motivation !== undefined
                   ? userApplication.application?.motivation
@@ -223,7 +223,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               userApplication.application.academicLevel.map((_, index) => (
                 <div
                   key={index}
-                  className="p-4 bg-white rounded-b-lg shadow break-all mt-2"
+                  className="p-4 bg-white rounded-b-lg shadow-sm break-all mt-2"
                 >
                   <p className="text-base font-['Montserrat'] text-gray-900">
                     Academic level:{" "}
@@ -252,7 +252,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                 </div>
               ))
             ) : (
-              <p className="p-4 bg-white rounded-b-lg shadow break-all mt-2 text-base font-['Montserrat'] text-gray-900">
+              <p className="p-4 bg-white rounded-b-lg shadow-sm break-all mt-2 text-base font-['Montserrat'] text-gray-900">
                 No academic experiences provided
               </p>
             )}
@@ -296,7 +296,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               userApplication.application.company.map((_, index) => (
                 <div
                   key={index}
-                  className="p-4 bg-white rounded-b-lg shadow break-all mt-2"
+                  className="p-4 bg-white rounded-b-lg shadow-sm break-all mt-2"
                 >
                   <p className="text-base font-['Montserrat'] text-gray-900">
                     Company:{" "}
@@ -322,7 +322,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                 </div>
               ))
             ) : (
-              <p className="p-4 bg-white rounded-b-lg shadow break-all mt-2 text-base font-['Montserrat'] text-gray-900">
+              <p className="p-4 bg-white rounded-b-lg shadow-sm break-all mt-2 text-base font-['Montserrat'] text-gray-900">
                 No professional experiences provided
               </p>
             )}
@@ -331,7 +331,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
         <div className="flex justify-between mt-4">
           <button
             onClick={onClose}
-            className="text-[#166276] rounded text-base font-base font-['Lato'] underline underline-offset-4"
+            className="text-[#166276] rounded-sm text-base font-base font-['Lato'] underline underline-offset-4"
           >
             Fechar
           </button>

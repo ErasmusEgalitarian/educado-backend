@@ -167,7 +167,7 @@ export const CourseComponent = ({
               type="text"
               placeholder="Nome do curso"
               defaultValue={course.title}
-              className="form-field  bg-secondary border-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg"
+              className="form-field  bg-secondary border-none focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg"
               onChange={(e) => {
                 handleFieldChange("title", e.target.value);
               }}
@@ -189,7 +189,7 @@ export const CourseComponent = ({
               <select
                 id="difficulty-field"
                 defaultValue={course.difficulty}
-                className="bg-secondary border-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg"
+                className="bg-secondary border-none focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg"
                 onChange={(e) => {
                   handleFieldChange("difficulty", parseInt(e.target.value));
                 }}
@@ -216,7 +216,7 @@ export const CourseComponent = ({
               <select
                 id="category-field"
                 defaultValue={course.category}
-                className="bg-secondary border-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg"
+                className="bg-secondary border-none focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg"
                 onChange={(e) => {
                   handleFieldChange("category", e.target.value);
                 }}
@@ -260,7 +260,7 @@ export const CourseComponent = ({
               rows={4}
               placeholder="Conte mais sobre o curso"
               defaultValue={course.description}
-              className="resize-none form-field border-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-secondary rounded-lg"
+              className="resize-none form-field border-none focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent bg-secondary rounded-lg"
               onChange={(e) => {
                 handleFieldChange("description", e.target.value);
               }}
@@ -303,7 +303,7 @@ export const CourseComponent = ({
                 navigate("/courses");
               }}
               htmlFor="course-create"
-              className="cursor-pointer underline py-2 pr-4 bg-transparent hover:bg-warning-100 text-warning w-full transition ease-in duration-200 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2  rounded"
+              className="cursor-pointer underline py-2 pr-4 bg-transparent hover:bg-warning-100 text-warning w-full transition ease-in duration-200 text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2  rounded-sm"
             >
               Cancelar e Voltar {/** Cancel */}
             </label>
@@ -314,7 +314,7 @@ export const CourseComponent = ({
                 course.status === "published"
                   ? "invisible pointer-events-none"
                   : ""
-              } whitespace-nowrap ml-42 underline py-2 px-4 bg-transparent hover:bg-primary-100 text-primary w-full transition ease-in duration-200 text-center text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 rounded ${isMissingRequiredFields ? "opacity-70" : ""}`}
+              } whitespace-nowrap ml-42 underline py-2 px-4 bg-transparent hover:bg-primary-100 text-primary w-full transition ease-in duration-200 text-center text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2 rounded ${isMissingRequiredFields ? "opacity-70" : ""}`}
             >
               <button
                 id="SaveAsDraft"
@@ -328,7 +328,7 @@ export const CourseComponent = ({
 
             <label
               htmlFor="course-create"
-              className={`whitespace-nowrap h-12 p-2 bg-primary hover:bg-primaryHover focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-lg font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg ${isMissingRequiredFields ? "opacity-70" : ""}`}
+              className={`whitespace-nowrap h-12 p-2 bg-primary hover:bg-primary-hover focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-lg font-semibold shadow-md focus:outline-hidden focus:ring-2 focus:ring-offset-2 rounded-lg ${isMissingRequiredFields ? "opacity-70" : ""}`}
             >
               <button
                 onClick={navigateToSections}

@@ -126,7 +126,7 @@ export const SortableItem = ({
   return (
     <div>
       <div
-        className={`overflow-hidden border collapse w-full min-h-16 rounded bg-white shadow-lg rounded-lg my-4 `}
+        className={`overflow-hidden border collapse w-full min-h-16 rounded-sm bg-white shadow-lg rounded-lg my-4 `}
       >
         <input
           type="checkbox"
@@ -152,7 +152,7 @@ export const SortableItem = ({
               onClick={() => {
                 handleSectionDeletion(sid);
               }}
-              className="btn btn-ghost hover:bg-transparent hover:text-primaryHover p-0"
+              className="btn btn-ghost hover:bg-transparent hover:text-primary-hover p-0"
             >
               {/**delete and move buttons on the left side of the section headers */}
               <Icon path={mdiDeleteCircle} size={1.2} />
@@ -164,7 +164,7 @@ export const SortableItem = ({
               {...attributes}
               {...listeners}
             >
-              <div className="btn btn-ghost hover:bg-transparent hover:text-primaryHover p-0">
+              <div className="btn btn-ghost hover:bg-transparent hover:text-primary-hover p-0">
                 {/**delete and move buttons on the left side of the section headers */}
                 <Icon path={mdiDotsVerticalCircle} size={1.2} />
               </div>
@@ -172,7 +172,7 @@ export const SortableItem = ({
           </div>
         </div>
 
-        <div className="overflow-hidden collapse-content flex flex-col rounded-lg h-50  w-full rounded space-2 px-128 space-y-5">
+        <div className="overflow-hidden collapse-content flex flex-col rounded-lg h-50  w-full rounded-sm space-2 px-128 space-y-5">
           <div className="pt-5">
             <label htmlFor="title">
               Nome <span className="text-red-500">*</span>{" "}
@@ -182,7 +182,7 @@ export const SortableItem = ({
               type="text"
               defaultValue={sectionTitle ?? "Nova seção"}
               placeholder="Nome da seção"
-              className="text-gray-500 flex form-field bg-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent border-none"
+              className="text-gray-500 flex form-field bg-secondary focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent border-none"
               onChange={(e) => {
                 handleFieldChange("title", e.target.value);
                 setSectionTitle(e.target.value);
@@ -212,7 +212,7 @@ export const SortableItem = ({
             <textarea
               defaultValue={cachedSection.description ?? ""}
               placeholder="Descrição da seção"
-              className="text-gray-500 form-field bg-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent border-none h-11"
+              className="text-gray-500 form-field bg-secondary focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent border-none h-11"
               onChange={(e) => {
                 handleFieldChange("description", e.target.value);
               }} //update the section title

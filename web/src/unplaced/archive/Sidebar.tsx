@@ -8,11 +8,11 @@ import { BookOpenIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 
 export const Sidebar = () => {
   return (
-    <div className="flex flex-col flex-shrink-0 items-center w-16 pb-4 overflow-auto border-r border-gray-300">
+    <div className="flex flex-col shrink-0 items-center w-16 pb-4 overflow-auto border-r border-gray-300">
       {/** Sidebar Icon */}
       <Link
         to="/"
-        className="flex items-center justify-center flex-shrink-0 w-full h-16 bg-blue-300"
+        className="flex items-center justify-center shrink-0 w-full h-16 bg-blue-300"
       >
         <img src={Logo} alt="ecs-logo" className="h-6" />
       </Link>
@@ -50,7 +50,7 @@ const SidebarElement = ({
       <Tippy content={tooltip} placement="right">
         <Link
           to={path}
-          className="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded"
+          className="flex items-center justify-center shrink-0 w-10 h-10 mt-4 rounded-sm"
         >
           <span className="w-5 h-5 text-blue-500">{icon}</span>
         </Link>
@@ -63,7 +63,7 @@ const SidebarElement = ({
     <Tippy content={tooltip} placement="right">
       <Link
         to={path}
-        className="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300"
+        className="flex items-center justify-center shrink-0 w-10 h-10 mt-4 rounded-sm hover:bg-gray-300"
       >
         <span className="w-5 h-5">{icon}</span>
       </Link>

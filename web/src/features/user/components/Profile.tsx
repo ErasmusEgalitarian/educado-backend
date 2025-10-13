@@ -258,7 +258,7 @@ const Profile = () => {
 
   return (
     <Layout meta="Profile">
-      <main className="flex-grow overflow-x-hidden bg-secondary h-screen font-['Montserrat']">
+      <main className="grow overflow-x-hidden bg-secondary h-screen font-['Montserrat']">
         {/* Dynamic forms */}
         <form className="text-center py-8 px-10 w-full">
           <div className="inline-block ">
@@ -463,7 +463,7 @@ const Profile = () => {
               {/* Cancel edits */}
               <Link
                 to="/courses"
-                className="text-cyan-800 font-bold text-lg underline flex-grow text-right ml-auto"
+                className="text-cyan-800 font-bold text-lg underline grow text-right ml-auto"
               >
                 Cancelar edições
               </Link>

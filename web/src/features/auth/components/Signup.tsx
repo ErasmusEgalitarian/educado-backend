@@ -223,7 +223,7 @@ const Signup = () => {
       }}
     >
       <FormDataContext.Provider value={formData}>
-        <main className="bg-gradient-to-br from-[#C9E5EC] 0% to-[#FFF] 100%">
+        <main className="bg-linear-to-br from-[#C9E5EC] 0% to-[#FFF] 100%">
           {/* Mini navbar */}
           <MiniNavbar />
 
@@ -233,7 +233,7 @@ const Signup = () => {
             <div className="relative w-full h-screen hidden md:block container overflow-hidden">
               <img
                 src={background}
-                alt="w-[42.375rem]"
+                alt="w-169.5"
                 className="object-cover w-full h-full"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -280,7 +280,7 @@ const Signup = () => {
                         onInput={areFieldsFilled}
                         type="text"
                         id="firstNameField"
-                        className="w-[95%] flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg text-[#383838] focus:outline-none focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
+                        className="w-[95%] flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg text-[#383838] focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
                         placeholder="Nome"
                         {...register("firstName", {
                           required: "digite seu primeiro nome.",
@@ -299,7 +299,7 @@ const Signup = () => {
                         onInput={areFieldsFilled}
                         type="text"
                         id="lastNameField"
-                        className="w-[100%] flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg text-[#383838] focus:outline-none focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
+                        className="w-full flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg text-[#383838] focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
                         placeholder="Sobrenome"
                         {...register("lastName", {
                           required: "digite seu sobrenome.",
@@ -319,7 +319,7 @@ const Signup = () => {
                       onInput={areFieldsFilled}
                       type="email"
                       id="email-field"
-                      className="w-[100%] flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-none focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
+                      className="w-full flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
                       placeholder="usuario@gmail.com"
                       {...register("email", {
                         required: "introduza o seu e-mail.",
@@ -357,7 +357,7 @@ const Signup = () => {
                       onInput={areFieldsFilled}
                       type={passwordVisible ? "text" : "password"}
                       id="password-field"
-                      className="w-[100%] flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-none focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
+                      className="w-full flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
                       placeholder="**********"
                       {...register("password", { required: "insira a senha." })}
                       onChange={handlePasswordChange}
@@ -416,7 +416,7 @@ const Signup = () => {
                       type={passwordVisibleRepeat ? "text" : "password"}
                       id="password-field-repeat"
                       placeholder="**********"
-                      className="w-[100%] flex border-gray-300 gap-2.5 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-none focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
+                      className="w-full flex border-gray-300 gap-2.5 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
                       {...register("confirmPassword", {
                         required: "insira a senha.",
                       })}
@@ -468,7 +468,7 @@ const Signup = () => {
                   <button
                     type="submit"
                     id="submit-signup-button"
-                    className="disabled:opacity-20 disabled:bg-slate-600 flex-auto w-[100%] h-[3.3rem] rounded-lg bg-[#166276] text-[#FFF] transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50 text-lg font-bold font-['Montserrat']"
+                    className="disabled:opacity-20 disabled:bg-slate-600 flex-auto w-full h-[3.3rem] rounded-lg bg-[#166276] text-[#FFF] transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50 text-lg font-bold font-['Montserrat']"
                     disabled={submitLoading}
                   >
                     {submitLoading ? (

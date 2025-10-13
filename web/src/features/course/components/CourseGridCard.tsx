@@ -16,7 +16,7 @@ export const CourseGridCard = ({ course }: { course: Course }) => {
   //Only load the picture, when the picture is loaded
 
   return (
-    <div className="shadow-courseCard border rounded-lg h-full w-full m-auto">
+    <div className="shadow-course-card border rounded-lg h-full w-full m-auto">
       {/* Card content */}
       <div className="bg-white w-full">
         <div className="p-4">
@@ -64,7 +64,7 @@ export const CourseGridCard = ({ course }: { course: Course }) => {
             </div>
 
             {/* Course rating */}
-            <div className="w-[8rem]">
+            <div className="w-32">
               <StarRating rating={course.rating ?? 0} />
             </div>
 

@@ -143,7 +143,7 @@ export const SectionCreation = ({ setTickChange }: Inputs) => {
               onClick={() => {
                 changeTick(0);
               }}
-              className="whitespace-nowrap cursor-pointer underline py-2 pr-4 bg-transparent hover:bg-warning-100 text-primary w-full transition ease-in duration-200 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2  rounded"
+              className="whitespace-nowrap cursor-pointer underline py-2 pr-4 bg-transparent hover:bg-warning-100 text-primary w-full transition ease-in duration-200 text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2  rounded-sm"
             >
               Voltar para Informações{" "}
               {/** GO BACK TO COURSE CREATION PAGE 1/3 IN THE CHECKLIST */}
@@ -152,7 +152,7 @@ export const SectionCreation = ({ setTickChange }: Inputs) => {
             <div
               className={` ${
                 status === "published" ? "invisible pointer-events-none" : ""
-              } pl-32 underline mx-2 bg-transparent hover:bg-primary-100 text-primary w-full transition ease-in duration-200 text-center text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 rounded ${
+              } pl-32 underline mx-2 bg-transparent hover:bg-primary-100 text-primary w-full transition ease-in duration-200 text-center text-lg font-semibold focus:outline-hidden focus:ring-2 focus:ring-offset-2 rounded ${
                 someSectionMissingRequiredFields() ? "opacity-70" : ""
               }`}
             >
@@ -166,7 +166,7 @@ export const SectionCreation = ({ setTickChange }: Inputs) => {
             </div>
 
             <div
-              className={`h-12 m-2 bg-primary flex items-center content-center hover:bg-primaryHover focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-lg font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg ${
+              className={`h-12 m-2 bg-primary flex items-center content-center hover:bg-primary-hover focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-lg font-semibold shadow-md focus:outline-hidden focus:ring-2 focus:ring-offset-2 rounded-lg ${
                 someSectionMissingRequiredFields() ? "opacity-70" : ""
               }`}
             >

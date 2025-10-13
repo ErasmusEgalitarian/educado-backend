@@ -123,7 +123,7 @@ const PhoneExercisesAndLectures: React.FC<PhoneExercisesAndLecturesProps> = ({
         return null;
       })}
 
-      <div className="flex-grow" />
+      <div className="grow" />
       <nav
         className="bg-white p-1 shadow-lg"
         style={{

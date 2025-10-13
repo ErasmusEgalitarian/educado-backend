@@ -58,13 +58,13 @@ export const EditExercise = ({ exercise, handleEdit }: Props) => {
   return (
     <>
       <div className="modal" id={`exercise-edit-${exercise._id}-modal`}>
-        <div className="bg-white bg-gradient-to-b rounded w-3/8 h-5/6">
-          <div className="p-5 bg-gradient-to-b from-primaryLight overflow-auto h-full">
+        <div className="bg-white bg-linear-to-b rounded-sm w-3/8 h-5/6">
+          <div className="p-5 bg-linear-to-b from-primaryLight overflow-auto h-full">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col space-y-6 divide py-2"
             >
-              <div className="rounded-md cursor-pointer p-2 focus:outline-none bg-base-100 border">
+              <div className="rounded-md cursor-pointer p-2 focus:outline-hidden bg-base-100 border">
                 <div className="flex flex-col form-control align-items justify-content w-full">
                   <label className="label">
                     <span className="label-text">Título</span> {/*Title*/}
@@ -97,7 +97,7 @@ export const EditExercise = ({ exercise, handleEdit }: Props) => {
               {/* Answers. Answers sometimes doesn't get loaded hence the conditional rendering ... */}
               {
                 answers.length > 0 ? (
-                  <div className="rounded-md cursor-pointer p-2 focus:outline-none bg-base-100 border ">
+                  <div className="rounded-md cursor-pointer p-2 focus:outline-hidden bg-base-100 border ">
                     <h1 className="text-md font-medium">Resposta</h1>{" "}
                     {/** Answer */}
                     <AnswerCards

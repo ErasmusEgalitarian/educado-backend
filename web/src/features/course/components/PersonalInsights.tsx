@@ -88,7 +88,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
       {/* Welcome message */}
       <h2 className="text-xl font-bold">Olá {userInfo.name}</h2>
       {/* Progress section (stats) */}
-      <div className="border-y-[1px] border-grayMedium my-4 py-4">
+      <div className="border-y border-grayMedium my-4 py-4">
         <div className="grid grid-cols-4 lg:grid-cols-1 gap-y-4">
           {/* Show stats if the user has > 0 courses */}
           {
@@ -143,7 +143,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
                 <div>
                   {/* Rating */}
                   <p className="font-normal text-lg">Avaliação</p>
-                  <div className="w-[12rem] max-w-full">
+                  <div className="w-48 max-w-full">
                     <StarRating
                       testId="averageRating"
                       rating={stats.rating}

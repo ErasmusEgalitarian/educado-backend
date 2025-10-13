@@ -35,7 +35,7 @@ const Feedback = () => {
 
   return (
     <Layout meta="Feedback">
-      <main className="flex-grow overflow-x-hidden bg-secondary h-screen font-['Montserrat']">
+      <main className="grow overflow-x-hidden bg-secondary h-screen font-['Montserrat']">
         <div className="text-center py-8 px-10 w-full">
           <div className="inline-block">
             <div className="text-left mt-16 mb-20 text-neutral-700 text-[32px] font-bold">
