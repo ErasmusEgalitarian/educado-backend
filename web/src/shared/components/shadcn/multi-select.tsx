@@ -811,7 +811,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                 getAllOptions().length
               } options selected. ${placeholder}`}
               className={cn(
-                "flex p-1 rounded-md border min-h-10 h-auto items-center justify-between bg-inherit hover:bg-inherit [&_svg]:pointer-events-auto",
+                "flex p-1 rounded-md border border-greyscale-border-lighter min-h-10 h-auto items-center justify-between bg-inherit hover:bg-inherit [&_svg]:pointer-events-auto",
                 variant === "error" &&
                   "border-error-border-default bg-error-surface-subtle hover:bg-error-surface-subtle/80",
                 autoSize ? "w-auto" : "w-full",
