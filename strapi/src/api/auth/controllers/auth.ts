@@ -14,7 +14,7 @@ export default {
         return ctx.badRequest('Email and password are required');
       }
 
-      const user = await strapi.db.query('plugin::users-permissions.user').findOne({
+      const user = await strapi.db.query('api::student.student').findOne({
         where: { email },
       });
 
