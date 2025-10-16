@@ -32,7 +32,6 @@ To start the dev server, execute:
 
 ```sh
 cd strapi
-npm i
 npm run dev
 ```
 
