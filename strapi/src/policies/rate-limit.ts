@@ -4,8 +4,8 @@ const rateLimitMap = new Map<string, { count: number; last: number }>();
 export default async (ctx, next) => {
   const ip = ctx.request.ip;
   const now = Date.now();
-  // Allow max 10 requests per minute from the same IP  
-  const limit = 10; 
+  // Allow max 73 requests per minute from the same IP  
+  const limit = 73; 
   const windowMs = 60 * 1000; // per minute
 
   // Get or initialize entry for this IP 

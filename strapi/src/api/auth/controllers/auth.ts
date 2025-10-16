@@ -27,11 +27,6 @@ export default {
         return ctx.unauthorized('Invalid email or password');
       }
 
-      // Check if user is blocked
-      if (user.blocked) {
-        return ctx.forbidden('User account is blocked');
-      }
-
       // Generate JWT token
       const jwtService = strapi.service('plugin::users-permissions.jwt');
       const token = jwtService.issue({ id: user.id });
