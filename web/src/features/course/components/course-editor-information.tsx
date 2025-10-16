@@ -30,6 +30,12 @@ import {
   useUpdateCourseMutation,
 } from "../api/course-mutations";
 import { FileWithMetadataSchema } from "@/shared/components/file-upload";
+import {
+  MultiSelectOption,
+  MultiSelectRef,
+} from "@/shared/components/shadcn/multi-select";
+import React from "react";
+import CategoryCreateNew from "./category-create-new";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -204,6 +210,29 @@ const CourseEditorInformation = forwardRef<
     void refetchCategories();
   };
 
+  /* -------------------------------- Multiselect -------------------------------- */
+  const multiInputRef = React.useRef<MultiSelectRef>(null);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+  const handleCategoryCreated = (
+    data: ApiCourseCategoryCourseCategoryDocument
+  ) => {
+    const newOption: MultiSelectOption = {
+      label: data.name,
+      value: data.documentId,
+    };
+
+    if (!multiInputRef.current) {
+      console.error(
+        "multiInputRef is null - ref may not be properly forwarded"
+      );
+      return;
+    }
+
+    multiInputRef.current.addOption(newOption, true);
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       {/* Loading state and error states for categories are passed as props to the card. Mutations are handled inside the card, and through wrapper */}
@@ -270,31 +299,18 @@ const CourseEditorInformation = forwardRef<
                     {/*Field to choose a category from a list of options*/}
                     <div className="flex flex-col w-1/2 space-y-2 text-left">
                       <FormMultiSelect
+                        ref={multiInputRef}
+                        fieldName="elements"
                         control={form.control}
-                        fieldName="categories"
                         label={t("categories.categories")}
-                        disabled={categoriesLoading || !!categoriesError}
-                        isRequired={true}
-                        options={data.map(
-                          (
-                            category: ApiCourseCategoryCourseCategoryDocument
-                          ) => ({
-                            label: category.name,
-                            value: category.documentId,
-                          })
-                        )}
-                        description={
-                          categoriesLoading
-                            ? t("categories.loadingCategoriesDescription")
-                            : ""
-                        }
-                        createLabel={t("courseManager.addNewCategory")} // valgfri
-                        onCreate={(newCategory) => {
-                          data.push({
-                            ...newCategory,
-                            // cast som Partial<ApiCourseCategoryCourseCategoryDocument>
-                          } as Partial<ApiCourseCategoryCourseCategoryDocument>);
+                        options={[
+                          { label: "Fire", value: "fire" },
+                          { label: "Water", value: "water" },
+                        ]}
+                        onCreateClick={() => {
+                          setIsModalOpen(true);
                         }}
+                        createLabel={t("multiSelect.createCategory")}
                       />
                     </div>
                   </div>
@@ -374,6 +390,13 @@ const CourseEditorInformation = forwardRef<
             </CardFooter>
           </form>
         </Form>
+        <CategoryCreateNew
+          open={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+          }}
+          onCreated={handleCategoryCreated}
+        />
       </Card>
       <DevTool control={form.control} />
     </>

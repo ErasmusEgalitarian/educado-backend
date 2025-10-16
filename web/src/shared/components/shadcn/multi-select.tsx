@@ -1094,9 +1094,15 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                 )}
               >
                 {onCreateClick != undefined && (
-                  <CommandItem onSelect={handleCreate}>
-                    {createLabel ?? "Foo"}
-                  </CommandItem>
+                  <>
+                    <CommandItem
+                      onSelect={handleCreate}
+                      className="cursor-pointer"
+                    >
+                      {createLabel ?? "Foo"}
+                    </CommandItem>
+                    <CommandSeparator />
+                  </>
                 )}
                 <CommandEmpty>
                   {emptyIndicator || "No results found."}
