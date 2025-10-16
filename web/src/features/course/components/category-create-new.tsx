@@ -21,6 +21,7 @@ import { useCreateCategoryMutation } from "../api/course-mutations";
 import { toAppError } from "@/shared/lib/error-utilities";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
 import GlobalLoader from "@/shared/components/global-loader";
+import { t } from "i18next";
 
 interface CategoryCreateNewProps<
   T extends ApiCourseCategoryCourseCategoryDocument,
@@ -31,7 +32,7 @@ interface CategoryCreateNewProps<
 }
 
 const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
+  name: z.string().min(2, t("multiSelect.minNameLength", { count: 2 })),
 });
 
 const CategoryCreateNew = <T extends ApiCourseCategoryCourseCategoryDocument>({
@@ -79,21 +80,24 @@ const CategoryCreateNew = <T extends ApiCourseCategoryCourseCategoryDocument>({
         >
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogTitle>
+                {t("multiSelect.createCategory")}
+              </AlertDialogTitle>
               <AlertDialogDescription>
                 {mutationSuccess}
                 {mutationLoading}
                 <FormInput
                   control={form.control}
                   fieldName="name"
-                  label="With Hint"
-                  placeholder="Hover the icon"
-                  description="Includes tooltip hint next to the label"
-                  hintTooltip="This is additional contextual information."
+                  label={t("multiSelect.EnterCategoryTitle")}
+                  placeholder={t("multiSelect.newCategory")}
                   startIcon={<Icon path={mdiFormatLetterCase} size={1} />}
                 />
                 {mutationLoading && (
-                  <GlobalLoader variant="inline" message="Creating category" />
+                  <GlobalLoader
+                    variant="inline"
+                    message={t("multiSelect.creatingCategory")}
+                  />
                 )}
                 <ErrorDisplay
                   error={mutationError}
@@ -110,7 +114,7 @@ const CategoryCreateNew = <T extends ApiCourseCategoryCourseCategoryDocument>({
                   onClose();
                 }}
               >
-                Cancel
+                {t("common.cancel")}
               </AlertDialogCancel>
               <AlertDialogAction
                 disabled={mutationLoading || mutationSuccess}
@@ -119,7 +123,7 @@ const CategoryCreateNew = <T extends ApiCourseCategoryCourseCategoryDocument>({
                   void form.handleSubmit(onSubmit)();
                 }}
               >
-                Create
+                {t("common.create")}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>

@@ -188,5 +188,12 @@
     "describeTheImage": "Descreva a imagem para acessibilidade",
     "addACaption": "Adicione uma legenda ou descrição",
     "previewShortcuts": "Pressione ESC para fechar • Setas para navegar • +/- para ampliar"
+  },
+  "multiSelect": {
+    "createCategory": "Criar categoria",
+    "EnterCategoryTitle": "Digite um título de categoria curto e claro.",
+    "newCategory": "Nova Categoria",
+    "creatingCategory": "Criando Categoria",
+    "minNameLength": "O nome da categoria deve ter pelo menos {{count}} caracteres"
   }
 }
