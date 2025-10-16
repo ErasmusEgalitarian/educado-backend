@@ -8,12 +8,15 @@ interface LoginBody {
 export default {
   async login(ctx) {
     try {
+      // Extract email and password from request body
       const { email, password } = ctx.request.body as LoginBody;
 
       if (!email || !password) {
         return ctx.badRequest('Email and password are required');
       }
-
+      // Fetch user from custom 'student' collection type
+      // api is the API namespace, student is the collection type
+      // plugin if you are using a plugin, e.g., users-permissions given by default see in jwtService below
       const user = await strapi.db.query('api::student.student').findOne({
         where: { email },
       });
