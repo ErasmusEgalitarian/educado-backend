@@ -848,6 +848,37 @@ export interface ApiLectureLecture extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiStudentPasswordResetTokenStudentPasswordResetToken
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'student_password_reset_tokens';
+  info: {
+    displayName: 'Student Password Reset Token';
+    pluralName: 'student-password-reset-tokens';
+    singularName: 'student-password-reset-token';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    expiresAt: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::student-password-reset-token.student-password-reset-token'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    student: Schema.Attribute.Relation<'oneToOne', 'api::student.student'>;
+    token: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
   collectionName: 'students';
   info: {
@@ -1424,6 +1455,7 @@ declare module '@strapi/strapi' {
       'api::exercise.exercise': ApiExerciseExercise;
       'api::feedback.feedback': ApiFeedbackFeedback;
       'api::lecture.lecture': ApiLectureLecture;
+      'api::student-password-reset-token.student-password-reset-token': ApiStudentPasswordResetTokenStudentPasswordResetToken;
       'api::student.student': ApiStudentStudent;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
