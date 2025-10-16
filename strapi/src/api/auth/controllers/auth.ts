@@ -27,11 +27,11 @@ export default {
         return ctx.unauthorized('Invalid email or password');
       }
 
-      // Generate JWT token
+      // Generate JWT token and assign to user 
       const jwtService = strapi.service('plugin::users-permissions.jwt');
       const token = jwtService.issue({ id: user.id });
 
-      // Sanitize user object
+       // Exclude sensitive fields
       const safeUser = {
         id: user.id,
         username: user.username,
