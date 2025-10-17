@@ -152,7 +152,7 @@ function FormLabel({
       data-error={!!error}
       data-required={!!required}
       className={cn(
-        "data-[error=true]:text-destructive mb-2",
+        "data-[error=true]:text-destructive mb-1",
         textSize[inputSize],
         className
       )}
