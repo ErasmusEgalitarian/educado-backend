@@ -15,14 +15,17 @@ function makeid(length) {
     return result;
 }
 
+import { sendVerificationEmail } from "../helpers/email";
+
 export default {
   signupAction: async (ctx, next) => {
     try {
 
       // Deconstructing request body into fields
       const { name, email, password } = ctx.request.body;
-
-      //TODO maybe safety check the fields?
+      if (typeof email !== 'string' || typeof name !== 'string' || typeof password !== 'string') {
+        return ctx.badRequest('Invalid request: all fields should be strings');
+      }
 
       // Convert email to lowercase
       const lowercaseEmail = email.toLowerCase();
@@ -41,9 +44,9 @@ export default {
       // Create draft for new student with required fields
       let studentResponse = await strapi.documents('api::student.student').create({
         data: {
-          "name": name,
-          "email": lowercaseEmail,
-          "password": password
+          name: name,
+          email: lowercaseEmail,
+          password: password
         }
       });
       // Safety check
@@ -57,17 +60,16 @@ export default {
       });
 
 
-      //generate token code
+      //generate token code and send email
       const tokenString = makeid(4);
-      console.log("sending email :) <"+tokenString+">");
-
+      sendVerificationEmail({name: name, email: email}, tokenString);
 
       //creates a email verification token that expires in 10 min
       let verificationTokenResponse = await strapi.documents('api::verification-token.verification-token').create({
         data: {
-            "userEmail": lowercaseEmail,
-            "token": tokenString,
-            "expiresAt": new Date(Date.now() + TOKEN_EXPIRATION_TIME)
+            userEmail: lowercaseEmail,
+            token: tokenString,
+            expiresAt: new Date(Date.now() + TOKEN_EXPIRATION_TIME)
         }
       })
 
