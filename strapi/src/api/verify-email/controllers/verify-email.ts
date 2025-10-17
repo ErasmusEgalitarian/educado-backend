@@ -12,10 +12,11 @@ export default {
       const secretKey = process.env.JWT_SECRET;
 
       // De constructing request body into fields
-      const { email, tokenCode }: { email: string; tokenCode: string } = ctx.request.body;
+      const { email, tokenCode } = ctx.request.body;
+      if (typeof email !== 'string' || typeof tokenCode !== 'string') {
+        return ctx.badRequest('Invalid request: both email and tokenCode must be strings');
+      }
       const lowercaseEmail = email.toLowerCase();
-
-      //TODO prop needs safety check
 
       // Finds verification token with matching email
       let Vtoken = await strapi.documents('api::verification-token.verification-token').findFirst(
@@ -26,12 +27,13 @@ export default {
         }
       );
       if (!Vtoken) {
+        console.log("cant find Vtoken");
         return ctx.badRequest('Could not find token');
       }
 
-      // Checks if code is correct
-      if (!(Vtoken.token == tokenCode)) {
-        return ctx.badRequest('token code does not match');
+      // Checks if code is correct and expired
+      if (!(Vtoken.token == tokenCode && new Date(Vtoken.expiresAt) > new Date(Date.now()))) {
+        return ctx.badRequest('token code does not match or is expired');
       }
 
       // Verifies user if code is correct
@@ -43,12 +45,15 @@ export default {
         }
       );
       if (!user) {
+        console.log('Could not find matching user');
         return ctx.badRequest('Could not find matching user');
       }
       await strapi.documents('api::student.student').update({
         documentId: user.documentId,
         data: { isVerified: true }
       });
+
+      //TODO maybe check if is verified now
 
       let signedUser = jwt.sign(user, secretKey);
 
