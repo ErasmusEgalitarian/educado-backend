@@ -36,8 +36,8 @@ export const CourseCard = ({ course }: { course: Course }) => {
   };
 
   return (
-    <Card className="w-full h-full flex flex-col overflow-hidden">
-      <CardHeader className="w-full flex flex-col shrink-0">
+    <Card className="shadow-[0_1px_4px_rgba(0,0,0,0.2)] ">
+      <CardHeader className="w-full max-w-sm flex flex-col justify-between h-full">
         <div className="flex items-center gap-2 text-[#28363E] min-w-0">
           <svg width="20" height="18" viewBox="0 0 20 18" fill="none">
             <path
