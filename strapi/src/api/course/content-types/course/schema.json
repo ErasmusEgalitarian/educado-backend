@@ -60,9 +60,9 @@
       "target": "api::course-category.course-category",
       "mappedBy": "courses"
     },
-    "student": {
+    "students": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::student.student",
       "inversedBy": "courses"
     },
