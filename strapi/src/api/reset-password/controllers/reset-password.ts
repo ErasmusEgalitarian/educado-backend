@@ -55,7 +55,7 @@ const requestHandler = async (ctx, next) => {
   });
   
   // TODO: Send email with reset token
-  const success = sendResetPasswordEmail(student, resetToken);
+  const success = await sendResetPasswordEmail(student, resetToken);
 
   if (success) {
     ctx.response.status = 200;
@@ -72,13 +72,39 @@ const requestHandler = async (ctx, next) => {
 }
 
 const codeHandler = async (ctx, next) => {
-  // TODO: Everything
-  try {
-    ctx.body = 'ok';
-  } catch (err) {
-    ctx.body = err;
+  // 
+  const resetToken = ctx.request.body.token;
+  const studentEmail = ctx.request.body.email;
+  const tokenAPI = "api::student-password-reset-token.student-password-reset-token";
+  const student = "api::student.student";
+
+
+  // Get student-password-reset-token with the email
+  const tokenFound = await strapi.documents(tokenAPI).findFirst({
+    filters: {
+      student: {
+        email: studentEmail
+      }
+    }
+  })
+
+  if (resetToken == tokenFound.token) {
+    ctx.response.status = 200;
+    ctx.response.body = {status: 'success'};
+  } else {
+    // TODO: Implement errorcodes: If token is invalid, return error E0405
+    ctx.response.status = 500;
+    ctx.response.body = {
+        error: {
+          code: 'E0405',
+          message: 'Password reset code is invalid or has already been used.'
+      }
+    }
   }
 }
+
+  // if (!resetToken || !tokenFound)
+
 
 /**
  * Generates a random number between min and max
