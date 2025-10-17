@@ -55,6 +55,10 @@ export default {
 
       //TODO maybe check if is verified now
 
+      await strapi.documents('api::student.student').publish({
+      documentId: user.documentId
+      });
+
       let signedUser = jwt.sign(user, secretKey);
 
       ctx.response.body = JSON.stringify(signedUser);
