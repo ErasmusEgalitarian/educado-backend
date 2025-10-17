@@ -1,4 +1,3 @@
-import { SelectableCard } from "@/shared/components/item-selector";
 import { Card, CardContent } from "@/shared/components/shadcn/card";
 import { cn } from "@/shared/lib/utils";
 
@@ -9,7 +8,6 @@ export interface DataGridProps<T extends DataDisplayItem> {
   gridItemRender?: (item: T) => React.ReactNode;
   isLoading?: boolean;
   className?: string;
-  selectable?: boolean;
 }
 
 /**
@@ -42,42 +40,42 @@ const DataGrid = <T extends DataDisplayItem>({
   gridItemRender,
   isLoading,
   className,
-  selectable = false,
-}: Readonly<DataGridProps<T>>): React.JSX.Element => {
-  if (!gridItemRender) {
-    throw new Error(
-      "DataGrid requires a gridItemRender function to render items"
-    );
-  }
+}: Readonly<DataGridProps<T>>) => {
+  const renderLoadingGridItem = () => (
+    <Card>
+      <CardContent className="p-4">
+        <div className="space-y-3">
+          {Array.from({ length: 3 }, (_, index) => (
+            <div key={`loading-item-${String(index)}`} className="space-y-1">
+              <div className="h-4 bg-muted rounded animate-pulse" />
+              <div className="h-4 bg-muted rounded animate-pulse w-3/4" />
+            </div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
 
   if (isLoading === true) {
     return (
       <div
         className={cn(
           "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4",
-          className
+          className,
         )}
       >
         {Array.from({ length: 12 }, (_, index) => (
           <div key={`loading-grid-${String(index)}`}>
-            <Card>
-              <CardContent className="p-4">
-                <div className="space-y-3">
-                  {Array.from({ length: 3 }, (_, index) => (
-                    <div
-                      key={`loading-item-${String(index)}`}
-                      className="space-y-1"
-                    >
-                      <div className="h-4 bg-muted rounded animate-pulse" />
-                      <div className="h-4 bg-muted rounded animate-pulse w-3/4" />
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            {renderLoadingGridItem()}
           </div>
         ))}
       </div>
+    );
+  }
+
+  if (!gridItemRender) {
+    throw new Error(
+      "DataGrid requires a gridItemRender function to render items",
     );
   }
 
@@ -85,22 +83,12 @@ const DataGrid = <T extends DataDisplayItem>({
     <div
       className={cn(
         "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6",
-        className
+        className,
       )}
     >
-      {data.map((item, index) =>
-        selectable &&
-        item.documentId !== undefined &&
-        item.documentId !== "" ? (
-          <SelectableCard key={item.documentId} id={item.documentId}>
-            {gridItemRender(item)}
-          </SelectableCard>
-        ) : (
-          <div key={item.documentId ?? `item-${String(index)}`}>
-            {gridItemRender(item)}
-          </div>
-        )
-      )}
+      {data.map((item) => (
+        <div key={item.documentId}>{gridItemRender(item)}</div>
+      ))}
     </div>
   );
 };
