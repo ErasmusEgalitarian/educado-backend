@@ -14,6 +14,12 @@ import { Button } from "@/shared/components/shadcn/button";
 import { Input } from "@/shared/components/shadcn/input";
 
 import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+} from "@/shared/components/shadcn/button-group";
+
+import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
@@ -53,28 +59,26 @@ const DataDisplayToolbar = <TData,>({
     <div className={`flex items-center justify-between gap-4 ${className}`}>
       {/* View mode toggle - left side */}
       {hasTable && hasGrid && (
-        <div className="flex items-center bg-muted rounded-lg p-1">
-          <Button
-            variant={viewMode === "grid" ? "primary" : "ghost"}
+        <ButtonGroup>
+          <Button 
+            variant={viewMode === "grid" ? "toggle" : "outline"}
             size="sm"
             onClick={() => {
               onViewModeChange("grid");
             }}
-            className="h-8 w-8 p-0"
           >
             <Grid className="h-4 w-4" />
           </Button>
           <Button
-            variant={viewMode === "table" ? "primary" : "ghost"}
+            variant={viewMode === "table" ? "toggle" : "outline"}
             size="sm"
             onClick={() => {
               onViewModeChange("table");
             }}
-            className="h-8 w-8 p-0"
           >
             <List className="h-4 w-4" />
           </Button>
-        </div>
+        </ButtonGroup>
       )}
 
       {/* Sort Dropdown - grid mode only */}
