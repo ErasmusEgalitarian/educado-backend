@@ -241,32 +241,8 @@ const CourseEditorPage = () => {
           <Separator className="my-6" />
           <div className="flex flex-col gap-y-5 my-6">
             {steps.map((step) => {
-              // Indicator color:
-              // - Green if step is completed
-              // - Blue if step is available and not completed (includes current step when not completed)
-              // - Transparent if step is not available yet
-              // Indicator color using CSS vars (see index.css):
-              // - Blue if current step OR available and not completed
-              // - Green if completed (but current step takes precedence and stays blue)
-              // - Transparent if not available yet
-              let borderLeftColorClass = "[border-left-color:transparent]";
-              if (canNavigateToStep(step.id)) {
-                if (isStepActive(step.id)) {
-                  borderLeftColorClass =
-                    "[border-left-color:var(--color-primary-surface-default)]";
-                } else if (isStepCompleted(step.id)) {
-                  borderLeftColorClass =
-                    "[border-left-color:var(--color-success-surface-default)]";
-                } else {
-                  borderLeftColorClass = "[border-left-color:transparent]";
-                }
-              }
-
               return (
-                <div
-                  key={step.id}
-                  className={`flex items-center pl-2 border-l-[4px] ${borderLeftColorClass}`}
-                >
+                <div key={step.id} className="flex items-center">
                   <CourseEditorMenuButton
                     isActive={isStepActive(step.id)}
                     isCompleted={isStepCompleted(step.id)}
