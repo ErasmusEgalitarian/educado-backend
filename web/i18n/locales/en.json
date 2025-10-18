@@ -53,7 +53,8 @@
     "stay": "Stay",
     "dismiss": "Dismiss",
     "name": "Name",
-    "retry": "Retry"
+    "retry": "Retry",
+    "rating": "Rating"
   },
   "pagination": {
     "items": "items",
@@ -145,10 +146,19 @@
     "grade": "Grade",
     "startNow": "Start Now",
     "noCoursesYet": "You haven't created any courses yet. Click the button below and follow the step-by-step instructions to develop your first course.",
-    "createNewCourse": "Create New Course"
+    "createNewCourse": "Create New Course",
+    "thisMonth": "This month",
+    "totalCertificatesIssued": "Total certificates issued",
+    "evaluation": "Evaluation",
+    "lastSevenDays": "Last 7 days",
+    "lastThirtyDays": "Last 30 days"
   },
   "courseEditor": {
-    "fetchCourseDataError": "Error loading Course Data: {{message}}"
+    "fetchCourseDataError": "Error loading Course Data: {{message}}",
+    "skipToReview": "Skip to review"
+  },
+  "courseEditorReview": {
+    "thisCourseIsCurrentlyVisibleToStudents": "This course is currently visible to students"
   },
   "files": {
     "upload": "Upload",
