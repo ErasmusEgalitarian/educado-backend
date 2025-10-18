@@ -1,4 +1,4 @@
-import { mdiArrowLeft } from "@mdi/js";
+import { mdiArrowLeft, mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useRef } from "react";
@@ -33,6 +33,9 @@ const CourseEditorPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { alertProps, openAlert } = useAlertDialog();
+
+  // State for menu collapse
+  const [isMenuCollapsed, setIsMenuCollapsed] = useState(false);
 
   // Refs to access form state from child components. Used to prevent navigation with unsaved changes.
   const informationFormRef = useRef<CourseEditorInformationRef>(null);
@@ -187,46 +190,107 @@ const CourseEditorPage = () => {
 
   return (
     <PageContainer title={getPageTitle()}>
-      <div className="flex gap-x-20">
+      <div className="flex gap-x-6 md:gap-x-20 w-full overflow-x-hidden">
         {/*------------ Left side - Step Navigation ------------*/}
-        <div className="w-3/7">
-          <div className="flex flex-row justify-between items-center gap-4 mb-6">
-            <h1 className="text-2xl text-greyscale-text-caption">
-              {getPageTitle()}
-            </h1>
-            <Button
-              variant="outline"
-              onClick={handleBack}
-              iconPlacement="left"
-              size="sm"
-              icon={() => <Icon path={mdiArrowLeft} size={1} />}
-            >
-              {t("common.back")}
-            </Button>
+        <div
+          className={`transition-all duration-300 ${
+            isMenuCollapsed ? "w-16" : "w-full md:w-3/7"
+          }`}
+        >
+          <div className="flex flex-col gap-4 mb-6">
+            {!isMenuCollapsed && (
+              <h1 className="text-2xl text-greyscale-text-caption">
+                {getPageTitle()}
+              </h1>
+            )}
+            <div className="flex flex-row justify-between items-center w-full">
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  setIsMenuCollapsed(!isMenuCollapsed);
+                }}
+                size="lg"
+                iconPlacement="left"
+                className={
+                  isMenuCollapsed
+                    ? "justify-center w-12 h-12 p-0"
+                    : "justify-start"
+                }
+                icon={() => (
+                  <Icon
+                    path={isMenuCollapsed ? mdiChevronRight : mdiChevronLeft}
+                    size={1}
+                  />
+                )}
+              >
+                {!isMenuCollapsed && t("common.collapse")}
+              </Button>
+              {!isMenuCollapsed && (
+                <Button
+                  variant="secondary"
+                  onClick={handleBack}
+                  iconPlacement="left"
+                  size="lg"
+                  icon={() => <Icon path={mdiArrowLeft} size={1} />}
+                >
+                  {t("common.back")}
+                </Button>
+              )}
+            </div>
           </div>
           <Separator className="my-6" />
           <div className="flex flex-col gap-y-5 my-6">
-            {steps.map((step) => (
-              <CourseEditorMenuButton
-                key={step.id}
-                isActive={isStepActive(step.id)}
-                isCompleted={isStepCompleted(step.id)}
-                canNavigate={canNavigateToStep(step.id)}
-                label={step.label}
-                onClick={() => {
-                  goToStep(step.id);
-                }}
-              />
-            ))}
+            {steps.map((step) => {
+              // Indicator color:
+              // - Green if step is completed
+              // - Blue if step is available and not completed (includes current step when not completed)
+              // - Transparent if step is not available yet
+              // Indicator color using CSS vars (see index.css):
+              // - Blue if current step OR available and not completed
+              // - Green if completed (but current step takes precedence and stays blue)
+              // - Transparent if not available yet
+              let borderLeftColorClass = "[border-left-color:transparent]";
+              if (canNavigateToStep(step.id)) {
+                if (isStepActive(step.id)) {
+                  borderLeftColorClass =
+                    "[border-left-color:var(--color-primary-surface-default)]";
+                } else if (isStepCompleted(step.id)) {
+                  borderLeftColorClass =
+                    "[border-left-color:var(--color-success-surface-default)]";
+                } else {
+                  borderLeftColorClass = "[border-left-color:transparent]";
+                }
+              }
+
+              return (
+                <div
+                  key={step.id}
+                  className={`flex items-center pl-2 border-l-[4px] ${borderLeftColorClass}`}
+                >
+                  <CourseEditorMenuButton
+                    isActive={isStepActive(step.id)}
+                    isCompleted={isStepCompleted(step.id)}
+                    canNavigate={canNavigateToStep(step.id)}
+                    label={step.label}
+                    onClick={() => {
+                      goToStep(step.id);
+                    }}
+                    isCollapsed={isMenuCollapsed}
+                  />
+                </div>
+              );
+            })}
           </div>
           <Separator className="my-6" />
         </div>
 
         {/*------------ Right side - Content ------------*/}
         <div className="w-full">
-          <h1 className="font-bold text-3xl text-greyscale-text-title mb-6">
-            {steps.find((s) => s.id === currentStep)?.label}
-          </h1>
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="font-bold text-3xl text-greyscale-text-title">
+              {steps.find((s) => s.id === currentStep)?.label}
+            </h1>
+          </div>
           <ErrorBoundary>{getSectionComponent()}</ErrorBoundary>
         </div>
       </div>

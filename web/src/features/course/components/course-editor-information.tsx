@@ -249,9 +249,9 @@ const CourseEditorInformation = forwardRef<
                     isRequired
                   />
 
-                  <div className="flex items-start gap-8 w-full">
+                  <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8 w-full">
                     {/*Field to select a level from a list of options*/}
-                    <div className="flex flex-col w-1/2 space-y-2 text-left ">
+                    <div className="flex flex-col w-full md:w-1/2 min-w-0 space-y-2 text-left ">
                       <FormSelect
                         control={form.control}
                         inputSize="md"
@@ -268,7 +268,7 @@ const CourseEditorInformation = forwardRef<
                     </div>
 
                     {/*Field to choose a category from a list of options*/}
-                    <div className="flex flex-col w-1/2 space-y-2 text-left">
+                    <div className="flex flex-col w-full md:w-1/2 min-w-0 space-y-2 text-left">
                       <FormMultiSelect
                         control={form.control}
                         fieldName="categories"
