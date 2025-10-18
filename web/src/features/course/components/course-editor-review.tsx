@@ -104,6 +104,7 @@ const CourseEditorReview = ({
                 {t("common.published")}
               </p>
               <p className="text-sm text-success-text-body">
+                {t("courseEditorReview.thisCourseIsCurrentlyVisibleToStudents")}
                 This course is currently visible to students
               </p>
             </div>
@@ -140,7 +141,7 @@ const CourseEditorReview = ({
             {/* Categories */}
             <div>
               <label className="text-sm font-medium text-greyscale-text-caption">
-                {t("courseManager.categories")}
+                {t("categories.categories")}
               </label>
               <div className="flex flex-wrap gap-2 mt-2">
                 {course.course_categories &&
