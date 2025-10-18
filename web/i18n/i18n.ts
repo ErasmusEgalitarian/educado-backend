@@ -21,22 +21,20 @@ void i18n
   .use(initReactI18next) // Passes i18n down to react-i18next
   .init({
     resources,
-    fallbackLng: "pt", // Default to Portuguese since it's the primary language
-    debug: false, // Set to false to avoid console
-
-    // Set initial language
-    lng: "pt",
+    fallbackLng: "en", // Fallback to English if detection fails
+    debug: false, // Keep quiet in production
     initImmediate: false, // Initialize immediately
-    load: "languageOnly", // Don't load country-specific variants
+    load: "languageOnly",
 
     interpolation: {
       escapeValue: false, // React already escapes values
     },
 
     detection: {
-      // Options for language detection
-      order: ["localStorage", "navigator", "htmlTag"],
-      caches: ["localStorage"], // Cache user language preference
+      // Only detect from browser, don't cache to localStorage
+      // Language preference is managed by auth context
+      order: ["navigator", "htmlTag"],
+      caches: [], // No caching - auth context handles persistence
     },
 
     react: {
