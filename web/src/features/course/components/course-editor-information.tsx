@@ -4,6 +4,7 @@ import { t } from "i18next";
 import { useEffect, useImperativeHandle, forwardRef } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useFileUpload } from "@/shared/hooks/use-file-upload";
 import z from "zod";
 
 import { FormFileUpload } from "@/shared/components/form/form-file-upload";
@@ -12,7 +13,6 @@ import {
   ApiCourseCategoryCourseCategoryDocument,
   ApiCourseCourseDocument,
 } from "@/shared/api";
-import { Dropzone } from "@/shared/components/dnd/Dropzone";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
 import FormActions from "@/shared/components/form/form-actions";
 import { FormInput } from "@/shared/components/form/form-input";
@@ -84,8 +84,9 @@ const CourseEditorInformation = forwardRef<
     createMutation.error ?? updateMutation.error
   );
 
-  /* ------------------------------- Categories ------------------------------- */
+  const { uploadFile } = useFileUpload();
 
+  /* ------------------------------- Categories ------------------------------- */  
   const {
     data,
     error: categoriesError,
@@ -162,6 +163,12 @@ const CourseEditorInformation = forwardRef<
 
   const onSubmit = async (values: CourseBasicInfoFormValues) => {
     try {
+      // Upload image if provided and take first id
+      const imageIds = values.image && values.image.length > 0
+        ? await uploadFile(values.image)
+        : undefined;
+      const imageId = imageIds?.[0];
+
       // Edit = update mutation
       if (isEditMode && course.documentId != "") {
         // Update existing course
@@ -171,6 +178,7 @@ const CourseEditorInformation = forwardRef<
           difficulty: Number(values.difficulty),
           categories: values.categories,
           description: values.description,
+          image: imageId,
         });
 
         // Wait a moment to show success state, then complete step
@@ -184,6 +192,7 @@ const CourseEditorInformation = forwardRef<
           difficulty: Number(values.difficulty),
           categories: values.categories ?? [],
           description: values.description,
+          image: imageId,
         });
 
         // Wait a moment to show success state, then complete step
