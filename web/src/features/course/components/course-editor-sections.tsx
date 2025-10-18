@@ -51,7 +51,7 @@ const CourseEditorSections = forwardRef<
               onComplete?.();
             }}
           >
-            Skip to Review
+            {t("courseEditor.skipToReview")}
           </Button>
         </div>
       </div>

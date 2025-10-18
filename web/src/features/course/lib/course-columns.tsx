@@ -219,7 +219,7 @@ export const createCourseColumns = ({
     },
     {
       id: "rating",
-      header: t("rating.rating"),
+      header: t("common.rating"),
       cell: () => {
         // Placeholder rating - you can replace this with actual rating data later
         const rating = 4.2;
@@ -260,7 +260,7 @@ export const createCourseColumns = ({
         const handleDelete = (e: React.MouseEvent) => {
           e.stopPropagation();
           toast.info(
-            `Delete functionality is not implemented yet: ${documentId ?? "unknown"}`
+            "Delete functionality is not implemented yet: " + documentId
           );
         };
 
