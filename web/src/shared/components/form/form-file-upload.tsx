@@ -29,7 +29,6 @@ export function FormFileUpload<T extends FieldValues>({
   maxFiles,
   disabled = false,
   className,
-  initialFiles,
 }: FormFileUploadProps<T>) {
   const {
     field: { value, onChange },
