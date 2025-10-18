@@ -53,7 +53,8 @@
     "stay": "Ficar",
     "dismiss": "Dispensar",
     "name": "Nome",
-    "retry": "Tentar Novamente"
+    "retry": "Tentar Novamente",
+    "collapse": "Recolher"
   },
   "pagination": {
     "items": "itens",
