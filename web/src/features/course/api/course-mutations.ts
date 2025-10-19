@@ -21,7 +21,10 @@ type CourseUpdateInput = Partial<CourseRequest["data"]> & {
   // Required fields for update
   title: string;
   difficulty: number;
-};
+  categories: string[]; // documentIds of course categories
+  description?: string;
+  image?: number; // numeric media id
+}
 
 /* -------------------------------- Mutations ------------------------------- */
 
