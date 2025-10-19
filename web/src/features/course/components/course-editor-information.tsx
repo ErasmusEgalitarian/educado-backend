@@ -15,6 +15,15 @@ import { useNavigate } from "react-router";
 import z from "zod";
 
 import type { Course, CourseCategory } from "@/shared/api/types.gen";
+import { useFileUpload } from "@/shared/hooks/use-file-upload";
+import z from "zod";
+
+import { FormFileUpload } from "@/shared/components/form/form-file-upload";
+
+import {
+  ApiCourseCategoryCourseCategoryDocument,
+  ApiCourseCourseDocument,
+} from "@/shared/api";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
 import { FileWithMetadataSchema } from "@/shared/components/file-upload";
 import FormActions from "@/shared/components/form/form-actions";
@@ -105,7 +114,7 @@ const CourseEditorInformation = forwardRef<
 
   const { uploadFile } = useFileUpload();
 
-  /* ------------------------------- Categories ------------------------------- */
+  /* ------------------------------- Categories ------------------------------- */  
   const {
     data,
     error: categoriesError,
@@ -203,10 +212,9 @@ const CourseEditorInformation = forwardRef<
   const onSubmit = async (values: CourseBasicInfoFormValues) => {
     try {
       // Upload image if provided and take first id
-      const imageIds =
-        values.image && values.image.length > 0
-          ? await uploadFile(values.image)
-          : undefined;
+      const imageIds = values.image && values.image.length > 0
+        ? await uploadFile(values.image)
+        : undefined;
       const imageId = imageIds?.[0];
 
       // Edit = update mutation
