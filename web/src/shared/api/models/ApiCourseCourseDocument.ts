@@ -9,6 +9,7 @@ import type { ApiFeedbackFeedbackDocument } from './ApiFeedbackFeedbackDocument'
 import type { ApiStudentStudentDocument } from './ApiStudentStudentDocument';
 import type { PluginUploadFileDocument } from './PluginUploadFileDocument';
 export type ApiCourseCourseDocument = {
+    estimatedHours: null;
     /**
      * The document ID, represented by a UUID
      */

@@ -31,8 +31,6 @@ import {
 } from "../api/course-mutations";
 import { FileWithMetadataSchema } from "@/shared/components/file-upload";
 import StrapiAssetPicker from "./strapi-asset-picker";
-// Minimal inline StrapiAssetPicker stub to satisfy imports and types.
-// Replace with the real implementation at ./strapi-asset-picker when available.
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -165,9 +163,9 @@ const CourseEditorInformation = forwardRef<
     course?.image?.documentId ? "strapi" : "upload"
   );
 
-  // Selected Strapi asset object (id + url) for preview
-  const [selectedStrapiAsset, setSelectedStrapiAsset] = useState<{ id: number; url?: string } | null>(
-    course?.image?.documentId ? { id: Number(course.image.documentId), url: course.image?.url } : null
+  // Selected Strapi asset object (id + fullUrl for crisp preview)
+  const [selectedStrapiAsset, setSelectedStrapiAsset] = useState<{ id: number; fullUrl?: string } | null>(
+    course?.image?.documentId ? { id: Number(course.image.documentId), fullUrl: course.image?.url } : null
   );
 
   // If a selected Strapi asset changes, sync to react-hook-form
@@ -184,9 +182,8 @@ const CourseEditorInformation = forwardRef<
   }, [selectedStrapiAsset]);
 
   /* -------------------------------- Handlers -------------------------------- */
-  
-    const onSubmit: SubmitHandler<CourseBasicInfoFormValues> = async (values) => {
-      try {
+  const onSubmit: SubmitHandler<CourseBasicInfoFormValues> = async (values) => {
+    try {
       // Determine image relation to send:
       // prefer Strapi selection (imageStrapiId), otherwise look for uploaded file metadata
       const uploadedImageMeta = values.image && values.image.length > 0 ? values.image[0] : undefined;
@@ -243,6 +240,17 @@ const CourseEditorInformation = forwardRef<
     form.clearErrors("categories");
     // Retry fetching categories
     void refetchCategories();
+  };
+
+  // Helper to build absolute URL for preview if needed
+  const withBase = (maybeRelative?: string) => {
+    if (!maybeRelative) return "";
+    if (maybeRelative.startsWith("http://") || maybeRelative.startsWith("https://")) return maybeRelative;
+    const base =
+      ((globalThis as any).process?.env?.REACT_APP_STRAPI_URL ??
+        (globalThis as any).REACT_APP_STRAPI_URL ??
+        "") as string;
+    return `${base?.replace(/\/$/, "")}${maybeRelative.startsWith("/") ? "" : "/"}${maybeRelative}`;
   };
 
   return (
@@ -387,7 +395,6 @@ const CourseEditorInformation = forwardRef<
                         <FormFileUpload uploadType="image" control={form.control} name="image" maxFiles={1} />
                       </div>
                     ) : (
-                      
                       <div>
                         <StrapiAssetPicker
                           baseUrl={
@@ -396,9 +403,10 @@ const CourseEditorInformation = forwardRef<
                               "") as string
                           }
                           selectedId={selectedStrapiAsset?.id ?? null}
-                          onSelect={(asset) => {
+                          onSelect={(asset: any) => {
                             if (asset) {
-                              setSelectedStrapiAsset({ id: asset.id, url: asset.url });
+                              // Use the full (original/large) URL for a crisp preview
+                              setSelectedStrapiAsset({ id: asset.id, fullUrl: asset.fullUrl });
                             } else {
                               setSelectedStrapiAsset(null);
                             }
@@ -407,21 +415,22 @@ const CourseEditorInformation = forwardRef<
 
                         <input type="hidden" value={form.getValues("imageStrapiId") ?? ""} readOnly name="imageStrapiId" />
 
-                        {selectedStrapiAsset?.url ? (
-                          <img
-                            src={
-                              selectedStrapiAsset.url.startsWith("http")
-                                ? selectedStrapiAsset.url
-                                : `${
-                                    ((globalThis as any).process?.env?.REACT_APP_STRAPI_URL ??
-                                      (globalThis as any).REACT_APP_STRAPI_URL ??
-                                      "") as string
-                                  }${selectedStrapiAsset.url}`
-                            }
-                            alt="selected asset"
-                            style={{ width: 320, height: 200, objectFit: "cover", marginTop: 8 }}
-                          />
-                        ) : null}
+                        {/* Reserved preview box to avoid layout shifts */}
+                        <div style={{ width: 320, height: 200, border: "1px dashed #e5e7eb", borderRadius: 8, overflow: "hidden", marginTop: 8 }}>
+                          {selectedStrapiAsset?.fullUrl ? (
+                            <img
+                              src={withBase(selectedStrapiAsset.fullUrl)}
+                              alt="selected asset"
+                              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          ) : (
+                            <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, color: "#6b7280" }}>
+                              No image selected
+                            </div>
+                          )}
+                        </div>
                       </div>
                     )}
                   </div>
