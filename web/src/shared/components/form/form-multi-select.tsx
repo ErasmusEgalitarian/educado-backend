@@ -1,15 +1,6 @@
 import * as React from "react";
 import { FieldValues, useController } from "react-hook-form";
 
-import { Button } from "../shadcn/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "../shadcn/dialog";
-import { Input } from "../shadcn/input";
 import {
   MultiSelect,
   MultiSelectOption,
@@ -34,7 +25,8 @@ interface FormMultiSelectProps<TFieldValues extends FieldValues>
 
 export const FormMultiSelect = React.forwardRef<
   MultiSelectRef, // Ref type
-  FormMultiSelectProps<any> // Props type - using any for simplicity, you could make it generic
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  FormMultiSelectProps<any>
 >(
   <TFieldValues extends FieldValues>(
     {
@@ -49,7 +41,7 @@ export const FormMultiSelect = React.forwardRef<
       hintTooltip,
       options,
       onCreateClick,
-      createLabel = "New Entry", //translation fix
+      createLabel,
       ...multiSelectProps
     }: FormMultiSelectProps<TFieldValues>,
     ref: React.ForwardedRef<MultiSelectRef>
@@ -57,6 +49,19 @@ export const FormMultiSelect = React.forwardRef<
     const {
       field: { value, onChange },
     } = useController({ name: fieldName, control });
+
+    // Create a merged ref callback that handles both form field ref and forwarded ref
+    const mergedRef = React.useCallback(
+      (instance: MultiSelectRef | null) => {
+        // Handle forwarded ref
+        if (typeof ref === "function") {
+          ref(instance);
+        } else if (ref) {
+          ref.current = instance;
+        }
+      },
+      [ref]
+    );
 
     return (
       <FormElementWrapper
@@ -69,19 +74,17 @@ export const FormMultiSelect = React.forwardRef<
         description={description}
         isRequired={isRequired}
         hintTooltip={hintTooltip}
+        childProps={{ ref: mergedRef } as Record<string, unknown>}
       >
-        <>
-          <MultiSelect
-            ref={ref}
-            options={options}
-            defaultValue={value ?? []}
-            onValueChange={onChange}
-            onCreateClick={onCreateClick}
-            createLabel={createLabel}
-            resetOnDefaultValueChange={true}
-            {...multiSelectProps}
-          />
-        </>
+        <MultiSelect
+          options={options}
+          defaultValue={value ?? []}
+          onValueChange={onChange}
+          onCreateClick={onCreateClick}
+          createLabel={createLabel}
+          resetOnDefaultValueChange={true}
+          {...multiSelectProps}
+        />
       </FormElementWrapper>
     );
   }

@@ -1,20 +1,25 @@
 import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "i18next";
-import { useEffect, useImperativeHandle, forwardRef } from "react";
+import {
+  useEffect,
+  useImperativeHandle,
+  forwardRef,
+  useState,
+  useRef,
+} from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import z from "zod";
-
-import { FormFileUpload } from "@/shared/components/form/form-file-upload";
 
 import {
   ApiCourseCategoryCourseCategoryDocument,
   ApiCourseCourseDocument,
 } from "@/shared/api";
-import { Dropzone } from "@/shared/components/dnd/Dropzone";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
+import { FileWithMetadataSchema } from "@/shared/components/file-upload";
 import FormActions from "@/shared/components/form/form-actions";
+import { FormFileUpload } from "@/shared/components/form/form-file-upload";
 import { FormInput } from "@/shared/components/form/form-input";
 import { FormMultiSelect } from "@/shared/components/form/form-multi-select";
 import { FormSelect } from "@/shared/components/form/form-select";
@@ -22,6 +27,10 @@ import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
 import { Card, CardContent, CardFooter } from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
+import {
+  MultiSelectOption,
+  MultiSelectRef,
+} from "@/shared/components/shadcn/multi-select";
 import usePaginatedData from "@/shared/data-display/hooks/used-paginated-data";
 import { toAppError } from "@/shared/lib/error-utilities";
 
@@ -29,13 +38,8 @@ import {
   useCreateCourseMutation,
   useUpdateCourseMutation,
 } from "../api/course-mutations";
-import { FileWithMetadataSchema } from "@/shared/components/file-upload";
-import {
-  MultiSelectOption,
-  MultiSelectRef,
-} from "@/shared/components/shadcn/multi-select";
-import React from "react";
-import CategoryCreateNew from "./category-create-new";
+
+import CategoryCreateModal from "./category-create-modal";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -204,6 +208,7 @@ const CourseEditorInformation = forwardRef<
   };
 
   const handleDismissCategoriesError = () => {
+    form.setFocus("categories");
     // Clear the field error
     form.clearErrors("categories");
     // Retry fetching categories
@@ -211,8 +216,8 @@ const CourseEditorInformation = forwardRef<
   };
 
   /* -------------------------------- Multiselect -------------------------------- */
-  const multiInputRef = React.useRef<MultiSelectRef>(null);
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const multiInputRef = useRef<MultiSelectRef>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCategoryCreated = (
     data: ApiCourseCategoryCourseCategoryDocument
@@ -228,10 +233,24 @@ const CourseEditorInformation = forwardRef<
       );
       return;
     }
-
-    multiInputRef.current.addOption(newOption, true);
+    // Ensure we refresh the categories list so options remain in sync with the server,
+    // then select the new option. Keep this async work inside an IIFE to satisfy the
+    // onCreated: () => void contract and ESLint no-misused-promises.
+    void (async () => {
+      await refetchCategories();
+      const ref = multiInputRef.current;
+      if (!ref) return;
+      const current = ref.getSelectedValues();
+      if (!current.includes(newOption.value)) {
+        ref.setSelectedValues([...current, newOption.value]);
+      }
+    })();
     setIsModalOpen(false);
   };
+
+  if (categoriesError) {
+    form.setFocus("categories");
+  }
 
   return (
     <>
@@ -298,20 +317,31 @@ const CourseEditorInformation = forwardRef<
 
                     {/*Field to choose a category from a list of options*/}
                     <div className="flex flex-col w-1/2 space-y-2 text-left">
-                      <FormMultiSelect
-                        ref={multiInputRef}
-                        fieldName="elements"
-                        control={form.control}
-                        label={t("categories.categories")}
-                        options={[
-                          { label: "Fire", value: "fire" },
-                          { label: "Water", value: "water" },
-                        ]}
-                        onCreateClick={() => {
-                          setIsModalOpen(true);
-                        }}
-                        createLabel={t("multiSelect.createCategory")}
-                      />
+                      {(() => {
+                        let placeholder = t("courseManager.selectCategories");
+                        if (categoriesLoading) {
+                          placeholder = t("common.loading") + "...";
+                        } else if (categoriesError) {
+                          placeholder = t("common.error");
+                        }
+                        return (
+                          <FormMultiSelect
+                            ref={multiInputRef}
+                            fieldName="categories"
+                            control={form.control}
+                            label={t("categories.categories")}
+                            placeholder={placeholder}
+                            options={data.map((category) => ({
+                              label: category.name,
+                              value: category.documentId,
+                            }))}
+                            onCreateClick={() => {
+                              setIsModalOpen(true);
+                            }}
+                            createLabel={t("multiSelect.createCategory")}
+                          />
+                        );
+                      })()}
                     </div>
                   </div>
 
@@ -390,7 +420,7 @@ const CourseEditorInformation = forwardRef<
             </CardFooter>
           </form>
         </Form>
-        <CategoryCreateNew
+        <CategoryCreateModal
           open={isModalOpen}
           onClose={() => {
             setIsModalOpen(false);

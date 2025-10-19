@@ -224,14 +224,14 @@ export const useCreateCategoryMutation = () => {
           {
             data: {
               name: categoryName,
-              publishedAt: new Date().toISOString(), // Create as draft
+              publishedAt: new Date().toISOString(),
             },
           }
         );
       return response.data;
     },
     onSuccess: () => {
-      // Invalidate all courses queries after deletion
+      // Invalidate course categories queries after creating a new category
       void queryClient.invalidateQueries({
         queryKey: ["course-categories"],
         exact: false,

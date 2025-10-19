@@ -1,24 +1,18 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import { useFileUpload } from "@/shared/hooks/use-file-upload";
 
-import { FormFileUpload } from "./shared/components/form/form-file-upload";
-
+import CategoryCreateNew from "@/course/components/category-create-modal";
 import { Form } from "@/shared/components/shadcn/form";
 
-import FormActions from "./shared/components/form/form-actions";
-import { FileWithMetadataSchema } from "./shared/components/file-upload";
+import { ApiCourseCategoryCourseCategoryDocument } from "./shared/api";
+import { FormMultiSelect } from "./shared/components/form/form-multi-select";
 import {
-  MultiSelect,
   MultiSelectOption,
   MultiSelectRef,
 } from "./shared/components/shadcn/multi-select";
-import { FormMultiSelect } from "./shared/components/form/form-multi-select";
-import CategoryCreateNew from "@/course/components/category-create-new";
-import { ApiCourseCategoryCourseCategoryDocument } from "./shared/api";
-import React from "react";
 
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({

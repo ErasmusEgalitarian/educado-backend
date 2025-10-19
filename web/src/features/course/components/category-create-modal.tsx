@@ -1,11 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { mdiFormatLetterCase } from "@mdi/js";
 import Icon from "@mdi/react";
+import { t } from "i18next";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
 import { ApiCourseCategoryCourseCategoryDocument } from "@/shared/api";
+import { ErrorDisplay } from "@/shared/components/error/error-display";
 import { FormInput } from "@/shared/components/form/form-input";
+import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,13 +20,11 @@ import {
   AlertDialogTitle,
 } from "@/shared/components/shadcn/alert-dialog";
 import { Form } from "@/shared/components/shadcn/form";
-import { useCreateCategoryMutation } from "../api/course-mutations";
 import { toAppError } from "@/shared/lib/error-utilities";
-import { ErrorDisplay } from "@/shared/components/error/error-display";
-import GlobalLoader from "@/shared/components/global-loader";
-import { t } from "i18next";
 
-interface CategoryCreateNewProps<
+import { useCreateCategoryMutation } from "../api/course-mutations";
+
+interface CategoryCreateModalProps<
   T extends ApiCourseCategoryCourseCategoryDocument,
 > {
   open: boolean;
@@ -32,20 +33,23 @@ interface CategoryCreateNewProps<
 }
 
 const formSchema = z.object({
-  name: z.string().min(2, t("multiSelect.minNameLength", { count: 2 })),
+  categoryName: z.string().min(2, t("multiSelect.minNameLength", { count: 2 })),
 });
 
-const CategoryCreateNew = <T extends ApiCourseCategoryCourseCategoryDocument>({
+const CategoryCreateModal = <
+  T extends ApiCourseCategoryCourseCategoryDocument,
+>({
   open,
   onClose,
   onCreated,
-}: CategoryCreateNewProps<T>) => {
+}: CategoryCreateModalProps<T>) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
+      categoryName: "",
     },
-    mode: "onTouched", // Only validate when the user has interacted
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
 
   const createMutation = useCreateCategoryMutation();
@@ -56,13 +60,15 @@ const CategoryCreateNew = <T extends ApiCourseCategoryCourseCategoryDocument>({
   // Submit handler. Data shape can be inferred from the schema.
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const result = await createMutation.mutateAsync(values.name);
-      createMutation.reset();
-
+      const result = await createMutation.mutateAsync(values.categoryName);
+      // Notify parent, close, and reset immediately
       onCreated(result as T);
+      onClose();
+      form.reset(); // Clear the form
+      createMutation.reset(); // Allow for re-creation
     } catch (error) {
-      const appError = toAppError(error);
-      console.log("Error creating category: " + appError.message);
+      // Error is handled by the mutation state and displayed in the UI
+      console.error("Error creating category:", error);
     }
   }
 
@@ -75,7 +81,12 @@ const CategoryCreateNew = <T extends ApiCourseCategoryCourseCategoryDocument>({
         <AlertDialog
           open={open}
           onOpenChange={(isOpen) => {
-            if (!isOpen) onClose();
+            if (!isOpen) {
+              // Ensure we reset mutation and form when closing to avoid stale disabled state
+              createMutation.reset();
+              form.reset();
+              onClose();
+            }
           }}
         >
           <AlertDialogContent>
@@ -84,23 +95,33 @@ const CategoryCreateNew = <T extends ApiCourseCategoryCourseCategoryDocument>({
                 {t("multiSelect.createCategory")}
               </AlertDialogTitle>
               <AlertDialogDescription>
-                {mutationSuccess}
-                {mutationLoading}
-                <FormInput
-                  control={form.control}
-                  fieldName="name"
-                  label={t("multiSelect.EnterCategoryTitle")}
-                  placeholder={t("multiSelect.newCategory")}
-                  startIcon={<Icon path={mdiFormatLetterCase} size={1} />}
-                />
-                {mutationLoading && (
-                  <GlobalLoader
-                    variant="inline"
-                    message={t("multiSelect.creatingCategory")}
+                <OverlayStatusWrapper
+                  isLoading={mutationLoading}
+                  isSuccess={mutationSuccess}
+                >
+                  <FormInput
+                    control={form.control}
+                    fieldName="categoryName"
+                    label={t("multiSelect.EnterCategoryTitle")}
+                    placeholder={t("multiSelect.newCategory")}
+                    startIcon={<Icon path={mdiFormatLetterCase} size={1} />}
                   />
-                )}
+                </OverlayStatusWrapper>
                 <ErrorDisplay
                   error={mutationError}
+                  actions={[
+                    {
+                      label: t("common.dismiss"),
+                      onClick: () => {
+                        createMutation.reset();
+                      },
+                    },
+                    {
+                      label: t("common.retry"),
+                      onClick: () => void form.handleSubmit(onSubmit)(),
+                      variant: "primary",
+                    },
+                  ]}
                   variant="bar"
                   className="mt-4"
                 />
@@ -117,7 +138,9 @@ const CategoryCreateNew = <T extends ApiCourseCategoryCourseCategoryDocument>({
                 {t("common.cancel")}
               </AlertDialogCancel>
               <AlertDialogAction
-                disabled={mutationLoading || mutationSuccess}
+                disabled={
+                  mutationLoading || mutationSuccess || mutationError != null
+                }
                 onClick={(e) => {
                   e.preventDefault();
                   void form.handleSubmit(onSubmit)();
@@ -133,4 +156,4 @@ const CategoryCreateNew = <T extends ApiCourseCategoryCourseCategoryDocument>({
   );
 };
 
-export default CategoryCreateNew;
+export default CategoryCreateModal;

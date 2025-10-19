@@ -27,6 +27,8 @@ import {
   CommandSeparator,
 } from "@/shared/components/shadcn/command";
 import { useTranslation } from "react-i18next";
+import Icon from "@mdi/react";
+import { mdiPlus } from "@mdi/js";
 
 /**
  * Animation types and configurations
@@ -366,6 +368,11 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
     const prevIsOpen = React.useRef(isPopoverOpen);
     const prevSearchValue = React.useRef(searchValue);
 
+    // Sync internal options state with prop changes (e.g., when data is fetched)
+    React.useEffect(() => {
+      setSelectOptions(options);
+    }, [options]);
+
     const announce = React.useCallback(
       (message: string, priority: "polite" | "assertive" = "polite") => {
         if (priority === "assertive") {
@@ -398,8 +405,8 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
     const arraysEqual = React.useCallback(
       (a: string[], b: string[]): boolean => {
         if (a.length !== b.length) return false;
-        const sortedA = [...a].sort();
-        const sortedB = [...b].sort();
+        const sortedA = [...a].sort((a, b) => a.localeCompare(b));
+        const sortedB = [...b].sort((a, b) => a.localeCompare(b));
         return sortedA.every((val, index) => val === sortedB[index]);
       },
       []
@@ -444,7 +451,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
         },
         addOption: (option: MultiSelectOption, select = true) => {
           const allOptions = getAllOptions();
-          if (!allOptions.find((opt) => opt.value === option.value)) {
+          if (!allOptions.some((opt) => opt.value === option.value)) {
             const updatedOptions = isGroupedOptions(selectOptions)
               ? [...selectOptions]
               : [...selectOptions, option];
@@ -1098,8 +1105,17 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                     <CommandItem
                       onSelect={handleCreate}
                       className="cursor-pointer"
+                      asChild
                     >
-                      {createLabel ?? "Foo"}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full"
+                        iconPlacement="left"
+                        icon={() => <Icon path={mdiPlus} size={1} />}
+                      >
+                        {createLabel}
+                      </Button>
                     </CommandItem>
                     <CommandSeparator />
                   </>
