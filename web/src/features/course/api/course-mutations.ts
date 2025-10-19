@@ -10,7 +10,7 @@ interface CourseCreateInput {
   difficulty: number;
   categories: string[]; // documentIds of course categories
   description?: string;
-  image?: string; // documentId of uploaded image
+  image?: number; // numeric media id
 }
 
 // Type for updating an existing course
