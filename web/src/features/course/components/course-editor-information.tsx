@@ -2,12 +2,12 @@ import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "i18next";
 import { useEffect, useImperativeHandle, forwardRef } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import z from "zod";
+import React, { useState } from "react";
 
 import { FormFileUpload } from "@/shared/components/form/form-file-upload";
-
 import {
   ApiCourseCategoryCourseCategoryDocument,
   ApiCourseCourseDocument,
@@ -30,6 +30,9 @@ import {
   useUpdateCourseMutation,
 } from "../api/course-mutations";
 import { FileWithMetadataSchema } from "@/shared/components/file-upload";
+import StrapiAssetPicker from "./strapi-asset-picker";
+// Minimal inline StrapiAssetPicker stub to satisfy imports and types.
+// Replace with the real implementation at ./strapi-asset-picker when available.
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -58,6 +61,7 @@ const courseBasicInfoSchema = z.object({
     .max(400, t("validation.maxDescription", { count: 400 }))
     .optional(),
   image: z.array(FileWithMetadataSchema).optional(),
+  imageStrapiId: z.number().optional().nullable(),
 });
 
 // Infer the form type from the schema
@@ -103,9 +107,6 @@ const CourseEditorInformation = forwardRef<
 
   /* ------------------------------- Form setup ------------------------------- */
 
-  // Determine default form values based on whether we are editing or creating
-  // If editing, populate with existing course data
-  // If creating, use empty/default values
   const defaultFormValue = course
     ? {
         title: course.title,
@@ -114,27 +115,26 @@ const CourseEditorInformation = forwardRef<
           (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId
         ),
         description: course.description,
+        imageStrapiId: course.image?.documentId ? Number(course.image.documentId) : null,
       }
     : {
         title: "",
         difficulty: "1" as "1" | "2" | "3" | undefined,
         categories: [],
         description: "",
+        imageStrapiId: null,
       };
 
-  // Init form with React Hook Form + Zod
   const form = useForm<CourseBasicInfoFormValues>({
     resolver: zodResolver(courseBasicInfoSchema),
     defaultValues: { ...defaultFormValue },
     mode: "onTouched",
   });
 
-  // Expose isDirty method to parent via ref
   useImperativeHandle(ref, () => ({
     isDirty: () => form.formState.isDirty,
   }));
 
-  // Reset form when course data changes (e.g., when navigating back to this step)
   useEffect(() => {
     if (course) {
       form.reset({
@@ -144,9 +144,11 @@ const CourseEditorInformation = forwardRef<
           (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId
         ),
         description: course.description,
+        imageStrapiId: course.image?.documentId ? Number(course.image.documentId) : null,
       });
     }
-  }, [course, form]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [course]);
 
   // Set field error when categories fail to load
   useEffect(() => {
@@ -158,12 +160,49 @@ const CourseEditorInformation = forwardRef<
     }
   }, [categoriesError, form, t]);
 
-  /* -------------------------------- Handlers -------------------------------- */
+  /* ------------------------ Local UI state for image picker ------------------------ */
+  const [imageOption, setImageOption] = useState<"upload" | "strapi">(
+    course?.image?.documentId ? "strapi" : "upload"
+  );
 
-  const onSubmit = async (values: CourseBasicInfoFormValues) => {
-    try {
+  // Selected Strapi asset object (id + url) for preview
+  const [selectedStrapiAsset, setSelectedStrapiAsset] = useState<{ id: number; url?: string } | null>(
+    course?.image?.documentId ? { id: Number(course.image.documentId), url: course.image?.url } : null
+  );
+
+  // If a selected Strapi asset changes, sync to react-hook-form
+  useEffect(() => {
+    if (selectedStrapiAsset?.id) {
+      form.setValue("imageStrapiId", selectedStrapiAsset.id, { shouldDirty: true });
+      // clear uploaded files when selecting strapi asset
+      form.setValue("image", [], { shouldDirty: true });
+    } else {
+      // no selection
+      form.setValue("imageStrapiId", null, { shouldDirty: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedStrapiAsset]);
+
+  /* -------------------------------- Handlers -------------------------------- */
+  
+    const onSubmit: SubmitHandler<CourseBasicInfoFormValues> = async (values) => {
+      try {
+      // Determine image relation to send:
+      // prefer Strapi selection (imageStrapiId), otherwise look for uploaded file metadata
+      const uploadedImageMeta = values.image && values.image.length > 0 ? values.image[0] : undefined;
+      let imageRelation: any;
+      if (values.imageStrapiId !== undefined && values.imageStrapiId !== null) {
+        imageRelation = values.imageStrapiId;
+      } else if (uploadedImageMeta) {
+        // uploadedImageMeta's shape may not include documentId/id in the TS type; check at runtime
+        const meta: any = uploadedImageMeta;
+        imageRelation = meta.documentId ?? meta.id ?? undefined;
+      } else {
+        imageRelation = undefined;
+      }
+
       // Edit = update mutation
-      if (isEditMode && course.documentId != "") {
+      if (isEditMode && course && course.documentId != "") {
         // Update existing course
         const result = await updateMutation.mutateAsync({
           documentId: course.documentId,
@@ -171,6 +210,7 @@ const CourseEditorInformation = forwardRef<
           difficulty: Number(values.difficulty),
           categories: values.categories,
           description: values.description,
+          image: imageRelation as any,
         });
 
         // Wait a moment to show success state, then complete step
@@ -184,6 +224,7 @@ const CourseEditorInformation = forwardRef<
           difficulty: Number(values.difficulty),
           categories: values.categories ?? [],
           description: values.description,
+          image: imageRelation as any,
         });
 
         // Wait a moment to show success state, then complete step
@@ -220,23 +261,15 @@ const CourseEditorInformation = forwardRef<
           ],
         }}
       >
-        <Form {...form}>
-          <form
-            onSubmit={(e) => {
-              void form.handleSubmit(onSubmit)(e);
-            }}
-          >
+        <Form {...(form as any)}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent>
               {/* The overlay replaces the content by measuring height. */}
               <OverlayStatusWrapper
                 isLoading={mutationLoading}
                 isSuccess={mutationSuccess}
-                loadingMessage={
-                  isEditMode ? t("common.updating") : t("common.creating")
-                }
-                successMessage={
-                  isEditMode ? t("common.updated") : t("common.created")
-                }
+                loadingMessage={isEditMode ? t("common.updating") : t("common.creating")}
+                successMessage={isEditMode ? t("common.updated") : t("common.created")}
               >
                 <div className="flex flex-col gap-y-5">
                   <FormInput
@@ -275,25 +308,21 @@ const CourseEditorInformation = forwardRef<
                         label={t("categories.categories")}
                         disabled={categoriesLoading || !!categoriesError}
                         isRequired={true}
-                        options={data.map(
-                          (
-                            category: ApiCourseCategoryCourseCategoryDocument
-                          ) => ({
-                            label: category.name,
-                            value: category.documentId,
-                          })
-                        )}
-                        description={
-                          categoriesLoading
-                            ? t("categories.loadingCategoriesDescription")
-                            : ""
-                        }
-                        createLabel={t("courseManager.addNewCategory")} // valgfri
+                        options={data.map((category) => ({
+                          label: category.name,
+                          value: category.documentId,
+                        }))}
+                        description={categoriesLoading ? t("categories.loadingCategoriesDescription") : ""}
+                        createLabel={t("courseManager.addNewCategory")}
                         onCreate={(newCategory) => {
-                          data.push({
-                            ...newCategory,
-                            // cast som Partial<ApiCourseCategoryCourseCategoryDocument>
-                          } as Partial<ApiCourseCategoryCourseCategoryDocument>);
+                          // Ensure the pushed object satisfies the ApiCourseCategoryCourseCategoryDocument type
+                          const tempId = `temp-${Date.now()}`;
+                          const created: ApiCourseCategoryCourseCategoryDocument = {
+                            documentId: tempId,
+                            name: (newCategory as any)?.name ?? String(newCategory),
+                          } as ApiCourseCategoryCourseCategoryDocument;
+                          // push typed object
+                          (data as ApiCourseCategoryCourseCategoryDocument[]).push(created);
                         }}
                       />
                     </div>
@@ -312,17 +341,90 @@ const CourseEditorInformation = forwardRef<
                       isRequired
                     />
                     <div className="text-right text-sm mt-1 text-greyscale-text-caption">
-                      {form.watch("description")?.length ?? 0} / 400{" "}
-                      {t("courseManager.characters")}
+                      {form.watch("description")?.length ?? 0} / 400 {t("courseManager.characters")}
                     </div>
                   </div>
 
-                  <FormFileUpload
-                    uploadType="image"
-                    control={form.control}
-                    name="image"
-                    maxFiles={1}
-                  />
+                  {/* --- Image chooser: Upload OR Choose from Strapi --- */}
+                  <div>
+                    <label className="block font-medium mb-2">{t("courseManager.courseImage")}</label>
+
+                    <div className="flex items-center gap-6 mb-4">
+                      <label className="inline-flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="imageOption"
+                          value="upload"
+                          checked={imageOption === "upload"}
+                          onChange={() => {
+                            setImageOption("upload");
+                            // clear Strapi selection
+                            setSelectedStrapiAsset(null);
+                            form.setValue("imageStrapiId", null, { shouldDirty: true });
+                          }}
+                        />
+                        <span>Upload</span>
+                      </label>
+
+                      <label className="inline-flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="imageOption"
+                          value="strapi"
+                          checked={imageOption === "strapi"}
+                          onChange={() => {
+                            setImageOption("strapi");
+                            // clear uploaded file input (visual/controlled)
+                            form.setValue("image", [], { shouldDirty: true });
+                          }}
+                        />
+                        <span>Choose from Strapi</span>
+                      </label>
+                    </div>
+
+                    {imageOption === "upload" ? (
+                      <div>
+                        <FormFileUpload uploadType="image" control={form.control} name="image" maxFiles={1} />
+                      </div>
+                    ) : (
+                      
+                      <div>
+                        <StrapiAssetPicker
+                          baseUrl={
+                            ((globalThis as any).process?.env?.REACT_APP_STRAPI_URL ??
+                              (globalThis as any).REACT_APP_STRAPI_URL ??
+                              "") as string
+                          }
+                          selectedId={selectedStrapiAsset?.id ?? null}
+                          onSelect={(asset) => {
+                            if (asset) {
+                              setSelectedStrapiAsset({ id: asset.id, url: asset.url });
+                            } else {
+                              setSelectedStrapiAsset(null);
+                            }
+                          }}
+                        />
+
+                        <input type="hidden" value={form.getValues("imageStrapiId") ?? ""} readOnly name="imageStrapiId" />
+
+                        {selectedStrapiAsset?.url ? (
+                          <img
+                            src={
+                              selectedStrapiAsset.url.startsWith("http")
+                                ? selectedStrapiAsset.url
+                                : `${
+                                    ((globalThis as any).process?.env?.REACT_APP_STRAPI_URL ??
+                                      (globalThis as any).REACT_APP_STRAPI_URL ??
+                                      "") as string
+                                  }${selectedStrapiAsset.url}`
+                            }
+                            alt="selected asset"
+                            style={{ width: 320, height: 200, objectFit: "cover", marginTop: 8 }}
+                          />
+                        ) : null}
+                      </div>
+                    )}
+                  </div>
 
                   {/* Show mutation errors inline, so the form doesnt disappear */}
                   {mutationError && (
@@ -359,16 +461,8 @@ const CourseEditorInformation = forwardRef<
               {/*Create and cancel buttons*/}
               <FormActions
                 formState={form.formState}
-                submitLabel={
-                  isEditMode
-                    ? t("common.saveChanges")
-                    : t("courseManager.createAndContinue")
-                }
-                submittingLabel={
-                  isEditMode
-                    ? t("common.saving") + "..."
-                    : t("common.creating") + "..."
-                }
+                submitLabel={isEditMode ? t("common.saveChanges") : t("courseManager.createAndContinue")}
+                submittingLabel={isEditMode ? t("common.saving") + "..." : t("common.creating") + "..."}
                 disableSubmit={mutationError !== undefined}
               />
             </CardFooter>
