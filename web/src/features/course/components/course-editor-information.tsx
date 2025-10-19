@@ -318,7 +318,7 @@ const CourseEditorInformation = forwardRef<
                     {/*Field to choose a category from a list of options*/}
                     <div className="flex flex-col w-1/2 space-y-2 text-left">
                       {(() => {
-                        let placeholder = t("courseManager.selectCategories");
+                        let placeholder = t("categories.selectCategory");
                         if (categoriesLoading) {
                           placeholder = t("common.loading") + "...";
                         } else if (categoriesError) {
