@@ -36,7 +36,7 @@ const CourseEditorMenuButton = ({
     <Icon
       path={mdiCheckboxBlankOutline}
       size={1}
-      className="text-greyscale-text-body"
+      className="text-primary-surface-default"
     />
   );
 
