@@ -3,9 +3,8 @@
  */
 
 const TOKEN_EXPIRATION_TIME = 1000 * 60 * 10; // 10 minutes
-const url = 'http://localhost:1337/api/'
 
-function makeid(length) {
+function generateTokenCode(length) {
     let result           = '';
     const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charactersLength = characters.length;
@@ -16,22 +15,32 @@ function makeid(length) {
 }
 
 import { sendVerificationEmail } from "../helpers/email";
+import jwt from "jsonwebtoken";
+
 
 export default {
   signupAction: async (ctx, next) => {
     try {
+      const secretKey = process.env.JWT_SECRET;
 
       // Deconstructing request body into fields
       const { name, email, password } = ctx.request.body;
-      if (typeof email !== 'string' || typeof name !== 'string' || typeof password !== 'string') {
-        return ctx.badRequest('Invalid request: all fields should be strings');
+      // Type checking
+      if (typeof email !== 'string') {
+        return ctx.badRequest('Invalid request: email is not type string but '+typeof email);
+      }
+      if (typeof name !== 'string'){
+        return ctx.badRequest('Invalid request: name is not type string but '+typeof name);
+      }
+      if (typeof password !== 'string'){
+        return ctx.badRequest('Invalid request: name is not type string but '+typeof name);
       }
 
       // Convert email to lowercase
       const lowercaseEmail = email.toLowerCase();
 
       // student doesn't already excist
-      let user = await strapi.documents('api::student.student').findFirst(
+      const user = await strapi.documents('api::student.student').findFirst(
         {
           filters: {
             email: lowercaseEmail
@@ -39,10 +48,11 @@ export default {
         }
       );
       if (!(user == null)){
-        return ctx.badRequest('student already excist');
+        return ctx.badRequest('student with that email already excist');
       }
+
       // Create draft for new student with required fields
-      let studentResponse = await strapi.documents('api::student.student').create({
+      const studentResponse = await strapi.documents('api::student.student').create({
         data: {
           name: name,
           email: lowercaseEmail,
@@ -50,30 +60,43 @@ export default {
         }
       });
       // Safety check
-      if (!studentResponse || !studentResponse.id) {
-      return ctx.badRequest('Failed to create student.');
+      if (!studentResponse && !studentResponse.id) {
+      return ctx.internalServerError('Failed to create student.');
       }
       
       //publish student if it passes check.
-      await strapi.documents('api::student.student').publish({
+      const studentPublished = await strapi.documents('api::student.student').publish({
         documentId: studentResponse.documentId
       });
+      const studentEntry = studentPublished.entries[0];
 
 
       //generate token code and send email
-      const tokenString = makeid(4);
+      const tokenString = generateTokenCode(4);
       sendVerificationEmail({name: name, email: email}, tokenString);
 
       //creates a email verification token that expires in 10 min
-      let verificationTokenResponse = await strapi.documents('api::verification-token.verification-token').create({
+      const verificationTokenResponse = await strapi.documents('api::verification-token.verification-token').create({
         data: {
             userEmail: lowercaseEmail,
             token: tokenString,
             expiresAt: new Date(Date.now() + TOKEN_EXPIRATION_TIME)
         }
       })
+      // Safety check
+      if (!verificationTokenResponse){
+        return ctx.internalServerError('Failed to create verfication token.');
+      }
+      
+      const studentJWT : Student = {
+        documentId: studentPublished.documentId,
+        name: studentEntry.name,
+        email: studentEntry.email,
+        password: studentEntry.password,
+        isVerified: studentEntry.isVerified
+      }
 
-      ctx.response.body = 'ok';
+      ctx.response.body = jwt.sign(studentJWT, secretKey);
 
     } catch (err) {
       ctx.body = err;
