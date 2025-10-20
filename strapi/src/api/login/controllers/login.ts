@@ -66,7 +66,15 @@ export default {
         });
       }
 
-      const jwtToken = generateJwt(user, secretKey);
+      const studentJWT : Student = {
+        documentId: user.documentId,
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        isVerified: user.isVerified
+      }
+
+      const jwtToken = generateJwt(studentJWT, secretKey);
       ctx.send(
         { user: { id: user.id, email: user.email }, jwt: jwtToken },
         200
