@@ -55,6 +55,7 @@
     "name": "Name",
     "retry": "Retry",
     "rating": "Rating"
+    "error": "Error"
   },
   "pagination": {
     "items": "items",
@@ -123,7 +124,8 @@
     "leavePageMessage": "Are you sure you want to leave this page?",
     "createError": "Failed to Create Course",
     "updateError": "Failed to Update Course",
-    "genericError": "An unexpected error occurred. Please try again."
+    "genericError": "An unexpected error occurred. Please try again.",
+    "rating": "Rating"
   },
   "courses": {
     "pageTitle": "Courses list",
@@ -179,5 +181,12 @@
     "describeTheImage": "Describe the image for accessibility",
     "addACaption": "Add a caption or description",
     "previewShortcuts": "Press ESC to close • Arrow keys to navigate • +/- to zoom"
+  },
+  "multiSelect": {
+    "createCategory": "Create category",
+    "EnterCategoryTitle": "Enter a short and clear category title.",
+    "newCategory": "New Category",
+    "creatingCategory": "Creating Category",
+    "minNameLength": "Category name must be at least {{count}} characters"
   }
 }
