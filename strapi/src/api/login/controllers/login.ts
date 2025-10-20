@@ -2,6 +2,8 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { Context } from "koa";
 
+// The helpers are for less code complixity and better readability
+
 // Helper function to get JWT secret key from environment variables
 const getSecretKey = (): string | null => {
   const key = process.env.JWT_SECRET;
@@ -9,7 +11,6 @@ const getSecretKey = (): string | null => {
     strapi.log.error("JWT_SECRET is not defined in environment variables.");
   return key || null;
 };
-
 // Helper function to validate the input credentials and normalize email format
 const validateInput = (email?: string, password?: string) => {
   const normalizedEmail = email?.trim().toLowerCase();
@@ -27,12 +28,10 @@ const validateInput = (email?: string, password?: string) => {
 
   return { valid: true, email: normalizedEmail, password: trimmedPassword };
 };
-
 // Helper function to find user by email in the database
 const findUserByEmail = async (email: string) => {
   return strapi.db.query("api::student.student").findOne({ where: { email } });
 };
-
 // Helper function to generate JWT token
 const generateJwt = (user: any, secret: string) => {
   return jwt.sign({ id: user.id, email: user.email }, secret, {
