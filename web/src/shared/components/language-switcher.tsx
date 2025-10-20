@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 
+import { useAuth } from "@/auth/hooks/use-auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,15 +10,16 @@ import {
 
 import { Button } from "./shadcn/button";
 
-// TODO: Style according to design
+// Note: Style according to design
 export const LanguageSwitcher = () => {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
+  const { preferences, setPreferences } = useAuth();
 
-  const changeLanguage = (language: string) => {
-    void i18n.changeLanguage(language);
-  };
+  // eslint-disable-next-line no-console
+  console.log("[LanguageSwitcher] Render - preferences:", preferences, "setPreferences type:", typeof setPreferences);
 
-  const currentLanguage = i18n.language;
+  const currentLanguage = preferences.language;
+
   const getCurrentLanguageLabel = () => {
     return currentLanguage === "pt"
       ? t("language.portuguese")
@@ -30,11 +32,11 @@ export const LanguageSwitcher = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm">
-          {getLanguageSymbol(currentLanguage) + " "}
-          {getCurrentLanguageLabel()}
-          <svg
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" size="sm">
+            {getLanguageSymbol(currentLanguage) + " "}
+            {getCurrentLanguageLabel()}
+            <svg
             className="-mr-1 ml-2 h-5 w-5"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -57,8 +59,14 @@ export const LanguageSwitcher = () => {
               : "text-gray-700"
           }
           checked={currentLanguage === "pt"}
-          onCheckedChange={() => {
-            changeLanguage("pt");
+          onCheckedChange={(checked) => {
+            // eslint-disable-next-line no-console
+            console.log("[LanguageSwitcher] PT onCheckedChange fired! checked:", checked, "current:", currentLanguage);
+            if (checked) {
+              // eslint-disable-next-line no-console
+              console.log("[LanguageSwitcher] Calling setPreferences for PT");
+              setPreferences({ language: "pt" });
+            }
           }}
         >
           {getLanguageSymbol("pt")} {t("language.portuguese")}
@@ -70,8 +78,14 @@ export const LanguageSwitcher = () => {
               : "text-gray-700"
           }
           checked={currentLanguage === "en"}
-          onClick={() => {
-            changeLanguage("en");
+          onCheckedChange={(checked) => {
+            // eslint-disable-next-line no-console
+            console.log("[LanguageSwitcher] EN onCheckedChange fired! checked:", checked, "current:", currentLanguage);
+            if (checked) {
+              // eslint-disable-next-line no-console
+              console.log("[LanguageSwitcher] Calling setPreferences for EN");
+              setPreferences({ language: "en" });
+            }
           }}
         >
           {getLanguageSymbol("en")} {t("language.english")}
