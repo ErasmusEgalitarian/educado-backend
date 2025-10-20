@@ -41,24 +41,19 @@
     "ascending": "Asc",
     "descending": "Desc",
     "saveChanges": "Salvar Alterações",
-    "publicationStatus": "Status de Publicação",
     "publish": "Publicar",
-    "publishing": "Publicando",
-    "published": "Publicado",
-    "draft": "Rascunho",
+    "publishing": "Publicando...",
+    "published": "Publicado!",
     "unpublish": "Despublicar",
-    "unpublishing": "Despublicando",
-    "unpublished": "Despublicado",
+    "unpublishing": "Despublicando...",
+    "unpublished": "Despublicado!",
     "continue": "Continuar",
     "back": "Voltar",
     "leave": "Sair",
     "stay": "Ficar",
     "dismiss": "Dispensar",
     "name": "Nome",
-    "retry": "Tentar Novamente",
-    "rating": "Avaliação",
-    "error": "Erro",
-    "goPrevious": "Voltar para anterior"
+    "retry": "Tentar Novamente"
   },
   "pagination": {
     "items": "itens",
@@ -86,19 +81,6 @@
     "notifications": "Notificações",
     "noNotifications": "Nenhuma notificação"
   },
-  "rating": {
-    "rating": "Avaliação",
-    "ratings": "Avaliações",
-    "noRatings": "Nenhuma avaliação ainda",
-    "averageRating": "Avaliação Média",
-    "yourRating": "Sua Avaliação"
-  },
-  "difficulty": {
-    "difficulty": "Dificuldade",
-    "beginner": "Iniciante",
-    "intermediate": "Intermediário",
-    "advanced": "Avançado"
-  },
   "categories": {
     "category": "Categoria",
     "categories": "Categorias",
@@ -107,6 +89,25 @@
     "loadingCategories": "Carregando Categorias",
     "loadingCategoriesDescription": "Por favor, aguarde enquanto buscamos as categorias de cursos disponíveis...",
     "categoriesError": "Erro ao carregar categorias"
+  },
+  "createCourse": {
+    "generalInfo": "Informações Gerais",
+    "courseName": "Nome do Curso",
+    "courseNamePlaceholder": "Digite o nome do curso",
+    "level": "Nível",
+    "selectLevel": "Selecione o nível",
+    "description": "Descrição",
+    "descriptionPlaceholder": "Digite a descrição",
+    "coverImage": "Imagem de Capa",
+    "beginner": "Iniciante",
+    "intermediate": "Intermediário",
+    "advanced": "Avançado",
+    "characters": "caracteres",
+    "newCourse": "Novo Curso",
+    "createSections": "Criar Seções",
+    "cancelAndReturn": "Cancelar e Voltar",
+    "saveAsDraft": "Salvar como Rascunho",
+    "reviewCourse": "Revisar Curso"
   },
   "courseManager": {
     "course": "Curso",
@@ -140,8 +141,8 @@
     "leavePageMessage": "Tem certeza que deseja sair desta página?",
     "createError": "Falha ao Criar Curso",
     "updateError": "Falha ao Atualizar Curso",
-    "rating": "Avaliação",
-    "genericError": "Ocorreu um erro inesperado. Por favor, tente novamente."
+    "genericError": "Ocorreu um erro inesperado. Por favor, tente novamente.",
+    "rating": "Avaliação"
   },
   "courses": {
     "pageTitle": "Confira seus cursos",
@@ -164,20 +165,10 @@
     "grade": "Nota",
     "startNow": "Começar Agora",
     "noCoursesYet": "Você ainda não criou nenhum curso. Clique no botão abaixo e siga as instruções passo a passo para desenvolver seu primeiro curso.",
-    "createNewCourse": "Criar Novo Curso",
-    "thisMonth": "Esse mês",
-    "totalCertificatesIssued": "Total certificados emitidos",
-    "evaluation": "Avaliação",
-    "lastSevenDays": "Últimos 7 dias",
-    "lastThirtyDays": "Últimos 30 dias"
+    "createNewCourse": "Criar Novo Curso"
   },
   "courseEditor": {
-    "fetchCourseDataError": "Erro ao carregar dados do curso: {{message}}",
-    "skipToReview": "Pular para avaliação",
-    "saveAsDraft": "Salvar como rascunho"
-  },
-  "courseEditorReview": {
-    "thisCourseIsCurrentlyVisibleToStudents": "Este curso está atualmente visível para os alunos"
+    "fetchCourseDataError": "Erro ao carregar dados do curso: {{message}}"
   },
   "files": {
     "upload": "Enviar",
@@ -198,43 +189,5 @@
     "describeTheImage": "Descreva a imagem para acessibilidade",
     "addACaption": "Adicione uma legenda ou descrição",
     "previewShortcuts": "Pressione ESC para fechar • Setas para navegar • +/- para ampliar"
-  },"carousel":
-  {
-    "title1":"Junte-se a nós para transformar vidas a partir do seu conhecimento",
-    "section1":"Oferecemos acesso a conteúdo personalizado para pessoas que precisam, melhorando condições de vida e oportunidades de emprego",
-    "title2":"Para criadores de conteúdo", 
-    "section2":"Divulgue seu trabalho e alcance um público ainda maior. Mostre suas ideias para quem quer aprender e se inspirar.",
-    "title3":"Cadastre-se agora e ajude a fazer a diferença!",
-    "section3":"Faça parte de uma comunidade que facilita o acesso a conteúdos relevantes e incentiva o compartilhamento de conhecimento de forma simples e prática."
-  },
-   "multiSelect": {
-    "createCategory": "Criar categoria",
-    "EnterCategoryTitle": "Digite um título de categoria curto e claro.",
-    "newCategory": "Nova Categoria",
-    "creatingCategory": "Criando Categoria",
-    "minNameLength": "O nome da categoria deve ter pelo menos {{count}} caracteres"
-  },
-  "login":{
-      "back-button":"Voltar",
-      "welcome-back":"Bem-vindo(a) de volta!",
-      "email":"Email",
-      "password":"Senha",
-      "login-button":"Entrar",
-      "forgot-password":"Esqueceu sua senha?",
-      "no-account":"Ainda não tem conta?",
-      "register-now":"Cadastre-se agora",
-      "email-error":"EMAIL OU SENHA INCORRETOS. POR FAVOR, TENTE NOVAMENTE."
-  },
-  "welcome":
-  {
-    "title": "Boas vindas ao EDUCADO!",
-    "subtitle": "Cadastre-se agora e ajude a promover seu trabalho e atingir um público mais amplo por meio da criação de conteúdo.",
-    "register-button": "Cadastrar",
-    "login-text": "Já possui uma conta?",
-    "login-button": "Entrar"
-  },
-  "notifications":
-  {
-    "published-course": "Curso publicado"
   }
 }
