@@ -141,7 +141,8 @@
     "leavePageMessage": "Tem certeza que deseja sair desta página?",
     "createError": "Falha ao Criar Curso",
     "updateError": "Falha ao Atualizar Curso",
-    "genericError": "Ocorreu um erro inesperado. Por favor, tente novamente."
+    "genericError": "Ocorreu um erro inesperado. Por favor, tente novamente.",
+    "rating": "Avaliação"
   },
   "courses": {
     "pageTitle": "Confira seus cursos",
