@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { CourseService } from "@/shared/api";
+import { CourseCategoryService, CourseService } from "@/shared/api";
 
 import { courseQuery } from "./course-queries";
 
@@ -48,7 +48,7 @@ export const useCreateCourseMutation = () => {
             // IMPORTANT: Don't set publishedAt - draft has no publishedAt
             publishedAt: "",
           },
-        },
+        }
       );
       // Simulate network delay for better UX during testing
       // TODO: Remove in production
@@ -96,7 +96,7 @@ export const useUpdateCourseMutation = () => {
             course_categories: updateData.categories,
             image: updateData.image,
           },
-        },
+        }
       );
       // Simulate network delay for better UX during testing
       // TODO: Remove in production
@@ -136,7 +136,7 @@ export const usePublishCourseMutation = () => {
           data: {
             publishedAt: new Date().toISOString(),
           },
-        },
+        }
       );
       return response.data;
     },
@@ -172,7 +172,7 @@ export const useUnpublishCourseMutation = () => {
           data: {
             publishedAt: "", // Clear publishedAt to unpublish
           },
-        },
+        }
       );
       return response.data;
     },
@@ -205,6 +205,35 @@ export const useDeleteCourseMutation = () => {
       // Invalidate all courses queries after deletion
       void queryClient.invalidateQueries({
         queryKey: ["courses"],
+        exact: false,
+      });
+    },
+  });
+};
+
+export const useCreateCategoryMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (categoryName: string) => {
+      const response =
+        await CourseCategoryService.courseCategoryPostCourseCategories(
+          undefined, // fields parameter
+          undefined,
+          undefined,
+          {
+            data: {
+              name: categoryName,
+              publishedAt: new Date().toISOString(),
+            },
+          }
+        );
+      return response.data;
+    },
+    onSuccess: () => {
+      // Invalidate course categories queries after creating a new category
+      void queryClient.invalidateQueries({
+        queryKey: ["course-categories"],
         exact: false,
       });
     },
