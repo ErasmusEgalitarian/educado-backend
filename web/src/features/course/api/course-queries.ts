@@ -1,11 +1,14 @@
-import { client } from "@/shared/api/client.gen";
-import { courseGetCoursesById } from "@/shared/api/sdk.gen";
-import type { Course } from "@/shared/api/types.gen";
+import {
+  ApiCourseCourseDocument,
+  CourseCategoryService,
+  CourseService,
+} from "@/shared/api";
+import { useQuery } from "@tanstack/react-query";
 
 export const courseQuery = (courseId: string) => ["course", courseId] as const;
 
 /**
- * Fetch a single course by ID with Strapi query parameters
+ * Fetch a single course by ID
  * Used in edit mode to load existing course data
  *
  * IMPORTANT: Fetches both draft and published courses
@@ -13,32 +16,36 @@ export const courseQuery = (courseId: string) => ["course", courseId] as const;
  */
 export const CourseQueryFunction = (courseId: string) => ({
   queryKey: courseQuery(courseId),
-  queryFn: async (): Promise<Course> => {
-    const courseResponse = await courseGetCoursesById({
-      path: { id: courseId },
-      query: {
-        // Ensure drafts are retrievable during editing
-        status: "draft",
-        fields: [
-          "title",
-          "description",
-          "difficulty",
-          "numOfRatings",
-          "numOfSubscriptions",
-          "createdAt",
-          "updatedAt",
-          "publishedAt",
-        ],
-        // Use "*" to populate all relations with their full data including nested fields
-        populate: "course_categories",
-      },
-    });
-
-    // CourseResponse has an optional data property containing the Course
-    if (!courseResponse?.data) {
-      throw new Error(`Course with ID ${courseId} not found`);
-    }
-
-    return courseResponse.data;
+  queryFn: async (): Promise<ApiCourseCourseDocument> => {
+    const response = await CourseService.courseGetCoursesById(
+      courseId,
+      [
+        "title",
+        "description",
+        "difficulty",
+        "numOfRatings",
+        "numOfSubscriptions",
+        "createdAt",
+        "updatedAt",
+        "publishedAt",
+      ],
+      ["course_categories", "image", "course_sections"]
+      // Note: status parameter omitted to fetch both draft and published courses
+    );
+    return response.data;
   },
 });
+
+export const useCourseCategories = () => {
+  return useQuery({
+    queryKey: ["course_categories"],
+    queryFn: async () => {
+      const response =
+        await CourseCategoryService.courseCategoryGetCourseCategories(["name"]);
+      return response.data.map((item) => ({
+        label: item.name,
+        value: item.documentId,
+      }));
+    },
+  });
+};
