@@ -5,7 +5,6 @@ import { useCallback, useEffect, useMemo, type ReactNode } from "react";
 import { AuthContext } from "@/auth/context/auth-context";
 import { defaultUserPreferences } from "@/auth/types/auth-context";
 import type { AuthContextType, UserPreferences } from "@/auth/types/auth-context";
-import { updateApiClientToken } from "@/shared/config/api-config";
 import { useLocalStorage } from "@/shared/hooks/use-local-storage";
 import type { User } from "@/user/types/User";
 
@@ -28,31 +27,42 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     defaultUserPreferences,
   );
 
-  // accepts email/password and returns a user
-  const loginSaver = useCallback(
-  async (token: string, user: any): Promise<void> => {
-    try {
-      // just set auth state
-      setAuthToken(token);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      setLoggedInUserLS(user);
-    } catch (error) {
-      console.error("Failed to set auth state:", error);
-      throw error;
-    }
-  },
-  [setAuthToken, setLoggedInUserLS],
-);
+  // Mock login: accepts email/password and returns a fake user
+  const login = useCallback(
+    (email: string, password: string): Promise<User> => {
+      // Create a simple mock user from the email
+      const [namePart] = email.split("@");
+      const now = new Date().toISOString();
+
+      const mockUser: User = {
+        // Using Math.random for a temporary mock ID is acceptable in mock code.
+        // eslint-disable-next-line sonarjs/pseudo-random
+        _id: Math.random().toString(36).slice(2),
+        role: email.includes("admin") ? "admin" : "user",
+        firstName:
+          namePart.length > 0
+            ? namePart.charAt(0).toUpperCase() + namePart.slice(1)
+            : "User",
+        lastName: "",
+        email,
+        joinedAt: now,
+        dateUpdated: now,
+      };
+
+      // Store a mock token
+      setAuthToken(btoa(`${email}:${password}`));
+
+      // Set the user in local storage
+      setLoggedInUserLS(mockUser);
+      return Promise.resolve(mockUser);
+    },
+    [setLoggedInUserLS, setAuthToken],
+  );
 
   // Mock logout: clears user from storage
   const logout = useCallback(() => {
     removeAuthToken();
     removeLoggedInUser();
-    // Also clear the main token key used by the API client
-    localStorage.removeItem("token");
-    localStorage.removeItem("id");
-    // Update the API client to remove the Authorization header
-    updateApiClientToken();
   }, [removeAuthToken, removeLoggedInUser]);
 
   // Merge-only setter for preferences
@@ -72,12 +82,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoggedInUser: (u) => {
         setLoggedInUserLS(u);
       },
-      loginSaver,
+      login,
       logout,
       preferences,
       setPreferences,
     }),
-    [loggedInUser, setLoggedInUserLS, loginSaver, logout, preferences, setPreferences],
+    [loggedInUser, setLoggedInUserLS, login, logout, preferences, setPreferences],
   );
 
   // Bootstrap: ensure userPreferences is source of truth for i18n language.

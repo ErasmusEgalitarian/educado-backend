@@ -5,8 +5,8 @@ import { User } from "@/user/types/User";
 export interface AuthContextType {
     loggedInUser: User | null;
     setLoggedInUser: (user: User | null) => void;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    loginSaver: (token: string, user: any) => Promise<void>;
+    /** Mock login for now: accepts credentials and resolves to a User */
+    login: (email: string, password: string) => Promise<User>;
     logout: () => void;
     preferences: UserPreferences;
     setPreferences: (preferences: Partial<UserPreferences>) => void;
