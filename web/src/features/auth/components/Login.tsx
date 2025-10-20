@@ -79,13 +79,12 @@ const Login = () => {
     })
       .then((res) => {
         if (res.status == 200) {
-          const id = res.data.baseUser;
-          navigate(`/application/${id}`);
-        }
-        if (res.status == 202) {
-          localStorage.setItem("token", res.data.accessToken);
-          localStorage.setItem("id", res.data.userInfo.id);
-          setUserInfo(res.data.userInfo);
+          const token = res.data.jwt;
+          const user = res.data.user;
+
+          localStorage.setItem("token", token);
+          localStorage.setItem("id", user.id);
+          setUserInfo(user);
           navigate("/courses");
         }
 

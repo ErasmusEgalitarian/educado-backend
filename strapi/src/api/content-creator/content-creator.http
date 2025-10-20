@@ -1,0 +1,8 @@
+### Content-Creator Login
+POST http://localhost:1337/api/content-creator/login
+Content-Type: application/json
+
+{
+  "email": "gustav.tue@gmail.com",
+  "password": "jjj99"
+}
