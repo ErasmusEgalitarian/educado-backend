@@ -11,13 +11,13 @@ export default factories.createCoreController('api::content-creator.content-crea
         // Access request data via ctx.request.body
         const { email, password } = ctx.request.body;
 
-        const user = await strapi.db.query('plugin::users-permissions.user').findOne({
-        where: { email },
-        });
+        const user = await strapi.db.query('api::content-creator.content-creator').findOne({
+            where: { email },
+            });
 
         if (!user) {
         return ctx.badRequest('Invalid email or password', {
-            error: { code: 'E0004', message: 'Invalid email or password'}
+            error: { code: 'E0004', message: 'Invalid email or password '}
         });
         }
 
