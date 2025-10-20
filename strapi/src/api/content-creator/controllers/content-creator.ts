@@ -16,18 +16,24 @@ export default factories.createCoreController('api::content-creator.content-crea
         });
 
         if (!user) {
-        return ctx.badRequest('Invalid email or password');
+        return ctx.badRequest('Invalid email or password', {
+            error: { code: 'E0004', message: 'Invalid email or password'}
+        });
         }
 
         const isValidPassword = password.compare(user.password); // implement password validation logic here
 
 
         if (!isValidPassword) {
-        return ctx.badRequest('Invalid email or password');
+        return ctx.badRequest('Invalid email or password', {
+            error: { code: 'E0004', message: 'Invalid email or password'}
+        });
         }
 
         if (!user.confirmed) {
-        return ctx.badRequest('Admin approval is required.');
+        return ctx.badRequest('Admin approval is required.', {
+            error: { code: 'E1001', message: 'Admin approval is required'}
+        });
         }
 
 
