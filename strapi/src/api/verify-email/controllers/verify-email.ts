@@ -19,7 +19,7 @@ export default {
       const lowercaseEmail = email.toLowerCase();
 
       // Finds verification token with matching email
-      let Vtoken = await strapi.documents('api::verification-token.verification-token').findFirst(
+      const Vtoken = await strapi.documents('api::verification-token.verification-token').findFirst(
         {
           filters: {
             userEmail: lowercaseEmail
@@ -37,7 +37,7 @@ export default {
       }
 
       // Verifies user if code is correct
-      let user = await strapi.documents('api::student.student').findFirst(
+      const user = await strapi.documents('api::student.student').findFirst(
         {
           filters: {
             email: lowercaseEmail
@@ -55,11 +55,20 @@ export default {
 
       //TODO maybe check if is verified now
 
-      await strapi.documents('api::student.student').publish({
+      const userPublished = await strapi.documents('api::student.student').publish({
       documentId: user.documentId
       });
+      const studentEntry = userPublished.entries[0];
 
-      let signedUser = jwt.sign(user, secretKey);
+      const studentJWT : Student = {
+        documentId: userPublished.documentId,
+        name: studentEntry.name,
+        email: studentEntry.email,
+        password: studentEntry.password,
+        isVerified: studentEntry.isVerified
+      }
+
+      const signedUser = jwt.sign(studentJWT, secretKey);
 
       ctx.response.body = JSON.stringify(signedUser);
 
