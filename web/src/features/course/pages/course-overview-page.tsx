@@ -41,7 +41,7 @@ const CourseOverviewPage = () => {
     <PageContainer title={t("courses.pageTitle")}>
       <div className="flex gap-x-20">
         <div className="w-full">
-          <Card>
+          <Card className="gap-15">
             <CardHeader>
               <CardTitle>
                 <h1 className="text-2xl font-bold">{t("courses.pageTitle")}</h1>
