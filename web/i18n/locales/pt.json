@@ -54,6 +54,7 @@
     "dismiss": "Dispensar",
     "name": "Nome",
     "retry": "Tentar Novamente",
+    "rating": "Avaliação"
     "error": "Erro"
   },
   "pagination": {
@@ -166,10 +167,19 @@
     "grade": "Nota",
     "startNow": "Começar Agora",
     "noCoursesYet": "Você ainda não criou nenhum curso. Clique no botão abaixo e siga as instruções passo a passo para desenvolver seu primeiro curso.",
-    "createNewCourse": "Criar Novo Curso"
+    "createNewCourse": "Criar Novo Curso",
+    "thisMonth": "Esse mês",
+    "totalCertificatesIssued": "Total certificados emitidos",
+    "evaluation": "Avaliação",
+    "lastSevenDays": "Últimos 7 dias",
+    "lastThirtyDays": "Últimos 30 dias"
   },
   "courseEditor": {
-    "fetchCourseDataError": "Erro ao carregar dados do curso: {{message}}"
+    "fetchCourseDataError": "Erro ao carregar dados do curso: {{message}}",
+    "skipToReview": "Pular para avaliação"
+  },
+  "courseEditorReview": {
+    "thisCourseIsCurrentlyVisibleToStudents": "Este curso está atualmente visível para os alunos"
   },
   "files": {
     "upload": "Enviar",

@@ -97,7 +97,7 @@ export const createCourseColumns = ({
     },
     {
       id: "rating",
-      header: t("courseManager.rating"),
+      header: t("common.rating"),
       cell: () => {
         // Placeholder rating - you can replace this with actual rating data later
         const rating = 4.2;
@@ -130,7 +130,7 @@ export const createCourseColumns = ({
 
         const handleDelete = () => {
           toast.info(
-            "Delete functionality is not implemented yet: " + documentId,
+            "Delete functionality is not implemented yet: " + documentId
           );
         };
 
