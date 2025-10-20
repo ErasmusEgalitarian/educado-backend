@@ -16,7 +16,7 @@ import {
 import StarRating from "../../../shared/components/star-rating";
 
 /**
- * Displays a course in a card format
+ * Displays a course in a card format.
  *
  * @param {Course} course The course to be displayed
  * @returns HTML Element
