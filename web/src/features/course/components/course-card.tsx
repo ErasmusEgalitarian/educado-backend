@@ -47,7 +47,7 @@ export const CourseCard = ({ course }: { course: ApiCourseCourseDocument }) => {
             {course.title}
           </CardTitle>
         </div>
-        <div className="w-full border-t border-[#C1CFD7] my-1 mx-auto" />
+        <div className="w-full border-t border-greyscale-border-lighter my-1 mx-auto" />
       </CardHeader>
       <CardContent>
         <div className="flex items-center justify-between">
