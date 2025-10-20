@@ -4,7 +4,7 @@
  * Returns true if the authenticated user exists in the Content Creator collection.
  * 
  * TODO:
- * Implement JWT for decrypting the token into usable object
+ * Implement JWT for decrypting the context token into usable object
  */
 
 export default async (policyContext, config, { strapi }) => {
@@ -18,7 +18,10 @@ export default async (policyContext, config, { strapi }) => {
 
     try {
         const student = await strapi.db.query('api::content-creator.content-creator').findFirst({
-            filters: { email: user.email, documentId: user.documentId },
+            filters: { 
+                email: user.email, 
+                documentId: user.documentId 
+            },
         });
 
         return !!student;
