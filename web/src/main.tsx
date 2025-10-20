@@ -20,10 +20,11 @@ configureApiClient();
 const queryClient = new QueryClient();
 
 const rootElement = document.getElementById("root");
-if (rootElement && rootElement.innerHTML === "") {
+if (rootElement?.innerHTML === "") {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
+      {/* i18n is imported at module scope; do not import inside JSX */}
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <NotificationProvider>
@@ -35,7 +36,10 @@ if (rootElement && rootElement.innerHTML === "") {
             </TooltipProvider>
           </NotificationProvider>
         </AuthProvider>
-        <ReactQueryDevtools buttonPosition={"bottom-right"} initialIsOpen={false} />
+        <ReactQueryDevtools
+          buttonPosition={"bottom-right"}
+          initialIsOpen={false}
+        />
       </QueryClientProvider>
     </StrictMode>
   );

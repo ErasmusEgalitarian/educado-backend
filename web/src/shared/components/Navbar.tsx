@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
+import { useAuth } from "@/auth/hooks/use-auth";
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import {
   DropdownMenu,
@@ -31,7 +32,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/shared/components/shadcn/popover"
+} from "@/shared/components/shadcn/popover";
 
 import { getUserInfo, userInfo } from "../../features/auth/lib/userInfo";
 import { useNotifications } from "../context/NotificationContext";
@@ -39,10 +40,10 @@ import { useNotifications } from "../context/NotificationContext";
 export const Navbar = () => {
   const navigate = useNavigate();
   const { clearToken } = useAuthStore((state) => state);
-  const [ open, setOpen ] = useState(false)
+  const { preferences, setPreferences } = useAuth();
+  const [open, setOpen] = useState(false);
   const { notifications, setNotifications } = useNotifications();
-  // const [ position, setPosition ] = useState("portuguese");
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   // Logout handler
   const handleLogout = () => {
     clearToken();
@@ -93,54 +94,54 @@ export const Navbar = () => {
               </button>
             </PopoverTrigger>
             <PopoverContent className="w-[200px] p-0">
-                <div className="p-2 max-h-[250px] overflow-y-auto">
-                  <ul className="menu flex flex-col items-start w-full">
-                    {notifications.length > 0 ? (
-                      notifications.map((notification) => (
-                        <li
-                          key={notification.id}
-                          className="relative p-2 cursor-default w-full flex justify-between"
-                        >
-                          {(notification.link != null) ? (
-                            <a
-                              href={notification.link}
-                              className="text-sm text-blue-600 hover:underline"
-                            >
-                              {notification.message}
-                            </a>
-                          ) : (
-                            <span className="text-sm">
-                              {notification.message}
-                            </span>
-                          )}
-                          <button
-                            onClick={() => {
-                              handleDeleteNotification(notification.id);
-                            }}
-                            className="top-0 right-0 text-red-500 text-sm cursor-pointer"
+              <div className="p-2 max-h-[250px] overflow-y-auto">
+                <ul className="menu flex flex-col items-start w-full">
+                  {notifications.length > 0 ? (
+                    notifications.map((notification) => (
+                      <li
+                        key={notification.id}
+                        className="relative p-2 cursor-default w-full flex justify-between"
+                      >
+                        {notification.link != null ? (
+                          <a
+                            href={notification.link}
+                            className="text-sm text-blue-600 hover:underline"
                           >
-                            ✕
-                          </button>
-                        </li>
-                      ))
-                    ) : (
-                      <li className="p-2 text-gray-500 text-sm">
-                        {t("navbar.noNotifications")}
+                            {notification.message}
+                          </a>
+                        ) : (
+                          <span className="text-sm">
+                            {notification.message}
+                          </span>
+                        )}
+                        <button
+                          onClick={() => {
+                            handleDeleteNotification(notification.id);
+                          }}
+                          className="top-0 right-0 text-red-500 text-sm cursor-pointer"
+                        >
+                          ✕
+                        </button>
                       </li>
-                    )}
-                  </ul>
-                </div>
+                    ))
+                  ) : (
+                    <li className="p-2 text-gray-500 text-sm">
+                      {t("navbar.noNotifications")}
+                    </li>
+                  )}
+                </ul>
+              </div>
 
-                {notifications.length > 0 && (
-                  <div className="w-full text-right border-t mt-2 p-2">
-                    <button
-                      onClick={handleClearAll}
-                      className="text-sm text-red-600 hover:underline"
-                    >
-                      {t("actions.clearAll")}
-                    </button>
-                  </div>
-                )}
+              {notifications.length > 0 && (
+                <div className="w-full text-right border-t mt-2 p-2">
+                  <button
+                    onClick={handleClearAll}
+                    className="text-sm text-red-600 hover:underline"
+                  >
+                    {t("actions.clearAll")}
+                  </button>
+                </div>
+              )}
             </PopoverContent>
           </Popover>
 
@@ -206,10 +207,11 @@ export const Navbar = () => {
                     <DropdownMenuPortal>
                       <DropdownMenuSubContent>
                         <DropdownMenuRadioGroup
-                          value={i18n.language}
+                          value={preferences.language}
                           onValueChange={(value) => {
-                            void i18n.changeLanguage(value);
-                            setPosition(value);
+                            if (value === "en" || value === "pt") {
+                              setPreferences({ language: value });
+                            }
                           }}
                         >
                           <DropdownMenuRadioItem value="pt">
