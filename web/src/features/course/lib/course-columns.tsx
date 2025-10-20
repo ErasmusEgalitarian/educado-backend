@@ -57,7 +57,7 @@ export const createCourseColumns = ({
     },
     {
       accessorKey: "course_categories",
-      header: t("courseManager.categories"),
+      header: t("categories.categories"),
       cell: ({ row }) => {
         const course = row.original;
         const categories = course.course_categories ?? [];
@@ -97,7 +97,7 @@ export const createCourseColumns = ({
     },
     {
       id: "rating",
-      header: t("rating.rating"),
+      header: t("courseManager.rating"),
       cell: () => {
         // Placeholder rating - you can replace this with actual rating data later
         const rating = 4.2;

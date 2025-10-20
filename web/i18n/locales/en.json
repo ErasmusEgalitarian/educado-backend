@@ -123,7 +123,8 @@
     "leavePageMessage": "Are you sure you want to leave this page?",
     "createError": "Failed to Create Course",
     "updateError": "Failed to Update Course",
-    "genericError": "An unexpected error occurred. Please try again."
+    "genericError": "An unexpected error occurred. Please try again.",
+    "rating": "Rating"
   },
   "courses": {
     "pageTitle": "Courses list",
