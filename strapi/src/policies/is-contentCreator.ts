@@ -10,11 +10,17 @@ export default async (policyContext, config, { strapi }) => {
 
     //gets secret key from .env
     const secretKey = process.env.JWT_SECRET;
+    let user : any;
 
-    // Extract the authenticated user from the policy context
-    // This object is populated by Strapi when the user is logged in
-    const user : any = jwt.verify(policyContext.request.ctx.headers.authorization, secretKey);
-
+    try {
+        // Extract the authenticated user from the policy context
+        // This object is populated by Strapi when the user is logged in
+        const user : any = jwt.verify(policyContext.request.ctx.headers.authorization, secretKey);
+    } catch (error) {
+        strapi.log.error("JWT verification failed:", error);
+        return false;
+    }
+    
     // If there’s no authenticated user, deny access immediately
     if (!user) {
         console.log(policyContext.request.ctx.request.body);
