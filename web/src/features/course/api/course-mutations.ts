@@ -183,3 +183,32 @@ export const useDeleteCourseMutation = () => {
     },
   });
 };
+
+export const useCreateCategoryMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (categoryName: string) => {
+      const response =
+        await CourseCategoryService.courseCategoryPostCourseCategories(
+          undefined, // fields parameter
+          undefined,
+          undefined,
+          {
+            data: {
+              name: categoryName,
+              publishedAt: new Date().toISOString(),
+            },
+          }
+        );
+      return response.data;
+    },
+    onSuccess: () => {
+      // Invalidate course categories queries after creating a new category
+      void queryClient.invalidateQueries({
+        queryKey: ["course-categories"],
+        exact: false,
+      });
+    },
+  });
+};
