@@ -4,6 +4,7 @@
 
 import { factories } from '@strapi/strapi'
 import  jwt  from "jsonwebtoken";
+import bcrypt from 'bcryptjs';
 
 export default factories.createCoreController('api::content-creator.content-creator', ({ strapi }) => ({
     async login(ctx) {
@@ -16,24 +17,20 @@ export default factories.createCoreController('api::content-creator.content-crea
             });
 
         if (!user) {
-        return ctx.badRequest('Invalid email or password', {
-            error: { code: 'E0004', message: 'Invalid email or password '}
-        });
+            return ctx.badRequest('Invalid email or password', {
+            error: { code: 'E0004', message: 'Invalid email or password '}});
         }
 
-        const isValidPassword = password.compare(user.password); // implement password validation logic here
-
+        const isValidPassword = await bcrypt.compare(password, user.password);
 
         if (!isValidPassword) {
-        return ctx.badRequest('Invalid email or password', {
-            error: { code: 'E0004', message: 'Invalid email or password'}
-        });
+            return ctx.badRequest('Invalid email or password', {
+                error: { code: 'E0004', message: 'Invalid email or password'}});
         }
 
-        if (!user.confirmed) {
-        return ctx.badRequest('Admin approval is required.', {
-            error: { code: 'E1001', message: 'Admin approval is required'}
-        });
+        if (user.verifiedAt == null) {
+            return ctx.badRequest('Admin approval is required.', {
+                error: { code: 'E1001', message: 'Admin approval is required'}});
         }
 
 
@@ -46,16 +43,17 @@ export default factories.createCoreController('api::content-creator.content-crea
         );
 
         // 4. Respond with token and user info
-        ctx.send({
-        jwt: token,
-        user: {
+        return ctx.send({
+            jwt: token,
+            user: {
             id: user.id,
             email: user.email,
             name: user.name,
-        },
+            },
         });
         } catch (err) {
-        ctx.body = err;
+        console.error(err);
+        return ctx.internalServerError('Something went wrong');
         }
     },
 }));
