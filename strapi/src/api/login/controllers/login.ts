@@ -45,7 +45,7 @@ export default {
       );
       if (!validPassword) {
         return ctx.unauthorized("Invalid credentials", {
-          code: "INVALID_PASSWORD",
+          code: "INVALID_PASSWORD OR INVALID_EMAIL",
         });
       }
       // Generate JWT token using selected user fields
