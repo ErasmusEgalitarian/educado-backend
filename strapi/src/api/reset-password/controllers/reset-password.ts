@@ -19,12 +19,7 @@ const requestHandler = async (ctx, next) => {
   // TODO: Implement error codes
   if (!studentEmail || !student) {
     ctx.response.status = 400;
-    ctx.response.body = {
-        error: {
-          code: 'E0004',
-          message: 'Student not found'
-      }
-    }
+    ctx.response.body = { error: errorCodes['E0004'] }
     return;
   }
 
@@ -64,12 +59,7 @@ for (const token of existingTokens) {
     ctx.response.body = {status: 'success'};
   } else {
     ctx.response.status = 500;
-    ctx.response.body = {
-        error: {
-          code: 'E0004',
-          message: 'Student not found'
-      }
-    }
+    ctx.response.body = { error: errorCodes['E0004'] }
   }
 }
 
