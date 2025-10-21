@@ -1,0 +1,433 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+      - ".gitignore"
+
+jobs:
+  detect-changes:
+    name: Detect Changed Projects
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    outputs:
+      strapi_changed: ${{ steps.filter.outputs.strapi }}
+      web_changed: ${{ steps.filter.outputs.web }}
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for changes
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            strapi:
+              - 'strapi/**'
+              - 'package.json'
+              - 'turbo.json'
+            web:
+              - 'web/**'
+              - 'package.json'
+              - 'turbo.json'
+
+    # Strapi checks (REQUIRED - will block PR)
+  strapi-lint-format:
+    name: Strapi - Lint & Format
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.strapi_changed == 'true'
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Strapi)
+        run: |
+          npm ci --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm install --no-audit --no-fund)
+
+      - name: Lint
+        run: npm --prefix strapi run lint:check || (cd strapi && npm run lint:check)
+
+      - name: Format Check
+        run: npm --prefix strapi run format:check || (cd strapi && npm run format:check)
+
+  strapi-type-check:
+    name: Strapi - Type Check
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.strapi_changed == 'true'
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Strapi)
+        run: |
+          npm ci --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm install --no-audit --no-fund)
+
+      - name: Type Check
+        run: |
+          npm --prefix strapi run type-check || (cd strapi && npm run type-check)
+
+  strapi-test:
+    name: Strapi - Test
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.strapi_changed == 'true'
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Strapi)
+        run: |
+          npm ci --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm install --no-audit --no-fund)
+
+      - name: Test
+        run: |
+          npm --prefix strapi run test || (cd strapi && npm run test)
+
+  strapi-build:
+    name: Strapi - Build
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.strapi_changed == 'true'
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Strapi)
+        run: |
+          npm ci --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm ci --no-audit --no-fund)
+
+      - name: Build
+        run: |
+          npm --prefix strapi run build || (cd strapi && npm run build)
+
+  # Web checks (ADVISORY - won't block PR due to legacy code)
+  web-lint-format-changed:
+    name: Web - Lint & Format Changed (Required)
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.web_changed == 'true'
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
+
+      - name: Ensure base branch is fetched
+        run: |
+          if [ -n "${{ github.base_ref }}" ]; then
+            git fetch origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }} || true
+          fi
+
+      - name: Lint and format changed files only
+        run: |
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMR origin/${{ github.base_ref }}...HEAD -- 'web/**/*.js' 'web/**/*.jsx' 'web/**/*.ts' 'web/**/*.tsx' | sed 's#^web/##' | tr '\n' ' ')
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "✅ No JS/TS files changed in web/, skipping lint & format checks"
+          else
+            echo "Checking changed files: $CHANGED_FILES"
+            ( cd web && npx cross-env ENV_PATH=../.env eslint $CHANGED_FILES && npx prettier --check $CHANGED_FILES )
+          fi
+
+  web-typecheck-changed:
+    name: Web - Type Check Changed (Required)
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.web_changed == 'true'
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
+
+      - name: Type check only if TS changed
+        run: |
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMR origin/${{ github.base_ref }}...HEAD -- 'web/**/*.ts' 'web/**/*.tsx')
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "✅ No TS/TSX files changed in web/, skipping type-check"
+          else
+            echo "Running project type-check due to TS changes"
+            npm --prefix web run type-check || (cd web && npm run type-check)
+          fi
+
+  web-lint-format-full:
+    name: Web - Full Lint & Format (Advisory)
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.web_changed == 'true'
+    continue-on-error: true
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
+
+      - name: Lint (full)
+        run: |
+          npm --prefix web run lint:check || (cd web && npm run lint:check)
+
+      - name: Format Check (full)
+        run: |
+          npm --prefix web run format:check || (cd web && npm run format:check)
+
+  web-typecheck-full:
+    name: Web - Full Type Check (Advisory)
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.web_changed == 'true'
+    continue-on-error: true
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
+
+      - name: Type Check (full)
+        run: |
+          npm --prefix web run type-check || (cd web && npm run type-check)
+
+  web-test-full:
+    name: Web - Full Test (Advisory)
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.web_changed == 'true'
+    continue-on-error: true
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
+
+      - name: Test (full)
+        run: |
+          npm --prefix web run test || (cd web && npm run test)
+
+  web-build-full:
+    name: Web - Full Build (Advisory)
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.web_changed == 'true'
+    continue-on-error: true
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund)
+
+      - name: Build (full)
+        run: |
+          npm --prefix web run build || (cd web && npm run build)
+
+  # Summary job - only REQUIRED checks must pass
+  pr-checks-complete:
+    name: Required PR Checks Passed
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs:
+      - detect-changes
+      - strapi-lint-format
+      - strapi-type-check
+      - strapi-test
+      - strapi-build
+      - web-lint-format-changed
+      - web-typecheck-changed
+    if: always()
+    steps:
+      - name: Check required jobs
+        run: |
+          # Check Strapi jobs (required if Strapi changed)
+          STRAPI_CHANGED="${{ needs.detect-changes.outputs.strapi_changed }}"
+          WEB_CHANGED="${{ needs.detect-changes.outputs.web_changed }}"
+
+          if [ "$STRAPI_CHANGED" = "true" ]; then
+            if [ "${{ needs.strapi-lint-format.result }}" = "failure" ] || \
+               [ "${{ needs.strapi-type-check.result }}" = "failure" ] || \
+               [ "${{ needs.strapi-test.result }}" = "failure" ] || \
+               [ "${{ needs.strapi-build.result }}" = "failure" ]; then
+              echo "❌ Required Strapi checks failed"
+              exit 1
+            fi
+          fi
+
+          # Check Web changed-files jobs (required if Web changed)
+          if [ "$WEB_CHANGED" = "true" ]; then
+            if [ "${{ needs.web-lint-format-changed.result }}" = "failure" ] || \
+               [ "${{ needs.web-typecheck-changed.result }}" = "failure" ]; then
+              echo "❌ Required Web changed-files checks failed"
+              exit 1
+            fi
+          fi
+
+          echo "✅ All required checks passed!"
+          echo "ℹ️  Web full-codebase checks are advisory only (legacy code - won't block PR)"
