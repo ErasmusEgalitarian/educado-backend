@@ -81,11 +81,19 @@ export const errorCodes: Record<string, errorDetail> = {
 		code: 'E0018',
 		message: 'Failed to delete all account data from database!'
 	},
+	E0019: {
+		code: 'E0019',
+		message: 'Unexpected server error'
+	},
+	E0020: {
+		code: 'E0020',
+		message: 'Server configuration error'
+	},
 
 	// E01 - Login errors
 	E0101: {
 		code: 'E0101',
-		message: 'Invalid email'
+		message: 'Email and password are required'
 	},
 	E0102: {
 		code: 'E0102',
@@ -101,8 +109,13 @@ export const errorCodes: Record<string, errorDetail> = {
 	},
 	E0105: {
 		code: 'E0105',
-		message: 'Invalid password'
+		message: 'User Not Found'
 	},
+	E0106: {
+		code: 'E0106',
+		message: 'Invalid password or email'
+	},
+	
 
 	// E02 - Signup errors
 	E0201: {

@@ -3,6 +3,7 @@
  */
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import { errorCodes } from "../../../helpers/errorCodes";
 
 export default {
   loginAction: async (ctx, next) => {
@@ -11,18 +12,16 @@ export default {
       const secretKey = process.env.JWT_SECRET;
       if (!secretKey) {
         strapi.log.error("JWT_SECRET missing in environment variables");
-        return ctx.internalServerError("Server configuration error", {
-          code: "AUTH_CONFIG_ERROR",
-        });
+        ctx.response.status = 500;
+        ctx.response.body = { error: errorCodes['E0020'] }
       }
 
       // Extract email and password from request body
       const { email, password } = ctx.request.body;
 
       if (!email || !password) {
-        return ctx.badRequest("Email and password are required", {
-          code: "MISSING_CREDENTIALS",
-        });
+        ctx.response.status = 400;
+        ctx.response.body = { error: errorCodes['E0101'] }
       }
 
       // making email lower case and removing spaces so that it matches the stored email format
@@ -34,9 +33,8 @@ export default {
       });
 
       if (!user) {
-        return ctx.unauthorized("Invalid credentials", {
-          code: "USER_NOT_FOUND",
-        });
+        ctx.response.status = 400;
+        ctx.response.body = { error: errorCodes['E0105'] }
       }
       // Password comparision using bcrypt
       const validPassword = await bcrypt.compare(
@@ -44,9 +42,7 @@ export default {
         user.password
       );
       if (!validPassword) {
-        return ctx.unauthorized("Invalid credentials", {
-          code: "INVALID_PASSWORD OR INVALID_EMAIL",
-        });
+        ctx.response.body = { error: errorCodes['E0106'] }
       }
       // Generate JWT token using selected user fields
       const studentJWT = {
@@ -62,9 +58,8 @@ export default {
       ctx.response.body = JSON.stringify(jwtToken);
     } catch (err) {
       strapi.log.error("Login failed:", err);
-      return ctx.internalServerError("Unexpected server error", {
-        code: "SERVER_ERROR",
-      });
+      ctx.response.status = 500;
+      ctx.response.body = { error: errorCodes['E0019'] }
     }
   },
 };
