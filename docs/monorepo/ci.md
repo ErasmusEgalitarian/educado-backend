@@ -69,13 +69,23 @@ filters: |
 
 ### Required Secrets
 
-All workflows need exactly **3 secrets**:
+All workflows need exactly **3 secrets** (plus 1 automatic token for PR comments):
 
-| Secret | Description | Example (GitHub) | Example (Gitea) |
-|--------|-------------|------------------|-----------------|
-| `REGISTRY_URL` | Container registry URL | `ghcr.io` | `gitea.example.com` |
-| `REGISTRY_USERNAME` | Registry username | `github-username` | `gitea-username` |
-| `REGISTRY_PASSWORD` | Access token | GitHub PAT with `write:packages` | Gitea token with registry access |
+| Secret | Description | Example (GitHub) | Example (Gitea) | Required By |
+|--------|-------------|------------------|-----------------|-------------|
+| `REGISTRY_URL` | Container registry URL | `ghcr.io` | `gitea.example.com` | Docker builds |
+| `REGISTRY_USERNAME` | Registry username | `github-username` | `gitea-username` | Docker builds |
+| `REGISTRY_PASSWORD` | Access token | GitHub PAT with `write:packages` | Gitea token with registry access | Docker builds |
+| `GITHUB_TOKEN` | GitHub API access | ✅ **Auto-provided** | ❌ Not available | PR comments in PR checks workflow |
+
+> [!NOTE]
+> **`GITHUB_TOKEN` is automatic!** 
+> - GitHub Actions automatically provides this token
+> - Workflow has `permissions:` configured for PR comments
+> - No manual setup needed - it just works! 🎉
+> - Used by PR checks workflow to post code quality comments
+> 
+> **Gitea Note**: PR comment feature requires GitHub. On Gitea, statistics are still available in job summaries.
 
 ### Setup Instructions
 
@@ -85,10 +95,16 @@ All workflows need exactly **3 secrets**:
 2. Click **New repository secret**
 3. Add each secret with values from table above
 
+> [!TIP]
+> **PR comments work automatically!** The workflow has `permissions:` configured to grant write access for posting PR comments. No additional setup required! 🎉
+
 #### Gitea Actions
 
 1. Go to **Settings** → **Secrets**
 2. Add each secret with values from table above
+
+> [!NOTE]
+> PR comment feature is GitHub-only. On Gitea, statistics are available in job summaries.
 
 > [!IMPORTANT]
 > Never commit secrets to git! Always use repository secrets/environment variables.
@@ -290,7 +306,7 @@ Runs on **entire codebase** with `continue-on-error: true`:
 
 ##### 📊 Code Quality Statistics
 
-Each advisory check now provides **detailed metrics** in the PR summary:
+Each advisory check now provides **detailed metrics** automatically posted as a PR comment:
 
 **Lint & Format**:
 - ESLint errors count
@@ -304,6 +320,7 @@ Each advisory check now provides **detailed metrics** in the PR summary:
 - Tests passed ✅
 - Tests failed ❌
 - Total test count
+- Pass rate percentage
 
 **Build**:
 - Build status (success/failed)
@@ -311,6 +328,18 @@ Each advisory check now provides **detailed metrics** in the PR summary:
 - Distribution size 📦
 
 **How to view**:
+
+**Option 1: PR Comment (Easiest)** 🎯
+- Statistics are **automatically posted** as a comment on your PR
+- Shows collapsible sections for each check type
+- Updates on every push (replaces previous comment)
+- Visible to everyone without opening logs
+- Workflow has `permissions:` configured automatically
+
+> [!NOTE]
+> **No setup required!** The workflow file includes `permissions: pull-requests: write` to enable PR comments. This is better than repository-wide settings because it's explicit and version-controlled!
+
+**Option 2: Job Summary**
 1. Go to the PR **Checks** tab
 2. Click on **"Required PR Checks Passed"** job
 3. View the **Summary** section for full statistics
@@ -319,6 +348,48 @@ Each advisory check now provides **detailed metrics** in the PR summary:
 - 📈 Track code quality trends over time
 - 🎯 See progress as you fix issues
 - 💡 Identify areas needing attention
+- 👥 Share metrics with team without diving into logs
+
+**Example PR Comment**:
+
+```
+🌟 Code Quality Report
+
+✅ Required Checks
+All required checks passed ✓ - This PR can be merged!
+
+📊 Codebase Quality Metrics (Advisory)
+
+🔍 Lint & Format (click to expand)
+  | Metric                   | Count |
+  |--------------------------|-------|
+  | ESLint Errors            | 42    |
+  | ESLint Warnings          | 18    |
+  | Files Needing Format     | 7     |
+
+🔤 Type Check (click to expand)
+  | Metric              | Count |
+  |---------------------|-------|
+  | TypeScript Errors   | 156   |
+
+🧪 Tests (click to expand)
+  | Metric        | Count |
+  |---------------|-------|
+  | Tests Passed  | 127   |
+  | Tests Failed  | 3     |
+  | Total Tests   | 130   |
+  | Pass Rate     | 98%   |
+
+🏗️ Build (click to expand)
+  | Metric        | Value    |
+  |---------------|----------|
+  | Build Status  | success  |
+  | Build Time    | 45s      |
+  | Dist Size     | 2.3M     |
+```
+
+> [!TIP]
+> The comment updates automatically on each push, so you always see the latest metrics!
 
 ---
 
@@ -421,6 +492,40 @@ npm run test
 # Test before pushing
 npm run lint:check && npm run format:check && npm run type-check && npm run test
 ```
+
+**PR Comment Not Appearing?**
+
+If the automatic PR comment isn't showing up:
+
+1. **Check Workflow Permissions** (Rare - workflow has them built-in) ⚠️
+   
+   The PR checks workflow includes these permissions:
+   ```yaml
+   permissions:
+     contents: read
+     pull-requests: write
+     issues: write
+   ```
+   
+   If you see this error:
+   ```
+   Error: Resource not accessible by integration
+   ```
+   
+   **This should NOT happen** because permissions are in the workflow file. If it does:
+   - Check if your organization has disabled GitHub Actions permissions entirely
+   - Contact your GitHub org admin
+
+2. **Verify Web Changes Detected**:
+   - PR comment only appears when Web files change
+   - Check if your PR modified any files in `web/**`
+   - Look for `web_changed: 'true'` in the detect-changes job output
+
+3. **Check Job Status**:
+   - Go to PR → **Checks** tab
+   - Look for "Post PR Comment with Statistics" step
+   - If it failed but job passed, check the error message
+   - Statistics are still available in the job summary even if comment fails!
 
 > [!TIP]
 > See the complete [Command Reference](turborepo.md#command-reference) for all quality check commands and what they do.
