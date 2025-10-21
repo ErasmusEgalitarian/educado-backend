@@ -29,17 +29,18 @@ const requestHandler = async (ctx, next) => {
 
   // TODO: Check reset attempts
 
-  // Delete token if one already exists for the student
-  let existingToken = await strapi.documents(tokenAPI).findFirst({
-    filters: {
-      student: {
-        documentId: student.documentId
-      }
+// Find all tokens for the student
+let existingTokens = await strapi.documents(tokenAPI).findMany({
+  filters: {
+    student: {
+      documentId: student.documentId
     }
-  });
-  if (existingToken) {
-    await strapi.documents(tokenAPI).delete({documentId: existingToken.documentId});
   }
+});
+
+for (const token of existingTokens) {
+  await strapi.documents(tokenAPI).delete({ documentId: token.documentId });
+}
 
   // Generate token
   let resetToken = generatePasswordResetToken();
