@@ -106,6 +106,17 @@ export default {
         return ctx.badRequest('student with that email does not excist or is already verifed');
       }
 
+
+      // Find all existing verfication tokens for the student, and deletes them
+      let existingTokens = await strapi.documents('api::verification-token.verification-token').findMany({
+        filters: {
+            userEmail: lowercaseEmail
+        }
+      });
+      for (const token of existingTokens) {
+        await strapi.documents('api::verification-token.verification-token').delete({ documentId: token.documentId });
+      }
+
       //generate token code and send email
       const tokenString = generateTokenCode(4);
       sendVerificationEmail({name: name, email: email}, tokenString);
