@@ -1,6 +1,9 @@
-module.exports = {
+export interface errorDetail {
+  code: string;
+  message: string;
+}
 
-
+export const errorCodes: Record<string, errorDetail> = {
 	// E00 - General errors
 	E0000: {
 		code: 'E0000',
