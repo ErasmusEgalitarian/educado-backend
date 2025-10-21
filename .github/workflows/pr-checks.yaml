@@ -651,6 +651,7 @@ jobs:
 
       - name: Post PR Comment with Statistics
         if: github.event_name == 'pull_request' && needs.detect-changes.outputs.web_changed == 'true'
+        continue-on-error: true
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -742,20 +743,33 @@ jobs:
             );
 
             // Update or create comment
-            if (botComment) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: botComment.id,
-                body: comment
-              });
-              console.log('Updated existing comment');
-            } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body: comment
-              });
-              console.log('Created new comment');
+            try {
+              if (botComment) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: botComment.id,
+                  body: comment
+                });
+                console.log('✅ Updated existing comment');
+              } else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: comment
+                });
+                console.log('✅ Created new comment');
+              }
+            } catch (error) {
+              console.error('❌ Failed to post PR comment:', error.message);
+              console.log('');
+              console.log('To enable PR comments, grant write permissions:');
+              console.log('1. Go to Settings → Actions → General');
+              console.log('2. Under "Workflow permissions"');
+              console.log('3. Select "Read and write permissions"');
+              console.log('4. Click Save');
+              console.log('');
+              console.log('Statistics are still available in the job summary above! 📊');
+              throw error; // Re-throw to mark step as failed (but continue-on-error will prevent job failure)
             }
