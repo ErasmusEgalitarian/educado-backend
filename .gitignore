@@ -143,6 +143,4 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
-strapi/src/extensions/documentation/documentation/1.0.0/full_documentation.json
-strapi/src/extensions/documentation/documentation/1.0.0/full_documentation.json
-strapi/src/extensions/documentation/documentation/1.0.0/full_documentation.json
+
