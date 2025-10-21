@@ -20,37 +20,52 @@ interface UserCredentials {
   isContentCreator: boolean;
 }
 
+export interface SignupPayload {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
+
+
+
+const api = axios.create({
+  baseURL: BACKEND_URL,
+  headers: {"Content-Type": "application/json",},
+});
+
 const postUserLogin = async (credentials: UserCredentials) => {
-  return await axios.post(`${BACKEND_URL}/api/auth/login`, credentials);
+  return api.post(`/api/auth/login`, credentials);
 };
 
-const postUserSignup = async (formData: ContentCreatorApplication) => {
-  return await axios.post(`${BACKEND_URL}/api/auth/signup`, formData);
+const postUserSignup = async (payload: SignupPayload) => {
+  return await api.post(`/api/content-creator/register`, payload)
+  .then(r => r.data);
 };
 
 const postUserVerification = async (formData: ContentCreatorApplication) => {
-  return await axios.post(`${BACKEND_URL}/api/auth/verify-email`, formData);
+  return await api.post(`/api/auth/verify-email`, formData);
 };
 
 const GetCCApplications = async () => {
-  return await axios.get(`${BACKEND_URL}/api/applications`);
+  return await api.get(`/api/applications`);
 };
 
 const GetSingleCCApplication = async (id: string | undefined) => {
-  return await axios.get<{ applicator: User; application: Application }>(
-    `${BACKEND_URL}/api/applications/${id}`,
+  return await api.get<{ applicator: User; application: Application }>(
+    `/api/applications/${id}`,
   );
 };
 
 const AcceptApplication = async (id: string): Promise<unknown> => {
-  return await axios.put(`${BACKEND_URL}/api/applications/${id}approve`);
+  return await api.put(`/api/applications/${id}approve`);
 };
 
 const RejectApplication = async (
   id: string,
   rejectionReason: string,
 ): Promise<unknown> => {
-  return await axios.put(`${BACKEND_URL}/api/applications/${id}reject`, {
+  return await api.put(`/api/applications/${id}reject`, {
     rejectionReason,
   });
 };
@@ -73,20 +88,13 @@ const postNewApplication = async (data: {
   isCurrentJob: boolean[];
   workActivities: string[];
 }) => {
-  return await axios.post(
-    `${BACKEND_URL}/api/applications/newapplication`,
-    data,
-  );
+  return await api.post(`/api/applications/newapplication`, data,);
 };
 
-const addInstitution = async (data: Institution) => {
-  const res = await axios.post<Institution>(
-    `${BACKEND_URL}/api/applications/newinstitution`,
-    data,
-  );
-  return res.data;
-};
-
+  const addInstitution = async (data: Institution) => {
+    return await api.post<Institution>(`/api/applications/newinstitution`, data);
+  };
+  
 const AuthServices = Object.freeze({
   postUserLogin,
   postUserSignup,
