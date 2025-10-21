@@ -93,7 +93,7 @@ export default {
         name: studentEntry.name,
         email: studentEntry.email,
         password: studentEntry.password,
-        isVerified: studentEntry.isVerified
+        verifiedAt: new Date(studentEntry.verifiedAt)
       }
 
       ctx.response.body = jwt.sign(studentJWT, secretKey);
