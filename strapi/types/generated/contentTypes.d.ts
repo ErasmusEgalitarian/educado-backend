@@ -912,7 +912,6 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
         minLength: 1;
       }>;
     feedbacks: Schema.Attribute.Relation<'oneToMany', 'api::feedback.feedback'>;
-    isVerified: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -934,6 +933,7 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    verifiedAt: Schema.Attribute.Date;
   };
 }
 
