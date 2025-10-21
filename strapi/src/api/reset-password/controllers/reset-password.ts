@@ -1,4 +1,5 @@
 import { sendResetPasswordEmail } from "../helpers/email"
+import { errorCodes } from "../../../helpers/errorCodes";
 
 /**
  * A set of functions called "actions" for `reset-password`
@@ -77,7 +78,6 @@ const codeHandler = async (ctx, next) => {
   const resetToken = ctx.request.body.token;
   const studentEmail = ctx.request.body.email;
   const tokenAPI = "api::student-password-reset-token.student-password-reset-token";
-  const student = "api::student.student";
 
 
   // Get student-password-reset-token with the email
@@ -95,16 +95,11 @@ const codeHandler = async (ctx, next) => {
   } else {
     // TODO: Implement errorcodes: If token is invalid, return error E0405
     ctx.response.status = 500;
-    ctx.response.body = {
-        error: {
-          code: 'E0405',
-          message: 'Password reset code is invalid or has already been used.'
-      }
-    }
+    ctx.response.body = { error: errorCodes['E0405'] }
+    
   }
 }
 
-  // if (!resetToken || !tokenFound)
 
 
 /**
