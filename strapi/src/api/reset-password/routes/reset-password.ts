@@ -5,7 +5,7 @@ export default {
      path: '/reset-password-request',
      handler: 'reset-password.requestHandler',
      config: {
-       policies: [],
+       policies: ['global::rate-limit'],
        middlewares: [],
      },
     },
@@ -14,7 +14,7 @@ export default {
      path: '/reset-password-code',
      handler: 'reset-password.codeHandler',
      config: {
-       policies: [],
+       policies: ['global::rate-limit'],
        middlewares: [],
      },
     },

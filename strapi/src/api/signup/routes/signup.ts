@@ -5,7 +5,7 @@ export default {
      path: '/signup',
      handler: 'signup.signupAction',
      config: {
-       policies: [],
+       policies: ['global::rate-limit'],
        middlewares: [],
      },
     },
@@ -14,7 +14,7 @@ export default {
      path: '/studentVerificationTokenRequest',
      handler: 'signup.sendVerificationTokenAction',
      config: {
-       policies: [],
+       policies: ['global::rate-limit'],
        middlewares: [],
      },
     },
