@@ -6,12 +6,23 @@ export interface InputIconProps {
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
 }
+
+type NativeInputProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "size"
+>;
+
 interface InputProps extends React.ComponentProps<"input">, InputIconProps {
   variant?: "default" | "error";
   readonly inputSize?: InputSize;
   // label prop kept (no floating behavior now) — remove if unused elsewhere
   label?: string;
   containerClassName?: string;
+
+   onValueChange?: (value: string) => void;
+
+    childProps?: any;
+
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -24,7 +35,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       startIcon,
       endIcon,
       containerClassName,
-      ...props
+      onChange,        
+      onValueChange,
+      ...rest            
     },
     ref
   ) => {
@@ -42,10 +55,17 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       lg: "h-12 p-5 text-lg",
     };
 
+    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+      onChange?.(e);                    
+      onValueChange?.(e.target.value);   
+    };
+
     const element = (
       <input
+        ref={ref}
         type={type}
         data-slot="input"
+        onChange={handleChange}          
         className={cn(
           "file:text-foreground placeholder:text-greyscale-text-caption selection:bg-primary selection:text-primary-foreground flex h-11 w-full min-w-0 rounded-md border bg-white px-3 py-2 text-base text-greyscale-text-title shadow-xs transition-[color,box-shadow,border-color] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-greyscale-surface-disabled/20",
           "focus-visible:ring-[3px]",
@@ -55,14 +75,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           endIcon && "pr-10",
           className
         )}
-        ref={ref}
-        {...props}
+        {...rest}                         
       />
     );
 
-    if (!startIcon && !endIcon) {
-      return element;
-    }
+    if (!startIcon && !endIcon) return element;
 
     return (
       <div className={cn("relative w-full", containerClassName)}>
@@ -87,6 +104,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+
 
 Input.displayName = "Input";
 

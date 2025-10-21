@@ -10,7 +10,7 @@ export default factories.createCoreController('api::content-creator.content-crea
     async register(ctx){
         try{
             const institutionalMails = ["student.aau.dk"];
-            const {name, lastName, email, password } = ctx.request.body;
+            const {firstName, lastName, email, password } = ctx.request.body;
 
             const existing = await strapi.db.query('api::content-creator.content-creator').findOne({
             where: { email },
@@ -30,50 +30,29 @@ export default factories.createCoreController('api::content-creator.content-crea
                 data:{
                     email: email,
                     password: encryptedPassword,
-                    firstName: name,
+                    firstName: firstName,
                     lastName: lastName,
                     verifiedAt: confirmationDate
                 }
             })
 
             ctx.send({
-                message: isTrusted 
-                ? `User registered and auto-approved on ${confirmationDate.toISOString()}.`
-                : 'Registration successful. Waiting for admin approval.'
-            })
-
-      
+          status: isTrusted ? 'approved' : 'pending',
+          userId: newUser.id,
+          verifiedAt: confirmationDate,
+          message: isTrusted
+            ? `User registered and auto-approved on ${confirmationDate!.toISOString()}.`
+            : 'Registration successful. Waiting for admin approval.',
+        });
         
         }
         catch(err){
             ctx.badRequest('Registration failed', {error: err.message});
         }
         
-        //list of institutional mails, use aau to start
-
-        // access request data
-        // name, surname, email, password, isauthorised bool, 
-
-        //check if exist
-
-        //maybe ***encrypt password***
-
-        // is mail institutional
-        
-        
-
-        //make user
-
-        // 
-
-        
-
-
-
+               
 
     }
-
-
 
 
 }));

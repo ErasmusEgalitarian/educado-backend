@@ -14,17 +14,18 @@ export interface ApiError extends Error {
   };
 }
 
-type ApiFunction<T, A extends unknown[]> = (...args: A) => Promise<T>;
+type ApiFunction<T, A> = (args: A) => Promise<T>;
 
-export const useApi = <T, A extends unknown[]>(apiFunc: ApiFunction<T, A>) => {
+
+export const useApi = <T, A>(apiFunc: (args: A) => Promise<T>) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<ApiError | null>(null);
 
-  const call = async (...args: A): Promise<T> => {
+  const call = async (args: A): Promise<T> => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await apiFunc(...args);
+      const response = await apiFunc(args);
       setIsLoading(false);
       return response;
     } catch (error) {
