@@ -9,5 +9,14 @@ export default {
        middlewares: [],
      },
     },
+    {
+     method: 'POST',
+     path: '/studentVerificationTokenRequest',
+     handler: 'signup.sendVerificationTokenAction',
+     config: {
+       policies: [],
+       middlewares: [],
+     },
+    },
   ],
 };

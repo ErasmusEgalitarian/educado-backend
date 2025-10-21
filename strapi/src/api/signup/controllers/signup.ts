@@ -69,7 +69,42 @@ export default {
         documentId: studentResponse.documentId
       });
       const studentEntry = studentPublished.entries[0];
+      
+      const studentJWT : Student = {
+        documentId: studentPublished.documentId,
+        name: studentEntry.name,
+        email: studentEntry.email,
+        password: studentEntry.password,
+        verifiedAt: new Date(studentEntry.verifiedAt)
+      }
 
+      ctx.response.body = jwt.sign(studentJWT, secretKey);
+
+    } catch (err) {
+      ctx.body = err;
+    }
+  },
+
+  sendVerificationTokenAction: async (ctx, next) => {
+    try {
+
+      const { name, email } = ctx.request.body;
+      const lowercaseEmail = email.toLowerCase();
+      if(!lowercaseEmail || !name){
+        return ctx.badRequest('email and or name field is empty');
+      }
+
+      // student with that email does not excist or is already verifed
+      const student = await strapi.documents('api::student.student').findFirst(
+        {
+          filters: {
+            email: lowercaseEmail
+          }
+        }
+      );
+      if ((student == null) || !(student.verifiedAt == null)){
+        return ctx.badRequest('student with that email does not excist or is already verifed');
+      }
 
       //generate token code and send email
       const tokenString = generateTokenCode(4);
@@ -87,19 +122,12 @@ export default {
       if (!verificationTokenResponse){
         return ctx.internalServerError('Failed to create verfication token.');
       }
-      
-      const studentJWT : Student = {
-        documentId: studentPublished.documentId,
-        name: studentEntry.name,
-        email: studentEntry.email,
-        password: studentEntry.password,
-        verifiedAt: new Date(studentEntry.verifiedAt)
-      }
 
-      ctx.response.body = jwt.sign(studentJWT, secretKey);
+      ctx.response.body = 'ok';
 
     } catch (err) {
       ctx.body = err;
     }
   }
 };
+
