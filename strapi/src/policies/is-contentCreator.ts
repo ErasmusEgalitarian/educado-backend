@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken"
 
 export default async (policyContext, config, { strapi }) => {
 
-    //gets secret key from .env
+    // Gets secret key from .env
     const secretKey = process.env.JWT_SECRET;
     let user : any;
 
@@ -20,7 +20,7 @@ export default async (policyContext, config, { strapi }) => {
         strapi.log.error("JWT verification failed:", error);
         return false;
     }
-    
+
     // If there’s no authenticated user, deny access immediately
     if (!user) {
         console.log(policyContext.request.ctx.request.body);
@@ -37,12 +37,10 @@ export default async (policyContext, config, { strapi }) => {
             },
         });
 
-        if(user.verifiedAt != null){
+        if(user.verifiedAt == null){
             console.log("Content creator not verified")
             return false;
         }
-
-        console.log("is-contentCreator policy passed");
 
         // Return true if a matching Content Creator exists (grant access),
         // or false if not (deny access)
