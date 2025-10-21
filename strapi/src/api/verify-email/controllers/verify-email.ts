@@ -68,7 +68,7 @@ export default {
         verifiedAt: new Date(studentEntry.verifiedAt)
       }
 
-      const signedUser = jwt.sign(studentJWT, secretKey);
+      const signedUser = jwt.sign(studentJWT, secretKey, { expiresIn: '7d'});
 
       ctx.response.body = JSON.stringify(signedUser);
 

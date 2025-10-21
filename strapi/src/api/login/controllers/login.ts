@@ -57,7 +57,7 @@ export default {
         isVerified: user.isVerified,
       };
 
-      const jwtToken = jwt.sign(studentJWT, secretKey);
+      const jwtToken = jwt.sign(studentJWT, secretKey, { expiresIn: '7d'});
 
       ctx.response.body = JSON.stringify(jwtToken);
     } catch (err) {

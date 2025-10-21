@@ -536,7 +536,11 @@ export interface ApiContentCreatorContentCreator
       'api::content-creator.content-creator'
     > &
       Schema.Attribute.Private;
-    password: Schema.Attribute.Password & Schema.Attribute.Required;
+    password: Schema.Attribute.Password &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 8;
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     statusValue: Schema.Attribute.Enumeration<['TODO1', 'TODO2', 'TODO3']> &
       Schema.Attribute.Required;
@@ -927,7 +931,7 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
     password: Schema.Attribute.Password &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
-        minLength: 3;
+        minLength: 8;
       }>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
