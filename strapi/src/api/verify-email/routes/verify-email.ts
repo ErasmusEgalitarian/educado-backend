@@ -5,7 +5,7 @@ export default {
       path: '/verify-email',
       handler: 'verify-email.verifyAction',
       config: {
-        policies: [],
+        policies: ['global::rate-limit'],
         middlewares: [],
       },
      },
