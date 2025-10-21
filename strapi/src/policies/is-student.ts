@@ -38,7 +38,7 @@ export default async (policyContext, config, { strapi }) => {
             },
         });
 
-        if(!user.isVerified){
+        if(user.verifiedAt == null){
             console.log("Student not verified")
             return false;
         }
