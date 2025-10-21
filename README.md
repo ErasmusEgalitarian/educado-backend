@@ -1,55 +1,53 @@
-# Educado Backend (+ Web)
+# Educado Backend & Content Creator Platform
 
-This documentation is WIP, and will be improved shortly.
+Welcome to the Educado monorepo! This repository houses both the backend CMS (Strapi) and the content creator web application (React + Vite) in a single, streamlined workspace.
 
-## Running web
+![Educado Web - Login](/docs/assets/educado-web-login.png)
 
-1. Fill out the .env file according to the .env.example. and install node packages.
-2. Start Strapi
-3. (For now) go to the old backend repo and checkout the the dev branch.
-4. In educado-backend-old, go to settings/cors.js and change ports to :5174
-5. Fill out the .env file in the old repo
-6. Start the old backend along with Strapi (npm run dev)
-7. Go to /web and write ´npm run dev´
+![Educado Web - Courses Overview](/docs/assets/educado-web-courses-overview.png)
 
-## Running Strapi
+## 🎯 What's Inside
 
-Strapi requires node version 22 (LTS / Long-term support) version. It uses Postgres as a relational database, which you can run in Docker.
+### Content Creator Web App
+A fast, editor-friendly interface for creating and managing educational content. Built with React, Vite, and modern UI components.
 
-**Starting Postgres**
-To start Postgres, go to the projects root. Note this step is not required, except when running Strapi using the dev server.
+**[→ Explore Web Documentation](docs/web/index.md)**
 
-Execute:
+### Backend CMS (Strapi + PostgreSQL)
+A flexible headless CMS powered by Strapi v5, managing content models, permissions, and RESTful APIs.
 
-`docker compose up -d strapiDB`
+**[→ Explore Backend Documentation](docs/strapi/index.md)**
 
-This will start the postgres container only.
+## 🚀 Quick Start
 
-**Running Strapi's dev server**
-To develop on the Strapi instance, you can use either the dev server, or docker. If you want to use the dev server, you need to have started Postgress before as mentioned above.
+New to the project? Get up and running in minutes:
 
-To start the dev server, execute:
+**[→ Getting Started Guide](docs/monorepo/getting-started.md)**
 
-```sh
-cd strapi
-npm run dev
-```
+## 📖 Documentation
 
-**Running Strapi for Mobile or Web development**
-If you don't need Strapi's dev server for hot-reload, you can run both Strapi and Postgres with Docker alone.
+### For Developers
+- **[Monorepo Overview](docs/monorepo/index.md)** - Understanding the monorepo structure
+- **[Getting Started](docs/monorepo/getting-started.md)** - First-time setup guide
+- **[Turborepo](docs/monorepo/turborepo.md)** - Build system and task orchestration
+- **[CI/CD Pipeline](docs/monorepo/ci.md)** - Automated builds and deployments
+- **[Contributing](docs/monorepo/contributions.md)** - How to contribute to the project
+- **[Release Process](docs/monorepo/release-process.md)** - Versioning and releases
 
-Go to the project root and execute:
+### Technical Documentation TBD
+- **[Web App Technical Docs](docs/web/index.md)** - React, Vite, components, and architecture
+- **[Strapi Technical Docs](docs/strapi/index.md)** - Content types, plugins, and API
 
-```sh
-docker compose up --build -d
-```
+### Environment & Configuration
+- **[Environment Variables](docs/monorepo/environment-variables.md)** - Configuration reference
 
-This will build and run both Strapi and Postgres.
+## 🤝 Contributing
 
-**Stopping the containers**
+Everyone is encouraged to contribute! Please read our contributing guide to get started.
 
-To stop all running containers, you can execute the following in the project root:
+**[→ Contributing Guidelines](docs/monorepo/contributions.md)**
 
-```
-docker compose down
-```
+---
+
+**Questions?** Check out the [documentation](docs/monorepo/index.md) or open an issue.
+
