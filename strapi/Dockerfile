@@ -48,12 +48,12 @@ WORKDIR /app
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 strapi
 
-# Copy necessary files
-COPY --from=builder --chown=strapi:nodejs /app/strapi/package.json ./strapi/package.json
-COPY --from=builder --chown=strapi:nodejs /app/strapi/dist ./strapi/dist
-COPY --from=builder --chown=strapi:nodejs /app/strapi/public ./strapi/public
+# Copy node_modules from builder stage (they include workspace deps)
 COPY --from=builder --chown=strapi:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=strapi:nodejs /app/strapi/node_modules ./strapi/node_modules
+
+# Copy the entire built app (includes dist, config, public, package.json)
+COPY --from=builder --chown=strapi:nodejs /app/strapi ./strapi
 
 USER strapi
 WORKDIR /app/strapi

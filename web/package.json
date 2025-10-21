@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "packageManager": "npm@10.2.0",
   "scripts": {
     "dev": "cross-env ENV_PATH=../.env vite",
     "build": "cross-env ENV_PATH=../.env tsc && vite build",

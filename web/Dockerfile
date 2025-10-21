@@ -25,8 +25,8 @@ WORKDIR /app
 COPY --from=pruner /app/out/json/ .
 COPY --from=pruner /app/out/package-lock.json ./package-lock.json
 
-# Install dependencies (skip optional deps that cause issues in Alpine)
-RUN npm ci --omit=optional || npm ci --ignore-scripts
+# Install dependencies
+RUN npm ci
 
 # Copy source code from pruned output
 COPY --from=pruner /app/out/full/ .
