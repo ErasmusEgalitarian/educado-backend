@@ -107,6 +107,11 @@
       "relation": "manyToMany",
       "target": "api::course.course",
       "inversedBy": "content_creators"
+    },
+    "user_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-log.user-log"
     }
   }
 }
