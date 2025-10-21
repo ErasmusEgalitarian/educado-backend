@@ -32,11 +32,18 @@ export default {
       if (!validPassword) {
         return ctx.unauthorized("Invalid password");
       }
+      // Generate JWT token using selected user fields
+      const studentJWT = {
+        documentId: user.documentId,
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        isVerified: user.isVerified,
+      };
 
-      // Generate JWT token and assign to user
-      let signedUser = jwt.sign(user, secretKey);
+      const jwtToken = jwt.sign(studentJWT, secretKey);
 
-      ctx.response.body = JSON.stringify(signedUser);
+      ctx.response.body = JSON.stringify(jwtToken);
     } catch (err) {
       ctx.body = err;
     }
