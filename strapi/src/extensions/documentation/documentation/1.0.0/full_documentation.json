@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-21T08:23:53.383Z"
+    "x-generation-date": "2025-10-21T08:20:58.408Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -9150,9 +9150,8 @@
                   }
                 }
               },
-              "verifiedAt": {
-                "type": "string",
-                "format": "date"
+              "isVerified": {
+                "type": "boolean"
               },
               "createdAt": {
                 "type": "string",
@@ -10491,9 +10490,8 @@
                               }
                             }
                           },
-                          "verifiedAt": {
-                            "type": "string",
-                            "format": "date"
+                          "isVerified": {
+                            "type": "boolean"
                           },
                           "createdAt": {
                             "type": "string",
@@ -12821,9 +12819,8 @@
                               }
                             }
                           },
-                          "verifiedAt": {
-                            "type": "string",
-                            "format": "date"
+                          "isVerified": {
+                            "type": "boolean"
                           },
                           "createdAt": {
                             "type": "string",
@@ -14157,9 +14154,8 @@
                               }
                             }
                           },
-                          "verifiedAt": {
-                            "type": "string",
-                            "format": "date"
+                          "isVerified": {
+                            "type": "boolean"
                           },
                           "createdAt": {
                             "type": "string",
@@ -15910,9 +15906,8 @@
                             }
                           }
                         },
-                        "verifiedAt": {
-                          "type": "string",
-                          "format": "date"
+                        "isVerified": {
+                          "type": "boolean"
                         },
                         "createdAt": {
                           "type": "string",
@@ -18568,9 +18563,8 @@
                             }
                           }
                         },
-                        "verifiedAt": {
-                          "type": "string",
-                          "format": "date"
+                        "isVerified": {
+                          "type": "boolean"
                         },
                         "createdAt": {
                           "type": "string",
@@ -19719,9 +19713,8 @@
                   "example": "string or id"
                 }
               },
-              "verifiedAt": {
-                "type": "string",
-                "format": "date"
+              "isVerified": {
+                "type": "boolean"
               },
               "locale": {
                 "type": "string"
@@ -21014,9 +21007,8 @@
                               }
                             }
                           },
-                          "verifiedAt": {
-                            "type": "string",
-                            "format": "date"
+                          "isVerified": {
+                            "type": "boolean"
                           },
                           "createdAt": {
                             "type": "string",
@@ -21361,9 +21353,8 @@
               }
             }
           },
-          "verifiedAt": {
-            "type": "string",
-            "format": "date"
+          "isVerified": {
+            "type": "boolean"
           },
           "createdAt": {
             "type": "string",
@@ -22998,9 +22989,8 @@
                   }
                 }
               },
-              "verifiedAt": {
-                "type": "string",
-                "format": "date"
+              "isVerified": {
+                "type": "boolean"
               },
               "createdAt": {
                 "type": "string",

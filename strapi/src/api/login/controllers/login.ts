@@ -7,22 +7,36 @@ import bcrypt from "bcryptjs";
 export default {
   loginAction: async (ctx, next) => {
     try {
-      //gets secret key from .env
+      //gets secret key from .env, if not found returns server error
       const secretKey = process.env.JWT_SECRET;
+      if (!secretKey) {
+        strapi.log.error("JWT_SECRET missing in environment variables");
+        return ctx.internalServerError("Server configuration error", {
+          code: "AUTH_CONFIG_ERROR",
+        });
+      }
 
       // Extract email and password from request body
       const { email, password } = ctx.request.body;
 
       if (!email || !password) {
-        return ctx.badRequest("Email and password are required");
+        return ctx.badRequest("Email and password are required", {
+          code: "MISSING_CREDENTIALS",
+        });
       }
+
+      // making email lower case and removing spaces so that it matches the stored email format
+      const emailNormalized = email.trim().toLowerCase();
+
       // extracting the user from db by the provided email
       const user = await strapi.db.query("api::student.student").findOne({
-        where: { email },
+        where: { email: emailNormalized },
       });
 
       if (!user) {
-        return ctx.unauthorized("Can not find email");
+        return ctx.unauthorized("Invalid credentials", {
+          code: "USER_NOT_FOUND",
+        });
       }
       // Password comparision using bcrypt
       const validPassword = await bcrypt.compare(
@@ -30,7 +44,9 @@ export default {
         user.password
       );
       if (!validPassword) {
-        return ctx.unauthorized("Invalid password");
+        return ctx.unauthorized("Invalid credentials", {
+          code: "INVALID_PASSWORD",
+        });
       }
       // Generate JWT token using selected user fields
       const studentJWT : Student = {
@@ -45,7 +61,10 @@ export default {
 
       ctx.response.body = JSON.stringify(jwtToken);
     } catch (err) {
-      ctx.body = err;
+      strapi.log.error("Login failed:", err);
+      return ctx.internalServerError("Unexpected server error", {
+        code: "SERVER_ERROR",
+      });
     }
   },
 };
