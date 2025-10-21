@@ -50,7 +50,7 @@ export default {
       }
       await strapi.documents('api::student.student').update({
         documentId: user.documentId,
-        data: { isVerified: true }
+        data: { verifiedAt: new Date(Date.now()) }
       });
 
       //TODO maybe check if is verified now
@@ -65,7 +65,7 @@ export default {
         name: studentEntry.name,
         email: studentEntry.email,
         password: studentEntry.password,
-        isVerified: studentEntry.isVerified
+        verifiedAt: new Date(studentEntry.verifiedAt)
       }
 
       const signedUser = jwt.sign(studentJWT, secretKey);

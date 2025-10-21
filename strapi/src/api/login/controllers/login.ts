@@ -71,7 +71,7 @@ export default {
         name: user.name,
         email: user.email,
         password: user.password,
-        isVerified: user.isVerified
+        verifiedAt: new Date(user.verifiedAt)
       }
 
       const jwtToken = generateJwt(studentJWT, secretKey);
