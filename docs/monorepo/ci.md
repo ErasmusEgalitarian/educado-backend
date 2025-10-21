@@ -288,6 +288,38 @@ Runs on **entire codebase** with `continue-on-error: true`:
 
 **Status**: May show ⚠️ yellow but won't block PR
 
+##### 📊 Code Quality Statistics
+
+Each advisory check now provides **detailed metrics** in the PR summary:
+
+**Lint & Format**:
+- ESLint errors count
+- ESLint warnings count
+- Files needing formatting
+
+**Type Check**:
+- TypeScript errors count
+
+**Tests**:
+- Tests passed ✅
+- Tests failed ❌
+- Total test count
+
+**Build**:
+- Build status (success/failed)
+- Build time ⏱️
+- Distribution size 📦
+
+**How to view**:
+1. Go to the PR **Checks** tab
+2. Click on **"Required PR Checks Passed"** job
+3. View the **Summary** section for full statistics
+
+**Benefits**:
+- 📈 Track code quality trends over time
+- 🎯 See progress as you fix issues
+- 💡 Identify areas needing attention
+
 ---
 
 #### PR Status Summary
