@@ -14,6 +14,34 @@ function generateTokenCode(length) {
     return result;
 }
 
+async function generateStudentDraftAndPublish(name : string, email : string, password : string){
+  // Create draft for new student with required fields
+  let studentResponse;
+  studentResponse = await strapi.documents('api::student.student').create({
+    data: {
+      name: name,
+      email: email,
+      password: password
+    }
+  });
+
+  //publish student
+  const studentPublished = await strapi.documents('api::student.student').publish({
+  documentId: studentResponse.documentId
+  });
+  const studentEntry = studentPublished.entries[0];
+  
+  const studentJWT : Student = {
+    documentId: studentPublished.documentId,
+    name: studentEntry.name,
+    email: studentEntry.email,
+    password: studentEntry.password,
+    verifiedAt: new Date(studentEntry.verifiedAt)
+  }
+
+  return studentJWT;
+}
+
 import { sendVerificationEmail } from "../helpers/email";
 import jwt from "jsonwebtoken";
 
@@ -51,39 +79,32 @@ export default {
         return ctx.badRequest('student with that email already excist');
       }
 
-      // Create draft for new student with required fields
-      const studentResponse = await strapi.documents('api::student.student').create({
-        data: {
-          name: name,
-          email: lowercaseEmail,
-          password: password
+      let studentJWT;
+      try {
+        studentJWT = await generateStudentDraftAndPublish(name, email, password)
+      } catch (err) {
+        const user = await strapi.documents('api::student.student').findFirst({
+            filters: {
+              email: email
+            }
+          }
+        );
+        if (user){
+          await strapi.documents('api::student.student').delete({ documentId: user.documentId });
         }
-      });
-      // Safety check
-      if (!studentResponse && !studentResponse.id) {
-      return ctx.internalServerError('Failed to create student.');
-      }
-      
-      //publish student if it passes check.
-      const studentPublished = await strapi.documents('api::student.student').publish({
-        documentId: studentResponse.documentId
-      });
-      const studentEntry = studentPublished.entries[0];
-      
-      const studentJWT : Student = {
-        documentId: studentPublished.documentId,
-        name: studentEntry.name,
-        email: studentEntry.email,
-        password: studentEntry.password,
-        verifiedAt: new Date(studentEntry.verifiedAt)
+        return ctx.badRequest(err);
       }
 
-      ctx.response.body = jwt.sign(studentJWT, secretKey);
+      ctx.response.body = jwt.sign(studentJWT, secretKey, { expiresIn: '7d'});
 
     } catch (err) {
       ctx.body = err;
     }
   },
+
+
+
+
 
   sendVerificationTokenAction: async (ctx, next) => {
     try {

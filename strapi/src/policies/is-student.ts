@@ -15,7 +15,7 @@ export default async (policyContext, config, { strapi }) => {
     try {
         // Extract the authenticated user from the policy context
         // This object is populated by Strapi when the user is logged in
-        const user : any = jwt.verify(policyContext.request.ctx.headers.authorization, secretKey);
+        user = jwt.verify(policyContext.request.ctx.headers.authorization, secretKey);
     } catch (error) {
         strapi.log.error("JWT verification failed:", error);
         return false;
@@ -24,7 +24,6 @@ export default async (policyContext, config, { strapi }) => {
 
     // If there’s no authenticated user, deny access immediately
     if (!user) {
-        console.log(policyContext.request.ctx.request.body);
         return false;
     }
 
@@ -39,7 +38,6 @@ export default async (policyContext, config, { strapi }) => {
         });
 
         if(user.verifiedAt == null){
-            console.log("Student not verified")
             return false;
         }
 
