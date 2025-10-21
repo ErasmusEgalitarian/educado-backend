@@ -207,7 +207,7 @@ jobs:
 
       - name: Lint and format changed files only
         run: |
-          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMR origin/${{ github.base_ref }}...HEAD -- 'web/**/*.js' 'web/**/*.jsx' 'web/**/*.ts' 'web/**/*.tsx' | sed 's#^web/##' | tr '\n' ' ')
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMR origin/${{ github.base_ref }}...HEAD -- 'web/**/*.js' 'web/**/*.jsx' 'web/**/*.ts' 'web/**/*.tsx' 2>/dev/null | sed 's#^web/##' | tr '\n' ' ' || echo "")
           if [ -z "$CHANGED_FILES" ]; then
             echo "✅ No JS/TS files changed in web/, skipping lint & format checks"
           else
@@ -247,7 +247,7 @@ jobs:
 
       - name: Type check only if TS changed
         run: |
-          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMR origin/${{ github.base_ref }}...HEAD -- 'web/**/*.ts' 'web/**/*.tsx')
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMR origin/${{ github.base_ref }}...HEAD -- 'web/**/*.ts' 'web/**/*.tsx' 2>/dev/null || echo "")
           if [ -z "$CHANGED_FILES" ]; then
             echo "✅ No TS/TSX files changed in web/, skipping type-check"
           else
