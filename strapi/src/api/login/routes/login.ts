@@ -5,7 +5,7 @@ export default {
      path: '/login',
      handler: 'login.loginAction',
      config: {
-       policies: [],
+       policies: ['global::rate-limit'],
        middlewares: [],
      },
     },
