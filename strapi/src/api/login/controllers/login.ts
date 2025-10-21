@@ -14,6 +14,7 @@ export default {
         strapi.log.error("JWT_SECRET missing in environment variables");
         ctx.response.status = 500;
         ctx.response.body = { error: errorCodes['E0020'] }
+        return;
       }
 
       // Extract email and password from request body
@@ -22,6 +23,7 @@ export default {
       if (!email || !password) {
         ctx.response.status = 400;
         ctx.response.body = { error: errorCodes['E0101'] }
+        return;
       }
 
       // making email lower case and removing spaces so that it matches the stored email format
@@ -35,6 +37,7 @@ export default {
       if (!user) {
         ctx.response.status = 400;
         ctx.response.body = { error: errorCodes['E0105'] }
+        return;
       }
       // Password comparision using bcrypt
       const validPassword = await bcrypt.compare(
@@ -42,7 +45,10 @@ export default {
         user.password
       );
       if (!validPassword) {
+        createUserLog(user, false);
+        ctx.response.status = 400;
         ctx.response.body = { error: errorCodes['E0106'] }
+        return;
       }
       // Generate JWT token using selected user fields
       const studentJWT = {
@@ -52,6 +58,9 @@ export default {
         password: user.password,
         isVerified: user.isVerified,
       };
+
+      //log successful login
+      createUserLog(user, true);
 
       const jwtToken = jwt.sign(studentJWT, secretKey, { expiresIn: '7d'});
 
@@ -63,3 +72,19 @@ export default {
     }
   },
 };
+
+
+
+
+async function createUserLog(user, isSuccessful) {
+  const sucessLog = await strapi.documents('api::user-log.user-log').create({
+    data: {
+        loginDate: new Date(Date.now()),
+        isSuccessful: isSuccessful,
+        student: user.documentId
+    }
+  });
+  if (!sucessLog){
+    return;
+  }
+}

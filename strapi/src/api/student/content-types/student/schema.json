@@ -33,6 +33,9 @@
       "required": true,
       "minLength": 8
     },
+    "verifiedAt": {
+      "type": "date"
+    },
     "feedbacks": {
       "type": "relation",
       "relation": "oneToMany",
@@ -51,8 +54,11 @@
       "target": "api::certificate.certificate",
       "mappedBy": "student"
     },
-    "verifiedAt": {
-      "type": "date"
+    "user_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-log.user-log",
+      "mappedBy": "student"
     }
   }
 }

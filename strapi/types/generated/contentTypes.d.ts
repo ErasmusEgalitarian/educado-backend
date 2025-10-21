@@ -547,6 +547,7 @@ export interface ApiContentCreatorContentCreator
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user_logs: Schema.Attribute.Relation<'oneToMany', 'api::user-log.user-log'>;
     verifiedAt: Schema.Attribute.Date;
   };
 }
@@ -937,7 +938,40 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user_logs: Schema.Attribute.Relation<'oneToMany', 'api::user-log.user-log'>;
     verifiedAt: Schema.Attribute.Date;
+  };
+}
+
+export interface ApiUserLogUserLog extends Struct.CollectionTypeSchema {
+  collectionName: 'user_logs';
+  info: {
+    displayName: 'User Log';
+    pluralName: 'user-logs';
+    singularName: 'user-log';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    isSuccessful: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-log.user-log'
+    > &
+      Schema.Attribute.Private;
+    loginDate: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    student: Schema.Attribute.Relation<'manyToOne', 'api::student.student'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1494,6 +1528,7 @@ declare module '@strapi/strapi' {
       'api::lecture.lecture': ApiLectureLecture;
       'api::student-password-reset-token.student-password-reset-token': ApiStudentPasswordResetTokenStudentPasswordResetToken;
       'api::student.student': ApiStudentStudent;
+      'api::user-log.user-log': ApiUserLogUserLog;
       'api::verification-token.verification-token': ApiVerificationTokenVerificationToken;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

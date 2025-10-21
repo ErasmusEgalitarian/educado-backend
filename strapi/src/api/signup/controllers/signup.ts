@@ -149,7 +149,7 @@ export default {
             token: tokenString,
             expiresAt: new Date(Date.now() + TOKEN_EXPIRATION_TIME)
         }
-      })
+      });
       // Safety check
       if (!verificationTokenResponse){
         return ctx.internalServerError('Failed to create verfication token.');
