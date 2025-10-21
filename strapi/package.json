@@ -22,7 +22,6 @@
     "@strapi/strapi": "5.27.0",
     "bcrypt": "^6.0.0",
     "jsonwebtoken": "^9.0.2",
-    "koa2-ratelimit": "^1.1.3",
     "nodemailer": "^7.0.9",
     "pg": "8.8.0",
     "react": "^18.0.0",
