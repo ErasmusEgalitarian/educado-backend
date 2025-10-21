@@ -4,13 +4,13 @@ import { FileWithMetadata } from "../components/file-upload";
 import { fetchHeaders } from "../config/api-config";
 
 interface useFileUploadReturn {
-  uploadFile: (files: FileWithMetadata[]) => Promise<number[] | undefined>;
+  uploadFile: (files: FileWithMetadata[]) => Promise<string[] | undefined>;
 }
 
 export const useFileUpload = (): useFileUploadReturn => {
   const uploadFile = async (
     files: FileWithMetadata[]
-  ): Promise<number[] | undefined> => {
+  ): Promise<string[] | undefined> => {
     const baseUrl = OpenAPI.BASE;
 
     try {
@@ -46,7 +46,7 @@ export const useFileUpload = (): useFileUploadReturn => {
 
       console.log("Upload responses:", uploadedFiles);
 
-      return uploadedFiles.map((file) => file.id);
+      return uploadedFiles.map((file) => file.documentId);
     } catch (error) {
       console.error("Upload error:", error);
       throw error;

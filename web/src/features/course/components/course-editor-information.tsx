@@ -1,26 +1,20 @@
 import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "i18next";
-import {
-  useEffect,
-  useImperativeHandle,
-  forwardRef,
-  useState,
-  useRef,
-} from "react";
+import { useEffect, useImperativeHandle, forwardRef } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useFileUpload } from "@/shared/hooks/use-file-upload";
 import z from "zod";
+
+import { FormFileUpload } from "@/shared/components/form/form-file-upload";
 
 import {
   ApiCourseCategoryCourseCategoryDocument,
   ApiCourseCourseDocument,
 } from "@/shared/api";
+import { Dropzone } from "@/shared/components/dnd/Dropzone";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
-import { FileWithMetadataSchema } from "@/shared/components/file-upload";
 import FormActions from "@/shared/components/form/form-actions";
-import { FormFileUpload } from "@/shared/components/form/form-file-upload";
 import { FormInput } from "@/shared/components/form/form-input";
 import { FormMultiSelect } from "@/shared/components/form/form-multi-select";
 import { FormSelect } from "@/shared/components/form/form-select";
@@ -28,10 +22,6 @@ import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
 import { Card, CardContent, CardFooter } from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
-import {
-  MultiSelectOption,
-  MultiSelectRef,
-} from "@/shared/components/shadcn/multi-select";
 import usePaginatedData from "@/shared/data-display/hooks/used-paginated-data";
 import { toAppError } from "@/shared/lib/error-utilities";
 
@@ -39,8 +29,7 @@ import {
   useCreateCourseMutation,
   useUpdateCourseMutation,
 } from "../api/course-mutations";
-
-import CategoryCreateModal from "./category-create-modal";
+import { FileWithMetadataSchema } from "@/shared/components/file-upload";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -95,9 +84,8 @@ const CourseEditorInformation = forwardRef<
     createMutation.error ?? updateMutation.error
   );
 
-  const { uploadFile } = useFileUpload();
+  /* ------------------------------- Categories ------------------------------- */
 
-  /* ------------------------------- Categories ------------------------------- */  
   const {
     data,
     error: categoriesError,
@@ -174,12 +162,6 @@ const CourseEditorInformation = forwardRef<
 
   const onSubmit = async (values: CourseBasicInfoFormValues) => {
     try {
-      // Upload image if provided and take first id
-      const imageIds = values.image && values.image.length > 0
-        ? await uploadFile(values.image)
-        : undefined;
-      const imageId = imageIds?.[0];
-
       // Edit = update mutation
       if (isEditMode && course.documentId != "") {
         // Update existing course
@@ -189,7 +171,6 @@ const CourseEditorInformation = forwardRef<
           difficulty: Number(values.difficulty),
           categories: values.categories,
           description: values.description,
-          image: imageId,
         });
 
         // Wait a moment to show success state, then complete step
@@ -203,7 +184,6 @@ const CourseEditorInformation = forwardRef<
           difficulty: Number(values.difficulty),
           categories: values.categories ?? [],
           description: values.description,
-          image: imageId,
         });
 
         // Wait a moment to show success state, then complete step
@@ -218,49 +198,11 @@ const CourseEditorInformation = forwardRef<
   };
 
   const handleDismissCategoriesError = () => {
-    form.setFocus("categories");
     // Clear the field error
     form.clearErrors("categories");
     // Retry fetching categories
     void refetchCategories();
   };
-
-  /* -------------------------------- Multiselect -------------------------------- */
-  const multiInputRef = useRef<MultiSelectRef>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleCategoryCreated = (
-    data: ApiCourseCategoryCourseCategoryDocument
-  ) => {
-    const newOption: MultiSelectOption = {
-      label: data.name,
-      value: data.documentId,
-    };
-
-    if (!multiInputRef.current) {
-      console.error(
-        "multiInputRef is null - ref may not be properly forwarded"
-      );
-      return;
-    }
-    // Ensure we refresh the categories list so options remain in sync with the server,
-    // then select the new option. Keep this async work inside an IIFE to satisfy the
-    // onCreated: () => void contract and ESLint no-misused-promises.
-    void (async () => {
-      await refetchCategories();
-      const ref = multiInputRef.current;
-      if (!ref) return;
-      const current = ref.getSelectedValues();
-      if (!current.includes(newOption.value)) {
-        ref.setSelectedValues([...current, newOption.value]);
-      }
-    })();
-    setIsModalOpen(false);
-  };
-
-  if (categoriesError) {
-    form.setFocus("categories");
-  }
 
   return (
     <>
@@ -327,31 +269,33 @@ const CourseEditorInformation = forwardRef<
 
                     {/*Field to choose a category from a list of options*/}
                     <div className="flex flex-col w-1/2 space-y-2 text-left">
-                      {(() => {
-                        let placeholder = t("categories.selectCategory");
-                        if (categoriesLoading) {
-                          placeholder = t("common.loading") + "...";
-                        } else if (categoriesError) {
-                          placeholder = t("common.error");
+                      <FormMultiSelect
+                        control={form.control}
+                        fieldName="categories"
+                        label={t("categories.categories")}
+                        disabled={categoriesLoading || !!categoriesError}
+                        isRequired={true}
+                        options={data.map(
+                          (
+                            category: ApiCourseCategoryCourseCategoryDocument
+                          ) => ({
+                            label: category.name,
+                            value: category.documentId,
+                          })
+                        )}
+                        description={
+                          categoriesLoading
+                            ? t("categories.loadingCategoriesDescription")
+                            : ""
                         }
-                        return (
-                          <FormMultiSelect
-                            ref={multiInputRef}
-                            fieldName="categories"
-                            control={form.control}
-                            label={t("categories.categories")}
-                            placeholder={placeholder}
-                            options={data.map((category) => ({
-                              label: category.name,
-                              value: category.documentId,
-                            }))}
-                            onCreateClick={() => {
-                              setIsModalOpen(true);
-                            }}
-                            createLabel={t("multiSelect.createCategory")}
-                          />
-                        );
-                      })()}
+                        createLabel={t("courseManager.addNewCategory")} // valgfri
+                        onCreate={(newCategory) => {
+                          data.push({
+                            ...newCategory,
+                            // cast som Partial<ApiCourseCategoryCourseCategoryDocument>
+                          } as Partial<ApiCourseCategoryCourseCategoryDocument>);
+                        }}
+                      />
                     </div>
                   </div>
 
@@ -430,13 +374,6 @@ const CourseEditorInformation = forwardRef<
             </CardFooter>
           </form>
         </Form>
-        <CategoryCreateModal
-          open={isModalOpen}
-          onClose={() => {
-            setIsModalOpen(false);
-          }}
-          onCreated={handleCategoryCreated}
-        />
       </Card>
       <DevTool control={form.control} />
     </>

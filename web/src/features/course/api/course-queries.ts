@@ -1,9 +1,4 @@
-import {
-  ApiCourseCourseDocument,
-  CourseCategoryService,
-  CourseService,
-} from "@/shared/api";
-import { useQuery } from "@tanstack/react-query";
+import { ApiCourseCourseDocument, CourseService } from "@/shared/api";
 
 export const courseQuery = (courseId: string) => ["course", courseId] as const;
 
@@ -29,23 +24,9 @@ export const CourseQueryFunction = (courseId: string) => ({
         "updatedAt",
         "publishedAt",
       ],
-      ["course_categories", "image", "course_sections"]
+      ["course_categories", "image", "course_sections"],
       // Note: status parameter omitted to fetch both draft and published courses
     );
     return response.data;
   },
 });
-
-export const useCourseCategories = () => {
-  return useQuery({
-    queryKey: ["course_categories"],
-    queryFn: async () => {
-      const response =
-        await CourseCategoryService.courseCategoryGetCourseCategories(["name"]);
-      return response.data.map((item) => ({
-        label: item.name,
-        value: item.documentId,
-      }));
-    },
-  });
-};
