@@ -71,11 +71,11 @@ Follow this path to get productive quickly:
 
 ### 🚢 Deployment & Operations
 
-7. **[CI/CD Pipeline](ci.md)**  
-   Automated builds, PR checks, and deployment workflows
+7. **[Docker & Deployment](docker-and-deployment.md)**  
+   Containerization, Docker Compose, and production deployment
 
-8. **[Deployment](../deployment.md)**  
-   Deployment modes and best practices
+8. **[CI/CD Pipeline](ci.md)**  
+   Automated builds, PR checks, and deployment workflows
 
 9. **[Release Process](release-process.md)**  
    Semantic versioning, tagging, and creating releases
