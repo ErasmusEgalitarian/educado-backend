@@ -5,7 +5,7 @@ const { PolicyError } = errors;
 
 const rateLimitMap = new Map<string, { count: number; startTime: number }>();
 
-const RATE_LIMIT = 2; // Maximum number of requests
+const RATE_LIMIT = 100; // Maximum number of requests
 const TIME_WINDOW = 60000; // Time window in milliseconds (1 minute)
 
 export default async (
