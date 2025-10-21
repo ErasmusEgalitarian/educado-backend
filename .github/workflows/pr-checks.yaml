@@ -648,3 +648,114 @@ jobs:
 
           echo "---" >> $GITHUB_STEP_SUMMARY
           echo "_💡 Tip: Track these metrics over time to see code quality improvements!_" >> $GITHUB_STEP_SUMMARY
+
+      - name: Post PR Comment with Statistics
+        if: github.event_name == 'pull_request' && needs.detect-changes.outputs.web_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const stats = {
+              lintErrors: '${{ needs.web-lint-format-full.outputs.lint_errors }}' || 'N/A',
+              lintWarnings: '${{ needs.web-lint-format-full.outputs.lint_warnings }}' || 'N/A',
+              formatIssues: '${{ needs.web-lint-format-full.outputs.format_issues }}' || 'N/A',
+              typeErrors: '${{ needs.web-typecheck-full.outputs.type_errors }}' || 'N/A',
+              testsPassed: '${{ needs.web-test-full.outputs.tests_passed }}' || 'N/A',
+              testsFailed: '${{ needs.web-test-full.outputs.tests_failed }}' || 'N/A',
+              testsTotal: '${{ needs.web-test-full.outputs.tests_total }}' || 'N/A',
+              buildStatus: '${{ needs.web-build-full.outputs.build_status }}' || 'N/A',
+              buildTime: '${{ needs.web-build-full.outputs.build_time }}' || 'N/A',
+              distSize: '${{ needs.web-build-full.outputs.dist_size }}' || 'N/A'
+            };
+
+            // Calculate overall quality score (simple metric)
+            const totalIssues = parseInt(stats.lintErrors || 0) + parseInt(stats.typeErrors || 0) + parseInt(stats.testsFailed || 0);
+            const qualityEmoji = totalIssues === 0 ? '🌟' : totalIssues < 50 ? '✅' : totalIssues < 100 ? '⚠️' : '🔴';
+
+            const comment = `## ${qualityEmoji} Code Quality Report
+
+            ### ✅ Required Checks
+            All required checks **passed** ✓ - This PR can be merged!
+
+            ### 📊 Codebase Quality Metrics (Advisory)
+
+            <details>
+            <summary><strong>🔍 Lint & Format</strong></summary>
+
+            | Metric | Count |
+            |--------|-------|
+            | ESLint Errors | **${stats.lintErrors}** ❌ |
+            | ESLint Warnings | **${stats.lintWarnings}** ⚠️ |
+            | Files Needing Format | **${stats.formatIssues}** 📝 |
+
+            </details>
+
+            <details>
+            <summary><strong>🔤 Type Check</strong></summary>
+
+            | Metric | Count |
+            |--------|-------|
+            | TypeScript Errors | **${stats.typeErrors}** ❌ |
+
+            </details>
+
+            <details>
+            <summary><strong>🧪 Tests</strong></summary>
+
+            | Metric | Count |
+            |--------|-------|
+            | Tests Passed | **${stats.testsPassed}** ✅ |
+            | Tests Failed | **${stats.testsFailed}** ❌ |
+            | Total Tests | **${stats.testsTotal}** |
+            | Pass Rate | **${stats.testsTotal !== 'N/A' && stats.testsPassed !== 'N/A' ? Math.round((parseInt(stats.testsPassed) / parseInt(stats.testsTotal)) * 100) : 'N/A'}%** |
+
+            </details>
+
+            <details>
+            <summary><strong>🏗️ Build</strong></summary>
+
+            | Metric | Value |
+            |--------|-------|
+            | Build Status | **${stats.buildStatus}** |
+            | Build Time | **${stats.buildTime}s** ⏱️ |
+            | Dist Size | **${stats.distSize}** 📦 |
+
+            </details>
+
+            ---
+
+            _💡 **Note**: These metrics show the **entire codebase** health and won't block merging. Only changed files are required to pass checks._
+
+            _📈 Track these numbers over time to see progress on technical debt!_
+            `;
+
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('Code Quality Report')
+            );
+
+            // Update or create comment
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment
+              });
+              console.log('Updated existing comment');
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+              console.log('Created new comment');
+            }
