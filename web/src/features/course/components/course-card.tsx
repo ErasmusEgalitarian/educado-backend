@@ -16,7 +16,7 @@ import {
 import StarRating from "../../../shared/components/star-rating";
 
 /**
- * Displays a course in a card format.
+ * Displays a course in a card format
  *
  * @param {Course} course The course to be displayed
  * @returns HTML Element
@@ -34,7 +34,7 @@ export const CourseCard = ({ course }: { course: Required<Course> }) => {
   };
 
   return (
-    <Card className="shadow-[0_1px_4px_rgba(0,0,0,0.2)] py-7">
+    <Card>
       <CardHeader className="w-full max-w-sm flex flex-col justify-between h-full">
         <div className="flex items-center gap-2 text-[#28363E] min-w-0">
           <svg width="20" height="18" viewBox="0 0 20 18" fill="none">
@@ -47,7 +47,7 @@ export const CourseCard = ({ course }: { course: Required<Course> }) => {
             {course.title}
           </CardTitle>
         </div>
-        <div className="w-full border-t border-greyscale-border-lighter my-1 mx-auto" />
+        <div className="w-full border-t border-[#C1CFD7] my-2 mx-auto" />
       </CardHeader>
       <CardContent>
         <div className="flex items-center justify-between">

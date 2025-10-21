@@ -302,7 +302,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
 
   return (
     <ErrorBoundary>
-      <div className={`space-y-6 ${className ?? ""}`}>
+      <div className={`space-y-4 ${className ?? ""}`}>
         {/* Toolbar for view mode switching and search */}
         <DataDisplayToolbar
           table={table}

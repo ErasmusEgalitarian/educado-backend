@@ -53,9 +53,7 @@
     "stay": "Ficar",
     "dismiss": "Dispensar",
     "name": "Nome",
-    "retry": "Tentar Novamente",
-    "rating": "Avaliação",
-    "error": "Erro"
+    "retry": "Tentar Novamente"
   },
   "pagination": {
     "items": "itens",
@@ -143,11 +141,10 @@
     "leavePageMessage": "Tem certeza que deseja sair desta página?",
     "createError": "Falha ao Criar Curso",
     "updateError": "Falha ao Atualizar Curso",
-    "genericError": "Ocorreu um erro inesperado. Por favor, tente novamente.",
-    "rating": "Avaliação"
+    "genericError": "Ocorreu um erro inesperado. Por favor, tente novamente."
   },
   "courses": {
-    "pageTitle": "Confira seus cursos",
+    "pageTitle": "Lista de Cursos",
     "checkYourCourses": "Confira seus cursos",
     "newCourse": "Novo Curso",
     "searchCourse": "Buscar Curso",
@@ -167,19 +164,10 @@
     "grade": "Nota",
     "startNow": "Começar Agora",
     "noCoursesYet": "Você ainda não criou nenhum curso. Clique no botão abaixo e siga as instruções passo a passo para desenvolver seu primeiro curso.",
-    "createNewCourse": "Criar Novo Curso",
-    "thisMonth": "Esse mês",
-    "totalCertificatesIssued": "Total certificados emitidos",
-    "evaluation": "Avaliação",
-    "lastSevenDays": "Últimos 7 dias",
-    "lastThirtyDays": "Últimos 30 dias"
+    "createNewCourse": "Criar Novo Curso"
   },
   "courseEditor": {
-    "fetchCourseDataError": "Erro ao carregar dados do curso: {{message}}",
-    "skipToReview": "Pular para avaliação"
-  },
-  "courseEditorReview": {
-    "thisCourseIsCurrentlyVisibleToStudents": "Este curso está atualmente visível para os alunos"
+    "fetchCourseDataError": "Erro ao carregar dados do curso: {{message}}"
   },
   "files": {
     "upload": "Enviar",
@@ -200,12 +188,5 @@
     "describeTheImage": "Descreva a imagem para acessibilidade",
     "addACaption": "Adicione uma legenda ou descrição",
     "previewShortcuts": "Pressione ESC para fechar • Setas para navegar • +/- para ampliar"
-  },
-  "multiSelect": {
-    "createCategory": "Criar categoria",
-    "EnterCategoryTitle": "Digite um título de categoria curto e claro.",
-    "newCategory": "Nova Categoria",
-    "creatingCategory": "Criando Categoria",
-    "minNameLength": "O nome da categoria deve ter pelo menos {{count}} caracteres"
   }
 }

@@ -1,22 +1,16 @@
 import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "i18next";
-import {
-  useEffect,
-  useImperativeHandle,
-  forwardRef,
-  useState,
-  useRef,
-} from "react";
+import { useEffect, useImperativeHandle, forwardRef } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import z from "zod";
 
+import { FormFileUpload } from "@/shared/components/form/form-file-upload";
+
 import type { Course, CourseCategory } from "@/shared/api/types.gen";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
-import { FileWithMetadataSchema } from "@/shared/components/file-upload";
 import FormActions from "@/shared/components/form/form-actions";
-import { FormFileUpload } from "@/shared/components/form/form-file-upload";
 import { FormInput } from "@/shared/components/form/form-input";
 import { FormMultiSelect } from "@/shared/components/form/form-multi-select";
 import { FormSelect } from "@/shared/components/form/form-select";
@@ -24,10 +18,6 @@ import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
 import { Card, CardContent, CardFooter } from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
-import {
-  MultiSelectOption,
-  MultiSelectRef,
-} from "@/shared/components/shadcn/multi-select";
 import usePaginatedData from "@/shared/data-display/hooks/used-paginated-data";
 import { useFileUpload } from "@/shared/hooks/use-file-upload";
 import { toAppError } from "@/shared/lib/error-utilities";
@@ -36,8 +26,7 @@ import {
   useCreateCourseMutation,
   useUpdateCourseMutation,
 } from "../api/course-mutations";
-
-import CategoryCreateModal from "./category-create-modal";
+import { FileWithMetadataSchema } from "@/shared/components/file-upload";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -91,8 +80,6 @@ const CourseEditorInformation = forwardRef<
   const mutationError = toAppError(
     createMutation.error ?? updateMutation.error
   );
-
-  const { uploadFile } = useFileUpload();
 
   /* ------------------------------- Categories ------------------------------- */
   const {
@@ -194,7 +181,6 @@ const CourseEditorInformation = forwardRef<
           // eslint-disable-next-line @typescript-eslint/naming-convention
           course_categories: values.categories,
           description: values.description,
-          image: imageId,
         });
 
         // Wait a moment to show success state, then complete step
@@ -209,7 +195,6 @@ const CourseEditorInformation = forwardRef<
           // eslint-disable-next-line @typescript-eslint/naming-convention
           course_categories: values.categories ?? [],
           description: values.description,
-          image: imageId,
         });
 
         // Wait a moment to show success state, then complete step
@@ -224,7 +209,6 @@ const CourseEditorInformation = forwardRef<
   };
 
   const handleDismissCategoriesError = () => {
-    form.setFocus("categories");
     // Clear the field error
     form.clearErrors("categories");
     // Retry fetching categories
@@ -434,13 +418,6 @@ const CourseEditorInformation = forwardRef<
             </CardFooter>
           </form>
         </Form>
-        <CategoryCreateModal
-          open={isModalOpen}
-          onClose={() => {
-            setIsModalOpen(false);
-          }}
-          onCreated={handleCategoryCreated}
-        />
       </Card>
       <DevTool control={form.control} />
     </>
