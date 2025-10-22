@@ -8,7 +8,6 @@ type Student = {
     documentId: String;
     name: String;
     email: String;
-    password: String;
     verifiedAt: Date;
 };
 
@@ -22,6 +21,5 @@ type ContentCreator = {
     documentId: String;
     name: String;
     email: String;
-    password: String;
     verifiedAt: Date;
 };

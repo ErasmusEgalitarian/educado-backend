@@ -69,7 +69,6 @@ export default {
   },
   sendVerificationTokenAction: async (ctx, next) => {
     try {
-
       const { email } = ctx.request.body;
       const lowercaseEmail = email.toLowerCase();
       if (!lowercaseEmail) {
@@ -186,7 +185,6 @@ export default {
         documentId: userPublished.documentId,
         name: studentEntry.name,
         email: studentEntry.email,
-        password: studentEntry.password,
         verifiedAt: null
       }
 
@@ -232,7 +230,6 @@ async function generateStudentDraftAndPublish(name: string, email: string, passw
     documentId: studentPublished.documentId,
     name: studentEntry.name,
     email: studentEntry.email,
-    password: studentEntry.password,
     verifiedAt: null
   }
 

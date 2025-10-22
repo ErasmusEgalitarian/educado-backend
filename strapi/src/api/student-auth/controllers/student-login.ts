@@ -32,8 +32,8 @@ export default {
       const emailNormalized = email.trim().toLowerCase();
 
       // extracting the user from db by the provided email
-      const user = await strapi.db.query("api::student.student").findOne({
-        where: { email: emailNormalized },
+      const user = await strapi.documents("api::student.student").findFirst({
+        filters: { email: emailNormalized },
       });
 
       if (!user) {
@@ -53,12 +53,11 @@ export default {
         return;
       }
       // Generate JWT token using selected user fields
-      const studentJWT = {
+      const studentJWT : Student = {
         documentId: user.documentId,
         name: user.name,
         email: user.email,
-        password: user.password,
-        isVerified: user.isVerified,
+        verifiedAt: new Date(user.verifiedAt),
       };
 
       //log successful login
