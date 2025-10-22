@@ -4,9 +4,13 @@
  * Returns true if the authenticated user exists in the Content Creator collection.
  */
 
+import { Core } from "@strapi/strapi";
+import { errors } from "@strapi/utils";
 import jwt from "jsonwebtoken"
 
-export default async (policyContext, config, { strapi }) => {
+const { PolicyError } = errors;
+
+export default async (policyContext: any, config: any, { strapi }: { strapi: Core.Strapi }) => {
 
     // Gets secret key from .env
     const secretKey = process.env.JWT_SECRET;
@@ -18,12 +22,16 @@ export default async (policyContext, config, { strapi }) => {
         user = jwt.verify(policyContext.request.ctx.headers.authorization, secretKey);
     } catch (error) {
         strapi.log.error("JWT verification failed:", error);
-        return false;
+        throw new PolicyError("JWT verification failed", {
+            policy: 'is-contentCreator',
+        });
     }
 
     // If there’s no authenticated user, deny access immediately
     if (!user) {
-        return false;
+        throw new PolicyError("No authenticated user", {
+            policy: 'is-contentCreator',
+        });
     }
 
     try {
@@ -37,7 +45,9 @@ export default async (policyContext, config, { strapi }) => {
         });
 
         if(user.verifiedAt == null){
-            return false;
+            throw new PolicyError("User not verified", {
+                policy: 'is-contentCreator',
+            });
         }
 
         // Return true if a matching Content Creator exists (grant access),
@@ -46,6 +56,8 @@ export default async (policyContext, config, { strapi }) => {
     } catch (error) {
         // If an error occurs during the query, log it and deny access
         strapi.log.error('Error in is-content-creator policy:', error);
-        return false;
+        throw new PolicyError("Content Creator collection query failed", {
+            policy: 'is-contentCreator',
+        });
     }
 };
