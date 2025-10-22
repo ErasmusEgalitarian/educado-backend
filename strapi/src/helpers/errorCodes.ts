@@ -232,6 +232,14 @@ export const errorCodes: Record<string, errorDetail> = {
 		code: 'E0503',
 		message: 'Verification link is invalid or has already been used.'
 	},
+	E0504: {
+		code: 'E0504',
+		message: 'Verification token not found.'
+	},
+	E0505: {
+		code: 'E0505',
+		message: 'Invalid request: both email and token must be strings.'
+	},
 
 	// E06 - Subscription errors
 	E0601: {
