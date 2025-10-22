@@ -24,7 +24,11 @@ const mergeAPIDocs = (filePaths : string[], outputPath : string) : void => {
             },
             components: {
                 ...acc.components,
-                ...spec.components
+                ...spec.components,
+                schemas: {
+                    ...acc.components.schemas,
+                    ...spec.components.schemas
+                }
             }
         }
     });

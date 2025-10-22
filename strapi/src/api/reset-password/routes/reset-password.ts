@@ -18,5 +18,14 @@ export default {
        middlewares: [],
      },
     },
+    {
+     method: 'PATCH',
+     path: '/reset-password',
+     handler: 'reset-password.updateHandler',
+     config: {
+       policies: [],
+       middlewares: [],
+     },
+    },
   ],
 };
