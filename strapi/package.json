@@ -9,6 +9,7 @@
     "deploy": "strapi deploy",
     "dev": "cross-env ENV_PATH=../.env strapi develop",
     "develop": "strapi develop",
+    "test": "jest --runInBand",
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",

@@ -13,7 +13,7 @@ export default {
       if (!secretKey) {
         strapi.log.error("JWT_SECRET missing in environment variables");
         ctx.response.status = 500;
-        ctx.response.body = { error: errorCodes['E0020'] }
+        ctx.response.body = { error: errorCodes["E0020"] };
         return;
       }
 
@@ -22,7 +22,7 @@ export default {
 
       if (!email || !password) {
         ctx.response.status = 400;
-        ctx.response.body = { error: errorCodes['E0101'] }
+        ctx.response.body = { error: errorCodes["E0101"] };
         return;
       }
 
@@ -36,7 +36,7 @@ export default {
 
       if (!user) {
         ctx.response.status = 400;
-        ctx.response.body = { error: errorCodes['E0105'] }
+        ctx.response.body = { error: errorCodes["E0105"] };
         return;
       }
       // Password comparision using bcrypt
@@ -47,7 +47,7 @@ export default {
       if (!validPassword) {
         createUserLog(user, false);
         ctx.response.status = 400;
-        ctx.response.body = { error: errorCodes['E0106'] }
+        ctx.response.body = { error: errorCodes["E0106"] };
         return;
       }
       // Generate JWT token using selected user fields
@@ -55,36 +55,32 @@ export default {
         documentId: user.documentId,
         name: user.name,
         email: user.email,
-        password: user.password,
         isVerified: user.isVerified,
       };
 
       //log successful login
       createUserLog(user, true);
 
-      const jwtToken = jwt.sign(studentJWT, secretKey, { expiresIn: '7d'});
+      const jwtToken = jwt.sign(studentJWT, secretKey, { expiresIn: "7d" });
 
       ctx.response.body = JSON.stringify(jwtToken);
     } catch (err) {
       strapi.log.error("Login failed:", err);
       ctx.response.status = 500;
-      ctx.response.body = { error: errorCodes['E0019'] }
+      ctx.response.body = { error: errorCodes["E0019"] };
     }
   },
 };
 
-
-
-
 async function createUserLog(user, isSuccessful) {
-  const sucessLog = await strapi.documents('api::user-log.user-log').create({
+  const sucessLog = await strapi.documents("api::user-log.user-log").create({
     data: {
-        loginDate: new Date(Date.now()),
-        isSuccessful: isSuccessful,
-        student: user.documentId
-    }
+      loginDate: new Date(Date.now()),
+      isSuccessful: isSuccessful,
+      student: user.documentId,
+    },
   });
-  if (!sucessLog){
+  if (!sucessLog) {
     return;
   }
 }
