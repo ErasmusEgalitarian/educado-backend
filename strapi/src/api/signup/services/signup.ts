@@ -1,5 +1,0 @@
-/**
- * signup service
- */
-
-export default () => ({});
