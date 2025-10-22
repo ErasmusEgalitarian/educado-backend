@@ -2,6 +2,7 @@
  * A set of functions called "actions" for `verify-email`
  */
 
+import { errorCodes } from "../../../helpers/errorCodes";
 import jwt from "jsonwebtoken"
 
 export default {
@@ -14,7 +15,8 @@ export default {
       // De constructing request body into fields
       const { email, tokenCode } = ctx.request.body;
       if (typeof email !== 'string' || typeof tokenCode !== 'string') {
-        return ctx.badRequest('Invalid request: both email and tokenCode must be strings');
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0505'] }
       }
       const lowercaseEmail = email.toLowerCase();
 
@@ -27,13 +29,14 @@ export default {
         }
       );
       if (!Vtoken) {
-        console.log("cant find Vtoken");
-        return ctx.badRequest('Could not find token');
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0504'] }
       }
 
       // Checks if code is correct and expired
       if (!(Vtoken.token == tokenCode && new Date(Vtoken.expiresAt) > new Date(Date.now()))) {
-        return ctx.badRequest('token code does not match or is expired');
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0001'] }
       }
 
       // Verifies user if code is correct
@@ -45,8 +48,9 @@ export default {
         }
       );
       if (!user) {
-        console.log('Could not find matching user');
-        return ctx.badRequest('Could not find matching user');
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0004'] }
+        
       }
       await strapi.documents('api::student.student').update({
         documentId: user.documentId,
@@ -73,7 +77,7 @@ export default {
       ctx.response.body = JSON.stringify(signedUser);
 
     } catch (err) {
-      ctx.body = err;
+      ctx.response.body = { error: errorCodes['E0000'] }
     }
   }
 };
