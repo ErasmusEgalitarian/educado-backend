@@ -4,6 +4,8 @@ import { errorCodes } from "../../../helpers/errorCodes";
 import { sendResetPasswordEmail } from "../../../helpers/email"
 
 const TOKEN_EXPIRATION_TIME = 1000 * 60 * 10; // 10 minutes
+const TOKEN_API = "api::password-reset-token.password-reset-token";
+
 
 export default {
   loginAction: async (ctx, next) => {
@@ -71,127 +73,136 @@ export default {
       ctx.response.body = { error: errorCodes['E0019'] }
     }
   },
-  passwordRequestAction: async (ctx, next) => {
-    const tokenAPI = "api::student-password-reset-token.student-password-reset-token"
-    // Get the student with the email
-    const studentEmail = ctx.request.body.email;
-    const student = await strapi.documents("api::student.student").findFirst({
-      filters: {
-        email: studentEmail
-      }
-    });
-
-    // TODO: Implement error codes
-    if (!studentEmail || !student) {
-      ctx.response.status = 400;
-      ctx.response.body = { error: errorCodes['E0004'] }
-      return;
-    }
-
-    // TODO: Check reset attempts
-
-    // Find all tokens for the student
-    let existingTokens = await strapi.documents(tokenAPI).findMany({
-      filters: {
-        student: {
-          documentId: student.documentId
-        }
-      }
-    });
-
-    for (const token of existingTokens) {
-      await strapi.documents(tokenAPI).delete({ documentId: token.documentId });
-    }
-
-    // Generate token
-    let resetToken = generatePasswordResetToken();
-    // TODO: Hash the resetToken before saving to the database
-
-    // Save token to database with 5 minute expiration
-    await strapi.documents(tokenAPI).create({
-      data: {
-        token: resetToken,
-        expiresAt: new Date(Date.now() + TOKEN_EXPIRATION_TIME),
-        student: student.documentId
-      }
-    });
-
-    // TODO: Send email with reset token
-    const success = await sendResetPasswordEmail(student, resetToken);
-
-    if (success) {
-      ctx.response.status = 200;
-      ctx.response.body = { status: 'success' };
-    } else {
-      ctx.response.status = 500;
-      ctx.response.body = { error: errorCodes['E0004'] }
-    }
-  },
-  passwordCodeAction: async (ctx, next) => {
-    // 
-    const resetToken = ctx.request.body.token;
-    const studentEmail = ctx.request.body.email;
-    const tokenAPI = "api::student-password-reset-token.student-password-reset-token";
-
-
-    // Get student-password-reset-token with the email
-    const tokenFound = await strapi.documents(tokenAPI).findFirst({
-      filters: {
-        student: {
+  passwordRequestAction: async (ctx, next) => { 
+    try {
+      // Get the student with the email
+      const studentEmail = ctx.request.body.email;
+      const student = await strapi.documents("api::student.student").findFirst({
+        filters: {
           email: studentEmail
         }
-      }
-    })
+      });
 
-    if (resetToken == tokenFound.token) {
-      ctx.response.status = 200;
-      ctx.response.body = { status: 'success' };
-    } else {
-      // TODO: Implement errorcodes: If token is invalid, return error E0405
+      if (!studentEmail || !student) {
+        ctx.response.status = 400;
+        ctx.response.body = { error: errorCodes['E0004'] }
+        return;
+      }
+
+      // Find all tokens for the student
+      let existingTokens = await strapi.documents(TOKEN_API).findMany({
+        filters: {
+          userEmail: studentEmail
+        }
+      });
+      for (const token of existingTokens) {
+        await strapi.documents(TOKEN_API).delete({ documentId: token.documentId });
+      }
+
+      // Generate token
+      let resetToken = generatePasswordResetToken();
+
+      // Save token to database with 10 minute expiration
+      await strapi.documents(TOKEN_API).create({
+        data: {
+          userEmail: student.email,
+          token: resetToken,
+          expiresAt: new Date(Date.now() + TOKEN_EXPIRATION_TIME)
+        }
+      });
+
+      const success = await sendResetPasswordEmail(student, resetToken);
+
+      if (success) {
+        ctx.response.status = 200;
+        ctx.response.body = { status: 'success' };
+      } else {
+        ctx.response.status = 500;
+        ctx.response.body = { error: errorCodes['E0004'] }
+      }
+    } catch (err) {
       ctx.response.status = 500;
-      ctx.response.body = { error: errorCodes['E0405'] }
+      ctx.body = err;
     }
+    
+  },
+  passwordCodeAction: async (ctx, next) => {
+    try {
+      const { resetTokenCode, studentEmail } = ctx.request.body;
+
+      if (!resetTokenCode || !studentEmail) {
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0016'] }
+      }
+
+      // Get student-password-reset-token with the email
+      const tokenFound = await strapi.documents(TOKEN_API).findFirst({
+        filters: {
+          userEmail: studentEmail
+        }
+      });
+
+      if (resetTokenCode == tokenFound.token) {
+        ctx.response.status = 200;
+        ctx.response.body = { status: 'success' };
+      } else {
+        ctx.response.status = 500;
+        ctx.response.body = { error: errorCodes['E0405'] }
+      }
+    } catch (err) {
+      ctx.response.status = 500;
+      ctx.body = err;
+    }
+
   },
   passwordUpdateAction: async (ctx, next) => {
-    const tokenAPI = "api::student-password-reset-token.student-password-reset-token";
-    const { email, token, newPassword } = ctx.request.body;
-    const passwordResetToken: any = await strapi.documents(tokenAPI).findFirst({
-      filters: {
-        token: token,
-        student: {
-          email: email
-        }
-      },
-      populate: "student"
-    });
+    try {
+      const { email, token, newPassword } = ctx.request.body;
 
-    // If token is not provided or token is expired, return error E0404
-    if (!passwordResetToken || passwordResetToken.expiresAt < Date.now()) {
-      ctx.response.status = 400;
-      ctx.response.body = {
-        error: {
-          code: 'E0404',
-          message: 'Password reset code has expired.'
-        }
-      };
-      return; // res.status(400).json({ error: errorCodes['E0404'] });
-    }
-
-    // TODO: Maybe encryption depending on what we do
-
-    await strapi.documents("api::student.student").update({
-      documentId: passwordResetToken.student.documentId,
-      data: {
-        password: newPassword
+      if(typeof email !==  'string' || typeof token !== 'string' || typeof newPassword !== 'string'){
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0016'] }
       }
-    });
+      const lowercaseEmail = email.toLowerCase();
 
-    await strapi.documents('api::student.student').publish({
-      documentId: passwordResetToken.student.documentId
-    });
+      const passwordResetToken = await strapi.documents(TOKEN_API).findFirst({
+        filters: {
+          token: token,
+          userEmail: email
+        },
+      });
 
-    ctx.response.status = 200;
-    ctx.response.body = { status: "success" };
+      // If token is not provided or token is expired, return error E0404
+      if (!(passwordResetToken.token == token && new Date(passwordResetToken.expiresAt) > new Date(Date.now()))) {
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0404'] }
+      }
+
+      const user = await strapi.documents('api::student.student').findFirst(
+        {
+          filters: {
+            email: lowercaseEmail
+          }
+        }
+      );
+
+      await strapi.documents("api::student.student").update({
+        documentId: user.documentId,
+        data: {
+          password: newPassword
+        }
+      });
+      await strapi.documents('api::student.student').publish({
+        documentId: user.documentId
+      });
+
+      ctx.response.status = 200;
+      ctx.response.body = { status: "success" };
+    } catch (err) {
+      ctx.response.status = 500;
+      ctx.body = err;
+    }
+    
   }
 };
 

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "verification_tokens",
+  "collectionName": "password_reset_tokens",
   "info": {
-    "singularName": "verification-token",
-    "pluralName": "verification-tokens",
-    "displayName": "Verification Token"
+    "singularName": "password-reset-token",
+    "pluralName": "password-reset-tokens",
+    "displayName": "Password Reset Token"
   },
   "options": {
     "draftAndPublish": false

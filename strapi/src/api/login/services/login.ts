@@ -1,5 +1,0 @@
-/**
- * login service
- */
-
-export default () => ({});

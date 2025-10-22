@@ -1,4 +1,4 @@
-import loginController from "../../src/api/login/controllers/login";
+import loginController from "../../src/api/student-auth/controllers/student-login";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
