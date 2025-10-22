@@ -855,34 +855,40 @@ export interface ApiLectureLecture extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiStudentPasswordResetTokenStudentPasswordResetToken
+export interface ApiPasswordResetTokenPasswordResetToken
   extends Struct.CollectionTypeSchema {
-  collectionName: 'student_password_reset_tokens';
+  collectionName: 'password_reset_tokens';
   info: {
-    displayName: 'Student Password Reset Token';
-    pluralName: 'student-password-reset-tokens';
-    singularName: 'student-password-reset-token';
+    displayName: 'Password Reset Token';
+    pluralName: 'password-reset-tokens';
+    singularName: 'password-reset-token';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    expiresAt: Schema.Attribute.DateTime;
+    expiresAt: Schema.Attribute.DateTime & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::student-password-reset-token.student-password-reset-token'
+      'api::password-reset-token.password-reset-token'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    student: Schema.Attribute.Relation<'oneToOne', 'api::student.student'>;
-    token: Schema.Attribute.String;
+    token: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    userEmail: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+        minLength: 1;
+      }>;
   };
 }
 
@@ -1004,7 +1010,11 @@ export interface ApiVerificationTokenVerificationToken
       Schema.Attribute.Private;
     userEmail: Schema.Attribute.Email &
       Schema.Attribute.Required &
-      Schema.Attribute.Unique;
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+        minLength: 1;
+      }>;
   };
 }
 
@@ -1526,7 +1536,7 @@ declare module '@strapi/strapi' {
       'api::exercise.exercise': ApiExerciseExercise;
       'api::feedback.feedback': ApiFeedbackFeedback;
       'api::lecture.lecture': ApiLectureLecture;
-      'api::student-password-reset-token.student-password-reset-token': ApiStudentPasswordResetTokenStudentPasswordResetToken;
+      'api::password-reset-token.password-reset-token': ApiPasswordResetTokenPasswordResetToken;
       'api::student.student': ApiStudentStudent;
       'api::user-log.user-log': ApiUserLogUserLog;
       'api::verification-token.verification-token': ApiVerificationTokenVerificationToken;

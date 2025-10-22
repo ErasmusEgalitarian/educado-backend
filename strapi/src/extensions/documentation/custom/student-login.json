@@ -145,10 +145,10 @@
       "ResetPasswordCodeRequest": {
         "type": "object",
         "properties": {
-          "email": {
+          "studentEmail": {
             "type": "string"
           },
-          "token": {
+          "resetTokenCode": {
             "type": "string"
           }
         }
