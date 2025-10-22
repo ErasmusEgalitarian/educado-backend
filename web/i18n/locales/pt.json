@@ -188,5 +188,16 @@
     "describeTheImage": "Descreva a imagem para acessibilidade",
     "addACaption": "Adicione uma legenda ou descrição",
     "previewShortcuts": "Pressione ESC para fechar • Setas para navegar • +/- para ampliar"
+  },"carousel":
+  {
+    "title1":"Junte-se a nós para transformar vidas a partir do seu conhecimento",
+    "section1":"Oferecemos acesso a conteúdo personalizado para pessoas que precisam, melhorando condições de vida e oportunidades de emprego",
+    "title2":"Para criadores de conteúdo", 
+    "section2":"Divulgue seu trabalho e alcance um público ainda maior. Mostre suas ideias para quem quer aprender e se inspirar.",
+    "title3":"Cadastre-se agora e ajude a fazer a diferença!",
+    "section3":"Faça parte de uma comunidade que facilita o acesso a conteúdos relevantes e incentiva o compartilhamento de conhecimento de forma simples e prática."
+  },
+  "login":{
+
   }
 }
