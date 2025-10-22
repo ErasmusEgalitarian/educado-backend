@@ -1,11 +1,10 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { errorCodes } from "../../../helpers/errorCodes";
-import { sendResetPasswordEmail } from "../../../helpers/email"
+import { sendResetPasswordEmail } from "../../../helpers/email";
 
 const TOKEN_EXPIRATION_TIME = 1000 * 60 * 10; // 10 minutes
 const TOKEN_API = "api::password-reset-token.password-reset-token";
-
 
 export default {
   loginAction: async (ctx, next) => {
@@ -15,7 +14,7 @@ export default {
       if (!secretKey) {
         strapi.log.error("JWT_SECRET missing in environment variables");
         ctx.response.status = 500;
-        ctx.response.body = { error: errorCodes['E0020'] }
+        ctx.response.body = { error: errorCodes["E0020"] };
         return;
       }
 
@@ -24,7 +23,7 @@ export default {
 
       if (!email || !password) {
         ctx.response.status = 400;
-        ctx.response.body = { error: errorCodes['E0101'] }
+        ctx.response.body = { error: errorCodes["E0101"] };
         return;
       }
 
@@ -38,7 +37,7 @@ export default {
 
       if (!user) {
         ctx.response.status = 400;
-        ctx.response.body = { error: errorCodes['E0105'] }
+        ctx.response.body = { error: errorCodes["E0105"] };
         return;
       }
       // Password comparision using bcrypt
@@ -49,11 +48,11 @@ export default {
       if (!validPassword) {
         createUserLog(user, false);
         ctx.response.status = 400;
-        ctx.response.body = { error: errorCodes['E0106'] }
+        ctx.response.body = { error: errorCodes["E0106"] };
         return;
       }
       // Generate JWT token using selected user fields
-      const studentJWT : Student = {
+      const studentJWT: Student = {
         documentId: user.documentId,
         name: user.name,
         email: user.email,
@@ -63,39 +62,42 @@ export default {
       //log successful login
       createUserLog(user, true);
 
-      const jwtToken = jwt.sign(studentJWT, secretKey, { expiresIn: '7d' });
+      const jwtToken = jwt.sign(studentJWT, secretKey, { expiresIn: "7d" });
+      ctx.response.status = 200;
 
       ctx.response.body = JSON.stringify(jwtToken);
     } catch (err) {
       strapi.log.error("Login failed:", err);
       ctx.response.status = 500;
-      ctx.response.body = { error: errorCodes['E0019'] }
+      ctx.response.body = { error: errorCodes["E0019"] };
     }
   },
-  passwordRequestAction: async (ctx, next) => { 
+  passwordRequestAction: async (ctx, next) => {
     try {
       // Get the student with the email
       const studentEmail = ctx.request.body.email;
       const student = await strapi.documents("api::student.student").findFirst({
         filters: {
-          email: studentEmail
-        }
+          email: studentEmail,
+        },
       });
 
       if (!studentEmail || !student) {
         ctx.response.status = 400;
-        ctx.response.body = { error: errorCodes['E0004'] }
+        ctx.response.body = { error: errorCodes["E0004"] };
         return;
       }
 
       // Find all tokens for the student
       let existingTokens = await strapi.documents(TOKEN_API).findMany({
         filters: {
-          userEmail: studentEmail
-        }
+          userEmail: studentEmail,
+        },
       });
       for (const token of existingTokens) {
-        await strapi.documents(TOKEN_API).delete({ documentId: token.documentId });
+        await strapi
+          .documents(TOKEN_API)
+          .delete({ documentId: token.documentId });
       }
 
       // Generate token
@@ -106,24 +108,23 @@ export default {
         data: {
           userEmail: student.email,
           token: resetToken,
-          expiresAt: new Date(Date.now() + TOKEN_EXPIRATION_TIME)
-        }
+          expiresAt: new Date(Date.now() + TOKEN_EXPIRATION_TIME),
+        },
       });
 
       const success = await sendResetPasswordEmail(student, resetToken);
 
       if (success) {
         ctx.response.status = 200;
-        ctx.response.body = { status: 'success' };
+        ctx.response.body = { status: "success" };
       } else {
         ctx.response.status = 500;
-        ctx.response.body = { error: errorCodes['E0004'] }
+        ctx.response.body = { error: errorCodes["E0004"] };
       }
     } catch (err) {
       ctx.response.status = 500;
       ctx.body = err;
     }
-    
   },
   passwordCodeAction: async (ctx, next) => {
     try {
@@ -131,68 +132,74 @@ export default {
 
       if (!resetTokenCode || !studentEmail) {
         ctx.response.status = 400;
-        return ctx.response.body = { error: errorCodes['E0016'] }
+        return (ctx.response.body = { error: errorCodes["E0016"] });
       }
 
       // Get student-password-reset-token with the email
       const tokenFound = await strapi.documents(TOKEN_API).findFirst({
         filters: {
-          userEmail: studentEmail
-        }
+          userEmail: studentEmail,
+        },
       });
 
       if (resetTokenCode == tokenFound.token) {
         ctx.response.status = 200;
-        ctx.response.body = { status: 'success' };
+        ctx.response.body = { status: "success" };
       } else {
         ctx.response.status = 500;
-        ctx.response.body = { error: errorCodes['E0405'] }
+        ctx.response.body = { error: errorCodes["E0405"] };
       }
     } catch (err) {
       ctx.response.status = 500;
       ctx.body = err;
     }
-
   },
   passwordUpdateAction: async (ctx, next) => {
     try {
       const { email, token, newPassword } = ctx.request.body;
 
-      if(typeof email !==  'string' || typeof token !== 'string' || typeof newPassword !== 'string'){
+      if (
+        typeof email !== "string" ||
+        typeof token !== "string" ||
+        typeof newPassword !== "string"
+      ) {
         ctx.response.status = 400;
-        return ctx.response.body = { error: errorCodes['E0016'] }
+        return (ctx.response.body = { error: errorCodes["E0016"] });
       }
       const lowercaseEmail = email.toLowerCase();
 
       const passwordResetToken = await strapi.documents(TOKEN_API).findFirst({
         filters: {
           token: token,
-          userEmail: email
+          userEmail: email,
         },
       });
 
       // If token is not provided or token is expired, return error E0404
-      if (!(passwordResetToken.token == token && new Date(passwordResetToken.expiresAt) > new Date(Date.now()))) {
+      if (
+        !(
+          passwordResetToken.token == token &&
+          new Date(passwordResetToken.expiresAt) > new Date(Date.now())
+        )
+      ) {
         ctx.response.status = 400;
-        return ctx.response.body = { error: errorCodes['E0404'] }
+        return (ctx.response.body = { error: errorCodes["E0404"] });
       }
 
-      const user = await strapi.documents('api::student.student').findFirst(
-        {
-          filters: {
-            email: lowercaseEmail
-          }
-        }
-      );
+      const user = await strapi.documents("api::student.student").findFirst({
+        filters: {
+          email: lowercaseEmail,
+        },
+      });
 
       await strapi.documents("api::student.student").update({
         documentId: user.documentId,
         data: {
-          password: newPassword
-        }
+          password: newPassword,
+        },
       });
-      await strapi.documents('api::student.student').publish({
-        documentId: user.documentId
+      await strapi.documents("api::student.student").publish({
+        documentId: user.documentId,
       });
 
       ctx.response.status = 200;
@@ -201,18 +208,17 @@ export default {
       ctx.response.status = 500;
       ctx.body = err;
     }
-    
-  }
+  },
 };
 
 // Utility functions
 async function createUserLog(user, isSuccessful) {
-  const sucessLog = await strapi.documents('api::user-log.user-log').create({
+  const sucessLog = await strapi.documents("api::user-log.user-log").create({
     data: {
       loginDate: new Date(Date.now()),
       isSuccessful: isSuccessful,
-      student: user.documentId
-    }
+      student: user.documentId,
+    },
   });
   if (!sucessLog) {
     return;
@@ -233,7 +239,7 @@ function getRandomNumber(min, max) {
 
 function generatePasswordResetToken() {
   const length = 4;
-  let retVal = '';
+  let retVal = "";
   for (let i = 0; i < length; i++) {
     retVal += getRandomNumber(0, 9);
   }
