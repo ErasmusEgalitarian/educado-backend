@@ -23,14 +23,14 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
     } catch (error) {
         strapi.log.error("JWT verification failed:", error);
         throw new PolicyError("JWT verification failed", {
-            policy: 'is-contentCreator',
+            policy: 'is-content-creator',
         });
     }
 
     // If there’s no authenticated user, deny access immediately
     if (!user) {
         throw new PolicyError("No authenticated user", {
-            policy: 'is-contentCreator',
+            policy: 'is-content-creator',
         });
     }
 
@@ -46,7 +46,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
 
         if(user.verifiedAt == null){
             throw new PolicyError("User not verified", {
-                policy: 'is-contentCreator',
+                policy: 'is-content-creator',
             });
         }
 
@@ -57,7 +57,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
         // If an error occurs during the query, log it and deny access
         strapi.log.error('Error in is-content-creator policy:', error);
         throw new PolicyError("Content Creator collection query failed", {
-            policy: 'is-contentCreator',
+            policy: 'is-content-creator',
         });
     }
 };
