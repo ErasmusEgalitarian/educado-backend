@@ -19,7 +19,7 @@ describe("loginAction controller", () => {
       name: "Test User",
       email: "test@example.com",
       password: "hashedpassword",
-      verifiedAt: "2023.01.01",
+      verfiedAt: "01-01-2023",
     };
 
     // Mock request and response objects for each test
@@ -29,6 +29,9 @@ describe("loginAction controller", () => {
       // Default empty tests
       response: { status: 0, body: null },
     };
+
+    // Provide a JWT secret for token generation
+    process.env.JWT_SECRET = "secretkey";
 
     // Mock Strapi DB query
     (global as any).strapi = {
@@ -94,6 +97,17 @@ describe("loginAction controller", () => {
 
     expect(ctx.response.status).toBe(0); // default, no error set
     expect(ctx.response.body).toBe(JSON.stringify("mockedtoken"));
+  });
+
+  // Test missing JWT secret
+  it("returns 500 if JWT_SECRET missing", async () => {
+    delete process.env.JWT_SECRET; // Remove secret
+    ctx.request.body = { email: "test@example.com", password: "password" };
+
+    await loginController.loginAction(ctx, null);
+
+    expect(ctx.response.status).toBe(500);
+    expect(ctx.response.body.error).toBeDefined();
   });
 
   // Test unexpected DB error
