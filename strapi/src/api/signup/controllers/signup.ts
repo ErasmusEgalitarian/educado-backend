@@ -1,7 +1,7 @@
 /**
  * A set of functions called "actions" for `signup`
  */
-
+import { errorCodes } from "../../../helpers/errorCodes";
 const TOKEN_EXPIRATION_TIME = 1000 * 60 * 10; // 10 minutes
 
 function generateTokenCode(length) {
@@ -55,13 +55,16 @@ export default {
       const { name, email, password } = ctx.request.body;
       // Type checking
       if (typeof email !== 'string') {
-        return ctx.badRequest('Invalid request: email is not type string but '+typeof email);
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0216'] };
       }
       if (typeof name !== 'string'){
-        return ctx.badRequest('Invalid request: name is not type string but '+typeof name);
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0216'] };
       }
       if (typeof password !== 'string'){
-        return ctx.badRequest('Invalid request: name is not type string but '+typeof name);
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0216'] };
       }
 
       // Convert email to lowercase
@@ -76,7 +79,8 @@ export default {
         }
       );
       if (!(user == null)){
-        return ctx.badRequest('student with that email already excist');
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0201'] };
       }
 
       let studentJWT;
@@ -92,6 +96,7 @@ export default {
         if (user){
           await strapi.documents('api::student.student').delete({ documentId: user.documentId });
         }
+        ctx.response.status = 400;
         return ctx.badRequest(err);
       }
 
@@ -112,7 +117,8 @@ export default {
       const { name, email } = ctx.request.body;
       const lowercaseEmail = email.toLowerCase();
       if(!lowercaseEmail || !name){
-        return ctx.badRequest('email and or name field is empty');
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0208'] };
       }
 
       // student with that email does not excist or is already verifed
@@ -124,7 +130,8 @@ export default {
         }
       );
       if ((student == null) || !(student.verifiedAt == null)){
-        return ctx.badRequest('student with that email does not excist or is already verifed');
+        ctx.response.status = 400;
+        return ctx.response.body = { error: errorCodes['E0501'] };
       }
 
 
@@ -152,7 +159,8 @@ export default {
       });
       // Safety check
       if (!verificationTokenResponse){
-        return ctx.internalServerError('Failed to create verfication token.');
+        ctx.response.status = 500;
+        return ctx.response.body = { error: errorCodes['E0217'] };
       }
 
       ctx.response.body = 'ok';

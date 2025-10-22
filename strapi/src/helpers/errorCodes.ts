@@ -148,7 +148,7 @@ export const errorCodes: Record<string, errorDetail> = {
 	},
 	E0208: {
 		code: 'E0208',
-		message: 'Email is required.'
+		message: 'Email and name field is required.'
 	},
 	E0209: {
 		code: 'E0209',
@@ -177,6 +177,14 @@ export const errorCodes: Record<string, errorDetail> = {
 	E0215: {
 		code: 'E0215',
 		message: 'Verification token is invalid or expired.'
+	},
+	E0216: {
+		code: 'E0216',
+		message: 'Invalid request: input is not type string.'
+	},
+	E0217: {
+		code: 'E0217',
+		message: 'Failed to create verfication token.'
 	},
 
 	// E03 - Logout errors
@@ -214,7 +222,7 @@ export const errorCodes: Record<string, errorDetail> = {
 	// E05 - Verification errors
 	E0501: {
 		code: 'E0501',
-		message: 'Account is already verified.'
+		message: 'Account is already verified or does not exist.'
 	},
 	E0502: {
 		code: 'E0502',
