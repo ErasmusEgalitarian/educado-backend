@@ -35,7 +35,7 @@ export async function sendResetPasswordEmail(user, token) {
 	<p style="margin: 16px 0; font-size: 16px; ">Recebemos uma solicitação para redefinir a senha de sua conta no Educado.</p>
 	<p style="margin: 16px 0; font-size: 16px; ">Use o código abaixo para redefinir sua senha:</p>
 	<p class="code" style="font-size: 24px; font-weight: bold; text-align: center; margin: 20px 0;">${token}</p>
-	<p style="margin: 16px 0; font-size: 16px; ">Este código é válido por <strong>5 minutos</strong>. Por favor, insira-o antes que expire.</p>
+	<p style="margin: 16px 0; font-size: 16px; ">Este código é válido por <strong>10 minutos</strong>. Por favor, insira-o antes que expire.</p>
 	<p style="margin: 16px 0; font-size: 16px;">Se você não solicitou esta redefinição, ignore este e-mail ou entre em contato com nosso suporte para garantir a segurança de sua conta.</p>
 	<p style="margin: 16px 0; font-size: 16px; ">Obrigado por usar o Educado!</p>
 	<p style="margin: 16px 0; font-size: 16px; ">Atenciosamente,</p>
@@ -57,7 +57,7 @@ export async function sendVerificationEmail(user, token) {
 	<p style="margin: 16px 0; font-size: 16px;">Estamos animados por você estar se juntando à nossa comunidade!</p>
 	<p style="margin: 16px 0; font-size: 16px; ">Para concluir seu registro, use o código abaixo para verificar seu e-mail:</p>
 	<p class="code" style="font-size: 24px; font-weight: bold; text-align: center; margin: 20px 0;">${token}</p>
-	<p style="margin: 16px 0; font-size: 16px; ">Este código é válido por <strong>5 minutos</strong>. Por favor, insira-o antes que expire.</p>
+	<p style="margin: 16px 0; font-size: 16px; ">Este código é válido por <strong>10 minutos</strong>. Por favor, insira-o antes que expire.</p>
 	<p style="margin: 16px 0; font-size: 16px; ">Se você não fez esta solicitação, ignore este e-mail ou entre em contato com nossa equipe de suporte para garantir a segurança de sua conta.</p>
 	<p style="margin: 16px 0; font-size: 16px; ">Obrigado por escolher o Educado!</p>
 	<p style="margin: 16px 0; font-size: 16px; ">Atenciosamente,</p>
