@@ -2,7 +2,7 @@
  * and finally generating a JWT token upon successful authentication.
  */
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import { errorCodes } from "../../../helpers/errorCodes";
 
 export default {
@@ -63,6 +63,7 @@ export default {
 
       const jwtToken = jwt.sign(studentJWT, secretKey, { expiresIn: "7d" });
 
+      ctx.response.status = 200;
       ctx.response.body = JSON.stringify(jwtToken);
     } catch (err) {
       strapi.log.error("Login failed:", err);

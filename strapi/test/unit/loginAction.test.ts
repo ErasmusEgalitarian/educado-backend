@@ -19,7 +19,7 @@ describe("loginAction controller", () => {
       name: "Test User",
       email: "test@example.com",
       password: "hashedpassword",
-      verfiedAt: "01-01-2023",
+      isVerified: true,
     };
 
     // Mock request and response objects for each test
@@ -95,7 +95,7 @@ describe("loginAction controller", () => {
 
     await loginController.loginAction(ctx, null);
 
-    expect(ctx.response.status).toBe(0); // default, no error set
+    expect(ctx.response.status).toBe(200); // default, no error set
     expect(ctx.response.body).toBe(JSON.stringify("mockedtoken"));
   });
 
