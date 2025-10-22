@@ -61,7 +61,7 @@ export default {
         return ctx.badRequest(err);
       }
 
-      ctx.response.body = jwt.sign(studentJWT, secretKey, { expiresIn: '7d' });
+      ctx.response.body = JSON.stringify(jwt.sign(studentJWT, secretKey, { expiresIn: '7d' }));
 
     } catch (err) {
       ctx.body = err;

@@ -19,7 +19,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse"
+                  "$ref": "#/components/schemas/JWTResponse"
                 }
               }
             }
@@ -46,7 +46,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse"
+                  "$ref": "#/components/schemas/SuccessResponse"
                 }
               }
             }
@@ -73,7 +73,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse"
+                  "$ref": "#/components/schemas/SuccessResponse"
                 }
               }
             }
@@ -100,7 +100,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse"
+                  "$ref": "#/components/schemas/SuccessResponse"
                 }
               }
             }
@@ -123,29 +123,21 @@
           }
         }
       },
-      "LoginResponse": {
-        "type": "object",
-        "properties": {
-          "user": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              }
-            }
-          },
-          "jwt": {
-            "type": "string"
-          }
-        }
+      "JWTResponse": {
+        "type": "string"
       },
       "ResetPasswordRequestRequest": {
         "type": "object",
         "properties": {
           "email": {
+            "type": "string"
+          }
+        }
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
             "type": "string"
           }
         }

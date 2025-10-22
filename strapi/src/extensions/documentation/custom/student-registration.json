@@ -21,7 +21,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VerifyEmailRequest"
+                  "$ref": "#/components/schemas/JWTResponse"
                 }
               }
             }
@@ -50,7 +50,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VerifyEmailRequest"
+                  "$ref": "#/components/schemas/OKResponse"
                 }
               }
             }
@@ -79,7 +79,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VerifyEmailRequest"
+                  "$ref": "#/components/schemas/JWTResponse"
                 }
               }
             }
@@ -103,6 +103,12 @@
             "type": "string"
           }
         }
+      },
+      "JWTResponse": {
+        "type": "string"
+      },
+      "OKResponse": {
+        "type": "string"
       },
       "StudentVerificationTokenRequest": {
         "type": "object",
