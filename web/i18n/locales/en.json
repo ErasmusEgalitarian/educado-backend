@@ -169,5 +169,17 @@
     "describeTheImage": "Describe the image for accessibility",
     "addACaption": "Add a caption or description",
     "previewShortcuts": "Press ESC to close • Arrow keys to navigate • +/- to zoom"
+  },
+    "carousel": {
+    "title1": "Join us to transform lives through your knowledge",
+    "section1": "We offer access to personalized content for people in need, improving living conditions and job opportunities.",
+    "title2": "For content creators",
+    "section2": "Promote your work and reach an even wider audience. Share your ideas with those who want to learn and be inspired.",
+    "title3": "Sign up now and help make a difference!",
+    "section3": "Be part of a community that makes it easier to access relevant content and encourages knowledge sharing in a simple and practical way."
+}
+,
+  "login":{
+    
   }
 }
