@@ -233,7 +233,7 @@ async function generateStudentDraftAndPublish(name: string, email: string, passw
     name: studentEntry.name,
     email: studentEntry.email,
     password: studentEntry.password,
-    verifiedAt: new Date(studentEntry.verifiedAt)
+    verifiedAt: null
   }
 
   return studentJWT;
