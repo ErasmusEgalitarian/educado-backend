@@ -14,7 +14,8 @@
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry",
-    "generate-spec": "cross-env ENV_PATH=../.env strapi openapi generate --output ../openapi/strapi-spec.json && ts-node src/extensions/documentation/run-merge-spec.ts"
+    "generate-spec": "cross-env ENV_PATH=../.env strapi openapi generate --output ../openapi/strapi-spec.json",
+    "generate-merged-spec": "cross-env ENV_PATH=../.env strapi openapi generate --output ../openapi/strapi-spec.json && ts-node src/extensions/documentation/run-merge-spec.ts"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.27.0",
