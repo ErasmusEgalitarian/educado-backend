@@ -1,6 +1,5 @@
-import verifyController from "../../src/api/verify-email/controllers/verify-email";
+import verifyController from "../../src/api/student-auth/controllers/student-registration";
 import jwt from "jsonwebtoken";
-import { errorCodes } from "../../src/helpers/errorCodes";
 
 // Mock JWT
 jest.mock("jsonwebtoken");
