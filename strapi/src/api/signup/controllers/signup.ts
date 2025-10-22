@@ -85,11 +85,11 @@ export default {
 
       let studentJWT;
       try {
-        studentJWT = await generateStudentDraftAndPublish(name, email, password)
+        studentJWT = await generateStudentDraftAndPublish(name, lowercaseEmail, password);
       } catch (err) {
         const user = await strapi.documents('api::student.student').findFirst({
             filters: {
-              email: email
+              email: lowercaseEmail
             }
           }
         );
