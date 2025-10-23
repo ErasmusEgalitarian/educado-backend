@@ -10,7 +10,7 @@ import background from "@/shared/assets/background.jpg";
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";
-import Carousel from "../../../unplaced/archive/Carousel";
+import Carousel from "../../../unplaced/archive/carousel";
 import AuthServices from "../../../unplaced/services/auth.services";
 import { setUserInfo } from "../lib/userInfo";
 import { LoginResponseError } from "../types/LoginResponseError";

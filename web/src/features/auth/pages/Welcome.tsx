@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 
+
 import background from "@/shared/assets/background.jpg";
 
 import MiniNavbar from "../../../shared/components/MiniNavbar";
-import Carousel from "../../../unplaced/archive/Carousel";
+import Carousel from "../../../unplaced/archive/carousel";
 
 const Welcome = () => {
   return (

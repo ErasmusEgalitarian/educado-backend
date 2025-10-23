@@ -1,4 +1,3 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -40,12 +39,7 @@ const Carousel: React.FC = () => {
     }
   };
 
-  const pre = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1) % texts.length);
-    if (currentIndex <= 0) {
-      setCurrentIndex(texts.length - 1);
-    }
-  };
+  
   //Timer that decides when the text automatically changes
   useEffect(() => {
     const intervalId = setInterval(next, 8000);
@@ -75,10 +69,9 @@ const Carousel: React.FC = () => {
               {texts.map((_, i) => (
                 <div
                   key={i}
-                  className={`w-3 h-3 rounded-full transition-all cursor-pointer ${
+                  className={`w-3 h-3 rounded-full transition-all  ${
                     currentIndex === i ? "bg-[#166276]" : "bg-white bg-opacity-50"
                   }`}
-                  onClick={() => setCurrentIndex(i)}
                 />
               ))}
             </div>
