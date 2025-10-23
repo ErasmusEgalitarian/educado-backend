@@ -48,7 +48,7 @@ const Carousel: React.FC = () => {
     return () => {
       clearInterval(intervalId);
     };
-  }, []);
+  });
 
   return (
     //Containters for the texts
