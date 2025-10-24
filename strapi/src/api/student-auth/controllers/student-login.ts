@@ -88,7 +88,7 @@ export default {
         return;
       }
 
-      // Find all tokens for the student
+      // Find all tokens for the student and delete
       let existingTokens = await strapi.documents(TOKEN_API).findMany({
         filters: {
           userEmail: studentEmail,
@@ -177,9 +177,8 @@ export default {
 
       // If token is not provided or token is expired, return error E0404
       if (
-        !(
-          passwordResetToken.token == token &&
-          new Date(passwordResetToken.expiresAt) > new Date(Date.now())
+        !( passwordResetToken ||
+          (passwordResetToken.token == token && new Date(passwordResetToken.expiresAt) > new Date(Date.now()))
         )
       ) {
         ctx.response.status = 400;
@@ -201,6 +200,19 @@ export default {
       await strapi.documents("api::student.student").publish({
         documentId: user.documentId,
       });
+
+      // Find all tokens for the student and delete
+      let existingTokens = await strapi.documents(TOKEN_API).findMany({
+        filters: {
+          userEmail: lowercaseEmail,
+        },
+      });
+
+      for (const token of existingTokens) {
+        await strapi
+          .documents(TOKEN_API)
+          .delete({ documentId: token.documentId });
+      }
 
       ctx.response.status = 200;
       ctx.response.body = { status: "success" };
