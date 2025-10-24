@@ -1,4 +1,4 @@
-import { mdiArrowLeft } from "@mdi/js";
+import { mdiArrowLeft, mdiContentSave } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useRef } from "react";
@@ -191,15 +191,6 @@ const CourseEditorPage = () => {
         {/*------------ Left side - Step Navigation ------------*/}
         <div className="w-auto">
           <div className="flex flex-col justify-between items-start gap-4 mb-6">
-            <Button
-              variant="outline"
-              onClick={handleBack}
-              iconPlacement="left"
-              size="sm"
-              icon={() => <Icon path={mdiArrowLeft} size={1} />}
-            >
-              {t("common.back")}
-            </Button>
             <h1 className="text-2xl text-greyscale-text-caption">
               {getPageTitle()}
             </h1>
@@ -220,14 +211,36 @@ const CourseEditorPage = () => {
             ))}
           </div>
           <Separator className="my-6" />
+          <Button
+            variant="secondary"
+            onClick={handleBack}
+            iconPlacement="left"
+            icon={() => <Icon path={mdiContentSave} size={1} />}
+            className="w-full"
+          >
+            {t("actions.saveAsDraft")}
+          </Button>
         </div>
 
         {/*------------ Right side - Content ------------*/}
-        <div className="w-full">
+        <div className="w-full flex flex-col">
           <h1 className="font-bold text-3xl text-greyscale-text-title mb-6">
             {steps.find((s) => s.id === currentStep)?.label}
           </h1>
           <ErrorBoundary>{getSectionComponent()}</ErrorBoundary>
+          <div className="flex justify-end gap-4 mt-10">
+            <Button
+              variant="blank"
+              className="mt-4 text-sm text-error-surface-default underline hover:decoration-error-surface-default"
+              onClick={handleBack}
+            >
+              {t("common.cancel")}
+            </Button>
+
+            <Button variant="primary" className="mt-4 text-sm">
+              {t("courseManager.goToSections")}
+            </Button>
+          </div>
         </div>
       </div>
 

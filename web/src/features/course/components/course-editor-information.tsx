@@ -41,6 +41,7 @@ import {
 } from "../api/course-mutations";
 
 import CategoryCreateModal from "./category-create-modal";
+import { Button } from "@/shared/components/shadcn/button";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -97,7 +98,7 @@ const CourseEditorInformation = forwardRef<
 
   const { uploadFile } = useFileUpload();
 
-  /* ------------------------------- Categories ------------------------------- */  
+  /* ------------------------------- Categories ------------------------------- */
   const {
     data,
     error: categoriesError,
@@ -175,9 +176,10 @@ const CourseEditorInformation = forwardRef<
   const onSubmit = async (values: CourseBasicInfoFormValues) => {
     try {
       // Upload image if provided and take first id
-      const imageIds = values.image && values.image.length > 0
-        ? await uploadFile(values.image)
-        : undefined;
+      const imageIds =
+        values.image && values.image.length > 0
+          ? await uploadFile(values.image)
+          : undefined;
       const imageId = imageIds?.[0];
 
       // Edit = update mutation
@@ -438,6 +440,7 @@ const CourseEditorInformation = forwardRef<
           onCreated={handleCategoryCreated}
         />
       </Card>
+
       <DevTool control={form.control} />
     </>
   );

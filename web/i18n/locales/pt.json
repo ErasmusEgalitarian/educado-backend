@@ -9,7 +9,8 @@
     "clearAll": "Limpar tudo",
     "selectAll": "Selecionar tudo",
     "close": "Fechar",
-    "search": "Buscar"
+    "search": "Buscar",
+    "saveAsDraft": "Salvar como Rascunho"
   },
   "form": {
     "submit": "Submeter",
@@ -54,7 +55,7 @@
     "dismiss": "Dispensar",
     "name": "Nome",
     "retry": "Tentar Novamente",
-    "rating": "Avaliação"
+    "rating": "Avaliação",
     "error": "Erro"
   },
   "pagination": {
@@ -128,7 +129,6 @@
     "newCourse": "Novo Curso",
     "createSections": "Criar Seções",
     "cancelAndReturn": "Cancelar e Voltar",
-    "saveAsDraft": "Salvar como Rascunho",
     "reviewCourse": "Revisar Curso",
     "createAndContinue": "Criar e Continuar",
     "publishCourse": "Publicar Curso",
@@ -144,7 +144,8 @@
     "createError": "Falha ao Criar Curso",
     "updateError": "Falha ao Atualizar Curso",
     "genericError": "Ocorreu um erro inesperado. Por favor, tente novamente.",
-    "rating": "Avaliação"
+    "rating": "Avaliação",
+    "goToSections": "Avancer para Seções"
   },
   "courses": {
     "pageTitle": "Confira seus cursos",
