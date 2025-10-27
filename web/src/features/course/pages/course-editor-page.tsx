@@ -189,11 +189,8 @@ const CourseEditorPage = () => {
     <PageContainer title={getPageTitle()}>
       <div className="flex gap-x-20">
         {/*------------ Left side - Step Navigation ------------*/}
-        <div className="w-3/7">
-          <div className="flex flex-row justify-between items-center gap-4 mb-6">
-            <h1 className="text-2xl text-greyscale-text-caption">
-              {getPageTitle()}
-            </h1>
+        <div className="w-auto">
+          <div className="flex flex-col justify-between items-start gap-4 mb-6">
             <Button
               variant="outline"
               onClick={handleBack}
@@ -203,6 +200,9 @@ const CourseEditorPage = () => {
             >
               {t("common.back")}
             </Button>
+            <h1 className="text-2xl text-greyscale-text-caption">
+              {getPageTitle()}
+            </h1>
           </div>
           <Separator className="my-6" />
           <div className="flex flex-col gap-y-5 my-6">
