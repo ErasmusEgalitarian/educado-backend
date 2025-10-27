@@ -181,5 +181,11 @@
 ,
   "login":{
     
-  }
+  },"welcome":{
+  "title": "Welcome to EDUCADO!",
+  "subtitle": "Sign up now and help promote your work and reach a wider audience through content creation.",
+  "register-button": "Register",
+  "login-text": "Already have an account?",
+  "login-button": "Sign in"
+}
 }

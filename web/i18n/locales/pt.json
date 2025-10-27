@@ -199,5 +199,11 @@
   },
   "login":{
 
+  },"welcome":{
+    "title": "Boas vindas ao EDUCADO!",
+    "subtitle": "Cadastre-se agora e ajude a promover seu trabalho e atingir um público mais amplo por meio da criação de conteúdo.",
+    "register-button": "Cadastrar",
+    "login-text": "Já possui uma conta?",
+    "login-button": "Entrar"
   }
 }
