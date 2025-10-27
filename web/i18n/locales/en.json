@@ -53,7 +53,9 @@
     "stay": "Stay",
     "dismiss": "Dismiss",
     "name": "Name",
-    "retry": "Retry"
+    "retry": "Retry",
+    "rating": "Rating",
+    "error": "Error"
   },
   "pagination": {
     "items": "items",
@@ -122,7 +124,8 @@
     "leavePageMessage": "Are you sure you want to leave this page?",
     "createError": "Failed to Create Course",
     "updateError": "Failed to Update Course",
-    "genericError": "An unexpected error occurred. Please try again."
+    "genericError": "An unexpected error occurred. Please try again.",
+    "rating": "Rating"
   },
   "courses": {
     "pageTitle": "Courses list",
@@ -145,10 +148,19 @@
     "grade": "Grade",
     "startNow": "Start Now",
     "noCoursesYet": "You haven't created any courses yet. Click the button below and follow the step-by-step instructions to develop your first course.",
-    "createNewCourse": "Create New Course"
+    "createNewCourse": "Create New Course",
+    "thisMonth": "This month",
+    "totalCertificatesIssued": "Total certificates issued",
+    "evaluation": "Evaluation",
+    "lastSevenDays": "Last 7 days",
+    "lastThirtyDays": "Last 30 days"
   },
   "courseEditor": {
-    "fetchCourseDataError": "Error loading Course Data: {{message}}"
+    "fetchCourseDataError": "Error loading Course Data: {{message}}",
+    "skipToReview": "Skip to review"
+  },
+  "courseEditorReview": {
+    "thisCourseIsCurrentlyVisibleToStudents": "This course is currently visible to students"
   },
   "files": {
     "upload": "Upload",
@@ -169,5 +181,12 @@
     "describeTheImage": "Describe the image for accessibility",
     "addACaption": "Add a caption or description",
     "previewShortcuts": "Press ESC to close • Arrow keys to navigate • +/- to zoom"
+  },
+  "multiSelect": {
+    "createCategory": "Create category",
+    "EnterCategoryTitle": "Enter a short and clear category title.",
+    "newCategory": "New Category",
+    "creatingCategory": "Creating Category",
+    "minNameLength": "Category name must be at least {{count}} characters"
   }
 }

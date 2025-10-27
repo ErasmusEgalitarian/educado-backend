@@ -44,6 +44,7 @@
   --color-greyscale-surface-subtle: var(--greyscale-surface-subtle);
   --color-greyscale-surface-default: var(--greyscale-surface-default);
   --color-greyscale-surface-disabled: var(--greyscale-surface-disabled);
+  --color-greyscale-border-lighter: var(--greyscale-border-lighter);
   --color-greyscale-border-default: var(--greyscale-border-default);
   --color-greyscale-border-disabled: var(--greyscale-border-disabled);
   --color-greyscale-border-darker: var(--greyscale-border-darker);
@@ -122,6 +123,7 @@
   --greyscale-surface-subtle: #fdfeff;
   --greyscale-surface-default: #ebf0f2;
   --greyscale-surface-disabled: #c1cfd7;
+  --greyscale-border-lighter: #C1CFD7;
   --greyscale-border-default: #809cad;
   --greyscale-border-disabled: #9fb4c1;
   --greyscale-border-darker: #3a4e5a;
