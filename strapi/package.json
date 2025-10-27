@@ -13,13 +13,17 @@
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry",
-    "generate-spec": "cross-env ENV_PATH=../.env strapi openapi generate --output ../openapi/strapi-spec.json"
+    "generate-spec": "cross-env ENV_PATH=../.env strapi openapi generate --output ../openapi/strapi-spec.json",
+    "generate-merged-spec": "cross-env ENV_PATH=../.env strapi openapi generate --output ../openapi/strapi-spec.json && ts-node src/extensions/documentation/run-merge-spec.ts"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.27.0",
     "@strapi/plugin-documentation": "5.27.0",
     "@strapi/plugin-users-permissions": "5.27.0",
     "@strapi/strapi": "5.27.0",
+    "bcrypt": "^6.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^7.0.9",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -27,11 +31,13 @@
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/bcrypt": "^6.0.0",
+    "@types/node": "^20.19.23",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "cross-env": "^10.1.0",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">=18.0.0 <=22.x.x",

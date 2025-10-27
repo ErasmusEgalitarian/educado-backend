@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "verification_tokens",
+  "info": {
+    "singularName": "verification-token",
+    "pluralName": "verification-tokens",
+    "displayName": "Verification Token"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "userEmail": {
+      "type": "email",
+      "required": true,
+      "minLength": 1,
+      "maxLength": 50,
+      "unique": true
+    },
+    "token": {
+      "type": "string",
+      "required": true
+    },
+    "expiresAt": {
+      "type": "datetime",
+      "required": true
+    }
+  }
+}

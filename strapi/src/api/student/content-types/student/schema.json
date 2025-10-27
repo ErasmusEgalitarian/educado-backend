@@ -11,15 +11,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "firstName": {
+    "name": {
       "type": "string",
       "minLength": 1,
       "maxLength": 50,
       "required": true
-    },
-    "lastName": {
-      "type": "string",
-      "maxLength": 50
     },
     "biography": {
       "type": "text",
@@ -29,12 +25,16 @@
       "type": "email",
       "required": true,
       "minLength": 1,
-      "maxLength": 50
+      "maxLength": 50,
+      "unique": true
     },
     "password": {
       "type": "password",
       "required": true,
-      "minLength": 3
+      "minLength": 8
+    },
+    "verifiedAt": {
+      "type": "date"
     },
     "feedbacks": {
       "type": "relation",
@@ -52,6 +52,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::certificate.certificate",
+      "mappedBy": "student"
+    },
+    "user_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-log.user-log",
       "mappedBy": "student"
     }
   }

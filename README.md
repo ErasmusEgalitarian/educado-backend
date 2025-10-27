@@ -31,7 +31,7 @@ To develop on the Strapi instance, you can use either the dev server, or docker.
 To start the dev server, execute:
 
 ```sh
-cd /strapi
+cd strapi
 npm run dev
 ```
 

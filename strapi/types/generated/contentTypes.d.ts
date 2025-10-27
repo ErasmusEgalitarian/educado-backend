@@ -505,7 +505,9 @@ export interface ApiContentCreatorContentCreator
       Schema.Attribute.Required;
     eduEnd: Schema.Attribute.Date & Schema.Attribute.Required;
     eduStart: Schema.Attribute.Date & Schema.Attribute.Required;
-    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    email: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     firstName: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
@@ -534,13 +536,18 @@ export interface ApiContentCreatorContentCreator
       'api::content-creator.content-creator'
     > &
       Schema.Attribute.Private;
-    password: Schema.Attribute.Password & Schema.Attribute.Required;
+    password: Schema.Attribute.Password &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 8;
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     statusValue: Schema.Attribute.Enumeration<['TODO1', 'TODO2', 'TODO3']> &
       Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user_logs: Schema.Attribute.Relation<'oneToMany', 'api::user-log.user-log'>;
     verifiedAt: Schema.Attribute.Date;
   };
 }
@@ -848,6 +855,43 @@ export interface ApiLectureLecture extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPasswordResetTokenPasswordResetToken
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'password_reset_tokens';
+  info: {
+    displayName: 'Password Reset Token';
+    pluralName: 'password-reset-tokens';
+    singularName: 'password-reset-token';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    expiresAt: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::password-reset-token.password-reset-token'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    token: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    userEmail: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+        minLength: 1;
+      }>;
+  };
+}
+
 export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
   collectionName: 'students';
   info: {
@@ -873,36 +917,104 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
+      Schema.Attribute.Unique &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 50;
         minLength: 1;
       }>;
     feedbacks: Schema.Attribute.Relation<'oneToMany', 'api::feedback.feedback'>;
-    firstName: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 50;
-        minLength: 1;
-      }>;
-    lastName: Schema.Attribute.String &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 50;
-      }>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::student.student'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+        minLength: 1;
+      }>;
     password: Schema.Attribute.Password &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
-        minLength: 3;
+        minLength: 8;
       }>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user_logs: Schema.Attribute.Relation<'oneToMany', 'api::user-log.user-log'>;
+    verifiedAt: Schema.Attribute.Date;
+  };
+}
+
+export interface ApiUserLogUserLog extends Struct.CollectionTypeSchema {
+  collectionName: 'user_logs';
+  info: {
+    displayName: 'User Log';
+    pluralName: 'user-logs';
+    singularName: 'user-log';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    isSuccessful: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-log.user-log'
+    > &
+      Schema.Attribute.Private;
+    loginDate: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    student: Schema.Attribute.Relation<'manyToOne', 'api::student.student'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiVerificationTokenVerificationToken
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'verification_tokens';
+  info: {
+    displayName: 'Verification Token';
+    pluralName: 'verification-tokens';
+    singularName: 'verification-token';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    expiresAt: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::verification-token.verification-token'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    token: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    userEmail: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+        minLength: 1;
+      }>;
   };
 }
 
@@ -1424,7 +1536,10 @@ declare module '@strapi/strapi' {
       'api::exercise.exercise': ApiExerciseExercise;
       'api::feedback.feedback': ApiFeedbackFeedback;
       'api::lecture.lecture': ApiLectureLecture;
+      'api::password-reset-token.password-reset-token': ApiPasswordResetTokenPasswordResetToken;
       'api::student.student': ApiStudentStudent;
+      'api::user-log.user-log': ApiUserLogUserLog;
+      'api::verification-token.verification-token': ApiVerificationTokenVerificationToken;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

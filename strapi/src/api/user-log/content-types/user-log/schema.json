@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_logs",
+  "info": {
+    "singularName": "user-log",
+    "pluralName": "user-logs",
+    "displayName": "User Log"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "loginDate": {
+      "type": "datetime",
+      "required": true
+    },
+    "isSuccessful": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "student": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::student.student",
+      "inversedBy": "user_logs"
+    }
+  }
+}
