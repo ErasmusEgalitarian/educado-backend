@@ -12,8 +12,8 @@ export default factories.createCoreController('api::content-creator.content-crea
         // Access request data via ctx.request.body
         const { email, password } = ctx.request.body;
 
-        const user = await strapi.db.query('api::content-creator.content-creator').findOne({
-            where: { email },
+        const user = await strapi.documents('api::content-creator.content-creator').findFirst({
+            filters: { email: email },
             });
 
         if (!user) {
@@ -54,7 +54,7 @@ export default factories.createCoreController('api::content-creator.content-crea
         });
         } catch (err) {
         console.error(err);
-        return ctx.internalServerError('Something went wrong');
+            return ctx.internalServerError('Something went wrong');
         }
     },
 }));
