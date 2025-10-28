@@ -21,7 +21,7 @@ interface UserCredentials {
 }
 
 const postUserLogin = async (credentials: UserCredentials) => {
-  return await axios.post(`${BACKEND_URL}/api/auth/login`, credentials);
+  return await axios.post(`${BACKEND_URL}/api/content-creator/login`, credentials);
 };
 
 const postUserSignup = async (formData: ContentCreatorApplication) => {

@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 
 import background from "@/shared/assets/background.jpg";
 
+
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";
