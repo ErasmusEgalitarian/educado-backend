@@ -120,8 +120,8 @@ const CourseEditorSections = forwardRef<
 
   return (
     <div className="flex flex-col gap-y-6">
-      <Card>
-        <CardContent className="space-y-6">
+      <Card className="p-0 shadow-none">
+        <CardContent className="space-y-6 p-0">
           {/* Sections List */}
           {sections.length > 0 && (
             <div className="space-y-4">
@@ -186,8 +186,13 @@ const CourseEditorSections = forwardRef<
 
           {/* Add/Edit Section Form */}
           {(isCreating || isEditing) && (
-            <Card className="border-primary/20">
-              <CardContent className="pt-6">
+            <Card className="border border-primary-surface-default pt-0 overflow-hidden">
+              <CardHeader
+                className="bg-primary-surface-default p-6 text-white font-bold flex "
+              >
+                {t("courseManager.section")}
+              </CardHeader>
+              <CardContent className="pt-6 border-red-500">
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                     <div className="grid grid-cols-1 gap-4">
@@ -245,7 +250,7 @@ const CourseEditorSections = forwardRef<
                 setIsEditing(null);
                 form.reset();
               }}
-              className="w-full"
+              className="w-full border-dashed"
               variant="outline"
             >
               <Plus size={16} className="mr-2" />
