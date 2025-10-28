@@ -27,13 +27,14 @@ if (rootElement?.innerHTML === "") {
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <NotificationProvider>
-            <ToastContainer /> {/* Deprecated; kept temporarily for legacy notifications */}
+            <ToastContainer />{" "}
+            {/* Deprecated; kept temporarily for legacy notifications */}
             <Toaster position="top-right" richColors={true} />
             <App />
           </NotificationProvider>
         </AuthProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
+        <ReactQueryDevtools buttonPosition={"top-left"} initialIsOpen={false} />
       </QueryClientProvider>
-    </StrictMode>,
+    </StrictMode>
   );
 }
