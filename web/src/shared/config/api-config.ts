@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
-import { OpenAPI } from "../api/core/OpenAPI";
+import { client } from "../api/client.gen";
 
 /**
  * Configures the API client with base URL and authentication token from environment variables.
@@ -9,14 +9,13 @@ import { OpenAPI } from "../api/core/OpenAPI";
 const configureApiClient = () => {
   // Set the base URL from environment variable
   const strapiUrl = import.meta.env.VITE_STRAPI_URL as string | undefined;
-  OpenAPI.BASE = strapiUrl ?? "http://localhost:1337";
+  const baseUrl = strapiUrl ?? "http://localhost:1337";
 
   // Set the API token if available
   const apiToken = import.meta.env.VITE_STRAPI_API_TOKEN as string | undefined;
-  if (apiToken != undefined) {
-    OpenAPI.TOKEN = apiToken;
-  } else {
-    window.alert(
+
+  if (apiToken == undefined) {
+    globalThis.alert(
       "Warning: VITE_STRAPI_API_TOKEN is not set in environment variables. API requests may fail.",
     );
     throw new Error(
@@ -24,10 +23,18 @@ const configureApiClient = () => {
     );
   }
 
+  // Configure the client with base URL and authorization header
+  client.setConfig({
+    baseUrl,
+    headers: {
+      Authorization: `Bearer ${apiToken}`,
+    },
+  });
+
   // eslint-disable-next-line no-console
   console.log("API Client configured:", {
-    baseUrl: OpenAPI.BASE,
-    hasToken: OpenAPI.TOKEN !== "",
+    baseUrl,
+    hasToken: apiToken !== "",
   });
 };
 
@@ -37,12 +44,16 @@ const configureApiClient = () => {
  * @returns {Record<string, string>} Headers object for fetch requests
  */
 export const fetchHeaders = () => {
+  const apiToken = import.meta.env.VITE_STRAPI_API_TOKEN as string | undefined;
+
   const headers: Record<string, string> = {
     Accept: "application/json",
   };
-  if (OpenAPI.TOKEN !== undefined && OpenAPI.TOKEN !== "") {
-    headers.Authorization = `Bearer ${String(OpenAPI.TOKEN)}`;
+
+  if (apiToken !== undefined && apiToken !== "") {
+    headers.Authorization = `Bearer ${apiToken}`;
   }
+
   return headers;
 };
 
