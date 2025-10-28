@@ -108,16 +108,6 @@ const CourseEditorSections = forwardRef<
     form.reset();
   };
 
-  const handleDragEnd = (result: DropResult) => {
-    if (!result.destination) return;
-
-    const items = Array.from(sections);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    setSections(items);
-  };
-
   return (
     <div className="flex flex-col gap-y-6">
       <Card className="p-0 shadow-none">
@@ -153,7 +143,7 @@ const CourseEditorSections = forwardRef<
                           </h4>
                         </div>
                         
-                        {section.description ? (
+                        {(section.description != null) ? (
                           <p className="text-greyscale-text-body text-sm">
                             {section.description}
                           </p>
@@ -185,7 +175,7 @@ const CourseEditorSections = forwardRef<
           )}
 
           {/* Add/Edit Section Form */}
-          {(isCreating || isEditing) && (
+          {(isCreating || (isEditing != null)) && (
             <Card className="border border-primary-surface-default pt-0 overflow-hidden">
               <CardHeader
                 className="bg-primary-surface-default p-6 text-white font-bold flex "
@@ -194,7 +184,7 @@ const CourseEditorSections = forwardRef<
               </CardHeader>
               <CardContent className="pt-6 border-red-500">
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                  <form onSubmit={() => form.handleSubmit(onSubmit)} className="space-y-4">
                     <div className="grid grid-cols-1 gap-4">
                       <FormInput
                         control={form.control}
@@ -233,7 +223,7 @@ const CourseEditorSections = forwardRef<
                         {t("common.cancel")}
                       </Button>
                       <Button type="submit">
-                        {isEditing ? t("common.update") : t("common.add")}
+                        {(isEditing != null) ? t("common.update") : t("common.add")}
                       </Button>
                     </div>
                   </form>
@@ -243,7 +233,7 @@ const CourseEditorSections = forwardRef<
           )}
 
           {/* Add Section Button */}
-          {!isCreating && !isEditing && (
+          {!isCreating && (isEditing == null) && (
             <Button
               onClick={() => {
                 setIsCreating(true);
@@ -282,7 +272,7 @@ const CourseEditorSections = forwardRef<
                 onClick={() => onComplete?.()}
                 disabled={sections.length === 0}
               >
-                {t("common.continue")} {sections.length > 0 && `(${sections.length})`}
+                {t("common.continue")} {sections.length > 0 && `(${String(sections.length)})`}
               </Button>
             </div>
           </div>
