@@ -121,20 +121,6 @@ const CourseEditorSections = forwardRef<
   return (
     <div className="flex flex-col gap-y-6">
       <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-greyscale-text-title">
-            {t("courseManager.createSections")}
-          </CardTitle>
-          <p className="text-greyscale-text-body">
-            {t("courseManager.sectionsDescription")}
-          </p>
-          {courseId && (
-            <p className="text-greyscale-text-caption text-sm">
-              {t("courseManager.courseId")}: {courseId}
-            </p>
-          )}
-        </CardHeader>
-
         <CardContent className="space-y-6">
           {/* Sections List */}
           {sections.length > 0 && (
@@ -142,88 +128,59 @@ const CourseEditorSections = forwardRef<
               <h3 className="text-lg font-semibold text-greyscale-text-title">
                 {t("courseManager.sections")} ({sections.length})
               </h3>
-              
-              <DragDropContext onDragEnd={handleDragEnd}>
-                <Droppable droppableId="sections">
-                  {(provided) => (
-                    <div
-                      {...provided.droppableProps}
-                      ref={provided.innerRef}
-                      className="space-y-3"
-                    >
-                      {sections.map((section, index) => (
-                        <Draggable
-                          key={section.id}
-                          draggableId={section.id}
-                          index={index}
-                        >
-                          {(provided) => (
-                            <Card
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              className={`p-4 ${
-                                isEditing === section.id 
-                                  ? "border-primary border-2" 
-                                  : "border-greyscale-border"
-                              }`}
-                            >
-                              <div className="flex items-start justify-between">
-                                <div className="flex items-start gap-3 flex-1">
-                                  <div
-                                    {...provided.dragHandleProps}
-                                    className="mt-1 text-greyscale-text-caption hover:text-greyscale-text-body cursor-grab"
-                                  >
-                                    <GripVertical size={20} />
-                                  </div>
-                                  
-                                  <div className="flex-1">
-                                    <div className="flex items-center gap-2 mb-2">
-                                      <span className="text-sm font-medium text-greyscale-text-caption bg-greyscale-bg-hover px-2 py-1 rounded">
-                                        {index + 1}
-                                      </span>
-                                      <span className="text-sm font-medium text-greyscale-text-caption bg-primary/10 text-primary px-2 py-1 rounded">
-                                        {section.sectionType}
-                                      </span>
-                                      <h4 className="font-semibold text-greyscale-text-title">
-                                        {section.title}
-                                      </h4>
-                                    </div>
-                                    
-                                    {section.description && (
-                                      <p className="text-greyscale-text-body text-sm">
-                                        {section.description}
-                                      </p>
-                                    )}
-                                  </div>
-                                </div>
-                                
-                                <div className="flex gap-2 ml-4">
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={() => { handleEdit(section); }}
-                                  >
-                                    <Edit3 size={16} />
-                                  </Button>
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={() => { handleDelete(section.id); }}
-                                    className="text-destructive hover:text-destructive"
-                                  >
-                                    <Trash2 size={16} />
-                                  </Button>
-                                </div>
-                              </div>
-                            </Card>
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
+              {sections.map((section, index) => (
+                <Card
+                  key={section.id}
+                  className={`p-4 ${
+                    isEditing === section.id 
+                      ? "border-primary border-2" 
+                      : "border-greyscale-border"
+                  }`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-start gap-3 flex-1">
+                    
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-sm font-medium text-greyscale-text-caption bg-greyscale-bg-hover px-2 py-1 rounded">
+                            {index + 1}
+                          </span>
+                          <span className="text-sm font-medium text-greyscale-text-caption bg-primary/10 text-primary px-2 py-1 rounded">
+                            {section.sectionType}
+                          </span>
+                          <h4 className="font-semibold text-greyscale-text-title">
+                            {section.title}
+                          </h4>
+                        </div>
+                        
+                        {section.description ? (
+                          <p className="text-greyscale-text-body text-sm">
+                            {section.description}
+                          </p>
+                        ) : null}
+                      </div>
                     </div>
-                  )}
-                </Droppable>
-              </DragDropContext>
+                    
+                    <div className="flex gap-2 ml-4">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => { handleEdit(section); }}
+                      >
+                        <Edit3 size={16} />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => { handleDelete(section.id); }}
+                        className="text-destructive hover:text-destructive"
+                      >
+                        <Trash2 size={16} />
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              ))}
             </div>
           )}
 
