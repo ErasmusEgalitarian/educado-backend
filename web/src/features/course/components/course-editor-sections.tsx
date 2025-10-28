@@ -254,19 +254,30 @@ const CourseEditorSections = forwardRef<
           )}
 
           {/* Continue/Skip Actions */}
-          <div className="flex gap-4 justify-end pt-6 border-t border-greyscale-border">
-            <Button
-              variant="outline"
-              onClick={() => onComplete?.()}
-            >
-              {t("courseEditor.skipToReview")}
-            </Button>
-            <Button
-              onClick={() => onComplete?.()}
-              disabled={sections.length === 0}
-            >
-              {t("common.continue")} {sections.length > 0 && `(${sections.length})`}
-            </Button>
+          <div className="grid grid-cols-4 gap-4 pt-6 border-t border-greyscale-border">
+            <div className="col-start-1 gap-4 justify-start">
+              <Button
+                variant="blank"
+                onClick={() => onComplete?.()}
+              > 
+                {t("common.back")}
+              </Button>
+            </div>
+            <div className="col-start-4 flex gap-4 justify-end right-auto">
+              <Button
+                variant="blank"
+                onClick={() => onComplete?.()}
+                className="text-red-500 font-bold underline"
+              >
+                {t("courseEditor.skipToReview")}
+              </Button>
+              <Button
+                onClick={() => onComplete?.()}
+                disabled={sections.length === 0}
+              >
+                {t("common.continue")} {sections.length > 0 && `(${sections.length})`}
+              </Button>
+            </div>
           </div>
         </CardContent>
       </Card>
