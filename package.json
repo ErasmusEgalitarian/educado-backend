@@ -41,10 +41,15 @@
     "pg": "^8.16.3"
   },
   "devDependencies": {
-    "turbo": "^2.5.8"
+    "concurrently": "^9.2.1",
+    "npm-run-all": "^4.1.5"
   },
-  "workspaces": [
-    "web",
-    "strapi"
-  ]
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix web\" \"npm run dev --prefix strapi\"",
+    "compose": "docker compose up -d strapiDB",
+    "install:root": "npm install",
+    "install:web": "npm install --prefix web",
+    "install:strapi": "npm install --prefix strapi",
+    "install-all": "npm-run-all install:root install:web install:strapi"
+  }
 }
