@@ -22,7 +22,7 @@ import { FormMultiSelect } from "@/shared/components/form/form-multi-select";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
-import { Card, CardContent, CardFooter } from "@/shared/components/shadcn/card";
+import { Card, CardContent } from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
 import {
   MultiSelectOption,
@@ -284,6 +284,7 @@ const CourseEditorInformation = forwardRef<
       >
         <Form {...form}>
           <form
+            id="course-information-form"
             onSubmit={(e) => {
               void form.handleSubmit(onSubmit)(e);
             }}
@@ -415,23 +416,7 @@ const CourseEditorInformation = forwardRef<
                 </div>
               </OverlayStatusWrapper>
             </CardContent>
-            <CardFooter className="flex justify-end mt-4">
-              {/*Create and cancel buttons*/}
-              <FormActions
-                formState={form.formState}
-                submitLabel={
-                  isEditMode
-                    ? t("common.saveChanges")
-                    : t("courseManager.createAndContinue")
-                }
-                submittingLabel={
-                  isEditMode
-                    ? t("common.saving") + "..."
-                    : t("common.creating") + "..."
-                }
-                disableSubmit={mutationError !== undefined}
-              />
-            </CardFooter>
+            {/* Footer removed: actions will be rendered outside the card */}
           </form>
         </Form>
         <CategoryCreateModal
@@ -442,6 +427,23 @@ const CourseEditorInformation = forwardRef<
           onCreated={handleCategoryCreated}
         />
       </Card>
+      <div className="flex justify-end mt-4">
+        <FormActions
+          formState={form.formState}
+          formId="course-information-form"
+          submitLabel={
+            isEditMode
+              ? t("common.saveChanges")
+              : t("courseManager.createAndContinue")
+          }
+          submittingLabel={
+            isEditMode
+              ? t("common.saving") + "..."
+              : t("common.creating") + "..."
+          }
+          disableSubmit={mutationError !== undefined}
+        />
+      </div>
       <DevTool control={form.control} />
     </>
   );

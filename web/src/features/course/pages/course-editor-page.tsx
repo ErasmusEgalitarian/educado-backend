@@ -1,4 +1,4 @@
-import { mdiArrowLeft } from "@mdi/js";
+import { mdiArrowLeft, mdiFloppy } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useRef } from "react";
@@ -220,6 +220,9 @@ const CourseEditorPage = () => {
             ))}
           </div>
           <Separator className="my-6" />
+          <Button className="w-full font-bold" variant="secondary">
+            <Icon path={mdiFloppy} size={0.6} /> {t("courseEditor.saveAsDraft")}
+          </Button>
         </div>
 
         {/*------------ Right side - Content ------------*/}

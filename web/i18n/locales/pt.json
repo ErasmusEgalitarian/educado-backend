@@ -176,7 +176,8 @@
   },
   "courseEditor": {
     "fetchCourseDataError": "Erro ao carregar dados do curso: {{message}}",
-    "skipToReview": "Pular para avaliação"
+    "skipToReview": "Pular para avaliação",
+    "saveAsDraft": "Salvar como rascunho"
   },
   "courseEditorReview": {
     "thisCourseIsCurrentlyVisibleToStudents": "Este curso está atualmente visível para os alunos"
