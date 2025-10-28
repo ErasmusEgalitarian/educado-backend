@@ -26,7 +26,7 @@ import { FormMultiSelect } from "@/shared/components/form/form-multi-select";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
-import { Card, CardContent } from "@/shared/components/shadcn/card";
+import { Card, CardContent, CardFooter } from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
 import {
   MultiSelectOption,
@@ -413,7 +413,6 @@ const CourseEditorInformation = forwardRef<
                 </div>
               </OverlayStatusWrapper>
             </CardContent>
-            {/* Footer removed: actions will be rendered outside the card */}
           </form>
         </Form>
         <CategoryCreateModal
