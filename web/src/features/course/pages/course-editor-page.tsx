@@ -131,7 +131,7 @@ const CourseEditorPage = () => {
         console.log("Updated draft course:", result);
       } else {
         // Create = create mutation
-        const result = await createMutation.mutateAsync({
+        await createMutation.mutateAsync({
           title: values.title,
           difficulty: Number(values.difficulty),
           course_categories: values.categories ?? [],
