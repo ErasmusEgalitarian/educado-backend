@@ -4,6 +4,11 @@ import { CourseCategoryService, CourseService } from "@/shared/api";
 
 import { courseQuery } from "./course-queries";
 
+import { Visibility } from "../types/Course";
+
+const Published = Visibility.Published;
+const Draft = Visibility.Draft;
+
 // Type for creating a new course
 interface CourseCreateInput {
   title: string;
@@ -11,6 +16,7 @@ interface CourseCreateInput {
   categories: string[]; // documentIds of course categories
   description?: string;
   image?: number; // numeric media id
+  visibility?: Visibility;
 }
 
 // Type for updating an existing course
@@ -47,6 +53,7 @@ export const useCreateCourseMutation = () => {
             numOfSubscriptions: 0,
             // IMPORTANT: Don't set publishedAt - draft has no publishedAt
             publishedAt: "",
+            visibility: Draft,
           },
         }
       );
@@ -95,6 +102,7 @@ export const useUpdateCourseMutation = () => {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             course_categories: updateData.categories,
             image: updateData.image,
+            visibility: Draft,
           },
         }
       );
@@ -135,6 +143,7 @@ export const usePublishCourseMutation = () => {
         {
           data: {
             publishedAt: new Date().toISOString(),
+            visibility: Published,
           },
         }
       );

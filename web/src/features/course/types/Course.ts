@@ -128,5 +128,11 @@ export interface FormattedCourse {
 
 export type SubmitFunction = (
   formData: FormData,
-  token: string,
+  token: string
 ) => Promise<void>;
+
+export enum Visibility {
+  Draft = "draft",
+  Published = "published",
+  Deactivated = "deactivated",
+}
