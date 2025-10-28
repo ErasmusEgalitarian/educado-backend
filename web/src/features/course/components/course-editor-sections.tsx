@@ -194,17 +194,6 @@ const CourseEditorSections = forwardRef<
                         isRequired
                       />
                       
-                      <FormSelect
-                        control={form.control}
-                        fieldName="sectionType"
-                        label={t("courseManager.sectionType")}
-                        options={[
-                          { label: t("courseManager.lesson"), value: "Lesson" },
-                          { label: t("courseManager.exercise"), value: "Exercise" },
-                        ]}
-                        isRequired
-                      />
-                      
                       <FormTextarea
                         control={form.control}
                         fieldName="description"
@@ -212,6 +201,20 @@ const CourseEditorSections = forwardRef<
                         placeholder={t("courseManager.sectionDescriptionPlaceholder")}
                         rows={3}
                       />
+
+                      <hr />  
+
+                      <Button
+                        onClick={() => {
+                          // eslint-disable-next-line no-console
+                          console.log("todo");
+                        }}
+                        className="w-full border-dashed"
+                        variant="outline"
+                      >
+                        <Plus size={16} className="mr-2" />
+                        {t("courseManager.addSection")}
+                      </Button>
                     </div>
                     
                     <div className="flex gap-2 justify-end">
