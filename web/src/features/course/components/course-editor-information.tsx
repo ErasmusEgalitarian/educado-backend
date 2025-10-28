@@ -46,8 +46,6 @@ import { difficultyToTranslation } from "../lib/difficulty-to-translation";
 
 import CategoryCreateModal from "./category-create-modal";
 import { Button } from "@/shared/components/shadcn/button";
-import { mdiArrowLeft } from "@mdi/js";
-import Icon from "@mdi/react";
 import { useNavigate } from "react-router";
 import ReusableAlertDialog from "@/shared/components/modals/reusable-alert-dialog";
 
