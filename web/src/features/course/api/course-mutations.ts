@@ -10,7 +10,6 @@ import type { CourseRequest } from "@/shared/api/types.gen";
 
 import { courseQuery } from "./course-queries";
 
-
 /* ---------------------------------- Types --------------------------------- */
 
 // Input type for creating a course - use the generated CourseRequest data shape
@@ -140,4 +139,3 @@ export const useDeleteCourseMutation = () => {
     },
   });
 };
-
