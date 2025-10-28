@@ -45,7 +45,7 @@ const Welcome = () => {
 
           {/*Container for right side of the page*/}
           <div className="relative right-0 h-screen flex flex-col justify-center items-center  bg-gradient-to-b from-[#C9E5EC] via-[#FFFFFF] to-[#FFFFFF] w-full">
-            <img src="/public/logo.svg" alt="Image" />
+            <img src="/logo.svg" alt="Image" />
             <h1 className="relative text-4xl font-['Lato'] text-[#383838] text-[34px] text-center mb-6 mt-4 font-black px-10">
               {texts[0]}
                 {/*Warm welcome to the learning platform*/}
@@ -63,10 +63,10 @@ const Welcome = () => {
               </Link>
 
             </div>
-            <div className="relative flex flex-row items-center justify-center w-full mt-10 space-x-4 text-[#4E6879] font-['Montserrat']">
+            <div className="relative flex flex-row items-center justify-center  mt-2 text-[#4E6879] font-['Montserrat']">
               <div className="text-lg">{t("welcome.login-text")}</div>
               <Link
-                className="h-[3.3rem] w-[300px] flex items-center justify-center rounded-[15px] text-lg underline font-bold text-[#4E6879] transition duration-100 ease-in hover:text-blue-900"
+                className="h-[3.3rem] w-[80px] flex items-center justify-center rounded-[15px] text-lg underline font-bold text-[#4E6879] transition duration-100 ease-in hover:text-blue-900"
                 to="/login"
               >
                 Entrar
