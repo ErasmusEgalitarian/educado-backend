@@ -55,7 +55,8 @@
     "name": "Name",
     "retry": "Retry",
     "rating": "Rating",
-    "error": "Error"
+    "error": "Error",
+    "goPrevious": "Go to previous"
   },
   "pagination": {
     "items": "items",
