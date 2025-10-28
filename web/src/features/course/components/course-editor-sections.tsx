@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "i18next";
-import { Plus, GripVertical, Trash2, Edit3 } from "lucide-react";
+import { Plus, ChevronLeft, Trash2, Edit3 } from "lucide-react";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -262,9 +262,11 @@ const CourseEditorSections = forwardRef<
           <div className="grid grid-cols-4 gap-4 pt-6 border-t border-greyscale-border">
             <div className="col-start-1 gap-4 justify-start">
               <Button
+                
                 variant="blank"
                 onClick={() => onComplete?.()}
               > 
+                <ChevronLeft size={16} className="mr-2" />
                 {t("common.back")}
               </Button>
             </div>
