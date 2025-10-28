@@ -193,17 +193,6 @@ const CourseEditorSections = forwardRef<
                         isRequired
                       />
                       
-                      <FormSelect
-                        control={form.control}
-                        fieldName="sectionType"
-                        label={t("courseManager.sectionType")}
-                        options={[
-                          { label: t("courseManager.lesson"), value: "Lesson" },
-                          { label: t("courseManager.exercise"), value: "Exercise" },
-                        ]}
-                        isRequired
-                      />
-                      
                       <FormTextarea
                         control={form.control}
                         fieldName="description"
@@ -211,6 +200,41 @@ const CourseEditorSections = forwardRef<
                         placeholder={t("courseManager.descriptionPlaceholder")}
                         rows={3}
                       />
+
+                      <hr />  
+
+                      <div className="grid grid-cols-2">
+                        <Button
+                          onClick={() => {
+                            // eslint-disable-next-line no-console
+                            console.log("todo");
+                          }}
+                          className="w-full border-dashed border-l-none rounded-r-none"
+                          variant="outline"
+                        >
+                          <div className="w-full flex flex-row justify-end items-center">
+                            <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
+                            {t("courseManager.addLesson")}
+                            <span className="text-greyscale-text-disabled">
+                              &nbsp;
+                              {t("common.or")}
+                            </span>
+                          </div>
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            // eslint-disable-next-line no-console
+                            console.log("todo");
+                          }}
+                          className="w-full border-dashed rounded-l-none flex"
+                          variant="outline"
+                        >
+                          <div className="w-full flex flex-row justify-start items-center">
+                            <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
+                            {t("courseManager.addExcercise")}
+                          </div>
+                        </Button>
+                      </div>
                     </div>
                     
                     <div className="flex gap-2 justify-end">
@@ -242,7 +266,7 @@ const CourseEditorSections = forwardRef<
               className="w-full border-dashed"
               variant="outline"
             >
-              <Plus size={16} className="mr-2" />
+              <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
               {t("courseManager.addSection")}
             </Button>
           )}
