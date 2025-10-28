@@ -33,7 +33,7 @@ if (rootElement?.innerHTML === "") {
             <App />
           </NotificationProvider>
         </AuthProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
+        <ReactQueryDevtools buttonPosition={"top-left"} initialIsOpen={false} />
       </QueryClientProvider>
     </StrictMode>
   );
