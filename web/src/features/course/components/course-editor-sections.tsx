@@ -245,7 +245,7 @@ const CourseEditorSections = forwardRef<
                 setIsEditing(null);
                 form.reset();
               }}
-              className="w-full"
+              className="w-full border-dashed"
               variant="outline"
             >
               <Plus size={16} className="mr-2" />
