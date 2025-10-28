@@ -22,7 +22,7 @@ import { FormMultiSelect } from "@/shared/components/form/form-multi-select";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
-import { Card, CardContent, CardFooter } from "@/shared/components/shadcn/card";
+import { Card, CardContent } from "@/shared/components/shadcn/card";
 import { useAlertDialog } from "@/shared/components/modals/use-alert-dialog";
 import { Form } from "@/shared/components/shadcn/form";
 import {
@@ -40,8 +40,6 @@ import {
 
 import CategoryCreateModal from "./category-create-modal";
 import { Button } from "@/shared/components/shadcn/button";
-import { mdiArrowLeft } from "@mdi/js";
-import Icon from "@mdi/react";
 import { useNavigate } from "react-router";
 import ReusableAlertDialog from "@/shared/components/modals/reusable-alert-dialog";
 
@@ -53,6 +51,7 @@ interface CourseEditorInformationProps {
 
 export interface CourseEditorInformationRef {
   isDirty: () => boolean;
+  getValues: () => CourseBasicInfoFormValues;
 }
 
 /* --------------------------------- Schema --------------------------------- */
@@ -88,7 +87,7 @@ const CourseEditorInformation = forwardRef<
   const isEditMode = course !== undefined;
   const { alertProps, openAlert } = useAlertDialog();
   const navigate = useNavigate();
-  const informationFormRef = useRef<CourseEditorInformationRef>(null);
+  // no local ref needed here
 
   /* -------------------------------- Mutations ------------------------------- */
   const createMutation = useCreateCourseMutation();
@@ -152,6 +151,7 @@ const CourseEditorInformation = forwardRef<
   // Expose isDirty method to parent via ref
   useImperativeHandle(ref, () => ({
     isDirty: () => form.formState.isDirty,
+    getValues: () => form.getValues(),
   }));
 
   // Reset form when course data changes (e.g., when navigating back to this step)
