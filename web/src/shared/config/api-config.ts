@@ -44,7 +44,7 @@ const configureApiClient = () => {
  * Used when making fetch calls outside the generated API client.
  * @returns {Record<string, string>} Headers object for fetch requests
  */
-export const fetchHeaders = () => {
+export const fetchHeaders = (): Record<string, string> => {
   const apiToken = import.meta.env.VITE_STRAPI_API_TOKEN as string | undefined;
 
   const headers: Record<string, string> = {
