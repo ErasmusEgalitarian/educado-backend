@@ -29,6 +29,7 @@ const configureApiClient = () => {
     headers: {
       Authorization: `Bearer ${apiToken}`,
     },
+    throwOnError: true,
   });
 
   // eslint-disable-next-line no-console
