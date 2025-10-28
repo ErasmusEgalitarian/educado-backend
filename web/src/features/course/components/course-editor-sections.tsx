@@ -1,5 +1,4 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { t } from "i18next";
 import { Plus, ChevronLeft, Trash2, Edit3 } from "lucide-react";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -116,7 +115,7 @@ const CourseEditorSections = forwardRef<
           {sections.length > 0 && (
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-greyscale-text-title">
-                {t("courseManager.sections")} ({sections.length})
+                {t("courseManager.section")} ({sections.length})
               </h3>
               {sections.map((section, index) => (
                 <Card
@@ -180,7 +179,7 @@ const CourseEditorSections = forwardRef<
               <CardHeader
                 className="bg-primary-surface-default p-6 text-white font-bold flex "
               >
-                {t("courseManager.section")}
+                {t("courseManager.rating")}
               </CardHeader>
               <CardContent className="pt-6 border-red-500">
                 <Form {...form}>
@@ -189,8 +188,8 @@ const CourseEditorSections = forwardRef<
                       <FormInput
                         control={form.control}
                         fieldName="title"
-                        label={t("courseManager.sectionTitle")}
-                        placeholder={t("courseManager.sectionTitlePlaceholder")}
+                        label={t("common.name")}
+                        placeholder={t("common.name")}
                         isRequired
                       />
                       
@@ -208,8 +207,8 @@ const CourseEditorSections = forwardRef<
                       <FormTextarea
                         control={form.control}
                         fieldName="description"
-                        label={t("courseManager.sectionDescription")}
-                        placeholder={t("courseManager.sectionDescriptionPlaceholder")}
+                        label={t("courseManager.description")}
+                        placeholder={t("courseManager.descriptionPlaceholder")}
                         rows={3}
                       />
                     </div>
@@ -223,7 +222,7 @@ const CourseEditorSections = forwardRef<
                         {t("common.cancel")}
                       </Button>
                       <Button type="submit">
-                        {(isEditing != null) ? t("common.update") : t("common.add")}
+                        {(isEditing != null) ? t("common.update") : t("common.create")}
                       </Button>
                     </div>
                   </form>
@@ -252,19 +251,18 @@ const CourseEditorSections = forwardRef<
           <div className="grid grid-cols-4 gap-4 pt-6 border-t border-greyscale-border">
             <div className="col-start-1 gap-4 justify-start">
               <Button
-                
                 variant="blank"
                 onClick={() => onComplete?.()}
               > 
                 <ChevronLeft size={16} className="mr-2" />
-                {t("common.back")}
+                {t("courseManager.cancelAndReturn")}
               </Button>
             </div>
             <div className="col-start-4 flex gap-4 justify-end right-auto">
               <Button
                 variant="blank"
                 onClick={() => onComplete?.()}
-                className="text-red-500 font-bold underline"
+                className="text-destructive font-bold underline"
               >
                 {t("courseEditor.skipToReview")}
               </Button>
@@ -272,7 +270,7 @@ const CourseEditorSections = forwardRef<
                 onClick={() => onComplete?.()}
                 disabled={sections.length === 0}
               >
-                {t("common.continue")} {sections.length > 0 && `(${String(sections.length)})`}
+                {t("courseManager.createAndContinue")} {sections.length > 0 && `(${String(sections.length)})`}
               </Button>
             </div>
           </div>
