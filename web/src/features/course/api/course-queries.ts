@@ -1,9 +1,6 @@
-import {
-  ApiCourseCourseDocument,
-  CourseCategoryService,
-  CourseService,
-} from "@/shared/api";
 import { useQuery } from "@tanstack/react-query";
+
+import { getCoursesId } from "@/shared/api";
 
 export const courseQuery = (courseId: string) => ["course", courseId] as const;
 
@@ -16,36 +13,28 @@ export const courseQuery = (courseId: string) => ["course", courseId] as const;
  */
 export const CourseQueryFunction = (courseId: string) => ({
   queryKey: courseQuery(courseId),
-  queryFn: async (): Promise<ApiCourseCourseDocument> => {
-    const response = await CourseService.courseGetCoursesById(
-      courseId,
-      [
-        "title",
-        "description",
-        "difficulty",
-        "numOfRatings",
-        "numOfSubscriptions",
-        "createdAt",
-        "updatedAt",
-        "publishedAt",
-      ],
-      ["course_categories", "image", "course_sections"]
+  queryFn: async () => {
+    const { data, error } = await getCoursesId({
+      path: { id: Number(courseId) },
+      query: {
+        // Needs update: getCourseId DOES NOT use query parameter, meaning we cant fetch relations yet {course_categories, image, course_sections}
+        fields: [
+          "title",
+          "description",
+          "difficulty",
+          "numOfRatings",
+          "numOfSubscriptions",
+          "createdAt",
+          "updatedAt",
+          "publishedAt",
+        ],
+        populate: ["course_categories", "image", "course_sections"],
+      },
       // Note: status parameter omitted to fetch both draft and published courses
-    );
-    return response.data;
+    });
+    if (error) {
+      throw new Error(`Error fetching course with ID ${courseId}`);
+    }
+    return data;
   },
 });
-
-export const useCourseCategories = () => {
-  return useQuery({
-    queryKey: ["course_categories"],
-    queryFn: async () => {
-      const response =
-        await CourseCategoryService.courseCategoryGetCourseCategories(["name"]);
-      return response.data.map((item) => ({
-        label: item.name,
-        value: item.documentId,
-      }));
-    },
-  });
-};

@@ -1,6 +1,11 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Query, useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { CourseCategoryService, CourseService } from "@/shared/api";
+import {
+  deleteCoursesId,
+  postCourseCategories,
+  postCourses,
+  putCoursesId,
+} from "@/shared/api";
 
 import { courseQuery } from "./course-queries";
 
@@ -16,6 +21,8 @@ interface CourseCreateInput {
 // Type for updating an existing course
 interface CourseUpdateInput extends Partial<CourseCreateInput> {
   documentId: string;
+  title: string;
+  difficulty: number;
 }
 
 /**
@@ -30,11 +37,12 @@ export const useCreateCourseMutation = () => {
 
   return useMutation({
     mutationFn: async (input: CourseCreateInput) => {
-      const response = await CourseService.coursePostCourses(
-        undefined, // fields - let backend return all fields
+      /*eslint-disable @typescript-eslint/no-unsafe-assignment */
+      const { data, error } = await postCourses({
+        /* undefined, // fields - let backend return all fields
         ["course_categories", "image"], // populate relations
-        "published", // TODO: Should be draft
-        {
+        "published", // TODO: Should be draft */
+        body: {
           data: {
             title: input.title,
             difficulty: input.difficulty,
@@ -45,16 +53,20 @@ export const useCreateCourseMutation = () => {
             // Default values for Strapi fields
             numOfRatings: 0,
             numOfSubscriptions: 0,
-            // IMPORTANT: Don't set publishedAt - draft has no publishedAt
-            publishedAt: "",
+            // IMPORTANT: Don't set publishedAt - draft has no publishedAt,
           },
-        }
-      );
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
       // Simulate network delay for better UX during testing
       // TODO: Remove in production
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      return response.data;
+      return data;
     },
     onSuccess: (data) => {
       // Invalidate course list queries
@@ -63,7 +75,11 @@ export const useCreateCourseMutation = () => {
         queryKey: ["courses"],
         exact: false, // This ensures all queries starting with ["courses"] are invalidated
       });
-      queryClient.setQueryData(courseQuery(data.documentId), data);
+      const courseId = data.data?.id;
+
+      if (courseId) {
+        queryClient.setQueryData(courseQuery(courseId.toString()), data);
+      }
     },
   });
 };
@@ -80,28 +96,31 @@ export const useUpdateCourseMutation = () => {
 
   return useMutation({
     mutationFn: async (input: CourseUpdateInput) => {
-      const { documentId, ...updateData } = input;
-
-      const response = await CourseService.coursePutCoursesById(
-        documentId,
-        undefined, // fields - return all
+      const { data, error } = await putCoursesId({
+        path: { id: input.id },
+        /* undefined, // fields - return all
         ["course_categories", "image"], // populate relations
-        undefined, // status - preserve current status (draft or published)
-        {
+        undefined, // status - preserve current status (draft or published) */
+        body: {
           data: {
-            title: updateData.title,
-            difficulty: updateData.difficulty,
-            description: updateData.description,
+            title: input.title,
+            difficulty: input.difficulty,
+            description: input.description,
             // eslint-disable-next-line @typescript-eslint/naming-convention
-            course_categories: updateData.categories,
-            image: updateData.image,
+            course_categories: input.categories,
+            image: input.image,
           },
-        }
-      );
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
       // Simulate network delay for better UX during testing
       // TODO: Remove in production
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      return response.data;
+      return data;
     },
     onSuccess: (data) => {
       // Invalidate the courses query and set updated course data
@@ -110,7 +129,12 @@ export const useUpdateCourseMutation = () => {
         queryKey: ["courses"],
         exact: false,
       });
-      queryClient.setQueryData(courseQuery(data.documentId), data);
+
+      const courseId = data.data?.id;
+
+      if (courseId) {
+        queryClient.setQueryData(courseQuery(courseId.toString()), data);
+      }
     },
   });
 };
@@ -122,23 +146,26 @@ export const useUpdateCourseMutation = () => {
  * IMPORTANT: This sets publishedAt timestamp and changes status to "published"
  * Once published, the course will be visible in the course catalog
  */
+
+/*---------------we dont use this yet--------------------*/
 export const usePublishCourseMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (courseId: string) => {
-      const response = await CourseService.coursePutCoursesById(
-        courseId,
-        undefined, // fields
-        ["course_categories", "image", "course_sections"], // populate for review display
-        "published", // Change status to published
-        {
+      const { data, error } = await putCoursesId({
+        path: { id: Number(courseId) },
+        body: {
           data: {
             publishedAt: new Date().toISOString(),
           },
-        }
-      );
-      return response.data;
+        },
+      });
+      if (error) {
+        throw error;
+      }
+
+      return data;
     },
     onSuccess: (data) => {
       // Invalidate all courses queries (including compound keys from usePaginatedData)
@@ -146,7 +173,11 @@ export const usePublishCourseMutation = () => {
         queryKey: ["courses"],
         exact: false,
       });
-      queryClient.setQueryData(courseQuery(data.documentId), data);
+      const courseId = data.data?.id;
+
+      if (courseId) {
+        queryClient.setQueryData(courseQuery(courseId.toString()), data);
+      }
     },
   });
 };
@@ -158,27 +189,31 @@ export const usePublishCourseMutation = () => {
  * IMPORTANT: This removes publishedAt timestamp and changes status to "draft"
  * The course will no longer be visible to students
  */
+/*---------------we dont use this yet--------------------*/
 export const useUnpublishCourseMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (courseId: string) => {
-      const response = await CourseService.coursePutCoursesById(
-        courseId,
-        undefined, // fields
+      const { data, error } = await putCoursesId({
+        path: { id: Number(courseId) },
+        /* undefined, // fields
         ["course_categories", "image", "course_sections"], // populate
-        "draft", // Change status back to draft
-        {
+        "draft", // Change status back to draft */
+        body: {
           data: {
             publishedAt: "", // Clear publishedAt to unpublish
           },
-        }
-      );
-      return response.data;
+        },
+      });
+      if (error) {
+        throw error;
+      }
+      return data;
     },
     onSuccess: (data) => {
       void queryClient.invalidateQueries({
-        queryKey: ["course", data.documentId],
+        queryKey: ["course", data.data?.id],
         exact: false,
       });
       void queryClient.invalidateQueries({
@@ -198,8 +233,13 @@ export const useDeleteCourseMutation = () => {
 
   return useMutation({
     mutationFn: async (courseId: string) => {
-      const response = await CourseService.courseDeleteCoursesById(courseId);
-      return response.data;
+      const { data, error } = await deleteCoursesId({
+        path: { id: Number(courseId) },
+      });
+      if (error) {
+        throw error;
+      }
+      return data;
     },
     onSuccess: () => {
       // Invalidate all courses queries after deletion
@@ -216,19 +256,21 @@ export const useCreateCategoryMutation = () => {
 
   return useMutation({
     mutationFn: async (categoryName: string) => {
-      const response =
-        await CourseCategoryService.courseCategoryPostCourseCategories(
-          undefined, // fields parameter
+      const { data, error } = await postCourseCategories({
+        /* undefined, // fields parameter
           undefined,
-          undefined,
-          {
-            data: {
-              name: categoryName,
-              publishedAt: new Date().toISOString(),
-            },
-          }
-        );
-      return response.data;
+          undefined, */
+        body: {
+          data: {
+            name: categoryName,
+            //publishedAt: new Date().toISOString(),
+          },
+        },
+      });
+      if (error) {
+        throw error;
+      }
+      return data;
     },
     onSuccess: () => {
       // Invalidate course categories queries after creating a new category
