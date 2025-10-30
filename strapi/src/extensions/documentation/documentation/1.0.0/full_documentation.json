@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-18T13:29:58.697Z"
+    "x-generation-date": "2025-10-30T06:27:55.990Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -2060,512 +2060,6 @@
           }
         ],
         "operationId": "delete/course-categories/{id}"
-      }
-    },
-    "/course-selections": {
-      "get": {
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseSelectionListResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Course-selection"
-        ],
-        "parameters": [
-          {
-            "name": "sort",
-            "in": "query",
-            "description": "Sort by attributes ascending (asc) or descending (desc)",
-            "deprecated": false,
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "pagination[withCount]",
-            "in": "query",
-            "description": "Return page/pageSize (default: true)",
-            "deprecated": false,
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "pagination[page]",
-            "in": "query",
-            "description": "Page number (default: 0)",
-            "deprecated": false,
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "pagination[pageSize]",
-            "in": "query",
-            "description": "Page size (default: 25)",
-            "deprecated": false,
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "pagination[start]",
-            "in": "query",
-            "description": "Offset value (default: 0)",
-            "deprecated": false,
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "pagination[limit]",
-            "in": "query",
-            "description": "Number of entities to return (default: 25)",
-            "deprecated": false,
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "Fields to return (ex: title,author)",
-            "deprecated": false,
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "populate",
-            "in": "query",
-            "description": "Relations to return",
-            "deprecated": false,
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Filters to apply",
-            "deprecated": false,
-            "required": false,
-            "schema": {
-              "type": "object",
-              "additionalProperties": true
-            },
-            "style": "deepObject"
-          },
-          {
-            "name": "locale",
-            "in": "query",
-            "description": "Locale to apply",
-            "deprecated": false,
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "operationId": "get/course-selections"
-      },
-      "post": {
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseSelectionResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Course-selection"
-        ],
-        "parameters": [],
-        "operationId": "post/course-selections",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CourseSelectionRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/course-selections/{id}": {
-      "get": {
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseSelectionResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Course-selection"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "deprecated": false,
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "operationId": "get/course-selections/{id}"
-      },
-      "put": {
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseSelectionResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Course-selection"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "deprecated": false,
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "operationId": "put/course-selections/{id}",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CourseSelectionRequest"
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "integer",
-                  "format": "int64"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Course-selection"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "deprecated": false,
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "operationId": "delete/course-selections/{id}"
       }
     },
     "/exercises": {
@@ -8012,6 +7506,352 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/courses/{courseId}/sections": {
+      "get": {
+        "tags": [
+          "Course Sections"
+        ],
+        "summary": "Get all sections for a course",
+        "description": "Retrieve all sections belonging to a specific course. Requires student authentication.",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the course",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved course sections",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseSectionListResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Course not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Course Sections"
+        ],
+        "summary": "Create a new section for a course",
+        "description": "Create a new section within a specific course. Requires content creator authentication and course ownership.",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the course",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCourseSectionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Section created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseSectionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Content creator authentication required or course ownership required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Course not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/courses/{courseId}/sections/{id}": {
+      "get": {
+        "tags": [
+          "Course Sections"
+        ],
+        "summary": "Get a specific section from a course",
+        "description": "Retrieve a specific section by ID from a specific course. Requires student authentication.",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the course",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the section",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved course section",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseSectionResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Course or section not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Course Sections"
+        ],
+        "summary": "Update a section in a course",
+        "description": "Update an existing section within a specific course. Requires content creator authentication and course ownership.",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the course",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the section",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCourseSectionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Section updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseSectionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Content creator authentication required or course ownership required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Course or section not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Course Sections"
+        ],
+        "summary": "Delete a section from a course",
+        "description": "Delete an existing section from a specific course. Requires content creator authentication and course ownership.",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the course",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the section",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Section deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseSectionResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Content creator authentication required or course ownership required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Course or section not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
             }
@@ -16079,7 +15919,7 @@
           }
         }
       },
-      "CourseSelectionRequest": {
+      "CourseSectionRequest": {
         "type": "object",
         "required": [
           "data"
@@ -16157,1493 +15997,42 @@
           }
         }
       },
-      "CourseSelectionListResponse": {
+      "CourseSectionListResponse": {
         "type": "object",
         "properties": {
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CourseSelection"
+              "$ref": "#/components/schemas/CourseSection"
             }
           },
           "meta": {
             "type": "object",
             "properties": {
               "pagination": {
-                "type": "object",
-                "properties": {
-                  "page": {
-                    "type": "integer"
-                  },
-                  "pageSize": {
-                    "type": "integer",
-                    "minimum": 25
-                  },
-                  "pageCount": {
-                    "type": "integer",
-                    "maximum": 1
-                  },
-                  "total": {
-                    "type": "integer"
-                  }
-                }
+                "type": "object"
               }
             }
           }
         }
       },
-      "CourseSelection": {
+      "CourseSection": {
         "type": "object",
-        "required": [
-          "title"
-        ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "integer"
           },
           "documentId": {
             "type": "string"
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
           },
           "description": {
-            "type": "string"
-          },
-          "exercises": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number"
-                },
-                "documentId": {
-                  "type": "string"
-                },
-                "title": {
-                  "type": "string"
-                },
-                "question": {
-                  "type": "string"
-                },
-                "exercise_options": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "number"
-                      },
-                      "documentId": {
-                        "type": "string"
-                      },
-                      "text": {
-                        "type": "string"
-                      },
-                      "explanation": {
-                        "type": "string"
-                      },
-                      "isCorrect": {
-                        "type": "boolean"
-                      },
-                      "exercise": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      },
-                      "createdAt": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "updatedAt": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "publishedAt": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "createdBy": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          },
-                          "firstname": {
-                            "type": "string"
-                          },
-                          "lastname": {
-                            "type": "string"
-                          },
-                          "username": {
-                            "type": "string"
-                          },
-                          "email": {
-                            "type": "string",
-                            "format": "email"
-                          },
-                          "resetPasswordToken": {
-                            "type": "string"
-                          },
-                          "registrationToken": {
-                            "type": "string"
-                          },
-                          "isActive": {
-                            "type": "boolean"
-                          },
-                          "roles": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                },
-                                "name": {
-                                  "type": "string"
-                                },
-                                "code": {
-                                  "type": "string"
-                                },
-                                "description": {
-                                  "type": "string"
-                                },
-                                "users": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "id": {
-                                        "type": "number"
-                                      },
-                                      "documentId": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  }
-                                },
-                                "permissions": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "id": {
-                                        "type": "number"
-                                      },
-                                      "documentId": {
-                                        "type": "string"
-                                      },
-                                      "action": {
-                                        "type": "string"
-                                      },
-                                      "actionParameters": {},
-                                      "subject": {
-                                        "type": "string"
-                                      },
-                                      "properties": {},
-                                      "conditions": {},
-                                      "role": {
-                                        "type": "object",
-                                        "properties": {
-                                          "id": {
-                                            "type": "number"
-                                          },
-                                          "documentId": {
-                                            "type": "string"
-                                          }
-                                        }
-                                      },
-                                      "createdAt": {
-                                        "type": "string",
-                                        "format": "date-time"
-                                      },
-                                      "updatedAt": {
-                                        "type": "string",
-                                        "format": "date-time"
-                                      },
-                                      "publishedAt": {
-                                        "type": "string",
-                                        "format": "date-time"
-                                      },
-                                      "createdBy": {
-                                        "type": "object",
-                                        "properties": {
-                                          "id": {
-                                            "type": "number"
-                                          },
-                                          "documentId": {
-                                            "type": "string"
-                                          }
-                                        }
-                                      },
-                                      "updatedBy": {
-                                        "type": "object",
-                                        "properties": {
-                                          "id": {
-                                            "type": "number"
-                                          },
-                                          "documentId": {
-                                            "type": "string"
-                                          }
-                                        }
-                                      },
-                                      "locale": {
-                                        "type": "string"
-                                      },
-                                      "localizations": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "object",
-                                          "properties": {
-                                            "id": {
-                                              "type": "number"
-                                            },
-                                            "documentId": {
-                                              "type": "string"
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
-                                "createdAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "updatedAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "publishedAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "createdBy": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "updatedBy": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "locale": {
-                                  "type": "string"
-                                },
-                                "localizations": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "id": {
-                                        "type": "number"
-                                      },
-                                      "documentId": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "blocked": {
-                            "type": "boolean"
-                          },
-                          "preferedLanguage": {
-                            "type": "string"
-                          },
-                          "createdAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "updatedAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "publishedAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "createdBy": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "updatedBy": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "locale": {
-                            "type": "string"
-                          },
-                          "localizations": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
-                      "updatedBy": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      },
-                      "locale": {
-                        "type": "string"
-                      },
-                      "localizations": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "number"
-                            },
-                            "documentId": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "publishedAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "createdBy": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "updatedBy": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "locale": {
-                  "type": "string"
-                },
-                "localizations": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "number"
-                      },
-                      "documentId": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "lectures": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number"
-                },
-                "documentId": {
-                  "type": "string"
-                },
-                "title": {
-                  "type": "string"
-                },
-                "completed": {
-                  "type": "boolean"
-                },
-                "content": {
-                  "type": "array",
-                  "items": {
-                    "anyOf": [
-                      {
-                        "$ref": "#/components/schemas/ContentVideoComponent"
-                      },
-                      {
-                        "$ref": "#/components/schemas/ContentDescriptionComponent"
-                      }
-                    ]
-                  },
-                  "discriminator": {
-                    "propertyName": "__component",
-                    "mapping": {
-                      "content.video": "#/components/schemas/ContentVideoComponent",
-                      "content.description": "#/components/schemas/ContentDescriptionComponent"
-                    }
-                  }
-                },
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "publishedAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "createdBy": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "updatedBy": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "locale": {
-                  "type": "string"
-                },
-                "localizations": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "number"
-                      },
-                      "documentId": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "course": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number"
-              },
-              "documentId": {
-                "type": "string"
-              },
-              "title": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              },
-              "difficulty": {
-                "type": "integer"
-              },
-              "numOfRatings": {
-                "type": "integer"
-              },
-              "numOfSubscriptions": {
-                "type": "integer"
-              },
-              "image": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "documentId": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "alternativeText": {
-                    "type": "string"
-                  },
-                  "caption": {
-                    "type": "string"
-                  },
-                  "width": {
-                    "type": "integer"
-                  },
-                  "height": {
-                    "type": "integer"
-                  },
-                  "formats": {},
-                  "hash": {
-                    "type": "string"
-                  },
-                  "ext": {
-                    "type": "string"
-                  },
-                  "mime": {
-                    "type": "string"
-                  },
-                  "size": {
-                    "type": "number",
-                    "format": "float"
-                  },
-                  "url": {
-                    "type": "string"
-                  },
-                  "previewUrl": {
-                    "type": "string"
-                  },
-                  "provider": {
-                    "type": "string"
-                  },
-                  "provider_metadata": {},
-                  "related": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  "folder": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "number"
-                      },
-                      "documentId": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "folderPath": {
-                    "type": "string"
-                  },
-                  "createdAt": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "updatedAt": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "publishedAt": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "createdBy": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "number"
-                      },
-                      "documentId": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "updatedBy": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "number"
-                      },
-                      "documentId": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "locale": {
-                    "type": "string"
-                  },
-                  "localizations": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "feedbacks": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    },
-                    "rating": {
-                      "type": "integer"
-                    },
-                    "feedbackText": {
-                      "type": "string"
-                    },
-                    "dateCreated": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "course": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "student": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "biography": {
-                          "type": "string"
-                        },
-                        "email": {
-                          "type": "string",
-                          "format": "email"
-                        },
-                        "verifiedAt": {
-                          "type": "string",
-                          "format": "date"
-                        },
-                        "feedbacks": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        },
-                        "courses": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        },
-                        "certificates": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              },
-                              "link": {
-                                "type": "string"
-                              },
-                              "completionDate": {
-                                "type": "string",
-                                "format": "date"
-                              },
-                              "student": {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
-                                  "documentId": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "course": {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
-                                  "documentId": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "createdAt": {
-                                "type": "string",
-                                "format": "date-time"
-                              },
-                              "updatedAt": {
-                                "type": "string",
-                                "format": "date-time"
-                              },
-                              "publishedAt": {
-                                "type": "string",
-                                "format": "date-time"
-                              },
-                              "createdBy": {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
-                                  "documentId": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "updatedBy": {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
-                                  "documentId": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "locale": {
-                                "type": "string"
-                              },
-                              "localizations": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "user_logs": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              },
-                              "loginDate": {
-                                "type": "string",
-                                "format": "date-time"
-                              },
-                              "isSuccessful": {
-                                "type": "boolean"
-                              },
-                              "student": {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
-                                  "documentId": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "createdAt": {
-                                "type": "string",
-                                "format": "date-time"
-                              },
-                              "updatedAt": {
-                                "type": "string",
-                                "format": "date-time"
-                              },
-                              "publishedAt": {
-                                "type": "string",
-                                "format": "date-time"
-                              },
-                              "createdBy": {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
-                                  "documentId": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "updatedBy": {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
-                                  "documentId": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "locale": {
-                                "type": "string"
-                              },
-                              "localizations": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "createdAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "updatedAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "publishedAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "createdBy": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "number"
-                            },
-                            "documentId": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "updatedBy": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "number"
-                            },
-                            "documentId": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "locale": {
-                          "type": "string"
-                        },
-                        "localizations": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "publishedAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "createdBy": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "updatedBy": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "locale": {
-                      "type": "string"
-                    },
-                    "localizations": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "course_sections": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "exercises": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
-                    "lectures": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
-                    "course": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "publishedAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "createdBy": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "updatedBy": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "locale": {
-                      "type": "string"
-                    },
-                    "localizations": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "course_categories": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "courses": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "publishedAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "createdBy": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "updatedBy": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "locale": {
-                      "type": "string"
-                    },
-                    "localizations": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "students": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "content_creators": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    },
-                    "firstName": {
-                      "type": "string"
-                    },
-                    "lastName": {
-                      "type": "string"
-                    },
-                    "verifiedAt": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "biography": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string",
-                      "format": "email"
-                    },
-                    "education": {
-                      "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
-                    },
-                    "statusValue": {
-                      "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
-                    },
-                    "courseExperience": {
-                      "type": "string"
-                    },
-                    "institution": {
-                      "type": "string"
-                    },
-                    "eduStart": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "eduEnd": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "currentCompany": {
-                      "type": "string"
-                    },
-                    "currentJobTitle": {
-                      "type": "string"
-                    },
-                    "companyStart": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "companyEnd": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "jobDescription": {
-                      "type": "string"
-                    },
-                    "courses": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
-                    "user_logs": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "publishedAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "createdBy": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "updatedBy": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "documentId": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "locale": {
-                      "type": "string"
-                    },
-                    "localizations": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "createdAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "updatedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "publishedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "createdBy": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "documentId": {
-                    "type": "string"
-                  }
-                }
-              },
-              "updatedBy": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "documentId": {
-                    "type": "string"
-                  }
-                }
-              },
-              "locale": {
-                "type": "string"
-              },
-              "localizations": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
+            "type": "string",
+            "maxLength": 400
           },
           "createdAt": {
             "type": "string",
@@ -17657,52 +16046,28 @@
             "type": "string",
             "format": "date-time"
           },
-          "createdBy": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number"
-              },
-              "documentId": {
-                "type": "string"
-              }
-            }
+          "course": {
+            "$ref": "#/components/schemas/CourseReference"
           },
-          "updatedBy": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number"
-              },
-              "documentId": {
-                "type": "string"
-              }
-            }
-          },
-          "locale": {
-            "type": "string"
-          },
-          "localizations": {
+          "exercises": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number"
-                },
-                "documentId": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/components/schemas/ExerciseReference"
+            }
+          },
+          "lectures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LectureReference"
             }
           }
         }
       },
-      "CourseSelectionResponse": {
+      "CourseSectionResponse": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/CourseSelection"
+            "$ref": "#/components/schemas/CourseSection"
           },
           "meta": {
             "type": "object"
@@ -25795,6 +24160,124 @@
                     }
                   }
                 }
+              }
+            }
+          }
+        }
+      },
+      "CourseReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "documentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "ExerciseReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "documentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "LectureReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "documentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateCourseSectionRequest": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [
+              "title"
+            ],
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 50,
+                "description": "Title of the section"
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 400,
+                "description": "Description of the section"
+              }
+            }
+          }
+        }
+      },
+      "UpdateCourseSectionRequest": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 50,
+                "description": "Title of the section"
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 400,
+                "description": "Description of the section"
+              }
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "null"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "details": {
+                "type": "object"
               }
             }
           }

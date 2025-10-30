@@ -51,7 +51,7 @@
     "course_sections": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::course-selection.course-selection",
+      "target": "api::course-section.course-section",
       "mappedBy": "course"
     },
     "course_categories": {
