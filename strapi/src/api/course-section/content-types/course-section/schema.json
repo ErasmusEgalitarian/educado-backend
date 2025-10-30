@@ -1,9 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "course_selections",
+  "collectionName": "course_sections",
   "info": {
-    "singularName": "course-selection",
-    "pluralName": "course-selections",
+    "singularName": "course-section",
+    "pluralName": "course-sections",
     "displayName": "Course Section"
   },
   "options": {

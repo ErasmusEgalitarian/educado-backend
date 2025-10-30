@@ -1,0 +1,7 @@
+/**
+ * course-section service
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreService('api::course-section.course-section' as any);
