@@ -23,7 +23,7 @@ export interface CourseEditorSectionsRef {
 
 /* --------------------------------- Schema --------------------------------- */
 const sectionSchema = z.object({
-  title: z.string().min(1, "validation.required"),
+  title: z.string().min(1, "common.required"),
   description: z.string().optional(),
   sectionType: z.enum(["Lesson", "Exercise"]),
 });
@@ -69,14 +69,16 @@ const CourseEditorSections = forwardRef<
           : section
       ));
       setCurrentSectionEditing(null);
+      form.reset();
     } else {
       // Create new section
       const newSection: Section = {
-        id: `section-${Date.now()}`,
+        id: sections.length.toString(),
         ...values,
       };
       setSections(prev => [...prev, newSection]);
       setIsCreating(false);
+      form.reset();
     }
     form.reset();
   };
@@ -177,7 +179,7 @@ const CourseEditorSections = forwardRef<
               </CardHeader>
               <CardContent className="pt-6 border-red-500">
                 <Form {...form}>
-                  <form onSubmit={() => form.handleSubmit(onSubmit)} className="space-y-4">
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                     <div className="grid grid-cols-1 gap-4">
                       <FormInput
                         control={form.control}
@@ -211,7 +213,7 @@ const CourseEditorSections = forwardRef<
                             {t("courseManager.addLesson")}
                           </div>
                         </Button>
-                        <span className="flex items-center justify-center text-greyscale-text-disabled"s>
+                        <span className="flex items-center justify-center text-greyscale-text-disabled">
                           {t("common.or")}
                         </span>
                         <Button
@@ -252,9 +254,9 @@ const CourseEditorSections = forwardRef<
           {!isCreating && (currentSectionEditing == null) && (
             <Button
               onClick={() => {
+                form.reset();
                 setIsCreating(true);
                 setCurrentSectionEditing(null);
-                form.reset();
               }}
               className="w-full border-dashed"
               variant="outline"
