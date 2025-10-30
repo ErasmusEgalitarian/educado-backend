@@ -53,7 +53,7 @@ const CourseEditorSections = forwardRef<
       description: "",
       sectionType: "Lesson",
     },
-    mode: "onTouched",
+    mode: "onChange", // Better for real-time validation
   });
 
   // Track form dirty state
@@ -61,8 +61,12 @@ const CourseEditorSections = forwardRef<
     isDirty: () => form.formState.isDirty || sections.length > 0,
   }));
 
+  const generateSectionId = () => Date.now().toString();
+
   const onSubmit = (values: SectionFormValues) => {
-    if (currentSectionEditing !== null) {
+    console.log("FORM SUBMITTED!", { currentSectionEditing, values });
+    
+    if (currentSectionEditing) {
       // Update existing section
       setSections(prev => prev.map(section => 
         section.id === currentSectionEditing 
@@ -70,24 +74,25 @@ const CourseEditorSections = forwardRef<
           : section
       ));
       setCurrentSectionEditing(null);
-      form.reset();
     } else {
       // Create new section
       const newSection: Section = {
-        id: sections.length.toString(),
+        id: generateSectionId(),
         ...values,
       };
       setSections(prev => [...prev, newSection]);
       setIsCreating(false);
-      form.reset();
     }
+    
     form.reset();
   };
 
   const handleEdit = (section: Section) => {
+    console.log("Editing section:", section.id);
     form.reset({
       title: section.title,
       description: section.description ?? "",
+      sectionType: "Lesson",
     });
     setCurrentSectionEditing(section.id);
     setIsCreating(false);
@@ -106,6 +111,15 @@ const CourseEditorSections = forwardRef<
     setCurrentSectionEditing(null);
     form.reset();
   };
+
+  const startCreating = () => {
+    form.reset();
+    setIsCreating(true);
+    setCurrentSectionEditing(null);
+  };
+
+  const isEditing = currentSectionEditing !== null;
+  const showForm = isCreating || isEditing;
 
   return (
     <div className="flex flex-col gap-y-6">
@@ -128,7 +142,6 @@ const CourseEditorSections = forwardRef<
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-3 flex-1">
-                    
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-sm font-medium text-greyscale-text-caption bg-greyscale-bg-hover px-2 py-1 rounded">
@@ -138,12 +151,11 @@ const CourseEditorSections = forwardRef<
                             {section.title}
                           </h4>
                         </div>
-                        
-                        {(section.description != null) ? (
+                        {section.description && (
                           <p className="text-greyscale-text-body text-sm">
                             {section.description}
                           </p>
-                        ) : null}
+                        )}
                       </div>
                     </div>
                     
@@ -151,14 +163,14 @@ const CourseEditorSections = forwardRef<
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => { handleEdit(section); }}
+                        onClick={() => handleEdit(section)}
                       >
                         <Edit3 size={16} />
                       </Button>
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => { handleDelete(section.id); }}
+                        onClick={() => handleDelete(section.id)}
                         className="text-destructive hover:text-destructive"
                       >
                         <Trash2 size={16} />
@@ -171,14 +183,12 @@ const CourseEditorSections = forwardRef<
           )}
 
           {/* Add/Edit Section Form */}
-          {(isCreating || (currentSectionEditing != null)) && (
+          {showForm && (
             <Card className="border border-primary-surface-default pt-0 overflow-hidden">
-              <CardHeader
-                className="bg-primary-surface-default p-6 text-white font-bold flex "
-              >
-                {t("courseManager.createNewSection")}
+              <CardHeader className="bg-primary-surface-default p-6 text-white font-bold">
+                {isEditing ? t("courseManager.editSection") : t("courseManager.createNewSection")}
               </CardHeader>
-              <CardContent className="pt-6 border-red-500">
+              <CardContent className="pt-6">
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                     <div className="grid grid-cols-1 gap-4">
@@ -200,12 +210,10 @@ const CourseEditorSections = forwardRef<
 
                       <hr />  
 
-                      <div className="grid grid-cols-3 grid-cols-[1fr_25px_1fr] gap-2">
+                      <div className="grid grid-cols-[1fr_25px_1fr] gap-2">
                         <Button
-                          onClick={() => {
-                            // eslint-disable-next-line no-console
-                            console.log("todo");
-                          }}
+                          type="button"
+                          onClick={() => console.log("Add lesson")}
                           className="w-full border-dashed"
                           variant="outline"
                         >
@@ -218,10 +226,8 @@ const CourseEditorSections = forwardRef<
                           {t("common.or")}
                         </span>
                         <Button
-                          onClick={() => {
-                            // eslint-disable-next-line no-console
-                            console.log("todo");
-                          }}
+                          type="button"
+                          onClick={() => console.log("Add exercise")}
                           className="w-full border-dashed flex"
                           variant="outline"
                         >
@@ -241,8 +247,8 @@ const CourseEditorSections = forwardRef<
                       >
                         {t("common.cancel")}
                       </Button>
-                      <Button>
-                        {(currentSectionEditing != null) ? t("common.update") : t("common.create")}
+                      <Button type="submit"> {/* FIXED: Added type="submit" */}
+                        {isEditing ? t("common.update") : t("common.create")}
                       </Button>
                     </div>
                   </form>
@@ -252,13 +258,9 @@ const CourseEditorSections = forwardRef<
           )}
 
           {/* Add Section Button */}
-          {!isCreating && (currentSectionEditing == null) && (
+          {!showForm && (
             <Button
-              onClick={() => {
-                form.reset();
-                setIsCreating(true);
-                setCurrentSectionEditing(null);
-              }}
+              onClick={startCreating}
               className="w-full border-dashed"
               variant="outline"
             >
@@ -278,7 +280,7 @@ const CourseEditorSections = forwardRef<
                 {t("courseManager.goBack")}
               </Button>
             </div>
-            <div className="col-start-4 flex gap-4 justify-end right-auto">
+            <div className="col-start-4 flex gap-4 justify-end">
               <Button
                 variant="blank"
                 onClick={() => onComplete?.()}
@@ -290,7 +292,8 @@ const CourseEditorSections = forwardRef<
                 onClick={() => onComplete?.()}
                 disabled={sections.length === 0}
               >
-                {t("courseManager.createAndContinue")} {sections.length > 0 && `(${String(sections.length)})`}
+                {t("courseManager.createAndContinue")} 
+                {sections.length > 0 && ` (${sections.length})`}
               </Button>
             </div>
           </div>
