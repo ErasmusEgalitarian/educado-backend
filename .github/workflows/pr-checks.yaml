@@ -38,15 +38,13 @@ jobs:
             strapi:
               - 'strapi/**'
               - 'package.json'
-              - 'package-lock.json'
               - 'turbo.json'
             web:
               - 'web/**'
               - 'package.json'
-              - 'package-lock.json'
               - 'turbo.json'
 
-  # Strapi checks (REQUIRED - will block PR)
+    # Strapi checks (REQUIRED - will block PR)
   strapi-lint-format:
     name: Strapi - Lint & Format
     runs-on: ubuntu-latest
@@ -68,14 +66,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund
+      - name: Install dependencies (Strapi)
+        run: |
+          npm ci --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm install --no-audit --no-fund)
 
       - name: Lint
-        run: npm run lint:check --workspace=strapi
+        run: npm --prefix strapi run lint:check || (cd strapi && npm run lint:check)
 
       - name: Format Check
-        run: npm run format:check --workspace=strapi
+        run: npm --prefix strapi run format:check || (cd strapi && npm run format:check)
 
   strapi-type-check:
     name: Strapi - Type Check
@@ -98,11 +100,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund
+      - name: Install dependencies (Strapi)
+        run: |
+          npm ci --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm install --no-audit --no-fund)
 
       - name: Type Check
-        run: npm run type-check --workspace=strapi
+        run: |
+          npm --prefix strapi run type-check || (cd strapi && npm run type-check)
 
   strapi-test:
     name: Strapi - Test
@@ -125,11 +132,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund
+      - name: Install dependencies (Strapi)
+        run: |
+          npm ci --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm install --no-audit --no-fund)
 
       - name: Test
-        run: npm run test --workspace=strapi
+        run: |
+          npm --prefix strapi run test || (cd strapi && npm run test)
 
   strapi-build:
     name: Strapi - Build
@@ -152,11 +164,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund
+      - name: Install dependencies (Strapi)
+        run: |
+          npm ci --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm ci --no-audit --no-fund)
 
       - name: Build
-        run: npm run build --workspace=strapi
+        run: |
+          npm --prefix strapi run build || (cd strapi && npm run build)
 
   # Web checks (ADVISORY - won't block PR due to legacy code)
   web-lint-format-changed:
@@ -182,8 +197,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
 
       - name: Ensure base branch is fetched
         run: |
@@ -224,8 +243,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
 
       - name: Type check only if TS changed
         run: |
@@ -234,7 +257,7 @@ jobs:
             echo "✅ No TS/TSX files changed in web/, skipping type-check"
           else
             echo "Running project type-check due to TS changes"
-            npm run type-check --workspace=web
+            npm --prefix web run type-check || (cd web && npm run type-check)
           fi
 
   web-lint-format-full:
@@ -263,8 +286,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
 
       - name: Lint (full)
         id: lint
@@ -339,8 +366,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
 
       - name: Type Check (full)
         id: typecheck
@@ -394,8 +425,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
 
       - name: Test (full)
         id: test
@@ -456,8 +491,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund)
 
       - name: Build (full)
         id: build

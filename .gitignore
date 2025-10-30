@@ -145,7 +145,3 @@ vite.config.ts.timestamp-*
 .vite/
 
 .turbo/
-
-# mise
-.mise.local.toml
-mise.local.toml

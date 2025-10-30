@@ -7,10 +7,10 @@ services:
     restart: unless-stopped
     env_file: .env
     environment:
+      VITE_STRAPI_API_TOKEN: ${VITE_STRAPI_API_TOKEN}
       VITE_STRAPI_URL: ${VITE_STRAPI_URL}
       VITE_HOST: 0.0.0.0
       VITE_PORT: ${VITE_FRONTEND_PORT}
-      VITE_ALLOWED_HOSTS: ${VITE_ALLOWED_HOSTS}
     ports:
       - "${VITE_FRONTEND_PORT}:${VITE_FRONTEND_PORT}"
     networks:
@@ -38,7 +38,6 @@ services:
       API_TOKEN_SALT: ${API_TOKEN_SALT}
       TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
       NODE_ENV: production
-      CORS_ORIGIN: ${CORS_ORIGIN}
     volumes:
       - strapi-uploads:/opt/app/public/uploads
     ports:

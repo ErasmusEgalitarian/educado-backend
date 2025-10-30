@@ -63,8 +63,6 @@ jobs:
 
           ### 📦 Docker Images
 
-          *The final container registry we use is not decided yet. This is a placeholder.*
-
           EOF
 
           if [[ "${{ steps.meta.outputs.project }}" == "Strapi" ]] || [[ "${{ steps.meta.outputs.project }}" == "Full Stack" ]]; then
