@@ -15,6 +15,7 @@ import { Form } from "@/shared/components/shadcn/form";
 interface CourseEditorSectionsProps {
   courseId?: string;
   onComplete?: () => void;
+  onGoBack?: () => void;
 }
 
 export interface CourseEditorSectionsRef {
@@ -39,7 +40,7 @@ export interface Section {
 const CourseEditorSections = forwardRef<
   CourseEditorSectionsRef,
   CourseEditorSectionsProps
->(({ courseId, onComplete }, ref) => {
+>(({ courseId, onComplete, onGoBack }, ref) => {
   const { t } = useTranslation();
   const [sections, setSections] = useState<Section[]>([]);
   const [currentSectionEditing, setCurrentSectionEditing] = useState<string | null>(null);
@@ -271,7 +272,7 @@ const CourseEditorSections = forwardRef<
             <div className="col-start-1 gap-4 justify-start">
               <Button
                 variant="blank"
-                onClick={() => onComplete?.()}
+                onClick={() => onGoBack?.()}
               > 
                 <ChevronLeft size={16} className="mr-2" />
                 {t("courseManager.goBack")}
