@@ -203,33 +203,32 @@ const CourseEditorSections = forwardRef<
 
                       <hr />  
 
-                      <div className="grid grid-cols-2">
+                      <div className="grid grid-cols-3 grid-cols-[1fr_10px_1fr] gap-2">
                         <Button
                           onClick={() => {
                             // eslint-disable-next-line no-console
                             console.log("todo");
                           }}
-                          className="w-full border-dashed border-l-none rounded-r-none"
+                          className="w-full border-dashed"
                           variant="outline"
                         >
-                          <div className="w-full flex flex-row justify-end items-center">
+                          <div className="w-full flex flex-row items-center justify-center">
                             <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
                             {t("courseManager.addLesson")}
-                            <span className="text-greyscale-text-disabled">
-                              &nbsp;
-                              {t("common.or")}
-                            </span>
                           </div>
                         </Button>
+                        <span className="flex items-center justify-center text-greyscale-text-disabled"s>
+                          {t("courseManager.or")}
+                        </span>
                         <Button
                           onClick={() => {
                             // eslint-disable-next-line no-console
                             console.log("todo");
                           }}
-                          className="w-full border-dashed rounded-l-none flex"
+                          className="w-full border-dashed flex"
                           variant="outline"
                         >
-                          <div className="w-full flex flex-row justify-start items-center">
+                          <div className="w-full flex flex-row items-center justify-center">
                             <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
                             {t("courseManager.addExcercise")}
                           </div>
