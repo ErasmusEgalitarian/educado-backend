@@ -1,29 +1,30 @@
-import { Query, useMutation, useQueryClient } from "@tanstack/react-query";
+/* eslint-disable @typescript-eslint/naming-convention */
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import {
-  deleteCoursesId,
-  postCourseCategories,
-  postCourses,
-  putCoursesId,
-} from "@/shared/api";
+  courseDeleteCoursesById,
+  coursePostCourses,
+  coursePutCoursesById,
+} from "@/shared/api/sdk.gen";
+import type { CourseRequest } from "@/shared/api/types.gen";
 
 import { courseQuery } from "./course-queries";
 
-// Type for creating a new course
-interface CourseCreateInput {
-  title: string;
-  difficulty: number;
-  categories: string[]; // documentIds of course categories
-  description?: string;
-  image?: number; // numeric media id
-}
 
-// Type for updating an existing course
-interface CourseUpdateInput extends Partial<CourseCreateInput> {
+/* ---------------------------------- Types --------------------------------- */
+
+// Input type for creating a course - use the generated CourseRequest data shape
+type CourseCreateInput = CourseRequest["data"];
+
+// Input type for updating a course - use Partial of the data shape + documentId
+type CourseUpdateInput = Partial<CourseRequest["data"]> & {
   documentId: string;
+  // Required fields for update
   title: string;
   difficulty: number;
-}
+};
+
+/* -------------------------------- Mutations ------------------------------- */
 
 /**
  * Create a new course as DRAFT
@@ -37,36 +38,23 @@ export const useCreateCourseMutation = () => {
 
   return useMutation({
     mutationFn: async (input: CourseCreateInput) => {
-      /*eslint-disable @typescript-eslint/no-unsafe-assignment */
-      const { data, error } = await postCourses({
-        /* undefined, // fields - let backend return all fields
-        ["course_categories", "image"], // populate relations
-        "published", // TODO: Should be draft */
+      const response = await coursePostCourses({
         body: {
           data: {
             title: input.title,
             difficulty: input.difficulty,
             description: input.description,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            course_categories: input.categories,
+            course_categories: input.course_categories,
             image: input.image,
             // Default values for Strapi fields
             numOfRatings: 0,
             numOfSubscriptions: 0,
-            // IMPORTANT: Don't set publishedAt - draft has no publishedAt,
+            // IMPORTANT: Don't set publishedAt - draft has no publishedAt
           },
         },
       });
 
-      if (error) {
-        throw error;
-      }
-
-      // Simulate network delay for better UX during testing
-      // TODO: Remove in production
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      return data;
+      return response;
     },
     onSuccess: (data) => {
       // Invalidate course list queries
@@ -75,10 +63,10 @@ export const useCreateCourseMutation = () => {
         queryKey: ["courses"],
         exact: false, // This ensures all queries starting with ["courses"] are invalidated
       });
-      const courseId = data.data?.id;
+      const courseId = data?.data?.documentId;
 
-      if (courseId) {
-        queryClient.setQueryData(courseQuery(courseId.toString()), data);
+      if (courseId != null) {
+        queryClient.setQueryData(courseQuery(courseId), data?.data);
       }
     },
   });
@@ -96,31 +84,20 @@ export const useUpdateCourseMutation = () => {
 
   return useMutation({
     mutationFn: async (input: CourseUpdateInput) => {
-      const { data, error } = await putCoursesId({
-        path: { id: input.id },
-        /* undefined, // fields - return all
-        ["course_categories", "image"], // populate relations
-        undefined, // status - preserve current status (draft or published) */
+      const response = await coursePutCoursesById({
+        path: { id: input.documentId },
         body: {
           data: {
             title: input.title,
             difficulty: input.difficulty,
             description: input.description,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            course_categories: input.categories,
+            course_categories: input.course_categories,
             image: input.image,
           },
         },
       });
 
-      if (error) {
-        throw error;
-      }
-
-      // Simulate network delay for better UX during testing
-      // TODO: Remove in production
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      return data;
+      return response;
     },
     onSuccess: (data) => {
       // Invalidate the courses query and set updated course data
@@ -130,96 +107,11 @@ export const useUpdateCourseMutation = () => {
         exact: false,
       });
 
-      const courseId = data.data?.id;
+      const courseId = data?.data?.documentId;
 
-      if (courseId) {
-        queryClient.setQueryData(courseQuery(courseId.toString()), data);
+      if (courseId != null) {
+        queryClient.setQueryData(courseQuery(courseId), data?.data);
       }
-    },
-  });
-};
-
-/**
- * Publish a course (change from draft to published)
- * Used in the review step to make the course visible to students
- *
- * IMPORTANT: This sets publishedAt timestamp and changes status to "published"
- * Once published, the course will be visible in the course catalog
- */
-
-/*---------------we dont use this yet--------------------*/
-export const usePublishCourseMutation = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (courseId: string) => {
-      const { data, error } = await putCoursesId({
-        path: { id: Number(courseId) },
-        body: {
-          data: {
-            publishedAt: new Date().toISOString(),
-          },
-        },
-      });
-      if (error) {
-        throw error;
-      }
-
-      return data;
-    },
-    onSuccess: (data) => {
-      // Invalidate all courses queries (including compound keys from usePaginatedData)
-      void queryClient.invalidateQueries({
-        queryKey: ["courses"],
-        exact: false,
-      });
-      const courseId = data.data?.id;
-
-      if (courseId) {
-        queryClient.setQueryData(courseQuery(courseId.toString()), data);
-      }
-    },
-  });
-};
-
-/**
- * Unpublish a course (change from published back to draft)
- * Used if instructor wants to make changes to a published course
- *
- * IMPORTANT: This removes publishedAt timestamp and changes status to "draft"
- * The course will no longer be visible to students
- */
-/*---------------we dont use this yet--------------------*/
-export const useUnpublishCourseMutation = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (courseId: string) => {
-      const { data, error } = await putCoursesId({
-        path: { id: Number(courseId) },
-        /* undefined, // fields
-        ["course_categories", "image", "course_sections"], // populate
-        "draft", // Change status back to draft */
-        body: {
-          data: {
-            publishedAt: "", // Clear publishedAt to unpublish
-          },
-        },
-      });
-      if (error) {
-        throw error;
-      }
-      return data;
-    },
-    onSuccess: (data) => {
-      void queryClient.invalidateQueries({
-        queryKey: ["course", data.data?.id],
-        exact: false,
-      });
-      void queryClient.invalidateQueries({
-        queryKey: ["courses"],
-        exact: false,
-      });
     },
   });
 };
@@ -233,13 +125,11 @@ export const useDeleteCourseMutation = () => {
 
   return useMutation({
     mutationFn: async (courseId: string) => {
-      const { data, error } = await deleteCoursesId({
-        path: { id: Number(courseId) },
+      const response = await courseDeleteCoursesById({
+        path: { id: courseId },
       });
-      if (error) {
-        throw error;
-      }
-      return data;
+
+      return response;
     },
     onSuccess: () => {
       // Invalidate all courses queries after deletion
@@ -251,33 +141,3 @@ export const useDeleteCourseMutation = () => {
   });
 };
 
-export const useCreateCategoryMutation = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (categoryName: string) => {
-      const { data, error } = await postCourseCategories({
-        /* undefined, // fields parameter
-          undefined,
-          undefined, */
-        body: {
-          data: {
-            name: categoryName,
-            //publishedAt: new Date().toISOString(),
-          },
-        },
-      });
-      if (error) {
-        throw error;
-      }
-      return data;
-    },
-    onSuccess: () => {
-      // Invalidate course categories queries after creating a new category
-      void queryClient.invalidateQueries({
-        queryKey: ["course-categories"],
-        exact: false,
-      });
-    },
-  });
-};

@@ -2,14 +2,17 @@
 
 import { client } from "../api/client.gen";
 
+export const getBaseApiUrl = (): string => {
+  const strapiUrl = import.meta.env.VITE_STRAPI_URL as string | undefined;
+  return strapiUrl ?? "http://localhost:1337";
+};
+
 /**
  * Configures the API client with base URL and authentication token from environment variables.
  * @throws {Error} When VITE_STRAPI_API_TOKEN is not set in environment variables
  */
-const configureApiClient = () => {
-  // Set the base URL from environment variable
-  const strapiUrl = import.meta.env.VITE_STRAPI_URL as string | undefined;
-  const baseUrl = strapiUrl ?? "http://localhost:1337";
+export const configureApiClient = () => {
+  const baseUrl = getBaseApiUrl();
 
   // Set the API token if available
   const apiToken = import.meta.env.VITE_STRAPI_API_TOKEN as string | undefined;
@@ -30,6 +33,24 @@ const configureApiClient = () => {
       Authorization: `Bearer ${apiToken}`,
     },
     throwOnError: true,
+  });
+
+  // Request interceptor for logging in development
+  client.interceptors.request.use((request) => {
+    if (import.meta.env.DEV) {
+      // eslint-disable-next-line no-console
+      console.log(`Request 📤 ${request.method} ${request.url}`);
+    }
+    return request;
+  });
+
+  // Response interceptor for logging
+  client.interceptors.response.use((response) => {
+    if (import.meta.env.DEV) {
+      // eslint-disable-next-line no-console
+      console.log(`Response 📥 ${response.url}`, { status: response.status });
+    }
+    return response;
   });
 
   // eslint-disable-next-line no-console
@@ -57,5 +78,3 @@ export const fetchHeaders = (): Record<string, string> => {
 
   return headers;
 };
-
-export default configureApiClient;

@@ -1,11 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
 
-import { getCoursesId } from "@/shared/api";
+import { courseGetCoursesById } from "@/shared/api/sdk.gen";
+import type { Course } from "@/shared/api/types.gen";
 
 export const courseQuery = (courseId: string) => ["course", courseId] as const;
 
 /**
- * Fetch a single course by ID
+ * Fetch a single course by ID with Strapi query parameters
  * Used in edit mode to load existing course data
  *
  * IMPORTANT: Fetches both draft and published courses
@@ -13,28 +13,21 @@ export const courseQuery = (courseId: string) => ["course", courseId] as const;
  */
 export const CourseQueryFunction = (courseId: string) => ({
   queryKey: courseQuery(courseId),
-  queryFn: async () => {
-    const { data, error } = await getCoursesId({
-      path: { id: Number(courseId) },
+  queryFn: async (): Promise<Course> => {
+    const courseResponse = await courseGetCoursesById({
+      path: { id: courseId },
       query: {
-        // Needs update: getCourseId DOES NOT use query parameter, meaning we cant fetch relations yet {course_categories, image, course_sections}
-        fields: [
-          "title",
-          "description",
-          "difficulty",
-          "numOfRatings",
-          "numOfSubscriptions",
-          "createdAt",
-          "updatedAt",
-          "publishedAt",
-        ],
-        populate: ["course_categories", "image", "course_sections"],
+        fields: ["title", "description", "difficulty", "numOfRatings", "numOfSubscriptions", "createdAt", "updatedAt", "publishedAt"],
+        // Use "*" to populate all relations with their full data including nested fields
+        populate: "course_categories",
       },
-      // Note: status parameter omitted to fetch both draft and published courses
     });
-    if (error) {
-      throw new Error(`Error fetching course with ID ${courseId}`);
+
+    // CourseResponse has an optional data property containing the Course
+    if (!courseResponse?.data) {
+      throw new Error(`Course with ID ${courseId} not found`);
     }
-    return data;
+
+    return courseResponse.data;
   },
 });
