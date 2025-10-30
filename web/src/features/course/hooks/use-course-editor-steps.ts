@@ -106,6 +106,21 @@ export const useCourseEditorSteps = ({
   };
 
   /**
+ * Go back to the previous step
+ */
+const goToPreviousStep = () => {
+  setStepState((prev) => {
+    const prevStep = getPreviousStep(prev.current);
+    if (!prevStep) return prev; // Already at the first step
+    return {
+      ...prev,
+      current: prevStep,
+    };
+  });
+};
+
+
+  /**
    * Check if we can navigate to a specific step.
    * - In edit mode: can navigate to any completed step or the first incomplete step
    * - In create mode: can only navigate to completed steps or the next incomplete step
@@ -182,6 +197,7 @@ export const useCourseEditorSteps = ({
     completedSteps: stepState.completed,
     goToStep,
     completeStep,
+    goToPreviousStep,
     canNavigateToStep,
     isStepCompleted,
     isStepActive,
