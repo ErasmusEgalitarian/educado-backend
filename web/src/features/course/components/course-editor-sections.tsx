@@ -278,7 +278,7 @@ const CourseEditorSections = forwardRef<
                 onClick={() => onComplete?.()}
               > 
                 <ChevronLeft size={16} className="mr-2" />
-                {t("courseManager.cancelAndReturn")}
+                {t("courseManager.goBack")}
               </Button>
             </div>
             <div className="col-start-4 flex gap-4 justify-end right-auto">
@@ -287,7 +287,7 @@ const CourseEditorSections = forwardRef<
                 onClick={() => onComplete?.()}
                 className="text-destructive font-bold underline"
               >
-                {t("courseEditor.skipToReview")}
+                {t("common.cancel")}
               </Button>
               <Button
                 onClick={() => onComplete?.()}

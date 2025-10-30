@@ -129,7 +129,8 @@
     "genericError": "An unexpected error occurred. Please try again.",
     "rating": "Rating",
     "addLesson": "Add lesson",
-    "addExercise": "Add exercise"
+    "addExercise": "Add exercise",
+    "goBack": "Go back"
   },
   "courses": {
     "pageTitle": "Courses list",
