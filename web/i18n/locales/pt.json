@@ -129,7 +129,8 @@
     "genericError": "Ocorreu um erro inesperado. Por favor, tente novamente.",
     "rating": "Avaliação",
     "addLesson": "Adicionar Aula",
-    "addExercise": "Adicionar Exercicio"
+    "addExercise": "Adicionar Exercicio",
+    "goBack": "Voltar para anterior"
   },
   "courses": {
     "pageTitle": "Confira seus cursos",
