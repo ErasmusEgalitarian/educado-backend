@@ -55,7 +55,8 @@
     "name": "Name",
     "retry": "Retry",
     "rating": "Rating",
-    "error": "Error"
+    "error": "Error",
+    "or": "or"
   },
   "pagination": {
     "items": "items",
@@ -108,6 +109,7 @@
     "characters": "characters",
     "newCourse": "New Course",
     "createSections": "Create Sections",
+    "createNewSection": "Create new section",
     "cancelAndReturn": "Cancel and Return",
     "saveAsDraft": "Save as Draft",
     "reviewCourse": "Review Course",
@@ -125,7 +127,9 @@
     "createError": "Failed to Create Course",
     "updateError": "Failed to Update Course",
     "genericError": "An unexpected error occurred. Please try again.",
-    "rating": "Rating"
+    "rating": "Rating",
+    "addLesson": "Add lesson",
+    "addExercise": "Add exercise"
   },
   "courses": {
     "pageTitle": "Courses list",

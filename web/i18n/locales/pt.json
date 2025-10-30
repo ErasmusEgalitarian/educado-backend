@@ -55,7 +55,8 @@
     "name": "Nome",
     "retry": "Tentar Novamente",
     "rating": "Avaliação",
-    "error": "Erro"
+    "error": "Erro",
+    "or": "ou"
   },
   "pagination": {
     "items": "itens",
@@ -108,6 +109,7 @@
     "characters": "caracteres",
     "newCourse": "Novo Curso",
     "createSections": "Criar Seções",
+    "createNewSection": "Criar nova seção",
     "cancelAndReturn": "Cancelar e Voltar",
     "saveAsDraft": "Salvar como Rascunho",
     "reviewCourse": "Revisar Curso",
@@ -125,7 +127,9 @@
     "createError": "Falha ao Criar Curso",
     "updateError": "Falha ao Atualizar Curso",
     "genericError": "Ocorreu um erro inesperado. Por favor, tente novamente.",
-    "rating": "Avaliação"
+    "rating": "Avaliação",
+    "addLesson": "Adicionar Aula",
+    "addExercise": "Adicionar Exercicio"
   },
   "courses": {
     "pageTitle": "Confira seus cursos",

@@ -179,7 +179,7 @@ const CourseEditorSections = forwardRef<
               <CardHeader
                 className="bg-primary-surface-default p-6 text-white font-bold flex "
               >
-                {t("courseManager.rating")}
+                {t("courseManager.createNewSection")}
               </CardHeader>
               <CardContent className="pt-6 border-red-500">
                 <Form {...form}>
@@ -231,7 +231,7 @@ const CourseEditorSections = forwardRef<
                         >
                           <div className="w-full flex flex-row justify-start items-center">
                             <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
-                            {t("courseManager.addExcercise")}
+                            {t("courseManager.addExercise")}
                           </div>
                         </Button>
                       </div>
@@ -245,7 +245,7 @@ const CourseEditorSections = forwardRef<
                       >
                         {t("common.cancel")}
                       </Button>
-                      <Button type="submit">
+                      <Button>
                         {(isEditing != null) ? t("common.update") : t("common.create")}
                       </Button>
                     </div>
