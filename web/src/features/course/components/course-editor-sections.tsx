@@ -203,7 +203,7 @@ const CourseEditorSections = forwardRef<
 
                       <hr />  
 
-                      <div className="grid grid-cols-3 grid-cols-[1fr_10px_1fr] gap-2">
+                      <div className="grid grid-cols-3 grid-cols-[1fr_25px_1fr] gap-2">
                         <Button
                           onClick={() => {
                             // eslint-disable-next-line no-console
@@ -218,7 +218,7 @@ const CourseEditorSections = forwardRef<
                           </div>
                         </Button>
                         <span className="flex items-center justify-center text-greyscale-text-disabled"s>
-                          {t("courseManager.or")}
+                          {t("common.or")}
                         </span>
                         <Button
                           onClick={() => {
