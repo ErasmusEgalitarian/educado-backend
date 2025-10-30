@@ -9,7 +9,7 @@ import { FormInput } from "@/shared/components/form/form-input";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { Button } from "@/shared/components/shadcn/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/shared/components/shadcn/card";
+import { Card, CardContent, CardHeader} from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
 
 interface CourseEditorSectionsProps {
@@ -34,8 +34,6 @@ export interface Section {
   id: string;
   title: string;
   description?: string;
-  sectionType: "Lesson" | "Exercise";
-  // Future attributes can be added here for Lesson and Exercise specific fields
 }
 
 const CourseEditorSections = forwardRef<
@@ -44,7 +42,7 @@ const CourseEditorSections = forwardRef<
 >(({ courseId, onComplete }, ref) => {
   const { t } = useTranslation();
   const [sections, setSections] = useState<Section[]>([]);
-  const [isEditing, setIsEditing] = useState<string | null>(null);
+  const [currentSectionEditing, setCurrentSectionEditing] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
 
   const form = useForm<SectionFormValues>({
@@ -63,14 +61,14 @@ const CourseEditorSections = forwardRef<
   }));
 
   const onSubmit = (values: SectionFormValues) => {
-    if (isEditing) {
+    if (currentSectionEditing !== null) {
       // Update existing section
       setSections(prev => prev.map(section => 
-        section.id === isEditing 
+        section.id === currentSectionEditing 
           ? { ...section, ...values }
           : section
       ));
-      setIsEditing(null);
+      setCurrentSectionEditing(null);
     } else {
       // Create new section
       const newSection: Section = {
@@ -86,24 +84,23 @@ const CourseEditorSections = forwardRef<
   const handleEdit = (section: Section) => {
     form.reset({
       title: section.title,
-      description: section.description || "",
-      sectionType: section.sectionType,
+      description: section.description ?? "",
     });
-    setIsEditing(section.id);
+    setCurrentSectionEditing(section.id);
     setIsCreating(false);
   };
 
   const handleDelete = (sectionId: string) => {
     setSections(prev => prev.filter(section => section.id !== sectionId));
-    if (isEditing === sectionId) {
-      setIsEditing(null);
+    if (currentSectionEditing === sectionId) {
+      setCurrentSectionEditing(null);
       form.reset();
     }
   };
 
   const handleCancel = () => {
     setIsCreating(false);
-    setIsEditing(null);
+    setCurrentSectionEditing(null);
     form.reset();
   };
 
@@ -121,7 +118,7 @@ const CourseEditorSections = forwardRef<
                 <Card
                   key={section.id}
                   className={`p-4 ${
-                    isEditing === section.id 
+                    currentSectionEditing === section.id 
                       ? "border-primary border-2" 
                       : "border-greyscale-border"
                   }`}
@@ -133,9 +130,6 @@ const CourseEditorSections = forwardRef<
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-sm font-medium text-greyscale-text-caption bg-greyscale-bg-hover px-2 py-1 rounded">
                             {index + 1}
-                          </span>
-                          <span className="text-sm font-medium text-greyscale-text-caption bg-primary/10 text-primary px-2 py-1 rounded">
-                            {section.sectionType}
                           </span>
                           <h4 className="font-semibold text-greyscale-text-title">
                             {section.title}
@@ -174,7 +168,7 @@ const CourseEditorSections = forwardRef<
           )}
 
           {/* Add/Edit Section Form */}
-          {(isCreating || (isEditing != null)) && (
+          {(isCreating || (currentSectionEditing != null)) && (
             <Card className="border border-primary-surface-default pt-0 overflow-hidden">
               <CardHeader
                 className="bg-primary-surface-default p-6 text-white font-bold flex "
@@ -245,7 +239,7 @@ const CourseEditorSections = forwardRef<
                         {t("common.cancel")}
                       </Button>
                       <Button>
-                        {(isEditing != null) ? t("common.update") : t("common.create")}
+                        {(currentSectionEditing != null) ? t("common.update") : t("common.create")}
                       </Button>
                     </div>
                   </form>
@@ -255,11 +249,11 @@ const CourseEditorSections = forwardRef<
           )}
 
           {/* Add Section Button */}
-          {!isCreating && (isEditing == null) && (
+          {!isCreating && (currentSectionEditing == null) && (
             <Button
               onClick={() => {
                 setIsCreating(true);
-                setIsEditing(null);
+                setCurrentSectionEditing(null);
                 form.reset();
               }}
               className="w-full border-dashed"
