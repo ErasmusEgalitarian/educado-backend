@@ -1,0 +1,780 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+      - ".gitignore"
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  detect-changes:
+    name: Detect Changed Projects
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    outputs:
+      strapi_changed: ${{ steps.filter.outputs.strapi }}
+      web_changed: ${{ steps.filter.outputs.web }}
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for changes
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            strapi:
+              - 'strapi/**'
+              - 'package.json'
+              - 'turbo.json'
+            web:
+              - 'web/**'
+              - 'package.json'
+              - 'turbo.json'
+
+    # Strapi checks (REQUIRED - will block PR)
+  strapi-lint-format:
+    name: Strapi - Lint & Format
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.strapi_changed == 'true'
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Strapi)
+        run: |
+          npm ci --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm install --no-audit --no-fund)
+
+      - name: Lint
+        run: npm --prefix strapi run lint:check || (cd strapi && npm run lint:check)
+
+      - name: Format Check
+        run: npm --prefix strapi run format:check || (cd strapi && npm run format:check)
+
+  strapi-type-check:
+    name: Strapi - Type Check
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.strapi_changed == 'true'
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Strapi)
+        run: |
+          npm ci --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm install --no-audit --no-fund)
+
+      - name: Type Check
+        run: |
+          npm --prefix strapi run type-check || (cd strapi && npm run type-check)
+
+  strapi-test:
+    name: Strapi - Test
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.strapi_changed == 'true'
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Strapi)
+        run: |
+          npm ci --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm install --no-audit --no-fund)
+
+      - name: Test
+        run: |
+          npm --prefix strapi run test || (cd strapi && npm run test)
+
+  strapi-build:
+    name: Strapi - Build
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.strapi_changed == 'true'
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Strapi)
+        run: |
+          npm ci --no-audit --no-fund --prefix strapi || \
+          (cd strapi && npm ci --no-audit --no-fund)
+
+      - name: Build
+        run: |
+          npm --prefix strapi run build || (cd strapi && npm run build)
+
+  # Web checks (ADVISORY - won't block PR due to legacy code)
+  web-lint-format-changed:
+    name: Web - Lint & Format Changed (Required)
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.web_changed == 'true'
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
+
+      - name: Ensure base branch is fetched
+        run: |
+          if [ -n "${{ github.base_ref }}" ]; then
+            git fetch origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }} || true
+          fi
+
+      - name: Lint and format changed files only
+        run: |
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMR origin/${{ github.base_ref }}...HEAD -- 'web/**/*.js' 'web/**/*.jsx' 'web/**/*.ts' 'web/**/*.tsx' 2>/dev/null | sed 's#^web/##' | tr '\n' ' ' || echo "")
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "✅ No JS/TS files changed in web/, skipping lint & format checks"
+          else
+            echo "Checking changed files: $CHANGED_FILES"
+            ( cd web && npx cross-env ENV_PATH=../.env eslint $CHANGED_FILES && npx prettier --check $CHANGED_FILES )
+          fi
+
+  web-typecheck-changed:
+    name: Web - Type Check Changed (Required)
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.web_changed == 'true'
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
+
+      - name: Type check only if TS changed
+        run: |
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMR origin/${{ github.base_ref }}...HEAD -- 'web/**/*.ts' 'web/**/*.tsx' 2>/dev/null || echo "")
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "✅ No TS/TSX files changed in web/, skipping type-check"
+          else
+            echo "Running project type-check due to TS changes"
+            npm --prefix web run type-check || (cd web && npm run type-check)
+          fi
+
+  web-lint-format-full:
+    name: Web - Full Lint & Format (Advisory)
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.web_changed == 'true'
+    continue-on-error: true
+    outputs:
+      lint_errors: ${{ steps.lint.outputs.lint_errors }}
+      lint_warnings: ${{ steps.lint.outputs.lint_warnings }}
+      format_issues: ${{ steps.format.outputs.format_issues }}
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
+
+      - name: Lint (full)
+        id: lint
+        continue-on-error: true
+        run: |
+          cd web
+          npm run lint:check 2>&1 | tee lint-output.txt || true
+
+          # Count errors and warnings
+          ERRORS=$(grep -c "error" lint-output.txt || echo "0")
+          WARNINGS=$(grep -c "warning" lint-output.txt || echo "0")
+
+          echo "lint_errors=$ERRORS" >> $GITHUB_OUTPUT
+          echo "lint_warnings=$WARNINGS" >> $GITHUB_OUTPUT
+
+          echo "📊 Lint Results: $ERRORS errors, $WARNINGS warnings"
+
+          # Exit with error if there are any issues (but continue-on-error will catch it)
+          if [ "$ERRORS" -gt 0 ] || [ "$WARNINGS" -gt 0 ]; then
+            exit 1
+          fi
+
+      - name: Format Check (full)
+        id: format
+        continue-on-error: true
+        run: |
+          cd web
+          npm run format:check 2>&1 | tee format-output.txt || true
+
+          # Count unformatted files
+          UNFORMATTED=$(grep -c "Code style issues found" format-output.txt || echo "0")
+
+          echo "format_issues=$UNFORMATTED" >> $GITHUB_OUTPUT
+          echo "📊 Format Results: $UNFORMATTED files need formatting"
+
+          if [ "$UNFORMATTED" -gt 0 ]; then
+            exit 1
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### 📊 Web Lint & Format Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Result |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Lint Errors** | ${{ steps.lint.outputs.lint_errors || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Lint Warnings** | ${{ steps.lint.outputs.lint_warnings || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Files Needing Format** | ${{ steps.format.outputs.format_issues || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+
+  web-typecheck-full:
+    name: Web - Full Type Check (Advisory)
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.web_changed == 'true'
+    continue-on-error: true
+    outputs:
+      type_errors: ${{ steps.typecheck.outputs.type_errors }}
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
+
+      - name: Type Check (full)
+        id: typecheck
+        continue-on-error: true
+        run: |
+          cd web
+          npm run type-check 2>&1 | tee typecheck-output.txt || true
+
+          # Count type errors
+          TYPE_ERRORS=$(grep -c "error TS" typecheck-output.txt || echo "0")
+
+          echo "type_errors=$TYPE_ERRORS" >> $GITHUB_OUTPUT
+          echo "📊 Type Check Results: $TYPE_ERRORS type errors"
+
+          if [ "$TYPE_ERRORS" -gt 0 ]; then
+            exit 1
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### 📊 Web Type Check Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Result |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Type Errors** | ${{ steps.typecheck.outputs.type_errors || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+
+  web-test-full:
+    name: Web - Full Test (Advisory)
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.web_changed == 'true'
+    continue-on-error: true
+    outputs:
+      tests_total: ${{ steps.test.outputs.tests_total }}
+      tests_passed: ${{ steps.test.outputs.tests_passed }}
+      tests_failed: ${{ steps.test.outputs.tests_failed }}
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund) || \
+          npm install --no-audit --no-fund --prefix web || \
+          (cd web && npm install --no-audit --no-fund)
+
+      - name: Test (full)
+        id: test
+        continue-on-error: true
+        run: |
+          cd web
+          npm run test 2>&1 | tee test-output.txt || true
+
+          # Extract test statistics (format: "Tests: X failed, Y passed, Z total")
+          TOTAL=$(grep -oP "Tests:.*\K\d+(?= total)" test-output.txt || echo "0")
+          PASSED=$(grep -oP "Tests:.*\K\d+(?= passed)" test-output.txt || echo "0")
+          FAILED=$(grep -oP "Tests:.*\K\d+(?= failed)" test-output.txt || echo "0")
+
+          echo "tests_total=$TOTAL" >> $GITHUB_OUTPUT
+          echo "tests_passed=$PASSED" >> $GITHUB_OUTPUT
+          echo "tests_failed=$FAILED" >> $GITHUB_OUTPUT
+
+          echo "📊 Test Results: $PASSED passed, $FAILED failed, $TOTAL total"
+
+          if [ "$FAILED" -gt 0 ]; then
+            exit 1
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### 📊 Web Test Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Result |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Tests Passed** | ${{ steps.test.outputs.tests_passed || 'N/A' }} ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Tests Failed** | ${{ steps.test.outputs.tests_failed || 'N/A' }} ❌ |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Total Tests** | ${{ steps.test.outputs.tests_total || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+
+  web-build-full:
+    name: Web - Full Build (Advisory)
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.web_changed == 'true'
+    continue-on-error: true
+    outputs:
+      build_status: ${{ steps.build.outputs.build_status }}
+      build_time: ${{ steps.build.outputs.build_time }}
+      dist_size: ${{ steps.build.outputs.dist_size }}
+    steps:
+      - name: Install system packages (git, bash)
+        run: apk add --no-cache git bash ca-certificates
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies (Web)
+        run: |
+          npm ci --no-audit --no-fund --prefix web || \
+          (cd web && npm ci --no-audit --no-fund)
+
+      - name: Build (full)
+        id: build
+        continue-on-error: true
+        run: |
+          cd web
+          BUILD_START=$(date +%s)
+          npm run build 2>&1 | tee build-output.txt || true
+          BUILD_END=$(date +%s)
+          BUILD_TIME=$((BUILD_END - BUILD_START))
+
+          # Check if build succeeded
+          if [ -d "dist" ]; then
+            BUILD_STATUS="success"
+            DIST_SIZE=$(du -sh dist 2>/dev/null | cut -f1 || echo "unknown")
+          else
+            BUILD_STATUS="failed"
+            DIST_SIZE="N/A"
+          fi
+
+          echo "build_status=$BUILD_STATUS" >> $GITHUB_OUTPUT
+          echo "build_time=$BUILD_TIME" >> $GITHUB_OUTPUT
+          echo "dist_size=$DIST_SIZE" >> $GITHUB_OUTPUT
+
+          echo "📊 Build Results: $BUILD_STATUS (${BUILD_TIME}s, dist: $DIST_SIZE)"
+
+          if [ "$BUILD_STATUS" = "failed" ]; then
+            exit 1
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### 📊 Web Build Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Result |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Build Status** | ${{ steps.build.outputs.build_status || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Build Time** | ${{ steps.build.outputs.build_time || 'N/A' }}s ⏱️ |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Dist Size** | ${{ steps.build.outputs.dist_size || 'N/A' }} 📦 |" >> $GITHUB_STEP_SUMMARY
+
+  # Summary job - only REQUIRED checks must pass
+  pr-checks-complete:
+    name: Required PR Checks Passed
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+    needs:
+      - detect-changes
+      - strapi-lint-format
+      - strapi-type-check
+      - strapi-test
+      - strapi-build
+      - web-lint-format-changed
+      - web-typecheck-changed
+      - web-lint-format-full
+      - web-typecheck-full
+      - web-test-full
+      - web-build-full
+    if: always()
+    steps:
+      - name: Check required jobs
+        run: |
+          # Check Strapi jobs (required if Strapi changed)
+          STRAPI_CHANGED="${{ needs.detect-changes.outputs.strapi_changed }}"
+          WEB_CHANGED="${{ needs.detect-changes.outputs.web_changed }}"
+
+          if [ "$STRAPI_CHANGED" = "true" ]; then
+            if [ "${{ needs.strapi-lint-format.result }}" = "failure" ] || \
+               [ "${{ needs.strapi-type-check.result }}" = "failure" ] || \
+               [ "${{ needs.strapi-test.result }}" = "failure" ] || \
+               [ "${{ needs.strapi-build.result }}" = "failure" ]; then
+              echo "❌ Required Strapi checks failed"
+              exit 1
+            fi
+          fi
+
+          # Check Web changed-files jobs (required if Web changed)
+          if [ "$WEB_CHANGED" = "true" ]; then
+            if [ "${{ needs.web-lint-format-changed.result }}" = "failure" ] || \
+               [ "${{ needs.web-typecheck-changed.result }}" = "failure" ]; then
+              echo "❌ Required Web changed-files checks failed"
+              exit 1
+            fi
+          fi
+
+          echo "✅ All required checks passed!"
+          echo "ℹ️  Web full-codebase checks are advisory only (legacy code - won't block PR)"
+
+      - name: Generate PR Summary
+        if: always()
+        run: |
+          echo "# 📊 PR Check Results Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Required Checks Status
+          echo "## ✅ Required Checks (Must Pass)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.detect-changes.outputs.strapi_changed }}" = "true" ]; then
+            echo "| Strapi Lint & Format | ${{ needs.strapi-lint-format.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+            echo "| Strapi Type Check | ${{ needs.strapi-type-check.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+            echo "| Strapi Test | ${{ needs.strapi-test.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+            echo "| Strapi Build | ${{ needs.strapi-build.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "${{ needs.detect-changes.outputs.web_changed }}" = "true" ]; then
+            echo "| Web Lint & Format (Changed) | ${{ needs.web-lint-format-changed.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+            echo "| Web Type Check (Changed) | ${{ needs.web-typecheck-changed.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Advisory Checks Summary
+          if [ "${{ needs.detect-changes.outputs.web_changed }}" = "true" ]; then
+            echo "## 📈 Advisory Checks (Codebase Quality Metrics)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "_These checks don't block PR merging but show overall code quality trends_" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            # Lint & Format Stats
+            echo "### 🔍 Lint & Format" >> $GITHUB_STEP_SUMMARY
+            echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| ESLint Errors | ${{ needs.web-lint-format-full.outputs.lint_errors || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+            echo "| ESLint Warnings | ${{ needs.web-lint-format-full.outputs.lint_warnings || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+            echo "| Files Needing Format | ${{ needs.web-lint-format-full.outputs.format_issues || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            # Type Check Stats
+            echo "### 🔤 Type Check" >> $GITHUB_STEP_SUMMARY
+            echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| TypeScript Errors | ${{ needs.web-typecheck-full.outputs.type_errors || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            # Test Stats
+            echo "### 🧪 Tests" >> $GITHUB_STEP_SUMMARY
+            echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| Tests Passed | ${{ needs.web-test-full.outputs.tests_passed || 'N/A' }} ✅ |" >> $GITHUB_STEP_SUMMARY
+            echo "| Tests Failed | ${{ needs.web-test-full.outputs.tests_failed || 'N/A' }} ❌ |" >> $GITHUB_STEP_SUMMARY
+            echo "| Total Tests | ${{ needs.web-test-full.outputs.tests_total || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            # Build Stats
+            echo "### 🏗️ Build" >> $GITHUB_STEP_SUMMARY
+            echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| Build Status | ${{ needs.web-build-full.outputs.build_status || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+            echo "| Build Time | ${{ needs.web-build-full.outputs.build_time || 'N/A' }}s ⏱️ |" >> $GITHUB_STEP_SUMMARY
+            echo "| Dist Size | ${{ needs.web-build-full.outputs.dist_size || 'N/A' }} 📦 |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "_💡 Tip: Track these metrics over time to see code quality improvements!_" >> $GITHUB_STEP_SUMMARY
+
+      - name: Post PR Comment with Statistics
+        if: github.event_name == 'pull_request' && needs.detect-changes.outputs.web_changed == 'true'
+        continue-on-error: true
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const stats = {
+              lintErrors: '${{ needs.web-lint-format-full.outputs.lint_errors }}' || 'N/A',
+              lintWarnings: '${{ needs.web-lint-format-full.outputs.lint_warnings }}' || 'N/A',
+              formatIssues: '${{ needs.web-lint-format-full.outputs.format_issues }}' || 'N/A',
+              typeErrors: '${{ needs.web-typecheck-full.outputs.type_errors }}' || 'N/A',
+              testsPassed: '${{ needs.web-test-full.outputs.tests_passed }}' || 'N/A',
+              testsFailed: '${{ needs.web-test-full.outputs.tests_failed }}' || 'N/A',
+              testsTotal: '${{ needs.web-test-full.outputs.tests_total }}' || 'N/A',
+              buildStatus: '${{ needs.web-build-full.outputs.build_status }}' || 'N/A',
+              buildTime: '${{ needs.web-build-full.outputs.build_time }}' || 'N/A',
+              distSize: '${{ needs.web-build-full.outputs.dist_size }}' || 'N/A'
+            };
+
+            // Calculate overall quality score (simple metric)
+            const totalIssues = parseInt(stats.lintErrors || 0) + parseInt(stats.typeErrors || 0) + parseInt(stats.testsFailed || 0);
+            const qualityEmoji = totalIssues === 0 ? '🌟' : totalIssues < 50 ? '✅' : totalIssues < 100 ? '⚠️' : '🔴';
+
+            const comment = `## ${qualityEmoji} Code Quality Report
+
+            ### ✅ Required Checks
+            All required checks **passed** ✓ - This PR can be merged!
+
+            ### 📊 Codebase Quality Metrics (Advisory)
+
+            <details>
+            <summary><strong>🔍 Lint & Format</strong></summary>
+
+            | Metric | Count |
+            |--------|-------|
+            | ESLint Errors | **${stats.lintErrors}** ❌ |
+            | ESLint Warnings | **${stats.lintWarnings}** ⚠️ |
+            | Files Needing Format | **${stats.formatIssues}** 📝 |
+
+            </details>
+
+            <details>
+            <summary><strong>🔤 Type Check</strong></summary>
+
+            | Metric | Count |
+            |--------|-------|
+            | TypeScript Errors | **${stats.typeErrors}** ❌ |
+
+            </details>
+
+            <details>
+            <summary><strong>🧪 Tests</strong></summary>
+
+            | Metric | Count |
+            |--------|-------|
+            | Tests Passed | **${stats.testsPassed}** ✅ |
+            | Tests Failed | **${stats.testsFailed}** ❌ |
+            | Total Tests | **${stats.testsTotal}** |
+            | Pass Rate | **${stats.testsTotal !== 'N/A' && stats.testsPassed !== 'N/A' ? Math.round((parseInt(stats.testsPassed) / parseInt(stats.testsTotal)) * 100) : 'N/A'}%** |
+
+            </details>
+
+            <details>
+            <summary><strong>🏗️ Build</strong></summary>
+
+            | Metric | Value |
+            |--------|-------|
+            | Build Status | **${stats.buildStatus}** |
+            | Build Time | **${stats.buildTime}s** ⏱️ |
+            | Dist Size | **${stats.distSize}** 📦 |
+
+            </details>
+
+            ---
+
+            _💡 **Note**: These metrics show the **entire codebase** health and won't block merging. Only changed files are required to pass checks._
+
+            _📈 Track these numbers over time to see progress on technical debt!_
+            `;
+
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('Code Quality Report')
+            );
+
+            // Update or create comment
+            try {
+              if (botComment) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: botComment.id,
+                  body: comment
+                });
+                console.log('✅ Updated existing comment');
+              } else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: comment
+                });
+                console.log('✅ Created new comment');
+              }
+            } catch (error) {
+              console.error('❌ Failed to post PR comment:', error.message);
+              console.log('');
+              console.log('To enable PR comments, grant write permissions:');
+              console.log('1. Go to Settings → Actions → General');
+              console.log('2. Under "Workflow permissions"');
+              console.log('3. Select "Read and write permissions"');
+              console.log('4. Click Save');
+              console.log('');
+              console.log('Statistics are still available in the job summary above! 📊');
+              throw error; // Re-throw to mark step as failed (but continue-on-error will prevent job failure)
+            }
