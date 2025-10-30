@@ -66,6 +66,7 @@ const CourseEditorPage = () => {
     currentStep,
     goToStep,
     completeStep,
+    goToPreviousStep,
     canNavigateToStep,
     isStepCompleted,
     isStepActive,
@@ -141,6 +142,7 @@ const CourseEditorPage = () => {
             onComplete={() => {
               handleStepComplete("sections");
             }}
+            onGoBack={goToPreviousStep}
           />
         );
       case "review":
