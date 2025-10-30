@@ -130,7 +130,8 @@
     "rating": "Avaliação",
     "addLesson": "Adicionar Aula",
     "addExercise": "Adicionar Exercicio",
-    "goBack": "Voltar para anterior"
+    "goBack": "Voltar para anterior",
+    "addSection": "Nova seção"
   },
   "courses": {
     "pageTitle": "Confira seus cursos",

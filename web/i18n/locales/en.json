@@ -130,7 +130,8 @@
     "rating": "Rating",
     "addLesson": "Add lesson",
     "addExercise": "Add exercise",
-    "goBack": "Go back"
+    "goBack": "Go back",
+    "addSection": "Add new section"
   },
   "courses": {
     "pageTitle": "Courses list",
