@@ -6,6 +6,15 @@ on:
       - "v*.*.*"
       - "strapi-v*.*.*"
       - "web-v*.*.*"
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        type: choice
+        options:
+          - oliver_gitea
+        default: "oliver_gitea"
 
 env:
   REGISTRY: ${{ secrets.REGISTRY_URL }}
