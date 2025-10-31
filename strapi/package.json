@@ -9,7 +9,7 @@
     "build": "strapi build",
     "docker:build": "docker build -t educado-strapi:latest -f Dockerfile ..",
     "docker:build:tag": "docker build -t educado-strapi:$TAG -f Dockerfile ..",
-    "test": "echo 'No tests configured for Strapi yet'",
+    "test": "jest",
     "lint:check": "echo 'No linting configured for Strapi yet'",
     "lint:fix": "echo 'No linting configured for Strapi yet'",
     "format:check": "echo 'No formatting configured for Strapi yet'",
@@ -41,10 +41,13 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20.19.23",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "cross-env": "^10.1.0",
+    "jest": "^30.0.0",
+    "ts-jest": "^29.4.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
