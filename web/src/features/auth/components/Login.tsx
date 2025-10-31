@@ -224,24 +224,23 @@ const Login = () => {
 
           {/*Container for the page's contents, + Back button*/}
           <ToastContainer />
-          <div className="relative py-8 px-10 w-full">
+          <div className="relative py-8 px-25 w-full">
             <div className="">
-              <h1 className="mb-10 flex text-lg text-[#383838] font-normal font-['Montserrat'] underline">
+              <h1 className="mb-10 flex text-lg text-[#383838] font-normal font-['Montserrat'] underline px-10">
                 <Link to="/welcome">
                   <Icon path={mdiChevronLeft} size={1} color="#383838" />
                 </Link>
-                <Link
-                  to="/welcome"
-                  className="text-lg text-[#383838] font-normal font-['Montserrat']"
-                >
-                  Voltar {/*Back*/}
+                <Link to="/welcome" className="text-lg text-[#383838] font-normal font-['Montserrat'] " > 
+                <button className="cursor-pointer">
+                  Voltar
+                  </button> {/*Back*/} 
                 </Link>
               </h1>
             </div>
 
             {/*Title*/}
-            <h1 className="text-[#383838] text-3xl font-bold font-['Lato'] leading-normal self-stretch mb-10 ">
-              Bem-vindo de volta ao Educado! {/*Welcome back to Educado!*/}
+            <h1 className="text-[#383838] text-3xl font-bold font-['Montserrat'] leading-normal self-stretch mb-10 px-10">
+              Bem-vindo(a) de volta! {/*Welcome back to Educado!*/}
             </h1>
 
             {/*Submit form, i.e. fields to write email and password*/}
@@ -251,9 +250,9 @@ const Login = () => {
             >
               {/* Email field */}
               <div>
-                <div className="relative">
+                <div className="relative px-10 pb-8">
                   <label
-                    className="after:content-['*'] after:ml-0.5 after:text-red-500 text-[#383838] text-sm font-normal font-['Montserrat'] mt-6"
+                    className="after:content-['*'] after:ml-0.5 after:text-red-500 text-[#383838] text-[18px] text-sm font-bold font-['Montserrat'] mt-6"
                     htmlFor="email-field"
                   >
                     Email
@@ -281,9 +280,9 @@ const Login = () => {
               </div>
               {/* Password field */}
               <div>
-                <div className="relative">
+                <div className="relative px-10">
                   <label
-                    className="after:content-['*'] after:ml-0.5 after:text-red-500 text-[#383838] text-sm font-normal font-['Montserrat'] mt-6"
+                    className="after:content-['*'] after:ml-0.5 after:text-red-500 text-[#383838] text-[18px] text-sm font-bold font-['Montserrat'] mt-6"
                     htmlFor="password-field"
                   >
                     Senha {/*Password*/}
@@ -300,7 +299,7 @@ const Login = () => {
                   {/* Hide and show password button */}
                   <button
                     type="button"
-                    className="absolute right-3 bottom-3"
+                    className="absolute right-3 bottom-3 px-10"
                     onClick={togglePasswordVisibility}
                     id="hidePasswordIcon"
                   >
@@ -324,33 +323,37 @@ const Login = () => {
                 )}
               </div>
               {/*Forgot password button*/}
-              <div className=" flex flex-col items-end gap-3">
+              <div className=" flex flex-col items-end gap-3 px-10">
                 <span className="text-neutral-700 text-right text-lg font-normal font-['Montserrat']" />{" "}
                 <label
                   id="modalToggle"
                   onClick={() => {
                     setShowModal(true);
                   }}
-                  className="text-[#383838] text-lg font-normal font-['Montserrat'] underline hover:text-blue-500"
+                  className="text-[#4E6979] text-lg font-normal font-['Montserrat'] cursor-pointer hover:text-blue-500"
                 >
                   Esqueceu sua senha? {/**/}
                 </label>
               </div>
               <span className="h-12" /> {/* spacing */}
               {/*Enter button*/}
-              <button
-                type="submit"
-                id="submit-login-button"
-                className="disabled:opacity-20 disabled:bg-slate-600 flex-auto w-full h-[3.3rem] rounded-lg bg-[#166276] text-white transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50 text-lg font-bold font-['Montserrat']"
-                disabled={!submitLoading}
-              >
-                {submitLoading ? (
-                  <span className="spinner-border animate-spin inline-block w-4 h-4 border-2 border-t-transparent rounded-full mr-2" />
-                ) : (
-                  false
-                )}
-                Entrar {/*Enter*/}
-              </button>
+              <div className="relative flex gap-4 px-10 flex-row items-center justify-center w-full ">
+                <div className="flex-auto  h-[3.3rem] w-full items-center justify-center rounded-[15px] text-lg font-bold font-['Montserrat'] bg-[#C1CFD7] inline-flex text-[#809CAD] transform transition duration-100 ease-in ">
+                  <button
+                    type="submit"
+                    id="submit-login-button"
+                    className=" "
+                    disabled={!submitLoading}
+                  >
+                    {submitLoading ? (
+                      <span className="spinner-border text-[#C1CFD7] animate-spin inline-block  border-2 border-t-transparent rounded-full mr-2 text-[20px]" />
+                    ) : (
+                      false
+                    )}
+                    Entrar {/*Enter*/}
+                  </button>
+                </div>
+              </div>
               <span className="h-4" /> {/* spacing */}
               {/*Link to Signup page*/}
               <div className="flex justify-center space-x-1">
@@ -359,7 +362,7 @@ const Login = () => {
                 </span>
                 <Link
                   to="/signup"
-                  className="text-[#383838] text-lg font-normal font-['Montserrat'] underline hover:text-blue-500 gap-6"
+                  className="text-[#383838] text-lg font-normal font-['Montserrat'] underline hover:text-blue-500 gap-4"
                 >
                   Cadastre-se agora {/*Register now*/}
                 </Link>
