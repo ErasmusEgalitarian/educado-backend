@@ -218,24 +218,20 @@ const Signup: FC = () => {
       </div>
 
       {/* Right side - Form */}
-      <div className="flex flex-col justify-center items-center bg-[#F5FAFC] px-6 md:px-12 py-10">
+      <div className="flex flex-col justify-center items-center bg-gradient-to-b from-gradient-start to-gradient-end px-6 md:px-12 py-10">
         <div className="w-full max-w-lg">
           {/* Back link */}
           <div className="mb-6">
-            <Link to="/welcome" className="flex items-center gap-2 text-[#383838] underline hover:text-[#166276]">
-              <Icon path={mdiChevronLeft} size={1} color="#383838" />
+            <Link to="/welcome" className="flex items-center gap-2 text-text-black-title underline hover:text-greyscale-text-subtle">
+              <Icon path={mdiChevronLeft} size={1} color="primary-text-title" />
               <span>Voltar</span>
             </Link>
           </div>
 
           {/* Heading */}
-          <h1 className="text-[#383838] text-3xl md:text-4xl font-bold font-['Lato'] leading-tight mb-2">
+          <h1 className="text-primary-text-title text-3xl md:text-4xl font-fontFamily-lato-bold leading-tight mb-2">
             Crie a sua conta gratuitamente!
           </h1>
-
-          <p className="text-[#5A5A5A] text-base font-normal mb-8">
-            Registre-se para começar a compartilhar conhecimento e transformar vidas.
-          </p>
 
           {/* Form */}
           <Form {...form}>
@@ -249,9 +245,9 @@ const Signup: FC = () => {
                 <div className="flex flex-col space-y-2">
                   <label
                     htmlFor="firstName"
-                    className="text-sm font-medium text-gray-700"
+                    className="text-sm font-medium text-greyscale-text-subtle"
                   >
-                    Nome <span className="text-red-600">*</span>
+                    Nome <span className="text-error-surface-default">*</span>
                   </label>
                   <FormInput
                     control={form.control}
@@ -265,9 +261,9 @@ const Signup: FC = () => {
                 <div className="flex flex-col space-y-2">
                   <label
                     htmlFor="lastName"
-                    className="text-sm font-medium text-gray-700"
+                    className="text-sm font-medium text-greyscale-text-subtle"
                   >
-                    Sobrenome <span className="text-red-600">*</span>
+                    Sobrenome <span className="text-error-surface-default">*</span>
                   </label>
                   <FormInput
                     control={form.control}
@@ -281,8 +277,8 @@ const Signup: FC = () => {
 
               {/* Email */}
               <div className="flex flex-col space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                  Email <span className="text-red-600">*</span>
+                <label htmlFor="email" className="text-sm font-medium text-greyscale-text-subtle">
+                  Email <span className="text-error-surface-default">*</span>
                 </label>
                 <FormInput
                   control={form.control}
@@ -295,8 +291,8 @@ const Signup: FC = () => {
 
               {/* Password */}
               <div className="flex flex-col space-y-2">
-                <label htmlFor="password" className="text-sm font-medium text-gray-700">
-                  Senha <span className="text-red-600">*</span>
+                <label htmlFor="password" className="text-sm font-medium text-greyscale-text-subtle">
+                  Senha <span className="text-error-surface-default">*</span>
                 </label>
                 <FormInput
                   control={form.control}
@@ -313,9 +309,9 @@ const Signup: FC = () => {
               <div className="flex flex-col space-y-2">
                 <label
                   htmlFor="confirmPassword"
-                  className="text-sm font-medium text-gray-700"
+                  className="text-sm font-medium text-greyscale-text-subtle"
                 >
-                  Confirmar senha <span className="text-red-600">*</span>
+                  Confirmar senha <span className="text-error-surface-default">*</span>
                 </label>
                 <FormInput
                   control={form.control}
@@ -331,18 +327,18 @@ const Signup: FC = () => {
                 <Button
                   type="submit"
                   disabled={submitLoading || !form.formState.isValid}
-                  className="w-full h-[3.3rem] rounded-lg text-lg font-semibold"
+                  className="w-full h-[3.3rem] rounded-lg text-lg font-fontFamily-montserrat-semi-bold"
                 >
                   {submitLoading ? "Cadastrando..." : "Cadastrar"}
                 </Button>
               </div>
 
               <div className="flex justify-center text-center pt-4">
-                <span className="text-[#A1ACB2] text-lg">
+                <span className="text-greyscale-text-subtle text-lg">
                   Já possui conta?{" "}
                   <Link
                     to="/login"
-                    className="text-[#383838] underline hover:text-[#166276]"
+                    className="font-montserrat font-bold underline decoration-current text-greyscale-text-subtle hover:!text-greyscale-border-darker"
                   >
                     Entre agora
                   </Link>

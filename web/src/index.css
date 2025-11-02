@@ -120,6 +120,9 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
+  --gradient-start:#C9E5EC;
+  --gradient-end: #FFFFFF;
+  
   --greyscale-surface-subtle: #fdfeff;
   --greyscale-surface-default: #ebf0f2;
   --greyscale-surface-disabled: #c1cfd7;
@@ -143,6 +146,7 @@
   --primary-border-default: #35a1b1;
   --primary-border-darker: #246670;
   --primary-text-label: #246670;
+  --primary-text-title: #383838; 
 
   --success-surface-subtle: #e6fac8;
   --success-surface-lighter: #c6f27e;
@@ -168,6 +172,7 @@
   * {
     @apply border-border outline-ring/50;
     @apply font-['Montserrat'];
+    @apply font-['Lato'];
   }
   body {
     @apply bg-background text-foreground;
