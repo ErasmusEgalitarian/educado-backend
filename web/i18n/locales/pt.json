@@ -198,7 +198,14 @@
     "section3":"Faça parte de uma comunidade que facilita o acesso a conteúdos relevantes e incentiva o compartilhamento de conhecimento de forma simples e prática."
   },
   "login":{
-
+      "back-button":"Voltar",
+      "welcome-back":"Bem-vindo(a) de volta!",
+      "email":"Email",
+      "password":"Senha",
+      "login-button":"Entrar",
+      "forgot-password":"Esqueceu sua senha?",
+      "no-account":"Ainda não tem conta?",
+      "register-now":"Cadastre-se agora"
   },"welcome":{
     "title": "Boas vindas ao EDUCADO!",
     "subtitle": "Cadastre-se agora e ajude a promover seu trabalho e atingir um público mais amplo por meio da criação de conteúdo.",
