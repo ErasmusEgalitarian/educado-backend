@@ -180,7 +180,14 @@
 }
 ,
   "login":{
-    
+    "back-button":"Back",
+    "welcome-back":"Welcome back!",
+    "email":"Email",
+    "password":"Password",
+    "login-button":"Log In",
+    "forgot-password":"Forgot your password?",
+    "no-account":"Don't have an account yet?",
+    "register-now":"Register now"
   },"welcome":{
   "title": "Welcome to EDUCADO!",
   "subtitle": "Sign up now and help promote your work and reach a wider audience through content creation.",

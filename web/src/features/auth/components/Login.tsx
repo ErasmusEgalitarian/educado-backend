@@ -1,12 +1,12 @@
 import { mdiChevronLeft, mdiEyeOffOutline, mdiEyeOutline } from "@mdi/js";
 import { Icon } from "@mdi/react";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import background from "@/shared/assets/background.jpg";
-
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import MiniNavbar from "../../../shared/components/MiniNavbar";
@@ -15,6 +15,7 @@ import Carousel from "../../../unplaced/archive/carousel";
 import AuthServices from "../../../unplaced/services/auth.services";
 import { setUserInfo } from "../lib/userInfo";
 import { LoginResponseError } from "../types/LoginResponseError";
+
 
 import PasswordRecoveryModal from "./password-recovery/PasswordRecoveryModal";
 
@@ -30,9 +31,9 @@ const Login = () => {
   // Error state
   const [error, setError] = useState<
     LoginResponseError.RootObject | string | null
-  >(null); // store http error objects TODO: get the error text from server instead of reponse code
+  >(null); 
   const [showModal, setShowModal] = useState(false);
-
+  const { t } = useTranslation();
   // Navigation hook
   const navigate = useNavigate();
 
@@ -55,13 +56,10 @@ const Login = () => {
   //Variable determining the error message for both fields.
   const [emailError, setEmailError] = useState(null);
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
-
-  const [passwordError, setPasswordError] = useState(null);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+  const [notApprovedError, setNotApprovedError] = useState(null);
 
   // Location hook and modal state for account application success modal
   const location = useLocation();
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   /**
    * OnSubmit function for Login.
@@ -80,9 +78,11 @@ const Login = () => {
     })
       .then((res) => {
         if (res.status == 200) {
-          const token = res.data.jwt;
+          /* eslint-disable  @typescript-eslint/no-unsafe-assignment *//* eslint-disable  @typescript-eslint/no-unsafe-member-access */
+          const token = res.data.jwt; 
+          /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
           const user = res.data.user;
-
+          /* eslint-disable  @typescript-eslint/no-unsafe-argument */
           localStorage.setItem("token", token);
           localStorage.setItem("id", user.id);
           setUserInfo(user);
@@ -94,44 +94,20 @@ const Login = () => {
       .catch((err) => {
         setError(err);
         console.error(err);
-        switch (err.response.data.error.code) {
-          case "E0004": //Invalid Email
+        switch (err.response.data.error.details.error.code) {
+          case "E0004": //Invalid Email and password
             setEmailError(err);
-            setEmailErrorMessage("Insira um email válido.");
-            setPasswordError(null);
-            setPasswordErrorMessage("");
+            setEmailErrorMessage("EMAIL OU SENHA INCORRECTOS. POR FAVOR, TENTE NOVAMENTE.");
             setError("");
             break;
 
           case "E1001": //User Not Approved
-            setEmailError(err);
-            setEmailErrorMessage(
-              "A conta associada a este e-mail não foi aprovada.",
-            );
-            setPasswordError(null);
-            setPasswordErrorMessage("");
+            setNotApprovedError(err);
+            
             setError("");
             break;
 
-          case "E1002": //User Rejected
-            setEmailError(err);
-            setEmailErrorMessage(
-              "A conta associada a este e-mail foi rejeitada.",
-            );
-            setPasswordError(null);
-            setPasswordErrorMessage("");
-            setError("");
-            break;
-
-          case "E0105": //Invalid Password
-            setEmailError(null);
-            setEmailErrorMessage("");
-            setPasswordError(err);
-            setPasswordErrorMessage(
-              "Senha Incorreta. Por favor, tente novamente.",
-            );
-            setError("");
-            break;
+          
 
           default:
             console.error(error);
@@ -156,37 +132,30 @@ const Login = () => {
     const submitloginButton = document.getElementById(
       "submit-login-button",
     ) as HTMLButtonElement;
+    
+  const buttonContainer = submitloginButton.parentElement as HTMLDivElement;
+    
 
     if (inputloginEmail.value.trim() && inputloginPass.value.trim() !== "") {
       submitloginButton.removeAttribute("disabled");
-      submitloginButton.classList.remove("opacity-20", "bg-cyan-500");
+      buttonContainer.style.backgroundColor = "#35A1B1";
+      submitloginButton.style.color = "#FDFEFF";
     } else {
       submitloginButton.setAttribute("disabled", "true");
-      submitloginButton.classList.add("opacity-20", "bg-cyan-500");
+      buttonContainer.style.backgroundColor = "#C1CFD7"; // default color when not filled
+      submitloginButton.style.color = "#809CAD";         // default text color
     }
 
     // function to clear error messages once fields are empty
     setEmailError(null);
     setEmailErrorMessage("");
-    setPasswordError(null);
-    setPasswordErrorMessage("");
+    setNotApprovedError(null);
   }
-  // failure on submit handler FIXME: find out what this does (OLD CODE)
-  //const onError: SubmitHandler<Inputs> = error => console.error(error);
-
-  // Account application success modal visibility effect
-  useEffect(() => {
-    if (location.state?.applicationSubmitted) {
-      setIsModalVisible(true);
-    }
-  }, [location.state]);
-
-  // Function to close the account application success modal
-  const closeModal = () => {
-    setIsModalVisible(false);
-  };
+  
+  
 
   return (
+    
     <main className="flex bg-linear-to-br from-[#C9E5EC] 0% to-[#FFF] 100%">
       {/* Mini navbar */}
       <MiniNavbar />
@@ -231,16 +200,16 @@ const Login = () => {
                   <Icon path={mdiChevronLeft} size={1} color="#383838" />
                 </Link>
                 <Link to="/welcome" className="text-lg text-[#383838] font-normal font-['Montserrat'] " > 
-                <button className="cursor-pointer">
-                  Voltar
-                  </button> {/*Back*/} 
+                  <button className="cursor-pointer">
+                    {t("login.back-button")}
+                  </button>
                 </Link>
               </h1>
             </div>
 
             {/*Title*/}
             <h1 className="text-[#383838] text-3xl font-bold font-['Montserrat'] leading-normal self-stretch mb-10 px-10">
-              Bem-vindo(a) de volta! {/*Welcome back to Educado!*/}
+              {t("login.welcome-back")}{/*Welcome back to Educado!*/}
             </h1>
 
             {/*Submit form, i.e. fields to write email and password*/}
@@ -255,27 +224,18 @@ const Login = () => {
                     className="after:content-['*'] after:ml-0.5 after:text-red-500 text-[#383838] text-[18px] text-sm font-bold font-['Montserrat'] mt-6"
                     htmlFor="email-field"
                   >
-                    Email
+                    {t("login.email")} {/*Email*/}
                   </label>
                   <input
                     onInput={areFieldsFilled}
                     type="email"
                     id="email-field"
-                    className="flex border-gray-300 w-full py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2  focus:border-transparent focus:ring-sky-200 rounded-lg"
+                    className={`flex w-full py-3 px-4  placeholder-gray-400 text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? 'bg-[#FFDECC] border-[#D62B25] focus:ring-[#D62B25]' : ' bg-white border-gray-300 focus:ring-sky-200'}`}
                     placeholder="usuario@gmail.com"
                     {...register("email", { required: true })}
                   />
 
-                  {emailError && (
-                    <div
-                      className="flex items-center font-normal font-['Montserrat']"
-                      role="alert"
-                    >
-                      <p className="mt-1 ml-4 text-red-500 text-sm">
-                        {emailErrorMessage}
-                      </p>
-                    </div>
-                  )}
+                  
                 </div>
               </div>
               {/* Password field */}
@@ -285,13 +245,13 @@ const Login = () => {
                     className="after:content-['*'] after:ml-0.5 after:text-red-500 text-[#383838] text-[18px] text-sm font-bold font-['Montserrat'] mt-6"
                     htmlFor="password-field"
                   >
-                    Senha {/*Password*/}
+                    {t("login.password")}{/*Password*/}
                   </label>
                   <input
                     onInput={areFieldsFilled}
                     type={passwordVisible ? "text" : "password"}
                     id="password-field"
-                    className="w-full flex border-gray-300 gap-2.5 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2  focus:border-transparent focus:ring-sky-200 rounded-lg"
+                    className={`flex w-full py-3 px-4  placeholder-gray-400 text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? 'bg-[#FFDECC] border-[#D62B25] focus:ring-[#D62B25]' : ' bg-white border-gray-300 focus:ring-sky-200'}`}
                     placeholder="**********"
                     {...register("password", { required: true })}
                   />
@@ -299,7 +259,7 @@ const Login = () => {
                   {/* Hide and show password button */}
                   <button
                     type="button"
-                    className="absolute right-3 bottom-3 px-10"
+                    className="absolute right-3 bottom-3 px-10 cursor-pointer"
                     onClick={togglePasswordVisibility}
                     id="hidePasswordIcon"
                   >
@@ -311,13 +271,13 @@ const Login = () => {
                   </button>
                 </div>
 
-                {passwordError && (
+                {emailError && (
                   <div
-                    className="flex items-center font-normal font-['Montserrat']"
+                    className="mt-3 flex items-center text-[12px] font-normal font-['Montserrat']"
                     role="alert"
                   >
-                    <p className="mt-1 ml-4 text-red-500 text-sm">
-                      {passwordErrorMessage}
+                    <p className="mt-1 ml-4 text-red-500 text-sm px-7 ">
+                      {emailErrorMessage}
                     </p>
                   </div>
                 )}
@@ -332,7 +292,7 @@ const Login = () => {
                   }}
                   className="text-[#4E6979] text-lg font-normal font-['Montserrat'] cursor-pointer hover:text-blue-500"
                 >
-                  Esqueceu sua senha? {/**/}
+                  {t("login.forgot-password")}{/*Forgot your password?*/}
                 </label>
               </div>
               <span className="h-12" /> {/* spacing */}
@@ -350,7 +310,7 @@ const Login = () => {
                     ) : (
                       false
                     )}
-                    Entrar {/*Enter*/}
+                    {t("login.login-button")}{/*Log In*/}
                   </button>
                 </div>
               </div>
@@ -358,13 +318,13 @@ const Login = () => {
               {/*Link to Signup page*/}
               <div className="flex justify-center space-x-1">
                 <span className="text-[#A1ACB2] text-lg font-normal font-['Montserrat']">
-                  Ainda não tem conta? {/*Don't have an account yet?*/}
+                  {t("login.no-account")} {/*Don't have an account yet?*/}
                 </span>
                 <Link
                   to="/signup"
                   className="text-[#383838] text-lg font-normal font-['Montserrat'] underline hover:text-blue-500 gap-4"
                 >
-                  Cadastre-se agora {/*Register now*/}
+                  {t("login.register-now")}{/*Register now*/}
                 </Link>
               </div>
             </form>
@@ -389,11 +349,11 @@ const Login = () => {
       {/* Account application success modal */}
       <GenericModalComponent
         title="Aguarde aprovação"
-        contentText="Seu cadastro está em análise e você terá retorno em até 7 dias."
+        contentText="Seu cadastro está em análise e você receberá um retorno em até x dias. Fique de olho no seu e-mail, avisaremos assim que tudo estiver pronto!"
         cancelBtnText="Fechar" // Close (functions as the 'ok' button in this particular modal)
-        onConfirm={() => {}} // Empty function passed in due to confirm button not being present in this particular modal
-        isVisible={isModalVisible}
-        onClose={closeModal}
+        onConfirm={() => {setNotApprovedError(null)}} // Empty function passed in due to confirm button not being present in this particular modal
+        isVisible={notApprovedError}
+        onClose={() => setNotApprovedError(null)}
       />
     </main>
   );
