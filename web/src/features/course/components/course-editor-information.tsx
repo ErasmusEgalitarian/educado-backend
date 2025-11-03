@@ -120,7 +120,7 @@ const CourseEditorInformation = forwardRef<
   // If creating, use empty/default values
   const defaultFormValue = course
     ? {
-        title: course.title,
+        title: course.title ?? "",
         difficulty: String(course.difficulty) as "1" | "2" | "3",
         categories: course.course_categories?.map(
           (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId
@@ -172,44 +172,54 @@ const CourseEditorInformation = forwardRef<
 
   /* -------------------------------- Handlers -------------------------------- */
 
+  const getFirstUploadedImageId = async (
+    images: unknown
+  ): Promise<number | undefined> => {
+    const hasFiles = Array.isArray(images) && images.length > 0;
+    if (!hasFiles) return undefined;
+    const uploadedIds = await uploadFile(images as any);
+    return uploadedIds?.[0];
+  };
+
+  const buildBaseCourseData = (
+    values: CourseBasicInfoFormValues,
+    imageId?: number
+  ) => ({
+    title: values.title,
+    difficulty: Number(values.difficulty),
+    categories: values.categories ?? [],
+    description: values.description,
+    image: imageId,
+  });
+
+  const completeAfterDelay = (documentId: string) => {
+    setTimeout(() => {
+      onComplete?.(documentId);
+    }, 1500);
+  };
+
   const onSubmit = async (values: CourseBasicInfoFormValues) => {
     try {
-      // Upload image if provided and take first id
-      const imageIds = values.image && values.image.length > 0
-        ? await uploadFile(values.image)
-        : undefined;
-      const imageId = imageIds?.[0];
+      const imageId = await getFirstUploadedImageId(values.image);
+      const baseData = buildBaseCourseData(values, imageId);
 
-      // Edit = update mutation
-      if (isEditMode && course.documentId != "") {
+      const isEditing = isEditMode && !!course?.documentId;
+
+      if (isEditing) {
         // Update existing course
         const result = await updateMutation.mutateAsync({
-          documentId: course.documentId,
-          title: values.title,
-          difficulty: Number(values.difficulty),
-          categories: values.categories,
-          description: values.description,
-          image: imageId,
+          documentId: course!.documentId,
+          ...baseData,
         });
 
         // Wait a moment to show success state, then complete step
-        setTimeout(() => {
-          onComplete?.(result.documentId);
-        }, 1500);
+        completeAfterDelay(result.documentId);
       } else {
         // Create = create mutation
-        const result = await createMutation.mutateAsync({
-          title: values.title,
-          difficulty: Number(values.difficulty),
-          categories: values.categories ?? [],
-          description: values.description,
-          image: imageId,
-        });
+        const result = await createMutation.mutateAsync(baseData);
 
         // Wait a moment to show success state, then complete step
-        setTimeout(() => {
-          onComplete?.(result.documentId);
-        }, 1500);
+        completeAfterDelay(result.documentId);
       }
     } catch (error) {
       console.error("Error saving course:", error);

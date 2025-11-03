@@ -1,4 +1,4 @@
-# Educado Backend (+ Web)
+npm# Educado Backend (+ Web)
 
 This documentation is WIP, and will be improved shortly.
 
