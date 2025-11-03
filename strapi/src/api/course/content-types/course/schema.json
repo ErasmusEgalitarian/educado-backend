@@ -60,11 +60,11 @@
       "target": "api::course-category.course-category",
       "mappedBy": "courses"
     },
-    "students": {
+    "course_relations": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::student.student",
-      "inversedBy": "courses"
+      "relation": "oneToMany",
+      "target": "api::course-relation.course-relation",
+      "mappedBy": "course"
     },
     "content_creators": {
       "type": "relation",
