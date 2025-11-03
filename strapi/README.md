@@ -1,61 +1,57 @@
-# 🚀 Getting started with Strapi
+# Educado Backend (Strapi CMS)
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+The Educado backend is powered by Strapi v5, a flexible headless CMS that manages content models, user permissions, and RESTful APIs for the content creator platform.
 
-### `develop`
+## 🎯 Features
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+- **Headless CMS**: Flexible content modeling with structured types and relations
+- **Admin UI**: Robust interface for content management and permissions
+- **RESTful APIs**: Auto-generated endpoints for all content types
+- **OpenAPI Documentation**: Typed API specification for client generation
+- **Media Library**: File upload management with S3 integration
+- **Role-Based Access**: Granular permissions for users and API tokens
 
-```
-npm run develop
-# or
-yarn develop
-```
+## 🛠️ Technology Stack
 
-### `start`
+- **Strapi v5** - Headless CMS framework
+- **PostgreSQL 16** - Relational database
+- **Node.js 22 LTS** - Runtime environment
+- **TypeScript** - Type-safe backend code
+- **Docker** - Containerized development and deployment
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+## 📚 Documentation
 
-```
-npm run start
-# or
-yarn start
-```
+For detailed technical documentation, content types, plugins, and API guides, see:
 
-### `build`
+**[→ Strapi Technical Documentation](../docs/strapi/index.md)**
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+## 🚀 Quick Start
 
-```
-npm run build
-# or
-yarn build
-```
-
-## ⚙️ Deployment
-
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-```
-yarn strapi deploy
+```bash
+# From repository root
+npm install
+npm run dev:backend
 ```
 
-## 📚 Learn more
+Visit http://localhost:1337/admin to access the Strapi admin panel.
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+**[→ Complete Setup Guide](../docs/monorepo/getting-started.md)**
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+## 🗄️ Database
 
-## ✨ Community
+- **Development**: PostgreSQL runs in Docker (`strapiDB` service)
+- **Data Persistence**: Uses Docker volume `strapi-data`
+- **Media Storage**: Files stored in `strapi-uploads` volume
 
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+## 📖 Related Documentation
 
----
+- [Monorepo Overview](../docs/monorepo/index.md)
+- [Getting Started](../docs/monorepo/getting-started.md)
+- [Environment Variables](../docs/monorepo/environment-variables.md)
+- [Docker Setup](../docs/docker-turborepo-optimization.md)
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+## 📚 Learn More
+
+- [Strapi Documentation](https://docs.strapi.io) - Official Strapi docs
+- [Strapi Tutorials](https://strapi.io/tutorials) - Community tutorials
+- [Strapi Blog](https://strapi.io/blog) - Latest updates and best practices
