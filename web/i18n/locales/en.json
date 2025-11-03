@@ -187,7 +187,8 @@
     "login-button":"Log In",
     "forgot-password":"Forgot your password?",
     "no-account":"Don't have an account yet?",
-    "register-now":"Register now"
+    "register-now":"Register now",
+    "email-error":"INCORRECT EMAIL OR PASSWORD. PLEASE TRY AGAIN."
   },"welcome":{
   "title": "Welcome to EDUCADO!",
   "subtitle": "Sign up now and help promote your work and reach a wider audience through content creation.",

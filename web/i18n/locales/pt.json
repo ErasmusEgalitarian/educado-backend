@@ -205,7 +205,8 @@
       "login-button":"Entrar",
       "forgot-password":"Esqueceu sua senha?",
       "no-account":"Ainda não tem conta?",
-      "register-now":"Cadastre-se agora"
+      "register-now":"Cadastre-se agora",
+      "email-error":"EMAIL OU SENHA INCORRETOS. POR FAVOR, TENTE NOVAMENTE."
   },"welcome":{
     "title": "Boas vindas ao EDUCADO!",
     "subtitle": "Cadastre-se agora e ajude a promover seu trabalho e atingir um público mais amplo por meio da criação de conteúdo.",
