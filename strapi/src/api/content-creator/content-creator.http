@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "email": "seb@test.dk",
-  "password": "jjj99"
+  "password": "jjj999"
 }
 
 ### Content-Creator Login
@@ -13,5 +13,5 @@ Content-Type: application/json
 
 {
   "email": "Hans@test.dk",
-  "password": "simon"
+  "password": "jjjj9999"
 }

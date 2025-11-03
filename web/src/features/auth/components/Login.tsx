@@ -97,7 +97,7 @@ const Login = () => {
         switch (err.response.data.error.details.error.code) {
           case "E0004": //Invalid Email and password
             setEmailError(err);
-            setEmailErrorMessage("EMAIL OU SENHA INCORRECTOS. POR FAVOR, TENTE NOVAMENTE.");
+            setEmailErrorMessage(t("login.email-error"));
             setError("");
             break;
 
