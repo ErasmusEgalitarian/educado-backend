@@ -137,16 +137,14 @@ const CourseEditorSections = forwardRef<
                       : "border-greyscale-border"
                   }`}
                 >
-                  <div className="flex items-start justify-between">
+                  <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                      <div className="flex items-center gap-2">
-                        <h4 className="h-full border border-red-500 flex items-center font-semibold text-greyscale-text-title">
-                          <button>
-                            <ChevronDown size={16} />   
-                          </button>  
-                          {t("courseManager.section")} {index + 1}{":"} {section.title}
-                        </h4>
-                      </div>
+                      <h4 className="h-full flex items-center gap-3 font-semibold text-greyscale-text-title">
+                        <button>
+                          <ChevronDown size={16} />   
+                        </button>  
+                        {t("courseManager.section")} {index + 1}{":"} {section.title}
+                      </h4>
                     </div>
                     
                     <div className="flex gap-2 ml-4">
