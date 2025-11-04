@@ -9,7 +9,7 @@ const DemoIntroduction = () => {
     <div className="space-y-6">
       <section>
         <h2 className="mb-4 text-3xl font-bold">
-          Welcome to the Component Library Demo! Foo
+          Welcome to the Component Library Demo!
         </h2>
         <p className="text-muted-foreground text-lg leading-relaxed">
           This interactive documentation serves as a comprehensive guide to the
