@@ -1,68 +1,86 @@
 /* Tests for controllers */
-import { getCertificatesStats } from "../../../src/api/course-statistics/controllers/course-statistics";
+import { getCertificates, getStudentStats } from "../../../src/api/course-statistics/controllers/course-statistics";
 
-describe("Test statistics", () => {
-  let strapiMock;
-  const contentCreatorId = "creator";
-  const currentDate = "2025-11-15";
+describe('Test statistics', () => {
+    let strapiMock;
+    const contentCreatorId = "creator";
+    const currentDate = "2025-11-15";
 
-  beforeAll(() => {
-    jest
-      .spyOn(Date, "now")
-      .mockImplementation(() => new Date(currentDate).valueOf());
-  });
+    beforeAll(() => {
+        jest.spyOn(Date, "now").mockImplementation(() => new Date(currentDate).valueOf())
+    })
 
-  beforeEach(() => {
-    strapiMock = {
-      documents: jest.fn(),
-    };
-    strapi = strapiMock;
-  });
+    beforeEach(() => {
+        strapiMock = {
+            documents: jest.fn()
+        };
+        strapi = strapiMock;
 
-  it("Get certificate statistics for a content creator", async () => {
-    strapiMock.documents = jest.fn().mockImplementation((api) => {
-      return {
-        findOne: jest.fn().mockResolvedValue({
-          courses: [{ documentId: "course1" }, { documentId: "course2" }],
-        }),
-        findMany: jest.fn().mockResolvedValue([
-          {
-            completionDate: new Date("2025-10-05"),
-            course: { documentId: "course1" },
-          },
-          {
-            completionDate: new Date("2025-10-10"),
-            course: { documentId: "course2" },
-          },
-          {
-            completionDate: new Date("2025-10-30"),
-            course: { documentId: "course1" },
-          },
-          {
-            completionDate: new Date("2025-11-05"),
-            course: { documentId: "course2" },
-          },
-          {
-            completionDate: new Date("2025-11-11"),
-            course: { documentId: "course3" },
-          },
-        ]),
-        count: jest.fn().mockResolvedValue(2),
-      };
     });
 
-    let result: any = await getCertificatesStats(contentCreatorId);
-    expect(result).toBeDefined();
-    expect(result.total).toBeDefined();
-    expect(result.progress).toBeDefined();
-    expect(result.progress).toEqual({
-      thisMonth: 33,
-      lastSevenDays: 0,
-      lastThirtyDays: 100,
-    });
-  });
+    it('Get certificate statistics for a content creator', async () => {
+        strapiMock.documents = jest.fn().mockImplementation((api) => {
+            return {
+                findOne: jest.fn().mockResolvedValue({
+                    courses: [{ documentId: "course1" }, { documentId: "course2" }]
+                }),
+                findMany: jest.fn().mockResolvedValue([
+                    {completionDate: new Date("2025-10-05"), course: {documentId: "course1"}},
+                    {completionDate: new Date("2025-10-10"), course: {documentId: "course2"}},
+                    {completionDate: new Date("2025-10-30"), course: {documentId: "course1"}},
+                    {completionDate: new Date("2025-11-05"), course: {documentId: "course2"}},
+                    {completionDate: new Date("2025-11-11"), course: {documentId: "course3"}}
+                ]),
+                count: jest.fn().mockResolvedValue(2)
+            }
+        });
 
-  it("Get students statistics for a content creator", async () => {
-    strapiMock.documents = jest.fn().mockImplementation((api) => {});
-  });
+        let result : any = await getCertificates(contentCreatorId);
+        expect(result).toBeDefined();
+        expect(result.total).toBeDefined();
+        expect(result.progress).toBeDefined();
+        expect(result.progress).toEqual({
+            thisMonth: 33,
+            lastSevenDays: 0,
+            lastThirtyDays: 100
+        });
+    });
+
+    it('Get students statistics for a content creator', async () => {
+        strapiMock.documents = jest.fn().mockImplementation((api) => {
+            return {
+                findFirst: jest.fn().mockResolvedValue({
+                    courses: [
+                        { documentId: "course1", course_relations: [
+                            {enrollmentDate: new Date("2025-10-05")},
+                            {enrollmentDate: new Date("2025-10-10")},
+                            {enrollmentDate: new Date("2025-10-19")},
+                            {enrollmentDate: new Date("2025-10-20")},
+                            {enrollmentDate: new Date("2025-10-25")}
+                        ]}, 
+                        { documentId: "course2", course_relations: [
+                            {enrollmentDate: new Date("2025-9-05")},
+                            {enrollmentDate: new Date("2025-10-11")},
+                            {enrollmentDate: new Date("2025-10-19")},
+                            {enrollmentDate: new Date("2025-10-21")},
+                            {enrollmentDate: new Date("2025-11-12")}
+                        ]}
+                    ]
+                })
+            }
+        });
+
+        let result : any = await getStudentStats(contentCreatorId);
+        console.log(result);
+        expect(result).toBeDefined();
+        expect(result.total).toBeDefined();
+        expect(result.progress).toBeDefined();
+        expect(result.total).toEqual(10);
+        expect(result.progress).toEqual({
+            thisMonth: 11,
+            lastSevenDays: 11,
+            lastThirtyDays: 150
+        });
+    });
 });
+

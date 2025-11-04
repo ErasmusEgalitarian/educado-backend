@@ -4,6 +4,7 @@
  */
 import { errorCodes } from "../../../helpers/errorCodes";
 import jwt, { JwtPayload } from "jsonwebtoken";
+const NOW = Date.now(); // Must be here, outside of default export and functions
 const DAYS_30_MS = 30 * 24 * 60 * 60 * 1000;
 const DAYS_7_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -106,7 +107,7 @@ export async function getStudentStats(documentId : string){
     } 
   }
 }
-export async function getCertificatesStats(documentId: string) {
+async function getCertificatesStats(documentId: string) {
   try {
     const creator = await strapi
       .documents("api::content-creator.content-creator")
@@ -135,8 +136,8 @@ export async function getCertificatesStats(documentId: string) {
     let count7 = 0;
     let count30 = 0;
 
-    const date30DaysAgo = Date.now() - DAYS_30_MS;
-    const date7DaysAgo = Date.now() - DAYS_7_MS;
+    const date30DaysAgo = NOW - DAYS_30_MS;
+    const date7DaysAgo = NOW - DAYS_7_MS;
     // Timestamp for the first day of the current month (e.g., Nov 1, 2025, 00:00:00)
     const firstDayOfMonth = new Date(
       new Date().getFullYear(),
@@ -145,7 +146,11 @@ export async function getCertificatesStats(documentId: string) {
     ).getTime();
 
     for (const cert of certificates) {
-      const issueTime = new Date(cert.completionDate).getTime();
+      const certificateWithDate = cert as unknown as {
+        completionDate: string | Date;
+      };
+
+      const issueTime = new Date(certificateWithDate.completionDate).getTime();
 
       // 30 days
       if (issueTime > date30DaysAgo) {
@@ -162,12 +167,10 @@ export async function getCertificatesStats(documentId: string) {
     }
 
     return {
-      total: countTotal,
-      progress: {
-        lastThirtyDays: Math.round((count30 / (countTotal - count30)) * 100),
-        lastSevenDays: Math.round((count7 / (countTotal - count7)) * 100),
-        thisMonth: Math.round((countMonth / (countTotal - countMonth)) * 100),
-      },
+      totalCertificatesIssued: countTotal,
+      thisMonth: countMonth,
+      last7Days: count7,
+      last30Days: count30,
     };
   } catch (err) {
     throw err;
