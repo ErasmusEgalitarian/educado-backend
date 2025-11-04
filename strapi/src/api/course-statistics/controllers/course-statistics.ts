@@ -98,14 +98,14 @@ export async function getStudentStats(documentId : string){
     }
   }
 
-  return {
-    total: countTotal,
+  return { 
+    total: countTotal, 
     progress: {
-      lastThirtyDays: (count30 / (countTotal - count30)) * 100,
-      lastSevenDays: (count7 / (countTotal - count7)) * 100,
-      thisMonth: (countMonth / (countTotal - countMonth)) * 100,
-    },
-  };
+      lastThirtyDays: Math.round((count30/(countTotal-count30))*100), 
+      lastSevenDays: Math.round((count7/(countTotal-count7))*100), 
+      thisMonth: Math.round((countMonth/(countTotal-countMonth))*100)
+    } 
+  }
 }
 
 export async function getCertificates(documentId : string) {
