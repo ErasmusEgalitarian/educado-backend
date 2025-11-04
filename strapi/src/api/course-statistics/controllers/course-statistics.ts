@@ -36,6 +36,14 @@ export default {
       // This object is populated by Strapi when the user is logged in
       const user_type = jwt.verify(jwtCC, secretKey) as ContentCreator;
 
+      
+      ctx.response.body = { 
+        courses: null, // TODO getCourses()
+        students: await getStudentStats(user_type.documentId as string),
+        certificates: null, // TODO getCertificates()
+        evaluation: null // TODO getEvaluation()
+      };
+
     
     } catch (err) {
       ctx.status = 500;
@@ -66,27 +74,31 @@ async function getStudentStats(documentId : string){
   let countTotal = 0;
   let count7 = 0;
   let count30 = 0;
-  let countMonth 
+  let countMonth = 0;
   //Filter courses TODO
   for ( const course of user.courses ) {
     for ( const courseRelation of course.course_relations){
       countTotal++;
       //30 days
-      if (courseRelation.enrollmentDate > new Date(Date.now()-DAYS_30_MS)) {
+      if (new Date(courseRelation.enrollmentDate) > new Date(Date.now()-DAYS_30_MS)) {
         count30++;
       }
       //7 days
-      if (courseRelation.enrollmentDate > new Date(Date.now()-DAYS_7_MS)) {
+      if (new Date(courseRelation.enrollmentDate) > new Date(Date.now()-DAYS_7_MS)) {
         count7++;
       }
       //Month
-      if (courseRelation.enrollmentDate > new Date(new Date().getFullYear(), new Date().getMonth())) {
+      if (new Date(courseRelation.enrollmentDate) > new Date(new Date().getFullYear(), new Date().getMonth())) {
         countMonth++;
       }
     }
   }
 
-  return { totalStudents: countTotal, stat30: countTotal/count30, stat7: countTotal/count7, statMonth: countTotal/countMonth}
+  return { total: countTotal, progress: {
+    lastThirtyDays: ((count30/(countTotal-count30))*100), 
+    lastSevenDays: ((count7/(countTotal-count7))*100), 
+    thisMonth: ((countMonth/(countTotal-countMonth))*100)} 
+  }
 }
 
 async function getCertificates(documentId : string) {
