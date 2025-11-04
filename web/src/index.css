@@ -44,6 +44,7 @@
   --color-greyscale-surface-subtle: var(--greyscale-surface-subtle);
   --color-greyscale-surface-default: var(--greyscale-surface-default);
   --color-greyscale-surface-disabled: var(--greyscale-surface-disabled);
+  --color-greyscale-border-lighter: var(--greyscale-border-lighter);
   --color-greyscale-border-default: var(--greyscale-border-default);
   --color-greyscale-border-disabled: var(--greyscale-border-disabled);
   --color-greyscale-border-darker: var(--greyscale-border-darker);
@@ -119,9 +120,13 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
+  --gradient-start:#C9E5EC;
+  --gradient-end: #FFFFFF;
+  
   --greyscale-surface-subtle: #fdfeff;
   --greyscale-surface-default: #ebf0f2;
   --greyscale-surface-disabled: #c1cfd7;
+  --greyscale-border-lighter: #C1CFD7;
   --greyscale-border-default: #809cad;
   --greyscale-border-disabled: #9fb4c1;
   --greyscale-border-darker: #3a4e5a;
@@ -141,6 +146,8 @@
   --primary-border-default: #35a1b1;
   --primary-border-darker: #246670;
   --primary-text-label: #246670;
+  --primary-text-title: #383838; 
+  --primary-text-subtitle:#A1ACB2;
 
   --success-surface-subtle: #e6fac8;
   --success-surface-lighter: #c6f27e;
@@ -166,6 +173,7 @@
   * {
     @apply border-border outline-ring/50;
     @apply font-['Montserrat'];
+    @apply font-['Lato'];
   }
   body {
     @apply bg-background text-foreground;

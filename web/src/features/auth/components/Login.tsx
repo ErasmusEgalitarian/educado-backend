@@ -156,7 +156,7 @@ const Login = () => {
 
   return (
     
-    <main className="flex bg-linear-to-br from-[#C9E5EC] 0% to-[#FFF] 100%">
+    <main className="flex bg-linear-to-br from-gradient-start 0% to-gradient-end 100%">
       {/* Mini navbar */}
       <MiniNavbar />
 
@@ -195,11 +195,11 @@ const Login = () => {
           <ToastContainer />
           <div className="relative py-8 px-25 w-full">
             <div className="">
-              <h1 className="mb-10 flex text-lg text-[#383838] font-normal font-['Montserrat'] underline px-10">
+              <h1 className="mb-10 flex text-lg text-primary-text-title font-normal font-montserrat underline px-10">
                 <Link to="/welcome">
-                  <Icon path={mdiChevronLeft} size={1} color="#383838" />
+                  <Icon path={mdiChevronLeft} size={1} color="primary-text-title" />
                 </Link>
-                <Link to="/welcome" className="text-lg text-[#383838] font-normal font-['Montserrat'] " > 
+                <Link to="/welcome" className="text-lg text-primary-text-title font-normal font-montserrat " > 
                   <button className="cursor-pointer">
                     {t("login.back-button")}
                   </button>
@@ -208,7 +208,7 @@ const Login = () => {
             </div>
 
             {/*Title*/}
-            <h1 className="text-[#383838] text-3xl font-bold font-['Montserrat'] leading-normal self-stretch mb-10 px-10">
+            <h1 className="text-primary-text-title text-3xl font-bold font-montserrat leading-normal self-stretch mb-10 px-10">
               {t("login.welcome-back")}{/*Welcome back to Educado!*/}
             </h1>
 
@@ -221,7 +221,7 @@ const Login = () => {
               <div>
                 <div className="relative px-10 pb-8">
                   <label
-                    className="after:content-['*'] after:ml-0.5 after:text-red-500 text-[#383838] text-[18px] text-sm font-bold font-['Montserrat'] mt-6"
+                    className="after:content-['*'] after:ml-0.5 after:text-red-500 text-primary-text-title text-[18px] text-sm font-bold font-montserrat mt-6"
                     htmlFor="email-field"
                   >
                     {t("login.email")} {/*Email*/}
@@ -230,7 +230,7 @@ const Login = () => {
                     onInput={areFieldsFilled}
                     type="email"
                     id="email-field"
-                    className={`flex w-full py-3 px-4  placeholder-gray-400 text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? 'bg-[#FFDECC] border-[#D62B25] focus:ring-[#D62B25]' : ' bg-white border-gray-300 focus:ring-sky-200'}`}
+                    className={`flex w-full py-3 px-4  placeholder-gray-400 text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? 'bg-error-surface-subtle border-error-surface-default focus:ring-error-surface-default' : ' bg-white border-greyscale-border-default focus:ring-sky-200'}`}
                     placeholder="usuario@gmail.com"
                     {...register("email", { required: true })}
                   />
@@ -242,7 +242,7 @@ const Login = () => {
               <div>
                 <div className="relative px-10">
                   <label
-                    className="after:content-['*'] after:ml-0.5 after:text-red-500 text-[#383838] text-[18px] text-sm font-bold font-['Montserrat'] mt-6"
+                    className="after:content-['*'] after:ml-0.5 after:text-error-surface-default text-primary-text-title text-[18px] text-sm font-bold font-montserrat mt-6"
                     htmlFor="password-field"
                   >
                     {t("login.password")}{/*Password*/}
@@ -251,7 +251,7 @@ const Login = () => {
                     onInput={areFieldsFilled}
                     type={passwordVisible ? "text" : "password"}
                     id="password-field"
-                    className={`flex w-full py-3 px-4  placeholder-gray-400 text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? 'bg-[#FFDECC] border-[#D62B25] focus:ring-[#D62B25]' : ' bg-white border-gray-300 focus:ring-sky-200'}`}
+                    className={`flex w-full py-3 px-4  placeholder-greyscale-border-default text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? 'bg-error-surface-subtle border-error-surface-default focus:ring-error-surface-default' : ' bg-white border-greyscale-border-default focus:ring-sky-200'}`}
                     placeholder="**********"
                     {...register("password", { required: true })}
                   />
@@ -266,17 +266,17 @@ const Login = () => {
                     <Icon
                       path={passwordVisible ? mdiEyeOutline : mdiEyeOffOutline}
                       size={1}
-                      color="#A1ACB2"
+                      color="primary-text-subtitle"
                     />
                   </button>
                 </div>
 
                 {emailError && (
                   <div
-                    className="mt-3 flex items-center text-[12px] font-normal font-['Montserrat']"
+                    className="mt-3 flex items-center text-[12px] font-normal font-montserrat"
                     role="alert"
                   >
-                    <p className="mt-1 ml-4 text-red-500 text-sm px-7 ">
+                    <p className="mt-1 ml-4 text-error-surface-default text-sm px-7 ">
                       {emailErrorMessage}
                     </p>
                   </div>
@@ -284,13 +284,13 @@ const Login = () => {
               </div>
               {/*Forgot password button*/}
               <div className=" flex flex-col items-end gap-3 px-10">
-                <span className="text-neutral-700 text-right text-lg font-normal font-['Montserrat']" />{" "}
+                <span className="text-neutral-700 text-right text-lg font-normal font-montserrat" />{" "}
                 <label
                   id="modalToggle"
                   onClick={() => {
                     setShowModal(true);
                   }}
-                  className="text-[#4E6979] text-lg font-normal font-['Montserrat'] cursor-pointer hover:text-blue-500"
+                  className="text--greyscale-text-subtle text-lg font-normal font-montserrat cursor-pointer hover:text-primary-surface-default"
                 >
                   {t("login.forgot-password")}{/*Forgot your password?*/}
                 </label>
@@ -298,7 +298,7 @@ const Login = () => {
               <span className="h-12" /> {/* spacing */}
               {/*Enter button*/}
               <div className="relative flex gap-4 px-10 flex-row items-center justify-center w-full ">
-                <div className="flex-auto  h-[3.3rem] w-full items-center justify-center rounded-[15px] text-lg font-bold font-['Montserrat'] bg-[#C1CFD7] inline-flex text-[#809CAD] transform transition duration-100 ease-in ">
+                <div className="flex-auto  h-[3.3rem] w-full items-center justify-center rounded-[15px] text-lg font-bold font-montserrat bg--greyscale-surface-disabled inline-flex text--greyscale-border-default transform transition duration-100 ease-in ">
                   <button
                     type="submit"
                     id="submit-login-button"
@@ -306,7 +306,7 @@ const Login = () => {
                     disabled={!submitLoading}
                   >
                     {submitLoading ? (
-                      <span className="spinner-border text-[#C1CFD7] animate-spin inline-block  border-2 border-t-transparent rounded-full mr-2 text-[20px]" />
+                      <span className="spinner-border text-success-surface-lighter animate-spin inline-block  border-2 border-t-transparent rounded-full mr-2 text-[20px]" />
                     ) : (
                       false
                     )}
@@ -317,12 +317,12 @@ const Login = () => {
               <span className="h-4" /> {/* spacing */}
               {/*Link to Signup page*/}
               <div className="flex justify-center space-x-1">
-                <span className="text-[#A1ACB2] text-lg font-normal font-['Montserrat']">
+                <span className="text-primary-text-subtitle text-lg font-normal font-['Montserrat']">
                   {t("login.no-account")} {/*Don't have an account yet?*/}
                 </span>
                 <Link
                   to="/signup"
-                  className="text-[#383838] text-lg font-normal font-['Montserrat'] underline hover:text-blue-500 gap-4"
+                  className="text-primary-text-title text-lg font-normal font-montserrat underline hover:text-primary-surface-default gap-4"
                 >
                   {t("login.register-now")}{/*Register now*/}
                 </Link>
