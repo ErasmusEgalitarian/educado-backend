@@ -16,9 +16,6 @@ on:
 
 env:
   REGISTRY: ${{ secrets.REGISTRY_URL }}
-  # github.repository format: "owner/repo" - works on both GitHub and Gitea
-  IMAGE_NAME_STRAPI: ${{ github.repository }}/strapi
-  IMAGE_NAME_WEB: ${{ github.repository }}/web
 
 jobs:
   changes:
