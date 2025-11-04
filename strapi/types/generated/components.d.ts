@@ -15,6 +15,19 @@ export interface ContentDescription extends Struct.ComponentSchema {
   };
 }
 
+export interface ContentExercise extends Struct.ComponentSchema {
+  collectionName: 'components_content_exercises';
+  info: {
+    displayName: 'Exercise';
+  };
+  attributes: {
+    activity_exercise: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::exercise.exercise'
+    >;
+  };
+}
+
 export interface ContentVideo extends Struct.ComponentSchema {
   collectionName: 'components_content_videos';
   info: {
@@ -29,6 +42,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'content.description': ContentDescription;
+      'content.exercise': ContentExercise;
       'content.video': ContentVideo;
     }
   }
