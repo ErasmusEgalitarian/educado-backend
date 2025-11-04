@@ -1,19 +1,23 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  mdiEyeOffOutline,
-  mdiEyeOutline,
-  mdiChevronLeft,
-  mdiCheckBold,
-  mdiAlertCircleOutline,
-} from "@mdi/js";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {mdiEyeOffOutline,mdiEyeOutline,mdiChevronLeft,mdiCheckBold,mdiAlertCircleOutline,} from "@mdi/js";
 import { Icon } from "@mdi/react";
-import { createContext, useState } from "react";
+import React, {createContext,useState,type FC,type ChangeEvent,} from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { toast } from "sonner";
 import * as Yup from "yup";
+import { z } from "zod";
+
+
 
 import background from "@/shared/assets/background.jpg";
+import FormActions from "@/shared/components/form/form-actions";
+import { FormInput } from "@/shared/components/form/form-input";
+import { Button } from "@/shared/components/shadcn/button";
+import { Form } from "@/shared/components/shadcn/form";
+
 
 import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";
@@ -22,494 +26,344 @@ import AuthServices from "../../../unplaced/services/auth.services";
 import { LoginResponseError } from "../types/LoginResponseError";
 
 import EmailVerificationModal from "./email-verification/EmailVerificationModal";
+import { StringMatcher } from "node_modules/cypress/types/net-stubbing";
 
-export const ToggleModalContext = createContext<() => void>(() => {});
-export const FormDataContext = createContext<any>(null);
 
-// Form input interface
+
+/* =========================
+ * Types & Schema
+ * =======================*/
+
+// Data the form collects
 interface ApplicationInputs {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   confirmPassword: string;
+  token: null; // if you later set a string, change this to string | null
+}
+
+// Payload you send to your signup API
+interface SignupPayload {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  role: "user";
   token: null;
 }
 
-// Yup schema for fields (new user registration form)
-const SignupSchema = Yup.object().shape({
-  // Registers user first name and removes leading/trailing whitespaces
-  firstName: Yup.string()
-    .trim()
-    .required(
-      "Seu primeiro nome é obrigatório!",
-    ) /*Your first name is Required*/,
+// Minimal shape for the success responses you check in code
+type SignupApiResponse =
+  | {
+      status: 200;
+      data: { message: string; };
+    }
+  | {
+      status: 201;
+      data: {
+        contentCreatorProfile: { baseUser: string };
+      };
+    }
+  | {
+      status: number;
+      data: Record<string, unknown>;
+    };
 
-  // Registers user last name and removes leading/trailing whitespaces
-  lastName: Yup.string()
-    .trim()
-    .required("Seu sobrenome é obrigatório!") /*Your last name is Required*/,
+// Minimal error shape you’re switching on
+type ApiError = {
+  response?: {
+    data?: {
+      error?: { code?: string };
+    };
+  };
+};
 
-  password: Yup.string()
-    .min(8, "Muito curto!")
-    .required("A senha não é longa o suficiente"),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "As senhas não coincidem",
-  ),
-  email: Yup.string()
-    .matches(
-      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-      "Seu email não está correto",
-    )
-    .required("O email é obrigatório"),
-});
+// Context types
+// export const setEmailForModal = createContext<() => void>(() => {});
+export const ToggleModalContext = createContext<() => void>(() => {});
+export const FormDataContext = createContext<ApplicationInputs | null>(null);
 
-const Signup = () => {
+/* =========================
+ * Validation Schema (Yup)
+ * =======================*/
+
+const SignupSchema = z
+  .object({
+    firstName: z.string().trim().min(1, "Seu primeiro nome é obrigatório!"),
+    lastName: z.string().trim().min(1, "Seu sobrenome é obrigatório!"),
+    email: z
+      .string()
+      .trim()
+      .email("Seu email não está correto")
+      .min(1, "O email é obrigatório"),
+    password: z
+      .string()
+      .min(8, "A senha deve ter pelo menos 8 caracteres")
+      .regex(/[A-Za-z]/, "A senha deve conter pelo menos uma letra"),
+    confirmPassword: z.string().min(1, "Confirme sua senha"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "As senhas não coincidem",
+    path: ["confirmPassword"],
+  });
+
+  type SignupFormValues = z.infer<typeof SignupSchema>;
+
+/* =========================
+ * Component
+ * =======================*/
+
+const Signup: FC = () => {
+  const [emailForModal, setEmailForModal] = useState("");
+  
+  const navigate = useNavigate();
+
+  type RegisterResponse = {
+    status: "approved" | "pending";
+    userId: number;
+    verifiedAt: string | null;
+    message: string;
+  }
+
+  const { call: signup, isLoading: submitLoading } = 
+  useApi<RegisterResponse,SignupPayload>(AuthServices.postUserSignup);
+
   const [error, setError] = useState<LoginResponseError.RootObject | null>(
-    null,
+    null
   );
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState<ApplicationInputs | null>(null);
-  const [email, setEmail] = useState(""); // Replace with actual email logic
+  const [email, setEmail] = useState("");
 
-  // callback
-  const { call: signup, isLoading: submitLoading } = useApi(
-    AuthServices.postUserSignup,
-  );
-  // Navigation hook
-  const navigate = useNavigate();
 
-  // Use-form setup
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ApplicationInputs>({
-    resolver: yupResolver(SignupSchema),
+  const form = useForm<SignupFormValues>({
+    resolver: zodResolver(SignupSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    mode: "onTouched",
   });
 
-  const [emailExistsError, setEmailExistError] = useState(null);
-  const [emailNotValid, setEmailNotValid] = useState(false);
-  const [emailExistsErrorMessage, setErrorExistMessage] = useState("");
-  const [passwordMismatchError, setPasswordMismatchError] = useState(null);
-  const [passwordMismatchErrorMessage, setPasswordMismatchErrorMessage] =
-    useState("");
+  const password = form.watch("password");
+  const passLenOK = (password?.length ?? 0) >= 8;
+  const passHasLetter = /.*\p{L}.*$/u.test(password ?? "");
 
-  /**
-   * OnSubmit function for Signup.
-   * Takes the submitted data from the form and sends it to the backend through a service.
-   *
-   * @param {JSON} data Includes firstName, lastName, email, password fields.
-   */
-  const onSubmit = async (data: any) => {
-    setFormData(data); // Store the form data in state
-    setEmail(data.email);
 
-    // Show the email verification modal
-    await signup({
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      password: data.password,
-      role: "user",
-      token: null,
-    })
-      .then((res) => {
-        if (
-          res.status === 200 ||
-          res.data.message ===
-            "Verification email sent. Please verify to complete registration."
-        ) {
-          // If the signup is successful, show the modal
-          setIsModalVisible(true);
-        } else if (res.status === 201) {
-          const id = res.data.contentCreatorProfile.baseUser;
-          navigate(`/application/${id}`);
-        }
-      })
-      .catch((err) => {
-        setError(err);
-        if (!err.response?.data) {
-          console.error(err);
-        } else {
-          switch (err.response.data.error.code) {
-            case "E0201": // Email already exists
-              setEmailExistError(err);
-              setErrorExistMessage(
-                "Já existe um usuário com o email fornecido",
-              );
-              setPasswordMismatchError(null);
-              setPasswordMismatchErrorMessage("");
-              break;
-            case "E0105": // Password mismatch
-              setPasswordMismatchError(err);
-              setPasswordMismatchErrorMessage("As senhas não combinam");
-              setEmailExistError(null);
-              setErrorExistMessage("");
-              break;
-            default:
-              console.error(error);
-          }
-        }
+  // Submit handler
+  
+  const onSubmit = async (values: SignupFormValues) => {
+    try {
+      const res = await signup({
+        firstName: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        password: values.password,
+        role: "user",
+        token: null,
       });
-  };
 
-  // Variables determining whether or not the password is visible
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-  const [passwordVisibleRepeat, setPasswordVisibleRepeat] = useState(false);
-  const togglePasswordVisibilityRepeat = () => {
-    setPasswordVisibleRepeat(!passwordVisibleRepeat);
-  };
+        if (res.status === "pending") {
+        setEmailForModal(values.email);
+        setIsModalVisible(true);
+        return;
+      }
+        if (res.status === "approved") {
+        toast.success("Conta criada com sucesso!");
+        // use the id returned from backend
+        navigate(`/application/${res.userId}`);
+        return;
+      }
+      
+      toast.error("Erro inesperado ao registrar o usuário.");
+    } catch (err: any) {
+      const code = err?.response?.data?.error?.code as string | undefined;
 
-  // Variables and functions for checking and setting password checks
-  const [passwordCheck1, setPasswordCheck1] = useState(false);
-  const [passwordCheck2, setPasswordCheck2] = useState(false);
+     
+      if (code === "E0201") {
+        form.setError("email", {
+          type: "server",
+          message: "Já existe um usuário com o email fornecido",
+        });
+        return;
+      }
 
-  const handlePasswordChange = (e: React.FocusEvent<HTMLInputElement>) => {
-    const password = e.target.value;
-    setPasswordCheck1(password.length >= 8);
-    setPasswordCheck2(/.*\p{L}.*$/u.test(password)); // At least one letter
-  };
-
-  // Function for validating that all fields are filled in
-  function areFieldsFilled() {
-    const inputSignupFirstName = document.getElementById(
-      "firstNameField",
-    ) as HTMLInputElement;
-    const inputSignupLastName = document.getElementById(
-      "lastNameField",
-    ) as HTMLInputElement;
-    const inputSignupEmail = document.getElementById(
-      "email-field",
-    ) as HTMLInputElement;
-    const inputSignupPass = document.getElementById(
-      "password-field",
-    ) as HTMLInputElement;
-    const inputSignupRedoPass = document.getElementById(
-      "password-field-repeat",
-    ) as HTMLInputElement;
-    const submitSignupButton = document.getElementById(
-      "submit-signup-button",
-    ) as HTMLButtonElement;
-
-    if (
-      inputSignupFirstName.value.trim() &&
-      inputSignupLastName.value.trim() &&
-      inputSignupEmail.value.trim() &&
-      inputSignupPass.value.trim() &&
-      inputSignupRedoPass.value.trim() !== ""
-    ) {
-      submitSignupButton.removeAttribute("disabled");
-      submitSignupButton.classList.remove("opacity-20");
-    } else {
-      submitSignupButton.setAttribute("disabled", "true");
-      submitSignupButton.classList.add("opacity-20");
+      toast.error("Erro ao registrar. Tente novamente mais tarde.");
     }
-    setPasswordMismatchError(null);
-    setPasswordMismatchErrorMessage("");
-    setEmailExistError(null);
-    setErrorExistMessage("");
-  }
+  };
 
-  return (
-    <ToggleModalContext.Provider
-      value={() => {
-        setIsModalVisible(!isModalVisible);
-      }}
-    >
-      <FormDataContext.Provider value={formData}>
-        <main className="bg-linear-to-br from-[#C9E5EC] 0% to-[#FFF] 100%">
-          {/* Mini navbar */}
-          <MiniNavbar />
+     return (
+  <main className="bg-gradient-to-br from-[#C9E5EC] to-[#FFFFFF] min-h-screen flex flex-col">
+    {/* Mini navbar */}
+    <MiniNavbar />
 
-          {/* Container for the entire page */}
-          <div className="grid grid-cols-1 md:grid-cols-2 m-auto w-full h-screen">
-            {/* Left side with background image and carousel */}
-            <div className="relative w-full h-screen hidden md:block container overflow-hidden">
-              <img
-                src={background}
-                alt="w-169.5"
-                className="object-cover w-full h-full"
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <Carousel />
-              </div>
-            </div>
+    {/* Layout container */}
+    <div className="grid grid-cols-1 md:grid-cols-2 flex-grow">
+      {/* Left side - Background and carousel */}
+      <div className="relative hidden md:flex items-center justify-center overflow-hidden">
+        <img
+          src={background}
+          alt="Background"
+          className="object-cover w-full h-full absolute inset-0"
+        />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-10">
+          <Carousel />
+        </div>
+      </div>
 
-            {/* Right side - form section */}
-            <div className="relative right-0 h-screen flex flex-col justify-center items-center">
-              <ToastContainer />
-              <div className="relative py-8 px-10 w-full">
-                <div className="self-stretch">
-                  <h1 className="mb-4 flex text-lg text-[#383838] font-normal font-['Montserrat'] underline">
-                    <Link to="/welcome">
-                      <Icon path={mdiChevronLeft} size={1} color="#383838" />
-                    </Link>
-                    <Link
-                      to="/welcome"
-                      className="text-lg text-[#383838] font-normal font-['Montserrat']"
-                    >
-                      Voltar
-                    </Link>
-                  </h1>
+      {/* Right side - Form */}
+      <div className="flex flex-col justify-center items-center bg-gradient-to-b from-gradient-start to-gradient-end px-6 md:px-12 py-10">
+        <div className="w-full max-w-lg">
+          {/* Back link */}
+          <div className="mb-6">
+            <Link to="/welcome" className="flex items-center gap-2 text-text-black-title underline hover:text-greyscale-text-subtle">
+              <Icon path={mdiChevronLeft} size={1} color="primary-text-title" />
+              <span>Voltar</span>
+            </Link>
+          </div>
+
+          {/* Heading */}
+          <h1 className="text-primary-text-title text-3xl md:text-4xl font-fontFamily-lato-bold leading-tight mb-2">
+            Crie a sua conta gratuitamente!
+          </h1>
+
+          {/* Form */}
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-6"
+              noValidate 
+            >
+              {/* firstname */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col space-y-2">
+                  <label
+                    htmlFor="firstName"
+                    className="text-sm font-medium text-greyscale-text-subtle"
+                  >
+                    Nome <span className="text-error-surface-default">*</span>
+                  </label>
+                  <FormInput
+                    control={form.control}
+                    fieldName="firstName"
+                    placeholder="João"
+                    isRequired
+                  />
                 </div>
 
-                <h1 className="text-[#383838] text-3xl font-bold font-['Lato'] leading-normal self-stretch ">
-                  Crie a sua conta gratuitamente!
-                </h1>
-
-                <form
-                  onSubmit={handleSubmit(onSubmit)}
-                  className="stretch flex flex-col"
-                  noValidate
-                >
-                  <div className="flex">
-                    <div className="relative flex-1">
-                      <label
-                        className="flex flex-start text-[#383838] text-sm font-normal gap-1 font-['Montserrat'] mt-5 after:content-['*'] after:ml-0.5 after:text-red-500 "
-                        htmlFor="firstNameField"
-                      >
-                        Nome
-                      </label>
-                      <input
-                        onInput={areFieldsFilled}
-                        type="text"
-                        id="firstNameField"
-                        className="w-[95%] flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg text-[#383838] focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
-                        placeholder="Nome"
-                        {...register("firstName", {
-                          required: "digite seu primeiro nome.",
-                        })}
-                      />
-                    </div>
-
-                    <div className="relative flex-1 ml-2">
-                      <label
-                        className="flex flex-start text-[#383838] text-sm font-normal gap-1 font-['Montserrat'] mt-5 after:content-['*'] after:ml-0.5 after:text-red-500 "
-                        htmlFor="lastNameField"
-                      >
-                        Sobrenome
-                      </label>
-                      <input
-                        onInput={areFieldsFilled}
-                        type="text"
-                        id="lastNameField"
-                        className="w-full flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg text-[#383838] focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
-                        placeholder="Sobrenome"
-                        {...register("lastName", {
-                          required: "digite seu sobrenome.",
-                        })}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="relative">
-                    <label
-                      className="flex flex-start text-[#383838] text-sm font-normal gap-1 font-['Montserrat'] mt-5 after:content-['*'] after:ml-0.5 after:text-red-500 "
-                      htmlFor="email-field"
-                    >
-                      Email
-                    </label>
-                    <input
-                      onInput={areFieldsFilled}
-                      type="email"
-                      id="email-field"
-                      className="w-full flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
-                      placeholder="usuario@gmail.com"
-                      {...register("email", {
-                        required: "introduza o seu e-mail.",
-                      })}
-                    />
-                    {errors.email && (
-                      <div
-                        className="flex items-center font-normal font-['Montserrat']"
-                        role="alert"
-                      >
-                        <p className="mt-1 ml-1 text-red-500 text-sm">
-                          {errors.email.message}
-                        </p>
-                      </div>
-                    )}
-                    {emailExistsError && (
-                      <div
-                        className="flex items-center font-normal font-['Montserrat']"
-                        role="alert"
-                      >
-                        <p className="mt-1 ml-1 text-red-500 text-sm">
-                          {emailExistsErrorMessage}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                  <div className="relative">
-                    <label
-                      className="flex flex-start text-[#383838] text-sm font-normal gap-1 font-['Montserrat'] mt-5 after:content-['*'] after:ml-0.5 after:text-red-500 "
-                      htmlFor="password-field"
-                    >
-                      Senha
-                    </label>
-                    <input
-                      onInput={areFieldsFilled}
-                      type={passwordVisible ? "text" : "password"}
-                      id="password-field"
-                      className="w-full flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
-                      placeholder="**********"
-                      {...register("password", { required: "insira a senha." })}
-                      onChange={handlePasswordChange}
-                    />
-                    <button
-                      type="button"
-                      className="absolute right-3 bottom-3"
-                      onClick={togglePasswordVisibility}
-                      id="hidePasswordIcon"
-                    >
-                      <Icon
-                        path={
-                          passwordVisible ? mdiEyeOutline : mdiEyeOffOutline
-                        }
-                        size={1}
-                        color="#A1ACB2"
-                      />
-                    </button>
-                  </div>
-
-                  <div className="px-3">
-                    <div className="items-stretch text-[#A1ACB2] text-sm font-normal font-['Montserrat'] mt-2">
-                      {passwordCheck1 && (
-                        <Icon
-                          className="left-20 float-left"
-                          path={mdiCheckBold}
-                          size={0.55}
-                          color="green"
-                        />
-                      )}
-                      &bull; Mínimo 8 caracteres
-                    </div>
-
-                    <div className="text-[#A1ACB2] text-sm font-normal font-['Montserrat'] items-stretch">
-                      {passwordCheck2 && (
-                        <Icon
-                          className="left-20 float-left"
-                          path={mdiCheckBold}
-                          size={0.55}
-                          color="green"
-                        />
-                      )}
-                      &bull; Conter pelo menos uma letra
-                    </div>
-                  </div>
-
-                  <div className="relative">
-                    <label
-                      className="flex flex-start text-[#383838] text-sm font-normal gap-1 font-['Montserrat'] mt-6 after:content-['*'] after:ml-0.5 after:text-red-500 "
-                      htmlFor="password-field-repeat"
-                    >
-                      Confirmar Senha
-                    </label>
-                    <input
-                      onInput={areFieldsFilled}
-                      type={passwordVisibleRepeat ? "text" : "password"}
-                      id="password-field-repeat"
-                      placeholder="**********"
-                      className="w-full flex border-gray-300 gap-2.5 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
-                      {...register("confirmPassword", {
-                        required: "insira a senha.",
-                      })}
-                    />
-                    <button
-                      type="button"
-                      className="absolute right-3 bottom-3"
-                      onClick={togglePasswordVisibilityRepeat}
-                    >
-                      <Icon
-                        path={
-                          passwordVisibleRepeat
-                            ? mdiEyeOutline
-                            : mdiEyeOffOutline
-                        }
-                        size={1}
-                        color="#A1ACB2"
-                      />
-                    </button>
-                  </div>
-                  {errors.confirmPassword && (
-                    <div
-                      className="flex items-center font-normal font-['Montserrat']"
-                      role="alert"
-                    >
-                      <p className="mt-1 ml-1 text-red-500 text-sm">
-                        {errors.confirmPassword.message}
-                      </p>
-                    </div>
-                  )}
-                  {passwordMismatchError && (
-                    <div
-                      className="flex items-center font-normal font-['Montserrat']"
-                      role="alert"
-                    >
-                      <Icon
-                        path={mdiAlertCircleOutline}
-                        size={0.6}
-                        color="red"
-                      />
-                      <p className="mt-1 ml-1 text-red-500 text-sm">
-                        {passwordMismatchErrorMessage}
-                      </p>
-                    </div>
-                  )}
-
-                  <span className="h-10" />
-
-                  <button
-                    type="submit"
-                    id="submit-signup-button"
-                    className="disabled:opacity-20 disabled:bg-slate-600 flex-auto w-full h-[3.3rem] rounded-lg bg-[#166276] text-[#FFF] transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50 text-lg font-bold font-['Montserrat']"
-                    disabled={submitLoading}
+                {/* Lastname */}
+                <div className="flex flex-col space-y-2">
+                  <label
+                    htmlFor="lastName"
+                    className="text-sm font-medium text-greyscale-text-subtle"
                   >
-                    {submitLoading ? (
-                      <span className="spinner-border animate-spin inline-block w-4 h-4 border-2 border-t-transparent rounded-full mr-2" />
-                    ) : null}
-                    Cadastrar
-                  </button>
-
-                  <span className="h-2" />
-
-                  <div className="flex justify-center space-x-1">
-                    <span className="text-[#A1ACB2] text-lg font-normal font-['Montserrat']">
-                      Já possui conta?
-                    </span>
-                    <Link
-                      to="/login"
-                      className="text-[#383838] text-lg font-normal font-['Montserrat'] underline hover:text-blue-500 gap-6"
-                    >
-                      Entre agora
-                    </Link>
-                  </div>
-                </form>
+                    Sobrenome <span className="text-error-surface-default">*</span>
+                  </label>
+                  <FormInput
+                    control={form.control}
+                    fieldName="lastName"
+                    placeholder="Silva"
+                    isRequired
+                  
+                  />
+                </div>
               </div>
-            </div>
-            {isModalVisible && (
-              <EmailVerificationModal
-                toggleModal={() => {
-                  setIsModalVisible(!isModalVisible);
-                }}
-                setErrorMessage={(message: string, error?: string) => {
-                  setErrorMessage(message);
-                }}
-                uemail={email}
-                isLoading={submitLoading}
-              />
-            )}
-          </div>
-        </main>
-      </FormDataContext.Provider>
-    </ToggleModalContext.Provider>
-  );
+
+              {/* Email */}
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="email" className="text-sm font-medium text-greyscale-text-subtle">
+                  Email <span className="text-error-surface-default">*</span>
+                </label>
+                <FormInput
+                  control={form.control}
+                  fieldName="email"
+                  placeholder="usuario@gmail.com"
+                  isRequired
+                  
+                />
+              </div>
+
+              {/* Password */}
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="password" className="text-sm font-medium text-greyscale-text-subtle">
+                  Senha <span className="text-error-surface-default">*</span>
+                </label>
+                <FormInput
+                  control={form.control}
+                  fieldName="password"
+                  type="password"
+                  placeholder="********"
+                  description="Mínimo de 8 caracteres e pelo menos uma letra"
+                  isRequired
+                 
+                />
+              </div>
+
+              {/* Verify password */}
+              <div className="flex flex-col space-y-2">
+                <label
+                  htmlFor="confirmPassword"
+                  className="text-sm font-medium text-greyscale-text-subtle"
+                >
+                  Confirmar senha <span className="text-error-surface-default">*</span>
+                </label>
+                <FormInput
+                  control={form.control}
+                  fieldName="confirmPassword"
+                  type="password"
+                  placeholder="********"
+                  isRequired
+                 
+                />
+              </div>
+
+              <div className="pt-4">
+                <Button
+                  type="submit"
+                  disabled={submitLoading || !form.formState.isValid}
+                  className="w-full h-[3.3rem] rounded-lg text-lg font-fontFamily-montserrat-semi-bold"
+                >
+                  {submitLoading ? "Cadastrando..." : "Cadastrar"}
+                </Button>
+              </div>
+
+              <div className="flex justify-center text-center pt-4">
+                <span className="text-greyscale-text-subtle text-lg">
+                  Já possui conta?{" "}
+                  <Link
+                    to="/login"
+                    className="font-montserrat font-bold underline decoration-current text-greyscale-text-subtle hover:!text-greyscale-border-darker"
+                  >
+                    Entre agora
+                  </Link>
+                </span>
+              </div>
+            </form>
+          </Form>
+        </div>
+      </div>
+    </div>
+
+    {/* Email verification modal */}
+    {isModalVisible && (
+      <EmailVerificationModal
+        toggleModal={() => setIsModalVisible((v) => !v)}
+        setErrorMessage={setErrorMessage}
+        uemail={emailForModal}
+        isLoading={submitLoading}
+      />
+    )}
+  </main>
+);
+
 };
 
+
 export default Signup;
+
