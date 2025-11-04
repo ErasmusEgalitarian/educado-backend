@@ -107,7 +107,7 @@ export async function getStudentStats(documentId : string){
     } 
   }
 }
-async function getCertificatesStats(documentId: string) {
+export async function getCertificatesStats(documentId: string) {
   try {
     const creator = await strapi
       .documents("api::content-creator.content-creator")
