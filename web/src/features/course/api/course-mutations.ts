@@ -152,6 +152,47 @@ export const useUpdateCourseMutation = () => {
 };
 
 /**
+ * Publish a course (change from draft to published)
+ * Used in the review step to make the course visible to students
+ *
+ * IMPORTANT: This sets publishedAt timestamp and changes status to "published"
+ * Once published, the course will be visible in the course catalog
+ */
+export const usePublishCourseMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (input: CourseUpdateInput) => {
+      const { documentId, ...dataWithoutId } = input;
+      const response = await coursePutCoursesById({
+        path: { id: documentId },
+        query: { status: "published" },
+        body: {
+          // Do not send documentId in body; Strapi expects ID only in path
+          data: { ...dataWithoutId },
+        },
+      });
+
+      return response;
+    },
+    onSuccess: (data) => {
+      // Invalidate the courses query and set updated course data
+      // exact: false ensures all queries starting with ["courses"] are invalidated
+      void queryClient.invalidateQueries({
+        queryKey: ["courses"],
+        exact: false,
+      });
+
+      const courseId = data?.data?.documentId;
+
+      if (courseId != null) {
+        queryClient.setQueryData(courseQuery(courseId), data?.data);
+      }
+    },
+  });
+};
+
+/**
  * Delete a draft course
  * Useful if user wants to cancel course creation
  */
