@@ -21,7 +21,6 @@ import {
   StaticFilters,
 } from "../lib/query-params-builder";
 import { PaginatedData } from "../types/paginated-data";
-import { useAuth } from "@/auth/hooks/use-auth";
 
 const LOGGING_ENABLED = false;
 

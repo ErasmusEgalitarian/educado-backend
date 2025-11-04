@@ -42,17 +42,3 @@ export const CourseQueryFunction = (courseId: string) => ({
     return courseResponse.data;
   },
 });
-
-export const useCourseCategories = () => {
-  return useQuery({
-    queryKey: ["course_categories"],
-    queryFn: async () => {
-      const response =
-        await CourseCategoryService.courseCategoryGetCourseCategories(["name"]);
-      return response.data.map((item) => ({
-        label: item.name,
-        value: item.documentId,
-      }));
-    },
-  });
-};

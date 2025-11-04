@@ -43,7 +43,7 @@ const CourseEditorReview = ({
     }
   };
 
-  const handlePublish = async () => {
+  const handlePublish = () => {
     if (course?.documentId == null) return;
 
     try {
