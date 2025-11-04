@@ -277,7 +277,7 @@ const CourseEditorPage = () => {
 
           <div className="flex flex-col gap-y-3 mt-6">
             {saveDraftLoader === "success" && (
-              <p className="flex text-sm text-success-surface-default gap-x-2">
+              <p className="flex text-sm justify-center text-success-surface-default gap-x-2">
                 <Icon path={mdiCheckCircle} size={0.7} />
                 Saved to draft succeeded
               </p>
