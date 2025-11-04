@@ -3,14 +3,12 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-import { ApiCourseCourseDocument } from "@/shared/api";
+import type { Course } from "@/shared/api/types.gen";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
 import { Button } from "@/shared/components/shadcn/button";
 
-import { usePublishCourseMutation } from "../api/course-mutations";
-
 interface CourseEditorReviewProps {
-  course?: ApiCourseCourseDocument;
+  course?: Course;
   onComplete?: () => void;
 }
 
@@ -22,10 +20,12 @@ const CourseEditorReview = ({
   const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const publishMutation = usePublishCourseMutation();
-
-  const isLoading = publishMutation.isPending;
-  const isSuccess = publishMutation.isSuccess;
+  // TODO: Implement publish mutation when needed
+  // const publishMutation = usePublishCourseMutation();
+  // const isLoading = publishMutation.isPending;
+  // const isSuccess = publishMutation.isSuccess;
+  const isLoading = false;
+  const isSuccess = false;
 
   const isPublished = course?.publishedAt != null;
   const hasSections = (course?.course_sections?.length ?? 0) > 0;
@@ -43,11 +43,14 @@ const CourseEditorReview = ({
     }
   };
 
-  const handlePublish = async () => {
+  const handlePublish = () => {
     if (course?.documentId == null) return;
 
     try {
-      await publishMutation.mutateAsync(course.documentId);
+      // TODO: Implement publish mutation when publishedAt is added to schema
+      // await publishMutation.mutateAsync(course.documentId);
+
+      console.warn("Publish functionality not yet implemented");
 
       // Wait a moment to show success state
       setTimeout(() => {
@@ -132,14 +135,22 @@ const CourseEditorReview = ({
               <div className="flex flex-wrap gap-2 mt-2">
                 {course.course_categories &&
                 course.course_categories.length > 0 ? (
-                  course.course_categories.map((category) => (
-                    <span
-                      key={category.documentId}
-                      className="px-3 py-1 bg-greyscale-bg rounded-full text-sm text-greyscale-text-body"
-                    >
-                      {category.name}
-                    </span>
-                  ))
+                  course.course_categories.map((category) => {
+                    // When populated with "*", categories include the name field
+                    const cat = category as {
+                      documentId?: string;
+                      id?: number;
+                      name?: string;
+                    };
+                    return (
+                      <span
+                        key={cat.documentId ?? cat.id}
+                        className="px-3 py-1 bg-greyscale-bg rounded-full text-sm text-greyscale-text-body"
+                      >
+                        {cat.name ?? cat.documentId ?? cat.id}
+                      </span>
+                    );
+                  })
                 ) : (
                   <p className="text-greyscale-text-caption">-</p>
                 )}
@@ -211,7 +222,7 @@ const CourseEditorReview = ({
               <>
                 <Button
                   onClick={() => {
-                    void handlePublish();
+                    handlePublish();
                   }}
                   disabled={isLoading}
                   variant="primary"
