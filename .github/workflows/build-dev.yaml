@@ -86,8 +86,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_STRAPI }}
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=sha,prefix={{branch}}-,format=short
+            type=raw,value=dev-latest
+            type=sha,prefix=dev-,format=short
 
       - name: Build and push
         uses: docker/build-push-action@v5
@@ -140,8 +140,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_WEB }}
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=sha,prefix={{branch}}-,format=short
+            type=raw,value=dev-latest
+            type=sha,prefix=dev-,format=short
 
       - name: Build and push
         uses: docker/build-push-action@v5

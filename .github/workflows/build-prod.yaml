@@ -18,9 +18,6 @@ on:
 
 env:
   REGISTRY: ${{ secrets.REGISTRY_URL }}
-  # github.repository format: "owner/repo" - works on both GitHub and Gitea
-  IMAGE_NAME_STRAPI: ${{ github.repository }}/strapi
-  IMAGE_NAME_WEB: ${{ github.repository }}/web
 
 jobs:
   detect-project:
@@ -67,6 +64,20 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Set image name
+        id: set-image
+        env:
+          NAMESPACE: ${{ secrets.TARGET_IMAGE_NAMESPACE }}
+        run: |
+          # Use NAMESPACE (from secret) if set, otherwise fall back to owner/repo
+          if [ -n "$NAMESPACE" ]; then
+            # For Gitea: namespace/repo/service format (e.g., "ollioddi/educado-backend/strapi")
+            echo "IMAGE_NAME_STRAPI=${NAMESPACE}/educado-backend/strapi" >> $GITHUB_ENV
+          else
+            ns=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')
+            echo "IMAGE_NAME_STRAPI=${ns}/strapi" >> $GITHUB_ENV
+          fi
+
       - name: Log in to Container Registry
         uses: docker/login-action@v3
         with:
@@ -93,8 +104,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME_STRAPI }}:buildcache
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME_STRAPI }}:buildcache,mode=max
 
   build-web:
     name: Build Web Image
@@ -110,6 +119,19 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
+      - name: Set image name
+        id: set-image
+        env:
+          NAMESPACE: ${{ secrets.TARGET_IMAGE_NAMESPACE }}
+        run: |
+          if [ -n "$NAMESPACE" ]; then
+            # For Gitea: namespace/repo/service format (e.g., "ollioddi/educado-backend/web")
+            echo "IMAGE_NAME_WEB=${NAMESPACE}/educado-backend/web" >> $GITHUB_ENV
+          else
+            ns=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')
+            echo "IMAGE_NAME_WEB=${ns}/web" >> $GITHUB_ENV
+          fi
 
       - name: Log in to Container Registry
         uses: docker/login-action@v3
@@ -137,5 +159,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME_WEB }}:buildcache
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME_WEB }}:buildcache,mode=max
