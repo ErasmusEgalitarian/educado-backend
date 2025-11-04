@@ -29,7 +29,6 @@ describe('Test statistics', () => {
                     {completionDate: new Date("2025-10-10"), course: {documentId: "course2"}},
                     {completionDate: new Date("2025-10-30"), course: {documentId: "course1"}},
                     {completionDate: new Date("2025-11-05"), course: {documentId: "course2"}},
-                    {completionDate: new Date("2025-11-11"), course: {documentId: "course3"}}
                 ]),
                 count: jest.fn().mockResolvedValue(2)
             }
@@ -71,7 +70,6 @@ describe('Test statistics', () => {
         });
 
         let result : any = await getStudentStats(contentCreatorId);
-        console.log(result);
         expect(result).toBeDefined();
         expect(result.total).toBeDefined();
         expect(result.progress).toBeDefined();
