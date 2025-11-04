@@ -69,8 +69,8 @@ jobs:
         run: |
           # Use NAMESPACE (from secret) if set, otherwise fall back to owner/repo
           if [ -n "$NAMESPACE" ]; then
-            # For Gitea: namespace should be just the owner (e.g., "ollioddi")
-            echo "IMAGE_NAME_STRAPI=${NAMESPACE}/educado-strapi" >> $GITHUB_ENV
+            # For Gitea: namespace/repo/service format (e.g., "ollioddi/educado-backend/strapi")
+            echo "IMAGE_NAME_STRAPI=${NAMESPACE}/educado-backend/strapi" >> $GITHUB_ENV
           else
             ns=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')
             echo "IMAGE_NAME_STRAPI=${ns}/strapi" >> $GITHUB_ENV
@@ -125,8 +125,8 @@ jobs:
           NAMESPACE: ${{ secrets.TARGET_IMAGE_NAMESPACE }}
         run: |
           if [ -n "$NAMESPACE" ]; then
-            # For Gitea: namespace should be just the owner (e.g., "ollioddi")
-            echo "IMAGE_NAME_WEB=${NAMESPACE}/educado-web" >> $GITHUB_ENV
+            # For Gitea: namespace/repo/service format (e.g., "ollioddi/educado-backend/web")
+            echo "IMAGE_NAME_WEB=${NAMESPACE}/educado-backend/web" >> $GITHUB_ENV
           else
             ns=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')
             echo "IMAGE_NAME_WEB=${ns}/web" >> $GITHUB_ENV

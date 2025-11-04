@@ -23,7 +23,7 @@ const DocsPage = () => {
     <main className="container mx-auto py-10">
       <div className="mb-8 space-y-2">
         <h1 className="text-4xl font-bold tracking-tight">
-          Interactive Documentation for Educado.
+          Interactive Documentation for Educado Foo Bar!
         </h1>
         <p className="text-muted-foreground text-lg">
           Explore an interactive documentation of our reusable components with
