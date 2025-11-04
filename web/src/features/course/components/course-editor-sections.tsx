@@ -131,18 +131,20 @@ const CourseEditorSections = forwardRef<
               {sections.map((section, index) => (
                 <Card
                   key={section.id}
-                  className={`p-4 ${
+                  className={`p-0 ${
                     currentSectionEditing === section.id 
                       ? "border-primary border-2" 
                       : "border-greyscale-border"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
+                  <Button 
+                    variant="ghost"
+                    className="flex items-center justify-between p-10"
+                    onClick={() => { handleEdit(section) }}
+                  >
                     <div className="flex items-center">
                       <h4 className="h-full flex items-center gap-3 font-semibold text-greyscale-text-title">
-                        <button>
-                          <ChevronDown size={16} />   
-                        </button>  
+                        <ChevronDown size={16} className="hover:cursor-pointer"/>    
                         {t("courseManager.section")} {index + 1}{":"} {section.title}
                       </h4>
                     </div>
@@ -160,13 +162,13 @@ const CourseEditorSections = forwardRef<
                        <Button
                         variant="secondary"
                         size="md"
-                        onClick={() => { handleEdit(section) }}
+                        onClick={() => { console.log("TODO: make draggable")}}
                         className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
                       >
                         <Menu size={16} />
                       </Button>
                     </div>
-                  </div>
+                  </Button>
                 </Card>
               ))}
             </div>
