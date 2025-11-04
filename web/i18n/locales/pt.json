@@ -131,7 +131,9 @@
     "addLesson": "Adicionar Aula",
     "addExercise": "Adicionar Exercicio",
     "goBack": "Voltar para anterior",
-    "addSection": "Nova seção"
+    "addNewSection": "Nova seção",
+    "editSection": "editar seção",
+    "updateOrAdd": "Seções a serem atualizadas ou adicionadas"
   },
   "courses": {
     "pageTitle": "Confira seus cursos",
