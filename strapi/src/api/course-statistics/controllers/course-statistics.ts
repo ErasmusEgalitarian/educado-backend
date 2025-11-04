@@ -39,7 +39,7 @@ export default {
         courses: null, // TODO getCourses()
         students: await getStudentStats(user_type.documentId as string),
         certificates: 20, // TODO getCertificates()
-        evaluation: null, // TODO getEvaluation()
+        evaluation: await getContentCreatorFeedback(user_type.documentId as string, ctx) 
       };
     } catch (err) {
       ctx.status = 500;
@@ -176,3 +176,57 @@ export async function getCertificatesStats(documentId: string) {
     throw err;
   }
 }
+
+ async function getContentCreatorFeedback(documentId : string, ctx){
+
+  try {
+      // Find Content Creator and related Course feedbacks
+      const user = await strapi.documents('api::content-creator.content-creator').findFirst(
+          {
+          populate: {
+              courses: {
+              populate: ["feedbacks"]
+              }
+          },
+          filters: {
+              documentId: documentId
+          }
+          }
+      );
+      if (!user) {
+          ctx.status = 404;
+          ctx.body = { error: errorCodes['E0504'] }
+      }
+
+      // Aggregate feedbacks
+      let totalFeedbacks = 0;
+      let totalRating = 0;
+
+      for (const course of user.courses) {
+        const feedbacks = course.feedbacks;
+        for (const feedback of feedbacks) {
+          totalFeedbacks++;
+          totalRating += feedback.rating;
+      }
+  } 
+
+  const Totalaverage = totalRating / totalFeedbacks;
+
+  return {
+      total: Number(Totalaverage.toFixed(1)),
+      progress: {
+        thisMonth: 25,        
+        lastSevenDays: 10,    
+        lastThirtyDays: 30
+        }
+      }; 
+  
+  } catch (err) {
+      ctx.status = 500;
+      ctx.body = { error: errorCodes['E0001'] }
+  }
+}
+
+
+
+
