@@ -46,6 +46,33 @@ export const configureApiClient = () => {
     return response;
   });
 
+  // Configure the client with base URL and authorization header
+  client.setConfig({
+    baseUrl,
+    headers: {
+      Authorization: `Bearer ${apiToken}`,
+    },
+    throwOnError: true,
+  });
+
+  // Request interceptor for logging in development
+  client.interceptors.request.use((request) => {
+    if (import.meta.env.DEV) {
+      // eslint-disable-next-line no-console
+      console.log(`Request 📤 ${request.method} ${request.url}`);
+    }
+    return request;
+  });
+
+  // Response interceptor for logging
+  client.interceptors.response.use((response) => {
+    if (import.meta.env.DEV) {
+      // eslint-disable-next-line no-console
+      console.log(`Response 📥 ${response.url}`, { status: response.status });
+    }
+    return response;
+  });
+
   // eslint-disable-next-line no-console
   console.log("API Client configured:", {
     baseUrl,
@@ -61,7 +88,7 @@ export const updateApiClientToken = () => {
   const token = localStorage.getItem("token") ?? "";
   const currentConfig = client.getConfig();
   const currentHeaders = (currentConfig.headers ?? {}) as Record<string, string>;
-  
+
   client.setConfig({
     ...currentConfig,
     headers: {

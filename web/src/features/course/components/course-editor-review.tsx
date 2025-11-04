@@ -1,13 +1,14 @@
-import Icon from "@mdi/react";
 import { mdiCheckCircleOutline, mdiAlertCircleOutline } from "@mdi/js";
+import Icon from "@mdi/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useNotifications } from "@/shared/context/NotificationContext"
 
 
 import type { Course } from "@/shared/api/types.gen";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
 import { Button } from "@/shared/components/shadcn/button";
+import { useNotifications } from "@/shared/context/NotificationContext";
+
 import { usePublishCourseMutation } from "../api/course-mutations";
 
 interface CourseEditorReviewProps {
@@ -43,7 +44,7 @@ const CourseEditorReview = ({
     }
   };
 
-  const handlePublish = async () => {
+  const handlePublish = () => {
     if (course?.documentId == null) return;
 
     try {
@@ -59,7 +60,9 @@ const CourseEditorReview = ({
       });
 
       onComplete?.();
-      addNotification(t("notifications.published-course") + ` '${course.title}'.`);
+      addNotification(
+        t("notifications.published-course") + ` '${course.title}'.`
+      );
       navigate("/courses");
     } catch (error) {
       console.error("Error publishing course:", error);

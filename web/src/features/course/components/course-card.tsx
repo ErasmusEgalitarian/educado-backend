@@ -23,7 +23,6 @@ import StarRating from "../../../shared/components/star-rating";
  * @returns HTML Element
  */
 
-
 export const CourseCard = ({ course }: { course: Course }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -63,7 +62,9 @@ export const CourseCard = ({ course }: { course: Course }) => {
           </div>
 
           <p className="text-sm text-gray-600">
-            {course.durationHours != null ? `${course.durationHours} ${t("courses.hours")}` : "—"}
+            {course.durationHours
+              ? `${course.durationHours} ${t("courses.hours")}`
+              : "—"}
           </p>
         </div>
 

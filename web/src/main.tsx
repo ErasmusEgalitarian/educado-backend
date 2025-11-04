@@ -37,7 +37,7 @@ if (rootElement?.innerHTML === "") {
           </NotificationProvider>
         </AuthProvider>
         <ReactQueryDevtools
-          buttonPosition={"bottom-right"}
+          buttonPosition="bottom-right"
           initialIsOpen={false}
         />
       </QueryClientProvider>
