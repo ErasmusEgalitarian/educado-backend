@@ -133,7 +133,8 @@
     "goBack": "Go back",
     "addNewSection": "Add new section",
     "editSection": "Edit section",
-    "updateOrAdd": "Sections to be updated or added"
+    "updateOrAdd": "Sections to be updated or added",
+    "section": "Section"
   },
   "courses": {
     "pageTitle": "Courses list",

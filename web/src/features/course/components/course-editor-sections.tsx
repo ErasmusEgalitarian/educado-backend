@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus, ChevronLeft, Trash2, Edit3 } from "lucide-react";
+import { Plus, ChevronLeft, ChevronDown, Trash2, Menu } from "lucide-react";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -128,9 +128,6 @@ const CourseEditorSections = forwardRef<
           {/* Sections List */}
           {sections.length > 0 && (
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-greyscale-text-title">
-                {t("courseManager.updateOrAdd")} ({sections.length})
-              </h3>
               {sections.map((section, index) => (
                 <Card
                   key={section.id}
@@ -141,39 +138,34 @@ const CourseEditorSections = forwardRef<
                   }`}
                 >
                   <div className="flex items-start justify-between">
-                    <div className="flex items-start gap-3 flex-1">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-sm font-medium text-greyscale-text-caption bg-greyscale-bg-hover px-2 py-1 rounded">
-                            {index + 1}
-                          </span>
-                          <h4 className="font-semibold text-greyscale-text-title">
-                            {section.title}
-                          </h4>
-                        </div>
-                        {section.description && (
-                          <p className="text-greyscale-text-body text-sm">
-                            {section.description}
-                          </p>
-                        )}
+                    <div className="flex items-center">
+                      <div className="flex items-center gap-2">
+                        <h4 className="h-full border border-red-500 flex items-center font-semibold text-greyscale-text-title">
+                          <button>
+                            <ChevronDown size={16} />   
+                          </button>  
+                          {t("courseManager.section")} {index + 1}{":"} {section.title}
+                        </h4>
                       </div>
                     </div>
                     
                     <div className="flex gap-2 ml-4">
                       <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleEdit(section)}
-                      >
-                        <Edit3 size={16} />
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleDelete(section.id)}
-                        className="text-destructive hover:text-destructive"
+                        variant="secondary"
+                        size="md"
+                        onClick={() => { handleDelete(section.id) }}
+                        className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
+                     
                       >
                         <Trash2 size={16} />
+                      </Button>
+                       <Button
+                        variant="secondary"
+                        size="md"
+                        onClick={() => { handleEdit(section) }}
+                        className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
+                      >
+                        <Menu size={16} />
                       </Button>
                     </div>
                   </div>
@@ -213,7 +205,7 @@ const CourseEditorSections = forwardRef<
                       <div className="grid grid-cols-[1fr_25px_1fr] gap-2">
                         <Button
                           type="button"
-                          onClick={() => console.log("Add lesson")}
+                          onClick={() => { console.log("Add lesson") }}
                           className="w-full border-dashed"
                           variant="outline"
                         >
@@ -227,7 +219,7 @@ const CourseEditorSections = forwardRef<
                         </span>
                         <Button
                           type="button"
-                          onClick={() => console.log("Add exercise")}
+                          onClick={() => { console.log("Add exercise")}}
                           className="w-full border-dashed flex"
                           variant="outline"
                         >
@@ -247,7 +239,7 @@ const CourseEditorSections = forwardRef<
                       >
                         {t("common.cancel")}
                       </Button>
-                      <Button type="submit"> {/* FIXED: Added type="submit" */}
+                      <Button type="submit">
                         {isEditing ? t("common.update") : t("common.create")}
                       </Button>
                     </div>
@@ -293,7 +285,6 @@ const CourseEditorSections = forwardRef<
                 disabled={sections.length === 0}
               >
                 {t("courseManager.createAndContinue")} 
-                {sections.length > 0 && ` (${sections.length})`}
               </Button>
             </div>
           </div>
