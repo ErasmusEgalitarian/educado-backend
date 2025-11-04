@@ -24,7 +24,7 @@ export interface CourseEditorSectionsRef {
 
 /* --------------------------------- Schema --------------------------------- */
 const sectionSchema = z.object({
-  title: z.string().min(1, "common.required"),
+  title: z.string().min(1, "This field is required"),
   description: z.string().optional(),
   sectionType: z.enum(["Lesson", "Exercise"]),
 });
@@ -129,7 +129,7 @@ const CourseEditorSections = forwardRef<
           {sections.length > 0 && (
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-greyscale-text-title">
-                {t("courseManager.section")} ({sections.length})
+                {t("courseManager.updateOrAdd")} ({sections.length})
               </h3>
               {sections.map((section, index) => (
                 <Card
@@ -265,7 +265,7 @@ const CourseEditorSections = forwardRef<
               variant="outline"
             >
               <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
-              {t("courseManager.addSection")}
+              {t("courseManager.addNewSection")}
             </Button>
           )}
 
@@ -283,7 +283,7 @@ const CourseEditorSections = forwardRef<
             <div className="col-start-4 flex gap-4 justify-end">
               <Button
                 variant="blank"
-                onClick={() => onComplete?.()}
+                onClick={() => onGoBack?.()}
                 className="text-destructive font-bold underline"
               >
                 {t("common.cancel")}

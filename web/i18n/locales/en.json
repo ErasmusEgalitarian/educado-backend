@@ -131,7 +131,9 @@
     "addLesson": "Add lesson",
     "addExercise": "Add exercise",
     "goBack": "Go back",
-    "addSection": "Add new section"
+    "addNewSection": "Add new section",
+    "editSection": "Edit section",
+    "updateOrAdd": "Sections to be updated or added"
   },
   "courses": {
     "pageTitle": "Courses list",
