@@ -62,18 +62,19 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Lowercase repo and set image name
+      - name: Set image name
         id: set-image
         env:
           NAMESPACE: ${{ secrets.TARGET_IMAGE_NAMESPACE }}
         run: |
           # Use NAMESPACE (from secret) if set, otherwise fall back to owner/repo
           if [ -n "$NAMESPACE" ]; then
-            ns="$NAMESPACE"
+            # For Gitea: namespace should be just the owner (e.g., "ollioddi")
+            echo "IMAGE_NAME_STRAPI=${NAMESPACE}/educado-strapi" >> $GITHUB_ENV
           else
             ns=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')
+            echo "IMAGE_NAME_STRAPI=${ns}/strapi" >> $GITHUB_ENV
           fi
-          echo "IMAGE_NAME_STRAPI=${ns}/strapi" >> $GITHUB_ENV
 
       - name: Log in to Container Registry
         uses: docker/login-action@v3
@@ -118,17 +119,18 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Lowercase repo and set image name
+      - name: Set image name
         id: set-image
         env:
           NAMESPACE: ${{ secrets.TARGET_IMAGE_NAMESPACE }}
         run: |
           if [ -n "$NAMESPACE" ]; then
-            ns="$NAMESPACE"
+            # For Gitea: namespace should be just the owner (e.g., "ollioddi")
+            echo "IMAGE_NAME_WEB=${NAMESPACE}/educado-web" >> $GITHUB_ENV
           else
             ns=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')
+            echo "IMAGE_NAME_WEB=${ns}/web" >> $GITHUB_ENV
           fi
-          echo "IMAGE_NAME_WEB=${ns}/web" >> $GITHUB_ENV
 
       - name: Log in to Container Registry
         uses: docker/login-action@v3
