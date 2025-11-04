@@ -21,6 +21,7 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "strapi": "strapi",
+    "test": "jest",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry",
     "generate-spec": "cross-env ENV_PATH=../.env strapi openapi generate --output ../openapi/strapi-spec.json",
