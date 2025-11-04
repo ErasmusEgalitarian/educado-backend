@@ -26,9 +26,9 @@
     "generate-merged-spec": "cross-env ENV_PATH=../.env strapi openapi generate --output ../openapi/strapi-spec.json && ts-node src/extensions/documentation/run-merge-spec.ts"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.29.0",
-    "@strapi/plugin-documentation": "5.29.0",
-    "@strapi/plugin-users-permissions": "5.29.0",
+    "@strapi/plugin-cloud": "5.30.0",
+    "@strapi/plugin-documentation": "5.30.0",
+    "@strapi/plugin-users-permissions": "5.30.0",
     "@strapi/strapi": "5.29.0",
     "bcrypt": "^6.0.0",
     "jsonwebtoken": "^9.0.2",
