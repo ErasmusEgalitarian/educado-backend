@@ -13,12 +13,11 @@ import {
 } from "@tanstack/react-table";
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 
-import { OpenAPI } from "@/shared/api";
-import { fetchHeaders } from "@/shared/config/api-config";
+import { useAuth } from "@/auth/hooks/use-auth";
+import { fetchHeaders, getBaseApiUrl } from "@/shared/config/api-config";
 
 import { buildApiQueryParams } from "../lib/query-params-builder";
 import { PaginatedData } from "../types/paginated-data";
-import { useAuth } from "@/auth/hooks/use-auth";
 
 const LOGGING_ENABLED = false;
 
@@ -167,7 +166,7 @@ export default function usePaginatedData<T>(
     : 10;
 
   // Construct the full base URL for API requests
-  const baseUrl = OpenAPI.BASE + urlPath;
+  const baseUrl = getBaseApiUrl() + urlPath;
   if (LOGGING_ENABLED) console.debug("usePaginatedData: Base URL:", baseUrl);
 
   const { renderMode, clientModeThreshold } = config ?? { renderMode: preferredRenderMode, clientModeThreshold: clientServerThreshold };

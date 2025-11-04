@@ -1,14 +1,11 @@
-import Icon from "@mdi/react";
-import { mdiCheckCircleOutline, mdiAlertCircleOutline } from "@mdi/js";
+import { CheckCircle, AlertCircle } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useNotifications } from "@/shared/context/NotificationContext"
-
 
 import type { Course } from "@/shared/api/types.gen";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
 import { Button } from "@/shared/components/shadcn/button";
-import { usePublishCourseMutation } from "../api/course-mutations";
 
 interface CourseEditorReviewProps {
   course?: Course;
@@ -21,11 +18,14 @@ const CourseEditorReview = ({
 }: CourseEditorReviewProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { addNotification } = useNotifications();
+  const [showConfirm, setShowConfirm] = useState(false);
 
-  const publishMutation = usePublishCourseMutation();
-  const isLoading = publishMutation.isPending;
-  const isSuccess = publishMutation.isSuccess;
+  // TODO: Implement publish mutation when needed
+  // const publishMutation = usePublishCourseMutation();
+  // const isLoading = publishMutation.isPending;
+  // const isSuccess = publishMutation.isSuccess;
+  const isLoading = false;
+  const isSuccess = false;
 
   const isPublished = course?.publishedAt != null;
   const hasSections = (course?.course_sections?.length ?? 0) > 0;
@@ -43,24 +43,21 @@ const CourseEditorReview = ({
     }
   };
 
-  const handlePublish = async () => {
+  const handlePublish = () => {
     if (course?.documentId == null) return;
 
     try {
-      await publishMutation.mutateAsync({
-        documentId: course.documentId,
-        title: course.title ?? "",
-        difficulty: course.difficulty ?? 1,
-        description: course.description,
-        image: course.image?.documentId ?? course.image?.id,
-        course_categories: course.course_categories
-          ?.map((cat: any) => cat.documentId)
-          .filter((id: string | undefined): id is string => id != null),
-      });
+      // TODO: Implement publish mutation when publishedAt is added to schema
+      // await publishMutation.mutateAsync(course.documentId);
 
-      onComplete?.();
-      addNotification(t("notifications.published-course") + ` '${course.title}'.`);
-      navigate("/courses");
+      console.warn("Publish functionality not yet implemented");
+
+      // Wait a moment to show success state
+      setTimeout(() => {
+        onComplete?.();
+        // Navigate to courses list after publishing
+        navigate("/courses");
+      }, 1500);
     } catch (error) {
       console.error("Error publishing course:", error);
     }
@@ -70,11 +67,7 @@ const CourseEditorReview = ({
     return (
       <div className="flex items-center justify-center p-12">
         <div className="text-center">
-          <Icon
-            path={mdiAlertCircleOutline}
-            size={1}
-            className="w-12 h-12 mx-auto mb-4 text-error-surface-default"
-          />
+          <AlertCircle className="w-12 h-12 mx-auto mb-4 text-error-surface-default" />
           <p className="text-greyscale-text-body">
             {t("courseManager.noCourse")}
           </p>
@@ -94,11 +87,7 @@ const CourseEditorReview = ({
         {/* Course Status Banner */}
         {isPublished && (
           <div className="flex items-center gap-3 p-4 bg-success-surface-lighter rounded-lg border border-success-border-default">
-            <Icon
-              path={mdiCheckCircleOutline}
-              size={1}
-              className="w-5 h-5 text-success-surface-default"
-            />
+            <CheckCircle className="w-5 h-5 text-success-surface-default" />
             <div>
               <p className="font-semibold text-success-text-title">
                 {t("common.published")}
@@ -213,11 +202,7 @@ const CourseEditorReview = ({
         {/* Warning if no sections */}
         {!hasSections && !isPublished && (
           <div className="flex items-start gap-3 p-4 bg-warning-surface-lighter rounded-lg border border-warning-border-default">
-            <Icon
-              path={mdiAlertCircleOutline}
-              size={1}
-              className="w-5 h-5 text-warning-surface-default mt-0.5"
-            />
+            <AlertCircle className="w-5 h-5 text-warning-surface-default mt-0.5" />
             <div>
               <p className="font-semibold text-warning-text-title">
                 No sections yet
@@ -233,24 +218,48 @@ const CourseEditorReview = ({
         {/* Action Buttons */}
         {!isPublished && (
           <div className="flex gap-4 pt-6">
-            <Button
-              onClick={() => {
-                handlePublish();
-              }}
-              disabled={isLoading}
-              variant="primary"
-            >
-              {isLoading ? t("common.publishing") : t("common.publish")}
-            </Button>
-            <Button
-              onClick={() => {
-                navigate("/courses");
-              }}
-              disabled={isLoading}
-              variant="outline"
-            >
-              {t("common.cancel")}
-            </Button>
+            {showConfirm ? (
+              <>
+                <Button
+                  onClick={() => {
+                    handlePublish();
+                  }}
+                  disabled={isLoading}
+                  variant="primary"
+                >
+                  {t("common.publish")}
+                </Button>
+                <Button
+                  onClick={() => {
+                    setShowConfirm(false);
+                  }}
+                  disabled={isLoading}
+                  variant="outline"
+                >
+                  {t("common.cancel")}
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  onClick={() => {
+                    setShowConfirm(true);
+                  }}
+                  disabled={isLoading}
+                >
+                  {t("courseManager.publishCourse")}
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    navigate("/courses");
+                  }}
+                  disabled={isLoading}
+                >
+                  {t("courseManager.saveAsDraft")}
+                </Button>
+              </>
+            )}
           </div>
         )}
 

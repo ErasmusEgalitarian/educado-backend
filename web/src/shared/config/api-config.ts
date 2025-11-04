@@ -8,18 +8,31 @@ export const getBaseApiUrl = (): string => {
 };
 
 /**
- * Configures the API client with base URL and authentication token from localStorage.
+ * Configures the API client with base URL and authentication token from environment variables.
+ * @throws {Error} When VITE_STRAPI_API_TOKEN is not set in environment variables
  */
 export const configureApiClient = () => {
   const baseUrl = getBaseApiUrl();
 
-  // Configure the client with base URL, authorization header, and error handling
+  // Set the API token if available
+  const apiToken = import.meta.env.VITE_STRAPI_API_TOKEN as string | undefined;
+
+  if (apiToken == undefined) {
+    globalThis.alert(
+      "Warning: VITE_STRAPI_API_TOKEN is not set in environment variables. API requests may fail.",
+    );
+    throw new Error(
+      "VITE_STRAPI_API_TOKEN is not set in environment variables",
+    );
+  }
+
+  // Configure the client with base URL and authorization header
   client.setConfig({
     baseUrl,
-    throwOnError: true,
     headers: {
-      ...fetchHeaders(),
+      Authorization: `Bearer ${apiToken}`,
     },
+    throwOnError: true,
   });
 
   // Request interceptor for logging in development
@@ -37,43 +50,14 @@ export const configureApiClient = () => {
       // eslint-disable-next-line no-console
       console.log(`Response 📥 ${response.url}`, { status: response.status });
     }
-
-    // If token is invalid, try to refresh from localStorage
-    if (response.status === 403 || response.status === 401) {
-      updateApiClientToken();
-    }
-
     return response;
   });
 
   // eslint-disable-next-line no-console
   console.log("API Client configured:", {
     baseUrl,
-    hasToken: Boolean(localStorage.getItem("token")),
+    hasToken: apiToken !== "",
   });
-};
-
-/**
- * Updates the API client's authorization header with the token from localStorage.
- * Call this after login/logout to ensure the client uses the current token.
- */
-export const updateApiClientToken = () => {
-  const token = localStorage.getItem("token") ?? "";
-  const currentConfig = client.getConfig();
-  const currentHeaders = (currentConfig.headers ?? {}) as Record<string, string>;
-  
-  client.setConfig({
-    ...currentConfig,
-    headers: {
-      ...currentHeaders,
-      Authorization: token !== "" ? `Bearer ${token}` : "",
-    },
-  });
-
-  if (import.meta.env.DEV) {
-    // eslint-disable-next-line no-console
-    console.log("API Client token updated:", { hasToken: token !== "" });
-  }
 };
 
 /**
@@ -82,12 +66,15 @@ export const updateApiClientToken = () => {
  * @returns {Record<string, string>} Headers object for fetch requests
  */
 export const fetchHeaders = (): Record<string, string> => {
-  const token = localStorage.getItem("token") ?? "";
+  const apiToken = import.meta.env.VITE_STRAPI_API_TOKEN as string | undefined;
 
   const headers: Record<string, string> = {
     Accept: "application/json",
-    Authorization: token !== "" ? `Bearer ${token}` : "",
   };
+
+  if (apiToken !== undefined && apiToken !== "") {
+    headers.Authorization = `Bearer ${apiToken}`;
+  }
 
   return headers;
 };

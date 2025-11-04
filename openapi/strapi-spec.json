@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "x-powered-by": "strapi",
-  "x-strapi-version": "5.30.0",
+  "x-strapi-version": "5.29.0",
   "info": {
     "title": "strapi",
     "description": "API documentation for strapi v0.1.0",
@@ -2324,35 +2324,6 @@
         ]
       }
     },
-    "/content-creator/login": {
-      "post": {
-        "tags": [
-          "Content Creator - Auth"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JWTResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/courses": {
       "get": {
         "operationId": "course/get/courses",
@@ -2371,7 +2342,6 @@
                   "title",
                   "description",
                   "difficulty",
-                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -2395,7 +2365,6 @@
                   "title",
                   "description",
                   "difficulty",
-                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -2494,7 +2463,6 @@
                     "title",
                     "description",
                     "difficulty",
-                    "durationHours",
                     "numOfRatings",
                     "numOfSubscriptions",
                     "createdAt",
@@ -2510,7 +2478,6 @@
                       "title",
                       "description",
                       "difficulty",
-                      "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
                       "createdAt",
@@ -2527,7 +2494,6 @@
                       "title",
                       "description",
                       "difficulty",
-                      "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
                       "createdAt",
@@ -2553,7 +2519,6 @@
                         "title",
                         "description",
                         "difficulty",
-                        "durationHours",
                         "numOfRatings",
                         "numOfSubscriptions",
                         "createdAt",
@@ -2714,7 +2679,6 @@
                   "title",
                   "description",
                   "difficulty",
-                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -2886,7 +2850,6 @@
                   "title",
                   "description",
                   "difficulty",
-                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -2952,7 +2915,6 @@
                   "title",
                   "description",
                   "difficulty",
-                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -2977,7 +2939,6 @@
                     "title",
                     "description",
                     "difficulty",
-                    "durationHours",
                     "numOfRatings",
                     "numOfSubscriptions",
                     "createdAt",
@@ -2993,7 +2954,6 @@
                       "title",
                       "description",
                       "difficulty",
-                      "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
                       "createdAt",
@@ -3010,7 +2970,6 @@
                       "title",
                       "description",
                       "difficulty",
-                      "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
                       "createdAt",
@@ -3036,7 +2995,6 @@
                         "title",
                         "description",
                         "difficulty",
-                        "durationHours",
                         "numOfRatings",
                         "numOfSubscriptions",
                         "createdAt",
@@ -3164,7 +3122,6 @@
                   "title",
                   "description",
                   "difficulty",
-                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -3334,7 +3291,6 @@
                   "title",
                   "description",
                   "difficulty",
-                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -3400,7 +3356,6 @@
                   "title",
                   "description",
                   "difficulty",
-                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -18514,28 +18469,6 @@
           "users-permissions"
         ]
       }
-    },
-    "/CC-dashboard-activity": {
-      "get": {
-        "tags": [
-          "Content Creator - Dashboard"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK - Array of dashboard activities",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DashboardActivity"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "components": {
@@ -18557,6 +18490,9 @@
                 "items": {
                   "type": "object"
                 }
+              },
+              {
+                "type": "null"
               }
             ]
           },
@@ -18649,7 +18585,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Certificate"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -18673,7 +18610,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -18685,10 +18623,12 @@
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "link": {
             "type": "string"
@@ -18757,9 +18697,6 @@
                           "type": "string"
                         },
                         "difficulty": {
-                          "type": "integer"
-                        },
-                        "durationHours": {
                           "type": "integer"
                         },
                         "numOfRatings": {
@@ -19977,85 +19914,6 @@
                                   }
                                 }
                               },
-                              "dashboard_activities": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    },
-                                    "content_creator": {
-                                      "type": "object",
-                                      "properties": {
-                                        "id": {
-                                          "type": "number"
-                                        },
-                                        "documentId": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "activityDesc": {
-                                      "type": "string"
-                                    },
-                                    "createdAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "updatedAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "publishedAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "createdBy": {
-                                      "type": "object",
-                                      "properties": {
-                                        "id": {
-                                          "type": "number"
-                                        },
-                                        "documentId": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "updatedBy": {
-                                      "type": "object",
-                                      "properties": {
-                                        "id": {
-                                          "type": "number"
-                                        },
-                                        "documentId": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "locale": {
-                                      "type": "string"
-                                    },
-                                    "localizations": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "properties": {
-                                          "id": {
-                                            "type": "number"
-                                          },
-                                          "documentId": {
-                                            "type": "string"
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              },
                               "createdAt": {
                                 "type": "string",
                                 "format": "date-time"
@@ -20401,7 +20259,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "course": {
             "type": "object",
@@ -20412,19 +20271,23 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -20435,7 +20298,8 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -20446,10 +20310,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -20463,7 +20329,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -20471,10 +20338,12 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Certificate"
+            "$ref": "#/components/schemas/Certificate",
+            "nullable": true
           },
           "meta": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       },
@@ -20482,13 +20351,15 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "__component": {
             "type": "string",
             "enum": [
               "content.video"
-            ]
+            ],
+            "nullable": true
           },
           "video": {
             "type": "array",
@@ -20620,7 +20491,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -20628,16 +20500,19 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "__component": {
             "type": "string",
             "enum": [
               "content.description"
-            ]
+            ],
+            "nullable": true
           },
           "text": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -20650,8 +20525,8 @@
           "data": {
             "required": [
               "firstName",
-              "lastName",
               "email",
+              "password",
               "education",
               "statusValue",
               "courseExperience",
@@ -20761,20 +20636,6 @@
                   "example": "string or id"
                 }
               },
-              "dashboard_activities": {
-                "type": "array",
-                "items": {
-                  "oneOf": [
-                    {
-                      "type": "integer"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ],
-                  "example": "string or id"
-                }
-              },
               "locale": {
                 "type": "string"
               },
@@ -20803,7 +20664,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ContentCreator"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -20827,7 +20689,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -20835,8 +20698,8 @@
         "type": "object",
         "required": [
           "firstName",
-          "lastName",
           "email",
+          "password",
           "education",
           "statusValue",
           "courseExperience",
@@ -20849,23 +20712,28 @@
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "firstName": {
             "type": "string"
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "verifiedAt": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "nullable": true
           },
           "biography": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "email": {
             "type": "string",
@@ -20913,10 +20781,12 @@
           },
           "companyEnd": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "nullable": true
           },
           "jobDescription": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "courses": {
             "type": "array",
@@ -20936,9 +20806,6 @@
                   "type": "string"
                 },
                 "difficulty": {
-                  "type": "integer"
-                },
-                "durationHours": {
                   "type": "integer"
                 },
                 "numOfRatings": {
@@ -22440,85 +22307,6 @@
                           }
                         }
                       },
-                      "dashboard_activities": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "number"
-                            },
-                            "documentId": {
-                              "type": "string"
-                            },
-                            "content_creator": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "activityDesc": {
-                              "type": "string"
-                            },
-                            "createdAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "createdBy": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "updatedBy": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "locale": {
-                              "type": "string"
-                            },
-                            "localizations": {
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
-                                  "documentId": {
-                                    "type": "string"
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -22625,7 +22413,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "user_logs": {
             "type": "array",
@@ -22639,33 +22428,23 @@
                   "type": "string"
                 }
               }
-            }
-          },
-          "dashboard_activities": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number"
-                },
-                "documentId": {
-                  "type": "string"
-                }
-              }
-            }
+            },
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -22676,7 +22455,8 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -22687,10 +22467,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -22704,7 +22486,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -22712,10 +22495,12 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ContentCreator"
+            "$ref": "#/components/schemas/ContentCreator",
+            "nullable": true
           },
           "meta": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       },
@@ -22728,8 +22513,7 @@
           "data": {
             "required": [
               "title",
-              "difficulty",
-              "durationHours"
+              "difficulty"
             ],
             "type": "object",
             "properties": {
@@ -22740,9 +22524,6 @@
                 "type": "string"
               },
               "difficulty": {
-                "type": "integer"
-              },
-              "durationHours": {
                 "type": "integer"
               },
               "numOfRatings": {
@@ -22860,7 +22641,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Course"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -22884,7 +22666,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -22892,33 +22675,34 @@
         "type": "object",
         "required": [
           "title",
-          "difficulty",
-          "durationHours"
+          "difficulty"
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "title": {
             "type": "string"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "difficulty": {
             "type": "integer"
           },
-          "durationHours": {
-            "type": "integer"
-          },
           "numOfRatings": {
-            "type": "integer"
+            "type": "integer",
+            "nullable": true
           },
           "numOfSubscriptions": {
-            "type": "integer"
+            "type": "integer",
+            "nullable": true
           },
           "image": {
             "type": "object",
@@ -23516,7 +23300,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "feedbacks": {
             "type": "array",
@@ -23555,9 +23340,6 @@
                       "type": "string"
                     },
                     "difficulty": {
-                      "type": "integer"
-                    },
-                    "durationHours": {
                       "type": "integer"
                     },
                     "numOfRatings": {
@@ -24507,85 +24289,6 @@
                               }
                             }
                           },
-                          "dashboard_activities": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                },
-                                "content_creator": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "activityDesc": {
-                                  "type": "string"
-                                },
-                                "createdAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "updatedAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "publishedAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "createdBy": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "updatedBy": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "locale": {
-                                  "type": "string"
-                                },
-                                "localizations": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "id": {
-                                        "type": "number"
-                                      },
-                                      "documentId": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
                           "createdAt": {
                             "type": "string",
                             "format": "date-time"
@@ -24756,7 +24459,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "course_sections": {
             "type": "array",
@@ -24770,7 +24474,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "course_categories": {
             "type": "array",
@@ -24784,7 +24489,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "students": {
             "type": "array",
@@ -24798,7 +24504,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "content_creators": {
             "type": "array",
@@ -24812,19 +24519,23 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -24835,7 +24546,8 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -24846,10 +24558,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -24863,7 +24577,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -24871,10 +24586,12 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Course"
+            "$ref": "#/components/schemas/Course",
+            "nullable": true
           },
           "meta": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       },
@@ -24935,7 +24652,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CourseCategory"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -24959,7 +24677,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -24970,10 +24689,12 @@
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "name": {
             "type": "string"
@@ -24996,9 +24717,6 @@
                   "type": "string"
                 },
                 "difficulty": {
-                  "type": "integer"
-                },
-                "durationHours": {
                   "type": "integer"
                 },
                 "numOfRatings": {
@@ -26500,85 +26218,6 @@
                           }
                         }
                       },
-                      "dashboard_activities": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "number"
-                            },
-                            "documentId": {
-                              "type": "string"
-                            },
-                            "content_creator": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "activityDesc": {
-                              "type": "string"
-                            },
-                            "createdAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "createdBy": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "updatedBy": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "locale": {
-                              "type": "string"
-                            },
-                            "localizations": {
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
-                                  "documentId": {
-                                    "type": "string"
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -26685,19 +26324,23 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -26708,7 +26351,8 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -26719,10 +26363,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -26736,7 +26382,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -26744,10 +26391,12 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/CourseCategory"
+            "$ref": "#/components/schemas/CourseCategory",
+            "nullable": true
           },
           "meta": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       },
@@ -26836,7 +26485,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CourseSelection"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -26860,7 +26510,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -26871,16 +26522,19 @@
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "title": {
             "type": "string"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "exercises": {
             "type": "array",
@@ -27288,7 +26942,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "lectures": {
             "type": "array",
@@ -27379,7 +27034,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "course": {
             "type": "object",
@@ -27397,9 +27053,6 @@
                 "type": "string"
               },
               "difficulty": {
-                "type": "integer"
-              },
-              "durationHours": {
                 "type": "integer"
               },
               "numOfRatings": {
@@ -28213,85 +27866,6 @@
                         }
                       }
                     },
-                    "dashboard_activities": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          },
-                          "content_creator": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "activityDesc": {
-                            "type": "string"
-                          },
-                          "createdAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "updatedAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "publishedAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "createdBy": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "updatedBy": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "locale": {
-                            "type": "string"
-                          },
-                          "localizations": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -28397,19 +27971,23 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -28420,7 +27998,8 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -28431,10 +28010,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -28448,7 +28029,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -28456,114 +28038,12 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/CourseSelection"
-          },
-          "meta": {
-            "type": "object"
-          }
-        }
-      },
-      "DashboardActivityRequest": {
-        "type": "object",
-        "required": [
-          "data"
-        ],
-        "properties": {
-          "data": {
-            "type": "object",
-            "properties": {
-              "content_creator": {
-                "oneOf": [
-                  {
-                    "type": "integer"
-                  },
-                  {
-                    "type": "string"
-                  }
-                ],
-                "example": "string or id"
-              },
-              "activityDesc": {
-                "type": "string"
-              },
-              "locale": {
-                "type": "string"
-              },
-              "localizations": {
-                "type": "array",
-                "items": {
-                  "oneOf": [
-                    {
-                      "type": "integer"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ],
-                  "example": "string or id"
-                }
-              }
-            }
-          }
-        }
-      },
-      "DashboardActivityListResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DashboardActivity"
-            }
+            "$ref": "#/components/schemas/CourseSelection",
+            "nullable": true
           },
           "meta": {
             "type": "object",
-            "properties": {
-              "pagination": {
-                "type": "object",
-                "properties": {
-                  "page": {
-                    "type": "integer"
-                  },
-                  "pageSize": {
-                    "type": "integer",
-                    "minimum": 25
-                  },
-                  "pageCount": {
-                    "type": "integer",
-                    "maximum": 1
-                  },
-                  "total": {
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "DashboardActivity": {
-        "type": "object",
-        "properties": {
-          "description": {
-            "type": "string",
-            "example": "200 students has signed up to the course"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2025-01-15T10:24:00.000Z"
-          }
-        }
-      },
-      "DashboardActivityResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/DashboardActivity"
-          },
-          "meta": {
-            "type": "object"
+            "nullable": true
           }
         }
       },
@@ -28628,7 +28108,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Exercise"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -28652,7 +28133,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -28664,10 +28146,12 @@
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "title": {
             "type": "string"
@@ -29081,19 +28565,23 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -29104,7 +28592,8 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -29115,10 +28604,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -29132,7 +28623,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -29140,10 +28632,12 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Exercise"
+            "$ref": "#/components/schemas/Exercise",
+            "nullable": true
           },
           "meta": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       },
@@ -29209,7 +28703,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExerciseOption"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -29233,7 +28728,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -29246,10 +28742,12 @@
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "text": {
             "type": "string"
@@ -29663,19 +29161,23 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -29686,7 +29188,8 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -29697,10 +29200,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -29714,7 +29219,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -29722,10 +29228,12 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ExerciseOption"
+            "$ref": "#/components/schemas/ExerciseOption",
+            "nullable": true
           },
           "meta": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       },
@@ -29802,7 +29310,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Feedback"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -29826,7 +29335,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -29838,16 +29348,19 @@
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "rating": {
             "type": "integer"
           },
           "feedbackText": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "dateCreated": {
             "type": "string",
@@ -29869,9 +29382,6 @@
                 "type": "string"
               },
               "difficulty": {
-                "type": "integer"
-              },
-              "durationHours": {
                 "type": "integer"
               },
               "numOfRatings": {
@@ -31373,85 +30883,6 @@
                         }
                       }
                     },
-                    "dashboard_activities": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "documentId": {
-                            "type": "string"
-                          },
-                          "content_creator": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "activityDesc": {
-                            "type": "string"
-                          },
-                          "createdAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "updatedAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "publishedAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "createdBy": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "updatedBy": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "documentId": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "locale": {
-                            "type": "string"
-                          },
-                          "localizations": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -31557,7 +30988,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "student": {
             "type": "object",
@@ -31568,19 +31000,23 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -31591,7 +31027,8 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -31602,10 +31039,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -31619,7 +31058,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -31627,10 +31067,12 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Feedback"
+            "$ref": "#/components/schemas/Feedback",
+            "nullable": true
           },
           "meta": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       },
@@ -31700,7 +31142,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Lecture"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -31724,7 +31167,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -31735,16 +31179,19 @@
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "title": {
             "type": "string"
           },
           "completed": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "content": {
             "type": "array",
@@ -31764,19 +31211,23 @@
                 "content.video": "#/components/schemas/ContentVideoComponent",
                 "content.description": "#/components/schemas/ContentDescriptionComponent"
               }
-            }
+            },
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -31787,7 +31238,8 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -31798,10 +31250,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -31892,7 +31346,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -31900,10 +31355,12 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Lecture"
+            "$ref": "#/components/schemas/Lecture",
+            "nullable": true
           },
           "meta": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       },
@@ -31960,7 +31417,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PasswordResetToken"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -31984,7 +31442,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -31997,10 +31456,12 @@
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "userEmail": {
             "type": "string",
@@ -32015,15 +31476,18 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -32286,7 +31750,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -32297,10 +31762,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -32376,7 +31843,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -32384,10 +31852,12 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/PasswordResetToken"
+            "$ref": "#/components/schemas/PasswordResetToken",
+            "nullable": true
           },
           "meta": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       },
@@ -32508,7 +31978,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Student"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -32532,7 +32003,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -32545,16 +32017,19 @@
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "name": {
             "type": "string"
           },
           "biography": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "email": {
             "type": "string",
@@ -32562,7 +32037,8 @@
           },
           "verifiedAt": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "nullable": true
           },
           "feedbacks": {
             "type": "array",
@@ -32601,9 +32077,6 @@
                       "type": "string"
                     },
                     "difficulty": {
-                      "type": "integer"
-                    },
-                    "durationHours": {
                       "type": "integer"
                     },
                     "numOfRatings": {
@@ -34022,85 +33495,6 @@
                               }
                             }
                           },
-                          "dashboard_activities": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                },
-                                "content_creator": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "activityDesc": {
-                                  "type": "string"
-                                },
-                                "createdAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "updatedAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "publishedAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "createdBy": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "updatedBy": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "locale": {
-                                  "type": "string"
-                                },
-                                "localizations": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "id": {
-                                        "type": "number"
-                                      },
-                                      "documentId": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
                           "createdAt": {
                             "type": "string",
                             "format": "date-time"
@@ -34271,7 +33665,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "courses": {
             "type": "array",
@@ -34285,7 +33680,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "certificates": {
             "type": "array",
@@ -34299,7 +33695,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "user_logs": {
             "type": "array",
@@ -34313,19 +33710,23 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -34336,7 +33737,8 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -34347,10 +33749,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -34364,7 +33768,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -34372,10 +33777,12 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Student"
+            "$ref": "#/components/schemas/Student",
+            "nullable": true
           },
           "meta": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       },
@@ -34438,7 +33845,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserLog"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -34462,7 +33870,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -34474,10 +33883,12 @@
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "loginDate": {
             "type": "string",
@@ -34546,9 +33957,6 @@
                           "type": "string"
                         },
                         "difficulty": {
-                          "type": "integer"
-                        },
-                        "durationHours": {
                           "type": "integer"
                         },
                         "numOfRatings": {
@@ -35766,85 +35174,6 @@
                                   }
                                 }
                               },
-                              "dashboard_activities": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    },
-                                    "content_creator": {
-                                      "type": "object",
-                                      "properties": {
-                                        "id": {
-                                          "type": "number"
-                                        },
-                                        "documentId": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "activityDesc": {
-                                      "type": "string"
-                                    },
-                                    "createdAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "updatedAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "publishedAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "createdBy": {
-                                      "type": "object",
-                                      "properties": {
-                                        "id": {
-                                          "type": "number"
-                                        },
-                                        "documentId": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "updatedBy": {
-                                      "type": "object",
-                                      "properties": {
-                                        "id": {
-                                          "type": "number"
-                                        },
-                                        "documentId": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "locale": {
-                                      "type": "string"
-                                    },
-                                    "localizations": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "properties": {
-                                          "id": {
-                                            "type": "number"
-                                          },
-                                          "documentId": {
-                                            "type": "string"
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              },
                               "createdAt": {
                                 "type": "string",
                                 "format": "date-time"
@@ -36190,19 +35519,23 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -36213,7 +35546,8 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -36224,10 +35558,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -36241,7 +35577,8 @@
                   "type": "string"
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -36249,10 +35586,12 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/UserLog"
+            "$ref": "#/components/schemas/UserLog",
+            "nullable": true
           },
           "meta": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       },
@@ -36309,7 +35648,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/VerificationToken"
-            }
+            },
+            "nullable": true
           },
           "meta": {
             "type": "object",
@@ -36333,7 +35673,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -36346,10 +35687,12 @@
         ],
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "documentId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "userEmail": {
             "type": "string",
@@ -36364,15 +35707,18 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "publishedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "object",
@@ -36635,7 +35981,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           },
           "updatedBy": {
             "type": "object",
@@ -36646,10 +35993,12 @@
               "documentId": {
                 "type": "string"
               }
-            }
+            },
+            "nullable": true
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "localizations": {
             "type": "array",
@@ -36725,7 +36074,8 @@
                   }
                 }
               }
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -36733,70 +36083,89 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/VerificationToken"
+            "$ref": "#/components/schemas/VerificationToken",
+            "nullable": true
           },
           "meta": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       },
       "UploadFile": {
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "alternativeText": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "caption": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "width": {
             "type": "number",
-            "format": "integer"
+            "format": "integer",
+            "nullable": true
           },
           "height": {
             "type": "number",
-            "format": "integer"
+            "format": "integer",
+            "nullable": true
           },
           "formats": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "hash": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "ext": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "mime": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "size": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "nullable": true
           },
           "url": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "previewUrl": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "provider": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "provider_metadata": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           }
         }
       },
@@ -36804,24 +36173,30 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           }
         }
       },
@@ -36830,37 +36205,45 @@
         "properties": {
           "id": {
             "type": "number",
-            "example": 1
+            "example": 1,
+            "nullable": true
           },
           "username": {
             "type": "string",
-            "example": "foo.bar"
+            "example": "foo.bar",
+            "nullable": true
           },
           "email": {
             "type": "string",
-            "example": "foo.bar@strapi.io"
+            "example": "foo.bar@strapi.io",
+            "nullable": true
           },
           "provider": {
             "type": "string",
-            "example": "local"
+            "example": "local",
+            "nullable": true
           },
           "confirmed": {
             "type": "boolean",
-            "example": true
+            "example": true,
+            "nullable": true
           },
           "blocked": {
             "type": "boolean",
-            "example": false
+            "example": false,
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
             "format": "date-time",
-            "example": "2022-06-02T08:32:06.258Z"
+            "example": "2022-06-02T08:32:06.258Z",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
-            "example": "2022-06-02T08:32:06.267Z"
+            "example": "2022-06-02T08:32:06.267Z",
+            "nullable": true
           }
         }
       },
@@ -36869,10 +36252,12 @@
         "properties": {
           "jwt": {
             "type": "string",
-            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+            "nullable": true
           },
           "user": {
-            "$ref": "#/components/schemas/Users-Permissions-User"
+            "$ref": "#/components/schemas/Users-Permissions-User",
+            "nullable": true
           }
         }
       },
@@ -36919,60 +36304,8 @@
           }
         }
       },
-      "JWTContentCreatorResponse": {
-        "type": "object",
-        "properties": {
-          "accessToken": {
-            "type": "string"
-          },
-          "userInfo": {
-            "type": "object",
-            "properties": {
-              "documentId": {
-                "type": "string"
-              },
-              "firstName": {
-                "type": "string"
-              },
-              "lastName": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "verifiedAt": {
-                "type": "string",
-                "format": "date"
-              }
-            }
-          }
-        }
-      },
       "JWTResponse": {
-        "type": "object",
-        "properties": {
-          "accessToken": {
-            "type": "string"
-          },
-          "userInfo": {
-            "type": "object",
-            "properties": {
-              "documentId": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "verifiedAt": {
-                "type": "string",
-                "format": "date"
-              }
-            }
-          }
-        }
+        "type": "string"
       },
       "ResetPasswordRequestRequest": {
         "type": "object",
