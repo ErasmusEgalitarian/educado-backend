@@ -3,7 +3,10 @@
  * A set of functions called "actions" for `course-statistics`
  */
 import { errorCodes } from "../../../helpers/errorCodes";
-import jwt, { JwtPayload } from "jsonwebtoken"
+import jwt, { JwtPayload } from "jsonwebtoken";
+
+const DAYS_30_MS = 30*24*60*60*1000;
+const DAYS_7_MS = 7*24*60*60*1000;
 
 export default {
   statisticsAction: async (ctx, next) => {
@@ -42,7 +45,7 @@ export default {
 };
 
 
-async function getStudetStats(documentId : string){
+async function getStudentStats(documentId : string){
     // Find Content Creator
   const user = await strapi.documents('api::content-creator.content-creator').findFirst(
     {
@@ -59,15 +62,31 @@ async function getStudetStats(documentId : string){
   if (!user) {
     throw { error: errorCodes['E0504'] }
   }
-  console.log(user);
 
-  let count = 0;
+  let countTotal = 0;
+  let count7 = 0;
+  let count30 = 0;
+  let countMonth 
+  //Filter courses TODO
   for ( const course of user.courses ) {
     for ( const courseRelation of course.course_relations){
-      count++;
-      //checkDate
+      countTotal++;
+      //30 days
+      if (courseRelation.enrollmentDate > new Date(Date.now()-DAYS_30_MS)) {
+        count30++;
+      }
+      //7 days
+      if (courseRelation.enrollmentDate > new Date(Date.now()-DAYS_7_MS)) {
+        count7++;
+      }
+      //Month
+      if (courseRelation.enrollmentDate > new Date(new Date().getFullYear(), new Date().getMonth())) {
+        countMonth++;
+      }
     }
   }
+
+  return { totalStudents: countTotal, stat30: countTotal/count30, stat7: countTotal/count7, statMonth: countTotal/countMonth}
 }
 
 async function getCertificates(documentId : string) {
