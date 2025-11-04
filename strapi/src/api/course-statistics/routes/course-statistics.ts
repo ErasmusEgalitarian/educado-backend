@@ -1,13 +1,12 @@
-export default {
+module.exports = {
   routes: [
-     {
-      method: 'GET',
-      path: '/course-statistics',
-      handler: 'course-statistics.statisticsAction',
+    {
+      method: "GET",
+      path: "/course-statistics/statistics-action",
+      handler: "course-statistics.statisticsAction",
       config: {
-        policies: [],
-        middlewares: [],
+        auth: false,
       },
-     },
+    },
   ],
 };
