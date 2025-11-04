@@ -1,17 +1,20 @@
-import { OpenAPI } from "../api/core/OpenAPI";
-import { type PluginUploadFileDocument } from "../api/models/PluginUploadFileDocument";
 import { FileWithMetadata } from "../components/file-upload";
-import { fetchHeaders } from "../config/api-config";
+import { fetchHeaders, getBaseApiUrl } from "../config/api-config";
+
+import type { UploadPostResponses } from "../api/types.gen";
 
 interface useFileUploadReturn {
-  uploadFile: (files: FileWithMetadata[]) => Promise<string[] | undefined>;
+  uploadFile: (files: FileWithMetadata[]) => Promise<number[] | undefined>;
 }
+
+// The upload response can be either a single file object or an array of file objects
+type UploadResponse = UploadPostResponses[200];
 
 export const useFileUpload = (): useFileUploadReturn => {
   const uploadFile = async (
     files: FileWithMetadata[]
-  ): Promise<string[] | undefined> => {
-    const baseUrl = OpenAPI.BASE;
+  ): Promise<number[] | undefined> => {
+    const baseUrl = getBaseApiUrl();
 
     try {
       // Upload each file individually
@@ -37,16 +40,23 @@ export const useFileUpload = (): useFileUploadReturn => {
           throw new Error(`Upload failed for file: ${file.name}`);
         }
 
-        const data: PluginUploadFileDocument[] = await response.json();
-        return data[0]; // Return the first (and only) uploaded file
+        // Response can be either a single object or an array
+        const data = (await response.json()) as UploadResponse;
+        return data;
       });
 
       // Wait for all uploads to complete
       const uploadedFiles = await Promise.all(uploadPromises);
 
-      console.log("Upload responses:", uploadedFiles);
-
-      return uploadedFiles.map((file) => file.documentId);
+      // Extract IDs - handle both single object and array responses
+      return uploadedFiles.map((response) => {
+        if (Array.isArray(response)) {
+          // Multiple files uploaded - get first one's ID
+          return response[0]?.id ?? 0;
+        }
+        // Single file uploaded - get its ID
+        return response.id;
+      });
     } catch (error) {
       console.error("Upload error:", error);
       throw error;

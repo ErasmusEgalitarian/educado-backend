@@ -1,20 +1,22 @@
 import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "i18next";
-import { useEffect, useImperativeHandle, forwardRef } from "react";
+import {
+  useEffect,
+  useImperativeHandle,
+  forwardRef,
+  useState,
+  useRef,
+} from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import z from "zod";
 
-import { FormFileUpload } from "@/shared/components/form/form-file-upload";
-
-import {
-  ApiCourseCategoryCourseCategoryDocument,
-  ApiCourseCourseDocument,
-} from "@/shared/api";
-import { Dropzone } from "@/shared/components/dnd/Dropzone";
+import type { Course, CourseCategory } from "@/shared/api/types.gen";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
+import { FileWithMetadataSchema } from "@/shared/components/file-upload";
 import FormActions from "@/shared/components/form/form-actions";
+import { FormFileUpload } from "@/shared/components/form/form-file-upload";
 import { FormInput } from "@/shared/components/form/form-input";
 import { FormMultiSelect } from "@/shared/components/form/form-multi-select";
 import { FormSelect } from "@/shared/components/form/form-select";
@@ -22,18 +24,24 @@ import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
 import { Card, CardContent, CardFooter } from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
+import {
+  MultiSelectOption,
+  MultiSelectRef,
+} from "@/shared/components/shadcn/multi-select";
 import usePaginatedData from "@/shared/data-display/hooks/used-paginated-data";
+import { useFileUpload } from "@/shared/hooks/use-file-upload";
 import { toAppError } from "@/shared/lib/error-utilities";
 
 import {
   useCreateCourseMutation,
   useUpdateCourseMutation,
 } from "../api/course-mutations";
-import { FileWithMetadataSchema } from "@/shared/components/file-upload";
+
+import CategoryCreateModal from "./category-create-modal";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
-  course?: ApiCourseCourseDocument;
+  course?: Course;
   onComplete?: (courseId: string) => void;
 }
 
@@ -84,14 +92,15 @@ const CourseEditorInformation = forwardRef<
     createMutation.error ?? updateMutation.error
   );
 
-  /* ------------------------------- Categories ------------------------------- */
+  const { uploadFile } = useFileUpload();
 
+  /* ------------------------------- Categories ------------------------------- */
   const {
     data,
     error: categoriesError,
     isLoading: categoriesLoading,
     refetch: refetchCategories,
-  } = usePaginatedData<ApiCourseCategoryCourseCategoryDocument>({
+  } = usePaginatedData<CourseCategory>({
     mode: "standalone",
     queryKey: ["course-categories"],
     urlPath: "/course-categories",
@@ -106,21 +115,23 @@ const CourseEditorInformation = forwardRef<
   // Determine default form values based on whether we are editing or creating
   // If editing, populate with existing course data
   // If creating, use empty/default values
-  const defaultFormValue = course
-    ? {
-        title: course.title,
-        difficulty: String(course.difficulty) as "1" | "2" | "3",
-        categories: course.course_categories?.map(
-          (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId
-        ),
-        description: course.description,
-      }
-    : {
-        title: "",
-        difficulty: "1" as "1" | "2" | "3" | undefined,
-        categories: [],
-        description: "",
-      };
+
+  const defaultFormValue =
+    course === undefined
+      ? {
+          title: "",
+          difficulty: "1" as "1" | "2" | "3" | undefined,
+          categories: [],
+          description: "",
+        }
+      : {
+          title: course.title,
+          difficulty: String(course.difficulty) as "1" | "2" | "3",
+          categories: course.course_categories
+            ?.map((cat) => cat.documentId)
+            .filter((id): id is string => id !== undefined),
+          description: course.description,
+        };
 
   // Init form with React Hook Form + Zod
   const form = useForm<CourseBasicInfoFormValues>({
@@ -140,9 +151,9 @@ const CourseEditorInformation = forwardRef<
       form.reset({
         title: course.title,
         difficulty: String(course.difficulty) as "1" | "2" | "3",
-        categories: course.course_categories?.map(
-          (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId
-        ),
+        categories: course.course_categories
+          ?.map((cat) => cat.documentId)
+          .filter((id): id is string => id !== undefined),
         description: course.description,
       });
     }
@@ -162,33 +173,48 @@ const CourseEditorInformation = forwardRef<
 
   const onSubmit = async (values: CourseBasicInfoFormValues) => {
     try {
+      // Upload image if provided and take first id
+      const imageIds =
+        values.image && values.image.length > 0
+          ? await uploadFile(values.image)
+          : undefined;
+      const imageId = imageIds?.[0];
+
       // Edit = update mutation
-      if (isEditMode && course.documentId != "") {
+      if (
+        isEditMode &&
+        course?.documentId != null &&
+        course.documentId !== ""
+      ) {
         // Update existing course
         const result = await updateMutation.mutateAsync({
           documentId: course.documentId,
           title: values.title,
           difficulty: Number(values.difficulty),
-          categories: values.categories,
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          course_categories: values.categories,
           description: values.description,
+          image: imageId,
         });
 
         // Wait a moment to show success state, then complete step
         setTimeout(() => {
-          onComplete?.(result.documentId);
+          onComplete?.(result?.data?.documentId ?? "");
         }, 1500);
       } else {
         // Create = create mutation
         const result = await createMutation.mutateAsync({
           title: values.title,
           difficulty: Number(values.difficulty),
-          categories: values.categories ?? [],
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          course_categories: values.categories ?? [],
           description: values.description,
+          image: imageId,
         });
 
         // Wait a moment to show success state, then complete step
         setTimeout(() => {
-          onComplete?.(result.documentId);
+          onComplete?.(result?.data?.documentId ?? "");
         }, 1500);
       }
     } catch (error) {
@@ -198,11 +224,47 @@ const CourseEditorInformation = forwardRef<
   };
 
   const handleDismissCategoriesError = () => {
+    form.setFocus("categories");
     // Clear the field error
     form.clearErrors("categories");
     // Retry fetching categories
     void refetchCategories();
   };
+
+  /* -------------------------------- Multiselect -------------------------------- */
+  const multiInputRef = useRef<MultiSelectRef>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCategoryCreated = (data: CourseCategory) => {
+    const newOption: MultiSelectOption = {
+      label: data.name,
+      value: data.documentId ?? "",
+    };
+
+    if (!multiInputRef.current) {
+      console.error(
+        "multiInputRef is null - ref may not be properly forwarded"
+      );
+      return;
+    }
+    // Ensure we refresh the categories list so options remain in sync with the server,
+    // then select the new option. Keep this async work inside an IIFE to satisfy the
+    // onCreated: () => void contract and ESLint no-misused-promises.
+    void (async () => {
+      await refetchCategories();
+      const ref = multiInputRef.current;
+      if (!ref) return;
+      const current = ref.getSelectedValues();
+      if (!current.includes(newOption.value)) {
+        ref.setSelectedValues([...current, newOption.value]);
+      }
+    })();
+    setIsModalOpen(false);
+  };
+
+  if (categoriesError) {
+    form.setFocus("categories");
+  }
 
   return (
     <>
@@ -269,33 +331,31 @@ const CourseEditorInformation = forwardRef<
 
                     {/*Field to choose a category from a list of options*/}
                     <div className="flex flex-col w-1/2 space-y-2 text-left">
-                      <FormMultiSelect
-                        control={form.control}
-                        fieldName="categories"
-                        label={t("categories.categories")}
-                        disabled={categoriesLoading || !!categoriesError}
-                        isRequired={true}
-                        options={data.map(
-                          (
-                            category: ApiCourseCategoryCourseCategoryDocument
-                          ) => ({
-                            label: category.name,
-                            value: category.documentId,
-                          })
-                        )}
-                        description={
-                          categoriesLoading
-                            ? t("categories.loadingCategoriesDescription")
-                            : ""
+                      {(() => {
+                        let placeholder = t("categories.selectCategory");
+                        if (categoriesLoading) {
+                          placeholder = t("common.loading") + "...";
+                        } else if (categoriesError) {
+                          placeholder = t("common.error");
                         }
-                        createLabel={t("courseManager.addNewCategory")} // valgfri
-                        onCreate={(newCategory) => {
-                          data.push({
-                            ...newCategory,
-                            // cast som Partial<ApiCourseCategoryCourseCategoryDocument>
-                          } as Partial<ApiCourseCategoryCourseCategoryDocument>);
-                        }}
-                      />
+                        return (
+                          <FormMultiSelect
+                            ref={multiInputRef}
+                            fieldName="categories"
+                            control={form.control}
+                            label={t("categories.categories")}
+                            placeholder={placeholder}
+                            options={data.map((category) => ({
+                              label: category.name,
+                              value: category.documentId ?? "",
+                            }))}
+                            onCreateClick={() => {
+                              setIsModalOpen(true);
+                            }}
+                            createLabel={t("multiSelect.createCategory")}
+                          />
+                        );
+                      })()}
                     </div>
                   </div>
 
@@ -374,6 +434,13 @@ const CourseEditorInformation = forwardRef<
             </CardFooter>
           </form>
         </Form>
+        <CategoryCreateModal
+          open={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+          }}
+          onCreated={handleCategoryCreated}
+        />
       </Card>
       <DevTool control={form.control} />
     </>

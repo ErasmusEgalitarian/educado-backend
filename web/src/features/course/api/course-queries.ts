@@ -1,9 +1,11 @@
-import { ApiCourseCourseDocument, CourseService } from "@/shared/api";
+
+import { courseGetCoursesById } from "@/shared/api/sdk.gen";
+import type { Course } from "@/shared/api/types.gen";
 
 export const courseQuery = (courseId: string) => ["course", courseId] as const;
 
 /**
- * Fetch a single course by ID
+ * Fetch a single course by ID with Strapi query parameters
  * Used in edit mode to load existing course data
  *
  * IMPORTANT: Fetches both draft and published courses
@@ -11,22 +13,21 @@ export const courseQuery = (courseId: string) => ["course", courseId] as const;
  */
 export const CourseQueryFunction = (courseId: string) => ({
   queryKey: courseQuery(courseId),
-  queryFn: async (): Promise<ApiCourseCourseDocument> => {
-    const response = await CourseService.courseGetCoursesById(
-      courseId,
-      [
-        "title",
-        "description",
-        "difficulty",
-        "numOfRatings",
-        "numOfSubscriptions",
-        "createdAt",
-        "updatedAt",
-        "publishedAt",
-      ],
-      ["course_categories", "image", "course_sections"],
-      // Note: status parameter omitted to fetch both draft and published courses
-    );
-    return response.data;
+  queryFn: async (): Promise<Course> => {
+    const courseResponse = await courseGetCoursesById({
+      path: { id: courseId },
+      query: {
+        fields: ["title", "description", "difficulty", "numOfRatings", "numOfSubscriptions", "createdAt", "updatedAt", "publishedAt"],
+        // Use "*" to populate all relations with their full data including nested fields
+        populate: "course_categories",
+      },
+    });
+
+    // CourseResponse has an optional data property containing the Course
+    if (!courseResponse?.data) {
+      throw new Error(`Course with ID ${courseId} not found`);
+    }
+
+    return courseResponse.data;
   },
 });
