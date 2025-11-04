@@ -97,16 +97,21 @@ const MotivationCard = ({ open, onToggle }: { open: boolean; onToggle: () => voi
             <CardContent id="motive-content">
               <textarea
                 id="motivation"
+                value={text}
+                onChange={(e) => {
+                  setText(e.target.value);
+                }}
                 rows={5}
+                maxLength={maxChars}
                 placeholder="Escreva aqui por que você quer fazer parte do projeto"
-                className="w-full rounded-lg border-[1.5px] border-greyscale-border-lighter px-3 py-3 font-normal font-['Montserrat'] text-greyscale-text-subtle focus:outline-none focus:border-greyscale-border-default focus:border-2 resize-none"
+                className="w-full rounded-lg border-[1.5px] border-greyscale-border-lighter px-3 py-3 font-normal font-['Montserrat'] text-greyscale-text-subtle focus:outline-none focus:border-greyscale-border-default focus:border-2 resize-none placeholder:text-greyscale-text-subtle"
                 style={{ fontSize: "18px", lineHeight: "23.4px" }}
               />
               <CardFooter
-                className="flex justify-end pb-3 px-0 text-greyscale-text-caption font-normal font-['Montserrat']"
+                className="flex justify-end pb-5 pt-2 px-0 text-greyscale-text-caption font-normal font-['Montserrat']"
                 style={{ fontSize: "14px", lineHeight: "18.2px" }}
               >
-                caracteres
+                {text.length} / {maxChars} caracteres
               </CardFooter>
             </CardContent>
           </>
