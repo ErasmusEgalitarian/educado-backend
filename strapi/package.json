@@ -29,7 +29,7 @@
     "@strapi/plugin-cloud": "5.30.0",
     "@strapi/plugin-documentation": "5.30.0",
     "@strapi/plugin-users-permissions": "5.30.0",
-    "@strapi/strapi": "5.29.0",
+    "@strapi/strapi": "5.30.0",
     "bcrypt": "^6.0.0",
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^7.0.9",
