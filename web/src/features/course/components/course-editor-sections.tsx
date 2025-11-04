@@ -131,7 +131,7 @@ const CourseEditorSections = forwardRef<
               {sections.map((section, index) => (
                 <Card
                   key={section.id}
-                  className={`p-0 ${
+                  className={`p-0 rounded-sm ${
                     currentSectionEditing === section.id 
                       ? "border-primary border-2" 
                       : "border-greyscale-border"
@@ -176,7 +176,7 @@ const CourseEditorSections = forwardRef<
 
           {/* Add/Edit Section Form */}
           {showForm && (
-            <Card className="border border-primary-surface-default pt-0 overflow-hidden">
+            <Card className="rounded-sm border border-primary-surface-default pt-0 overflow-hidden">
               <CardHeader className="bg-primary-surface-default p-6 text-white font-bold">
                 {isEditing ? t("courseManager.editSection") : t("courseManager.createNewSection")}
               </CardHeader>
