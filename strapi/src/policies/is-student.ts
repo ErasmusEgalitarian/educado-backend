@@ -14,7 +14,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
     
     // Gets secret key from .env
     const secretKey = process.env.JWT_SECRET;
-    let user : any;
+    let user : Student;
 
     const authHeader = policyContext.request.ctx.headers.authorization;
 
@@ -27,7 +27,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
     try {
         // Extract the authenticated user from the policy context
         // We remove the "Bearer " prefix from the authorization header
-        user = jwt.verify(authHeader.split("Bearer ")[1], secretKey);
+        user = jwt.verify(authHeader.split("Bearer ")[1], secretKey) as Student;
     } catch (error) {
         strapi.log.error("JWT verification failed:", error);
         throw new PolicyError("JWT verification failed", {
@@ -54,8 +54,8 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
         // that matches both the user's email and documentId
         const student = await strapi.documents('api::student.student').findFirst({
             filters: { 
-                email: user.email, 
-                documentId: user.documentId 
+                email: user.email as string, 
+                documentId: user.documentId as string 
             },
         });
 
