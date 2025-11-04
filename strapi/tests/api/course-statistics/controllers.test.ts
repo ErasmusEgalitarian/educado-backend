@@ -1,5 +1,5 @@
 /* Tests for controllers */
-import { getCertificates, getStudentStats } from "../../../src/api/course-statistics/controllers/course-statistics";
+import { getCertificatesStats, getStudentStats } from "../../../src/api/course-statistics/controllers/course-statistics";
 
 describe('Test statistics', () => {
     let strapiMock;
@@ -35,7 +35,7 @@ describe('Test statistics', () => {
             }
         });
 
-        let result : any = await getCertificates(contentCreatorId);
+        let result : any = await getCertificatesStats(contentCreatorId);
         expect(result).toBeDefined();
         expect(result.total).toBeDefined();
         expect(result.progress).toBeDefined();
