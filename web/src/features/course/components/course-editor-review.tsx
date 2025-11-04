@@ -3,7 +3,6 @@ import Icon from "@mdi/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-
 import type { Course } from "@/shared/api/types.gen";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
 import { Button } from "@/shared/components/shadcn/button";
@@ -44,7 +43,7 @@ const CourseEditorReview = ({
     }
   };
 
-  const handlePublish = () => {
+  const handlePublish = async () => {
     if (course?.documentId == null) return;
 
     try {
