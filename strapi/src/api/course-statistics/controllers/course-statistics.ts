@@ -24,7 +24,8 @@ export default {
       // Define the ContentCreator type
       const CC_type: ContentCreator = {
         documentId: CC.documentId,
-        name: CC.firstName,
+        firstName: CC.firstName,
+        lastName: CC.lastName,
         email: CC.email,
         verifiedAt: new Date(CC.verifiedAt),
       };
@@ -47,11 +48,11 @@ export default {
   },
 };
 
-async function getStudentStats(documentId: string) {
-  // Find Content Creator
-  const user = await strapi
-    .documents("api::content-creator.content-creator")
-    .findFirst({
+
+export async function getStudentStats(documentId : string){
+    // Find Content Creator
+  const user = await strapi.documents('api::content-creator.content-creator').findFirst(
+    {
       populate: {
         courses: {
           populate: ["course_relations"],
@@ -106,7 +107,9 @@ async function getStudentStats(documentId: string) {
     },
   };
 }
-async function getCertificatesStats(documentId: string) {
+
+export async function getCertificates(documentId : string) {
+
   try {
     const creator = await strapi
       .documents("api::content-creator.content-creator")
@@ -119,7 +122,7 @@ async function getCertificatesStats(documentId: string) {
       throw { error: errorCodes["E0013"] };
     }
 
-    const courseIds = creator.courses.map((c) => c.documentId);
+    let courseIds = creator.courses.map((c) => c.documentId);
     // Fetch certificates for the creator's courses
     const certificates = await strapi
       .documents("api::certificate.certificate")
@@ -165,12 +168,14 @@ async function getCertificatesStats(documentId: string) {
       }
     }
 
-    return {
-      totalCertificatesIssued: countTotal,
-      thisMonth: countMonth,
-      last7Days: count7,
-      last30Days: count30,
-    };
+      courseIds = creator.courses.map((c) => c.documentId);
+      const totalCertificates = await strapi
+        .documents("api::certificate.certificate")
+        .count({
+          filters: { course: { documentId: { $in: courseIds } } },
+        });
+
+      return { documentId, totalCertificates };
   } catch (err) {
     throw err;
   }
