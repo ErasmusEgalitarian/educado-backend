@@ -185,7 +185,6 @@ const Signup: FC = () => {
     } catch (err: any) {
       const code = err?.response?.data?.error?.code as string | undefined;
 
-     
       if (code === "E0201") {
         form.setError("email", {
           type: "server",
