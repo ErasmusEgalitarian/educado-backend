@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
+import { useAuth } from "@/auth/hooks/use-auth";
 import background from "@/shared/assets/background.jpg";
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
@@ -28,6 +29,8 @@ interface Inputs {
 }
 
 const Login = () => {
+  const { login } = useAuth();
+
   // Error state
   const [error, setError] = useState<
     LoginResponseError.RootObject | string | null
@@ -47,11 +50,6 @@ const Login = () => {
       setError("");
     }, 5000);
   };
-
-  //Callback
-  const { call: login, isLoading: submitLoading } = useApi(
-    AuthServices.postUserLogin,
-  );
 
   //Variable determining the error message for both fields.
   const [emailError, setEmailError] = useState(null);
@@ -353,7 +351,7 @@ const Login = () => {
         cancelBtnText="Fechar" // Close (functions as the 'ok' button in this particular modal)
         onConfirm={() => {setNotApprovedError(null)}} // Empty function passed in due to confirm button not being present in this particular modal
         isVisible={notApprovedError}
-        onClose={() => setNotApprovedError(null)}
+        onClose={() => { setNotApprovedError(null); }}
       />
     </main>
   );

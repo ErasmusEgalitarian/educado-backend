@@ -5,8 +5,7 @@ import { z } from 'zod';
 export const zError = z.object({
     data: z.union([
         z.record(z.unknown()),
-        z.array(z.record(z.unknown())),
-        z.null()
+        z.array(z.record(z.unknown()))
     ]).optional(),
     error: z.object({
         status: z.number().int().optional(),
@@ -6252,6 +6251,17 @@ export const zContentCreatorPutContentCreatorsByIdRequest = z.object({
  * OK
  */
 export const zContentCreatorPutContentCreatorsByIdResponse = zContentCreatorResponse;
+
+export const zPostContentCreatorLoginRequest = z.object({
+    body: zLoginRequest,
+    path: z.never().optional(),
+    query: z.never().optional()
+});
+
+/**
+ * OK
+ */
+export const zPostContentCreatorLoginResponse = zJwtResponse;
 
 export const zCourseGetCoursesRequest = z.object({
     body: z.never().optional(),
