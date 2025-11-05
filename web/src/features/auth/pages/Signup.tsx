@@ -1,34 +1,21 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {mdiEyeOffOutline,mdiEyeOutline,mdiChevronLeft,mdiCheckBold,mdiAlertCircleOutline,} from "@mdi/js";
+import { mdiChevronLeft } from "@mdi/js";
 import { Icon } from "@mdi/react";
-import React, {createContext,useState,type FC,type ChangeEvent,} from "react";
+import { createContext,useState,type FC } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import { toast } from "sonner";
-import * as Yup from "yup";
 import { z } from "zod";
-
-
-
 import background from "@/shared/assets/background.jpg";
-import FormActions from "@/shared/components/form/form-actions";
 import { FormInput } from "@/shared/components/form/form-input";
 import { Button } from "@/shared/components/shadcn/button";
 import { Form } from "@/shared/components/shadcn/form";
-
-
 import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";
 import Carousel from "../../../unplaced/archive/Carousel";
 import AuthServices from "../../../unplaced/services/auth.services";
 import { LoginResponseError } from "../types/LoginResponseError";
-
-import EmailVerificationModal from "./email-verification/EmailVerificationModal";
-import { StringMatcher } from "node_modules/cypress/types/net-stubbing";
-
-
+import EmailVerificationModal from "@/features/auth/components/email-verification/EmailVerificationModal";
 
 /* =========================
  * Types & Schema

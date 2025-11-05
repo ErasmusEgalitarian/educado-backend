@@ -11,8 +11,8 @@ import AccountDeletionRequest from "./features/auth/components/AccountDeletionRe
 import DataDeletionRequest from "./features/auth/components/DataDeletionRequest";
 import Login from "./features/auth/components/Login";
 import PrivacyPolicy from "./features/auth/components/PrivacyPolicy";
-import Signup from "./features/auth/components/Signup";
-import SignupInfo from "./features/auth/components/SignupInformation";
+import Signup from "./features/auth/pages/Signup";
+import SignupInfo from "./features/auth/pages/SignupInformation";
 import Welcome from "./features/auth/pages/Welcome";
 import Certificates from "./features/certificates/pages/Certificates";
 import Profile from "./features/user/components/Profile";
