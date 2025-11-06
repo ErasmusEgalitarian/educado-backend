@@ -84,6 +84,19 @@
     "notifications": "Notificações",
     "noNotifications": "Nenhuma notificação"
   },
+  "rating": {
+    "rating": "Avaliação",
+    "ratings": "Avaliações",
+    "noRatings": "Nenhuma avaliação ainda",
+    "averageRating": "Avaliação Média",
+    "yourRating": "Sua Avaliação"
+  },
+  "difficulty": {
+    "difficulty": "Dificuldade",
+    "beginner": "Iniciante",
+    "intermediate": "Intermediário",
+    "advanced": "Avançado"
+  },
   "categories": {
     "category": "Categoria",
     "categories": "Categorias",

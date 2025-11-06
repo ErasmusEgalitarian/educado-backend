@@ -21,6 +21,9 @@ import { CourseCard } from "../components/course-card";
 import CourseOverviewSidebar from "../components/course-overview-sidebar";
 import { createCourseColumns } from "../lib/course-columns";
 
+// Lint: move inline icon component out of render scope
+const PlusIcon = () => <Icon path={mdiPlus} size={1} />;
+
 const CourseOverviewPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -55,7 +58,7 @@ const CourseOverviewPage = () => {
                 <Button
                   variant="primary"
                   iconPlacement="left"
-                  icon={() => <Icon path={mdiPlus} size={1} />}
+                  icon={PlusIcon}
                   onClick={() => {
                     navigate("create");
                   }}
@@ -72,7 +75,13 @@ const CourseOverviewPage = () => {
                 allowedViewModes="both"
                 gridItemRender={courseCard}
                 fields={
-                  ["title", "difficulty", "description"] as (keyof Course)[]
+                  [
+                    "title",
+                    "difficulty",
+                    "description",
+                    "updatedAt",
+                    "publishedAt",
+                  ] as (keyof Course)[]
                 }
                 populate={["course_categories"]}
                 config={{
