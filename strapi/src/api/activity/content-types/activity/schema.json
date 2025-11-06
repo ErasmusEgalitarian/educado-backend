@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "activities",
+  "info": {
+    "singularName": "activity",
+    "pluralName": "activities",
+    "displayName": "Activity"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Completed": {
+      "type": "boolean",
+      "required": false,
+      "default": false
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.video",
+        "content.description",
+        "content.exercise"
+      ]
+    },
+    "course_section": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course-section.course-section",
+      "inversedBy": "activities"
+    }
+  }
+}
