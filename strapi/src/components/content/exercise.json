@@ -5,7 +5,7 @@
   },
   "options": {},
   "attributes": {
-    "activity_exercise": {
+    "exercise": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::exercise.exercise"

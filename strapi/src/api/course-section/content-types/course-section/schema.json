@@ -30,8 +30,7 @@
     "activities": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::activity.activity",
-      "mappedBy": "course_section"
+      "target": "api::activity.activity"
     }
   }
 }

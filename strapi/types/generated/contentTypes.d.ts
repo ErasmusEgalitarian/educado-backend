@@ -445,10 +445,6 @@ export interface ApiActivityActivity extends Struct.CollectionTypeSchema {
     content: Schema.Attribute.DynamicZone<
       ['content.video', 'content.description', 'content.exercise']
     >;
-    course_section: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::course-section.course-section'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -806,7 +802,6 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
         maxLength: 50;
         minLength: 1;
       }>;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

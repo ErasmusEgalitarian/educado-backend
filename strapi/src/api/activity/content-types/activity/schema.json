@@ -27,12 +27,6 @@
         "content.description",
         "content.exercise"
       ]
-    },
-    "course_section": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::course-section.course-section",
-      "inversedBy": "activities"
     }
   }
 }
