@@ -8,6 +8,7 @@ import {
 
 import { Button } from "@/shared/components/shadcn/button";
 
+import ColumnFilterPopup from "./column-filter-popup";
 import { DataDisplayItem } from "./data-display";
 
 // This component is used to render the header cell of a data table
@@ -40,11 +41,19 @@ const DataTableHeaderCell = <TData extends DataDisplayItem>({
     return <Icon path={mdiSort} size={0.7} className="ml-2 h-4 w-4" />;
   };
 
+  // Determine if filter should show in column header
+  const quickFilter = meta?.quickFilter;
+  const showFilterInColumn =
+    meta?.filterable &&
+    quickFilter &&
+    (quickFilter.displayType?.where === "column" ||
+      quickFilter.displayType?.where === "both");
+
   return (
     <div className="flex items-center gap-1">
       {(meta?.sortable ?? false) ? (
         <Button
-          variant={isSorted !== false ? "secondary" : "ghost"}
+          variant={isSorted === false ? "ghost" : "secondary"}
           onClick={() => {
             column.toggleSorting(isSorted === "asc");
           }}
@@ -56,8 +65,9 @@ const DataTableHeaderCell = <TData extends DataDisplayItem>({
       ) : (
         <span className="font-semibold">{label}</span>
       )}
-
-      {/* Filtering will be added later when we implement it. The interface can be put in the header as a button, and update the state through TanStack's table API. It will then be picked up by usePaginatedData. */}
+      {showFilterInColumn && (
+        <ColumnFilterPopup column={column} quickFilter={quickFilter} />
+      )}
     </div>
   );
 };

@@ -83,6 +83,19 @@
     "notifications": "Notifications",
     "noNotifications": "No notifications"
   },
+  "rating": {
+    "rating": "Rating",
+    "ratings": "Ratings",
+    "noRatings": "No ratings yet",
+    "averageRating": "Average Rating",
+    "yourRating": "Your Rating"
+  },
+  "difficulty": {
+    "difficulty": "Difficulty",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
+  },
   "categories": {
     "category": "Category",
     "categories": "Categories",

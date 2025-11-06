@@ -38,6 +38,7 @@ import {
 } from "../api/course-mutations";
 
 import CategoryCreateModal from "./category-create-modal";
+import { difficultyToTranslation } from "../lib/difficulty-to-translation";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -321,11 +322,14 @@ const CourseEditorInformation = forwardRef<
                         fieldName="difficulty"
                         label={t("courseManager.level")}
                         placeholder={t("courseManager.selectLevel")}
-                        options={[
-                          { label: "Iniciante", value: "1" },
-                          { label: "Intermediário", value: "2" },
-                          { label: "Avançado", value: "3" },
-                        ]}
+                        options={Array.from({ length: 3 }, (_, i) => i + 1).map(
+                          (num) => {
+                            return {
+                              label: difficultyToTranslation(t, num),
+                              value: String(num),
+                            };
+                          }
+                        )}
                       />
                     </div>
 
