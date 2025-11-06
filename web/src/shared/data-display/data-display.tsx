@@ -31,8 +31,6 @@ import { getDefaultColumnVisibility } from "./lib/visibility-utility";
 import { type Status, type StaticFilters } from "./lib/query-params-builder";
 import PaginationBar from "./pagination-bar";
 
-import type { UsePaginatedDataConfig } from "./hooks/used-paginated-data";
-
 /* ----------------------------- Exported types ----------------------------- */
 
 // In order to reference an object (i.e. delete, edit), we NEED an entity with the documentId field. This is what Strapi accept for requests.
@@ -263,7 +261,7 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
   const table = useReactTable({
     data,
     columns,
-    getRowId: (row) => row.documentId,
+    getRowId: (row, index) => row.documentId ?? `row-${index}`,
     state: {
       sorting,
       columnFilters,
