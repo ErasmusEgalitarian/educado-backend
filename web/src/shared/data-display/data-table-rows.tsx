@@ -16,12 +16,14 @@ interface DataTableRowsProps<TData extends DataDisplayItem> {
   table: ReactTableType<TData>;
   isLoading: boolean;
   selectable?: boolean;
+  emptyState?: React.ReactNode;
 }
 
 const DataTableRows = <TData extends DataDisplayItem>({
   table,
   isLoading,
   selectable = false,
+  emptyState,
 }: Readonly<DataTableRowsProps<TData>>) => {
   const rows = table.getRowModel().rows;
   const columnsLength = table.getAllLeafColumns().length;
@@ -34,6 +36,10 @@ const DataTableRows = <TData extends DataDisplayItem>({
         selectable={selectable}
       />
     );
+  }
+
+  if (rows.length === 0) {
+    return <EmptyRow columnsLength={columnsLength} emptyState={emptyState} />;
   }
 
   return <TableRowsBase rows={rows} selectable={selectable} />;
@@ -173,5 +179,19 @@ const SelectableTableRows = <TData extends DataDisplayItem>({
     </>
   );
 };
+
+const EmptyRow = ({
+  columnsLength,
+  emptyState,
+}: {
+  columnsLength: number;
+  emptyState?: React.ReactNode;
+}) => (
+  <TableRow>
+    <TableCell colSpan={columnsLength} className="h-24 text-center">
+      {emptyState ?? "No results."}
+    </TableCell>
+  </TableRow>
+);
 
 export default DataTableRows;

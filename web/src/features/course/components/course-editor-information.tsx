@@ -10,7 +10,6 @@ import {
 } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 import z from "zod";
 
 import type { Course, CourseCategory } from "@/shared/api/types.gen";
@@ -22,10 +21,8 @@ import { FormInput } from "@/shared/components/form/form-input";
 import { FormMultiSelect } from "@/shared/components/form/form-multi-select";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
-import ReusableAlertDialog from "@/shared/components/modals/reusable-alert-dialog";
 import { useAlertDialog } from "@/shared/components/modals/use-alert-dialog";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
-import { Button } from "@/shared/components/shadcn/button";
 import { Card, CardContent } from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
 import {
@@ -41,8 +38,11 @@ import {
   useUpdateCourseMutation,
 } from "../api/course-mutations";
 
-
 import CategoryCreateModal from "./category-create-modal";
+import { difficultyToTranslation } from "../lib/difficulty-to-translation";
+import { Button } from "@/shared/components/shadcn/button";
+import { useNavigate } from "react-router";
+import ReusableAlertDialog from "@/shared/components/modals/reusable-alert-dialog";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -350,11 +350,14 @@ const CourseEditorInformation = forwardRef<
                         fieldName="difficulty"
                         label={t("courseManager.level")}
                         placeholder={t("courseManager.selectLevel")}
-                        options={[
-                          { label: "Iniciante", value: "1" },
-                          { label: "Intermediário", value: "2" },
-                          { label: "Avançado", value: "3" },
-                        ]}
+                        options={Array.from({ length: 3 }, (_, i) => i + 1).map(
+                          (num) => {
+                            return {
+                              label: difficultyToTranslation(t, num),
+                              value: String(num),
+                            };
+                          }
+                        )}
                       />
                     </div>
 
