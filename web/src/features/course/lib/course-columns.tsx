@@ -7,8 +7,6 @@ import {
   mdiNumeric1BoxOutline,
   mdiNumeric2BoxOutline,
   mdiNumeric3BoxOutline,
-  mdiPublish,
-  mdiPublishOff,
 } from "@mdi/js";
 import Icon from "@mdi/react";
 import { type CellContext, type ColumnDef } from "@tanstack/react-table";
@@ -52,13 +50,13 @@ export const createCourseColumns = ({
     },
     {
       accessorKey: "publishedAt",
-      header: t("common.publicationStatus"),
+      header: t("common.status"),
       cell: ({ row }) => {
         const publishedAt = row.getValue<string | null>("publishedAt");
         const isDraft = publishedAt === null;
         return (
           <Badge variant={isDraft ? "outline" : "default"}>
-            {isDraft ? t("common.unpublished") : t("common.published")}
+            {isDraft ? t("common.draft") : t("common.published")}
           </Badge>
         );
       },
@@ -71,18 +69,10 @@ export const createCourseColumns = ({
         quickFilter: {
           type: "select",
           displayType: { where: "both", when: "both" },
-          label: t("common.publicationStatus"),
+          label: t("common.status"),
           options: [
-            {
-              label: t("common.draft"),
-              value: "draft",
-              mdiIcon: mdiPublishOff,
-            },
-            {
-              label: t("common.published"),
-              value: "published",
-              mdiIcon: mdiPublish,
-            },
+            { label: t("common.draft"), value: "draft" },
+            { label: t("common.published"), value: "published" },
           ],
         },
       },
@@ -106,6 +96,12 @@ export const createCourseColumns = ({
       meta: {
         sortable: true,
         visibleByDefault: true,
+        quickFilter: {
+          type: "text",
+          displayType: { where: "both", when: "both" },
+          label: t("courseManager.courseName"),
+          placeholder: t("actions.search"),
+        },
       },
     },
     {
@@ -192,7 +188,10 @@ export const createCourseColumns = ({
       filterFn: (row, _columnId, filterValue) => {
         const categories = (row.original.course_categories ??
           []) as CourseCategory[];
-        const names = categories.map((c) => c.name.toLowerCase());
+        const names = categories
+          .map((c) => c.name)
+          .filter(Boolean)
+          .map((n) => n.toLowerCase());
         if (Array.isArray(filterValue)) {
           const lookup = new Set(
             (filterValue as unknown[]).map((v) => String(v).toLowerCase())
