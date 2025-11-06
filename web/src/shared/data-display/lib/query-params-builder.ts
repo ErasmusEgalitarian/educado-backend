@@ -182,6 +182,14 @@ export const buildApiQueryParams = (
   }
 
   // Apply status parameter (draft or published)
+  // NOTE: Strapi v5 Draft & Publish behavior is complex:
+  // - status=published: Returns ONLY published versions ✓
+  // - status=draft: Returns draft versions of ALL documents (even those with published versions)
+  // - filters[publishedAt][$null]=true: DOESN'T WORK - publishedAt is not filterable via REST API
+  //
+  // LIMITATION: There's no way via REST API to get "only unpublished documents"
+  // The best we can do is use status=draft (returns all draft versions)
+  // For "true drafts only", would need client-side filtering or custom Strapi controller
   function applyStatus() {
     if (status !== undefined) {
       searchParams.set("status", status);

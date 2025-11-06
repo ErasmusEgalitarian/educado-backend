@@ -305,10 +305,10 @@ export default function usePaginatedData<T>(
     queryKey: [
       queryKey ?? baseUrl, // Default to URL if no key provided. Makes it more difficult to invalidate cache without.
       resolvedMode, // 'client' or 'server'
-      ...(fields !== undefined ? [{ fields }] : []),
-      ...(populate !== undefined ? [{ populate }] : []),
-      ...(staticFilters !== undefined ? [{ staticFilters }] : []),
-      ...(effectiveStatus !== undefined ? [{ status: effectiveStatus }] : []),
+      ...(fields === undefined ? [] : [{ fields }]),
+      ...(populate === undefined ? [] : [{ populate }]),
+      ...(staticFilters === undefined ? [] : [{ staticFilters }]),
+      ...(effectiveStatus === undefined ? [] : [{ status: effectiveStatus }]),
       // For server mode, include pagination, sorting, and filtering in the key
       // For client mode, only the above params matter (sorting/filtering handled client-side)
       // Note: Changing effectiveStatus/staticFilters/fields/populate will refetch in BOTH modes
