@@ -14,9 +14,6 @@ const extractUser = (ctx: any): any => {
     return null;
   }
 
-  const token = authHeader.replace('Bearer ', '');
-  return jwt.verify(token, secretKey);
-  
   try {
     const token = authHeader.replace('Bearer ', '');
     return jwt.verify(token, secretKey);
