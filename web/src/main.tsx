@@ -10,7 +10,7 @@ import { AuthProvider } from "@/auth/context/auth-provider";
 
 import App from "./App";
 import "./index.css";
-import configureApiClient from "./shared/config/api-config";
+import { configureApiClient } from "./shared/config/api-config";
 import { NotificationProvider } from "./shared/context/NotificationContext";
 
 // Initialize and configure the API client
@@ -27,13 +27,14 @@ if (rootElement?.innerHTML === "") {
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <NotificationProvider>
-            <ToastContainer /> {/* Deprecated; kept temporarily for legacy notifications */}
+            <ToastContainer />{" "}
+            {/* Deprecated; kept temporarily for legacy notifications */}
             <Toaster position="top-right" richColors={true} />
             <App />
           </NotificationProvider>
         </AuthProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-    </StrictMode>,
+    </StrictMode>
   );
 }

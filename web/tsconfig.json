@@ -39,7 +39,7 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "__tests__", "cypress"],
+  "include": ["src", "__tests__", "cypress", "openapi-ts.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["cypress.config.ts", "cypress", "node_modules", "dist"]
 }
