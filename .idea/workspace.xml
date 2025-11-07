@@ -41,6 +41,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "Group7-test",
     "node.js.detected.package.eslint": "true",
@@ -48,10 +49,17 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Users/macbookpro/Documents/GitHub/P3/P3/educado-backend/strapi/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/mozer/Documents/GitHub/educado-backend/web/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.26830.93" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -65,6 +73,7 @@
       <workItem from="1761904054492" duration="7937000" />
       <workItem from="1762165257657" duration="7831000" />
       <workItem from="1762516446992" duration="1381000" />
+      <workItem from="1762518056601" duration="269000" />
     </task>
     <servers />
   </component>
