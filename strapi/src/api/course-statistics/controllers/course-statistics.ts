@@ -35,7 +35,14 @@ export default {
       const user_type = jwt.verify(jwtCC, secretKey) as ContentCreator;
       const courseIds : string[] = ctx.body.request as string[];
       ctx.response.body = {
-        courses: null, // TODO getCourses()
+        courses: {
+          total: 0,
+          progress: {
+            lastThirtyDays: 0,
+            lastSevenDays: 0,
+            thisMonth: 0
+          }
+        }, // TODO getCourses()
         students: await getStudentStats(user_type.documentId as string, courseIds),
         certificates: await getCertificatesStats(user_type.documentId as string, courseIds),
         evaluation: await getContentCreatorFeedback(user_type.documentId as string) 
@@ -100,11 +107,11 @@ export async function getStudentStats(documentId: string, cIds: string[]) {
   }
 
   return { 
-    total: countTotal, 
+    total: countTotal ?? 0, 
     progress: {
-      lastThirtyDays: Math.round((count30/(countTotal-count30))*100), 
-      lastSevenDays: Math.round((count7/(countTotal-count7))*100), 
-      thisMonth: Math.round((countMonth/(countTotal-countMonth))*100)
+      lastThirtyDays: Math.round((count30/(countTotal-count30))*100) ?? 0, 
+      lastSevenDays: Math.round((count7/(countTotal-count7))*100) ?? 0, 
+      thisMonth: Math.round((countMonth/(countTotal-countMonth))*100) ?? 0
     } 
   }
 }
@@ -164,11 +171,11 @@ export async function getCertificatesStats(documentId: string, cIds: string[] = 
     }
 
     return {
-      total: countTotal,
+      total: countTotal ?? 0,
       progress: {
-        lastThirtyDays: Math.round((count30/(countTotal-count30))*100), 
-        lastSevenDays: Math.round((count7/(countTotal-count7))*100), 
-        thisMonth: Math.round((countMonth/(countTotal-countMonth))*100)
+        lastThirtyDays: Math.round((count30/(countTotal-count30))*100) ?? 0, 
+        lastSevenDays: Math.round((count7/(countTotal-count7))*100) ?? 0, 
+        thisMonth: Math.round((countMonth/(countTotal-countMonth))*100) ?? 0
       }
     };
   } catch (err) {
@@ -176,85 +183,84 @@ export async function getCertificatesStats(documentId: string, cIds: string[] = 
   }
 }
 
- export async function getContentCreatorFeedback(documentId : string){
-
+export async function getContentCreatorFeedback(documentId: string) {
   try {
-      // Find Content Creator and related Course feedbacks
-      const user = await strapi.documents('api::content-creator.content-creator').findFirst(
-          {
-          populate: {
-              courses: {
-              populate: ["feedbacks"]
-              }
-          },
-          filters: {
-              documentId: documentId
+    // Find Content Creator and related Course feedbacks
+    const user = await strapi.documents('api::content-creator.content-creator').findFirst(
+      {
+        populate: {
+          courses: {
+            populate: ["feedbacks"]
           }
-          }
-      );
-      if (!user) {
-          throw { error: errorCodes['E0504'] }
-      }
-
-      // Aggregate feedbacks & time variations
-      let totalFeedbacks = 0;
-      let totalRating = 0;
-      let count7dFeedbacks = 0;
-      let count7dRating = 0;
-      let count30dFeedbacks = 0;
-      let count30dRating = 0;
-      let countCurrentMonthFeedbacks = 0;
-      let countCurrentMonthRating = 0;
-
-      for (const course of user.courses) {
-        const feedbacks = course.feedbacks;
-        for (const feedback of feedbacks) {
-          totalFeedbacks++;
-          totalRating += feedback.rating;
-
-          //30 days
-          if (
-            new Date(feedback.dateCreated) >
-            new Date(Date.now() - DAYS_30_MS)
-          ) {
-            count30dFeedbacks++;
-            count30dRating += feedback.rating;
-          }
-          //7 days
-          if (
-            new Date(feedback.dateCreated) >
-            new Date(Date.now() - DAYS_7_MS)
-          ) {
-            count7dFeedbacks++;
-            count7dRating += feedback.rating;
-          }
-          //Month
-          if (
-            new Date(feedback.dateCreated) >
-            new Date(new Date().getFullYear(), new Date().getMonth())
-          ) {
-            countCurrentMonthFeedbacks++;
-            countCurrentMonthRating += feedback.rating;
-          }
-    }
-  } 
-
-  const Totalaverage = totalRating / totalFeedbacks;
-  const Totalaverage7dProgress = count7dRating / count7dFeedbacks - Totalaverage;
-  const Totalaverage30dProgress = count30dRating / count30dFeedbacks - Totalaverage;
-  const TotalaverageCurrentMonthProgress = countCurrentMonthRating / countCurrentMonthFeedbacks - Totalaverage;
-
-  return {
-      total: Number(Totalaverage.toFixed(1)),
-      progress: {
-        thisMonth: Number(TotalaverageCurrentMonthProgress.toFixed(1)),        
-        lastSevenDays: Number(Totalaverage7dProgress.toFixed(1)),    
-        lastThirtyDays: Number(Totalaverage30dProgress.toFixed(1))
+        },
+        filters: {
+          documentId: documentId
         }
-      }; 
-  
+      }
+    );
+    if (!user) {
+      throw { error: errorCodes['E0504'] }
+    }
+
+    // Aggregate feedbacks & time variations
+    let totalFeedbacks = 0;
+    let totalRating = 0;
+    let count7dFeedbacks = 0;
+    let count7dRating = 0;
+    let count30dFeedbacks = 0;
+    let count30dRating = 0;
+    let countCurrentMonthFeedbacks = 0;
+    let countCurrentMonthRating = 0;
+
+    for (const course of user.courses) {
+      const feedbacks = course.feedbacks;
+      for (const feedback of feedbacks) {
+        totalFeedbacks++;
+        totalRating += feedback.rating;
+
+        //30 days
+        if (
+          new Date(feedback.dateCreated) >
+          new Date(Date.now() - DAYS_30_MS)
+        ) {
+          count30dFeedbacks++;
+          count30dRating += feedback.rating;
+        }
+        //7 days
+        if (
+          new Date(feedback.dateCreated) >
+          new Date(Date.now() - DAYS_7_MS)
+        ) {
+          count7dFeedbacks++;
+          count7dRating += feedback.rating;
+        }
+        //Month
+        if (
+          new Date(feedback.dateCreated) >
+          new Date(new Date().getFullYear(), new Date().getMonth())
+        ) {
+          countCurrentMonthFeedbacks++;
+          countCurrentMonthRating += feedback.rating;
+        }
+      }
+    }
+
+    const Totalaverage = totalRating / totalFeedbacks;
+    const Totalaverage7dProgress = count7dRating / count7dFeedbacks - Totalaverage;
+    const Totalaverage30dProgress = count30dRating / count30dFeedbacks - Totalaverage;
+    const TotalaverageCurrentMonthProgress = countCurrentMonthRating / countCurrentMonthFeedbacks - Totalaverage;
+
+    return {
+      total: Number(Totalaverage.toFixed(1)) ?? 0,
+      progress: {
+        thisMonth: Number(TotalaverageCurrentMonthProgress.toFixed(1)) ?? 0,
+        lastSevenDays: Number(Totalaverage7dProgress.toFixed(1)) ?? 0,
+        lastThirtyDays: Number(Totalaverage30dProgress.toFixed(1)) ?? 0
+      }
+    };
+
   } catch (err) {
-      throw { error: errorCodes['E0001'] }
+    throw { error: errorCodes['E0001'] }
   }
 }
 
