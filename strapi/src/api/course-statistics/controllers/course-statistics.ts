@@ -38,7 +38,7 @@ export default {
         courses: null, // TODO getCourses()
         students: await getStudentStats(user_type.documentId as string, []),
         certificates: 20, // TODO getCertificates()
-        evaluation: await getContentCreatorFeedback(user_type.documentId as string, ctx) 
+        evaluation: await getContentCreatorFeedback(user_type.documentId as string) 
       };
     } catch (err) {
       ctx.status = 500;
@@ -173,7 +173,7 @@ export async function getCertificatesStats(documentId: string) {
   }
 }
 
- async function getContentCreatorFeedback(documentId : string, ctx){
+ export async function getContentCreatorFeedback(documentId : string){
 
   try {
       // Find Content Creator and related Course feedbacks
@@ -190,8 +190,7 @@ export async function getCertificatesStats(documentId: string) {
           }
       );
       if (!user) {
-          ctx.status = 404;
-          ctx.body = { error: errorCodes['E0504'] }
+          throw { error: errorCodes['E0504'] }
       }
 
       // Aggregate feedbacks
@@ -218,8 +217,7 @@ export async function getCertificatesStats(documentId: string) {
       }; 
   
   } catch (err) {
-      ctx.status = 500;
-      ctx.body = { error: errorCodes['E0001'] }
+      throw { error: errorCodes['E0001'] }
   }
 }
 
