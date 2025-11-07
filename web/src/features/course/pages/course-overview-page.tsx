@@ -41,6 +41,7 @@ const CourseOverviewPage = () => {
     // Do something with selected courses (e.g., enable batch operations)
     toast.info(`${String(courses.length)} course(s) selected.`);
   }, []);
+  const [documentIds, setDocumentIds] = useState<string[]>([]);
 
   return (
     <PageContainer title={t("courses.pageTitle")}>
@@ -84,6 +85,7 @@ const CourseOverviewPage = () => {
                   limit: 2,
                   onChange: handleSelectionChange,
                 }}
+                onFilteredDocumentIds={setDocumentIds}
               />
               {/* Display selected courses count for demo */}
               {selectedCourses.length > 0 && (
@@ -98,7 +100,7 @@ const CourseOverviewPage = () => {
           </Card>
         </div>
         {/* Right sidebar */}
-        <CourseOverviewSidebar />
+        <CourseOverviewSidebar documentIds={documentIds} />
       </div>
     </PageContainer>
   );
