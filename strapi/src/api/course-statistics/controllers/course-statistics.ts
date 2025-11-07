@@ -107,11 +107,11 @@ export async function getStudentStats(documentId: string, cIds: string[]) {
   }
 
   return { 
-    total: countTotal, 
+    total: countTotal ?? 0, 
     progress: {
-      lastThirtyDays: Math.round((count30/(countTotal-count30))*100), 
-      lastSevenDays: Math.round((count7/(countTotal-count7))*100), 
-      thisMonth: Math.round((countMonth/(countTotal-countMonth))*100)
+      lastThirtyDays: Math.round((count30/(countTotal-count30))*100) ?? 0, 
+      lastSevenDays: Math.round((count7/(countTotal-count7))*100) ?? 0, 
+      thisMonth: Math.round((countMonth/(countTotal-countMonth))*100)?? 0
     } 
   }
 }
@@ -171,11 +171,11 @@ export async function getCertificatesStats(documentId: string, cIds: string[] = 
     }
 
     return {
-      total: countTotal,
+      total: countTotal ?? 0,
       progress: {
-        lastThirtyDays: Math.round((count30/(countTotal-count30))*100), 
-        lastSevenDays: Math.round((count7/(countTotal-count7))*100), 
-        thisMonth: Math.round((countMonth/(countTotal-countMonth))*100)
+        lastThirtyDays: Math.round((count30/(countTotal-count30))*100) ?? 0, 
+        lastSevenDays: Math.round((count7/(countTotal-count7))*100) ?? 0, 
+        thisMonth: Math.round((countMonth/(countTotal-countMonth))*100) ?? 0
       }
     };
   } catch (err) {
@@ -251,11 +251,11 @@ export async function getContentCreatorFeedback(documentId: string) {
     const TotalaverageCurrentMonthProgress = countCurrentMonthRating / countCurrentMonthFeedbacks - Totalaverage;
 
     return {
-      total: Number(Totalaverage.toFixed(1)),
+      total: Number(Totalaverage.toFixed(1)) ?? 0,
       progress: {
-        thisMonth: Number(TotalaverageCurrentMonthProgress.toFixed(1)),
-        lastSevenDays: Number(Totalaverage7dProgress.toFixed(1)),
-        lastThirtyDays: Number(Totalaverage30dProgress.toFixed(1))
+        thisMonth: Number(TotalaverageCurrentMonthProgress.toFixed(1)) ?? 0,
+        lastSevenDays: Number(Totalaverage7dProgress.toFixed(1)) ?? 0,
+        lastThirtyDays: Number(Totalaverage30dProgress.toFixed(1)) ?? 0
       }
     };
 
