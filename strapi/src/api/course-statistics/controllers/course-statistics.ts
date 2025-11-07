@@ -36,7 +36,7 @@ export default {
 
       ctx.response.body = {
         courses: null, // TODO getCourses()
-        students: await getStudentStats(user_type.documentId as string),
+        students: await getStudentStats(user_type.documentId as string, []),
         certificates: 20, // TODO getCertificates()
         evaluation: await getContentCreatorFeedback(user_type.documentId as string, ctx) 
       };
@@ -47,11 +47,11 @@ export default {
   },
 };
 
-
-export async function getStudentStats(documentId : string){
-    // Find Content Creator
-  const user = await strapi.documents('api::content-creator.content-creator').findFirst(
-    {
+export async function getStudentStats(documentId: string, cIds: []) {
+  // Find Content Creator
+  const user = await strapi
+    .documents("api::content-creator.content-creator")
+    .findFirst({
       populate: {
         courses: {
           populate: ["course_relations"],
@@ -65,12 +65,13 @@ export async function getStudentStats(documentId : string){
     throw { error: errorCodes["E0504"] };
   }
 
+  // Declare and initialise all varibles hosting the statistics
   let countTotal = 0;
   let count7 = 0;
   let count30 = 0;
   let countMonth = 0;
-  //Filter courses TODO
-  for (const course of user.courses) {
+  const filteredCourses = filterCoursesBasedOnCid(user.courses, cIds);  //Filter courses
+  for (const course of filteredCourses) {
     for (const courseRelation of course.course_relations) {
       countTotal++;
       //30 days
@@ -225,3 +226,22 @@ export async function getCertificatesStats(documentId: string) {
 
 
 
+
+
+//Maybe remove :any[] (but the helper type would be very large, and difficult to maintain)
+function filterCoursesBasedOnCid(courses : any[], courseIds : string[]){
+  if (courseIds.length == 0){
+    return [];
+  }
+  let filteredCourses : any[];
+  //Filter courses
+  for (const course of courses){
+    for (const cId of courseIds){
+      if(cId == course.documentId){
+        filteredCourses.push(course);
+        break;
+      }
+    }
+  }
+  return filteredCourses;
+}
