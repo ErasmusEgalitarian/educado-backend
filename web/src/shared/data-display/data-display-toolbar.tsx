@@ -13,11 +13,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/shared/components/shadcn/button";
 import { Input } from "@/shared/components/shadcn/input";
 
-import {
-  ButtonGroup,
-  ButtonGroupSeparator,
-  ButtonGroupText,
-} from "@/shared/components/shadcn/button-group";
+import { ButtonGroup } from "@/shared/components/shadcn/button-group";
 
 import {
   DropdownMenu,

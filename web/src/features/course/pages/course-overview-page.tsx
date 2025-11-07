@@ -63,8 +63,8 @@ const CourseOverviewPage = () => {
                 queryKey={["courses"]}
                 allowedViewModes="both"
                 gridItemRender={courseCard}
-                fields={["title", "difficulty", "description"]}
-                populate={["course_categories"]}
+                fields={["title", "difficulty", "description", "publishedAt"]}
+                populate={["course_categories", "content_creators"]}
                 initialPageSize={20}
                 config={{
                   renderMode: "client",

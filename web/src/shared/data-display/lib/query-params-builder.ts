@@ -19,7 +19,26 @@ export const buildApiQueryParams = (
     if (!Array.isArray(sorting) || sorting.length === 0) return;
     const first = sorting[0];
     const sortOrder = first.desc ? "desc" : "asc";
-    searchParams.set("sort", `${first.id}:${sortOrder}`);
+    
+    // Map column IDs to actual Strapi field names for sorting
+    // For relation fields, we'll use client-side sorting (handled by accessorFn)
+    // For direct fields like publishedAt, we can sort server-side
+    let sortField = first.id;
+    
+    // Handle special cases for relation-based columns
+    // These will fall back to client-side sorting if server-side isn't supported
+    if (first.id === "course_categories") {
+      // Strapi doesn't easily support sorting by relation fields
+      // This will be handled client-side via accessorFn
+      // For server-side, we skip it (client mode handles it)
+      return;
+    }
+    if (first.id === "creator") {
+      // Same as above - handled client-side
+      return;
+    }
+    
+    searchParams.set("sort", `${sortField}:${sortOrder}`);
   }
 
   function applyFields() {

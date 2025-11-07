@@ -89,8 +89,70 @@ export const createCourseColumns = ({
           </div>
         );
       },
+      accessorFn: (row) => {
+        // Extract first category name for sorting
+        const categories = row.course_categories ?? [];
+        return categories.length > 0 ? categories[0]?.name ?? "" : "";
+      },
       meta: {
-        sortable: false,
+        sortable: true,
+        filterable: true,
+        visibleByDefault: true,
+      },
+    },
+    {
+      id: "creator",
+      header: "Creator",
+      cell: ({ row }) => {
+        const course = row.original;
+        const creators = course.content_creators ?? [];
+
+        if (creators.length === 0) {
+          return (
+            <span className="text-muted-foreground">
+              {t("courseManager.creatorNotFound") || "No creator"}
+            </span>
+          );
+        }
+
+        const firstCreator = creators[0];
+        const creatorName = `${firstCreator.firstName ?? ""} ${firstCreator.lastName ?? ""}`.trim();
+        return <span>{creatorName || firstCreator.email || ""}</span>;
+      },
+      accessorFn: (row) => {
+        // Extract first creator name for sorting
+        const creators = row.content_creators ?? [];
+        if (creators.length === 0) return "";
+        const firstCreator = creators[0];
+        return `${firstCreator.firstName ?? ""} ${firstCreator.lastName ?? ""}`.trim() || firstCreator.email || "";
+      },
+      meta: {
+        sortable: true,
+        filterable: true,
+        visibleByDefault: true,
+      },
+    },
+    {
+      accessorKey: "publishedAt",
+      header: "Release Date",
+      cell: ({ row }) => {
+        const course = row.original;
+        if (!course.publishedAt) {
+          return (
+            <span className="text-muted-foreground">
+              {t("courseManager.notPublished") || "Not published"}
+            </span>
+          );
+        }
+        const date = new Date(course.publishedAt);
+        return (
+          <span>
+            {date.toLocaleDateString()}
+          </span>
+        );
+      },
+      meta: {
+        sortable: true,
         filterable: true,
         visibleByDefault: true,
       },
