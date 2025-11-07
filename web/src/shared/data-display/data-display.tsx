@@ -9,6 +9,7 @@ import {
   type SortingState,
   type VisibilityState,
   type PaginationState,
+  type FilterFn,
 } from "@tanstack/react-table";
 import { useState } from "react";
 
@@ -210,7 +211,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
     getFilteredRowModel: isUsingServerMode ? undefined : getFilteredRowModel(),
     manualFiltering: isUsingServerMode,
     // Custom global filter to search across all columns including relation fields (creator, categories)
-    globalFilterFn: (row, columnId, filterValue) => {
+    globalFilterFn: ((row, columnId, filterValue) => {
       const searchValue = String(filterValue).toLowerCase();
       if (!searchValue) return true;
 
@@ -245,7 +246,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
       }
 
       return false;
-    },
+    }) as FilterFn<T>,
     
     onColumnVisibilityChange: setColumnVisibility,
     

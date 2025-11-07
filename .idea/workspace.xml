@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7c0655d-2919-44e1-b081-c470ca6f37d9" name="Changes" comment="" />
+    <list default="true" id="f7c0655d-2919-44e1-b081-c470ca6f37d9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/web/src/shared/data-display/data-display.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/shared/data-display/data-display.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,7 +66,7 @@
       <workItem from="1761649750768" duration="1099000" />
       <workItem from="1761904054492" duration="7937000" />
       <workItem from="1762165257657" duration="7831000" />
-      <workItem from="1762516446992" duration="1381000" />
+      <workItem from="1762516446992" duration="1703000" />
     </task>
     <servers />
   </component>
