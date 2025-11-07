@@ -63,12 +63,40 @@ export const buildApiQueryParams = (
     if (trimmed === "") return;
     if (!Array.isArray(fields)) return;
     if (fields.length === 0) return;
-    fields.forEach((field, idx) => {
+    
+    let filterIndex = 0;
+    
+    // Search in direct fields (title, description, etc.)
+    fields.forEach((field) => {
       searchParams.append(
-        `filters[$or][${String(idx)}][${field}][$containsi]`,
+        `filters[$or][${String(filterIndex)}][${field}][$containsi]`,
         trimmed,
       );
+      filterIndex++;
     });
+    
+    // Also search in creator names (relation field)
+    searchParams.append(
+      `filters[$or][${String(filterIndex)}][content_creators][firstName][$containsi]`,
+      trimmed,
+    );
+    filterIndex++;
+    searchParams.append(
+      `filters[$or][${String(filterIndex)}][content_creators][lastName][$containsi]`,
+      trimmed,
+    );
+    filterIndex++;
+    searchParams.append(
+      `filters[$or][${String(filterIndex)}][content_creators][email][$containsi]`,
+      trimmed,
+    );
+    filterIndex++;
+    
+    // Also search in category names
+    searchParams.append(
+      `filters[$or][${String(filterIndex)}][course_categories][name][$containsi]`,
+      trimmed,
+    );
   }
 
   applyPagination();

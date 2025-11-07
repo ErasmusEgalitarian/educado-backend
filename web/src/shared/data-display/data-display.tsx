@@ -172,8 +172,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
 
   const isUsingServerMode = resolvedMode === "server";
 
-  // Pre-calculate pageCount for client mode (needed for table initialization)
-  // In client mode, we need to count filtered rows; in server mode, use API value
+
   const getCalculatedPageCount = () => {
     if (isUsingServerMode) {
       return extendedPagination.totalPages;
@@ -209,15 +208,51 @@ export const DataDisplay = <T extends DataDisplayItem>({
     onGlobalFilterChange: setGlobalFilter,
     getFilteredRowModel: isUsingServerMode ? undefined : getFilteredRowModel(),
     manualFiltering: isUsingServerMode,
-    // Column visibility
+   
+    globalFilterFn: (row, columnId, filterValue) => {
+      const searchValue = String(filterValue).toLowerCase();
+      if (!searchValue) return true;
+
+      
+      const cellValue = row.getValue(columnId);
+      if (cellValue != null && String(cellValue).toLowerCase().includes(searchValue)) {
+        return true;
+      }
+
+      
+      const rowData = row.original as Record<string, any>;
+      
+   
+      if (rowData.content_creators && Array.isArray(rowData.content_creators)) {
+        for (const creator of rowData.content_creators) {
+          const creatorName = `${creator.firstName || ""} ${creator.lastName || ""}`.trim().toLowerCase();
+          const creatorEmail = (creator.email || "").toLowerCase();
+          if (creatorName.includes(searchValue) || creatorEmail.includes(searchValue)) {
+            return true;
+          }
+        }
+      }
+      
+    
+      if (rowData.course_categories && Array.isArray(rowData.course_categories)) {
+        for (const category of rowData.course_categories) {
+          if (category.name && String(category.name).toLowerCase().includes(searchValue)) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    },
+    
     onColumnVisibilityChange: setColumnVisibility,
-    // Pagination
+    
     onPaginationChange: setPagination,
     getPaginationRowModel: isUsingServerMode
       ? undefined
       : getPaginationRowModel(),
-    manualPagination: isUsingServerMode, // Only manual in server mode; client mode uses TanStack pagination
-    pageCount: getCalculatedPageCount(), // Use pre-calculated pageCount
+    manualPagination: isUsingServerMode,
+    pageCount: getCalculatedPageCount(),
   });
 
   const handleViewModeChange = (mode: ViewMode) => {
@@ -225,7 +260,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
   };
 
   const handleSearchChange = (value: string) => {
-    setGlobalFilter(value); // TanStack Table handles empty string correctly
+    setGlobalFilter(value);
   };
 
   if (error != null) {
@@ -245,20 +280,20 @@ export const DataDisplay = <T extends DataDisplayItem>({
     );
   }
 
-  // Get processed rows from TanStack Table (respects client-side sorting/filtering in client mode)
+
   const processedRows = table.getRowModel().rows;
   const processedData = processedRows.map((row) => row.original);
 
-  // Get filtered (but not paginated) rows for calculating total in client mode
+
   const filteredRows = isUsingServerMode
     ? []
     : table.getFilteredRowModel().rows;
 
-  // Calculate display pagination based on mode
+
   const displayPagination = isUsingServerMode
     ? extendedPagination // Server mode: use API values directly
     : {
-        // Client mode: recalculate based on ALL filtered results (before pagination)
+
         pageIndex: pagination.pageIndex,
         pageSize: pagination.pageSize,
         totalItems: filteredRows.length,
@@ -268,12 +303,12 @@ export const DataDisplay = <T extends DataDisplayItem>({
         ),
       };
 
-  // In client mode, we need to show filtered count; in server mode, use API total
+
   const displayedItemCount = isUsingServerMode
     ? data.length
     : processedRows.length;
 
-  // Determine if we should show empty state
+
   const showEmptyState = displayedItemCount === 0 && !isLoading;
 
   /* --------------------------- Rendered component --------------------------- */
@@ -283,7 +318,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
     }
 
     if (viewMode === "grid") {
-      // Grid uses TanStack's processed data (sorted/filtered in client mode)
+
       return (
         <DataGrid
           data={processedData as DataDisplayItem[]}
@@ -296,7 +331,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
         />
       );
     }
-    // Table uses the TanStack Table instance directly
+
     return <DataTable table={table} isLoading={isLoading} />;
   }
 
