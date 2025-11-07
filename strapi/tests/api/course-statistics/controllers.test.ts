@@ -70,7 +70,7 @@ describe('Test statistics', () => {
             }
         });
 
-        let result : any = await getStudentStats(contentCreatorId);
+        let result : any = await getStudentStats(contentCreatorId, ["course1", "course2"]);
         expect(result).toBeDefined();
         expect(result.total).toBeDefined();
         expect(result.progress).toBeDefined();

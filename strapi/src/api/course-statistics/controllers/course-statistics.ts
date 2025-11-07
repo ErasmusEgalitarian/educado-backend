@@ -33,9 +33,10 @@ export default {
       // Extract the authenticated user from the policy context
       // This object is populated by Strapi when the user is logged in
       const user_type = jwt.verify(jwtCC, secretKey) as ContentCreator;
+      const courseIds : string[] = ctx.body.request as string[];
       ctx.response.body = {
         courses: null, // TODO getCourses()
-        students: await getStudentStats(user_type.documentId as string, []),
+        students: await getStudentStats(user_type.documentId as string, courseIds),
         certificates: 20, // TODO getCertificates()
         evaluation: await getContentCreatorFeedback(user_type.documentId as string) 
       };
@@ -46,7 +47,7 @@ export default {
   },
 };
 
-export async function getStudentStats(documentId: string, cIds: []) {
+export async function getStudentStats(documentId: string, cIds: string[]) {
   // Find Content Creator
   const user = await strapi
     .documents("api::content-creator.content-creator")
@@ -264,7 +265,7 @@ function filterCoursesBasedOnCid(courses : any[], courseIds : string[]){
   if (courseIds.length == 0){
     return [];
   }
-  let filteredCourses : any[];
+  let filteredCourses : any[] = [];
   //Filter courses
   for (const course of courses){
     for (const cId of courseIds){
