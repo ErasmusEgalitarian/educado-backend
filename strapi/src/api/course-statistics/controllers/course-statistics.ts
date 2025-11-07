@@ -237,16 +237,16 @@ export async function getCertificatesStats(documentId: string) {
   } 
 
   const Totalaverage = totalRating / totalFeedbacks;
-  const Totalaverage7d = count7dRating / count7dFeedbacks;
-  const Totalaverage30d = count30dRating / count30dFeedbacks;
-  const TotalaverageCurrentMonth = countCurrentMonthRating / countCurrentMonthFeedbacks;
+  const Totalaverage7dProgress = count7dRating / count7dFeedbacks - Totalaverage;
+  const Totalaverage30dProgress = count30dRating / count30dFeedbacks - Totalaverage;
+  const TotalaverageCurrentMonthProgress = countCurrentMonthRating / countCurrentMonthFeedbacks - Totalaverage;
 
   return {
       total: Number(Totalaverage.toFixed(1)),
       progress: {
-        thisMonth: Number(TotalaverageCurrentMonth.toFixed(1)) - Number(Totalaverage.toFixed(1)),        
-        lastSevenDays: Number(Totalaverage7d.toFixed(1)) - Number(Totalaverage.toFixed(1)),    
-        lastThirtyDays: Number(Totalaverage30d.toFixed(1)) - Number(Totalaverage.toFixed(1))
+        thisMonth: Number(TotalaverageCurrentMonthProgress.toFixed(1)),        
+        lastSevenDays: Number(Totalaverage7dProgress.toFixed(1)),    
+        lastThirtyDays: Number(Totalaverage30dProgress.toFixed(1))
         }
       }; 
   

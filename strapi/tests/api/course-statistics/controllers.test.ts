@@ -82,29 +82,28 @@ describe('Test statistics', () => {
         });
     });
 
-
     it('Get all course feedbacks for a content creator', async () => {
         strapiMock.documents = jest.fn().mockImplementation((api) => {
             return {
                 findFirst: jest.fn().mockResolvedValue({
                     courses: [
                         { documentId: "course1", feedbacks:[ 
-                            {rating: 4},
-                            {rating: 3},
-                            {rating: 5},
-                            {rating: 4},
-                            {rating: 2},
-                            {rating: 2},
-                            {rating: 5},
+                            { rating: 4, dateCreated: new Date("2025-11-14") },
+                            { rating: 3, dateCreated: new Date("2025-11-14") },
+                            { rating: 5, dateCreated: new Date("2025-11-14") },
+                            { rating: 4, dateCreated: new Date("2025-11-01") },
+                            { rating: 2, dateCreated: new Date("2025-11-01") },
+                            { rating: 2, dateCreated: new Date("2025-11-01") },
+                            { rating: 5, dateCreated: new Date("2025-11-01") },
                         ]}, 
                         { documentId: "course2", feedbacks:[ 
-                            {rating: 1},
-                            {rating: 1},
-                            {rating: 1},
-                            {rating: 2},
-                            {rating: 3},
-                            {rating: 2},
-                            {rating: 5},
+                            { rating: 1, dateCreated: new Date("2025-09-05") },
+                            { rating: 1, dateCreated: new Date("2025-09-05") },
+                            { rating: 1, dateCreated: new Date("2025-09-05") },
+                            { rating: 2, dateCreated: new Date("2025-10-21") },
+                            { rating: 3, dateCreated: new Date("2025-10-21") },
+                            { rating: 2, dateCreated: new Date("2025-10-21") },
+                            { rating: 5, dateCreated: new Date("2025-10-21") }
                         ]}
                     ]
                 })
@@ -117,9 +116,9 @@ describe('Test statistics', () => {
         expect(result.progress).toBeDefined();
         expect(result.total).toBe(2.9);
         expect(result.progress).toEqual({
-            thisMonth: 25,
-            lastSevenDays: 10,
-            lastThirtyDays: 30
+            thisMonth: 0.7,
+            lastSevenDays: 1.1,
+            lastThirtyDays: 0.5
         });
     });
 });
