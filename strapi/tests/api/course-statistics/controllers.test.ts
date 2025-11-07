@@ -39,6 +39,7 @@ describe('Test statistics', () => {
         expect(result).toBeDefined();
         expect(result.total).toBeDefined();
         expect(result.progress).toBeDefined();
+        expect(result.total).toBe(4);
         expect(result.progress).toEqual({
             thisMonth: 33,
             lastSevenDays: 0,
