@@ -172,7 +172,8 @@ export const DataDisplay = <T extends DataDisplayItem>({
 
   const isUsingServerMode = resolvedMode === "server";
 
-
+  // Pre-calculate pageCount for client mode (needed for table initialization)
+  // In client mode, we need to count filtered rows; in server mode, use API value
   const getCalculatedPageCount = () => {
     if (isUsingServerMode) {
       return extendedPagination.totalPages;
@@ -208,21 +209,22 @@ export const DataDisplay = <T extends DataDisplayItem>({
     onGlobalFilterChange: setGlobalFilter,
     getFilteredRowModel: isUsingServerMode ? undefined : getFilteredRowModel(),
     manualFiltering: isUsingServerMode,
-   
+    // Custom global filter to search across all columns including relation fields (creator, categories)
     globalFilterFn: (row, columnId, filterValue) => {
       const searchValue = String(filterValue).toLowerCase();
       if (!searchValue) return true;
 
-      
+      // First check the current column's value (uses accessorFn if defined)
       const cellValue = row.getValue(columnId);
       if (cellValue != null && String(cellValue).toLowerCase().includes(searchValue)) {
         return true;
       }
 
-      
+      // For relation fields, also check the raw row data
+      // This ensures creator names are searchable even when checking other columns
       const rowData = row.original as Record<string, any>;
       
-   
+      // Search in creator names (firstName, lastName, email)
       if (rowData.content_creators && Array.isArray(rowData.content_creators)) {
         for (const creator of rowData.content_creators) {
           const creatorName = `${creator.firstName || ""} ${creator.lastName || ""}`.trim().toLowerCase();
@@ -233,7 +235,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
         }
       }
       
-    
+      // Search in category names
       if (rowData.course_categories && Array.isArray(rowData.course_categories)) {
         for (const category of rowData.course_categories) {
           if (category.name && String(category.name).toLowerCase().includes(searchValue)) {
@@ -251,8 +253,8 @@ export const DataDisplay = <T extends DataDisplayItem>({
     getPaginationRowModel: isUsingServerMode
       ? undefined
       : getPaginationRowModel(),
-    manualPagination: isUsingServerMode,
-    pageCount: getCalculatedPageCount(),
+    manualPagination: isUsingServerMode, 
+    pageCount: getCalculatedPageCount(), 
   });
 
   const handleViewModeChange = (mode: ViewMode) => {
@@ -260,7 +262,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
   };
 
   const handleSearchChange = (value: string) => {
-    setGlobalFilter(value);
+    setGlobalFilter(value); 
   };
 
   if (error != null) {
@@ -280,20 +282,20 @@ export const DataDisplay = <T extends DataDisplayItem>({
     );
   }
 
-
+ 
   const processedRows = table.getRowModel().rows;
   const processedData = processedRows.map((row) => row.original);
 
-
+  
   const filteredRows = isUsingServerMode
     ? []
     : table.getFilteredRowModel().rows;
 
-
+  
   const displayPagination = isUsingServerMode
-    ? extendedPagination // Server mode: use API values directly
+    ? extendedPagination 
     : {
-
+        
         pageIndex: pagination.pageIndex,
         pageSize: pagination.pageSize,
         totalItems: filteredRows.length,
@@ -303,7 +305,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
         ),
       };
 
-
+  
   const displayedItemCount = isUsingServerMode
     ? data.length
     : processedRows.length;
@@ -311,14 +313,14 @@ export const DataDisplay = <T extends DataDisplayItem>({
 
   const showEmptyState = displayedItemCount === 0 && !isLoading;
 
-  /* --------------------------- Rendered component --------------------------- */
+  
   function getDataComponent(): React.ReactElement {
     if (showEmptyState) {
       return <DataDisplayEmptyState customEmptyState={emptyState} />;
     }
 
     if (viewMode === "grid") {
-
+ 
       return (
         <DataGrid
           data={processedData as DataDisplayItem[]}
@@ -331,7 +333,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
         />
       );
     }
-
+    
     return <DataTable table={table} isLoading={isLoading} />;
   }
 
