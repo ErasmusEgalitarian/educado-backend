@@ -37,7 +37,7 @@ export default {
       ctx.response.body = {
         courses: null, // TODO getCourses()
         students: await getStudentStats(user_type.documentId as string, courseIds),
-        certificates: 20, // TODO getCertificates()
+        certificates: await getCertificatesStats(user_type.documentId as string, courseIds),
         evaluation: await getContentCreatorFeedback(user_type.documentId as string) 
       };
     } catch (err) {
@@ -47,6 +47,7 @@ export default {
   },
 };
 
+// Define the ContentCreator type used in JWT payload 
 export async function getStudentStats(documentId: string, cIds: string[]) {
   // Find Content Creator
   const user = await strapi
@@ -107,7 +108,7 @@ export async function getStudentStats(documentId: string, cIds: string[]) {
     } 
   }
 }
-export async function getCertificatesStats(documentId: string) {
+export async function getCertificatesStats(documentId: string, cIds: string[] = []) {
   try {
     const creator = await strapi
       .documents("api::content-creator.content-creator")
@@ -120,7 +121,9 @@ export async function getCertificatesStats(documentId: string) {
       throw { error: errorCodes["E0013"] };
     }
 
-    let courseIds = creator.courses.map((c) => c.documentId);
+    // Filter courses based on provided cIds and extract their documentIds
+    const filteredCourses = filterCoursesBasedOnCid(creator.courses, cIds);
+    const courseIds = filteredCourses.map((c) => c.documentId); 
     // Fetch certificates for the creator's courses
     const certificates = await strapi
       .documents("api::certificate.certificate")
