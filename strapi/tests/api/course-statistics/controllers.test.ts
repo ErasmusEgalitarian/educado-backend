@@ -1,5 +1,6 @@
 /* Tests for controllers */
-import { getCertificatesStats, getStudentStats } from "../../../src/api/course-statistics/controllers/course-statistics";
+import { getCertificatesStats, getStudentStats, getContentCreatorFeedback } from "../../../src/api/course-statistics/controllers/course-statistics";
+import feedback from "../../../src/api/feedback/controllers/feedback";
 
 describe('Test statistics', () => {
     let strapiMock;
@@ -78,6 +79,47 @@ describe('Test statistics', () => {
             thisMonth: 11,
             lastSevenDays: 11,
             lastThirtyDays: 150
+        });
+    });
+
+
+    it('Get all course feedbacks for a content creator', async () => {
+        strapiMock.documents = jest.fn().mockImplementation((api) => {
+            return {
+                findFirst: jest.fn().mockResolvedValue({
+                    courses: [
+                        { documentId: "course1", feedbacks:[ 
+                            {rating: 4},
+                            {rating: 3},
+                            {rating: 5},
+                            {rating: 4},
+                            {rating: 2},
+                            {rating: 2},
+                            {rating: 5},
+                        ]}, 
+                        { documentId: "course2", feedbacks:[ 
+                            {rating: 1},
+                            {rating: 1},
+                            {rating: 1},
+                            {rating: 2},
+                            {rating: 3},
+                            {rating: 2},
+                            {rating: 5},
+                        ]}
+                    ]
+                })
+            }
+        });
+
+        let result : any = await getContentCreatorFeedback(contentCreatorId);
+        expect(result).toBeDefined();
+        expect(result.total).toBeDefined();
+        expect(result.progress).toBeDefined();
+        expect(result.total).toBe(2.9);
+        expect(result.progress).toEqual({
+            thisMonth: 25,
+            lastSevenDays: 10,
+            lastThirtyDays: 30
         });
     });
 });
