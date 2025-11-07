@@ -33,7 +33,6 @@ export default {
       // Extract the authenticated user from the policy context
       // This object is populated by Strapi when the user is logged in
       const user_type = jwt.verify(jwtCC, secretKey) as ContentCreator;
-
       ctx.response.body = {
         courses: null, // TODO getCourses()
         students: await getStudentStats(user_type.documentId as string, []),
@@ -193,26 +192,60 @@ export async function getCertificatesStats(documentId: string) {
           throw { error: errorCodes['E0504'] }
       }
 
-      // Aggregate feedbacks
+      // Aggregate feedbacks & time variations
       let totalFeedbacks = 0;
       let totalRating = 0;
+      let count7dFeedbacks = 0;
+      let count7dRating = 0;
+      let count30dFeedbacks = 0;
+      let count30dRating = 0;
+      let countCurrentMonthFeedbacks = 0;
+      let countCurrentMonthRating = 0;
 
       for (const course of user.courses) {
         const feedbacks = course.feedbacks;
         for (const feedback of feedbacks) {
           totalFeedbacks++;
           totalRating += feedback.rating;
-      }
+
+          //30 days
+          if (
+            new Date(feedback.dateCreated) >
+            new Date(Date.now() - DAYS_30_MS)
+          ) {
+            count30dFeedbacks++;
+            count30dRating += feedback.rating;
+          }
+          //7 days
+          if (
+            new Date(feedback.dateCreated) >
+            new Date(Date.now() - DAYS_7_MS)
+          ) {
+            count7dFeedbacks++;
+            count7dRating += feedback.rating;
+          }
+          //Month
+          if (
+            new Date(feedback.dateCreated) >
+            new Date(new Date().getFullYear(), new Date().getMonth())
+          ) {
+            countCurrentMonthFeedbacks++;
+            countCurrentMonthRating += feedback.rating;
+          }
+    }
   } 
 
   const Totalaverage = totalRating / totalFeedbacks;
+  const Totalaverage7d = count7dRating / count7dFeedbacks;
+  const Totalaverage30d = count30dRating / count30dFeedbacks;
+  const TotalaverageCurrentMonth = countCurrentMonthRating / countCurrentMonthFeedbacks;
 
   return {
       total: Number(Totalaverage.toFixed(1)),
       progress: {
-        thisMonth: 25,        
-        lastSevenDays: 10,    
-        lastThirtyDays: 30
+        thisMonth: Number(TotalaverageCurrentMonth.toFixed(1)) - Number(Totalaverage.toFixed(1)),        
+        lastSevenDays: Number(Totalaverage7d.toFixed(1)) - Number(Totalaverage.toFixed(1)),    
+        lastThirtyDays: Number(Totalaverage30d.toFixed(1)) - Number(Totalaverage.toFixed(1))
         }
       }; 
   
