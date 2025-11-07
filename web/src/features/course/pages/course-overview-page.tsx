@@ -37,6 +37,13 @@ const CourseOverviewPage = () => {
     []
   );
 
+  const handleSelectionChange = useCallback((courses: Course[]) => {
+    setSelectedCourses(courses);
+    // Do something with selected courses (e.g., enable batch operations)
+    toast.info(`${String(courses.length)} course(s) selected.`);
+  }, []);
+  const [documentIds, setDocumentIds] = useState<string[]>([]);
+
   return (
     <PageContainer title={t("courses.pageTitle")}>
       <div className="flex gap-x-20">
@@ -81,12 +88,18 @@ const CourseOverviewPage = () => {
                   renderMode: "client",
                   clientModeThreshold: 50,
                 }}
+                selection={{
+                  enabled: true,
+                  limit: 2,
+                  onChange: handleSelectionChange,
+                }}
+                onFilteredDocumentIds={setDocumentIds}
               />
             </CardContent>
           </Card>
         </div>
         {/* Right sidebar */}
-        <CourseOverviewSidebar />
+        <CourseOverviewSidebar documentIds={documentIds} />
       </div>
     </PageContainer>
   );
