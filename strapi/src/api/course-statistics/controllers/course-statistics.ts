@@ -33,7 +33,7 @@ export default {
       // Extract the authenticated user from the policy context
       // This object is populated by Strapi when the user is logged in
       const user_type = jwt.verify(jwtCC, secretKey) as ContentCreator;
-      const courseIds : string[] = ctx.body.request as string[];
+      const courseIds : string[] = ctx.request.body.documentIds as string[];
       ctx.response.body = {
         courses: {
           total: 0,

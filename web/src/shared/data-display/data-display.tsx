@@ -10,7 +10,7 @@ import {
   type VisibilityState,
   type PaginationState,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { ErrorBoundary } from "../components/error/error-boundary";
@@ -74,6 +74,8 @@ interface BaseDataDisplayProps<T extends DataDisplayItem> {
   emptyState?: React.ReactNode;
   className?: string;
   selection?: DataDisplaySelectionConfig<T>;
+  /** Optional callback that receives the list of documentId strings for the currently filtered (pre-paginated) items. */
+  onFilteredDocumentIds?: (ids: string[]) => void;
 }
 
 // Discriminated union based on allowedViewModes
@@ -153,7 +155,8 @@ export const DataDisplay = <T extends DataDisplayItem>({
   populate,
   config,
   selection,
-}: DataDisplayProps<T>) => {
+  onFilteredDocumentIds,
+}: DataDisplayProps<T> & { onFilteredDocumentIds?: (ids: string[]) => void }) => {
   const { t } = useTranslation();
   const hasTable = allowedViewModes === "table" || allowedViewModes === "both";
   const hasGrid = allowedViewModes === "grid" || allowedViewModes === "both";
@@ -292,6 +295,24 @@ export const DataDisplay = <T extends DataDisplayItem>({
   const filteredRows = isUsingServerMode
     ? []
     : table.getFilteredRowModel().rows;
+
+  // Derive the list of items considered "filtered" from the component's perspective.
+  // In client mode this is the TanStack filtered rows (before pagination). In server mode
+  // the server provides `data` which already represents the filtered page; we expose that
+  // as the filtered set for the caller (parent) so it can always receive a consistent list.
+  const filteredItems: DataDisplayItem[] = isUsingServerMode
+    ? (data as DataDisplayItem[])
+    : filteredRows.map((r) => r.original);
+
+  // Extract documentId strings and notify parent when they change
+  const documentIds = filteredItems
+    .map((c) => c.documentId)
+    .filter((id): id is string => typeof id === "string");
+
+  useEffect(() => {
+    onFilteredDocumentIds?.(documentIds);
+    // We join ids for a stable dependency array (array identity changes often)
+  }, [onFilteredDocumentIds, documentIds.join(",")]);
 
   // Calculate display pagination based on mode
   const displayPagination = isUsingServerMode
