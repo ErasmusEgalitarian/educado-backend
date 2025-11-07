@@ -35,7 +35,7 @@ describe('Test statistics', () => {
             }
         });
 
-        let result : any = await getCertificatesStats(contentCreatorId);
+        let result : any = await getCertificatesStats(contentCreatorId, ["course1", "course2"]);
         expect(result).toBeDefined();
         expect(result.total).toBeDefined();
         expect(result.progress).toBeDefined();
