@@ -55,7 +55,8 @@
     "name": "Nome",
     "retry": "Tentar Novamente",
     "rating": "Avaliação",
-    "error": "Erro"
+    "error": "Erro",
+    "goPrevious": "Voltar para anterior"
   },
   "pagination": {
     "items": "itens",
@@ -91,25 +92,6 @@
     "loadingCategories": "Carregando Categorias",
     "loadingCategoriesDescription": "Por favor, aguarde enquanto buscamos as categorias de cursos disponíveis...",
     "categoriesError": "Erro ao carregar categorias"
-  },
-  "createCourse": {
-    "generalInfo": "Informações Gerais",
-    "courseName": "Nome do Curso",
-    "courseNamePlaceholder": "Digite o nome do curso",
-    "level": "Nível",
-    "selectLevel": "Selecione o nível",
-    "description": "Descrição",
-    "descriptionPlaceholder": "Digite a descrição",
-    "coverImage": "Imagem de Capa",
-    "beginner": "Iniciante",
-    "intermediate": "Intermediário",
-    "advanced": "Avançado",
-    "characters": "caracteres",
-    "newCourse": "Novo Curso",
-    "createSections": "Criar Seções",
-    "cancelAndReturn": "Cancelar e Voltar",
-    "saveAsDraft": "Salvar como Rascunho",
-    "reviewCourse": "Revisar Curso"
   },
   "courseManager": {
     "course": "Curso",
@@ -176,7 +158,8 @@
   },
   "courseEditor": {
     "fetchCourseDataError": "Erro ao carregar dados do curso: {{message}}",
-    "skipToReview": "Pular para avaliação"
+    "skipToReview": "Pular para avaliação",
+    "saveAsDraft": "Salvar como rascunho"
   },
   "courseEditorReview": {
     "thisCourseIsCurrentlyVisibleToStudents": "Este curso está atualmente visível para os alunos"

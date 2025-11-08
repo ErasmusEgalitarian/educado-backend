@@ -55,7 +55,8 @@
     "name": "Name",
     "retry": "Retry",
     "rating": "Rating",
-    "error": "Error"
+    "error": "Error",
+    "goPrevious": "Go to previous"
   },
   "pagination": {
     "items": "items",
@@ -157,7 +158,8 @@
   },
   "courseEditor": {
     "fetchCourseDataError": "Error loading Course Data: {{message}}",
-    "skipToReview": "Skip to review"
+    "skipToReview": "Skip to review",
+    "saveAsDraft": "Save as draft"
   },
   "courseEditorReview": {
     "thisCourseIsCurrentlyVisibleToStudents": "This course is currently visible to students"

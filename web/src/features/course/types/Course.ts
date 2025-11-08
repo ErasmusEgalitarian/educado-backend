@@ -128,5 +128,5 @@ export interface FormattedCourse {
 
 export type SubmitFunction = (
   formData: FormData,
-  token: string,
+  token: string
 ) => Promise<void>;
