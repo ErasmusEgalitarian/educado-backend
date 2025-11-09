@@ -1,24 +1,27 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { mdiChevronDown, mdiChevronUp } from "@mdi/js";
 import { Icon } from "@mdi/react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { z } from "zod";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
+import {
+  contentCreatorGetContentCreatorsById,
+  contentCreatorPutContentCreatorsById,
+} from "@/shared/api/sdk.gen";
 import { tempObjects } from "@/shared/lib/formStates";
-import { contentCreatorGetContentCreatorsById, contentCreatorPutContentCreatorsById } from "@/shared/api/sdk.gen";
 
+import staticForm from "../../../shared/components/form/staticForm";
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import Layout from "../../../shared/components/Layout";
 import { useApi } from "../../../shared/hooks/useAPI";
 import dynamicForms from "../../../unplaced/dynamicForms";
 import AccountServices from "../../../unplaced/services/account.services";
 import ProfileServices from "../../../unplaced/services/profile.services";
-import staticForm from "../../../shared/components/form/staticForm";
 
 import AcademicExperienceForm from "./academic-experience-form";
 import PersonalInformationForm from "./PersonalInformation";
@@ -127,12 +130,11 @@ const Profile = () => {
   const { clearToken } = useAuthStore((state) => state);
 
   //callback (kept for legacy compatibility but not used)
-  const {
-    isLoading: submitLoading,
-  } = useApi(ProfileServices.putFormOne);
+  const { isLoading: submitLoading } = useApi(ProfileServices.putFormOne);
 
   // State for storing content creator data
-  const [contentCreatorData, setContentCreatorData] = useState<ContentCreator | null>(null);
+  const [contentCreatorData, setContentCreatorData] =
+    useState<ContentCreator | null>(null);
 
   // Form submit, sends data to backend upon user interaction
   const handleUpdateSubmit = async () => {
@@ -159,15 +161,21 @@ const Profile = () => {
             // Note: Keep existing required fields from the current data
             email: contentCreatorData?.email || formData.UserEmail,
             password: "", // Send empty string - controller will remove it before processing
-            education: (contentCreatorData?.education || "TODO1") as "TODO1" | "TODO2" | "TODO3",
-            statusValue: (contentCreatorData?.statusValue || "TODO1") as "TODO1" | "TODO2" | "TODO3",
+            education: contentCreatorData?.education || "TODO1",
+            statusValue: contentCreatorData?.statusValue || "TODO1",
             courseExperience: contentCreatorData?.courseExperience || "",
             institution: contentCreatorData?.institution || "",
-            eduStart: contentCreatorData?.eduStart || new Date().toISOString().split('T')[0],
-            eduEnd: contentCreatorData?.eduEnd || new Date().toISOString().split('T')[0],
+            eduStart:
+              contentCreatorData?.eduStart ||
+              new Date().toISOString().split("T")[0],
+            eduEnd:
+              contentCreatorData?.eduEnd ||
+              new Date().toISOString().split("T")[0],
             currentCompany: contentCreatorData?.currentCompany || "",
             currentJobTitle: contentCreatorData?.currentJobTitle || "",
-            companyStart: contentCreatorData?.companyStart || new Date().toISOString().split('T')[0],
+            companyStart:
+              contentCreatorData?.companyStart ||
+              new Date().toISOString().split("T")[0],
           },
         },
       });
@@ -175,7 +183,9 @@ const Profile = () => {
       if (response) {
         // Update local storage with new name
         try {
-          const userInfo = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+          const userInfo = JSON.parse(
+            localStorage.getItem("loggedInUser") || "{}"
+          );
           userInfo.firstName = firstName;
           userInfo.lastName = lastName;
           localStorage.setItem("loggedInUser", JSON.stringify(userInfo));
@@ -186,10 +196,12 @@ const Profile = () => {
 
         // Show success message
         toast.success("Perfil atualizado com sucesso!");
-        
+
         // Invalidate and refetch the content creator query to get fresh data
-        queryClient.invalidateQueries({ queryKey: ['contentCreator', documentId] });
-        
+        queryClient.invalidateQueries({
+          queryKey: ["contentCreator", documentId],
+        });
+
         // Disable submit button after successful submission
         setAreAllFormsFilledCorrect(false);
         setHasSubmitted(true);
@@ -212,7 +224,7 @@ const Profile = () => {
 
   // Fetch content creator data from Strapi using useQuery
   const { data: fetchedCreatorData, error: creatorError } = useQuery({
-    queryKey: ['contentCreator', documentId],
+    queryKey: ["contentCreator", documentId],
     queryFn: async () => {
       if (!documentId) {
         throw new Error("No documentId found in localStorage");
@@ -232,7 +244,8 @@ const Profile = () => {
       setContentCreatorData(fetchedCreatorData as ContentCreator);
       setFormData((prevData) => ({
         ...prevData,
-        UserName: `${fetchedCreatorData.firstName || ""} ${fetchedCreatorData.lastName || ""}`.trim(),
+        UserName:
+          `${fetchedCreatorData.firstName || ""} ${fetchedCreatorData.lastName || ""}`.trim(),
         UserEmail: fetchedCreatorData.email || "",
         bio: fetchedCreatorData.biography || "",
         linkedin: "",
@@ -260,10 +273,10 @@ const Profile = () => {
   useEffect(() => {
     setAreAllFormsFilledCorrect(
       !submitError &&
-      !educationErrorState &&
-      !experienceErrorState &&
-      dynamicInputsFilled("education") &&
-      dynamicInputsFilled("experience")
+        !educationErrorState &&
+        !experienceErrorState &&
+        dynamicInputsFilled("education") &&
+        dynamicInputsFilled("experience")
     );
   }, [
     submitError,

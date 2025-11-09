@@ -1,5 +1,6 @@
-import Icon from "@mdi/react";
 import { mdiBookOpenBlankVariantOutline, mdiShieldCheckOutline } from "@mdi/js";
+import Icon from "@mdi/react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import {
@@ -50,7 +51,7 @@ const SidebarElement = ({
   tooltip,
 }: {
   path: string;
-  icon: JSX.Element;
+  icon: React.JSX.Element;
   tooltip: string;
 }) => {
   // get the current location
