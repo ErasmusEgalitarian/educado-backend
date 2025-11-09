@@ -10,14 +10,10 @@ import { Table } from "@tanstack/react-table";
 import { ChevronDown, Grid, List } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+import { SelectionSummary } from "@/shared/components/item-selector";
 import { Button } from "@/shared/components/shadcn/button";
+import { ButtonGroup } from "@/shared/components/shadcn/button-group";
 import { Input } from "@/shared/components/shadcn/input";
-
-import {
-  ButtonGroup,
-  ButtonGroupSeparator,
-  ButtonGroupText,
-} from "@/shared/components/shadcn/button-group";
 
 import {
   DropdownMenu,
@@ -40,6 +36,7 @@ export interface DataDisplayToolbarProps<TData> {
   searchValue?: string;
   onSearchChange?: (value: string) => void;
   className?: string;
+  selectable?: boolean;
 }
 
 /** Toolbar for data display components, including view mode toggle, column toggler, and search input. */
@@ -52,6 +49,7 @@ const DataDisplayToolbar = <TData,>({
   searchValue = "",
   onSearchChange,
   className = "",
+  selectable = false,
 }: DataDisplayToolbarProps<TData>) => {
   const { t } = useTranslation();
 
@@ -60,7 +58,7 @@ const DataDisplayToolbar = <TData,>({
       {/* View mode toggle - left side */}
       {hasTable && hasGrid && (
         <ButtonGroup>
-          <Button 
+          <Button
             variant={viewMode === "grid" ? "toggle" : "outline"}
             size="sm"
             onClick={() => {
@@ -81,18 +79,20 @@ const DataDisplayToolbar = <TData,>({
         </ButtonGroup>
       )}
 
+      {/* Selection Summary */}
+      {selectable && <SelectionSummary />}
+
       <div className="flex items-center gap-4 ml-auto">
         {/* Search - right side */}
         {onSearchChange && (
           <div className="">
-            
             <Input
               placeholder={t("actions.search") + "..."}
               value={searchValue}
               onChange={(e) => {
                 onSearchChange(e.target.value);
               }}
-              endIcon={<Icon path={mdiMagnify} size={1}/>}
+              endIcon={<Icon path={mdiMagnify} size={1} />}
             />
           </div>
         )}
@@ -112,7 +112,7 @@ const DataDisplayToolbar = <TData,>({
               <DropdownMenuSeparator />
               {table
                 .getAllColumns()
-                .filter((column) => typeof column.accessorFn !== "undefined")
+                .filter((column) => column.accessorFn !== undefined)
                 .filter((column) => column.getCanSort())
                 .filter((column) => column.id.toLowerCase() !== "documentid")
                 .map((column) => {
@@ -193,8 +193,7 @@ const DataDisplayToolbar = <TData,>({
                 .getAllColumns()
                 .filter(
                   (column) =>
-                    typeof column.accessorFn !== "undefined" &&
-                    column.getCanHide()
+                    column.accessorFn !== undefined && column.getCanHide()
                 )
                 .map((column) => {
                   const header =
