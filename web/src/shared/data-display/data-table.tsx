@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import { type Table as ReactTableType } from "@tanstack/react-table";
-import Icon from "@mdi/react";
 import { mdiCheck, mdiMinus } from "@mdi/js";
+import Icon from "@mdi/react";
+import { type Table as ReactTableType } from "@tanstack/react-table";
 
 import { useItemSelector } from "@/shared/components/item-selector";
 import {
