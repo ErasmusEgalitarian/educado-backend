@@ -5,6 +5,7 @@ import {
   type Row,
   type Table as ReactTableType,
 } from "@tanstack/react-table";
+import { Check } from "lucide-react";
 
 import { TableRow, TableCell } from "@/shared/components/shadcn/table";
 import { useItemSelector } from "@/shared/data-display/item-selector";
