@@ -1,5 +1,4 @@
-import Icon from "@mdi/react";
-import { mdiCheck } from "@mdi/js";
+import { Check } from "lucide-react";
 import * as React from "react";
 import { useCallback, useContext, useMemo, useState } from "react";
 
@@ -192,7 +191,7 @@ export const SelectableCard = ({
             : "border-[#c1cfd7] bg-white"
         )}
       >
-        {selected && <Icon path={mdiCheck} className="h-4 w-4" />}
+        {selected && <Check className="h-4 w-4" />}
       </div>
       {children}
     </div>
@@ -239,7 +238,7 @@ export const SelectableRow = ({
               : "border-[#c1cfd7] bg-white"
           )}
         >
-          {selected && <Icon path={mdiCheck} className="h-3 w-3" />}
+          {selected && <Check className="h-3 w-3" />}
         </div>
       </td>
       {children}
