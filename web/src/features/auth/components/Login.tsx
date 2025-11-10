@@ -105,12 +105,13 @@ const Login = () => {
             setEmailError(err);
             setEmailErrorMessage(t("login.email-error"));
             setError("");
+            areFieldsFilled(true);
             break;
 
           case "E1001": //User Not Approved
             setNotApprovedError(err);
-            
             setError("");
+            areFieldsFilled();
             break;
 
           
@@ -127,7 +128,7 @@ const Login = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  function areFieldsFilled() {
+  function areFieldsFilled(isThereAnError = false) {
     const inputloginEmail = document.getElementById(
       "email-field",
     ) as HTMLInputElement;
@@ -139,23 +140,34 @@ const Login = () => {
       "submit-login-button",
     ) as HTMLButtonElement;
     
-  const buttonContainer = submitloginButton.parentElement as HTMLDivElement;
-    
-
-    if (inputloginEmail.value.trim() && inputloginPass.value.trim() !== "") {
+    const buttonContainer = submitloginButton.parentElement as HTMLDivElement;
+    if(isThereAnError === true){
+      submitloginButton.setAttribute("disabled", "true");
+      buttonContainer.style.backgroundColor = "#C1CFD7"; // default color when not filled
+      submitloginButton.style.color = "#809CAD";
+      
+    } else if (inputloginEmail.value.trim() && inputloginPass.value.trim() !== "" ) {
       submitloginButton.removeAttribute("disabled");
       buttonContainer.style.backgroundColor = "#35A1B1";
       submitloginButton.style.color = "#FDFEFF";
+
+      // function to clear error messages once fields are empty
+      setEmailError(null);
+      setEmailErrorMessage("");
+      setNotApprovedError(null);
+      
     } else {
       submitloginButton.setAttribute("disabled", "true");
       buttonContainer.style.backgroundColor = "#C1CFD7"; // default color when not filled
       submitloginButton.style.color = "#809CAD";         // default text color
+      // function to clear error messages once fields are empty
+      setEmailError(null);
+      setEmailErrorMessage("");
+      setNotApprovedError(null);
     }
-
-    // function to clear error messages once fields are empty
-    setEmailError(null);
-    setEmailErrorMessage("");
-    setNotApprovedError(null);
+      
+      
+    
   }
   
   
