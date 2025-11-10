@@ -191,20 +191,24 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
   });
 
   // Expose ref methods
-  React.useImperativeHandle(ref, () => ({
-    columnFilters,
-    sorting,
-    globalFilter,
-    resetFilters: () => {
-      setColumnFilters([]);
-    },
-    resetSorting: () => {
-      setSorting([]);
-    },
-    resetGlobalFilter: () => {
-      setGlobalFilter("");
-    },
-  }));
+  React.useImperativeHandle(
+    ref,
+    () => ({
+      columnFilters,
+      sorting,
+      globalFilter,
+      resetFilters: () => {
+        setColumnFilters([]);
+      },
+      resetSorting: () => {
+        setSorting([]);
+      },
+      resetGlobalFilter: () => {
+        setGlobalFilter("");
+      },
+    }),
+    [columnFilters, sorting, globalFilter]
+  );
 
   // Fetch data with integrated mode
   const { data, isLoading, error, extendedPagination, resolvedMode, refetch } =
