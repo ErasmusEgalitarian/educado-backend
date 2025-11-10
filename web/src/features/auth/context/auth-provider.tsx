@@ -7,6 +7,7 @@ import { defaultUserPreferences } from "@/auth/types/auth-context";
 import type { AuthContextType, UserPreferences } from "@/auth/types/auth-context";
 import { useLocalStorage } from "@/shared/hooks/use-local-storage";
 import type { User } from "@/user/types/User";
+import { postContentCreatorLogin } from "@/shared/api/sdk.gen";
 
 // https://www.shadcn.io/hooks/use-local-storage
 
@@ -27,37 +28,37 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     defaultUserPreferences,
   );
 
-  // Mock login: accepts email/password and returns a fake user
+  // accepts email/password and returns a user
   const login = useCallback(
-    (email: string, password: string): Promise<User> => {
-      // Create a simple mock user from the email
-      const [namePart] = email.split("@");
-      const now = new Date().toISOString();
+    async ({ email, password }: { email: string; password: string }): Promise<any> => {
+    try {
+      const response = await postContentCreatorLogin({
+        body: { email, password },
+      });
 
-      const mockUser: User = {
-        // Using Math.random for a temporary mock ID is acceptable in mock code.
-        // eslint-disable-next-line sonarjs/pseudo-random
-        _id: Math.random().toString(36).slice(2),
-        role: email.includes("admin") ? "admin" : "user",
-        firstName:
-          namePart.length > 0
-            ? namePart.charAt(0).toUpperCase() + namePart.slice(1)
-            : "User",
-        lastName: "",
-        email,
-        joinedAt: now,
-        dateUpdated: now,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const { user, token } = response.data;
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      setAuthToken(token);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      setLoggedInUserLS(user);
+
+      return response; // so res.status etc. still available
+    } catch (error: any) {
+      // eslint-disable-next-line @typescript-eslint/only-throw-error
+      throw {
+        response: {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          data: error?.response?.data ?? {
+            error: { details: { error: { code: "UNKNOWN" } } },
+          },
+        },
       };
-
-      // Store a mock token
-      setAuthToken(btoa(`${email}:${password}`));
-
-      // Set the user in local storage
-      setLoggedInUserLS(mockUser);
-      return Promise.resolve(mockUser);
-    },
-    [setLoggedInUserLS, setAuthToken],
-  );
+    }
+  },
+  [setLoggedInUserLS, setAuthToken],
+);
 
   // Mock logout: clears user from storage
   const logout = useCallback(() => {

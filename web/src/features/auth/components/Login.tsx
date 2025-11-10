@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import { useAuth } from "@/auth/hooks/use-auth";
+import { postContentCreatorLogin } from "@/shared/api/sdk.gen";
 import background from "@/shared/assets/background.jpg";
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
@@ -16,6 +16,8 @@ import Carousel from "../../../unplaced/archive/carousel";
 import AuthServices from "../../../unplaced/services/auth.services";
 import { setUserInfo } from "../lib/userInfo";
 import { LoginResponseError } from "../types/LoginResponseError";
+
+
 
 
 import PasswordRecoveryModal from "./password-recovery/PasswordRecoveryModal";
@@ -29,7 +31,6 @@ interface Inputs {
 }
 
 const Login = () => {
-  const { login } = useAuth();
 
   // Error state
   const [error, setError] = useState<
@@ -50,7 +51,11 @@ const Login = () => {
       setError("");
     }, 5000);
   };
-
+  
+  const { call: login, isLoading: submitLoading } = useApi(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    postContentCreatorLogin,
+  );
   //Variable determining the error message for both fields.
   const [emailError, setEmailError] = useState(null);
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
@@ -70,16 +75,17 @@ const Login = () => {
    */
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await login({
-      isContentCreator: true,
-      email: data.email,
-      password: data.password,
+       body: {
+        email: data.email,
+        password: data.password,
+        },
     })
       .then((res) => {
         if (res.status == 200) {
           /* eslint-disable  @typescript-eslint/no-unsafe-assignment *//* eslint-disable  @typescript-eslint/no-unsafe-member-access */
-          const token = res.data.jwt; 
+          const token = res.jwt; 
           /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
-          const user = res.data.user;
+          const user = res.user;
           /* eslint-disable  @typescript-eslint/no-unsafe-argument */
           localStorage.setItem("token", token);
           localStorage.setItem("id", user.id);

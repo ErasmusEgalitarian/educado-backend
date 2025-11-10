@@ -10,6 +10,7 @@ import App from "./App";
 import "./index.css";
 import { configureApiClient } from "./shared/config/api-config";
 import { NotificationProvider } from "./shared/context/NotificationContext";
+import { AuthProvider } from "@/auth/context/auth-provider.tsx";
 
 // Initialize and configure the API client
 configureApiClient();
