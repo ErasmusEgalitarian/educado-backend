@@ -88,9 +88,9 @@ type DataDisplayProps<T extends DataDisplayItem> =
     });
 
 export interface DataDisplayRef {
-  columnFilters: ColumnFiltersState;
-  sorting: SortingState;
-  globalFilter: string;
+  readonly columnFilters: ColumnFiltersState;
+  readonly sorting: SortingState;
+  readonly globalFilter: string;
   resetFilters: () => void;
   resetSorting: () => void;
   resetGlobalFilter: () => void;
