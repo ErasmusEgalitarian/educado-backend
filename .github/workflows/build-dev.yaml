@@ -59,6 +59,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Debug registry access
+        run: |
+          echo "Registry URL is set: ${{ secrets.REGISTRY_URL != '' }}"
+          echo "Registry username is set: ${{ secrets.REGISTRY_USERNAME != '' }}"
+          echo "Registry password is set: ${{ secrets.REGISTRY_PASSWORD != '' }}"
+
       - name: Set image name
         id: set-image
         env:
@@ -114,6 +120,12 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
+      - name: Debug registry access
+        run: |
+          echo "Registry URL is set: ${{ secrets.REGISTRY_URL != '' }}"
+          echo "Registry username is set: ${{ secrets.REGISTRY_USERNAME != '' }}"
+          echo "Registry password is set: ${{ secrets.REGISTRY_PASSWORD != '' }}"
 
       - name: Set image name
         id: set-image
