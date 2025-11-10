@@ -24,6 +24,8 @@ export interface FormActionsProps<
   readonly className?: string;
   /** Disable the submit button explicitly (overrides internal logic). */
   readonly disableSubmit?: boolean;
+  /** Optional target form id to allow placing the submit button outside the form. */
+  readonly formId?: string;
 }
 
 const FormActions = <TFieldValues extends FieldValues = FieldValues>({
@@ -36,6 +38,7 @@ const FormActions = <TFieldValues extends FieldValues = FieldValues>({
   allowPristineSubmit = false,
   className,
   disableSubmit,
+  formId,
 }: FormActionsProps<TFieldValues>) => {
   const { t } = useTranslation();
 
@@ -61,6 +64,7 @@ const FormActions = <TFieldValues extends FieldValues = FieldValues>({
     <div className={containerClass}>
       <Button
         type="submit"
+        form={formId}
         disabled={isSubmitting || submitDisabled}
         aria-disabled={submitDisabled}
       >

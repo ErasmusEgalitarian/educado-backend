@@ -33,7 +33,7 @@
     "bcrypt": "^6.0.0",
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^7.0.9",
-    "pg": "8.8.0",
+    "pg": "^8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",

@@ -16,9 +16,6 @@ on:
 
 env:
   REGISTRY: ${{ secrets.REGISTRY_URL }}
-  # github.repository format: "owner/repo" - works on both GitHub and Gitea
-  IMAGE_NAME_STRAPI: ${{ github.repository }}/strapi
-  IMAGE_NAME_WEB: ${{ github.repository }}/web
 
 jobs:
   changes:
@@ -62,11 +59,19 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Lowercase repo and set image name
+      - name: Set image name
         id: set-image
+        env:
+          NAMESPACE: ${{ secrets.TARGET_IMAGE_NAMESPACE }}
         run: |
-          lower_repo=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')
-          echo "IMAGE_NAME_STRAPI=${lower_repo}/strapi" >> $GITHUB_ENV
+          # Use NAMESPACE (from secret) if set, otherwise fall back to owner/repo
+          if [ -n "$NAMESPACE" ]; then
+            # For Gitea: namespace/repo/service format (e.g., "ollioddi/educado-backend/strapi")
+            echo "IMAGE_NAME_STRAPI=${NAMESPACE}/educado-backend/strapi" >> $GITHUB_ENV
+          else
+            ns=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')
+            echo "IMAGE_NAME_STRAPI=${ns}/strapi" >> $GITHUB_ENV
+          fi
 
       - name: Log in to Container Registry
         uses: docker/login-action@v3
@@ -81,8 +86,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_STRAPI }}
           tags: |
-            type=ref,event=branch
-            type=sha,prefix={{branch}}-
+            type=raw,value=dev-latest
+            type=sha,prefix=dev-,format=short
 
       - name: Build and push
         uses: docker/build-push-action@v5
@@ -92,8 +97,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME_STRAPI }}:buildcache
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME_STRAPI }}:buildcache,mode=max
+          provenance: false
 
   build-web:
     name: Build Web Image
@@ -111,11 +115,18 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Lowercase repo and set image name
+      - name: Set image name
         id: set-image
+        env:
+          NAMESPACE: ${{ secrets.TARGET_IMAGE_NAMESPACE }}
         run: |
-          lower_repo=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')
-          echo "IMAGE_NAME_WEB=${lower_repo}/web" >> $GITHUB_ENV
+          if [ -n "$NAMESPACE" ]; then
+            # For Gitea: namespace/repo/service format (e.g., "ollioddi/educado-backend/web")
+            echo "IMAGE_NAME_WEB=${NAMESPACE}/educado-backend/web" >> $GITHUB_ENV
+          else
+            ns=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')
+            echo "IMAGE_NAME_WEB=${ns}/web" >> $GITHUB_ENV
+          fi
 
       - name: Log in to Container Registry
         uses: docker/login-action@v3
@@ -130,8 +141,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_WEB }}
           tags: |
-            type=ref,event=branch
-            type=sha,prefix={{branch}}-
+            type=raw,value=dev-latest
+            type=sha,prefix=dev-,format=short
 
       - name: Build and push
         uses: docker/build-push-action@v5
@@ -141,5 +152,4 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME_WEB }}:buildcache
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME_WEB }}:buildcache,mode=max
+          provenance: false

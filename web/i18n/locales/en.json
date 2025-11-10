@@ -53,7 +53,10 @@
     "stay": "Stay",
     "dismiss": "Dismiss",
     "name": "Name",
-    "retry": "Retry"
+    "retry": "Retry",
+    "rating": "Rating",
+    "error": "Error",
+    "goPrevious": "Go to previous"
   },
   "pagination": {
     "items": "items",
@@ -148,7 +151,12 @@
     "createNewCourse": "Create New Course"
   },
   "courseEditor": {
-    "fetchCourseDataError": "Error loading Course Data: {{message}}"
+    "fetchCourseDataError": "Error loading Course Data: {{message}}",
+    "skipToReview": "Skip to review",
+    "saveAsDraft": "Save as draft"
+  },
+  "courseEditorReview": {
+    "thisCourseIsCurrentlyVisibleToStudents": "This course is currently visible to students"
   },
   "files": {
     "upload": "Upload",

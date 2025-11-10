@@ -11,9 +11,11 @@ import {
   type PaginationState,
 } from "@tanstack/react-table";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { ErrorBoundary } from "../components/error/error-boundary";
 import { ErrorDisplay } from "../components/error/error-display";
+import { ItemSelectorProvider } from "../components/item-selector";
 import { toAppError } from "../lib/error-utilities";
 
 import DataDisplayEmptyState from "./data-display-empty-state";
@@ -25,17 +27,38 @@ import { getDefaultColumnVisibility } from "./lib/visibility-utility";
 import PaginationBar from "./pagination-bar";
 
 import type { UsePaginatedDataConfig } from "./hooks/used-paginated-data";
-import { useTranslation } from "react-i18next";
 
 /* ----------------------------- Exported types ----------------------------- */
 
 // In order to reference an object (i.e. delete, edit), we NEED an entity with the documentId field. This is what Strapi accept for requests.
+// Note: documentId is optional in Strapi types, so we keep it optional here too
 export interface DataDisplayItem {
-  documentId: string;
+  documentId?: string;
   [key: string]: unknown; // We dont care about the other fields for this, this will be inferred by T.
 }
 
 export type ViewMode = "table" | "grid";
+
+/* -------------------------- Selection configuration ------------------------ */
+
+export interface SelectionConfig<T extends DataDisplayItem> {
+  /** Enable item selection */
+  enabled: true;
+  /** Maximum number of items that can be selected (null = unlimited) */
+  limit?: number | null;
+  /** Callback when selection changes */
+  onChange?: (selectedItems: T[]) => void;
+  /** Initially selected item IDs */
+  defaultSelected?: string[];
+}
+
+export interface NoSelectionConfig {
+  enabled?: false;
+}
+
+export type DataDisplaySelectionConfig<T extends DataDisplayItem> =
+  | SelectionConfig<T>
+  | NoSelectionConfig;
 
 /* --------------------------- data-display types --------------------------- */
 
@@ -50,6 +73,7 @@ interface BaseDataDisplayProps<T extends DataDisplayItem> {
   config?: UsePaginatedDataConfig;
   emptyState?: React.ReactNode;
   className?: string;
+  selection?: DataDisplaySelectionConfig<T>;
 }
 
 // Discriminated union based on allowedViewModes
@@ -67,6 +91,7 @@ type DataDisplayProps<T extends DataDisplayItem> =
 
 /**
  * A flexible data display component that supports table and/or grid view modes.
+ *
  *
  * @template T - The type of data items to display, must extend DataDisplayItem (Strapi entity with at least a documentId field)
  *
@@ -127,6 +152,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
   fields,
   populate,
   config,
+  selection,
 }: DataDisplayProps<T>) => {
   const { t } = useTranslation();
   const hasTable = allowedViewModes === "table" || allowedViewModes === "both";
@@ -228,6 +254,19 @@ export const DataDisplay = <T extends DataDisplayItem>({
     setGlobalFilter(value); // TanStack Table handles empty string correctly
   };
 
+  // Selection handler - converts IDs to full items
+  const handleSelectionChange = (selectedIds: string[]) => {
+    if (selection?.enabled === true && selection.onChange) {
+      const selectedItems = data.filter(
+        (item) =>
+          item.documentId !== undefined &&
+          item.documentId !== "" &&
+          selectedIds.includes(item.documentId)
+      );
+      selection.onChange(selectedItems);
+    }
+  };
+
   if (error != null) {
     const appError = toAppError(error);
     return (
@@ -286,43 +325,62 @@ export const DataDisplay = <T extends DataDisplayItem>({
       // Grid uses TanStack's processed data (sorted/filtered in client mode)
       return (
         <DataGrid
-          data={processedData as DataDisplayItem[]}
-          gridItemRender={
-            gridItemRender as
-              | ((item: DataDisplayItem) => React.ReactNode)
-              | undefined
-          }
+          data={processedData}
+          gridItemRender={gridItemRender}
           isLoading={isLoading}
+          selectable={selection?.enabled === true}
         />
       );
     }
     // Table uses the TanStack Table instance directly
-    return <DataTable table={table} isLoading={isLoading} />;
+    return (
+      <DataTable
+        table={table}
+        isLoading={isLoading}
+        selectable={selection?.enabled === true}
+      />
+    );
   }
 
-  return (
-    <ErrorBoundary>
-      <div className={`space-y-4 ${className ?? ""}`}>
-        {/* Toolbar for view mode switching and search */}
-        <DataDisplayToolbar
-          table={table}
-          viewMode={viewMode}
-          onViewModeChange={handleViewModeChange}
-          hasTable={hasTable}
-          hasGrid={hasGrid}
-          searchValue={globalFilter}
-          onSearchChange={handleSearchChange}
-        />
-        {/* Data display */}
-        {getDataComponent()}
-        {/* Pagination */}
-        <PaginationBar
-          pagination={displayPagination}
-          onChange={setPagination}
-          viewMode={viewMode}
-          totalItemsPreFiltered={isUsingServerMode ? 0 : data.length}
-        />
-      </div>
-    </ErrorBoundary>
+  const content = (
+    <div className={`space-y-6 ${className ?? ""}`}>
+      {/* Toolbar for view mode switching and search */}
+      <DataDisplayToolbar
+        table={table}
+        viewMode={viewMode}
+        onViewModeChange={handleViewModeChange}
+        hasTable={hasTable}
+        hasGrid={hasGrid}
+        searchValue={globalFilter}
+        onSearchChange={handleSearchChange}
+        selectable={selection?.enabled === true}
+      />
+      {/* Data display */}
+      {getDataComponent()}
+      {/* Pagination */}
+      <PaginationBar
+        pagination={displayPagination}
+        onChange={setPagination}
+        viewMode={viewMode}
+        totalItemsPreFiltered={isUsingServerMode ? 0 : data.length}
+      />
+    </div>
   );
+
+  // Wrap with selection provider if selection is enabled
+  if (selection?.enabled === true) {
+    return (
+      <ErrorBoundary>
+        <ItemSelectorProvider
+          selectionLimit={selection.limit ?? null}
+          onSelectionChange={handleSelectionChange}
+          defaultSelected={selection.defaultSelected ?? []}
+        >
+          {content}
+        </ItemSelectorProvider>
+      </ErrorBoundary>
+    );
+  }
+
+  return <ErrorBoundary>{content}</ErrorBoundary>;
 };

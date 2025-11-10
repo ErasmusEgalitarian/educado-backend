@@ -1,4 +1,3 @@
-
 import { courseGetCoursesById } from "@/shared/api/sdk.gen";
 import type { Course } from "@/shared/api/types.gen";
 
@@ -17,7 +16,18 @@ export const CourseQueryFunction = (courseId: string) => ({
     const courseResponse = await courseGetCoursesById({
       path: { id: courseId },
       query: {
-        fields: ["title", "description", "difficulty", "numOfRatings", "numOfSubscriptions", "createdAt", "updatedAt", "publishedAt"],
+        // Ensure drafts are retrievable during editing
+        status: "draft",
+        fields: [
+          "title",
+          "description",
+          "difficulty",
+          "numOfRatings",
+          "numOfSubscriptions",
+          "createdAt",
+          "updatedAt",
+          "publishedAt",
+        ],
         // Use "*" to populate all relations with their full data including nested fields
         populate: "course_categories",
       },
