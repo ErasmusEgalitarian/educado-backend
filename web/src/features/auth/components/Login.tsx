@@ -15,6 +15,7 @@ import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";
 import Carousel from "../../../unplaced/archive/carousel";
 import AuthServices from "../../../unplaced/services/auth.services";
+import { useAuth } from "../hooks/use-auth";
 import { setUserInfo } from "../lib/userInfo";
 import { LoginResponseError } from "../types/LoginResponseError";
 
@@ -22,7 +23,7 @@ import { LoginResponseError } from "../types/LoginResponseError";
 
 
 import PasswordRecoveryModal from "./password-recovery/PasswordRecoveryModal";
-import { useAuth } from "../hooks/use-auth";
+
 
 export const ToggleModalContext = createContext(() => {});
 
