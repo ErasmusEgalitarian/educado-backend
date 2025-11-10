@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { mdiChevronLeft, mdiEyeOffOutline, mdiEyeOutline } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { createContext, useState } from "react";
@@ -21,6 +22,7 @@ import { LoginResponseError } from "../types/LoginResponseError";
 
 
 import PasswordRecoveryModal from "./password-recovery/PasswordRecoveryModal";
+import { useAuth } from "../hooks/use-auth";
 
 export const ToggleModalContext = createContext(() => {});
 
@@ -31,7 +33,7 @@ interface Inputs {
 }
 
 const Login = () => {
-
+  const { loginSaver } = useAuth();
   // Error state
   const [error, setError] = useState<
     LoginResponseError.RootObject | string | null
@@ -80,25 +82,25 @@ const Login = () => {
         password: data.password,
         },
     })
-      .then((res) => {
-        if (res.status == 200) {
-          /* eslint-disable  @typescript-eslint/no-unsafe-assignment *//* eslint-disable  @typescript-eslint/no-unsafe-member-access */
-          const token = res.jwt; 
-          /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
-          const user = res.user;
-          /* eslint-disable  @typescript-eslint/no-unsafe-argument */
-          localStorage.setItem("token", token);
-          localStorage.setItem("id", user.id);
-          setUserInfo(user);
-          navigate("/courses");
-        }
+      .then(async (res) => {
 
+        /* eslint-disable  @typescript-eslint/no-unsafe-assignment *//* eslint-disable  @typescript-eslint/no-unsafe-member-access */
+        const token = res.jwt; 
+        /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
+        const user = res.user;
+        /* eslint-disable  @typescript-eslint/no-unsafe-argument */
+        localStorage.setItem("token", token);
+        localStorage.setItem("id", user.id);
+
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        await loginSaver(token, user);
+        navigate("/courses");
         // error messages for email and password
       })
       .catch((err) => {
         setError(err);
         console.error(err);
-        switch (err.response.data.error.details.error.code) {
+        switch (err.error.details.error.code) {
           case "E0004": //Invalid Email and password
             setEmailError(err);
             setEmailErrorMessage(t("login.email-error"));
@@ -302,12 +304,12 @@ const Login = () => {
               <span className="h-12" /> {/* spacing */}
               {/*Enter button*/}
               <div className="relative flex gap-4 px-10 flex-row items-center justify-center w-full ">
-                <div className="flex-auto  h-[3.3rem] w-full items-center justify-center rounded-[15px] text-lg font-bold font-montserrat bg--greyscale-surface-disabled inline-flex text--greyscale-border-default transform transition duration-100 ease-in ">
+                <div className="flex-auto  h-[3.3rem] w-full items-center justify-center rounded-[15px] text-lg font-bold font-montserrat bg-greyscale-surface-disabled inline-flex text--greyscale-border-default transform transition duration-100 ease-in ">
                   <button
                     type="submit"
                     id="submit-login-button"
                     className=" "
-                    disabled={!submitLoading}
+                    disabled={submitLoading}
                   >
                     {submitLoading ? (
                       <span className="spinner-border text-success-surface-lighter animate-spin inline-block  border-2 border-t-transparent rounded-full mr-2 text-[20px]" />

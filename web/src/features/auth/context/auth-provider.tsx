@@ -7,7 +7,6 @@ import { defaultUserPreferences } from "@/auth/types/auth-context";
 import type { AuthContextType, UserPreferences } from "@/auth/types/auth-context";
 import { useLocalStorage } from "@/shared/hooks/use-local-storage";
 import type { User } from "@/user/types/User";
-import { postContentCreatorLogin } from "@/shared/api/sdk.gen";
 
 // https://www.shadcn.io/hooks/use-local-storage
 
@@ -29,35 +28,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 
   // accepts email/password and returns a user
-  const login = useCallback(
-    async ({ email, password }: { email: string; password: string }): Promise<any> => {
+  const loginSaver = useCallback(
+  async (token: string, user: any): Promise<void> => {
     try {
-      const response = await postContentCreatorLogin({
-        body: { email, password },
-      });
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const { user, token } = response.data;
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      // just set auth state
       setAuthToken(token);
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       setLoggedInUserLS(user);
-
-      return response; // so res.status etc. still available
-    } catch (error: any) {
-      // eslint-disable-next-line @typescript-eslint/only-throw-error
-      throw {
-        response: {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-          data: error?.response?.data ?? {
-            error: { details: { error: { code: "UNKNOWN" } } },
-          },
-        },
-      };
+    } catch (error) {
+      console.error("Failed to set auth state:", error);
+      throw error;
     }
   },
-  [setLoggedInUserLS, setAuthToken],
+  [setAuthToken, setLoggedInUserLS],
 );
 
   // Mock logout: clears user from storage
@@ -83,12 +66,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoggedInUser: (u) => {
         setLoggedInUserLS(u);
       },
-      login,
+      loginSaver,
       logout,
       preferences,
       setPreferences,
     }),
-    [loggedInUser, setLoggedInUserLS, login, logout, preferences, setPreferences],
+    [loggedInUser, setLoggedInUserLS, loginSaver, logout, preferences, setPreferences],
   );
 
   // Bootstrap: ensure userPreferences is source of truth for i18n language.
