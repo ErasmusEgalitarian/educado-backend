@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+import { ApiError } from "@/shared/api";
 import { AppError } from "@/shared/types/app-error";
-
-import { _Error } from "../api/types.gen";
 
 // Type guards
 const isResponse = (error: unknown): error is Response => {
@@ -18,55 +16,13 @@ const hasErrorProperty = (obj: unknown): obj is { error: unknown } => {
   return typeof obj === "object" && obj !== null && "error" in obj;
 };
 
-/**
- * Type guard to check if error matches Strapi's _Error structure
- * Structure: { error: { status?, name?, message?, details? } }
- */
-const isStrapiError = (error: unknown): error is _Error => {
-  if (!hasErrorProperty(error)) return false;
-
-  const errorObj = (error as { error: unknown }).error;
+const hasMessage = (obj: unknown): obj is { message: string } => {
   return (
-    typeof errorObj === "object" &&
-    errorObj !== null &&
-    ("message" in errorObj || "status" in errorObj || "name" in errorObj)
+    typeof obj === "object" &&
+    obj !== null &&
+    "message" in obj &&
+    typeof (obj as { message: unknown }).message === "string"
   );
-};
-
-/**
- * Extracts error details from Strapi error object
- */
-const extractStrapiErrorDetails = (strapiError: _Error['error']): {
-  status?: number;
-  title: string;
-  message: string;
-} => {
-  // Extract and validate status
-
-  const status = typeof strapiError.status === 'number' ? strapiError.status : undefined;
-
-  // Extract message with fallback
-
-  const message = typeof strapiError.message === 'string' && strapiError.message.length > 0
-
-    ? strapiError.message
-    : 'An error occurred';
-
-  // Extract name for fallback title
-
-  const name = typeof strapiError.name === 'string' && strapiError.name.length > 0
-
-    ? strapiError.name
-    : 'Error';
-
-  return {
-
-    status,
-
-    title: status ? getErrorTitle(status) : name,
-
-    message,
-  };
 };
 
 // Helper for native errors
@@ -97,7 +53,7 @@ const handleNativeError = (error: Error): AppError => {
 
 /**
  * Converts any error type into a standardized AppError
- * Handles Strapi _Error, native Error, fetch Response, and unknown types
+ * Handles ApiError, native Error, fetch Response, and unknown types
  */
 export const toAppError = (error: unknown): AppError | undefined => {
   // Allow undefined return to handle cases where there is no error
@@ -105,18 +61,20 @@ export const toAppError = (error: unknown): AppError | undefined => {
     return;
   }
 
-  // Handle Strapi _Error format from Hey API client
-  // Structure: { error: { status?, name?, message?, details? } }
-  if (isStrapiError(error)) {
-    const details = extractStrapiErrorDetails(error.error);
-
+  // Handle ApiError from OpenAPI generated client
+  if (error instanceof ApiError) {
     return {
-      type: details.status ? getErrorTypeFromStatus(details.status) : 'unknown',
-      status: details.status,
-      title: details.title,
-      message: details.message,
-
-      details: formatErrorDetails(error.error.details),
+      type: getErrorTypeFromStatus(error.status),
+      status: error.status,
+      title: getErrorTitle(error.status),
+      message: extractErrorMessage(error),
+      details: formatErrorDetails(error.body),
+      stack: error.stack,
+      request: {
+        url: error.url,
+        method: error.request.method,
+        body: error.request.body,
+      },
       originalError: error,
     };
   }
@@ -130,17 +88,12 @@ export const toAppError = (error: unknown): AppError | undefined => {
   if (isResponse(error)) {
     const response = error;
     return {
-
       type: getErrorTypeFromStatus(response.status),
-
       status: response.status,
-
       title: getErrorTitle(response.status),
-
       message:
-        response.statusText.length > 0 ? response.statusText : "Request failed",
+        response.statusText !== "" ? response.statusText : "Request failed",
       request: {
-
         url: response.url,
       },
       originalError: error,
@@ -202,6 +155,63 @@ const getErrorTitle = (status: number): string => {
   }
 
   return status >= 500 ? "Server Error" : "Request Failed";
+};
+
+/**
+ * Extract message from Strapi error format
+ */
+const extractStrapiErrorMessage = (
+  errorObj: Record<string, unknown>,
+): string | null => {
+  if (hasMessage(errorObj)) {
+    return errorObj.message;
+  }
+
+  // Check for nested error details
+  if (typeof errorObj.details === "object" && errorObj.details !== null) {
+    const details = errorObj.details as Record<string, unknown>;
+    if (Array.isArray(details.errors) && details.errors.length > 0) {
+      const firstError = details.errors[0] as Record<string, unknown>;
+      if (hasMessage(firstError)) {
+        return firstError.message;
+      }
+    }
+  }
+
+  return null;
+};
+
+/**
+ * Extracts error message from ApiError body
+ * Handles Strapi error format and generic formats
+ */
+const extractErrorMessage = (error: ApiError): string => {
+  const body = error.body as Record<string, unknown> | undefined;
+
+  if (body === undefined) {
+    return error.statusText !== "" ? error.statusText : "Request failed";
+  }
+
+  // Handle Strapi error format
+  if (hasErrorProperty(body)) {
+    const errorObj = body.error as Record<string, unknown>;
+    const strapiMessage = extractStrapiErrorMessage(errorObj);
+    if (strapiMessage !== null) {
+      return strapiMessage;
+    }
+  }
+
+  // Handle generic error formats
+  if (hasMessage(body)) {
+    return body.message;
+  }
+
+  if (typeof body.error === "string") {
+    return body.error;
+  }
+
+  // Fallback to status text
+  return error.statusText !== "" ? error.statusText : "Request failed";
 };
 
 /**

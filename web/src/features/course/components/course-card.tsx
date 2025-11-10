@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-import { Course } from "@/shared/api/types.gen";
+import { ApiCourseCourseDocument } from "@/shared/api";
 import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
 import {
@@ -22,7 +21,7 @@ import StarRating from "../../../shared/components/star-rating";
  * @param {Course} course The course to be displayed
  * @returns HTML Element
  */
-export const CourseCard = ({ course }: { course: Course }) => {
+export const CourseCard = ({ course }: { course: ApiCourseCourseDocument }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -53,14 +52,16 @@ export const CourseCard = ({ course }: { course: Course }) => {
       <CardContent>
         <div className="flex items-center justify-between">
           <div className="flex flex-wrap gap-2">
-            {(course.course_categories ?? []).map((category) => (
+            {course.course_categories?.map((category) => (
               <Badge key={category.id} variant="outline">
                 {category.name}
               </Badge>
             ))}
           </div>
 
-          <p className="text-sm text-gray-600">8 horas</p>
+          <p className="text-sm text-gray-600">
+            {course.estimatedHours != null ? course.estimatedHours : "?"} horas
+          </p>
         </div>
 
         <StarRating rating={4.2} size="sm" className="mt-2" />

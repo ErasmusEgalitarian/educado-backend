@@ -1,4 +1,4 @@
-import { zodResolver } from "@hookform/resolvers/zod";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   mdiEyeOffOutline,
   mdiEyeOutline,
@@ -11,7 +11,7 @@ import { createContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { z } from "zod";
+import * as Yup from "yup";
 
 import background from "@/shared/assets/background.jpg";
 
@@ -26,49 +26,48 @@ import EmailVerificationModal from "./email-verification/EmailVerificationModal"
 export const ToggleModalContext = createContext<() => void>(() => {});
 export const FormDataContext = createContext<any>(null);
 
-// Zod schema for fields (new user registration form)
-const SignupSchema = z
-  .object({
-    // Registers user first name and removes leading/trailing whitespaces
-    firstName: z
-      .string()
-      .trim()
-      .min(
-        1,
-        "Seu primeiro nome é obrigatório!"
-      ) /*Your first name is Required*/,
+// Form input interface
+interface ApplicationInputs {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  token: null;
+}
 
-    // Registers user last name and removes leading/trailing whitespaces
-    lastName: z
-      .string()
-      .trim()
-      .min(1, "Seu sobrenome é obrigatório!") /*Your last name is Required*/,
+// Yup schema for fields (new user registration form)
+const SignupSchema = Yup.object().shape({
+  // Registers user first name and removes leading/trailing whitespaces
+  firstName: Yup.string()
+    .trim()
+    .required(
+      "Seu primeiro nome é obrigatório!",
+    ) /*Your first name is Required*/,
 
-    password: z.string().min(8, "A senha não é longa o suficiente"),
+  // Registers user last name and removes leading/trailing whitespaces
+  lastName: Yup.string()
+    .trim()
+    .required("Seu sobrenome é obrigatório!") /*Your last name is Required*/,
 
-    confirmPassword: z.string(),
-
-    email: z
-      .string()
-      .regex(
-        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-        "Seu email não está correto"
-      )
-      .min(1, "O email é obrigatório"),
-
-    token: z.null().optional(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "As senhas não coincidem",
-    path: ["confirmPassword"],
-  });
-
-// Infer type from Zod schema
-type ApplicationInputs = z.infer<typeof SignupSchema>;
+  password: Yup.string()
+    .min(8, "Muito curto!")
+    .required("A senha não é longa o suficiente"),
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref("password"), null],
+    "As senhas não coincidem",
+  ),
+  email: Yup.string()
+    .matches(
+      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+      "Seu email não está correto",
+    )
+    .required("O email é obrigatório"),
+});
 
 const Signup = () => {
   const [error, setError] = useState<LoginResponseError.RootObject | null>(
-    null
+    null,
   );
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -77,7 +76,7 @@ const Signup = () => {
 
   // callback
   const { call: signup, isLoading: submitLoading } = useApi(
-    AuthServices.postUserSignup
+    AuthServices.postUserSignup,
   );
   // Navigation hook
   const navigate = useNavigate();
@@ -88,7 +87,7 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ApplicationInputs>({
-    resolver: zodResolver(SignupSchema),
+    resolver: yupResolver(SignupSchema),
   });
 
   const [emailExistsError, setEmailExistError] = useState(null);
@@ -139,7 +138,7 @@ const Signup = () => {
             case "E0201": // Email already exists
               setEmailExistError(err);
               setErrorExistMessage(
-                "Já existe um usuário com o email fornecido"
+                "Já existe um usuário com o email fornecido",
               );
               setPasswordMismatchError(null);
               setPasswordMismatchErrorMessage("");
@@ -180,22 +179,22 @@ const Signup = () => {
   // Function for validating that all fields are filled in
   function areFieldsFilled() {
     const inputSignupFirstName = document.getElementById(
-      "firstNameField"
+      "firstNameField",
     ) as HTMLInputElement;
     const inputSignupLastName = document.getElementById(
-      "lastNameField"
+      "lastNameField",
     ) as HTMLInputElement;
     const inputSignupEmail = document.getElementById(
-      "email-field"
+      "email-field",
     ) as HTMLInputElement;
     const inputSignupPass = document.getElementById(
-      "password-field"
+      "password-field",
     ) as HTMLInputElement;
     const inputSignupRedoPass = document.getElementById(
-      "password-field-repeat"
+      "password-field-repeat",
     ) as HTMLInputElement;
     const submitSignupButton = document.getElementById(
-      "submit-signup-button"
+      "submit-signup-button",
     ) as HTMLButtonElement;
 
     if (

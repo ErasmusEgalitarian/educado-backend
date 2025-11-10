@@ -1,11 +1,11 @@
-import { zodResolver } from "@hookform/resolvers/zod";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { mdiChevronDown, mdiChevronUp } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { z } from "zod";
+import * as Yup from "yup";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import { tempObjects } from "@/shared/lib/formStates";
@@ -22,22 +22,20 @@ import AcademicExperienceForm from "./academic-experience-form";
 import PersonalInformationForm from "./PersonalInformation";
 import ProfessionalExperienceForm from "./ProfessionalExperience";
 
-// Zod Schema
-const profileSchema = z.object({
-  UserName: z.string().optional(),
-  UserEmail: z.string().email("You need a suitable email to submit").optional(),
-  linkedin: z
-    .string()
-    .regex(
-      /^(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+\/?$/,
-      "Invalid LinkedIn URL"
-    )
-    .optional()
-    .or(z.literal("")),
+// Yup Schema
+const profileSchema = Yup.object().shape({
+  UserName: Yup.string(),
+  UserEmail: Yup.string().email("You need a suitable email to submit"),
+  linkedin: Yup.lazy((value) => {
+    if (value !== null && value !== undefined) {
+      return Yup.string().matches(
+        /^(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+\/?$/,
+        "Invalid LinkedIn URL",
+      );
+    }
+    return Yup.string();
+  }),
 });
-
-// Infer type from Zod schema
-type ProfileFormData = z.infer<typeof profileSchema>;
 
 const Profile = () => {
   const {
@@ -79,13 +77,13 @@ const Profile = () => {
     myRef.current?.click();
   };
 
-  // Zod setup for static form
+  // Yup setup for static form
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ProfileFormData>({
-    resolver: zodResolver(profileSchema),
+  } = useForm<FormData>({
+    resolver: yupResolver(profileSchema),
   });
 
   const navigate = useNavigate();
@@ -153,7 +151,7 @@ const Profile = () => {
         await Promise.all(
           educationFormData.map(async (item, index) => {
             if (item._id) await ProfileServices.deleteEducationForm(item._id);
-          })
+          }),
         );
 
         // Send the updated educationData to the backend
@@ -163,7 +161,7 @@ const Profile = () => {
         await Promise.all(
           experienceFormData.map(async (item, index) => {
             if (item._id) await ProfileServices.deleteExperienceForm(item._id);
-          })
+          }),
         );
 
         // Send the updated workData to the backend
@@ -206,7 +204,7 @@ const Profile = () => {
         !educationErrorState &&
         !experienceErrorState &&
         dynamicInputsFilled("education") &&
-        dynamicInputsFilled("experience")
+        dynamicInputsFilled("experience"),
     );
   }, [
     submitError,
@@ -386,7 +384,7 @@ const Profile = () => {
                 }`}
                 onClick={() => {
                   setIsProfessionalExperienceOpen(
-                    !isProfessionalExperienceOpen
+                    !isProfessionalExperienceOpen,
                   );
                 }}
               >

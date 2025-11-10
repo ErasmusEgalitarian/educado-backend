@@ -2,7 +2,7 @@ import { type CellContext, type ColumnDef } from "@tanstack/react-table";
 import { BookOpen, MoreHorizontal, Star, Edit, Eye } from "lucide-react";
 import { toast } from "sonner";
 
-import { Course } from "@/shared/api/types.gen";
+import { ApiCourseCourseDocument } from "@/shared/api";
 import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
 import {
@@ -22,7 +22,7 @@ interface CoursesColumnsProps {
 export const createCourseColumns = ({
   t,
   navigate,
-}: CoursesColumnsProps): ColumnDef<Course>[] => {
+}: CoursesColumnsProps): ColumnDef<ApiCourseCourseDocument>[] => {
   return [
     {
       accessorKey: "documentId",
@@ -117,7 +117,7 @@ export const createCourseColumns = ({
     {
       id: "actions",
       header: t("common.actions"),
-      cell: ({ row }: CellContext<Course, unknown>) => {
+      cell: ({ row }: CellContext<ApiCourseCourseDocument, unknown>) => {
         const documentId = row.original.documentId;
 
         const handleView = () => {

@@ -10,9 +10,13 @@ import {
 } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useFileUpload } from "@/shared/hooks/use-file-upload";
 import z from "zod";
 
-import type { Course, CourseCategory } from "@/shared/api/types.gen";
+import {
+  ApiCourseCategoryCourseCategoryDocument,
+  ApiCourseCourseDocument,
+} from "@/shared/api";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
 import { FileWithMetadataSchema } from "@/shared/components/file-upload";
 import FormActions from "@/shared/components/form/form-actions";
@@ -22,15 +26,13 @@ import { FormMultiSelect } from "@/shared/components/form/form-multi-select";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
-import { Card, CardContent } from "@/shared/components/shadcn/card";
-import { useAlertDialog } from "@/shared/components/modals/use-alert-dialog";
+import { Card, CardContent, CardFooter } from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
 import {
   MultiSelectOption,
   MultiSelectRef,
 } from "@/shared/components/shadcn/multi-select";
 import usePaginatedData from "@/shared/data-display/hooks/used-paginated-data";
-import { useFileUpload } from "@/shared/hooks/use-file-upload";
 import { toAppError } from "@/shared/lib/error-utilities";
 
 import {
@@ -39,19 +41,15 @@ import {
 } from "../api/course-mutations";
 
 import CategoryCreateModal from "./category-create-modal";
-import { Button } from "@/shared/components/shadcn/button";
-import { useNavigate } from "react-router";
-import ReusableAlertDialog from "@/shared/components/modals/reusable-alert-dialog";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
-  course?: Course;
+  course?: ApiCourseCourseDocument;
   onComplete?: (courseId: string) => void;
 }
 
 export interface CourseEditorInformationRef {
   isDirty: () => boolean;
-  getValues: () => CourseBasicInfoFormValues;
 }
 
 /* --------------------------------- Schema --------------------------------- */
@@ -85,9 +83,6 @@ const CourseEditorInformation = forwardRef<
 >(({ course, onComplete }, ref) => {
   const { t } = useTranslation();
   const isEditMode = course !== undefined;
-  const { alertProps, openAlert } = useAlertDialog();
-  const navigate = useNavigate();
-  // no local ref needed here
 
   /* -------------------------------- Mutations ------------------------------- */
   const createMutation = useCreateCourseMutation();
@@ -102,13 +97,13 @@ const CourseEditorInformation = forwardRef<
 
   const { uploadFile } = useFileUpload();
 
-  /* ------------------------------- Categories ------------------------------- */
+  /* ------------------------------- Categories ------------------------------- */  
   const {
     data,
     error: categoriesError,
     isLoading: categoriesLoading,
     refetch: refetchCategories,
-  } = usePaginatedData<CourseCategory>({
+  } = usePaginatedData<ApiCourseCategoryCourseCategoryDocument>({
     mode: "standalone",
     queryKey: ["course-categories"],
     urlPath: "/course-categories",
@@ -123,23 +118,21 @@ const CourseEditorInformation = forwardRef<
   // Determine default form values based on whether we are editing or creating
   // If editing, populate with existing course data
   // If creating, use empty/default values
-
-  const defaultFormValue =
-    course === undefined
-      ? {
-          title: "",
-          difficulty: "1" as "1" | "2" | "3" | undefined,
-          categories: [],
-          description: "",
-        }
-      : {
-          title: course.title,
-          difficulty: String(course.difficulty) as "1" | "2" | "3",
-          categories: course.course_categories
-            ?.map((cat) => cat.documentId)
-            .filter((id): id is string => id !== undefined),
-          description: course.description,
-        };
+  const defaultFormValue = course
+    ? {
+        title: course.title,
+        difficulty: String(course.difficulty) as "1" | "2" | "3",
+        categories: course.course_categories?.map(
+          (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId
+        ),
+        description: course.description,
+      }
+    : {
+        title: "",
+        difficulty: "1" as "1" | "2" | "3" | undefined,
+        categories: [],
+        description: "",
+      };
 
   // Init form with React Hook Form + Zod
   const form = useForm<CourseBasicInfoFormValues>({
@@ -151,7 +144,6 @@ const CourseEditorInformation = forwardRef<
   // Expose isDirty method to parent via ref
   useImperativeHandle(ref, () => ({
     isDirty: () => form.formState.isDirty,
-    getValues: () => form.getValues(),
   }));
 
   // Reset form when course data changes (e.g., when navigating back to this step)
@@ -160,9 +152,9 @@ const CourseEditorInformation = forwardRef<
       form.reset({
         title: course.title,
         difficulty: String(course.difficulty) as "1" | "2" | "3",
-        categories: course.course_categories
-          ?.map((cat) => cat.documentId)
-          .filter((id): id is string => id !== undefined),
+        categories: course.course_categories?.map(
+          (cat: ApiCourseCategoryCourseCategoryDocument) => cat.documentId
+        ),
         description: course.description,
       });
     }
@@ -180,65 +172,43 @@ const CourseEditorInformation = forwardRef<
 
   /* -------------------------------- Handlers -------------------------------- */
 
-  const handleCancel = () => {
-    // Check isDirty at the moment of click
-    const hasChanges = form.formState.isDirty;
-
-    if (hasChanges) {
-      openAlert();
-    } else {
-      navigate("/");
-    }
-  };
-
-  const handleReturnToCourses = () => {
-    navigate("/");
-  };
-
   const onSubmit = async (values: CourseBasicInfoFormValues) => {
     try {
       // Upload image if provided and take first id
-      const imageIds =
-        values.image && values.image.length > 0
-          ? await uploadFile(values.image)
-          : undefined;
+      const imageIds = values.image && values.image.length > 0
+        ? await uploadFile(values.image)
+        : undefined;
       const imageId = imageIds?.[0];
 
       // Edit = update mutation
-      if (
-        isEditMode &&
-        course?.documentId != null &&
-        course.documentId !== ""
-      ) {
+      if (isEditMode && course.documentId != "") {
         // Update existing course
         const result = await updateMutation.mutateAsync({
           documentId: course.documentId,
           title: values.title,
           difficulty: Number(values.difficulty),
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          course_categories: values.categories,
+          categories: values.categories,
           description: values.description,
           image: imageId,
         });
 
         // Wait a moment to show success state, then complete step
         setTimeout(() => {
-          onComplete?.(result?.data?.documentId ?? "");
+          onComplete?.(result.documentId);
         }, 1500);
       } else {
         // Create = create mutation
         const result = await createMutation.mutateAsync({
           title: values.title,
           difficulty: Number(values.difficulty),
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          course_categories: values.categories ?? [],
+          categories: values.categories ?? [],
           description: values.description,
           image: imageId,
         });
 
         // Wait a moment to show success state, then complete step
         setTimeout(() => {
-          onComplete?.(result?.data?.documentId ?? "");
+          onComplete?.(result.documentId);
         }, 1500);
       }
     } catch (error) {
@@ -259,10 +229,12 @@ const CourseEditorInformation = forwardRef<
   const multiInputRef = useRef<MultiSelectRef>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleCategoryCreated = (data: CourseCategory) => {
+  const handleCategoryCreated = (
+    data: ApiCourseCategoryCourseCategoryDocument
+  ) => {
     const newOption: MultiSelectOption = {
       label: data.name,
-      value: data.documentId ?? "",
+      value: data.documentId,
     };
 
     if (!multiInputRef.current) {
@@ -308,7 +280,6 @@ const CourseEditorInformation = forwardRef<
       >
         <Form {...form}>
           <form
-            id="course-information-form"
             onSubmit={(e) => {
               void form.handleSubmit(onSubmit)(e);
             }}
@@ -372,7 +343,7 @@ const CourseEditorInformation = forwardRef<
                             placeholder={placeholder}
                             options={data.map((category) => ({
                               label: category.name,
-                              value: category.documentId ?? "",
+                              value: category.documentId,
                             }))}
                             onCreateClick={() => {
                               setIsModalOpen(true);
@@ -440,6 +411,23 @@ const CourseEditorInformation = forwardRef<
                 </div>
               </OverlayStatusWrapper>
             </CardContent>
+            <CardFooter className="flex justify-end mt-4">
+              {/*Create and cancel buttons*/}
+              <FormActions
+                formState={form.formState}
+                submitLabel={
+                  isEditMode
+                    ? t("common.saveChanges")
+                    : t("courseManager.createAndContinue")
+                }
+                submittingLabel={
+                  isEditMode
+                    ? t("common.saving") + "..."
+                    : t("common.creating") + "..."
+                }
+                disableSubmit={mutationError !== undefined}
+              />
+            </CardFooter>
           </form>
         </Form>
         <CategoryCreateModal
@@ -450,59 +438,7 @@ const CourseEditorInformation = forwardRef<
           onCreated={handleCategoryCreated}
         />
       </Card>
-      <div className="bg-white sticky bottom-2 py-4 border-t flex justify-between mt-5 items-center pr-2">
-        <Button
-          disabled
-          className="text-md text-greyscale-border-default"
-          variant="ghost"
-        >
-          &#x276E; &nbsp; &nbsp;
-          {t("common.goPrevious")}
-        </Button>
-        <div className="flex gap-x-5">
-          <Button
-            variant="ghost"
-            className="text-md text-error-surface-default font-bold underline cursor-pointer"
-            onClick={handleCancel}
-          >
-            {t("common.cancel")}
-          </Button>
-
-          <FormActions
-            formState={form.formState}
-            formId="course-information-form"
-            submitLabel={
-              isEditMode
-                ? t("common.saveChanges")
-                : t("courseManager.createAndContinue")
-            }
-            submittingLabel={
-              isEditMode
-                ? t("common.saving") + "..."
-                : t("common.creating") + "..."
-            }
-            disableSubmit={mutationError !== undefined}
-          />
-        </div>
-      </div>
       <DevTool control={form.control} />
-
-      {/* Leave confirmation alert */}
-      <ReusableAlertDialog
-        {...alertProps}
-        title={t("courseManager.unsavedChangesTitle")}
-        description={t("courseManager.unsavedChangesMessage")}
-        confirmAction={{
-          label: t("common.leave"),
-          onClick: handleReturnToCourses,
-        }}
-        cancelAction={{
-          label: t("common.stay"),
-          onClick: () => {
-            // Just close the dialog
-          },
-        }}
-      />
     </>
   );
 });

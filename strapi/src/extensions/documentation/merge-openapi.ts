@@ -1,16 +1,16 @@
 import fs from 'fs'
 
 /**
- * Merges OpenAPI files with filePaths and generates a single OpenAPI documentation at outputPath. 
- * Order matters. Priority of files in terms of duplicates go from high to low.
+ * Merges OpenAPI files with filePaths and generates a single OpenAPI documentation at outputPath. Order matters. Priority of files in terms of duplicates go from high to low.
  * @param filePaths Array of paths for files that need to be merged
  * @param outputPath Where to output the merged OpenAPI documentation
  */
-const mergeAPIDocs = (filePaths: string[], outputPath: string): void => {
+const mergeAPIDocs = (filePaths : string[], outputPath : string) : void => {
     // Read generated documentation by Strapi
     let documentations = [];
-    for (let file of filePaths) {
-        let docsFile: any = fs.readFileSync(file);
+    for (let file of filePaths)
+    {
+        let docsFile : any = fs.readFileSync(file);
         documentations.push(JSON.parse(docsFile))
     }
 
@@ -26,152 +26,36 @@ const mergeAPIDocs = (filePaths: string[], outputPath: string): void => {
                 ...acc.components,
                 ...spec.components,
                 schemas: {
-                    ...acc.components?.schemas,
-                    ...spec.components?.schemas
+                    ...acc.components.schemas,
+                    ...spec.components.schemas
                 }
             }
         }
-    }, {} as any);
+    });
 
     fs.writeFileSync(outputPath, JSON.stringify(mergedResult, null, 2));
 }
+
 /**
- * Replaces inline response schemas in target spec with $ref from source spec
- * This converts 3.1 inline schemas to 3.0 reusable component references
+ * Specific function to merge custom API documentation with Swagger content for CRUD
  */
-const replaceResponsesWithRefs = (targetSpec: any, sourceSpec: any): void => {
-    for (const [path, pathItem] of Object.entries(sourceSpec.paths || {})) {
-        if (!targetSpec.paths[path]) continue;
-
-        for (const [method, operation] of Object.entries(pathItem as any)) {
-            if (!targetSpec.paths[path][method]) continue;
-
-            const sourceOp = operation as any;
-            const targetOp = targetSpec.paths[path][method] as any;
-
-            // Copy responses structure (with $ref) from source to target
-            if (sourceOp.responses) {
-                targetOp.responses = sourceOp.responses;
-            }
-
-            // Also copy requestBody if it has a $ref
-            if (sourceOp.requestBody) {
-                targetOp.requestBody = sourceOp.requestBody;
-            }
-        }
-    }
+const mergeSwaggerDocumentation = () : void => {
+    let folderPath = "src/extensions/documentation/custom/";
+    let fullDocsPath = "src/extensions/documentation/documentation/1.0.0/full_documentation.json"
+    let filePaths = fs.readdirSync(folderPath).map(path => folderPath + path);
+    filePaths.unshift(fullDocsPath)
+    mergeAPIDocs(filePaths, fullDocsPath);
 }
 
 /**
- * Fixes path parameters to accept Strapi document IDs instead of UUIDs
- * Strapi v5 uses custom document IDs (e.g., "dky89kvvmnavsyinuexw2mtg")
- * but the generated spec incorrectly validates them as UUIDs
+ * Specific function to merge OpenAPI spec generated with "npm run generate-spec"
  */
-const fixPathParameters = (spec: any): void => {
-    for (const [path, pathItem] of Object.entries(spec.paths || {})) {
-        for (const [method, operation] of Object.entries(pathItem as any)) {
-            const op = operation as any;
-            if (!op.parameters) continue;
-
-            for (const param of op.parameters) {
-                // Fix path parameters named "id" that have UUID format
-                if (param.in === 'path' && param.name === 'id' && param.schema) {
-                    if (param.schema.format === 'uuid' || param.schema.pattern) {
-                        // Remove UUID format and pattern restrictions
-                        delete param.schema.format;
-                        delete param.schema.pattern;
-                        // Ensure it's just a string
-                        param.schema.type = 'string';
-                    }
-                }
-            }
-        }
-    }
+const mergeGeneratedSpec = () : void => {
+    let folderPath = "src/extensions/documentation/custom/";
+    let fullDocsPath = "../openapi/strapi-spec.json";
+    let filePaths = fs.readdirSync(folderPath).map(path => folderPath + path);
+    filePaths.unshift(fullDocsPath)
+    mergeAPIDocs(filePaths, fullDocsPath);
 }
 
-/**
- * Main merge function that combines all 3 sources:
- * 1. New strapi-spec.json (3.1) - has query params but inline schemas
- * 2. Deprecated full_documentation.json (3.0) - has reusable component schemas
- * 3. Custom endpoints from custom/ folder
- * 
- * Strategy:
- * - Start with new 3.1 spec (good structure, params)
- * - Copy components.schemas from 3.0 spec (reusable types)
- * - Replace inline responses with $ref from 3.0 spec
- * - Merge custom endpoints
- * 
- * Output: Hybrid spec with 3.1 structure + reusable schemas + all params
- */
-const mergeSwaggerDocumentation = (): void => {
-    const fullDocsPath = "src/extensions/documentation/documentation/1.0.0/full_documentation.json";
-    const newSpecPath = "../openapi/strapi-spec.json";
-    const customFolder = "src/extensions/documentation/custom/";
-    const outputPath = "../openapi/strapi-spec.json";
-
-    // Check if new spec exists (generated by strapi openapi generate)
-    if (!fs.existsSync(newSpecPath)) {
-        console.error("Error: strapi-spec.json not found. Run 'npm run generate-spec' first.");
-        return;
-    }
-
-    // Read new 3.1 spec (good params, inline schemas)
-    const newSpec = JSON.parse(fs.readFileSync(newSpecPath, 'utf-8'));
-
-    // Read legacy 3.0 spec (reusable schemas)
-    const fullDocs = JSON.parse(fs.readFileSync(fullDocsPath, 'utf-8'));
-
-    // Step 1: Copy components.schemas from 3.0 to 3.1
-    if (!newSpec.components) {
-        newSpec.components = {};
-    }
-    newSpec.components.schemas = fullDocs.components?.schemas || {};
-
-    // Step 2: Replace inline responses with $ref from 3.0 spec
-    replaceResponsesWithRefs(newSpec, fullDocs);
-
-    // Step 2.5: Fix path parameters to accept document IDs instead of UUIDs
-    fixPathParameters(newSpec);
-
-    // Step 3: Merge custom endpoints
-    const customFiles = fs.readdirSync(customFolder)
-        .filter(f => f.endsWith('.json'))
-        .map(f => customFolder + f);
-
-    if (customFiles.length > 0) {
-        const customSpecs = customFiles.map(f => JSON.parse(fs.readFileSync(f, 'utf-8')));
-
-        for (const customSpec of customSpecs) {
-            newSpec.paths = { ...newSpec.paths, ...customSpec.paths };
-            if (customSpec.components?.schemas) {
-                newSpec.components.schemas = {
-                    ...newSpec.components.schemas,
-                    ...customSpec.components.schemas
-                };
-            }
-        }
-    }
-
-    // Write final merged result
-    fs.writeFileSync(outputPath, JSON.stringify(newSpec, null, 2));
-    console.log("✓ Merged OpenAPI spec created at:", outputPath);
-}
-
-/**
- * Simple merge for generated spec + custom endpoints
- * Used when the new spec generation is fixed
- */
-const mergeGeneratedSpec = (): void => {
-    console.log("Merging generated OpenAPI spec with custom endpoints...");
-    const customFolder = "src/extensions/documentation/custom/";
-    const strapiSpecPath = "../openapi/strapi-spec.json";
-
-    const customFiles = fs.readdirSync(customFolder)
-        .filter(f => f.endsWith('.json'))
-        .map(f => customFolder + f);
-
-    const filePaths = [strapiSpecPath, ...customFiles];
-    mergeAPIDocs(filePaths, strapiSpecPath);
-}
-
-export { mergeSwaggerDocumentation, mergeGeneratedSpec }
+export { mergeAPIDocs, mergeSwaggerDocumentation, mergeGeneratedSpec }
