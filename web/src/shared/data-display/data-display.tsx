@@ -421,5 +421,5 @@ DataDisplayComponent.displayName = "DataDisplay";
 export const DataDisplay = React.forwardRef(DataDisplayComponent) as <
   T extends DataDisplayItem,
 >(
-  props: DataDisplayProps<T> & { ref?: React.Ref<DataDisplayRef> }
+  props: DataDisplayProps<T> & React.RefAttributes<DataDisplayRef>
 ) => ReturnType<typeof DataDisplayComponent>;
