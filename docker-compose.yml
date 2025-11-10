@@ -1,7 +1,28 @@
 services:
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: ./web/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      VITE_STRAPI_API_TOKEN: ${VITE_STRAPI_API_TOKEN}
+      VITE_STRAPI_URL: ${VITE_STRAPI_URL}
+      VITE_HOST: 0.0.0.0
+      VITE_PORT: ${VITE_FRONTEND_PORT}
+    ports:
+      - "${VITE_FRONTEND_PORT}:${VITE_FRONTEND_PORT}"
+    networks:
+      - strapi
+    depends_on:
+      - strapi
+
   strapi:
     container_name: strapi
-    build: ./strapi/
+    build:
+      context: .
+      dockerfile: ./strapi/Dockerfile
     restart: unless-stopped
     env_file: .env
     environment:
@@ -14,13 +35,10 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
       APP_KEYS: ${APP_KEYS}
-      NODE_ENV: ${NODE_ENV}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      NODE_ENV: production
     volumes:
-      - ./strapi/config:/opt/app/config
-      - ./strapi/src:/opt/app/src
-      - ./strapi/package.json:/opt/package.json
-      - ./strapi/yarn.lock:/opt/yarn.lock
-      - ./.env:/opt/app/.env
       - strapi-uploads:/opt/app/public/uploads
     ports:
       - "1337:1337"

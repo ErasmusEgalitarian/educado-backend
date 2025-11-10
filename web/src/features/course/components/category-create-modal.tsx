@@ -3,9 +3,9 @@ import { mdiFormatLetterCase } from "@mdi/js";
 import Icon from "@mdi/react";
 import { t } from "i18next";
 import { useForm } from "react-hook-form";
-import z from "zod";
+import { z } from "zod";
 
-import { ApiCourseCategoryCourseCategoryDocument } from "@/shared/api";
+import type { CourseCategory } from "@/shared/api/types.gen";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
 import { FormInput } from "@/shared/components/form/form-input";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
@@ -22,27 +22,23 @@ import {
 import { Form } from "@/shared/components/shadcn/form";
 import { toAppError } from "@/shared/lib/error-utilities";
 
-import { useCreateCategoryMutation } from "../api/course-mutations";
+import { useCreateCategoryMutation } from "../api/category-mutations";
 
-interface CategoryCreateModalProps<
-  T extends ApiCourseCategoryCourseCategoryDocument,
-> {
+interface CategoryCreateModalProps {
   open: boolean;
   onClose: () => void;
-  onCreated: (data: T) => void;
+  onCreated: (data: CourseCategory) => void;
 }
 
 const formSchema = z.object({
   categoryName: z.string().min(2, t("multiSelect.minNameLength", { count: 2 })),
 });
 
-const CategoryCreateModal = <
-  T extends ApiCourseCategoryCourseCategoryDocument,
->({
+const CategoryCreateModal = ({
   open,
   onClose,
   onCreated,
-}: CategoryCreateModalProps<T>) => {
+}: CategoryCreateModalProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,17 +53,21 @@ const CategoryCreateModal = <
   const mutationSuccess = createMutation.isSuccess;
   const mutationError = toAppError(createMutation.error);
 
-  // Submit handler. Data shape can be inferred from the schema.
+  // Submit handler
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const result = await createMutation.mutateAsync(values.categoryName);
-      // Notify parent, close, and reset immediately
-      onCreated(result as T);
-      onClose();
-      form.reset(); // Clear the form
-      createMutation.reset(); // Allow for re-creation
+
+      // Extract the CourseCategory from the response
+      if (result?.data) {
+        onCreated(result.data);
+        onClose();
+        form.reset();
+        createMutation.reset();
+      } else {
+        throw new Error("Category created but no data returned");
+      }
     } catch (error) {
-      // Error is handled by the mutation state and displayed in the UI
       console.error("Error creating category:", error);
     }
   }
