@@ -38,16 +38,22 @@ jobs:
           if [[ $TAG == strapi-v* ]]; then
             echo "build_strapi=true" >> $GITHUB_OUTPUT
             echo "build_web=false" >> $GITHUB_OUTPUT
-            echo "version=${TAG#strapi-}" >> $GITHUB_OUTPUT
+            # Strip 'strapi-v' prefix to get version (e.g., strapi-v0.3.0 -> 0.3.0)
+            VERSION=${TAG#strapi-v}
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
           elif [[ $TAG == web-v* ]]; then
             echo "build_strapi=false" >> $GITHUB_OUTPUT
             echo "build_web=true" >> $GITHUB_OUTPUT
-            echo "version=${TAG#web-}" >> $GITHUB_OUTPUT
+            # Strip 'web-v' prefix to get version (e.g., web-v0.3.0 -> 0.3.0)
+            VERSION=${TAG#web-v}
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
           else
             # Default tag format (v*.*.*) builds both
             echo "build_strapi=true" >> $GITHUB_OUTPUT
             echo "build_web=true" >> $GITHUB_OUTPUT
-            echo "version=$TAG" >> $GITHUB_OUTPUT
+            # Strip 'v' prefix to get version (e.g., v0.3.0 -> 0.3.0)
+            VERSION=${TAG#v}
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
           fi
 
   build-strapi:
