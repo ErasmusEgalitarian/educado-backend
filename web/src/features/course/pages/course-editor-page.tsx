@@ -1,15 +1,13 @@
-import { mdiArrowLeft } from "@mdi/js";
+import { mdiFloppy, mdiAlertCircle, mdiCheckCircle } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { ErrorBoundary } from "@/shared/components/error/error-boundary";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
 import { GlobalLoader } from "@/shared/components/global-loader";
-import ReusableAlertDialog from "@/shared/components/modals/reusable-alert-dialog";
-import { useAlertDialog } from "@/shared/components/modals/use-alert-dialog";
 import { PageContainer } from "@/shared/components/page-container";
 import { Button } from "@/shared/components/shadcn/button";
 import { Separator } from "@/shared/components/shadcn/seperator";
@@ -28,15 +26,28 @@ import {
   useCourseEditorSteps,
   type CourseEditorStep,
 } from "../hooks/use-course-editor-steps";
+import { useFileUpload } from "@/shared/hooks/use-file-upload";
+import {
+  useCreateCourseMutation,
+  useUpdateCourseMutation,
+} from "../api/course-mutations";
+
+type SaveDraftLoader = "none" | "success" | "error";
 
 const CourseEditorPage = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const { alertProps, openAlert } = useAlertDialog();
 
   // Refs to access form state from child components. Used to prevent navigation with unsaved changes.
   const informationFormRef = useRef<CourseEditorInformationRef>(null);
   const sectionsFormRef = useRef<CourseEditorSectionsRef>(null);
+
+  const createMutation = useCreateCourseMutation();
+  const updateMutation = useUpdateCourseMutation();
+
+  const navigate = useNavigate();
+
+  const [saveDraftLoader, setSaveDraftLoader] =
+    useState<SaveDraftLoader>("none");
 
   // Determine if we are editing an existing course or creating a new one
   const { courseId: urlCourseId } = useParams<{ courseId?: string }>();
@@ -83,6 +94,7 @@ const CourseEditorPage = () => {
     { id: "sections", label: t("courseManager.createSections") },
     { id: "review", label: t("courseManager.reviewCourse") },
   ];
+  const { uploadFile } = useFileUpload();
 
   const handleStepComplete = (step: CourseEditorStep, courseId?: string) => {
     // If a courseId is provided (from create operation), store it
@@ -90,6 +102,55 @@ const CourseEditorPage = () => {
       setActualCourseId(courseId);
     }
     completeStep(step, true); // Complete and move to next step
+  };
+
+  const saveAsDraft = async () => {
+    try {
+      const values = informationFormRef.current?.getValues();
+      if (!values) return;
+
+      const docId = actualCourseId ?? queryCourse?.documentId;
+
+      // Upload image if provided and take first id
+      const imageIds =
+        values.image && values.image.length > 0
+          ? await uploadFile(values.image)
+          : undefined;
+      const imageId = imageIds?.[0];
+      // Edit = update mutation
+      if (isEditMode && docId) {
+        // Update existing course
+        const result = await updateMutation.mutateAsync({
+          documentId: docId,
+          title: values.title,
+          difficulty: Number(values.difficulty),
+          categories: values.categories,
+          description: values.description,
+          image: imageId,
+        });
+        console.log("Updated draft course:", result);
+      } else {
+        // Create = create mutation
+        const result = await createMutation.mutateAsync({
+          title: values.title,
+          difficulty: Number(values.difficulty),
+          categories: values.categories ?? [],
+          description: values.description,
+          image: imageId,
+        });
+
+        setSaveDraftLoader("success");
+
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
+      }
+    } catch (error) {
+      console.error("Error saving course:", error);
+      setSaveDraftLoader("error");
+
+      // Error handling is managed by react-query
+    }
   };
 
   /* ---------------------------- Render component ---------------------------- */
@@ -167,39 +228,12 @@ const CourseEditorPage = () => {
     return `${t("common.create")} ${t("courseManager.course")}`;
   };
 
-  const handleBack = () => {
-    // Check isDirty at the moment of click
-    const informationDirty = informationFormRef.current?.isDirty() ?? false;
-    const sectionsDirty = sectionsFormRef.current?.isDirty() ?? false;
-
-    const hasChanges = informationDirty || sectionsDirty;
-
-    if (hasChanges) {
-      openAlert();
-    } else {
-      handleReturnToCourses();
-    }
-  };
-
-  const handleReturnToCourses = () => {
-    navigate("/courses");
-  };
-
   return (
     <PageContainer title={getPageTitle()}>
       <div className="flex gap-x-20">
         {/*------------ Left side - Step Navigation ------------*/}
         <div className="w-auto">
           <div className="flex flex-col justify-between items-start gap-4 mb-6">
-            <Button
-              variant="outline"
-              onClick={handleBack}
-              iconPlacement="left"
-              size="sm"
-              icon={() => <Icon path={mdiArrowLeft} size={1} />}
-            >
-              {t("common.back")}
-            </Button>
             <h1 className="text-2xl text-greyscale-text-caption">
               {getPageTitle()}
             </h1>
@@ -220,6 +254,41 @@ const CourseEditorPage = () => {
             ))}
           </div>
           <Separator className="my-6" />
+          <Button
+            disabled={createMutation.isPending || updateMutation.isPending}
+            onClick={saveAsDraft}
+            className="w-full w-60"
+            variant="secondary"
+          >
+            {createMutation.isPending || updateMutation.isPending ? (
+              <>
+                <GlobalLoader variant="spinner" size={0.8} />
+                {t("common.saving")}...
+              </>
+            ) : (
+              <>
+                <Icon path={mdiFloppy} size={0.6} />
+                {t("courseEditor.saveAsDraft")}
+              </>
+            )}
+          </Button>
+
+          {/* ---- Loading save as draft ----- */}
+
+          <div className="flex flex-col gap-y-3 mt-6">
+            {saveDraftLoader === "success" && (
+              <p className="flex text-sm justify-center text-success-surface-default gap-x-2">
+                <Icon path={mdiCheckCircle} size={0.7} />
+                Saved to draft succeeded
+              </p>
+            )}
+            {saveDraftLoader === "error" && (
+              <p className="flex items-center justify-center  text-sm text-destructive gap-x-2">
+                <Icon path={mdiAlertCircle} size={0.7} />
+                Failed to save as draft
+              </p>
+            )}
+          </div>
         </div>
 
         {/*------------ Right side - Content ------------*/}
@@ -230,23 +299,6 @@ const CourseEditorPage = () => {
           <ErrorBoundary>{getSectionComponent()}</ErrorBoundary>
         </div>
       </div>
-
-      {/* Leave confirmation alert */}
-      <ReusableAlertDialog
-        {...alertProps}
-        title={t("courseManager.unsavedChangesTitle")}
-        description={t("courseManager.unsavedChangesMessage")}
-        confirmAction={{
-          label: t("common.leave"),
-          onClick: handleReturnToCourses,
-        }}
-        cancelAction={{
-          label: t("common.stay"),
-          onClick: () => {
-            // Just close the dialog
-          },
-        }}
-      />
     </PageContainer>
   );
 };

@@ -22,7 +22,8 @@ import { FormMultiSelect } from "@/shared/components/form/form-multi-select";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
-import { Card, CardContent, CardFooter } from "@/shared/components/shadcn/card";
+import { Card, CardContent } from "@/shared/components/shadcn/card";
+import { useAlertDialog } from "@/shared/components/modals/use-alert-dialog";
 import { Form } from "@/shared/components/shadcn/form";
 import {
   MultiSelectOption,
@@ -38,6 +39,9 @@ import {
 } from "../api/course-mutations";
 
 import CategoryCreateModal from "./category-create-modal";
+import { Button } from "@/shared/components/shadcn/button";
+import { useNavigate } from "react-router";
+import ReusableAlertDialog from "@/shared/components/modals/reusable-alert-dialog";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -47,6 +51,7 @@ interface CourseEditorInformationProps {
 
 export interface CourseEditorInformationRef {
   isDirty: () => boolean;
+  getValues: () => CourseBasicInfoFormValues;
 }
 
 /* --------------------------------- Schema --------------------------------- */
@@ -80,6 +85,9 @@ const CourseEditorInformation = forwardRef<
 >(({ course, onComplete }, ref) => {
   const { t } = useTranslation();
   const isEditMode = course !== undefined;
+  const { alertProps, openAlert } = useAlertDialog();
+  const navigate = useNavigate();
+  // no local ref needed here
 
   /* -------------------------------- Mutations ------------------------------- */
   const createMutation = useCreateCourseMutation();
@@ -143,6 +151,7 @@ const CourseEditorInformation = forwardRef<
   // Expose isDirty method to parent via ref
   useImperativeHandle(ref, () => ({
     isDirty: () => form.formState.isDirty,
+    getValues: () => form.getValues(),
   }));
 
   // Reset form when course data changes (e.g., when navigating back to this step)
@@ -170,6 +179,21 @@ const CourseEditorInformation = forwardRef<
   }, [categoriesError, form, t]);
 
   /* -------------------------------- Handlers -------------------------------- */
+
+  const handleCancel = () => {
+    // Check isDirty at the moment of click
+    const hasChanges = form.formState.isDirty;
+
+    if (hasChanges) {
+      openAlert();
+    } else {
+      navigate("/");
+    }
+  };
+
+  const handleReturnToCourses = () => {
+    navigate("/");
+  };
 
   const onSubmit = async (values: CourseBasicInfoFormValues) => {
     try {
@@ -284,6 +308,7 @@ const CourseEditorInformation = forwardRef<
       >
         <Form {...form}>
           <form
+            id="course-information-form"
             onSubmit={(e) => {
               void form.handleSubmit(onSubmit)(e);
             }}
@@ -415,23 +440,6 @@ const CourseEditorInformation = forwardRef<
                 </div>
               </OverlayStatusWrapper>
             </CardContent>
-            <CardFooter className="flex justify-end mt-4">
-              {/*Create and cancel buttons*/}
-              <FormActions
-                formState={form.formState}
-                submitLabel={
-                  isEditMode
-                    ? t("common.saveChanges")
-                    : t("courseManager.createAndContinue")
-                }
-                submittingLabel={
-                  isEditMode
-                    ? t("common.saving") + "..."
-                    : t("common.creating") + "..."
-                }
-                disableSubmit={mutationError !== undefined}
-              />
-            </CardFooter>
           </form>
         </Form>
         <CategoryCreateModal
@@ -442,7 +450,59 @@ const CourseEditorInformation = forwardRef<
           onCreated={handleCategoryCreated}
         />
       </Card>
+      <div className="bg-white sticky bottom-2 py-4 border-t flex justify-between mt-5 items-center pr-2">
+        <Button
+          disabled
+          className="text-md text-greyscale-border-default"
+          variant="ghost"
+        >
+          &#x276E; &nbsp; &nbsp;
+          {t("common.goPrevious")}
+        </Button>
+        <div className="flex gap-x-5">
+          <Button
+            variant="ghost"
+            className="text-md text-error-surface-default font-bold underline cursor-pointer"
+            onClick={handleCancel}
+          >
+            {t("common.cancel")}
+          </Button>
+
+          <FormActions
+            formState={form.formState}
+            formId="course-information-form"
+            submitLabel={
+              isEditMode
+                ? t("common.saveChanges")
+                : t("courseManager.createAndContinue")
+            }
+            submittingLabel={
+              isEditMode
+                ? t("common.saving") + "..."
+                : t("common.creating") + "..."
+            }
+            disableSubmit={mutationError !== undefined}
+          />
+        </div>
+      </div>
       <DevTool control={form.control} />
+
+      {/* Leave confirmation alert */}
+      <ReusableAlertDialog
+        {...alertProps}
+        title={t("courseManager.unsavedChangesTitle")}
+        description={t("courseManager.unsavedChangesMessage")}
+        confirmAction={{
+          label: t("common.leave"),
+          onClick: handleReturnToCourses,
+        }}
+        cancelAction={{
+          label: t("common.stay"),
+          onClick: () => {
+            // Just close the dialog
+          },
+        }}
+      />
     </>
   );
 });
