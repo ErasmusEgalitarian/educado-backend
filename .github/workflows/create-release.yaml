@@ -1,0 +1,109 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+      - "strapi-v*.*.*"
+      - "web-v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    name: Create GitHub/Gitea Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine project and version
+        id: meta
+        run: |
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          echo "tag=$TAG_NAME" >> $GITHUB_OUTPUT
+
+          # Determine which project
+          if [[ "$TAG_NAME" == strapi-v* ]]; then
+            echo "project=Strapi" >> $GITHUB_OUTPUT
+            VERSION="${TAG_NAME#strapi-v}"
+          elif [[ "$TAG_NAME" == web-v* ]]; then
+            echo "project=Web" >> $GITHUB_OUTPUT
+            VERSION="${TAG_NAME#web-v}"
+          else
+            echo "project=Full Stack" >> $GITHUB_OUTPUT
+            VERSION="${TAG_NAME#v}"
+          fi
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Generate release notes
+        id: notes
+        run: |
+          # Get commits since last tag
+          LAST_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+
+          if [ -z "$LAST_TAG" ]; then
+            # First release
+            COMMITS=$(git log --pretty=format:"- %s (%h)" --no-merges)
+          else
+            # Get commits between tags
+            COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s (%h)" --no-merges)
+          fi
+
+          # Create release notes
+          cat > release_notes.md << EOF
+          ## 🚀 Release ${{ steps.meta.outputs.version }}
+
+          **Project:** ${{ steps.meta.outputs.project }}
+          **Tag:** \`${{ steps.meta.outputs.tag }}\`
+
+          ### 📦 Docker Images
+
+          *The final container registry we use is not decided yet. This is a placeholder.*
+
+          EOF
+
+          if [[ "${{ steps.meta.outputs.project }}" == "Strapi" ]] || [[ "${{ steps.meta.outputs.project }}" == "Full Stack" ]]; then
+            cat >> release_notes.md << EOF
+          - \`ghcr.io/${{ github.repository }}/strapi:${{ steps.meta.outputs.version }}\`
+          - \`ghcr.io/${{ github.repository }}/strapi:latest\`
+
+          EOF
+          fi
+
+          if [[ "${{ steps.meta.outputs.project }}" == "Web" ]] || [[ "${{ steps.meta.outputs.project }}" == "Full Stack" ]]; then
+            cat >> release_notes.md << EOF
+          - \`ghcr.io/${{ github.repository }}/web:${{ steps.meta.outputs.version }}\`
+          - \`ghcr.io/${{ github.repository }}/web:latest\`
+
+          EOF
+          fi
+
+          cat >> release_notes.md << EOF
+          ### 📝 Changes
+
+          $COMMITS
+
+          ---
+
+          *This release was automatically generated from tag \`${{ steps.meta.outputs.tag }}\`*
+          EOF
+
+          echo "notes<<EOF" >> $GITHUB_OUTPUT
+          cat release_notes.md >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: "${{ steps.meta.outputs.project }} v${{ steps.meta.outputs.version }}"
+          body: ${{ steps.notes.outputs.notes }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,10 +1,13 @@
-import Tippy from "@tippyjs/react";
+import { BookOpenIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
 
-import "tippy.js/dist/tippy.css"; // optional
-import Logo from "@/shared/assets/ecs-logo.png";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/shared/components/shadcn/tooltip";
 
-import { BookOpenIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import Logo from "../../../public/logo.svg";
 
 export const Sidebar = () => {
   return (
@@ -47,26 +50,36 @@ const SidebarElement = ({
   // matching the current path
   if (location.pathname == path) {
     return (
-      <Tippy content={tooltip} placement="right">
-        <Link
-          to={path}
-          className="flex items-center justify-center shrink-0 w-10 h-10 mt-4 rounded-sm"
-        >
-          <span className="w-5 h-5 text-blue-500">{icon}</span>
-        </Link>
-      </Tippy>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Link
+            to={path}
+            className="flex items-center justify-center shrink-0 w-10 h-10 mt-4 rounded-sm"
+          >
+            <span className="w-5 h-5 text-blue-500">{icon}</span>
+          </Link>
+        </TooltipTrigger>
+        <TooltipContent side="right">
+          <p>{tooltip}</p>
+        </TooltipContent>
+      </Tooltip>
     );
   }
 
   // not matching the current path
   return (
-    <Tippy content={tooltip} placement="right">
-      <Link
-        to={path}
-        className="flex items-center justify-center shrink-0 w-10 h-10 mt-4 rounded-sm hover:bg-gray-300"
-      >
-        <span className="w-5 h-5">{icon}</span>
-      </Link>
-    </Tippy>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Link
+          to={path}
+          className="flex items-center justify-center shrink-0 w-10 h-10 mt-4 rounded-sm hover:bg-gray-300"
+        >
+          <span className="w-5 h-5">{icon}</span>
+        </Link>
+      </TooltipTrigger>
+      <TooltipContent side="right">
+        <p>{tooltip}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
