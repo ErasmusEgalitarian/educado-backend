@@ -71,6 +71,8 @@ const Login = () => {
    * OnSubmit function for Login.
    * Takes the submitted data from the form and sends it to the backend through a service.
    * Upon receiving a success response, the token recieved from the backend will be set in the local storage.
+   * This shares the information with loginSaver, which sets the user information in the global state through hooks.
+   * If an error is received, the error state is set accordingly to display the error message to the user.
    *
    * @param {JSON} data Which includes the following fields:
    * @param {String} data.email Email of the Content Creator
@@ -139,7 +141,7 @@ const Login = () => {
     const submitloginButton = document.getElementById(
       "submit-login-button",
     ) as HTMLButtonElement;
-    
+    // Makes sure that the button is only clickable when both fields are filled and there are no email error
     const buttonContainer = submitloginButton.parentElement as HTMLDivElement;
     if(isThereAnError === true){
       submitloginButton.setAttribute("disabled", "true");
@@ -197,6 +199,7 @@ const Login = () => {
           {/*Error message for when email or password is incorrect*/}
           <div className="fixed right-0 top-16 z-10">
             {error && (
+              // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
               <div
                 className="bg-white shadow-sm border-t-4 p-4 w-52 rounded-sm text-center animate-bounce-short"
                 role="alert"
@@ -290,6 +293,7 @@ const Login = () => {
                 </div>
 
                 {emailError && (
+                  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
                   <div
                     className="mt-3 flex items-center text-[12px] font-normal font-montserrat"
                     role="alert"
