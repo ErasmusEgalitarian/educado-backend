@@ -36,13 +36,16 @@ export default factories.createCoreController('api::content-creator.content-crea
 
 
       
-        // 3. Generate token
-        const token = jwt.sign(
-        { documentId: user.documentId,
+        const jwtContentCreator : ContentCreator = { 
+            documentId: user.documentId,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            verifiedAt: user.verifiedAt},
+            verifiedAt: new Date(user.verifiedAt)
+        }
+        // 3. Generate token
+        const token = jwt.sign(
+            jwtContentCreator,
             process.env.JWT_SECRET,
             { expiresIn: '7d' }
         );
