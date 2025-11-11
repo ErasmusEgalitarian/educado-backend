@@ -1,17 +1,19 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import MiniNavbar from "@/shared/components/MiniNavbar";
 import { Button } from "@/shared/components/shadcn/button";
 import { SignupSchema } from "../components/signup/micro-services";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Cards } from "../components/signup/SignupCards"
+import { Cards } from "../components/signup/SignupCards";
 
 const Header = () => {
-//logic here  
-const navigate = useNavigate()
+  //logic here
+  const navigate = useNavigate();
 
-const location = useLocation() as { state?: { initial?: z.infer<typeof SignupSchema> } };
+  const location = useLocation() as {
+    state?: { initial?: z.infer<typeof SignupSchema> };
+  };
 
   useEffect(() => {
     if (!location.state?.initial) {
@@ -19,7 +21,7 @@ const location = useLocation() as { state?: { initial?: z.infer<typeof SignupSch
     }
   }, [location.state, navigate]);
 
-const initial = location.state?.initial;
+  const initial = location.state?.initial;
 
   return (
     <div className="flex flex-col items-center gap-7 mx-32">
@@ -89,52 +91,51 @@ const SignupInfo = () => {
 
 export default SignupInfo;
 
-
 //signup call
-  // Show the email verification modal
-    // await signup({
-    //   firstName: data.firstName,
-    //   lastName: data.lastName,
-    //   email: data.email,
-    //   password: data.password,
-    //   role: "user",
-    //   token: null,
-    // })
-    //   .then((res) => {
-    //     if (
-    //       res.status === 200 ||
-    //       res.data.message ===
-    //         "Verification email sent. Please verify to complete registration."
-    //     ) {
-    //       If the signup is successful, show the modal
-    //       setIsModalVisible(true);
-    //     } else if (res.status === 201) {
-    //       const id = res.data.contentCreatorProfile.baseUser;
-    //       navigate(`/application/${id}`);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     setError(err);
-    //     if (!err.response?.data) {
-    //       console.error(err);
-    //     } else {
-    //       switch (err.response.data.error.code) {
-    //         case "E0201": // Email already exists
-    //           setEmailExistError(err);
-    //           setErrorExistMessage(
-    //             "Já existe um usuário com o email fornecido"
-    //           );
-    //           setPasswordMismatchError(null);
-    //           setPasswordMismatchErrorMessage("");
-    //           break;
-    //         case "E0105": // Password mismatch
-    //           setPasswordMismatchError(err);
-    //           setPasswordMismatchErrorMessage("As senhas não combinam");
-    //           setEmailExistError(null);
-    //           setErrorExistMessage("");
-    //           break;
-    //         default:
-    //           console.error(error);
-    //       }
-    //     }
-    //   });
+// Show the email verification modal
+// await signup({
+//   firstName: data.firstName,
+//   lastName: data.lastName,
+//   email: data.email,
+//   password: data.password,
+//   role: "user",
+//   token: null,
+// })
+//   .then((res) => {
+//     if (
+//       res.status === 200 ||
+//       res.data.message ===
+//         "Verification email sent. Please verify to complete registration."
+//     ) {
+//       If the signup is successful, show the modal
+//       setIsModalVisible(true);
+//     } else if (res.status === 201) {
+//       const id = res.data.contentCreatorProfile.baseUser;
+//       navigate(`/application/${id}`);
+//     }
+//   })
+//   .catch((err) => {
+//     setError(err);
+//     if (!err.response?.data) {
+//       console.error(err);
+//     } else {
+//       switch (err.response.data.error.code) {
+//         case "E0201": // Email already exists
+//           setEmailExistError(err);
+//           setErrorExistMessage(
+//             "Já existe um usuário com o email fornecido"
+//           );
+//           setPasswordMismatchError(null);
+//           setPasswordMismatchErrorMessage("");
+//           break;
+//         case "E0105": // Password mismatch
+//           setPasswordMismatchError(err);
+//           setPasswordMismatchErrorMessage("As senhas não combinam");
+//           setEmailExistError(null);
+//           setErrorExistMessage("");
+//           break;
+//         default:
+//           console.error(error);
+//       }
+//     }
+//   });

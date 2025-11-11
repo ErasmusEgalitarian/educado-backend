@@ -77,11 +77,11 @@ const Signup = () => {
   const onSubmit = (data: any) => {
     setFormData(data); // Store the form data in state
     setEmail(data.email);
-    navigate("pages/SingupInformation.tsx",{
-      state:{intitial: data},
+    // Pass the collected form data to the next page via location.state
+    navigate("info", {
+      state: { initial: data },
       replace: false,
-    })
-  
+    });
   };
 
   // Variables determining whether or not the password is visible
