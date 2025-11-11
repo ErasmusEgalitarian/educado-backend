@@ -1,5 +1,5 @@
 /* Tests for controllers */
-import { getCertificatesStats, getStudentStats, getContentCreatorFeedback } from "../../../src/api/course-statistics/controllers/course-statistics";
+import { getCertificatesStats, getStudentStats, getContentCreatorFeedback, getCoursesStats } from "../../../src/api/course-statistics/controllers/course-statistics";
 import feedback from "../../../src/api/feedback/controllers/feedback";
 
 describe('Test statistics', () => {
@@ -122,5 +122,37 @@ describe('Test statistics', () => {
             lastThirtyDays: 0.5
         });
     });
+
+    
+
+    it('Get course statistics for a content creator', async () => {
+        strapiMock.documents = jest.fn().mockImplementation((api) => {
+            return {
+                findOne: jest.fn().mockResolvedValue({
+                    courses: [
+                        { documentId: "course1", createdAt: new Date("2025-11-14") },
+                        { documentId: "course2", createdAt: new Date("2025-11-01") },
+                        { documentId: "course3", createdAt: new Date("2025-10-20") },
+                        { documentId: "course4", createdAt: new Date("2025-08-01") }
+                    ]
+                })
+            }
+        });
+
+        const result = await getCoursesStats(contentCreatorId, ["course1", "course2", "course3", "course4"]);
+        
+        expect(result).toBeDefined();
+        expect(result.total).toBeDefined();
+        expect(result.progress).toBeDefined();
+        expect(result.total).toEqual(4);
+
+       
+        expect(result.progress).toEqual({
+            lastSevenDays: 25,
+            lastThirtyDays: 75,
+            thisMonth: 50
+        });
+    });
+    
 });
 
