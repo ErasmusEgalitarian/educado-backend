@@ -9,10 +9,10 @@ import CourseOverviewPage from "@/course/pages/course-overview-page";
 
 import AccountDeletionRequest from "./features/auth/components/AccountDeletionRequest";
 import DataDeletionRequest from "./features/auth/components/DataDeletionRequest";
-import Login from "./features/auth/components/Login";
+import Login from "./features/auth/components/login";
 import PrivacyPolicy from "./features/auth/components/PrivacyPolicy";
 import Signup from "./features/auth/components/Signup";
-import Welcome from "./features/auth/pages/Welcome";
+import Welcome from "./features/auth/pages/welcome";
 import Certificates from "./features/certificates/pages/Certificates";
 import Profile from "./features/user/components/Profile";
 import NotFound from "./shared/assets/NotFound";
@@ -35,7 +35,8 @@ const App = () => {
     {
       path: "/test",
       element: <TestPage />,
-    },{
+    },
+    {
       path: "/test2",
       element: <TestPage2 />,
     },

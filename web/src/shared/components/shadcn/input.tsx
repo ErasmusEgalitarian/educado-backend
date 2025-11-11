@@ -30,7 +30,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const variantStyles = {
       default:
-        "border-greyscale-border-lighter focus-visible:border-primary-surface-default focus-visible:ring-primary-surface-default/20",
+        "border-greyscale-border-default focus-visible:border-primary-surface-default focus-visible:ring-primary-surface-default/20",
       error:
         "border-error-border-default bg-error-surface-subtle focus-visible:border-error-surface-default focus-visible:ring-error-surface-default/20",
     };

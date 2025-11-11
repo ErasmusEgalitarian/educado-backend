@@ -219,7 +219,7 @@ export const createCourseColumns = ({
     },
     {
       id: "rating",
-      header: t("common.rating"),
+      header: t("rating.rating"),
       cell: () => {
         // Placeholder rating - you can replace this with actual rating data later
         const rating = 4.2;

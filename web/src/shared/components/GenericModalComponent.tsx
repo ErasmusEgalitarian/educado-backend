@@ -34,7 +34,6 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
 
   return (
     // Overlay: fixed + full screen + center content
-
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div
         className={`flex flex-col w-[500px] h-[350px] bg-[#f1f9fb] space-y-8 p-10 rounded-xl text-center ${

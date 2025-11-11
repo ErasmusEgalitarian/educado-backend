@@ -12,7 +12,6 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useAuth } from "@/auth/hooks/use-auth";
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import {
   DropdownMenu,
@@ -27,7 +26,6 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "@/shared/components/shadcn/dropdown-menu";
-
 import {
   Popover,
   PopoverContent,
@@ -40,10 +38,9 @@ import { useNotifications } from "../context/NotificationContext";
 export const Navbar = () => {
   const navigate = useNavigate();
   const { clearToken } = useAuthStore((state) => state);
-  const { preferences, setPreferences } = useAuth();
   const [open, setOpen] = useState(false);
   const { notifications, setNotifications } = useNotifications();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   // Logout handler
   const handleLogout = () => {
     clearToken();
@@ -76,6 +73,27 @@ export const Navbar = () => {
           >
             <img src="/logo.svg" alt="logo" className="w-[24.43px] h-6" />
             <img src="/educado.svg" alt="educado" className="h-6" />
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <Link
+            to="/courses"
+            className="text-sm font-medium text-grayMedium hover:text-primary transition-colors"
+          >
+            Courses
+          </Link>
+          <Link
+            to="/media"
+            className="text-sm font-medium text-grayMedium hover:text-primary transition-colors"
+          >
+            Media
+          </Link>
+          <Link
+            to="/test"
+            className="text-sm font-medium text-grayMedium hover:text-primary transition-colors"
+          >
+            Test
           </Link>
         </div>
 
@@ -163,7 +181,7 @@ export const Navbar = () => {
                 <div
                   className="
                   bg-primary-surface-lighter text-primary-border-lighter 
-                  border-1 border-primary-border-lighter rounded-full w-10 h-10 
+                  border border-primary-border-lighter rounded-full w-10 h-10 
                   flex items-center justify-center "
                 >
                   <span className="text-md text-center font-bold select-none">{`${userInfo.firstName.charAt(0)}${userInfo.lastName.charAt(0)}`}</span>
@@ -195,35 +213,32 @@ export const Navbar = () => {
               >
                 {t("navbar.feedback")}
               </DropdownMenuIconItem>
-
+              <DropdownMenuSub>
+                <DropdownMenuIconSubTrigger
+                  icon={() => <Icon path={mdiTranslate} size={1} />}
+                >
+                  {t("language.switchLanguage")}
+                </DropdownMenuIconSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuRadioGroup
+                      value={i18n.language}
+                      onValueChange={(value) => {
+                        void i18n.changeLanguage(value);
+                      }}
+                    >
+                      <DropdownMenuRadioItem value="pt">
+                        Português 🇧🇷
+                      </DropdownMenuRadioItem>
+                      <DropdownMenuRadioItem value="en">
+                        English 🇺🇸
+                      </DropdownMenuRadioItem>
+                    </DropdownMenuRadioGroup>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
               {userInfo.role === "admin" && (
                 <>
-                  <DropdownMenuSub>
-                    <DropdownMenuIconSubTrigger
-                      icon={() => <Icon path={mdiTranslate} size={1} />}
-                    >
-                      {t("language.switchLanguage")}
-                    </DropdownMenuIconSubTrigger>
-                    <DropdownMenuPortal>
-                      <DropdownMenuSubContent>
-                        <DropdownMenuRadioGroup
-                          value={preferences.language}
-                          onValueChange={(value) => {
-                            if (value === "en" || value === "pt") {
-                              setPreferences({ language: value });
-                            }
-                          }}
-                        >
-                          <DropdownMenuRadioItem value="pt">
-                            Português 🇧🇷
-                          </DropdownMenuRadioItem>
-                          <DropdownMenuRadioItem value="en">
-                            English 🇺🇸
-                          </DropdownMenuRadioItem>
-                        </DropdownMenuRadioGroup>
-                      </DropdownMenuSubContent>
-                    </DropdownMenuPortal>
-                  </DropdownMenuSub>
                   <DropdownMenuSeparator />
                   <DropdownMenuIconItem
                     onClick={() => {
