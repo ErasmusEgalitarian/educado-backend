@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import {
+  MotivationForm,
   EducationForm,
   ExperienceForm,
 } from "./SignupFormSchema";
@@ -16,7 +17,6 @@ import {
   CardDescription,
   CardContent,
 } from "@/shared/components/shadcn/card";
-const maxChars = 400;
 
 type SectionKey = "motive" | "education" | "experience";
 
@@ -27,7 +27,6 @@ const MotivationCard = ({
   open: boolean;
   onToggle: () => void;
 }) => {
-  const [text, setText] = useState("");
 
   return (
     <Card
@@ -61,7 +60,7 @@ const MotivationCard = ({
 
       {open && (
         <>
-          <CardHeader>
+          <CardHeader className="py-0">
             <h3
               className="font-['Montserrat'] font-normal text-[#383838]"
               style={{ fontSize: 20, lineHeight: "26px" }}
@@ -71,27 +70,10 @@ const MotivationCard = ({
             </h3>
           </CardHeader>
           <CardContent id="motive-content">
-            <textarea
-              id="motivation"
-              value={text}
-              onChange={(e) => {
-                setText(e.target.value);
-              }}
-              rows={5}
-              maxLength={maxChars}
-              placeholder="Escreva aqui por que você quer fazer parte do projeto"
-              className="w-full rounded-lg border-[1.5px] border-greyscale-border-lighter px-3 py-3 font-normal font-['Montserrat'] text-greyscale-text-subtle focus:outline-none focus:border-greyscale-border-default focus:border-2 resize-none placeholder:text-greyscale-text-subtle"
-              style={{ fontSize: "18px", lineHeight: "23.4px" }}
-            />
-            <CardFooter
-              className="flex justify-end pb-5 pt-2 px-0 text-greyscale-text-caption font-normal font-['Montserrat']"
-              style={{ fontSize: "14px", lineHeight: "18.2px" }}
-            >
-              {text.length} / {maxChars} caracteres
-            </CardFooter>
+            <MotivationForm/>
           </CardContent>
         </>
-      )}
+      )} 
     </Card>
   );
 };

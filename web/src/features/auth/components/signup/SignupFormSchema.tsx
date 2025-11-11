@@ -2,13 +2,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
+import { TypeOf, z } from "zod";
 
 import FormActions from "@/shared/components/form/form-actions";
 import { FormInput } from "@/shared/components/form/form-input";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { Checkbox } from "@/shared/components/shadcn/checkbox";
 import { Form } from "@/shared/components/shadcn/form";
+import { FormItem } from "@/shared/components/shadcn/form";
+import { Textarea } from "@/shared/components/shadcn/textarea";
 
 const maxChars = 400;
 
@@ -31,7 +33,37 @@ const formSchema = z.object({
   empresa: z.string().min(0),
   cargo: z.string().min(0),
   descrição: z.string().min(0),
+  motivações:  z.string().min(0),
 });
+
+export const MotivationForm = () => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      motivações: ""
+    },
+    mode: "onTouched",
+  });
+  const currentLength = form.watch("motivações").length;
+  return (
+    <Form {...form}>
+      <FormTextarea
+        control={form.control}
+        fieldName="motivações"
+        placeholder="Escreva aqui por que você quer fazer parte do projeto"
+        rows={3}
+        maxLength={maxChars}
+        className="resize-none"
+      />
+      <div
+        className="text-right font-normal font-['Montserrat'] text-greyscale-text-caption py-2"
+        style={{ fontSize: "14px", lineHeight: "17px" }}
+      >
+        {currentLength} / {maxChars} caracteres
+      </div>
+    </Form>
+  );
+};
 
 // The form component itself
 export const EducationForm = () => {
@@ -205,6 +237,7 @@ export const ExperienceForm = () => {
         label="Descrição das atividades"
         rows={3}
         maxLength={maxChars}
+        className="resize-none"
       />
       <div
         className="text-right font-normal font-['Montserrat'] text-greyscale-text-caption py-2"

@@ -27,7 +27,7 @@ function Textarea({
     <textarea
       data-slot="textarea"
       className={cn(
-        "placeholder:text-greyscale-text-caption text-greyscale-text-title dark:bg-input/30 block min-h-24 w-full rounded-md border bg-transparent text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 !resize-y",
+        "placeholder:text-greyscale-text-caption text-greyscale-text-title dark:bg-input/30 block min-h-24 w-full rounded-md border bg-transparent text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
         variantStyles[variant],
         inputSizes[inputSize],
         className
