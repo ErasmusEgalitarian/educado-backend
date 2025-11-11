@@ -125,10 +125,11 @@
     "leavePageMessage": "Tem certeza que deseja sair desta página?",
     "createError": "Falha ao Criar Curso",
     "updateError": "Falha ao Atualizar Curso",
+    "rating": "Avaliação",
     "genericError": "Ocorreu um erro inesperado. Por favor, tente novamente."
   },
   "courses": {
-    "pageTitle": "Lista de Cursos",
+    "pageTitle": "Confira seus cursos",
     "checkYourCourses": "Confira seus cursos",
     "newCourse": "Novo Curso",
     "searchCourse": "Buscar Curso",
@@ -148,7 +149,12 @@
     "grade": "Nota",
     "startNow": "Começar Agora",
     "noCoursesYet": "Você ainda não criou nenhum curso. Clique no botão abaixo e siga as instruções passo a passo para desenvolver seu primeiro curso.",
-    "createNewCourse": "Criar Novo Curso"
+    "createNewCourse": "Criar Novo Curso",
+    "thisMonth": "Esse mês",
+    "totalCertificatesIssued": "Total certificados emitidos",
+    "evaluation": "Avaliação",
+    "lastSevenDays": "Últimos 7 dias",
+    "lastThirtyDays": "Últimos 30 dias"
   },
   "courseEditor": {
     "fetchCourseDataError": "Erro ao carregar dados do curso: {{message}}",
@@ -185,6 +191,13 @@
     "section2":"Divulgue seu trabalho e alcance um público ainda maior. Mostre suas ideias para quem quer aprender e se inspirar.",
     "title3":"Cadastre-se agora e ajude a fazer a diferença!",
     "section3":"Faça parte de uma comunidade que facilita o acesso a conteúdos relevantes e incentiva o compartilhamento de conhecimento de forma simples e prática."
+  },
+   "multiSelect": {
+    "createCategory": "Criar categoria",
+    "EnterCategoryTitle": "Digite um título de categoria curto e claro.",
+    "newCategory": "Nova Categoria",
+    "creatingCategory": "Criando Categoria",
+    "minNameLength": "O nome da categoria deve ter pelo menos {{count}} caracteres"
   },
   "login":{
       "back-button":"Voltar",

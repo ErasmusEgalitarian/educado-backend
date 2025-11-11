@@ -125,7 +125,8 @@
     "leavePageMessage": "Are you sure you want to leave this page?",
     "createError": "Failed to Create Course",
     "updateError": "Failed to Update Course",
-    "genericError": "An unexpected error occurred. Please try again."
+    "genericError": "An unexpected error occurred. Please try again.",
+    "rating": "Rating"
   },
   "courses": {
     "pageTitle": "Courses list",
@@ -148,7 +149,12 @@
     "grade": "Grade",
     "startNow": "Start Now",
     "noCoursesYet": "You haven't created any courses yet. Click the button below and follow the step-by-step instructions to develop your first course.",
-    "createNewCourse": "Create New Course"
+    "createNewCourse": "Create New Course",
+    "thisMonth": "This month",
+    "totalCertificatesIssued": "Total certificates issued",
+    "evaluation": "Evaluation",
+    "lastSevenDays": "Last 7 days",
+    "lastThirtyDays": "Last 30 days"
   },
   "courseEditor": {
     "fetchCourseDataError": "Error loading Course Data: {{message}}",
@@ -178,6 +184,13 @@
     "addACaption": "Add a caption or description",
     "previewShortcuts": "Press ESC to close • Arrow keys to navigate • +/- to zoom"
   },
+   "multiSelect": {
+    "createCategory": "Create category",
+    "EnterCategoryTitle": "Enter a short and clear category title.",
+    "newCategory": "New Category",
+    "creatingCategory": "Creating Category",
+    "minNameLength": "Category name must be at least {{count}} characters"
+  },
     "carousel": {
     "title1": "Join us to transform lives through your knowledge",
     "section1": "We offer access to personalized content for people in need, improving living conditions and job opportunities.",
@@ -185,8 +198,7 @@
     "section2": "Promote your work and reach an even wider audience. Share your ideas with those who want to learn and be inspired.",
     "title3": "Sign up now and help make a difference!",
     "section3": "Be part of a community that makes it easier to access relevant content and encourages knowledge sharing in a simple and practical way."
-}
-,
+  },
   "login":{
     "back-button":"Back",
     "welcome-back":"Welcome back!",
