@@ -87,7 +87,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
         {/* Progress header with period selector */}
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-2xl font-semibold text-greyscale-text-subtle">
-            {t("courses.progress")}
+            Progressos
           </h3>
           <Select value={period} onValueChange={(val: PeriodKey) => {setPeriod(val)}}>
             <SelectTrigger className="w-[180px] rounded-lg border border-greyscale-border-disabled bg-background text-sm text-greyscale-text-body">
@@ -104,9 +104,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
         <div className="space-y-8">
           {/* Total cursos */}
           <div>
-            <p className="text-greyscale-text-subtle">
-              {t("courses.totalCourses")}
-            </p>
+            <p className="text-greyscale-text-subtle">Total cursos</p>
             <div className="flex items-baseline gap-2">
               <span className="text-4xl font-semibold">{getTotal("courses")}</span>
                 <span className={`text-sm flex item-center ${
@@ -125,9 +123,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
 
           {/* Total alunos */}
           <div>
-            <p className="text-greyscale-text-subtle">
-              {t("courses.totalStudents")}
-            </p>
+            <p className="text-greyscale-text-subtle">Total alunos</p>
             <div className="flex items-baseline gap-2">
               <span className="text-4xl font-semibold">{getTotal("students")}</span>
               <span
@@ -148,7 +144,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
           {/* Total certificados emitidos */}
           <div>
             <p className="text-greyscale-text-subtle">
-              {t("courses.totalCertificatesIssued")}
+              Total certificados emitidos
             </p>
             <div className="flex items-baseline gap-2">
               <span className="text-4xl font-semibold">{getTotal("certificates")}</span>
@@ -196,7 +192,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
         {/* Atividades */}
         <div>
           <h3 className="text-2xl font-semibold text-greyscale-text-subtle mb-4">
-            {t("courses.activities")}
+            Atividades
           </h3>
           <div className="space-y-6">
             {dashboardActivities.map((activity) => (

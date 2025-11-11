@@ -11,6 +11,8 @@ import { postContentCreatorLogin } from "@/shared/api/sdk.gen";
 import background from "@/shared/assets/background.jpg";
 import { updateApiClientToken } from "@/shared/config/api-config";
 
+
+
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";

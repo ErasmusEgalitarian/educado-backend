@@ -12,7 +12,6 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
-import { useAuth } from "@/auth/hooks/use-auth";
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import {
   DropdownMenu,
@@ -58,7 +57,8 @@ export const Navbar = () => {
   const { preferences, setPreferences } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { notifications, setNotifications } = useNotifications();
-  const { t } = useTranslation();
+  const [position, setPosition] = useState("portuguese");
+  const { t, i18n } = useTranslation();
   // Logout handler
   const handleLogout = () => {
     clearToken();
@@ -306,11 +306,10 @@ export const Navbar = () => {
                     <DropdownMenuPortal>
                       <DropdownMenuSubContent>
                         <DropdownMenuRadioGroup
-                          value={preferences.language}
+                          value={i18n.language}
                           onValueChange={(value) => {
-                            if (value === "en" || value === "pt") {
-                              setPreferences({ language: value });
-                            }
+                            void i18n.changeLanguage(value);
+                            setPosition(value);
                           }}
                         >
                           <DropdownMenuRadioItem value="pt">
