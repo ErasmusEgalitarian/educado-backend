@@ -35,14 +35,7 @@ export default {
       const user_type = jwt.verify(jwtCC, secretKey) as ContentCreator;
       const courseIds : string[] = ctx.request.body.documentIds as string[];
       ctx.response.body = {
-        courses: {
-          total: 0,
-          progress: {
-            lastThirtyDays: 0,
-            lastSevenDays: 0,
-            thisMonth: 0
-          }
-        }, // TODO getCourses()
+        courses: await getCoursesStats(user_type.documentId as string, courseIds),
         students: await getStudentStats(user_type.documentId as string, courseIds),
         certificates: await getCertificatesStats(user_type.documentId as string, courseIds),
         evaluation: await getContentCreatorFeedback(user_type.documentId as string) 
@@ -53,7 +46,46 @@ export default {
     }
   },
 };
-
+export async function getCoursesStats(documentId: string, cIds: string[]) {
+  try {
+    const creator = await strapi
+      .documents("api::content-creator.content-creator")
+      .findOne({
+        documentId,
+        populate: ["courses"],
+      });
+    if (!creator) {
+      throw { error: errorCodes["E0504"] };
+    }
+    const courses = creator.courses ?? [];
+    const total = courses.length;
+    let count7 = 0;
+    let count30 = 0;
+    let countMonth = 0;
+    const date7DaysAgo = new Date(Date.now() - DAYS_7_MS);
+    const date30DaysAgo = new Date(Date.now() - DAYS_30_MS);
+    const firstDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth());
+    for (const course of courses) {
+      const createdAt = new Date(course.createdAt);
+      if (createdAt > date7DaysAgo) count7++;
+      if (createdAt > date30DaysAgo) count30++;
+      if (createdAt > firstDayOfMonth) countMonth++;
+    }
+    return {
+      total: total ?? 0,
+      progress: {
+        lastSevenDays:
+          total > 0 ? Math.round((count7 / total) * 100) : 0,
+        lastThirtyDays:
+          total > 0 ? Math.round((count30 / total) * 100) : 0,
+        thisMonth:
+          total > 0 ? Math.round((countMonth / total) * 100) : 0,
+      },
+    };
+  } catch (err) {
+    throw err;
+  }
+}
 // Define the ContentCreator type used in JWT payload 
 export async function getStudentStats(documentId: string, cIds: string[]) {
   // Find Content Creator
