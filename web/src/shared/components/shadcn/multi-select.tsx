@@ -27,8 +27,6 @@ import {
   CommandSeparator,
 } from "@/shared/components/shadcn/command";
 import { useTranslation } from "react-i18next";
-import Icon from "@mdi/react";
-import { mdiPlus } from "@mdi/js";
 
 /**
  * Animation types and configurations
@@ -113,22 +111,12 @@ interface MultiSelectGroup {
 /**
  * Props for MultiSelect component
  */
-interface MultiSelectProps
+export interface MultiSelectProps
   extends Omit<
       React.ButtonHTMLAttributes<HTMLButtonElement>,
       "animationConfig"
     >,
     VariantProps<typeof multiSelectVariants> {
-  /**
-   * Callback function to create a new option.
-   * Should return the newly created option or undefined if creation failed.
-   */
-  onCreateClick?: () => void;
-  /**
-   * Label for the create button.
-   * Optional, defaults to "Create".
-   */
-  createLabel?: string;
   /**
    * An array of option objects or groups to be displayed in the multi-select component.
    */
@@ -317,8 +305,6 @@ export interface MultiSelectRef {
    * Focus the component
    */
   focus: () => void;
-
-  addOption: (option: MultiSelectOption, select?: boolean) => void;
 }
 
 export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
@@ -348,14 +334,11 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
       deduplicateOptions = false,
       resetOnDefaultValueChange = true,
       closeOnSelect = false,
-      onCreateClick,
-      createLabel,
       ...props
     },
     ref
   ) => {
     const { t } = useTranslation();
-    const [selectOptions, setSelectOptions] = React.useState(options);
     const [selectedValues, setSelectedValues] =
       React.useState<string[]>(defaultValue);
     const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
@@ -367,11 +350,6 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
     const prevSelectedCount = React.useRef(selectedValues.length);
     const prevIsOpen = React.useRef(isPopoverOpen);
     const prevSearchValue = React.useRef(searchValue);
-
-    // Sync internal options state with prop changes (e.g., when data is fetched)
-    React.useEffect(() => {
-      setSelectOptions(options);
-    }, [options]);
 
     const announce = React.useCallback(
       (message: string, priority: "polite" | "assertive" = "polite") => {
@@ -405,8 +383,8 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
     const arraysEqual = React.useCallback(
       (a: string[], b: string[]): boolean => {
         if (a.length !== b.length) return false;
-        const sortedA = [...a].sort((a, b) => a.localeCompare(b));
-        const sortedB = [...b].sort((a, b) => a.localeCompare(b));
+        const sortedA = [...a].sort();
+        const sortedB = [...b].sort();
         return sortedA.every((val, index) => val === sortedB[index]);
       },
       []
@@ -447,21 +425,6 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                 buttonRef.current.style.outlineOffset = originalOutlineOffset;
               }
             }, 1000);
-          }
-        },
-        addOption: (option: MultiSelectOption, select = true) => {
-          const allOptions = getAllOptions();
-          if (!allOptions.some((opt) => opt.value === option.value)) {
-            const updatedOptions = isGroupedOptions(selectOptions)
-              ? [...selectOptions]
-              : [...selectOptions, option];
-            setSelectOptions(updatedOptions);
-
-            if (select) {
-              const newSelectedValues = [...selectedValues, option.value];
-              setSelectedValues(newSelectedValues);
-              onValueChange(newSelectedValues);
-            }
           }
         },
       }),
@@ -569,12 +532,12 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
     };
 
     const getAllOptions = React.useCallback((): MultiSelectOption[] => {
-      if (selectOptions.length === 0) return [];
+      if (options.length === 0) return [];
       let allOptions: MultiSelectOption[];
-      if (isGroupedOptions(selectOptions)) {
-        allOptions = selectOptions.flatMap((group) => group.options);
+      if (isGroupedOptions(options)) {
+        allOptions = options.flatMap((group) => group.options);
       } else {
-        allOptions = selectOptions;
+        allOptions = options;
       }
       const valueSet = new Set<string>();
       const duplicates: string[] = [];
@@ -606,7 +569,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
         );
       }
       return deduplicateOptions ? uniqueOptions : allOptions;
-    }, [selectOptions, deduplicateOptions, isGroupedOptions]);
+    }, [options, deduplicateOptions, isGroupedOptions]);
 
     const getOptionByValue = React.useCallback(
       (value: string): MultiSelectOption | undefined => {
@@ -622,10 +585,10 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
     );
 
     const filteredOptions = React.useMemo(() => {
-      if (!searchable || !searchValue) return selectOptions;
-      if (selectOptions.length === 0) return [];
-      if (isGroupedOptions(selectOptions)) {
-        return selectOptions
+      if (!searchable || !searchValue) return options;
+      if (options.length === 0) return [];
+      if (isGroupedOptions(options)) {
+        return options
           .map((group) => ({
             ...group,
             options: group.options.filter(
@@ -638,12 +601,12 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
           }))
           .filter((group) => group.options.length > 0);
       }
-      return selectOptions.filter(
+      return options.filter(
         (option) =>
           option.label.toLowerCase().includes(searchValue.toLowerCase()) ||
           option.value.toLowerCase().includes(searchValue.toLowerCase())
       );
-    }, [selectOptions, searchValue, searchable, isGroupedOptions]);
+    }, [options, searchValue, searchable, isGroupedOptions]);
 
     const handleInputKeyDown = (
       event: React.KeyboardEvent<HTMLInputElement>
@@ -802,12 +765,6 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
       }
     }, [selectedValues, isPopoverOpen, searchValue, announce, getAllOptions]);
 
-    const handleCreate = (): void => {
-      if (onCreateClick) {
-        onCreateClick();
-      }
-    };
-
     return (
       <>
         <div className="sr-only">
@@ -854,7 +811,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                 getAllOptions().length
               } options selected. ${placeholder}`}
               className={cn(
-                "flex p-1 rounded-md border border-greyscale-border-lighter shadow-xs min-h-10 h-auto items-center justify-between bg-inherit hover:bg-inherit [&_svg]:pointer-events-auto",
+                "flex p-1 rounded-md border min-h-10 h-auto items-center justify-between bg-inherit hover:bg-inherit [&_svg]:pointer-events-auto",
                 variant === "error" &&
                   "border-error-border-default bg-error-surface-subtle hover:bg-error-surface-subtle/80",
                 autoSize ? "w-auto" : "w-full",
@@ -1100,26 +1057,6 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                   "overscroll-behavior-y-contain"
                 )}
               >
-                {onCreateClick != undefined && (
-                  <>
-                    <CommandItem
-                      onSelect={handleCreate}
-                      className="cursor-pointer"
-                      asChild
-                    >
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="w-full"
-                        iconPlacement="left"
-                        icon={() => <Icon path={mdiPlus} size={1} />}
-                      >
-                        {createLabel}
-                      </Button>
-                    </CommandItem>
-                    <CommandSeparator />
-                  </>
-                )}
                 <CommandEmpty>
                   {emptyIndicator || "No results found."}
                 </CommandEmpty>{" "}

@@ -2,49 +2,12 @@
  * content-creator controller
  */
 
-import { factories } from '@strapi/strapi';
+import { factories } from '@strapi/strapi'
 import  jwt  from "jsonwebtoken";
 import bcrypt from 'bcryptjs';
 import { errorCodes } from '../../../helpers/errorCodes';
 
 export default factories.createCoreController('api::content-creator.content-creator', ({ strapi }) => ({
-    async find(ctx) {
-        const { results, pagination } = await strapi
-            .service('api::content-creator.content-creator')
-            .find({
-                ...ctx.query,
-            });
-
-        return this.transformResponse(results, { pagination });
-    },
-
-    async findOne(ctx) {
-        const { id } = ctx.params;
-
-        const result = await strapi
-            .documents('api::content-creator.content-creator')
-            .findOne({
-                documentId: id,
-                ...ctx.query,
-            });
-
-        return this.transformResponse(result);
-    },
-
-    async update(ctx) {
-        // Remove password from the request if it's empty or not provided
-        if (ctx.request.body?.data) {
-            const password = ctx.request.body.data.password;
-            // Trim and check for undefined, null, empty string, and whitespace
-            if (typeof password !== 'string' || password.trim() === '') {
-                delete ctx.request.body.data.password;
-            }
-        }
-        
-        // Call the default update controller
-        return await super.update(ctx);
-    },
-    
     async login(ctx) {
         try {
         // Access request data via ctx.request.body
@@ -78,7 +41,7 @@ export default factories.createCoreController('api::content-creator.content-crea
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            verifiedAt: user.verifiedAt ? new Date(user.verifiedAt) : null,
+            verifiedAt: new Date(user.verifiedAt)
         }
         // 3. Generate token
         const token = jwt.sign(
@@ -89,13 +52,12 @@ export default factories.createCoreController('api::content-creator.content-crea
 
         // 4. Respond with token and user info
         return ctx.send({
-            accessToken: token,
-            userInfo: {
-                documentId: user.documentId,
-                email: user.email,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                verifiedAt: user.verifiedAt ? new Date(user.verifiedAt).toISOString() : null,
+            jwt: token,
+            user: {
+            id: user.documentId,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
             },
         });
         } catch (err) {

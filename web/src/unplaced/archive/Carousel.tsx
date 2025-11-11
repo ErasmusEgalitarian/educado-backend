@@ -1,39 +1,28 @@
-import Icon from "@mdi/react";
-import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 //This component is the "carousel" of text on the Welcome, Login, and Signup pages.
 
 const Carousel: React.FC = () => {
-  const { t } = useTranslation();
-
+    const { t } = useTranslation();
+  
   //Text for the Carousel: both title and body
   const texts = [
-    <div
-      key="slide-1"
-      className="p-4 px-8 sm:px-0 sm:max-w-[500px] self-stretch text-center text-sky-50 text-[34px]  font-bold font-['Montserrat']"
-    >
+    <div key="slide-1" className="p-4 px-8 sm:px-0 sm:max-w-[500px] self-stretch text-center text-sky-50 text-[34px]  font-bold font-['Montserrat']">
       {t("carousel.title1")}
       <div className="mt-4 text-sky-50 text-[18px] font-medium font-['Montserrat'] leading-snug max-w-[450px] mx-auto text-center break-words">
         {t("carousel.section1")}
       </div>
     </div>,
 
-    <div
-      key="slide-2"
-      className="p-4 px-8 sm:px-0 self-stretch text-center text-sky-50 text-[32px] font-bold font-['Montserrat']"
-    >
+    <div key="slide-2" className="p-4 px-8 sm:px-0 self-stretch text-center text-sky-50 text-[32px] font-bold font-['Montserrat']">
       {t("carousel.title2")}
       <div className="mt-4 self-stretch text-center  text-sky-50 text-lg text-[18px] max-w-[450px] font-bold font-['Montserrat']">
         {t("carousel.section2")}
       </div>
     </div>,
 
-    <div
-      key="slide-3"
-      className="p-4 px-8 sm:px-0 self-stretch text-center text-sky-50 text-[34px] max-w-[520px] font-bold font-['Montserrat']"
-    >
+    <div key="slide-3" className="p-4 px-8 sm:px-0 self-stretch text-center text-sky-50 text-[34px] max-w-[520px] font-bold font-['Montserrat']">
       {t("carousel.title3")}
       <div className="mt-4 self-stretch text-center text-sky-50 text-lg text-[18px] max-w-[600px] font-bold font-['Montserrat']">
         {t("carousel.section3")}
@@ -50,12 +39,7 @@ const Carousel: React.FC = () => {
     }
   };
 
-  const pre = () => {
-    setCurrentIndex((prevIndex) =>
-      (prevIndex - 1 + texts.length) % texts.length
-    );
-  };
-
+  
   //Timer that decides when the text automatically changes
   useEffect(() => {
     const intervalId = setInterval(next, 8000);
@@ -70,17 +54,7 @@ const Carousel: React.FC = () => {
     //Containters for the texts
     <div className="flex flex-row h-screen relative">
       <div className="flex flex-row">
-        <div className="flex items-center p-1 sm:px-4">
-          {/*Button for changing the text to the previous index*/}
-          <button onClick={pre}>
-            <Icon
-              path={mdiChevronLeft}
-              size={1.2} // lidt større for at matche w-9 h-9 (~36px)
-              color="currentColor"
-              className="p-1 rounded-full bg-white/80 text-gray-800 hover:bg-white"
-            />
-          </button>
-        </div>
+        
 
         {/*Inclusion of the text itself*/}
         <div className="flex items-center justify-center">
@@ -96,9 +70,7 @@ const Carousel: React.FC = () => {
                 <div
                   key={i}
                   className={`w-3 h-3 rounded-full transition-all  ${
-                    currentIndex === i
-                      ? "bg-[#166276]"
-                      : "bg-white bg-opacity-50"
+                    currentIndex === i ? "bg-[#166276]" : "bg-white bg-opacity-50"
                   }`}
                 />
               ))}
@@ -106,17 +78,7 @@ const Carousel: React.FC = () => {
           </div>
         </div>
 
-        {/*Button for changing the text to the next index*/}
-        <div className="flex items-center p-1 sm:px-4">
-          <button onClick={next}>
-            <Icon
-              path={mdiChevronRight}
-              size={1.2} // lidt større for at matche w-9 h-9 (~36px)
-              color="currentColor"
-              className="p-1 rounded-full bg-white/80 text-gray-800 hover:bg-white"
-            />
-          </button>
-        </div>
+        
       </div>
     </div>
   );

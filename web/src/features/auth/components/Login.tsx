@@ -9,13 +9,12 @@ import { ToastContainer } from "react-toastify";
 
 import { postContentCreatorLogin } from "@/shared/api/sdk.gen";
 import background from "@/shared/assets/background.jpg";
-import { updateApiClientToken } from "@/shared/config/api-config";
 
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";
-import Carousel from "../../../unplaced/archive/Carousel";
+import Carousel from "../../../unplaced/archive/carousel";
 import { useAuth } from "../hooks/use-auth";
 import { LoginResponseError } from "../types/LoginResponseError";
 
@@ -55,7 +54,7 @@ const Login = () => {
   };
   
   const { call: login, isLoading: submitLoading } = useApi(
-     
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     postContentCreatorLogin,
   );
   //Variable determining the error message for both fields.
@@ -86,20 +85,16 @@ const Login = () => {
     })
       .then(async (res) => {
 
-         /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
-        const token = res?.accessToken; 
-         
-        const user = res?.userInfo;
+        /* eslint-disable  @typescript-eslint/no-unsafe-assignment *//* eslint-disable  @typescript-eslint/no-unsafe-member-access */
+        const token = res.jwt; 
+        /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
+        const user = res.user;
         /* eslint-disable  @typescript-eslint/no-unsafe-argument */
+        localStorage.setItem("token", token);
+        localStorage.setItem("id", user.id);
 
-        localStorage.setItem("token", token ?? "");
-        localStorage.setItem("id", user?.documentId ?? "");
-
-        // Update the API client with the new token
-        updateApiClientToken();
-
-         
-        await loginSaver(token ?? "", user);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        await loginSaver(token, user);
         navigate("/courses");
         // error messages for email and password
       })
@@ -142,36 +137,35 @@ const Login = () => {
     const submitloginButton = document.getElementById(
       "submit-login-button",
     ) as HTMLButtonElement;
-    
     // Makes sure that the button is only clickable when both fields are filled and there are no email error
     const buttonContainer = submitloginButton.parentElement as HTMLDivElement;
-    
-    if (isThereAnError) {
-      // Disable button when there's an error
+    if(isThereAnError === true){
       submitloginButton.setAttribute("disabled", "true");
-      buttonContainer.style.backgroundColor = "var(--greyscale-surface-disabled)";
-      submitloginButton.style.color = "var(--greyscale-border-default)";
-    } else if (inputloginEmail.value.trim() !== "" && inputloginPass.value.trim() !== "") {
-      // Enable button when both fields are filled and no errors
+      buttonContainer.style.backgroundColor = "#C1CFD7"; // default color when not filled
+      submitloginButton.style.color = "#809CAD";
+      
+    } else if (inputloginEmail.value.trim() && inputloginPass.value.trim() !== "" ) {
       submitloginButton.removeAttribute("disabled");
-      buttonContainer.style.backgroundColor = "var(--primary-surface-default)";
-      submitloginButton.style.color = "var(--greyscale-surface-subtle)";
+      buttonContainer.style.backgroundColor = "#35A1B1";
+      submitloginButton.style.color = "#FDFEFF";
 
-      // Clear error messages when user starts typing again
+      // function to clear error messages once fields are empty
       setEmailError(null);
       setEmailErrorMessage("");
       setNotApprovedError(null);
-    } else {
-      // Disable button when fields are empty
-      submitloginButton.setAttribute("disabled", "true");
-      buttonContainer.style.backgroundColor = "var(--greyscale-surface-disabled)";
-      submitloginButton.style.color = "var(--greyscale-border-default)";
       
-      // Clear error messages when fields are empty
+    } else {
+      submitloginButton.setAttribute("disabled", "true");
+      buttonContainer.style.backgroundColor = "#C1CFD7"; // default color when not filled
+      submitloginButton.style.color = "#809CAD";         // default text color
+      // function to clear error messages once fields are empty
       setEmailError(null);
       setEmailErrorMessage("");
       setNotApprovedError(null);
     }
+      
+      
+    
   }
   
   
@@ -197,7 +191,7 @@ const Login = () => {
         </div>
 
         {/*Container for right side of the page - frame 2332*/}
-        <div className="relative right-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[var(--gradient-start)] via-[var(--gradient-end)] to-[var(--gradient-end)] w-full">
+        <div className="relative right-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#C9E5EC] via-[#FFFFFF] to-[#FFFFFF] w-full">
           {/*Error message for when email or password is incorrect*/}
           <div className="fixed right-0 top-16 z-10">
             {error && (
@@ -220,9 +214,9 @@ const Login = () => {
             <div className="">
               <h1 className="mb-10 flex text-lg text-primary-text-title font-normal font-montserrat underline px-10">
                 <Link to="/welcome" className="flex items-center gap-1">
-                  <Icon path={mdiChevronLeft} size={1} color="var(--greyscale-text-subtle)" />
+                  <Icon path={mdiChevronLeft} size={1} color="#4E6879" />
                 </Link>
-                <Link to="/welcome" className="text-lg text-primary-text-title font-normal font-montserrat text-[var(--greyscale-text-subtle)]" > 
+                <Link to="/welcome" className="text-lg text-primary-text-title font-normal font-montserrat text-[#4E6879]" > 
                   <button className="cursor-pointer">
                     {t("login.back-button")}
                   </button>
@@ -250,7 +244,7 @@ const Login = () => {
                     {t("login.email")} {/*Email*/}
                   </label>
                   <input
-                    onInput={() => { areFieldsFilled(); }}
+                    onInput={areFieldsFilled}
                     type="email"
                     id="email-field"
                     className={`flex w-full py-3 px-4  placeholder-gray-400 text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? 'bg-error-surface-subtle border-error-surface-default focus:ring-error-surface-default' : ' bg-white border-greyscale-border-default focus:ring-sky-200'}`}
@@ -271,7 +265,7 @@ const Login = () => {
                     {t("login.password")}{/*Password*/}
                   </label>
                   <input
-                    onInput={() => { areFieldsFilled(); }}
+                    onInput={areFieldsFilled}
                     type={passwordVisible ? "text" : "password"}
                     id="password-field"
                     className={`flex w-full py-3 px-4  placeholder-greyscale-border-default text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? 'bg-error-surface-subtle border-error-surface-default focus:ring-error-surface-default' : ' bg-white border-greyscale-border-default focus:ring-sky-200'}`}

@@ -8,7 +8,6 @@ export default {
       handler: 'content-creator.login',
       config: {
         auth: false,
-        policies: ['global::rate-limit'],
       },
     },
   ],
