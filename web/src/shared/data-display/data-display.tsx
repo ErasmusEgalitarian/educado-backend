@@ -360,6 +360,24 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
     // We join ids for a stable dependency array (array identity changes often)
   }, [onFilteredDocumentIds, documentIds.join(",")]);
 
+  // If there's an error, render an error card
+  if (error != null) {
+    const appError = toAppError(error);
+    return (
+      <ErrorDisplay
+        error={appError}
+        variant="card"
+        actions={[
+          {
+            label: t("common.retry"),
+            onClick: () => void refetch(),
+            variant: "primary",
+          },
+        ]}
+      />
+    );
+  }
+
   // Calculate display pagination based on mode
   const displayPagination = isUsingServerMode
     ? extendedPagination // Server mode: use API values directly
