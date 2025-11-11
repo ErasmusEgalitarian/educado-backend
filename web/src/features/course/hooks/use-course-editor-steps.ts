@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { ApiCourseCourseDocument } from "@/shared/api";
+import type { Course } from "@/shared/api/types.gen";
 
 export type CourseEditorStep = "information" | "sections" | "review";
 
@@ -11,7 +11,7 @@ export interface StepState {
 
 interface UseCourseEditorStepsProps {
   /** Existing course data (for edit mode) */
-  course?: ApiCourseCourseDocument;
+  course?: Course;
   /** Whether we're in edit mode */
   isEditMode: boolean;
 }
@@ -48,21 +48,21 @@ export const useCourseEditorSteps = ({
       // Check if basic information is complete
       const hasBasicInfo = course.title !== "";
       const hasCategories =
-        course.course_categories && course.course_categories.length > 0;
+        course.course_categories != null && course.course_categories.length > 0;
 
       // 1. Check if "information" is completed
-      if (hasBasicInfo && (hasCategories ?? false)) {
+      if (hasBasicInfo && hasCategories) {
         completed.add("information");
       }
 
       // 2. Check if "sections" is completed
-      if (course.course_sections && course.course_sections.length > 0) {
+      if (course.course_sections != null && course.course_sections.length > 0) {
         completed.add("sections");
       }
 
       // If both are complete, mark review as accessible (not necessarily completed)
       // Review step is "completed" when the course is published
-      if (course.publishedAt !== "") {
+      if (course.publishedAt != null && course.publishedAt !== "") {
         completed.add("review");
       }
 

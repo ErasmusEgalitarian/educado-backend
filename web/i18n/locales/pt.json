@@ -56,7 +56,8 @@
     "retry": "Tentar Novamente",
     "rating": "Avaliação",
     "error": "Erro",
-    "or": "ou"
+    "or": "ou",
+    "goPrevious": "Voltar para anterior"
   },
   "pagination": {
     "items": "itens",
@@ -166,7 +167,8 @@
   },
   "courseEditor": {
     "fetchCourseDataError": "Erro ao carregar dados do curso: {{message}}",
-    "skipToReview": "Pular para avaliação"
+    "skipToReview": "Pular para avaliação",
+    "saveAsDraft": "Salvar como rascunho"
   },
   "courseEditorReview": {
     "thisCourseIsCurrentlyVisibleToStudents": "Este curso está atualmente visível para os alunos"
