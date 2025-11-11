@@ -1,4 +1,10 @@
 import { ServerRequestParams } from "../hooks/used-paginated-data";
+import {
+  StructuredFilter,
+  FILTER_OP_MAP,
+  ARRAY_FILTER_OPS,
+  isStructuredFilter,
+} from "../types/filters";
 
 export type StaticFilters = Record<string, unknown>;
 export type Status = "draft" | "published";
@@ -16,64 +22,6 @@ export const buildApiQueryParams = (
   // ————————————————
   // Helper utilities
   // ————————————————
-
-  type Op =
-    | "eq"
-    | "eqi"
-    | "ne"
-    | "nei"
-    | "lt"
-    | "lte"
-    | "gt"
-    | "gte"
-    | "in"
-    | "notIn"
-    | "contains"
-    | "notContains"
-    | "containsi"
-    | "notContainsi"
-    | "null"
-    | "notNull"
-    | "between"
-    | "startsWith"
-    | "startsWithi"
-    | "endsWith"
-    | "endsWithi";
-
-  const opMap: Record<Op, string> = {
-    eq: "$eq",
-    eqi: "$eqi",
-    ne: "$ne",
-    nei: "$nei",
-    lt: "$lt",
-    lte: "$lte",
-    gt: "$gt",
-    gte: "$gte",
-    in: "$in",
-    notIn: "$notIn",
-    contains: "$contains",
-    notContains: "$notContains",
-    containsi: "$containsi",
-    notContainsi: "$notContainsi",
-    null: "$null",
-    notNull: "$notNull",
-    between: "$between",
-    startsWith: "$startsWith",
-    startsWithi: "$startsWithi",
-    endsWith: "$endsWith",
-    endsWithi: "$endsWithi",
-  };
-
-  interface StructuredFilter {
-    op: Op;
-    value?: unknown;
-  }
-
-  const isStructured = (v: unknown): v is StructuredFilter => {
-    if (typeof v !== "object" || v === null) return false;
-    const rec = v as Record<string, unknown>;
-    return typeof rec.op === "string";
-  };
 
   const toStringValue = (v: unknown): string | null => {
     if (typeof v === "string") return v;
@@ -111,19 +59,17 @@ export const buildApiQueryParams = (
     if (sv !== null) sp.append(buildFilterKey(field, op), sv);
   };
 
-  const structuredOpSet = new Set<Op>(["in", "notIn", "between"]);
-
   const handleStructured = (
     sp: URLSearchParams,
     field: string,
     sf: StructuredFilter,
   ) => {
-    const mapped = opMap[sf.op];
+    const mapped = FILTER_OP_MAP[sf.op];
     if (sf.op === "null" || sf.op === "notNull") {
       sp.append(buildFilterKey(field, mapped), "true");
       return;
     }
-    if (structuredOpSet.has(sf.op)) {
+    if (ARRAY_FILTER_OPS.has(sf.op)) {
       if (Array.isArray(sf.value)) appendArrayValues(sp, field, mapped, sf.value);
       return;
     }
@@ -153,7 +99,7 @@ export const buildApiQueryParams = (
 
   const handleFilter = (sp: URLSearchParams, field: string, raw: unknown) => {
     if (raw === undefined || raw === null) return;
-    if (isStructured(raw)) {
+    if (isStructuredFilter(raw)) {
       handleStructured(sp, field, raw);
       return;
     }
