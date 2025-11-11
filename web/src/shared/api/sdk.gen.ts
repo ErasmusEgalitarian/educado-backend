@@ -39,8 +39,8 @@ export const certificateGetCertificates = <ThrowOnError extends boolean = false>
     });
 };
 
-export const certificatePostCertificates = <ThrowOnError extends boolean = false>(options: Options<CertificatePostCertificatesRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<CertificatePostCertificatesResponses, CertificatePostCertificatesErrors, ThrowOnError, 'data'>({
+export const certificatePostCertificates = <ThrowOnError extends boolean = false>(options?: Options<CertificatePostCertificatesRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<CertificatePostCertificatesResponses, CertificatePostCertificatesErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zCertificatePostCertificatesRequest.parseAsync(data);
         },
@@ -49,7 +49,7 @@ export const certificatePostCertificates = <ThrowOnError extends boolean = false
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -129,8 +129,8 @@ export const contentCreatorGetContentCreators = <ThrowOnError extends boolean = 
     });
 };
 
-export const contentCreatorPostContentCreators = <ThrowOnError extends boolean = false>(options: Options<ContentCreatorPostContentCreatorsRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<ContentCreatorPostContentCreatorsResponses, ContentCreatorPostContentCreatorsErrors, ThrowOnError, 'data'>({
+export const contentCreatorPostContentCreators = <ThrowOnError extends boolean = false>(options?: Options<ContentCreatorPostContentCreatorsRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<ContentCreatorPostContentCreatorsResponses, ContentCreatorPostContentCreatorsErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zContentCreatorPostContentCreatorsRequest.parseAsync(data);
         },
@@ -139,7 +139,7 @@ export const contentCreatorPostContentCreators = <ThrowOnError extends boolean =
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -199,18 +199,14 @@ export const contentCreatorPutContentCreatorsById = <ThrowOnError extends boolea
     });
 };
 
-export const postContentCreatorLogin = <ThrowOnError extends boolean = false>(options: Options<PostContentCreatorLoginRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<PostContentCreatorLoginResponses, unknown, ThrowOnError, 'data'>({
+export const contentCreatorPostContentCreatorLogin = <ThrowOnError extends boolean = false>(options?: Options<ContentCreatorPostContentCreatorLoginRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<unknown, ContentCreatorPostContentCreatorLoginErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zPostContentCreatorLoginRequest.parseAsync(data);
+            return await zContentCreatorPostContentCreatorLoginRequest.parseAsync(data);
         },
         responseStyle: 'data',
         url: '/content-creator/login',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
+        ...options
     });
 };
 
@@ -234,8 +230,8 @@ export const courseGetCourses = <ThrowOnError extends boolean = false>(options?:
     });
 };
 
-export const coursePostCourses = <ThrowOnError extends boolean = false>(options: Options<CoursePostCoursesRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<CoursePostCoursesResponses, CoursePostCoursesErrors, ThrowOnError, 'data'>({
+export const coursePostCourses = <ThrowOnError extends boolean = false>(options?: Options<CoursePostCoursesRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<CoursePostCoursesResponses, CoursePostCoursesErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zCoursePostCoursesRequest.parseAsync(data);
         },
@@ -244,7 +240,7 @@ export const coursePostCourses = <ThrowOnError extends boolean = false>(options:
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -324,8 +320,8 @@ export const courseCategoryGetCourseCategories = <ThrowOnError extends boolean =
     });
 };
 
-export const courseCategoryPostCourseCategories = <ThrowOnError extends boolean = false>(options: Options<CourseCategoryPostCourseCategoriesRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<CourseCategoryPostCourseCategoriesResponses, CourseCategoryPostCourseCategoriesErrors, ThrowOnError, 'data'>({
+export const courseCategoryPostCourseCategories = <ThrowOnError extends boolean = false>(options?: Options<CourseCategoryPostCourseCategoriesRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<CourseCategoryPostCourseCategoriesResponses, CourseCategoryPostCourseCategoriesErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zCourseCategoryPostCourseCategoriesRequest.parseAsync(data);
         },
@@ -334,7 +330,7 @@ export const courseCategoryPostCourseCategories = <ThrowOnError extends boolean 
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -414,8 +410,8 @@ export const courseSelectionGetCourseSelections = <ThrowOnError extends boolean 
     });
 };
 
-export const courseSelectionPostCourseSelections = <ThrowOnError extends boolean = false>(options: Options<CourseSelectionPostCourseSelectionsRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<CourseSelectionPostCourseSelectionsResponses, CourseSelectionPostCourseSelectionsErrors, ThrowOnError, 'data'>({
+export const courseSelectionPostCourseSelections = <ThrowOnError extends boolean = false>(options?: Options<CourseSelectionPostCourseSelectionsRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<CourseSelectionPostCourseSelectionsResponses, CourseSelectionPostCourseSelectionsErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zCourseSelectionPostCourseSelectionsRequest.parseAsync(data);
         },
@@ -424,7 +420,7 @@ export const courseSelectionPostCourseSelections = <ThrowOnError extends boolean
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -504,8 +500,8 @@ export const exerciseGetExercises = <ThrowOnError extends boolean = false>(optio
     });
 };
 
-export const exercisePostExercises = <ThrowOnError extends boolean = false>(options: Options<ExercisePostExercisesRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<ExercisePostExercisesResponses, ExercisePostExercisesErrors, ThrowOnError, 'data'>({
+export const exercisePostExercises = <ThrowOnError extends boolean = false>(options?: Options<ExercisePostExercisesRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<ExercisePostExercisesResponses, ExercisePostExercisesErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zExercisePostExercisesRequest.parseAsync(data);
         },
@@ -514,7 +510,7 @@ export const exercisePostExercises = <ThrowOnError extends boolean = false>(opti
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -594,8 +590,8 @@ export const exerciseOptionGetExerciseOptions = <ThrowOnError extends boolean = 
     });
 };
 
-export const exerciseOptionPostExerciseOptions = <ThrowOnError extends boolean = false>(options: Options<ExerciseOptionPostExerciseOptionsRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<ExerciseOptionPostExerciseOptionsResponses, ExerciseOptionPostExerciseOptionsErrors, ThrowOnError, 'data'>({
+export const exerciseOptionPostExerciseOptions = <ThrowOnError extends boolean = false>(options?: Options<ExerciseOptionPostExerciseOptionsRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<ExerciseOptionPostExerciseOptionsResponses, ExerciseOptionPostExerciseOptionsErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zExerciseOptionPostExerciseOptionsRequest.parseAsync(data);
         },
@@ -604,7 +600,7 @@ export const exerciseOptionPostExerciseOptions = <ThrowOnError extends boolean =
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -684,8 +680,8 @@ export const feedbackGetFeedbacks = <ThrowOnError extends boolean = false>(optio
     });
 };
 
-export const feedbackPostFeedbacks = <ThrowOnError extends boolean = false>(options: Options<FeedbackPostFeedbacksRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<FeedbackPostFeedbacksResponses, FeedbackPostFeedbacksErrors, ThrowOnError, 'data'>({
+export const feedbackPostFeedbacks = <ThrowOnError extends boolean = false>(options?: Options<FeedbackPostFeedbacksRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<FeedbackPostFeedbacksResponses, FeedbackPostFeedbacksErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zFeedbackPostFeedbacksRequest.parseAsync(data);
         },
@@ -694,7 +690,7 @@ export const feedbackPostFeedbacks = <ThrowOnError extends boolean = false>(opti
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -774,8 +770,8 @@ export const lectureGetLectures = <ThrowOnError extends boolean = false>(options
     });
 };
 
-export const lecturePostLectures = <ThrowOnError extends boolean = false>(options: Options<LecturePostLecturesRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<LecturePostLecturesResponses, LecturePostLecturesErrors, ThrowOnError, 'data'>({
+export const lecturePostLectures = <ThrowOnError extends boolean = false>(options?: Options<LecturePostLecturesRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<LecturePostLecturesResponses, LecturePostLecturesErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zLecturePostLecturesRequest.parseAsync(data);
         },
@@ -784,7 +780,7 @@ export const lecturePostLectures = <ThrowOnError extends boolean = false>(option
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -864,8 +860,8 @@ export const passwordResetTokenGetPasswordResetTokens = <ThrowOnError extends bo
     });
 };
 
-export const passwordResetTokenPostPasswordResetTokens = <ThrowOnError extends boolean = false>(options: Options<PasswordResetTokenPostPasswordResetTokensRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<PasswordResetTokenPostPasswordResetTokensResponses, PasswordResetTokenPostPasswordResetTokensErrors, ThrowOnError, 'data'>({
+export const passwordResetTokenPostPasswordResetTokens = <ThrowOnError extends boolean = false>(options?: Options<PasswordResetTokenPostPasswordResetTokensRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<PasswordResetTokenPostPasswordResetTokensResponses, PasswordResetTokenPostPasswordResetTokensErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zPasswordResetTokenPostPasswordResetTokensRequest.parseAsync(data);
         },
@@ -874,7 +870,7 @@ export const passwordResetTokenPostPasswordResetTokens = <ThrowOnError extends b
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -954,8 +950,8 @@ export const studentGetStudents = <ThrowOnError extends boolean = false>(options
     });
 };
 
-export const studentPostStudents = <ThrowOnError extends boolean = false>(options: Options<StudentPostStudentsRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<StudentPostStudentsResponses, StudentPostStudentsErrors, ThrowOnError, 'data'>({
+export const studentPostStudents = <ThrowOnError extends boolean = false>(options?: Options<StudentPostStudentsRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<StudentPostStudentsResponses, StudentPostStudentsErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zStudentPostStudentsRequest.parseAsync(data);
         },
@@ -964,7 +960,7 @@ export const studentPostStudents = <ThrowOnError extends boolean = false>(option
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -1024,108 +1020,80 @@ export const studentPutStudentsById = <ThrowOnError extends boolean = false>(opt
     });
 };
 
-export const postStudentLogin = <ThrowOnError extends boolean = false>(options: Options<PostStudentLoginRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<PostStudentLoginResponses, unknown, ThrowOnError, 'data'>({
+export const studentAuthPostStudentLogin = <ThrowOnError extends boolean = false>(options?: Options<StudentAuthPostStudentLoginRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<unknown, StudentAuthPostStudentLoginErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zPostStudentLoginRequest.parseAsync(data);
+            return await zStudentAuthPostStudentLoginRequest.parseAsync(data);
         },
         responseStyle: 'data',
         url: '/student/login',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
+        ...options
     });
 };
 
-export const postStudentResetPasswordRequest = <ThrowOnError extends boolean = false>(options: Options<PostStudentResetPasswordRequestRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<PostStudentResetPasswordRequestResponses, unknown, ThrowOnError, 'data'>({
+export const studentAuthPostStudentResetPasswordRequest = <ThrowOnError extends boolean = false>(options?: Options<StudentAuthPostStudentResetPasswordRequestRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<unknown, StudentAuthPostStudentResetPasswordRequestErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zPostStudentResetPasswordRequestRequest.parseAsync(data);
+            return await zStudentAuthPostStudentResetPasswordRequestRequest.parseAsync(data);
         },
         responseStyle: 'data',
         url: '/student/reset-password-request',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
+        ...options
     });
 };
 
-export const postStudentResetPasswordCode = <ThrowOnError extends boolean = false>(options: Options<PostStudentResetPasswordCodeRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<PostStudentResetPasswordCodeResponses, unknown, ThrowOnError, 'data'>({
+export const studentAuthPostStudentResetPasswordCode = <ThrowOnError extends boolean = false>(options?: Options<StudentAuthPostStudentResetPasswordCodeRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<unknown, StudentAuthPostStudentResetPasswordCodeErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zPostStudentResetPasswordCodeRequest.parseAsync(data);
+            return await zStudentAuthPostStudentResetPasswordCodeRequest.parseAsync(data);
         },
         responseStyle: 'data',
         url: '/student/reset-password-code',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
+        ...options
     });
 };
 
-export const patchStudentResetPasswordUpdate = <ThrowOnError extends boolean = false>(options: Options<PatchStudentResetPasswordUpdateRequest, ThrowOnError>) => {
-    return (options.client ?? client).patch<PatchStudentResetPasswordUpdateResponses, unknown, ThrowOnError, 'data'>({
+export const studentAuthPatchStudentResetPasswordUpdate = <ThrowOnError extends boolean = false>(options?: Options<StudentAuthPatchStudentResetPasswordUpdateRequest, ThrowOnError>) => {
+    return (options?.client ?? client).patch<unknown, StudentAuthPatchStudentResetPasswordUpdateErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zPatchStudentResetPasswordUpdateRequest.parseAsync(data);
+            return await zStudentAuthPatchStudentResetPasswordUpdateRequest.parseAsync(data);
         },
         responseStyle: 'data',
         url: '/student/reset-password-update',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
+        ...options
     });
 };
 
-export const postStudentSignup = <ThrowOnError extends boolean = false>(options: Options<PostStudentSignupRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<PostStudentSignupResponses, unknown, ThrowOnError, 'data'>({
+export const studentAuthPostStudentSignup = <ThrowOnError extends boolean = false>(options?: Options<StudentAuthPostStudentSignupRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<unknown, StudentAuthPostStudentSignupErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zPostStudentSignupRequest.parseAsync(data);
+            return await zStudentAuthPostStudentSignupRequest.parseAsync(data);
         },
         responseStyle: 'data',
         url: '/student/signup',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
+        ...options
     });
 };
 
-export const postStudentSendVerificationToken = <ThrowOnError extends boolean = false>(options: Options<PostStudentSendVerificationTokenRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<PostStudentSendVerificationTokenResponses, unknown, ThrowOnError, 'data'>({
+export const studentAuthPostStudentSendVerificationToken = <ThrowOnError extends boolean = false>(options?: Options<StudentAuthPostStudentSendVerificationTokenRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<unknown, StudentAuthPostStudentSendVerificationTokenErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zPostStudentSendVerificationTokenRequest.parseAsync(data);
+            return await zStudentAuthPostStudentSendVerificationTokenRequest.parseAsync(data);
         },
         responseStyle: 'data',
         url: '/student/send-verification-token',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
+        ...options
     });
 };
 
-export const postStudentVerifyEmail = <ThrowOnError extends boolean = false>(options: Options<PostStudentVerifyEmailRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<PostStudentVerifyEmailResponses, unknown, ThrowOnError, 'data'>({
+export const studentAuthPostStudentVerifyEmail = <ThrowOnError extends boolean = false>(options?: Options<StudentAuthPostStudentVerifyEmailRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<unknown, StudentAuthPostStudentVerifyEmailErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zPostStudentVerifyEmailRequest.parseAsync(data);
+            return await zStudentAuthPostStudentVerifyEmailRequest.parseAsync(data);
         },
         responseStyle: 'data',
         url: '/student/verify-email',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
+        ...options
     });
 };
 
@@ -1149,8 +1117,8 @@ export const userLogGetUserLogs = <ThrowOnError extends boolean = false>(options
     });
 };
 
-export const userLogPostUserLogs = <ThrowOnError extends boolean = false>(options: Options<UserLogPostUserLogsRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<UserLogPostUserLogsResponses, UserLogPostUserLogsErrors, ThrowOnError, 'data'>({
+export const userLogPostUserLogs = <ThrowOnError extends boolean = false>(options?: Options<UserLogPostUserLogsRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<UserLogPostUserLogsResponses, UserLogPostUserLogsErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zUserLogPostUserLogsRequest.parseAsync(data);
         },
@@ -1159,7 +1127,7 @@ export const userLogPostUserLogs = <ThrowOnError extends boolean = false>(option
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -1239,8 +1207,8 @@ export const verificationTokenGetVerificationTokens = <ThrowOnError extends bool
     });
 };
 
-export const verificationTokenPostVerificationTokens = <ThrowOnError extends boolean = false>(options: Options<VerificationTokenPostVerificationTokensRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<VerificationTokenPostVerificationTokensResponses, VerificationTokenPostVerificationTokensErrors, ThrowOnError, 'data'>({
+export const verificationTokenPostVerificationTokens = <ThrowOnError extends boolean = false>(options?: Options<VerificationTokenPostVerificationTokensRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<VerificationTokenPostVerificationTokensResponses, VerificationTokenPostVerificationTokensErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zVerificationTokenPostVerificationTokensRequest.parseAsync(data);
         },
@@ -1249,7 +1217,7 @@ export const verificationTokenPostVerificationTokens = <ThrowOnError extends boo
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -1428,8 +1396,8 @@ export const usersPermissionsGetConnect = <ThrowOnError extends boolean = false>
     });
 };
 
-export const usersPermissionsPostAuthLocal = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsPostAuthLocalRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<UsersPermissionsPostAuthLocalResponses, UsersPermissionsPostAuthLocalErrors, ThrowOnError, 'data'>({
+export const usersPermissionsPostAuthLocal = <ThrowOnError extends boolean = false>(options?: Options<UsersPermissionsPostAuthLocalRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<UsersPermissionsPostAuthLocalResponses, UsersPermissionsPostAuthLocalErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zUsersPermissionsPostAuthLocalRequest.parseAsync(data);
         },
@@ -1438,13 +1406,13 @@ export const usersPermissionsPostAuthLocal = <ThrowOnError extends boolean = fal
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
 
-export const usersPermissionsPostAuthLocalRegister = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsPostAuthLocalRegisterRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<UsersPermissionsPostAuthLocalRegisterResponses, UsersPermissionsPostAuthLocalRegisterErrors, ThrowOnError, 'data'>({
+export const usersPermissionsPostAuthLocalRegister = <ThrowOnError extends boolean = false>(options?: Options<UsersPermissionsPostAuthLocalRegisterRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<UsersPermissionsPostAuthLocalRegisterResponses, UsersPermissionsPostAuthLocalRegisterErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zUsersPermissionsPostAuthLocalRegisterRequest.parseAsync(data);
         },
@@ -1453,7 +1421,7 @@ export const usersPermissionsPostAuthLocalRegister = <ThrowOnError extends boole
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -1469,8 +1437,8 @@ export const usersPermissionsGetAuthByProviderCallback = <ThrowOnError extends b
     });
 };
 
-export const usersPermissionsPostAuthForgotPassword = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsPostAuthForgotPasswordRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<UsersPermissionsPostAuthForgotPasswordResponses, UsersPermissionsPostAuthForgotPasswordErrors, ThrowOnError, 'data'>({
+export const usersPermissionsPostAuthForgotPassword = <ThrowOnError extends boolean = false>(options?: Options<UsersPermissionsPostAuthForgotPasswordRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<UsersPermissionsPostAuthForgotPasswordResponses, UsersPermissionsPostAuthForgotPasswordErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zUsersPermissionsPostAuthForgotPasswordRequest.parseAsync(data);
         },
@@ -1479,13 +1447,13 @@ export const usersPermissionsPostAuthForgotPassword = <ThrowOnError extends bool
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
 
-export const usersPermissionsPostAuthResetPassword = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsPostAuthResetPasswordRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<UsersPermissionsPostAuthResetPasswordResponses, UsersPermissionsPostAuthResetPasswordErrors, ThrowOnError, 'data'>({
+export const usersPermissionsPostAuthResetPassword = <ThrowOnError extends boolean = false>(options?: Options<UsersPermissionsPostAuthResetPasswordRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<UsersPermissionsPostAuthResetPasswordResponses, UsersPermissionsPostAuthResetPasswordErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zUsersPermissionsPostAuthResetPasswordRequest.parseAsync(data);
         },
@@ -1494,13 +1462,13 @@ export const usersPermissionsPostAuthResetPassword = <ThrowOnError extends boole
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
 
 export const usersPermissionsGetAuthEmailConfirmation = <ThrowOnError extends boolean = false>(options?: Options<UsersPermissionsGetAuthEmailConfirmationRequest, ThrowOnError>) => {
-    return (options?.client ?? client).get<UsersPermissionsGetAuthEmailConfirmationResponses, UsersPermissionsGetAuthEmailConfirmationErrors, ThrowOnError, 'data'>({
+    return (options?.client ?? client).get<unknown, UsersPermissionsGetAuthEmailConfirmationErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zUsersPermissionsGetAuthEmailConfirmationRequest.parseAsync(data);
         },
@@ -1510,8 +1478,8 @@ export const usersPermissionsGetAuthEmailConfirmation = <ThrowOnError extends bo
     });
 };
 
-export const usersPermissionsPostAuthSendEmailConfirmation = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsPostAuthSendEmailConfirmationRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<UsersPermissionsPostAuthSendEmailConfirmationResponses, UsersPermissionsPostAuthSendEmailConfirmationErrors, ThrowOnError, 'data'>({
+export const usersPermissionsPostAuthSendEmailConfirmation = <ThrowOnError extends boolean = false>(options?: Options<UsersPermissionsPostAuthSendEmailConfirmationRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<UsersPermissionsPostAuthSendEmailConfirmationResponses, UsersPermissionsPostAuthSendEmailConfirmationErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zUsersPermissionsPostAuthSendEmailConfirmationRequest.parseAsync(data);
         },
@@ -1520,13 +1488,13 @@ export const usersPermissionsPostAuthSendEmailConfirmation = <ThrowOnError exten
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
 
-export const usersPermissionsPostAuthChangePassword = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsPostAuthChangePasswordRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<UsersPermissionsPostAuthChangePasswordResponses, UsersPermissionsPostAuthChangePasswordErrors, ThrowOnError, 'data'>({
+export const usersPermissionsPostAuthChangePassword = <ThrowOnError extends boolean = false>(options?: Options<UsersPermissionsPostAuthChangePasswordRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<UsersPermissionsPostAuthChangePasswordResponses, UsersPermissionsPostAuthChangePasswordErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zUsersPermissionsPostAuthChangePasswordRequest.parseAsync(data);
         },
@@ -1535,7 +1503,7 @@ export const usersPermissionsPostAuthChangePassword = <ThrowOnError extends bool
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
@@ -1602,8 +1570,8 @@ export const usersPermissionsGetUsers = <ThrowOnError extends boolean = false>(o
     });
 };
 
-export const usersPermissionsPostUsers = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsPostUsersRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<UsersPermissionsPostUsersResponses, UsersPermissionsPostUsersErrors, ThrowOnError, 'data'>({
+export const usersPermissionsPostUsers = <ThrowOnError extends boolean = false>(options?: Options<UsersPermissionsPostUsersRequest, ThrowOnError>) => {
+    return (options?.client ?? client).post<UsersPermissionsPostUsersResponses, UsersPermissionsPostUsersErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
             return await zUsersPermissionsPostUsersRequest.parseAsync(data);
         },
@@ -1612,7 +1580,7 @@ export const usersPermissionsPostUsers = <ThrowOnError extends boolean = false>(
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options.headers
+            ...options?.headers
         }
     });
 };
