@@ -57,8 +57,15 @@
       "dependsOn": [],
       "outputs": ["../openapi/strapi-spec.json"]
     },
+    "generate-merged-spec": {
+      "dependsOn": [],
+      "outputs": [
+        "../openapi/strapi-spec.json",
+        "public/openapi/strapi-spec.json"
+      ]
+    },
     "generate-strapi-client": {
-      "dependsOn": ["^generate-spec"],
+      "dependsOn": ["^generate-merged-spec"],
       "outputs": ["src/shared/api/**"]
     },
     "generate-api": {
