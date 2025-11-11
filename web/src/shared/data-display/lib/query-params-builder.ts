@@ -1,5 +1,10 @@
 import { ServerRequestParams } from "../hooks/used-paginated-data";
-import { ARRAY_FILTER_OPS, FILTER_OP_MAP, isStructuredFilter, StructuredFilter } from "../types/filters";
+import {
+  StructuredFilter,
+  FILTER_OP_MAP,
+  ARRAY_FILTER_OPS,
+  isStructuredFilter,
+} from "../types/filters";
 
 export type StaticFilters = Record<string, unknown>;
 export type Status = "draft" | "published";
