@@ -1025,6 +1025,10 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     user_logs: Schema.Attribute.Relation<'oneToMany', 'api::user-log.user-log'>;
     verifiedAt: Schema.Attribute.Date;
   };
@@ -1585,6 +1589,7 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    student: Schema.Attribute.Relation<'oneToOne', 'api::student.student'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
