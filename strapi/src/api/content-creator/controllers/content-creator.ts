@@ -5,6 +5,7 @@
 import { factories } from '@strapi/strapi'
 import  jwt  from "jsonwebtoken";
 import bcrypt from 'bcryptjs';
+import { errorCodes } from '../../../helpers/errorCodes';
 
 export default factories.createCoreController('api::content-creator.content-creator', ({ strapi }) => ({
     async login(ctx) {
@@ -18,19 +19,19 @@ export default factories.createCoreController('api::content-creator.content-crea
 
         if (!user) {
             return ctx.badRequest('Invalid email or password', {
-            error: { code: 'E0004', message: 'Invalid email or password '}});
+            error: { code: errorCodes.E0106.code, message: errorCodes.E0106.message }});
         }
 
         const isValidPassword = await bcrypt.compare(password, user.password);
 
         if (!isValidPassword) {
             return ctx.badRequest('Invalid email or password', {
-                error: { code: 'E0004', message: 'Invalid email or password'}});
+                error: { code: errorCodes.E0106.code, message: errorCodes.E0106.message }});
         }
 
         if (user.verifiedAt == null) {
             return ctx.badRequest('Admin approval is required.', {
-                error: { code: 'E1001', message: 'Admin approval is required'}});
+                error: { code: errorCodes.E1001.code, message: errorCodes.E1001.message }});
         }
 
 

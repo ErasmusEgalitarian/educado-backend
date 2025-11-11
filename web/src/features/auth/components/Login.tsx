@@ -10,15 +10,13 @@ import { ToastContainer } from "react-toastify";
 import { postContentCreatorLogin } from "@/shared/api/sdk.gen";
 import background from "@/shared/assets/background.jpg";
 
+
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";
 import Carousel from "../../../unplaced/archive/carousel";
-import AuthServices from "../../../unplaced/services/auth.services";
 import { useAuth } from "../hooks/use-auth";
-import { setUserInfo } from "../lib/userInfo";
 import { LoginResponseError } from "../types/LoginResponseError";
-
 
 
 
@@ -104,19 +102,17 @@ const Login = () => {
         setError(err);
         console.error(err);
         switch (err.error.details.error.code) {
-          case "E0004": //Invalid Email and password
+          case 'E0106': //Invalid Email and password
             setEmailError(err);
             setEmailErrorMessage(t("login.email-error"));
             setError("");
             areFieldsFilled(true);
             break;
 
-          case "E1001": //User Not Approved
+          case 'E1001': //User Not Approved
             setNotApprovedError(err);
             setError("");
             break;
-
-          
 
           default:
             console.error(error);
