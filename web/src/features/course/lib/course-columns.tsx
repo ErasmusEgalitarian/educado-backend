@@ -223,17 +223,20 @@ export const createCourseColumns = ({
       cell: ({ row }: CellContext<Course, unknown>) => {
         const documentId = row.original.documentId;
 
-        const handleView = () => {
+        const handleView = (e: React.MouseEvent) => {
+          e.stopPropagation();
           toast.info("View course feature coming soon!");
         };
 
-        const handleEdit = () => {
-          if (documentId) {
+        const handleEdit = (e: React.MouseEvent) => {
+          e.stopPropagation();
+          if (documentId != null) {
             navigate(`/courses/${documentId}/edit`);
           }
         };
 
-        const handleDelete = () => {
+        const handleDelete = (e: React.MouseEvent) => {
+          e.stopPropagation();
           toast.info(
             `Delete functionality is not implemented yet: ${documentId ?? "unknown"}`
           );
@@ -242,7 +245,13 @@ export const createCourseColumns = ({
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
+              <Button
+                variant="ghost"
+                className="h-8 w-8 p-0"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
                 <MoreHorizontal className="h-4 w-4" />
                 <span className="sr-only">{t("common.openMenu")}</span>
               </Button>
