@@ -94,7 +94,7 @@ const DataTable = <TData extends DataDisplayItem>({
   emptyState,
 }: Readonly<DataTableProps<TData>>) => {
   return (
-    <div className={`rounded-md border ${className ?? ""}`}>
+    <div className={`${className ?? ""}`}>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
