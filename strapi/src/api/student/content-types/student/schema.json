@@ -59,6 +59,12 @@
       "relation": "oneToMany",
       "target": "api::user-log.user-log",
       "mappedBy": "student"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "student"
     }
   }
 }
