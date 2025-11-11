@@ -19,7 +19,8 @@ type ContentCreator = {
      * the id created by strapi
      */
     documentId: String;
-    name: String;
+    firstName: String;
+    lastName: String;
     email: String;
     verifiedAt: Date;
 };

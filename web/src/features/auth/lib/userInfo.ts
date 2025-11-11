@@ -7,9 +7,9 @@ export interface userInfo {
 }
 
 export const getUserInfo = (): userInfo =>
-  JSON.parse(localStorage.getItem("userInfo") ?? "{}");
+  JSON.parse(localStorage.getItem("loggedInUser") ?? "{}");
 
 export const setUserInfo = (userInfo: userInfo): void => {
-  localStorage.setItem("userInfo", JSON.stringify(userInfo));
+  localStorage.setItem("loggedInUser", JSON.stringify(userInfo));
 };
 export const getUserToken = (): string => localStorage.getItem("token") ?? "";

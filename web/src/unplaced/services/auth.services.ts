@@ -20,10 +20,6 @@ interface UserCredentials {
   isContentCreator: boolean;
 }
 
-const postUserLogin = async (credentials: UserCredentials) => {
-  return await axios.post(`${BACKEND_URL}/api/auth/login`, credentials);
-};
-
 const postUserSignup = async (formData: ContentCreatorApplication) => {
   return await axios.post(`${BACKEND_URL}/api/auth/signup`, formData);
 };
@@ -88,7 +84,6 @@ const addInstitution = async (data: Institution) => {
 };
 
 const AuthServices = Object.freeze({
-  postUserLogin,
   postUserSignup,
   GetCCApplications,
   GetSingleCCApplication,
