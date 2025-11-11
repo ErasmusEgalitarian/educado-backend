@@ -51,7 +51,7 @@ export default factories.createCoreController('api::content-creator.content-crea
         return ctx.send({
             jwt: token,
             user: {
-            id: user.id,
+            id: user.documentId,
             email: user.email,
             firstName: user.firstName,
             lastName: user.lastName,
