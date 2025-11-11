@@ -14,7 +14,7 @@ export default factories.createCoreController('api::content-creator.content-crea
         const { email, password } = ctx.request.body;
 
         const user = await strapi.documents('api::content-creator.content-creator').findFirst({
-            filters: { email: email },
+            filters: { email: email.toLowerCase() },
             });
 
         if (!user) {
@@ -38,9 +38,13 @@ export default factories.createCoreController('api::content-creator.content-crea
       
         // 3. Generate token
         const token = jwt.sign(
-        { id: user.id },
-        process.env.JWT_SECRET,
-        { expiresIn: '1d' }
+        { documentId: user.documentId,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            verifiedAt: user.verifiedAt},
+            process.env.JWT_SECRET,
+            { expiresIn: '7d' }
         );
 
         // 4. Respond with token and user info
