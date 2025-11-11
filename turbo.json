@@ -69,7 +69,7 @@
       "outputs": ["src/shared/api/**"]
     },
     "generate-api": {
-      "dependsOn": ["//#generate-spec", "//#generate-client"],
+      "dependsOn": ["//#generate-merged-spec", "//#generate-client"],
       "outputs": []
     }
   }
