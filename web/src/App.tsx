@@ -18,6 +18,7 @@ import Profile from "./features/user/components/Profile";
 import NotFound from "./shared/assets/NotFound";
 import DocsPage from "./shared/docs/pages/docs-page";
 import TestPage from "./test-page";
+import TestPage2 from "./test-page2";
 import Application from "./unplaced/Application";
 import EducadoAdmin from "./unplaced/EducadoAdmin";
 import Feedback from "./unplaced/Feedback";
@@ -34,6 +35,9 @@ const App = () => {
     {
       path: "/test",
       element: <TestPage />,
+    },{
+      path: "/test2",
+      element: <TestPage2 />,
     },
     {
       path: "/docs",
