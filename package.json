@@ -1,7 +1,7 @@
 {
   "name": "educado-backend",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.3.2",
   "description": "Monorepo for Educado backend and frontend",
   "packageManager": "npm@10.2.0",
   "scripts": {

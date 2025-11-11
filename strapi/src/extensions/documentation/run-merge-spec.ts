@@ -1,2 +1,2 @@
-import { mergeGeneratedSpec } from "./merge-openapi";
-mergeGeneratedSpec();
+import { mergeSwaggerDocumentation } from "./merge-openapi";
+mergeSwaggerDocumentation();
