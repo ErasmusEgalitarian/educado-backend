@@ -112,7 +112,6 @@ const Login = () => {
           case "E1001": //User Not Approved
             setNotApprovedError(err);
             setError("");
-            areFieldsFilled();
             break;
 
           
@@ -351,6 +350,7 @@ const Login = () => {
         </div>
       </div>
       {showModal && (
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         <ToggleModalContext.Provider
           value={() => {
             setShowModal(!showModal);
