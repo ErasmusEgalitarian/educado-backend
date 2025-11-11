@@ -40,10 +40,6 @@ interface StatisticsResponseBody {
   evaluation: EntityData;
 }
 
-interface StatisticsResponse {
-  responseBody: StatisticsResponseBody;
-}
-
 const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
   const { t, i18n } = useTranslation();
   const userInfo: userInfo = getUserInfo();
