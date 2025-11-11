@@ -29,12 +29,6 @@ export const FormDataContext = createContext<any>(null);
   
 // Infer type from Zod schema
 type ApplicationInputs = z.infer<typeof SignupSchema>;
-const methods = useForm<ApplicationInputs>({
-  resolver: zodResolver(SignupSchema),
-  mode: "onChange",
-})
-
-const { handleSubmit, formState: { isValid, isSubmitting }, watch, resetField } = methods;
 
 const Signup = () => {
 
@@ -55,13 +49,18 @@ const Signup = () => {
   const navigate = useNavigate();
 
   // Use-form setup
+  const realMethods = useForm<ApplicationInputs>({
+    resolver: zodResolver(SignupSchema),
+    mode: "onChange",
+  });
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<ApplicationInputs>({
-    resolver: zodResolver(SignupSchema),
-  });
+    formState: { errors, isValid, isSubmitting },
+    watch,
+    resetField,
+  } = realMethods;
   
   const [emailExistsError, setEmailExistError] = useState(null);
   const [emailNotValid, setEmailNotValid] = useState(false);
