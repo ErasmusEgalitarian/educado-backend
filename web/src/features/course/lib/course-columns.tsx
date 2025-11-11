@@ -1,5 +1,3 @@
-import { type CellContext, type ColumnDef } from "@tanstack/react-table";
-import Icon from "@mdi/react";
 import {
   mdiBookOpenBlankVariantOutline,
   mdiDotsHorizontal,
@@ -7,6 +5,8 @@ import {
   mdiSquareEditOutline,
   mdiEyeOutline,
 } from "@mdi/js";
+import Icon from "@mdi/react";
+import { type CellContext, type ColumnDef } from "@tanstack/react-table";
 import { toast } from "sonner";
 
 import { Course, CourseCategory } from "@/shared/api/types.gen";
@@ -238,17 +238,20 @@ export const createCourseColumns = ({
       cell: ({ row }: CellContext<Course, unknown>) => {
         const documentId = row.original.documentId;
 
-        const handleView = () => {
+        const handleView = (e: React.MouseEvent) => {
+          e.stopPropagation();
           toast.info("View course feature coming soon!");
         };
 
-        const handleEdit = () => {
-          if (documentId) {
+        const handleEdit = (e: React.MouseEvent) => {
+          e.stopPropagation();
+          if (documentId != null) {
             navigate(`/courses/${documentId}/edit`);
           }
         };
 
-        const handleDelete = () => {
+        const handleDelete = (e: React.MouseEvent) => {
+          e.stopPropagation();
           toast.info(
             `Delete functionality is not implemented yet: ${documentId ?? "unknown"}`
           );
@@ -257,7 +260,13 @@ export const createCourseColumns = ({
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
+              <Button
+                variant="ghost"
+                className="h-8 w-8 p-0"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
                 <Icon path={mdiDotsHorizontal} size={1} className="h-4 w-4" />
                 <span className="sr-only">{t("common.openMenu")}</span>
               </Button>

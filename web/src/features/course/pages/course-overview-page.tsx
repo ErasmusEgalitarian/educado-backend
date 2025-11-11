@@ -91,19 +91,19 @@ const CourseOverviewPage = () => {
                 }}
                 selection={{
                   enabled: true,
-                  limit: 2,
+                  limit: 7,
                   onChange: handleSelectionChange,
                 }}
               />
               {/* Display selected courses count for demo */}
-              {selectedCourses.length > 0 && (
+              {selectedCourses.length > 0 ? (
                 <div className="mt-4 p-4 bg-primary-surface-lighter rounded-lg">
                   <p className="text-sm font-medium">
                     {selectedCourses.length} course(s) selected:{" "}
                     {selectedCourses.map((c) => c.title).join(", ")}
                   </p>
                 </div>
-              )}
+              ) : null}
             </CardContent>
           </Card>
         </div>
