@@ -194,7 +194,7 @@ const Login = () => {
         </div>
 
         {/*Container for right side of the page - frame 2332*/}
-        <div className="relative right-0 h-screen flex flex-col justify-center items-center">
+        <div className="relative right-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#C9E5EC] via-[#FFFFFF] to-[#FFFFFF] w-full">
           {/*Error message for when email or password is incorrect*/}
           <div className="fixed right-0 top-16 z-10">
             {error && (
@@ -215,10 +215,10 @@ const Login = () => {
           <div className="relative py-8 px-25 w-full">
             <div className="">
               <h1 className="mb-10 flex text-lg text-primary-text-title font-normal font-montserrat underline px-10">
-                <Link to="/welcome">
-                  <Icon path={mdiChevronLeft} size={1} color="primary-text-title" />
+                <Link to="/welcome" className="flex items-center gap-1">
+                  <Icon path={mdiChevronLeft} size={1} color="#4E6879" />
                 </Link>
-                <Link to="/welcome" className="text-lg text-primary-text-title font-normal font-montserrat " > 
+                <Link to="/welcome" className="text-lg text-primary-text-title font-normal font-montserrat text-[#4E6879]" > 
                   <button className="cursor-pointer">
                     {t("login.back-button")}
                   </button>
