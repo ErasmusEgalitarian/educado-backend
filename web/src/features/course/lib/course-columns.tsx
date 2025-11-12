@@ -250,36 +250,35 @@ export const createCourseColumns = ({
         const handleDuplicate = async (e: React.MouseEvent) => {
           if (!documentId) return;
           e.stopPropagation();
-          toast.info(
-            `Duplicated course: ${documentId ?? "unknown"} to new course`
-          );
 
           try {
             const { queryFn } = CourseQueryFunction(documentId);
             const courseDetail = await queryFn();
 
-            console.log(courseDetail);
+            if (!courseDetail) {
+              toast.error("Failed to duplicate course");
+            }
 
-            const dupTitle = "[DUPLICATE] " + courseDetail.title;
-
-            const categories = Array.isArray(
-              courseDetail.course_categories?.data
-            )
-              ? courseDetail.course_categories.data
-              : [];
+            const newTitle = `[DUPLICATE] ${courseDetail.title ?? "unknown"}`;
 
             const result = await createMutation.mutateAsync({
-              title: dupTitle,
+              title: newTitle,
               difficulty: Number(courseDetail.difficulty),
-              course_categories: categories.map((c) => c.id),
+              course_categories: courseDetail.course_categories?.map(
+                (category: Object) => category.id
+              ),
               description: courseDetail.description,
               image: courseDetail.image,
             });
 
-            console.log(result?.data);
-            navigate(`/courses/${result?.data?.documentId}/edit`);
+            const id = result?.data?.documentId;
+            toast.info(
+              `Duplicated course: "${courseDetail.title ?? "Unknown"}"`
+            );
+            navigate(`/courses/${id}/edit`);
           } catch (error) {
-            console.log(error);
+            console.error(`Duplicate error ${error}`);
+            toast.error(`Failed to duplicate course`);
           }
         };
 
