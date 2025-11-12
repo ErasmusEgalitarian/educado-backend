@@ -57,7 +57,7 @@ export async function getCoursesStats(documentId: string, cIds: string[]) {
     if (!creator) {
       throw { error: errorCodes["E0504"] };
     }
-    const courses = creator.courses ?? [];
+    const courses = filterCoursesBasedOnCid(creator.courses, cIds);
     const total = courses.length;
     let count7 = 0;
     let count30 = 0;
@@ -75,11 +75,11 @@ export async function getCoursesStats(documentId: string, cIds: string[]) {
       total: total ?? 0,
       progress: {
         lastSevenDays:
-          total > 0 ? Math.round((count7 / total) * 100) : 0,
+          Math.round((count7 / total) * 100) ?? 0,
         lastThirtyDays:
-          total > 0 ? Math.round((count30 / total) * 100) : 0,
+          Math.round((count30 / total) * 100) ?? 0,
         thisMonth:
-          total > 0 ? Math.round((countMonth / total) * 100) : 0,
+          Math.round((countMonth / total) * 100) ?? 0
       },
     };
   } catch (err) {
