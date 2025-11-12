@@ -33,6 +33,9 @@ export const FormSelect = <TFieldValues extends FieldValues>({
   wrapperClassName,
   options,
   placeholder = "Choose...",
+  isRequired,
+  hintTooltip,
+  description,
   ...rest
 }: FormSelectProps<TFieldValues>) => {
   const {
@@ -46,6 +49,9 @@ export const FormSelect = <TFieldValues extends FieldValues>({
       fieldName={fieldName}
       label={label}
       inputSize={inputSize}
+      isRequired={isRequired}
+      hintTooltip={hintTooltip}
+      description={description}
       wrapperClassName={wrapperClassName}
     >
       <Select value={value} onValueChange={onChange} {...rest}>

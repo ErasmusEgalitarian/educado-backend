@@ -4,15 +4,20 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { TypeOf, z } from "zod";
 
+import { EDUCATION_OPTIONS } from "@/auth/constants/educationOptions";
 import FormActions from "@/shared/components/form/form-actions";
 import { FormInput } from "@/shared/components/form/form-input";
+import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { Checkbox } from "@/shared/components/shadcn/checkbox";
-import { Form } from "@/shared/components/shadcn/form";
-import { FormItem } from "@/shared/components/shadcn/form";
-import { Textarea } from "@/shared/components/shadcn/textarea";
+import { Form, FormItem } from "@/shared/components/shadcn/form";
 
 const maxChars = 400;
+const STATUS = ["YES", "NO"] as const;
+const STATUS_OPTIONS = STATUS.map((type) => ({
+  value: type,
+  label: type,
+}));
 
 // Submit handler with inferred data shape from the schema.
 async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -24,59 +29,66 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
 
 // Define the Zod schema for validation and form data shape.
 const formSchema = z.object({
-  formação: z.string().min(0),
-  curso: z.string().min(0),
-  início: z.string().min(0),
-  status: z.string().min(0),
-  instituição: z.string().min(0),
-  fim: z.string().min(0),
-  empresa: z.string().min(0),
-  cargo: z.string().min(0),
-  descrição: z.string().min(0),
-  motivações:  z.string().min(0),
+  motivation: z.string().min(0),
+  educationType: z.string().min(0),
+  isInProgress: z.string().min(0),
+  course: z.string().min(0),
+  institution: z.string().min(0),
+  acedemicStartDate: z.string().min(0),
+  acedemicEndDate: z.string().min(0),
+  organization: z.string().min(0),
+  jobTitle: z.string().min(0),
+  jobStartDate: z.string().min(0),
+  jobEndDate: z.string().min(0),
+  description: z.string().min(0),
 });
 
 export const MotivationForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      motivações: ""
+      motivation: "",
     },
     mode: "onTouched",
   });
-  const currentLength = form.watch("motivações").length;
+  const currentLength = form.watch("motivation").length;
   return (
     <Form {...form}>
-      <FormTextarea
-        control={form.control}
-        fieldName="motivações"
-        placeholder="Escreva aqui por que você quer fazer parte do projeto"
-        rows={3}
-        maxLength={maxChars}
-        className="resize-none"
-      />
-      <div
-        className="text-right font-normal font-['Montserrat'] text-greyscale-text-caption py-2"
-        style={{ fontSize: "14px", lineHeight: "17px" }}
+      <form
+        onSubmit={(e) => {
+          void form.handleSubmit(onSubmit)(e);
+        }}
       >
-        {currentLength} / {maxChars} caracteres
-      </div>
+        <FormTextarea
+          control={form.control}
+          fieldName="motivation"
+          placeholder="Escreva aqui por que você quer fazer parte do projeto"
+          rows={3}
+          maxLength={maxChars}
+          className="resize-none"
+        />
+        <div
+          className="text-right font-normal font-['Montserrat'] text-greyscale-text-caption py-2"
+          style={{ fontSize: "14px", lineHeight: "17px" }}
+        >
+          {currentLength} / {maxChars} caracteres
+        </div>
+      </form>
     </Form>
   );
 };
 
 // The form component itself
 export const EducationForm = () => {
-  // Initialize the form with React Hook Form and Zod resolver.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      formação: "",
-      curso: "",
-      início: "",
-      status: "",
-      instituição: "",
-      fim: "",
+      educationType: "",
+      isInProgress: "",
+      course: "",
+      institution: "",
+      acedemicStartDate: "",
+      acedemicEndDate: "",
     },
     mode: "onTouched",
   });
@@ -89,29 +101,27 @@ export const EducationForm = () => {
         }}
         className="space-y-4 grid grid-cols-2 gap-x-6"
       >
-        {/* Single reusable FormInput component */}
-        <FormInput
+        <FormSelect
           control={form.control}
-          fieldName="formação"
-          title="Formação"
-          placeholder="Superior"
+          fieldName="educationType"
           label="Formação"
+          options={EDUCATION_OPTIONS}
+          placeholder="Superior"
           isRequired
-          className="h-[59px]"
+          wrapperClassName="[&_[role=combobox]]:h-[59px]"
         />
-        <FormInput
+        <FormSelect
           control={form.control}
-          fieldName="status"
-          title="Status"
-          placeholder="Em andamento"
+          fieldName="isInProgress"
           label="Status"
+          options={STATUS_OPTIONS}
+          placeholder="Em andamento"
           isRequired
-          className="h-[59px]"
+          wrapperClassName="[&_[role=combobox]]:h-[59px]"
         />
         <FormInput
           control={form.control}
-          fieldName="curso"
-          title="Curso"
+          fieldName="course"
           placeholder="Curso"
           label="Curso"
           isRequired
@@ -119,8 +129,7 @@ export const EducationForm = () => {
         />
         <FormInput
           control={form.control}
-          fieldName="instituição"
-          title="Instituição"
+          fieldName="institution"
           placeholder="Instituição"
           label="Instituição"
           isRequired
@@ -128,8 +137,7 @@ export const EducationForm = () => {
         />
         <FormInput
           control={form.control}
-          fieldName="início"
-          title="Início"
+          fieldName="acedemicStartDate"
           placeholder="Mês / Ano"
           label="Início"
           isRequired
@@ -137,8 +145,7 @@ export const EducationForm = () => {
         />
         <FormInput
           control={form.control}
-          fieldName="fim"
-          title="Fim"
+          fieldName="acedemicEndDate"
           placeholder="Mês / Ano"
           label="Fim"
           isRequired
@@ -154,16 +161,16 @@ export const ExperienceForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      empresa: "",
-      cargo: "",
-      início: "",
-      fim: "",
-      descrição: "",
+      organization: "",
+      jobTitle: "",
+      jobStartDate: "",
+      jobEndDate: "",
+      description: "",
     },
     mode: "onTouched",
   });
 
-  const currentLength = form.watch("descrição").length;
+  const currentLength = form.watch("description").length;
 
   const [checked, setChecked] = useState(false);
 
@@ -178,8 +185,7 @@ export const ExperienceForm = () => {
         {/* Single reusable FormInput component */}
         <FormInput
           control={form.control}
-          fieldName="empresa"
-          title="Empresa"
+          fieldName="organization"
           placeholder="Mobile Education"
           label="Empresa"
           isRequired
@@ -187,8 +193,7 @@ export const ExperienceForm = () => {
         />
         <FormInput
           control={form.control}
-          fieldName="cargo"
-          title="Cargo"
+          fieldName="jobTitle"
           placeholder="Product Designer"
           label="Cargo"
           isRequired
@@ -196,8 +201,7 @@ export const ExperienceForm = () => {
         />
         <FormInput
           control={form.control}
-          fieldName="início"
-          title="Início"
+          fieldName="jobStartDate"
           placeholder="Mês / Ano"
           label="Início"
           isRequired
@@ -205,8 +209,7 @@ export const ExperienceForm = () => {
         />
         <FormInput
           control={form.control}
-          fieldName="fim"
-          title="Fim"
+          fieldName="jobEndDate"
           placeholder="Mês / Ano"
           label="Fim"
           isRequired
@@ -226,13 +229,13 @@ export const ExperienceForm = () => {
             className="font-['Montserrat'] font-normal text-greyscale-text-body cursor-pointer"
             style={{ fontSize: "16px", lineHeight: "20.8px" }}
           >
-            I agree to sell my soul
+            Meu emprego atual
           </label>
         </div>
       </form>
       <FormTextarea
         control={form.control}
-        fieldName="descrição"
+        fieldName="description"
         placeholder="Escreva aqui as suas responsabilidades"
         label="Descrição das atividades"
         rows={3}
