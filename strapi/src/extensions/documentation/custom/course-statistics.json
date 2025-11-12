@@ -108,31 +108,16 @@
       "ProgressObject": {
         "type": "object",
         "properties": {
-          "lastThirtyDays": { "type": "number", "description": "Progress percentage (int) comparing last 30 days vs previous period" },
-          "lastSevenDays": { "type": "number", "description": "Progress percentage (int) comparing last 7 days vs previous period" },
-          "thisMonth": { "type": "number", "description": "Progress percentage (int) for current month vs previous month" }
+          "lastThirtyDays": { "type": "number", "description": "Progress percentage comparing last 30 days vs previous period" },
+          "lastSevenDays": { "type": "number", "description": "Progress percentage comparing last 7 days vs previous period" },
+          "thisMonth": { "type": "number", "description": "Progress percentage for current month vs previous month" }
         }
       },
       "CourseStatsSection": {
         "type": "object",
         "properties": {
-          "total": { "type": "integer", "description": "Total count (e.g., total courses / students / certificates)" },
+          "total": { "type": "number", "description": "Total count (e.g., total courses / students / certificates)" },
           "progress": { "$ref": "#/components/schemas/ProgressObject" }
-        }
-      },
-      "EvaluationProgress": {
-        "type": "object",
-        "properties": {
-          "thisMonth": { "type": "number" },
-          "lastSevenDays": { "type": "number" },
-          "lastThirtyDays": { "type": "number" }
-        }
-      },
-      "EvaluationStats": {
-        "type": "object",
-        "properties": {
-          "total": { "type": "number", "description": "Average rating (e.g., 4.2)" },
-          "progress": { "$ref": "#/components/schemas/EvaluationProgress" }
         }
       },
       "CourseStatisticsResponse": {
@@ -141,7 +126,7 @@
           "courses": { "$ref": "#/components/schemas/CourseStatsSection" },
           "students": { "$ref": "#/components/schemas/CourseStatsSection" },
           "certificates": { "$ref": "#/components/schemas/CourseStatsSection" },
-          "evaluation": { "$ref": "#/components/schemas/EvaluationStats" }
+          "evaluation": { "$ref": "#/components/schemas/CourseStatsSection" }
         }
       },
       "ErrorResponse": {
