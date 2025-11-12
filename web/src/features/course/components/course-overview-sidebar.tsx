@@ -15,6 +15,8 @@ import { getCcDashboardActivity } from "@/shared/api/sdk.gen";
 import { DashboardActivity } from "@/shared/api/types.gen";
 import { useTranslation } from "react-i18next";
 
+import { postCourseStatisticsStatisticsAction } from "@/shared/api/sdk.gen";
+import { CourseStatisticsRequest, CourseStatisticsResponse } from "@/shared/api/types.gen";
 
 type PeriodKey = "thisMonth" | "lastSevenDays" | "lastThirtyDays";
 
@@ -45,14 +47,14 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
   const userInfo: userInfo = getUserInfo();
 
   const [period, setPeriod] = useState<PeriodKey>("thisMonth");
-  const [statistics, setStatistics] = useState<StatisticsResponseBody | null>(null);
+  const [statistics, setStatistics] = useState<CourseStatisticsResponse | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // If there are no documentIds yet, skip the API call — parent will provide them later
     if (!documentIds || documentIds.length === 0) {
       // Clear statistics while waiting for IDs (optional behaviour)
-      setStatistics(null);
+      setStatistics(undefined);
       setLoading(false);
       return;
     }
@@ -61,16 +63,14 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
       setLoading(true);
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch('http://localhost:1337/api/course-statistics/statistics-action', {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token}`,
+        const data = await postCourseStatisticsStatisticsAction({
+          body: {
+            documentIds: documentIds
           },
-          body: JSON.stringify({ documentIds })
+          headers: {
+            Authorization: token
+          }
         });
-        if (!response.ok) throw new Error("Failed to fetch statistics");
-        const data: StatisticsResponseBody = await response.json();
         setStatistics(data);
       } catch (error) {
         console.error("Error fetching statistics:", error);
