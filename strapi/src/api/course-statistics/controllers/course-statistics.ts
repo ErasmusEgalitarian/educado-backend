@@ -90,7 +90,7 @@ export async function getStudentStats(documentId: string, cIds: string[]) {
   }
 
   // Declare and initialise all varibles hosting the statistics
-  let countTotal = user.courses.length;
+  let countTotal = 0;
   let count7 = 0;
   let count30 = 0;
   let countMonth = 0;
@@ -98,6 +98,7 @@ export async function getStudentStats(documentId: string, cIds: string[]) {
   // double for loop running counting all students on each course, and counting each based on enrollmentDate thorugh 3 if statements
   for (const course of filteredCourses) {
     for (const courseRelation of course.course_relations) {
+      countTotal++;
       //30 days
       if (
         new Date(courseRelation.enrollmentDate) >
