@@ -1349,8 +1349,8 @@
                   "readOnly": true,
                   "type": "string",
                   "enum": [
-                    "courses",
-                    "user_logs"
+                    "user_logs",
+                    "courses"
                   ]
                 },
                 {
@@ -1358,8 +1358,8 @@
                   "items": {
                     "type": "string",
                     "enum": [
-                      "courses",
-                      "user_logs"
+                      "user_logs",
+                      "courses"
                     ]
                   }
                 }
@@ -1503,8 +1503,8 @@
                   "readOnly": true,
                   "type": "string",
                   "enum": [
-                    "courses",
-                    "user_logs"
+                    "user_logs",
+                    "courses"
                   ]
                 },
                 {
@@ -1512,8 +1512,8 @@
                   "items": {
                     "type": "string",
                     "enum": [
-                      "courses",
-                      "user_logs"
+                      "user_logs",
+                      "courses"
                     ]
                   }
                 }
@@ -1678,8 +1678,8 @@
                   "readOnly": true,
                   "type": "string",
                   "enum": [
-                    "courses",
-                    "user_logs"
+                    "user_logs",
+                    "courses"
                   ]
                 },
                 {
@@ -1687,8 +1687,8 @@
                   "items": {
                     "type": "string",
                     "enum": [
-                      "courses",
-                      "user_logs"
+                      "user_logs",
+                      "courses"
                     ]
                   }
                 }
@@ -2014,8 +2014,8 @@
                   "readOnly": true,
                   "type": "string",
                   "enum": [
-                    "courses",
-                    "user_logs"
+                    "user_logs",
+                    "courses"
                   ]
                 },
                 {
@@ -2023,8 +2023,8 @@
                   "items": {
                     "type": "string",
                     "enum": [
-                      "courses",
-                      "user_logs"
+                      "user_logs",
+                      "courses"
                     ]
                   }
                 }
@@ -2187,8 +2187,8 @@
                   "readOnly": true,
                   "type": "string",
                   "enum": [
-                    "courses",
-                    "user_logs"
+                    "user_logs",
+                    "courses"
                   ]
                 },
                 {
@@ -2196,8 +2196,8 @@
                   "items": {
                     "type": "string",
                     "enum": [
-                      "courses",
-                      "user_logs"
+                      "user_logs",
+                      "courses"
                     ]
                   }
                 }
@@ -2588,7 +2588,7 @@
                     "feedbacks",
                     "course_sections",
                     "course_categories",
-                    "students",
+                    "course_relations",
                     "content_creators"
                   ]
                 },
@@ -2601,7 +2601,7 @@
                       "feedbacks",
                       "course_sections",
                       "course_categories",
-                      "students",
+                      "course_relations",
                       "content_creators"
                     ]
                   }
@@ -2738,7 +2738,7 @@
                     "feedbacks",
                     "course_sections",
                     "course_categories",
-                    "students",
+                    "course_relations",
                     "content_creators"
                   ]
                 },
@@ -2751,7 +2751,7 @@
                       "feedbacks",
                       "course_sections",
                       "course_categories",
-                      "students",
+                      "course_relations",
                       "content_creators"
                     ]
                   }
@@ -2909,7 +2909,7 @@
                     "feedbacks",
                     "course_sections",
                     "course_categories",
-                    "students",
+                    "course_relations",
                     "content_creators"
                   ]
                 },
@@ -2922,7 +2922,7 @@
                       "feedbacks",
                       "course_sections",
                       "course_categories",
-                      "students",
+                      "course_relations",
                       "content_creators"
                     ]
                   }
@@ -3181,7 +3181,7 @@
                     "feedbacks",
                     "course_sections",
                     "course_categories",
-                    "students",
+                    "course_relations",
                     "content_creators"
                   ]
                 },
@@ -3194,7 +3194,7 @@
                       "feedbacks",
                       "course_sections",
                       "course_categories",
-                      "students",
+                      "course_relations",
                       "content_creators"
                     ]
                   }
@@ -3350,7 +3350,7 @@
                     "feedbacks",
                     "course_sections",
                     "course_categories",
-                    "students",
+                    "course_relations",
                     "content_creators"
                   ]
                 },
@@ -3363,7 +3363,7 @@
                       "feedbacks",
                       "course_sections",
                       "course_categories",
-                      "students",
+                      "course_relations",
                       "content_creators"
                     ]
                   }
@@ -4491,6 +4491,1028 @@
         ]
       }
     },
+    "/course-relations": {
+      "get": {
+        "operationId": "course-relation/get/course_relations",
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "readOnly": true,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "enrollmentDate",
+                  "createdAt",
+                  "updatedAt",
+                  "publishedAt"
+                ]
+              }
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "enum": [
+                  "enrollmentDate",
+                  "createdAt",
+                  "updatedAt",
+                  "publishedAt"
+                ]
+              },
+              "additionalProperties": {}
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "_q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "string"
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "pagination",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "allOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "withCount": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        "pageSize": {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "pageSize"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "start": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        "limit": {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991
+                        }
+                      },
+                      "required": [
+                        "start",
+                        "limit"
+                      ],
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "enrollmentDate",
+                    "createdAt",
+                    "updatedAt",
+                    "publishedAt"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "enrollmentDate",
+                      "createdAt",
+                      "updatedAt",
+                      "publishedAt"
+                    ]
+                  }
+                },
+                {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "enum": [
+                      "enrollmentDate",
+                      "createdAt",
+                      "updatedAt",
+                      "publishedAt"
+                    ]
+                  },
+                  "additionalProperties": {
+                    "type": "string",
+                    "enum": [
+                      "asc",
+                      "desc"
+                    ]
+                  }
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string",
+                      "enum": [
+                        "enrollmentDate",
+                        "createdAt",
+                        "updatedAt",
+                        "publishedAt"
+                      ]
+                    },
+                    "additionalProperties": {
+                      "type": "string",
+                      "enum": [
+                        "asc",
+                        "desc"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "populate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "anyOf": [
+                {
+                  "readOnly": true,
+                  "type": "string",
+                  "const": "*"
+                },
+                {
+                  "readOnly": true,
+                  "type": "string",
+                  "enum": [
+                    "course",
+                    "student"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "course",
+                      "student"
+                    ]
+                  }
+                }
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "string",
+              "enum": [
+                "draft",
+                "published"
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseRelationListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "course-relation"
+        ]
+      },
+      "post": {
+        "operationId": "course-relation/post/course_relations",
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "readOnly": true,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "enrollmentDate",
+                  "createdAt",
+                  "updatedAt",
+                  "publishedAt"
+                ]
+              }
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "populate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "anyOf": [
+                {
+                  "readOnly": true,
+                  "type": "string",
+                  "const": "*"
+                },
+                {
+                  "readOnly": true,
+                  "type": "string",
+                  "enum": [
+                    "course",
+                    "student"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "course",
+                      "student"
+                    ]
+                  }
+                }
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "string",
+              "enum": [
+                "draft",
+                "published"
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseRelationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "course-relation"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseRelationRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/course-relations/{id}": {
+      "get": {
+        "operationId": "course-relation/get/course_relations_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "readOnly": true,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "enrollmentDate",
+                  "createdAt",
+                  "updatedAt",
+                  "publishedAt"
+                ]
+              }
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "populate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "anyOf": [
+                {
+                  "readOnly": true,
+                  "type": "string",
+                  "const": "*"
+                },
+                {
+                  "readOnly": true,
+                  "type": "string",
+                  "enum": [
+                    "course",
+                    "student"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "course",
+                      "student"
+                    ]
+                  }
+                }
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "enum": [
+                  "enrollmentDate",
+                  "createdAt",
+                  "updatedAt",
+                  "publishedAt"
+                ]
+              },
+              "additionalProperties": {}
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "enrollmentDate",
+                    "createdAt",
+                    "updatedAt",
+                    "publishedAt"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "enrollmentDate",
+                      "createdAt",
+                      "updatedAt",
+                      "publishedAt"
+                    ]
+                  }
+                },
+                {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "enum": [
+                      "enrollmentDate",
+                      "createdAt",
+                      "updatedAt",
+                      "publishedAt"
+                    ]
+                  },
+                  "additionalProperties": {
+                    "type": "string",
+                    "enum": [
+                      "asc",
+                      "desc"
+                    ]
+                  }
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string",
+                      "enum": [
+                        "enrollmentDate",
+                        "createdAt",
+                        "updatedAt",
+                        "publishedAt"
+                      ]
+                    },
+                    "additionalProperties": {
+                      "type": "string",
+                      "enum": [
+                        "asc",
+                        "desc"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "string",
+              "enum": [
+                "draft",
+                "published"
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseRelationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "course-relation"
+        ]
+      },
+      "put": {
+        "operationId": "course-relation/put/course_relations_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "readOnly": true,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "enrollmentDate",
+                  "createdAt",
+                  "updatedAt",
+                  "publishedAt"
+                ]
+              }
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "populate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "anyOf": [
+                {
+                  "readOnly": true,
+                  "type": "string",
+                  "const": "*"
+                },
+                {
+                  "readOnly": true,
+                  "type": "string",
+                  "enum": [
+                    "course",
+                    "student"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "course",
+                      "student"
+                    ]
+                  }
+                }
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "string",
+              "enum": [
+                "draft",
+                "published"
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseRelationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "course-relation"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseRelationRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "course-relation/delete/course_relations_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "readOnly": true,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "enrollmentDate",
+                  "createdAt",
+                  "updatedAt",
+                  "publishedAt"
+                ]
+              }
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "populate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "anyOf": [
+                {
+                  "readOnly": true,
+                  "type": "string",
+                  "const": "*"
+                },
+                {
+                  "readOnly": true,
+                  "type": "string",
+                  "enum": [
+                    "course",
+                    "student"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "course",
+                      "student"
+                    ]
+                  }
+                }
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "enum": [
+                  "enrollmentDate",
+                  "createdAt",
+                  "updatedAt",
+                  "publishedAt"
+                ]
+              },
+              "additionalProperties": {}
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "string",
+              "enum": [
+                "draft",
+                "published"
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "course-relation"
+        ]
+      }
+    },
     "/course-selections": {
       "get": {
         "operationId": "course-selection/get/course_selections",
@@ -5537,6 +6559,107 @@
         "tags": [
           "course-selection"
         ]
+      }
+    },
+    "/course-statistics/statistics-action": {
+      "post": {
+        "tags": [
+          "CourseStatistics"
+        ],
+        "summary": "Get aggregated statistics for a content creator's selected courses",
+        "description": "Returns aggregated statistics for courses, students, certificates and evaluation (ratings) for the authenticated content creator.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseStatisticsRequest"
+              },
+              "example": {
+                "documentIds": [
+                  "course-doc-id-1",
+                  "course-doc-id-2"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aggregated statistics object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseStatisticsResponse"
+                },
+                "example": {
+                  "courses": {
+                    "total": 2,
+                    "progress": {
+                      "lastThirtyDays": 25,
+                      "lastSevenDays": 10,
+                      "thisMonth": 15
+                    }
+                  },
+                  "students": {
+                    "total": 120,
+                    "progress": {
+                      "lastThirtyDays": 12,
+                      "lastSevenDays": 3,
+                      "thisMonth": 5
+                    }
+                  },
+                  "certificates": {
+                    "total": 40,
+                    "progress": {
+                      "lastThirtyDays": 20,
+                      "lastSevenDays": 5,
+                      "thisMonth": 8
+                    }
+                  },
+                  "evaluation": {
+                    "total": 4.3,
+                    "progress": {
+                      "thisMonth": 0.2,
+                      "lastSevenDays": 0.1,
+                      "lastThirtyDays": -0.05
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request (invalid input)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/exercises": {
@@ -10879,9 +12002,9 @@
                   "type": "string",
                   "enum": [
                     "feedbacks",
-                    "courses",
                     "certificates",
-                    "user_logs"
+                    "user_logs",
+                    "course_relations"
                   ]
                 },
                 {
@@ -10890,9 +12013,9 @@
                     "type": "string",
                     "enum": [
                       "feedbacks",
-                      "courses",
                       "certificates",
-                      "user_logs"
+                      "user_logs",
+                      "course_relations"
                     ]
                   }
                 }
@@ -11025,9 +12148,9 @@
                   "type": "string",
                   "enum": [
                     "feedbacks",
-                    "courses",
                     "certificates",
-                    "user_logs"
+                    "user_logs",
+                    "course_relations"
                   ]
                 },
                 {
@@ -11036,9 +12159,9 @@
                     "type": "string",
                     "enum": [
                       "feedbacks",
-                      "courses",
                       "certificates",
-                      "user_logs"
+                      "user_logs",
+                      "course_relations"
                     ]
                   }
                 }
@@ -11192,9 +12315,9 @@
                   "type": "string",
                   "enum": [
                     "feedbacks",
-                    "courses",
                     "certificates",
-                    "user_logs"
+                    "user_logs",
+                    "course_relations"
                   ]
                 },
                 {
@@ -11203,9 +12326,9 @@
                     "type": "string",
                     "enum": [
                       "feedbacks",
-                      "courses",
                       "certificates",
-                      "user_logs"
+                      "user_logs",
+                      "course_relations"
                     ]
                   }
                 }
@@ -11460,9 +12583,9 @@
                   "type": "string",
                   "enum": [
                     "feedbacks",
-                    "courses",
                     "certificates",
-                    "user_logs"
+                    "user_logs",
+                    "course_relations"
                   ]
                 },
                 {
@@ -11471,9 +12594,9 @@
                     "type": "string",
                     "enum": [
                       "feedbacks",
-                      "courses",
                       "certificates",
-                      "user_logs"
+                      "user_logs",
+                      "course_relations"
                     ]
                   }
                 }
@@ -11625,9 +12748,9 @@
                   "type": "string",
                   "enum": [
                     "feedbacks",
-                    "courses",
                     "certificates",
-                    "user_logs"
+                    "user_logs",
+                    "course_relations"
                   ]
                 },
                 {
@@ -11636,9 +12759,9 @@
                     "type": "string",
                     "enum": [
                       "feedbacks",
-                      "courses",
                       "certificates",
-                      "user_logs"
+                      "user_logs",
+                      "course_relations"
                     ]
                   }
                 }
@@ -18497,107 +19620,6 @@
         "tags": [
           "users-permissions"
         ]
-      }
-    },
-    "/course-statistics/statistics-action": {
-      "post": {
-        "tags": [
-          "CourseStatistics"
-        ],
-        "summary": "Get aggregated statistics for a content creator's selected courses",
-        "description": "Returns aggregated statistics for courses, students, certificates and evaluation (ratings) for the authenticated content creator.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CourseStatisticsRequest"
-              },
-              "example": {
-                "documentIds": [
-                  "course-doc-id-1",
-                  "course-doc-id-2"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Aggregated statistics object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseStatisticsResponse"
-                },
-                "example": {
-                  "courses": {
-                    "total": 2,
-                    "progress": {
-                      "lastThirtyDays": 25,
-                      "lastSevenDays": 10,
-                      "thisMonth": 15
-                    }
-                  },
-                  "students": {
-                    "total": 120,
-                    "progress": {
-                      "lastThirtyDays": 12,
-                      "lastSevenDays": 3,
-                      "thisMonth": 5
-                    }
-                  },
-                  "certificates": {
-                    "total": 40,
-                    "progress": {
-                      "lastThirtyDays": 20,
-                      "lastSevenDays": 5,
-                      "thisMonth": 8
-                    }
-                  },
-                  "evaluation": {
-                    "total": 4.3,
-                    "progress": {
-                      "thisMonth": 0.2,
-                      "lastSevenDays": 0.1,
-                      "lastThirtyDays": -0.05
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request (invalid input)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          }
-        }
       }
     }
   },
