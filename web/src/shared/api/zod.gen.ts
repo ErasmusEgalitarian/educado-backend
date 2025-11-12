@@ -6420,10 +6420,10 @@ export const zCourseStatsSection = z.object({
 });
 
 export const zCourseStatisticsResponse = z.object({
-    courses: zCourseStatsSection.optional(),
-    students: zCourseStatsSection.optional(),
-    certificates: zCourseStatsSection.optional(),
-    evaluation: zCourseStatsSection.optional()
+    courses: zCourseStatsSection,
+    students: zCourseStatsSection,
+    certificates: zCourseStatsSection,
+    evaluation: zCourseStatsSection
 });
 
 export const zErrorResponse = z.object({

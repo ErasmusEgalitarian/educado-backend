@@ -39767,6 +39767,12 @@
       },
       "CourseStatisticsResponse": {
         "type": "object",
+        "required": [
+          "courses",
+          "students",
+          "certificates",
+          "evaluation"
+        ],
         "properties": {
           "courses": {
             "$ref": "#/components/schemas/CourseStatsSection"
