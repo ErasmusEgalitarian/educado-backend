@@ -92,10 +92,10 @@ describe('Test statistics', () => {
                             { rating: 4, dateCreated: new Date("2025-11-14") },
                             { rating: 3, dateCreated: new Date("2025-11-14") },
                             { rating: 5, dateCreated: new Date("2025-11-14") },
-                            { rating: 4, dateCreated: new Date("2025-11-01") },
-                            { rating: 2, dateCreated: new Date("2025-11-01") },
-                            { rating: 2, dateCreated: new Date("2025-11-01") },
-                            { rating: 5, dateCreated: new Date("2025-11-01") },
+                            { rating: 4, dateCreated: new Date("2025-11-02") },
+                            { rating: 2, dateCreated: new Date("2025-11-02") },
+                            { rating: 2, dateCreated: new Date("2025-11-02") },
+                            { rating: 5, dateCreated: new Date("2025-11-02") },
                         ]}, 
                         { documentId: "course2", feedbacks:[ 
                             { rating: 1, dateCreated: new Date("2025-09-05") },
@@ -131,7 +131,7 @@ describe('Test statistics', () => {
                 findOne: jest.fn().mockResolvedValue({
                     courses: [
                         { documentId: "course1", createdAt: new Date("2025-11-14") },
-                        { documentId: "course2", createdAt: new Date("2025-11-01") },
+                        { documentId: "course2", createdAt: new Date("2025-11-02") },
                         { documentId: "course3", createdAt: new Date("2025-10-20") },
                         { documentId: "course4", createdAt: new Date("2025-08-01") }
                     ]
