@@ -55,7 +55,8 @@
     "name": "Nome",
     "retry": "Tentar Novamente",
     "rating": "Avaliação",
-    "error": "Erro"
+    "error": "Erro",
+    "status": "Status"
   },
   "pagination": {
     "items": "itens",
@@ -157,7 +158,8 @@
     "createError": "Falha ao Criar Curso",
     "updateError": "Falha ao Atualizar Curso",
     "genericError": "Ocorreu um erro inesperado. Por favor, tente novamente.",
-    "rating": "Avaliação"
+    "rating": "Avaliação",
+    "duplicate": "duplicar"
   },
   "courses": {
     "pageTitle": "Confira seus cursos",

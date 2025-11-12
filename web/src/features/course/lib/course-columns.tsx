@@ -15,6 +15,7 @@ import {
 } from "@/shared/components/shadcn/dropdown-menu";
 
 import { difficultyToTranslation } from "./difficulty-to-translation";
+import React from "react";
 
 interface CoursesColumnsProps {
   t: (key: string) => string;
@@ -242,6 +243,16 @@ export const createCourseColumns = ({
           );
         };
 
+        const handleDuplicate = (e: React.MouseEvent) => {
+          e.stopPropagation();
+          toast.info(
+            `Duplicated course: ${documentId ?? "unknown"} to new course`
+          );
+          if (documentId != null) {
+            navigate(`/courses/create`);
+          }
+        };
+
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -265,6 +276,11 @@ export const createCourseColumns = ({
               <DropdownMenuItem onClick={handleEdit}>
                 <Edit className="mr-2 h-4 w-4" />
                 {t("common.edit")} {t("courseManager.course").toLowerCase()}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleDuplicate}>
+                <Edit className="mr-2 h-4 w-4" />
+                {t("courseManager.duplicate")}{" "}
+                {t("courseManager.course").toLowerCase()}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
