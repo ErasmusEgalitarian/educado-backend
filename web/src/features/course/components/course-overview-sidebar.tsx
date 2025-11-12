@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { getCcDashboardActivity } from "@/shared/api/sdk.gen";
 import { DashboardActivity } from "@/shared/api/types.gen";
 import { postCourseStatisticsStatisticsAction } from "@/shared/api/sdk.gen";
-import { CourseStatisticsRequest, CourseStatisticsResponse } from "@/shared/api/types.gen";
+import { CourseStatisticsResponse } from "@/shared/api/types.gen";
 
 type PeriodKey = "thisMonth" | "lastSevenDays" | "lastThirtyDays";
 
@@ -23,7 +23,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
   const userInfo: userInfo = getUserInfo();
 
   const [period, setPeriod] = useState<PeriodKey>("thisMonth");
-  const [statistics, setStatistics] = useState<CourseStatisticsResponse | undefined>(undefined);
+  const [statistics, setStatistics] = useState<CourseStatisticsResponse>();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -59,12 +59,12 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
   // Re-run when the list of document IDs changes or when the selected period changes
   }, [documentIds, period]);
 
-  const getProgress = (entity: keyof StatisticsResponseBody): number => {
+  const getProgress = (entity: keyof CourseStatisticsResponse): number => {
     if (!statistics) return 0;
     return statistics[entity].progress[period];
   };
 
-  const getTotal = (entity: keyof StatisticsResponseBody): number => {
+  const getTotal = (entity: keyof CourseStatisticsResponse): number => {
     if (!statistics) return 0;
     return statistics[entity].total;
   }
@@ -176,7 +176,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
                   <span aria-hidden="true" className="leading-none">
                     {getProgress("evaluation") >= 0 ? "▲" : "▼"}
                   </span>{" "}  
-                  {Math.abs(getProgress("evaluation"))}%
+                  {Math.abs(getProgress("evaluation"))}
                 </span>
             </div>
             
