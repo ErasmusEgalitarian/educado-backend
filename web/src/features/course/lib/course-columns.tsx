@@ -6,6 +6,7 @@ import { Course, CourseCategory } from "@/shared/api/types.gen";
 import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
 import { useQuery } from "@tanstack/react-query";
+import { useCreateCourseMutation } from "../api/course-mutations";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -225,6 +226,7 @@ export const createCourseColumns = ({
       header: t("common.actions"),
       cell: ({ row }: CellContext<Course, unknown>) => {
         const documentId = row.original.documentId;
+        const createMutation = useCreateCourseMutation();
 
         const handleView = (e: React.MouseEvent) => {
           e.stopPropagation();
@@ -255,7 +257,27 @@ export const createCourseColumns = ({
           try {
             const { queryFn } = CourseQueryFunction(documentId);
             const courseDetail = await queryFn();
+
             console.log(courseDetail);
+
+            const dupTitle = "[DUPLICATE] " + courseDetail.title;
+
+            const categories = Array.isArray(
+              courseDetail.course_categories?.data
+            )
+              ? courseDetail.course_categories.data
+              : [];
+
+            const result = await createMutation.mutateAsync({
+              title: dupTitle,
+              difficulty: Number(courseDetail.difficulty),
+              course_categories: categories.map((c) => c.id),
+              description: courseDetail.description,
+              image: courseDetail.image,
+            });
+
+            console.log(result?.data);
+            navigate(`/courses/${result?.data?.documentId}/edit`);
           } catch (error) {
             console.log(error);
           }
