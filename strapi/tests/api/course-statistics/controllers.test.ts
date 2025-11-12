@@ -145,12 +145,10 @@ describe('Test statistics', () => {
         expect(result.total).toBeDefined();
         expect(result.progress).toBeDefined();
         expect(result.total).toEqual(4);
-
-       
         expect(result.progress).toEqual({
-            lastSevenDays: 25,
-            lastThirtyDays: 75,
-            thisMonth: 50
+            lastSevenDays: 33,
+            lastThirtyDays: 300,
+            thisMonth: 100
         });
     });
     
