@@ -31,6 +31,7 @@ export default {
 };
 export async function getCoursesStats(documentId: string, cIds: string[]) {
   try {
+    //Find content creator and populate courses
     const creator = await strapi
       .documents("api::content-creator.content-creator")
       .findOne({
@@ -40,14 +41,18 @@ export async function getCoursesStats(documentId: string, cIds: string[]) {
     if (!creator) {
       throw { error: errorCodes["E0504"] };
     }
+    //filter courses
     const courses = filterCoursesBasedOnCid(creator.courses, cIds);
+    //Statistic variables
     const total = courses.length;
     let count7 = 0;
     let count30 = 0;
     let countMonth = 0;
+    //Dates
     const date7DaysAgo = new Date(Date.now() - DAYS_7_MS);
     const date30DaysAgo = new Date(Date.now() - DAYS_30_MS);
     const firstDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth());
+    //Count stats
     for (const course of courses) {
       const createdAt = new Date(course.createdAt);
       if (createdAt > date7DaysAgo) count7++;
@@ -57,12 +62,9 @@ export async function getCoursesStats(documentId: string, cIds: string[]) {
     return {
       total: total ?? 0,
       progress: {
-        lastSevenDays:
-          Math.round((count7 / total) * 100) ?? 0,
-        lastThirtyDays:
-          Math.round((count30 / total) * 100) ?? 0,
-        thisMonth:
-          Math.round((countMonth / total) * 100) ?? 0
+        lastSevenDays:  Math.round((count7 / total) * 100) ?? 0,
+        lastThirtyDays: Math.round((count30 / total) * 100) ?? 0,
+        thisMonth:      Math.round((countMonth / total) * 100) ?? 0,
       },
     };
   } catch (err) {
@@ -88,7 +90,7 @@ export async function getStudentStats(documentId: string, cIds: string[]) {
   }
 
   // Declare and initialise all varibles hosting the statistics
-  let countTotal = 0;
+  let countTotal = user.courses.length;
   let count7 = 0;
   let count30 = 0;
   let countMonth = 0;
@@ -96,7 +98,6 @@ export async function getStudentStats(documentId: string, cIds: string[]) {
   // double for loop running counting all students on each course, and counting each based on enrollmentDate thorugh 3 if statements
   for (const course of filteredCourses) {
     for (const courseRelation of course.course_relations) {
-      countTotal++;
       //30 days
       if (
         new Date(courseRelation.enrollmentDate) >
@@ -120,13 +121,12 @@ export async function getStudentStats(documentId: string, cIds: string[]) {
       }
     }
   }
-
   return { 
     total: countTotal ?? 0, 
     progress: {
       lastThirtyDays: Math.round((count30/(countTotal-count30))*100) ?? 0, 
-      lastSevenDays: Math.round((count7/(countTotal-count7))*100) ?? 0, 
-      thisMonth: Math.round((countMonth/(countTotal-countMonth))*100)?? 0
+      lastSevenDays:  Math.round((count7/(countTotal-count7))*100) ?? 0, 
+      thisMonth:      Math.round((countMonth/(countTotal-countMonth))*100)?? 0
     } 
   }
 }
@@ -218,14 +218,10 @@ export async function getContentCreatorFeedback(documentId: string) {
     }
 
     // Aggregate feedbacks & time variations
-    let totalFeedbacks = 0;
-    let totalRating = 0;
-    let count7dFeedbacks = 0;
-    let count7dRating = 0;
-    let count30dFeedbacks = 0;
-    let count30dRating = 0;
-    let countCurrentMonthFeedbacks = 0;
-    let countCurrentMonthRating = 0;
+    let totalFeedbacks = 0, totalRating = 0;
+    let count7dFeedbacks = 0, count7dRating = 0;
+    let count30dFeedbacks = 0, count30dRating = 0;
+    let countCurrentMonthFeedbacks = 0, countCurrentMonthRating = 0;
 
     for (const course of user.courses) {
       const feedbacks = course.feedbacks;
@@ -280,11 +276,7 @@ export async function getContentCreatorFeedback(documentId: string) {
 }
 
 
-
-
-
-
-//Maybe remove :any[] (but the helper type would be very large, and difficult to maintain)
+//Uses any[] on purpose, as it avoids parsing to helper type, and the filter function should be able to filter any type of array aslong as it has courseIds
 function filterCoursesBasedOnCid(courses : any[], courseIds : string[]){
   if (courseIds.length == 0){
     return [];
