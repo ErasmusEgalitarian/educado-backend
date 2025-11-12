@@ -1,11 +1,10 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { toast } from "sonner";
 import { TypeOf, z } from "zod";
 
 import { EDUCATION_OPTIONS } from "@/auth/constants/educationOptions";
-import FormActions from "@/shared/components/form/form-actions";
+// FormActions is provided by the parent form container; child components do not need it here
 import { FormInput } from "@/shared/components/form/form-input";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
@@ -43,28 +42,21 @@ const formSchema = z.object({
   description: z.string().min(0),
 });
 
+// Note: the parent container should provide a single useForm instance via
+// FormProvider. The child form components below use useFormContext() to
+// access the shared methods.
+
 export const MotivationForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      motivation: "",
-    },
-    mode: "onTouched",
-  });
-  const currentLength = form.watch("motivation").length;
+  const { control, watch } = useFormContext();
+  const currentLength = (watch("motivation") as string | undefined)?.length ?? 0;
   return (
-    <Form {...form}>
-      <form
-        onSubmit={(e) => {
-          void form.handleSubmit(onSubmit)(e);
-        }}
-      >
+    <div>
         <FormTextarea
-          control={form.control}
+          control={control}
           fieldName="motivation"
           placeholder="Escreva aqui por que você quer fazer parte do projeto"
           rows={3}
-          maxLength={maxChars}
+          maxLength={maxChars}  
           className="resize-none"
         />
         <div
@@ -73,118 +65,82 @@ export const MotivationForm = () => {
         >
           {currentLength} / {maxChars} caracteres
         </div>
-      </form>
-    </Form>
+    </div>
   );
 };
 
 // The form component itself
 export const EducationForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      educationType: "",
-      isInProgress: "",
-      course: "",
-      institution: "",
-      acedemicStartDate: "",
-      acedemicEndDate: "",
-    },
-    mode: "onTouched",
-  });
+  const { control, watch } = useFormContext();
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={(e) => {
-          void form.handleSubmit(onSubmit)(e);
-        }}
-        className="space-y-4 grid grid-cols-2 gap-x-6"
-      >
-        <FormSelect
-          control={form.control}
-          fieldName="educationType"
-          label="Formação"
-          options={EDUCATION_OPTIONS}
-          placeholder="Superior"
-          isRequired
-          wrapperClassName="[&_[role=combobox]]:h-[59px]"
-        />
-        <FormSelect
-          control={form.control}
-          fieldName="isInProgress"
-          label="Status"
-          options={STATUS_OPTIONS}
-          placeholder="Em andamento"
-          isRequired
-          wrapperClassName="[&_[role=combobox]]:h-[59px]"
-        />
-        <FormInput
-          control={form.control}
-          fieldName="course"
-          placeholder="Curso"
-          label="Curso"
-          isRequired
-          className="h-[59px]"
-        />
-        <FormInput
-          control={form.control}
-          fieldName="institution"
-          placeholder="Instituição"
-          label="Instituição"
-          isRequired
-          className="h-[59px]"
-        />
-        <FormInput
-          control={form.control}
-          fieldName="acedemicStartDate"
-          placeholder="Mês / Ano"
-          label="Início"
-          isRequired
-          className="h-[59px]"
-        />
-        <FormInput
-          control={form.control}
-          fieldName="acedemicEndDate"
-          placeholder="Mês / Ano"
-          label="Fim"
-          isRequired
-          className="h-[59px]"
-        />
-      </form>
-    </Form>
+    // two-column layout: inputs occupy two columns, spacing matches previous layout
+    <div className="space-y-4 grid grid-cols-2 gap-x-6">
+      <FormSelect
+        control={control}
+        fieldName="educationType"
+        label="Formação"
+        options={EDUCATION_OPTIONS}
+        placeholder="Superior"
+        isRequired
+        wrapperClassName="[&_[role=combobox]]:h-[59px]"
+      />
+      <FormSelect
+        control={control}
+        fieldName="isInProgress"
+        label="Status"
+        options={STATUS_OPTIONS}
+        placeholder="Em andamento"
+        isRequired
+        wrapperClassName="[&_[role=combobox]]:h-[59px]"
+      />
+      <FormInput
+        control={control}
+        fieldName="course"
+        placeholder="Curso"
+        label="Curso"
+        isRequired
+        className="h-[59px]"
+      />
+      <FormInput
+        control={control}
+        fieldName="institution"
+        placeholder="Instituição"
+        label="Instituição"
+        isRequired
+        className="h-[59px]"
+      />
+      <FormInput
+        control={control}
+        fieldName="acedemicStartDate"
+        placeholder="Mês / Ano"
+        label="Início"
+        isRequired
+        className="h-[59px]"
+      />
+      <FormInput
+        control={control}
+        fieldName="acedemicEndDate"
+        placeholder="Mês / Ano"
+        label="Fim"
+        isRequired
+        className="h-[59px]"
+      />
+    </div>
   );
 };
 
 export const ExperienceForm = () => {
-  // Initialize the form with React Hook Form and Zod resolver.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      organization: "",
-      jobTitle: "",
-      jobStartDate: "",
-      jobEndDate: "",
-      description: "",
-    },
-    mode: "onTouched",
-  });
-
-  const currentLength = form.watch("description").length;
-
+  const { control, watch } = useFormContext();
+  const currentLength = (watch("description") as string | undefined)?.length ?? 0;
   const [checked, setChecked] = useState(false);
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={(e) => {
-          void form.handleSubmit(onSubmit)(e);
-        }}
-        className="space-y-4 grid grid-cols-2 gap-x-6"
-      >
-        {/* Single reusable FormInput component */}
+    <div>
+      {/* Two-column grid for the top inputs */}
+      <div className="space-y-4 grid grid-cols-2 gap-x-6">
         <FormInput
-          control={form.control}
+          control={control}
           fieldName="organization"
           placeholder="Mobile Education"
           label="Empresa"
@@ -192,7 +148,7 @@ export const ExperienceForm = () => {
           className="h-[59px]"
         />
         <FormInput
-          control={form.control}
+          control={control}
           fieldName="jobTitle"
           placeholder="Product Designer"
           label="Cargo"
@@ -200,7 +156,7 @@ export const ExperienceForm = () => {
           className="h-[59px]"
         />
         <FormInput
-          control={form.control}
+          control={control}
           fieldName="jobStartDate"
           placeholder="Mês / Ano"
           label="Início"
@@ -208,13 +164,14 @@ export const ExperienceForm = () => {
           className="h-[59px]"
         />
         <FormInput
-          control={form.control}
+          control={control}
           fieldName="jobEndDate"
           placeholder="Mês / Ano"
           label="Fim"
           isRequired
           className="h-[59px]"
         />
+
         <div className="col-start-2 flex items-center gap-2 pr-1">
           <Checkbox
             id="agree"
@@ -232,22 +189,27 @@ export const ExperienceForm = () => {
             Meu emprego atual
           </label>
         </div>
-      </form>
-      <FormTextarea
-        control={form.control}
-        fieldName="description"
-        placeholder="Escreva aqui as suas responsabilidades"
-        label="Descrição das atividades"
-        rows={3}
-        maxLength={maxChars}
-        className="resize-none"
-      />
+
+        {/* Description should span both columns */}
+        <div className="col-span-2">
+          <FormTextarea
+            control={control}
+            fieldName="description"
+            placeholder="Escreva aqui as suas responsabilidades"
+            label="Descrição das atividades"
+            rows={3}
+            maxLength={maxChars}
+            className="resize-none"
+          />
+        </div>
+      </div>
+
       <div
         className="text-right font-normal font-['Montserrat'] text-greyscale-text-caption py-2"
         style={{ fontSize: "14px", lineHeight: "17px" }}
       >
         {currentLength} / {maxChars} caracteres
       </div>
-    </Form>
+    </div>
   );
 };

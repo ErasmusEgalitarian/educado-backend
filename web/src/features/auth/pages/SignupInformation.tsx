@@ -59,15 +59,15 @@ const Footer = () => {
       >
         Voltar para o cadastro
       </Button>
-      <Button size="lg" className="justify-end ml-auto">
-        <label
-          htmlFor="ready"
-          className="font-['Montserrat'] font-bold"
-          style={{ fontSize: "20px", lineHeight: "26px" }}
-        >
-          {" "}
-          Enviar para análise{" "}
-        </label>
+      <Button
+        size="lg"
+        className="justify-end ml-auto"
+        type="submit"
+        form="signup-info-form"
+      >
+        <span className="font-['Montserrat'] font-bold" style={{ fontSize: 20, lineHeight: '26px' }}>
+          Enviar para análise
+        </span>
       </Button>
     </div>
   );

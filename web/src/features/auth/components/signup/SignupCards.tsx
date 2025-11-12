@@ -1,5 +1,6 @@
+import { useForm, FormProvider } from "react-hook-form";
 import { useState } from "react";
-
+// FormActions removed: external "Enviar para análise" button in SignupInformation will submit the form
 import {
   MotivationForm,
   EducationForm,
@@ -20,6 +21,59 @@ import {
 } from "@/shared/components/shadcn/card";
 
 type SectionKey = "motive" | "education" | "experience";
+
+const CardContainer = ({
+  openKey,
+  toggle,
+}: {
+  openKey: SectionKey | null;
+  toggle: (k: SectionKey) => void;
+}) => {
+  const methods = useForm({
+    defaultValues: {
+      motivation: "",
+      educationType: "",
+      isInProgress: "",
+      course: "",
+      institution: "",
+      acedemicStartDate: "",
+      acedemicEndDate: "",
+      organization: "",
+      jobTitle: "",
+      jobStartDate: "",
+      jobEndDate: "",
+      description: "",
+    },
+    mode: "onTouched",
+  });
+
+  const onSubmit = (values: any) => {
+    console.log("submit all values", values);
+  };
+
+  return (
+    <FormProvider {...methods}>
+      <form id="signup-info-form" onSubmit={methods.handleSubmit(onSubmit)}>
+        <MotivationCard
+          open={openKey === "motive"}
+          onToggle={() => toggle("motive")}
+        />
+
+        <EducationCard
+          open={openKey === "education"}
+          onToggle={() => toggle("education")}
+        />
+
+        <ExperienceCard
+          open={openKey === "experience"}
+          onToggle={() => toggle("experience")}
+        />
+
+  {/* FormActions removed - external 'Enviar para análise' button will submit the form */}
+      </form>
+    </FormProvider>
+  );
+};
 
 const MotivationCard = ({
   open,
@@ -230,20 +284,54 @@ export const Cards = () => {
   const toggle = (key: SectionKey) =>
     setOpenKey((k) => (k === key ? null : key)); // only one card open at a time
 
+  // Create a single shared useForm instance here and provide it to all
+  // child card forms via FormProvider so field values persist when switching
+  // cards. This preserves the original card DOM structure/ordering so
+  // Tailwind classes and layout remain unchanged.
+  const methods = useForm({
+    defaultValues: {
+      motivation: "",
+      educationType: "",
+      isInProgress: "",
+      course: "",
+      institution: "",
+      acedemicStartDate: "",
+      acedemicEndDate: "",
+      organization: "",
+      jobTitle: "",
+      jobStartDate: "",
+      jobEndDate: "",
+      description: "",
+    },
+    mode: "onTouched",
+  });
+
+  const onSubmit = (values: any) => {
+    console.log("submit all values", values);
+  };
+
   return (
-    <div className="flex flex-col gap-6 my-20">
-      <MotivationCard
-        open={openKey === "motive"}
-        onToggle={() => toggle("motive")}
-      />
-      <EducationCard
-        open={openKey === "education"}
-        onToggle={() => toggle("education")}
-      />
-      <ExperienceCard
-        open={openKey === "experience"}
-        onToggle={() => toggle("experience")}
-      />
-    </div>
+    <FormProvider {...methods}>
+      <form id="signup-info-form" onSubmit={methods.handleSubmit(onSubmit)}>
+        <div className="flex flex-col gap-6 my-20">
+          <MotivationCard
+            open={openKey === "motive"}
+            onToggle={() => toggle("motive")}
+          />
+
+          <EducationCard
+            open={openKey === "education"}
+            onToggle={() => toggle("education")}
+          />
+
+          <ExperienceCard
+            open={openKey === "experience"}
+            onToggle={() => toggle("experience")}
+          />
+
+          {/* Submit button moved to the SignupInformation footer; keep spacing if needed */}
+        </div>
+      </form>
+    </FormProvider>
   );
 };
