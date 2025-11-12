@@ -17,6 +17,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
     let user : ContentCreator;
 
     try {
+        console.log(policyContext.request.ctx.headers.authorization);
         // Extract the authenticated user from the policy context
         // This object is populated by Strapi when the user is logged in
         user = jwt.verify(policyContext.request.ctx.headers.authorization, secretKey) as ContentCreator;
