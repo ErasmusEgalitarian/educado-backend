@@ -256,17 +256,17 @@ export async function getContentCreatorFeedback(documentId: string) {
       }
     }
 
-    const Totalaverage = totalRating / totalFeedbacks;
-    const Totalaverage7dProgress = count7dRating / count7dFeedbacks - Totalaverage;
-    const Totalaverage30dProgress = count30dRating / count30dFeedbacks - Totalaverage;
-    const TotalaverageCurrentMonthProgress = countCurrentMonthRating / countCurrentMonthFeedbacks - Totalaverage;
-
+    const Totalaverage = totalFeedbacks != 0 ? totalRating / totalFeedbacks : 0;
+    const Totalaverage7dProgress = totalFeedbacks - Totalaverage != 0 ? count7dRating / count7dFeedbacks - Totalaverage : 0;
+    const Totalaverage30dProgress = count30dFeedbacks - Totalaverage != 0 ? count30dRating / count30dFeedbacks - Totalaverage : 0;
+    const TotalaverageCurrentMonthProgress = countCurrentMonthFeedbacks - Totalaverage != 0 ? countCurrentMonthRating / countCurrentMonthFeedbacks - Totalaverage : 0;
+    
     return {
-      total: Number(Totalaverage.toFixed(1)) ?? 0,
+      total: Number(Totalaverage.toFixed(1)),
       progress: {
-        thisMonth: Number(TotalaverageCurrentMonthProgress.toFixed(1)) ?? 0,
-        lastSevenDays: Number(Totalaverage7dProgress.toFixed(1)) ?? 0,
-        lastThirtyDays: Number(Totalaverage30dProgress.toFixed(1)) ?? 0
+        thisMonth: Number(TotalaverageCurrentMonthProgress.toFixed(1)),
+        lastSevenDays: Number(Totalaverage7dProgress.toFixed(1)),
+        lastThirtyDays: Number(Totalaverage30dProgress.toFixed(1))
       }
     };
 
