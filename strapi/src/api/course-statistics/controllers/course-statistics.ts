@@ -11,24 +11,7 @@ export default {
   statisticsAction: async (ctx, next) => {
     try {
       const secretKey = process.env.JWT_SECRET;
-
-      /* MOCK JWT INSTEAD OF GETTING IT FROM HEADER */
-      const CC = await strapi
-        .documents("api::content-creator.content-creator")
-        .findFirst({
-          filters: {
-            firstName: "ed",
-          },
-        });
-      // Define the ContentCreator type
-      const CC_type: ContentCreator = {
-        documentId: CC.documentId,
-        firstName: CC.firstName,
-        lastName: CC.lastName,
-        email: CC.email,
-        verifiedAt: new Date(CC.verifiedAt),
-      };
-      const jwtCC = jwt.sign(CC_type, secretKey);
+      const jwtCC = ctx.headers.authorization
 
       // Extract the authenticated user from the policy context
       // This object is populated by Strapi when the user is logged in
@@ -86,7 +69,6 @@ export async function getCoursesStats(documentId: string, cIds: string[]) {
     throw err;
   }
 }
-// Define the ContentCreator type used in JWT payload 
 export async function getStudentStats(documentId: string, cIds: string[]) {
   // Find Content Creator
   const user = await strapi
@@ -111,6 +93,7 @@ export async function getStudentStats(documentId: string, cIds: string[]) {
   let count30 = 0;
   let countMonth = 0;
   const filteredCourses = filterCoursesBasedOnCid(user.courses, cIds);  //Filter courses
+  // double for loop running counting all students on each course, and counting each based on enrollmentDate thorugh 3 if statements
   for (const course of filteredCourses) {
     for (const courseRelation of course.course_relations) {
       countTotal++;

@@ -54,10 +54,12 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
     const fetchStatistics = async () => {
       setLoading(true);
       try {
+        const token = localStorage.getItem("token");
         const response = await fetch('http://localhost:1337/api/course-statistics/statistics-action', {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `${token}`,
           },
           body: JSON.stringify({ documentIds })
         });
