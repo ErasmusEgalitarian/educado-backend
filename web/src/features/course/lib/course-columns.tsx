@@ -5,7 +5,6 @@ import { toast } from "sonner";
 import { Course, CourseCategory } from "@/shared/api/types.gen";
 import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
-import { useQuery } from "@tanstack/react-query";
 import { useCreateCourseMutation } from "../api/course-mutations";
 import {
   DropdownMenu,
