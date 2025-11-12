@@ -6234,10 +6234,10 @@ export type CourseStatsSection = {
 };
 
 export type CourseStatisticsResponse = {
-    courses?: CourseStatsSection;
-    students?: CourseStatsSection;
-    certificates?: CourseStatsSection;
-    evaluation?: CourseStatsSection;
+    courses: CourseStatsSection;
+    students: CourseStatsSection;
+    certificates: CourseStatsSection;
+    evaluation: CourseStatsSection;
 };
 
 export type ErrorResponse = {
