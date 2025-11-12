@@ -6,6 +6,7 @@ import {
   ExperienceForm,
 } from "./SignupFormSchema";
 import deleteIcon from "@/shared/assets/delete 1.svg";
+import plusIcon from "@/shared/assets/plus 2.svg";
 import { Chevron } from "@/shared/components/icons/chevron";
 import { Button } from "@/shared/components/shadcn/button";
 import {
@@ -27,7 +28,6 @@ const MotivationCard = ({
   open: boolean;
   onToggle: () => void;
 }) => {
-
   return (
     <Card
       className={`p-0  ${open ? "border-2 border-primary-border-default" : ""}`}
@@ -70,10 +70,10 @@ const MotivationCard = ({
             </h3>
           </CardHeader>
           <CardContent id="motive-content">
-            <MotivationForm/>
+            <MotivationForm />
           </CardContent>
         </>
-      )} 
+      )}
     </Card>
   );
 };
@@ -116,20 +116,36 @@ const EducationCard = ({
       </CardHeader>
 
       {open && (
-        <CardContent id="edu-content" className="pb-6">
-          <EducationForm />
-          <CardFooter className="justify-end p-0">
-            <Button
-              variant="link"
-              className=" text-error-surface-default font-['Montserrat'] font-bold p-0"
-              style={{ fontSize: "14px", lineHeight: "17px" }}
-            >
-              <img src={deleteIcon} />
-              Remover formação
-            </Button>
-          </CardFooter>
-          <hr className="border border-greyscale-border-lighter my-4" />
-        </CardContent>
+        <div>
+          <CardHeader className="text-greyscale-text-caption font-bold font-['Montserrat']">
+            Experiência acadêmica 1
+          </CardHeader>
+          <CardContent id="edu-content" className="pb-6">
+            <EducationForm />
+            <CardFooter className="justify-end p-0">
+              <Button
+                variant="link"
+                className=" text-error-surface-default font-['Montserrat'] font-bold p-0"
+                style={{ fontSize: "14px", lineHeight: "17px" }}
+              >
+                <img src={deleteIcon} />
+                Remover formação
+              </Button>
+            </CardFooter>
+            <hr className="border border-greyscale-border-lighter my-4" />
+            <div className="flex justify-center items-center pt-2">
+              <Button
+                variant="outline"
+                size={"lg"}
+                className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
+                style={{ fontSize: "18px", lineHeight: "22" }}
+              >
+                <img src={plusIcon} />
+                Adicionar outra formação
+              </Button>
+            </div>
+          </CardContent>
+        </div>
       )}
     </Card>
   );
@@ -173,20 +189,36 @@ const ExperienceCard = ({
       </CardHeader>
 
       {open && (
-        <CardContent id="exp-content" className="pb-6">
-          <ExperienceForm />
-          <CardFooter className="justify-end p-0">
-            <Button
-              variant="link"
-              className=" text-error-surface-default font-['Montserrat'] font-bold p-0"
-              style={{ fontSize: "14px", lineHeight: "17px" }}
-            >
-              <img src={deleteIcon} />
-              Remover formação
-            </Button>
-          </CardFooter>
-          <hr className="border border-greyscale-border-lighter my-4" />
-        </CardContent>
+        <div>
+          <CardHeader className="text-greyscale-text-caption font-bold font-['Montserrat']">
+            Experiência profissional 1
+          </CardHeader>
+          <CardContent id="exp-content" className="pb-6">
+            <ExperienceForm />
+            <CardFooter className="justify-end p-0">
+              <Button
+                variant="link"
+                className=" text-error-surface-default font-['Montserrat'] font-bold p-0"
+                style={{ fontSize: "14px", lineHeight: "17px" }}
+              >
+                <img src={deleteIcon} />
+                Remover formação
+              </Button>
+            </CardFooter>
+            <hr className="border border-greyscale-border-lighter my-4" />
+            <div className="flex justify-center items-center pt-2">
+              <Button
+                variant="outline"
+                size={"lg"}
+                className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
+                style={{ fontSize: "18px", lineHeight: "22" }}
+              >
+                <img src={plusIcon} />
+                Adicionar outra formação
+              </Button>
+            </div>
+          </CardContent>
+        </div>
       )}
     </Card>
   );

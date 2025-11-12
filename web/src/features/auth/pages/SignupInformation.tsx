@@ -8,18 +8,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Cards } from "../components/signup/SignupCards";
 
 const Header = () => {
-  //logic here
   const navigate = useNavigate();
 
   const location = useLocation() as {
     state?: { initial?: z.infer<typeof SignupSchema> };
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!location.state?.initial) {
       navigate("/signup", { replace: true });
     }
-  }, [location.state, navigate]);
+  }, [location.state, navigate]); */
 
   const initial = location.state?.initial;
 
