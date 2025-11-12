@@ -6214,23 +6214,23 @@ export type ProgressObject = {
     /**
      * Progress percentage comparing last 30 days vs previous period
      */
-    lastThirtyDays?: number;
+    lastThirtyDays: number;
     /**
      * Progress percentage comparing last 7 days vs previous period
      */
-    lastSevenDays?: number;
+    lastSevenDays: number;
     /**
      * Progress percentage for current month vs previous month
      */
-    thisMonth?: number;
+    thisMonth: number;
 };
 
 export type CourseStatsSection = {
     /**
      * Total count (e.g., total courses / students / certificates)
      */
-    total?: number;
-    progress?: ProgressObject;
+    total: number;
+    progress: ProgressObject;
 };
 
 export type CourseStatisticsResponse = {

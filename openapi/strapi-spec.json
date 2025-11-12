@@ -39738,6 +39738,11 @@
       },
       "ProgressObject": {
         "type": "object",
+        "required": [
+          "lastThirtyDays",
+          "lastSevenDays",
+          "thisMonth"
+        ],
         "properties": {
           "lastThirtyDays": {
             "type": "number",
@@ -39755,6 +39760,10 @@
       },
       "CourseStatsSection": {
         "type": "object",
+        "required": [
+          "total",
+          "progress"
+        ],
         "properties": {
           "total": {
             "type": "number",
