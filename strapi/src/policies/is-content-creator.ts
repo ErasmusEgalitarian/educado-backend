@@ -14,12 +14,12 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
 
     // Gets secret key from .env
     const secretKey = process.env.JWT_SECRET;
-    let user : any;
+    let user : ContentCreator;
 
     try {
         // Extract the authenticated user from the policy context
         // This object is populated by Strapi when the user is logged in
-        user = jwt.verify(policyContext.request.ctx.headers.authorization, secretKey);
+        user = jwt.verify(policyContext.request.ctx.headers.authorization, secretKey) as ContentCreator;
     } catch (error) {
         strapi.log.error("JWT verification failed:", error);
         throw new PolicyError("JWT verification failed", {
@@ -39,8 +39,8 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
         // that matches both the user's email and documentId
         const contentCreator = await strapi.documents('api::content-creator.content-creator').findFirst({
             filters: { 
-                email: user.email, 
-                documentId: user.documentId
+                email: user.email as string, 
+                documentId: user.documentId as string
             },
         });
 
