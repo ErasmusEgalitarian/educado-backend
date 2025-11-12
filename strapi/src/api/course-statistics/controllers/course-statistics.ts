@@ -44,7 +44,7 @@ export async function getCoursesStats(documentId: string, cIds: string[]) {
     //filter courses
     const courses = filterCoursesBasedOnCid(creator.courses, cIds);
     //Statistic variables
-    const total = courses.length;
+    const countTotal = courses.length;
     let count7 = 0;
     let count30 = 0;
     let countMonth = 0;
@@ -60,11 +60,11 @@ export async function getCoursesStats(documentId: string, cIds: string[]) {
       if (createdAt > firstDayOfMonth) countMonth++;
     }
     return {
-      total: total ?? 0,
+      total: countTotal ?? 0,
       progress: {
-        lastSevenDays:  Math.round((count7 / total) * 100) ?? 0,
-        lastThirtyDays: Math.round((count30 / total) * 100) ?? 0,
-        thisMonth:      Math.round((countMonth / total) * 100) ?? 0,
+        lastThirtyDays: Math.round((count30/(countTotal-count30))*100) ?? 0, 
+        lastSevenDays:  Math.round((count7/(countTotal-count7))*100) ?? 0, 
+        thisMonth:      Math.round((countMonth/(countTotal-countMonth))*100)?? 0
       },
     };
   } catch (err) {
