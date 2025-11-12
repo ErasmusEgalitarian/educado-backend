@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { Course, CourseCategory } from "@/shared/api/types.gen";
 import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
+import { useQuery } from "@tanstack/react-query";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/shared/components/shadcn/dropdown-menu";
 
+import { CourseQueryFunction } from "../api/course-queries";
 import { difficultyToTranslation } from "./difficulty-to-translation";
 import React from "react";
 
@@ -236,20 +238,26 @@ export const createCourseColumns = ({
           }
         };
 
-        const handleDelete = (e: React.MouseEvent) => {
+        const handleDelete = async (e: React.MouseEvent) => {
           e.stopPropagation();
           toast.info(
             `Delete functionality is not implemented yet: ${documentId ?? "unknown"}`
           );
         };
 
-        const handleDuplicate = (e: React.MouseEvent) => {
+        const handleDuplicate = async (e: React.MouseEvent) => {
+          if (!documentId) return;
           e.stopPropagation();
           toast.info(
             `Duplicated course: ${documentId ?? "unknown"} to new course`
           );
-          if (documentId != null) {
-            navigate(`/courses/create`);
+
+          try {
+            const { queryFn } = CourseQueryFunction(documentId);
+            const courseDetail = await queryFn();
+            console.log(courseDetail);
+          } catch (error) {
+            console.log(error);
           }
         };
 
