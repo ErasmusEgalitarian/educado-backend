@@ -6409,14 +6409,14 @@ export const zCourseStatisticsRequest = z.object({
 });
 
 export const zProgressObject = z.object({
-    lastThirtyDays: z.number().optional(),
-    lastSevenDays: z.number().optional(),
-    thisMonth: z.number().optional()
+    lastThirtyDays: z.number(),
+    lastSevenDays: z.number(),
+    thisMonth: z.number()
 });
 
 export const zCourseStatsSection = z.object({
-    total: z.number().optional(),
-    progress: zProgressObject.optional()
+    total: z.number(),
+    progress: zProgressObject
 });
 
 export const zCourseStatisticsResponse = z.object({

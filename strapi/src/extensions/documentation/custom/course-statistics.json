@@ -107,6 +107,7 @@
       },
       "ProgressObject": {
         "type": "object",
+        "required": ["lastThirtyDays", "lastSevenDays", "thisMonth"],
         "properties": {
           "lastThirtyDays": { "type": "number", "description": "Progress percentage comparing last 30 days vs previous period" },
           "lastSevenDays": { "type": "number", "description": "Progress percentage comparing last 7 days vs previous period" },
@@ -115,6 +116,7 @@
       },
       "CourseStatsSection": {
         "type": "object",
+        "required": ["total", "progress"],
         "properties": {
           "total": { "type": "number", "description": "Total count (e.g., total courses / students / certificates)" },
           "progress": { "$ref": "#/components/schemas/ProgressObject" }
