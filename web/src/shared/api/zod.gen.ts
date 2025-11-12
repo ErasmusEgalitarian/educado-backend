@@ -6415,26 +6415,15 @@ export const zProgressObject = z.object({
 });
 
 export const zCourseStatsSection = z.object({
-    total: z.number().int().optional(),
-    progress: zProgressObject.optional()
-});
-
-export const zEvaluationProgress = z.object({
-    thisMonth: z.number().optional(),
-    lastSevenDays: z.number().optional(),
-    lastThirtyDays: z.number().optional()
-});
-
-export const zEvaluationStats = z.object({
     total: z.number().optional(),
-    progress: zEvaluationProgress.optional()
+    progress: zProgressObject.optional()
 });
 
 export const zCourseStatisticsResponse = z.object({
     courses: zCourseStatsSection.optional(),
     students: zCourseStatsSection.optional(),
     certificates: zCourseStatsSection.optional(),
-    evaluation: zEvaluationStats.optional()
+    evaluation: zCourseStatsSection.optional()
 });
 
 export const zErrorResponse = z.object({

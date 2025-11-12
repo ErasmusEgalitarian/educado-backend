@@ -6212,15 +6212,15 @@ export type CourseStatisticsRequest = {
 
 export type ProgressObject = {
     /**
-     * Progress percentage (int) comparing last 30 days vs previous period
+     * Progress percentage comparing last 30 days vs previous period
      */
     lastThirtyDays?: number;
     /**
-     * Progress percentage (int) comparing last 7 days vs previous period
+     * Progress percentage comparing last 7 days vs previous period
      */
     lastSevenDays?: number;
     /**
-     * Progress percentage (int) for current month vs previous month
+     * Progress percentage for current month vs previous month
      */
     thisMonth?: number;
 };
@@ -6233,25 +6233,11 @@ export type CourseStatsSection = {
     progress?: ProgressObject;
 };
 
-export type EvaluationProgress = {
-    thisMonth?: number;
-    lastSevenDays?: number;
-    lastThirtyDays?: number;
-};
-
-export type EvaluationStats = {
-    /**
-     * Average rating (e.g., 4.2)
-     */
-    total?: number;
-    progress?: EvaluationProgress;
-};
-
 export type CourseStatisticsResponse = {
     courses?: CourseStatsSection;
     students?: CourseStatsSection;
     certificates?: CourseStatsSection;
-    evaluation?: EvaluationStats;
+    evaluation?: CourseStatsSection;
 };
 
 export type ErrorResponse = {
