@@ -20,28 +20,6 @@ import { CourseStatisticsRequest, CourseStatisticsResponse } from "@/shared/api/
 
 type PeriodKey = "thisMonth" | "lastSevenDays" | "lastThirtyDays";
 
-  const { t, i18n } = useTranslation();
-  const userInfo: userInfo = getUserInfo();
-
-  const [dashboardActivities, setDashboardActivities] = useState<DashboardActivity[]>([]);
-interface ProgressData {
-  thisMonth: number;
-  lastSevenDays: number;
-  lastThirtyDays: number;
-}
-
-interface EntityData {
-  total: number;
-  progress: ProgressData;
-}
-
-interface StatisticsResponseBody {
-  courses: EntityData;
-  students: EntityData;
-  certificates: EntityData;
-  evaluation: EntityData;
-}
-
 const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
   const { t, i18n } = useTranslation();
   const userInfo: userInfo = getUserInfo();
