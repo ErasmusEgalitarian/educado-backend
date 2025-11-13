@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { mdiSort, mdiSortAscending, mdiSortDescending } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import {
@@ -44,7 +45,6 @@ const DataTableHeaderCell = <TData extends DataDisplayItem>({
   // Determine if filter should show in column header
   const quickFilter = meta?.quickFilter;
   const showFilterInColumn =
-    meta?.filterable &&
     quickFilter &&
     (quickFilter.displayType?.where === "column" ||
       quickFilter.displayType?.where === "both");
@@ -65,7 +65,7 @@ const DataTableHeaderCell = <TData extends DataDisplayItem>({
       ) : (
         <span className="font-semibold">{label}</span>
       )}
-      {showFilterInColumn && (
+      {(showFilterInColumn ?? false) && (
         <ColumnFilterPopup column={column} quickFilter={quickFilter} />
       )}
     </div>

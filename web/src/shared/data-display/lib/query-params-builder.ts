@@ -196,7 +196,7 @@ export const buildApiQueryParams = (
   // The best we can do is use status=draft (returns all draft versions)
   // For "true drafts only", would need client-side filtering or custom Strapi controller
   function applyStatus() {
-    if (status) {
+    if (status !== undefined) {
       searchParams.set("status", status);
     }
   }

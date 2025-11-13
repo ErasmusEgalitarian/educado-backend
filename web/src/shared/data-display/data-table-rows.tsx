@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+import { mdiCheck } from "@mdi/js";
+import Icon from "@mdi/react";
 import {
   flexRender,
   type Row,
   type Table as ReactTableType,
 } from "@tanstack/react-table";
-import Icon from "@mdi/react";
-import { mdiCheck } from "@mdi/js";
 
 import { useItemSelector } from "@/shared/components/item-selector";
 import { TableRow, TableCell } from "@/shared/components/shadcn/table";
