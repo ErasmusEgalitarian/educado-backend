@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
-import { MdClose } from "react-icons/md";
+import { mdiClose } from "@mdi/js";
+import Icon from "@mdi/react";
 
 interface GenericModalProps {
   title?: string;
@@ -46,7 +47,7 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
 
           {/* Window close button (X) */}
           <button onClick={onClose} className="btn btn-sm btn-circle btn-ghost">
-            <MdClose size={25} className="text-slate-400" />
+            <Icon path={mdiClose} size={1} className="text-slate-400" />
           </button>
         </div>
 

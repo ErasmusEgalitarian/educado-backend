@@ -1,4 +1,5 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import Icon from "@mdi/react";
+import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 import React, { useState, useEffect } from "react";
 
 //This component is the "carousel" of text on the Welcome, Login, and Signup pages.
@@ -65,7 +66,12 @@ const Carousel: React.FC = () => {
         <div className="flex items-center p-1 sm:px-4">
           {/*Button for changing the text to the previous index*/}
           <button onClick={pre}>
-            <ChevronLeftIcon className="w-9 h-9 p-1 rounded-full bg-white/80 text-gray-800 hover:bg-white" />
+            <Icon
+              path={mdiChevronLeft}
+              size={1.2} // lidt større for at matche w-9 h-9 (~36px)
+              color="currentColor"
+              className="p-1 rounded-full bg-white/80 text-gray-800 hover:bg-white"
+            />
           </button>
         </div>
 
@@ -93,7 +99,12 @@ const Carousel: React.FC = () => {
         {/*Button for changing the text to the next index*/}
         <div className="flex items-center p-1 sm:px-4">
           <button onClick={next}>
-            <ChevronRightIcon className="items-center w-9 h-9 p-1 rounded-full bg-white/80 text-gray-800 hover:bg-white" />
+            <Icon
+              path={mdiChevronRight}
+              size={1.2} // lidt større for at matche w-9 h-9 (~36px)
+              color="currentColor"
+              className="p-1 rounded-full bg-white/80 text-gray-800 hover:bg-white"
+            />
           </button>
         </div>
       </div>

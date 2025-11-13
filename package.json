@@ -37,7 +37,6 @@
     "tag:web": "git tag web-v$(node -p \"require('./web/package.json').version\") && git push --tags",
     "tag:strapi": "git tag strapi-v$(node -p \"require('./strapi/package.json').version\") && git push --tags"
   },
-  "dependencies": {},
   "devDependencies": {
     "turbo": "^2.5.8"
   },

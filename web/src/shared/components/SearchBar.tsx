@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { MdSearch } from "react-icons/md";
+import { mdiMagnify } from "@mdi/js";
+import Icon from "@mdi/react";
 
 export const SearchBar = ({
   sortingOptions,
@@ -37,7 +38,7 @@ export const SearchBar = ({
           }}
         />
         <div className="flex flex-col justify-center">
-          <MdSearch className="-ml-6" />
+          <Icon path={mdiMagnify} size={1} className="-ml-6" />
         </div>
       </div>
     </div>
