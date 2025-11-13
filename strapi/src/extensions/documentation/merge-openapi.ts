@@ -153,6 +153,16 @@ const mergeSwaggerDocumentation = (): void => {
     newSpec.components.securitySchemes = {
         bearerAuth: {
             type: 'http',
+            scheme: 'bearer'
+        }
+    };
+
+    if (customFiles.length > 0) {
+        const customSpecs = customFiles.map(f => JSON.parse(fs.readFileSync(f, 'utf-8')));
+
+    newSpec.components.securitySchemes = {
+        bearerAuth: {
+            type: 'http',
             scheme: 'bearer',
             description: 'JWT or API token bearer authentication'
         }
