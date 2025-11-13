@@ -65,7 +65,7 @@ const DataTableHeaderCell = <TData extends DataDisplayItem>({
       ) : (
         <span className="font-semibold">{label}</span>
       )}
-      {showFilterInColumn && (
+      {(showFilterInColumn ?? false) && (
         <ColumnFilterPopup column={column} quickFilter={quickFilter} />
       )}
     </div>

@@ -4,6 +4,8 @@ import {
   mdiStar,
   mdiSquareEditOutline,
   mdiEyeOutline,
+  mdiPublish,
+  mdiPublishOff,
   mdiNumeric1BoxOutline,
   mdiNumeric2BoxOutline,
   mdiNumeric3BoxOutline,
@@ -50,13 +52,13 @@ export const createCourseColumns = ({
     },
     {
       accessorKey: "publishedAt",
-      header: t("common.status"),
+      header: t("common.publicationStatus"),
       cell: ({ row }) => {
         const publishedAt = row.getValue<string | null>("publishedAt");
         const isDraft = publishedAt === null;
         return (
           <Badge variant={isDraft ? "outline" : "default"}>
-            {isDraft ? t("common.draft") : t("common.published")}
+            {isDraft ? t("common.unpublished") : t("common.published")}
           </Badge>
         );
       },
@@ -69,10 +71,18 @@ export const createCourseColumns = ({
         quickFilter: {
           type: "select",
           displayType: { where: "both", when: "both" },
-          label: t("common.status"),
+          label: t("common.publicationStatus"),
           options: [
-            { label: t("common.draft"), value: "draft" },
-            { label: t("common.published"), value: "published" },
+            {
+              label: t("common.draft"),
+              value: "draft",
+              mdiIcon: mdiPublishOff,
+            },
+            {
+              label: t("common.published"),
+              value: "published",
+              mdiIcon: mdiPublish,
+            },
           ],
         },
       },
@@ -96,12 +106,6 @@ export const createCourseColumns = ({
       meta: {
         sortable: true,
         visibleByDefault: true,
-        quickFilter: {
-          type: "text",
-          displayType: { where: "both", when: "both" },
-          label: t("courseManager.courseName"),
-          placeholder: t("actions.search"),
-        },
       },
     },
     {
