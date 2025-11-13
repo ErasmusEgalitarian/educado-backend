@@ -19,7 +19,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
     try {
         // Extract the authenticated user from the policy context
         // This object is populated by Strapi when the user is logged in
-        user = jwt.verify(policyContext.request.ctx.headers.authorization, secretKey);
+        user = jwt.verify(policyContext.request.ctx.headers.authorization.split("Bearer ")[1], secretKey);
     } catch (error) {
         strapi.log.error("JWT verification failed:", error);
         throw new PolicyError("JWT verification failed", {

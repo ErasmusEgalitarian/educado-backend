@@ -65,7 +65,15 @@ export default {
       const jwtToken = jwt.sign(studentJWT, secretKey, { expiresIn: "7d" });
       ctx.response.status = 200;
 
-      ctx.response.body = JSON.stringify(jwtToken);
+      ctx.response.body = {
+        accessToken: jwtToken,
+        userInfo: {
+          documentId: user.documentId,
+          name: user.name,
+          email: user.email,
+          verifiedAt: new Date(user.verifiedAt).toISOString(),
+        },
+      };
     } catch (err) {
       strapi.log.error("Login failed:", err);
       ctx.response.status = 500;

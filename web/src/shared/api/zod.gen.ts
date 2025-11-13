@@ -80,7 +80,7 @@ export const zCertificateGetCertificatesResponse = z.object({
         completionDate: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.020Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.004Z'),
         student: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -90,7 +90,7 @@ export const zCertificateGetCertificatesResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -99,7 +99,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -110,7 +110,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -130,7 +130,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -141,7 +141,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -149,7 +149,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -158,7 +158,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -169,7 +169,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -180,7 +180,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -213,7 +213,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -222,7 +222,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -239,7 +239,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -259,7 +259,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -270,7 +270,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -278,7 +278,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -287,7 +287,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -298,7 +298,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -309,7 +309,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -342,7 +342,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -351,7 +351,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -363,7 +363,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -375,7 +375,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -395,7 +395,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -406,7 +406,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -414,7 +414,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -423,7 +423,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -434,7 +434,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -445,7 +445,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -478,7 +478,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -487,7 +487,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -500,42 +500,9 @@ export const zCertificateGetCertificatesResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional(),
         course: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -547,7 +514,7 @@ export const zCertificateGetCertificatesResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -567,7 +534,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -578,7 +545,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -586,7 +553,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -595,7 +562,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -606,7 +573,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -617,7 +584,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -650,7 +617,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -659,7 +626,7 @@ export const zCertificateGetCertificatesResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -672,7 +639,7 @@ export const zCertificatePostCertificatesRequest = z.object({
         data: z.object({
             link: z.string(),
             completionDate: z.string(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.035Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.016Z'),
             student: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional(),
             course: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional()
         })
@@ -715,7 +682,7 @@ export const zCertificatePostCertificatesResponse = z.object({
         completionDate: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.035Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.016Z'),
         student: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -725,7 +692,7 @@ export const zCertificatePostCertificatesResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -734,7 +701,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -745,7 +712,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -765,7 +732,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -776,7 +743,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -784,7 +751,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -793,7 +760,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -804,7 +771,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -815,7 +782,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -848,7 +815,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -857,7 +824,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -874,7 +841,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -894,7 +861,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -905,7 +872,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -913,7 +880,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -922,7 +889,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -933,7 +900,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -944,7 +911,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -977,7 +944,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -986,7 +953,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -998,7 +965,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -1010,7 +977,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -1030,7 +997,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -1041,7 +1008,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -1049,7 +1016,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -1058,7 +1025,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -1069,7 +1036,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -1080,7 +1047,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -1113,7 +1080,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -1122,7 +1089,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -1135,42 +1102,9 @@ export const zCertificatePostCertificatesResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional(),
         course: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -1182,7 +1116,7 @@ export const zCertificatePostCertificatesResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -1202,7 +1136,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -1213,7 +1147,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -1221,7 +1155,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -1230,7 +1164,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -1241,7 +1175,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -1252,7 +1186,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -1285,7 +1219,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -1294,7 +1228,7 @@ export const zCertificatePostCertificatesResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -1345,7 +1279,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
         completionDate: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.037Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.018Z'),
         student: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -1355,7 +1289,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -1364,7 +1298,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -1375,7 +1309,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -1395,7 +1329,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -1406,7 +1340,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -1414,7 +1348,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -1423,7 +1357,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -1434,7 +1368,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -1445,7 +1379,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -1478,7 +1412,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -1487,7 +1421,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -1504,7 +1438,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -1524,7 +1458,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -1535,7 +1469,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -1543,7 +1477,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -1552,7 +1486,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -1563,7 +1497,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -1574,7 +1508,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -1607,7 +1541,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -1616,7 +1550,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -1628,7 +1562,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -1640,7 +1574,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -1660,7 +1594,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -1671,7 +1605,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -1679,7 +1613,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -1688,7 +1622,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -1699,7 +1633,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -1710,7 +1644,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -1743,7 +1677,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -1752,7 +1686,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -1765,42 +1699,9 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional(),
         course: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -1812,7 +1713,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -1832,7 +1733,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -1843,7 +1744,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -1851,7 +1752,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -1860,7 +1761,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -1871,7 +1772,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -1882,7 +1783,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -1915,7 +1816,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -1924,7 +1825,7 @@ export const zCertificateDeleteCertificatesByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -1999,7 +1900,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
         completionDate: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.034Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.014Z'),
         student: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -2009,7 +1910,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -2018,7 +1919,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -2029,7 +1930,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -2049,7 +1950,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -2060,7 +1961,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -2068,7 +1969,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -2077,7 +1978,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -2088,7 +1989,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -2099,7 +2000,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -2132,7 +2033,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -2141,7 +2042,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -2158,7 +2059,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -2178,7 +2079,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -2189,7 +2090,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -2197,7 +2098,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -2206,7 +2107,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -2217,7 +2118,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -2228,7 +2129,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -2261,7 +2162,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -2270,7 +2171,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -2282,7 +2183,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -2294,7 +2195,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -2314,7 +2215,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -2325,7 +2226,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -2333,7 +2234,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -2342,7 +2243,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -2353,7 +2254,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -2364,7 +2265,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -2397,7 +2298,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -2406,7 +2307,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -2419,42 +2320,9 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional(),
         course: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -2466,7 +2334,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -2486,7 +2354,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -2497,7 +2365,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -2505,7 +2373,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -2514,7 +2382,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -2525,7 +2393,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -2536,7 +2404,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -2569,7 +2437,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -2578,7 +2446,7 @@ export const zCertificateGetCertificatesByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -2591,7 +2459,7 @@ export const zCertificatePutCertificatesByIdRequest = z.object({
         data: z.object({
             link: z.string().optional(),
             completionDate: z.string().optional(),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.036Z'),
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.017Z'),
             student: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional(),
             course: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional()
         })
@@ -2636,7 +2504,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
         completionDate: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.037Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.017Z'),
         student: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -2646,7 +2514,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -2655,7 +2523,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -2666,7 +2534,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -2686,7 +2554,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -2697,7 +2565,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -2705,7 +2573,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -2714,7 +2582,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -2725,7 +2593,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -2736,7 +2604,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -2769,7 +2637,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -2778,7 +2646,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -2795,7 +2663,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -2815,7 +2683,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -2826,7 +2694,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -2834,7 +2702,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -2843,7 +2711,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -2854,7 +2722,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -2865,7 +2733,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -2898,7 +2766,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -2907,7 +2775,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -2919,7 +2787,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -2931,7 +2799,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -2951,7 +2819,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -2962,7 +2830,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -2970,7 +2838,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -2979,7 +2847,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -2990,7 +2858,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -3001,7 +2869,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -3034,7 +2902,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -3043,7 +2911,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -3056,42 +2924,9 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional(),
         course: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -3103,7 +2938,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -3123,7 +2958,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -3134,7 +2969,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -3142,7 +2977,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -3151,7 +2986,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -3162,7 +2997,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -3173,7 +3008,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -3206,7 +3041,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -3215,7 +3050,7 @@ export const zCertificatePutCertificatesByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -3368,7 +3203,7 @@ export const zContentCreatorGetContentCreatorsResponse = z.object({
         jobDescription: z.string().min(1).max(400).optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.042Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.021Z'),
         courses: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -3379,7 +3214,7 @@ export const zContentCreatorGetContentCreatorsResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -3399,7 +3234,7 @@ export const zContentCreatorGetContentCreatorsResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -3410,7 +3245,7 @@ export const zContentCreatorGetContentCreatorsResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -3418,7 +3253,7 @@ export const zContentCreatorGetContentCreatorsResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -3427,7 +3262,7 @@ export const zContentCreatorGetContentCreatorsResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -3438,7 +3273,7 @@ export const zContentCreatorGetContentCreatorsResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -3449,7 +3284,7 @@ export const zContentCreatorGetContentCreatorsResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -3482,7 +3317,7 @@ export const zContentCreatorGetContentCreatorsResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -3491,7 +3326,7 @@ export const zContentCreatorGetContentCreatorsResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -3503,7 +3338,7 @@ export const zContentCreatorGetContentCreatorsResponse = z.object({
             isSuccessful: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             student: z.unknown().optional()
         })).optional()
     }))
@@ -3537,7 +3372,7 @@ export const zContentCreatorPostContentCreatorsRequest = z.object({
             companyStart: z.string(),
             companyEnd: z.string().optional(),
             jobDescription: z.string().min(1).max(400).optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.048Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.024Z'),
             courses: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
             user_logs: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional()
         })
@@ -3617,7 +3452,7 @@ export const zContentCreatorPostContentCreatorsResponse = z.object({
         jobDescription: z.string().min(1).max(400).optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.049Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.025Z'),
         courses: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -3628,7 +3463,7 @@ export const zContentCreatorPostContentCreatorsResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -3648,7 +3483,7 @@ export const zContentCreatorPostContentCreatorsResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -3659,7 +3494,7 @@ export const zContentCreatorPostContentCreatorsResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -3667,7 +3502,7 @@ export const zContentCreatorPostContentCreatorsResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -3676,7 +3511,7 @@ export const zContentCreatorPostContentCreatorsResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -3687,7 +3522,7 @@ export const zContentCreatorPostContentCreatorsResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -3698,7 +3533,7 @@ export const zContentCreatorPostContentCreatorsResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -3731,7 +3566,7 @@ export const zContentCreatorPostContentCreatorsResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -3740,7 +3575,7 @@ export const zContentCreatorPostContentCreatorsResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -3752,7 +3587,7 @@ export const zContentCreatorPostContentCreatorsResponse = z.object({
             isSuccessful: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             student: z.unknown().optional()
         })).optional()
     })
@@ -3838,7 +3673,7 @@ export const zContentCreatorDeleteContentCreatorsByIdResponse = z.object({
         jobDescription: z.string().min(1).max(400).optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.053Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.030Z'),
         courses: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -3849,7 +3684,7 @@ export const zContentCreatorDeleteContentCreatorsByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -3869,7 +3704,7 @@ export const zContentCreatorDeleteContentCreatorsByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -3880,7 +3715,7 @@ export const zContentCreatorDeleteContentCreatorsByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -3888,7 +3723,7 @@ export const zContentCreatorDeleteContentCreatorsByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -3897,7 +3732,7 @@ export const zContentCreatorDeleteContentCreatorsByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -3908,7 +3743,7 @@ export const zContentCreatorDeleteContentCreatorsByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -3919,7 +3754,7 @@ export const zContentCreatorDeleteContentCreatorsByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -3952,7 +3787,7 @@ export const zContentCreatorDeleteContentCreatorsByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -3961,7 +3796,7 @@ export const zContentCreatorDeleteContentCreatorsByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -3973,7 +3808,7 @@ export const zContentCreatorDeleteContentCreatorsByIdResponse = z.object({
             isSuccessful: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             student: z.unknown().optional()
         })).optional()
     })
@@ -4113,7 +3948,7 @@ export const zContentCreatorGetContentCreatorsByIdResponse = z.object({
         jobDescription: z.string().min(1).max(400).optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.045Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.023Z'),
         courses: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -4124,7 +3959,7 @@ export const zContentCreatorGetContentCreatorsByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -4144,7 +3979,7 @@ export const zContentCreatorGetContentCreatorsByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -4155,7 +3990,7 @@ export const zContentCreatorGetContentCreatorsByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -4163,7 +3998,7 @@ export const zContentCreatorGetContentCreatorsByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -4172,7 +4007,7 @@ export const zContentCreatorGetContentCreatorsByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -4183,7 +4018,7 @@ export const zContentCreatorGetContentCreatorsByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -4194,7 +4029,7 @@ export const zContentCreatorGetContentCreatorsByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -4227,7 +4062,7 @@ export const zContentCreatorGetContentCreatorsByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -4236,7 +4071,7 @@ export const zContentCreatorGetContentCreatorsByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -4248,7 +4083,7 @@ export const zContentCreatorGetContentCreatorsByIdResponse = z.object({
             isSuccessful: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             student: z.unknown().optional()
         })).optional()
     })
@@ -4282,7 +4117,7 @@ export const zContentCreatorPutContentCreatorsByIdRequest = z.object({
             companyStart: z.string().optional(),
             companyEnd: z.string().optional(),
             jobDescription: z.string().min(1).max(400).optional(),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.051Z'),
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.027Z'),
             courses: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
             user_logs: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional()
         })
@@ -4364,7 +4199,7 @@ export const zContentCreatorPutContentCreatorsByIdResponse = z.object({
         jobDescription: z.string().min(1).max(400).optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.052Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.028Z'),
         courses: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -4375,7 +4210,7 @@ export const zContentCreatorPutContentCreatorsByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -4395,7 +4230,7 @@ export const zContentCreatorPutContentCreatorsByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -4406,7 +4241,7 @@ export const zContentCreatorPutContentCreatorsByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -4414,7 +4249,7 @@ export const zContentCreatorPutContentCreatorsByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -4423,7 +4258,7 @@ export const zContentCreatorPutContentCreatorsByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -4434,7 +4269,7 @@ export const zContentCreatorPutContentCreatorsByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -4445,7 +4280,7 @@ export const zContentCreatorPutContentCreatorsByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -4478,7 +4313,7 @@ export const zContentCreatorPutContentCreatorsByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -4487,7 +4322,7 @@ export const zContentCreatorPutContentCreatorsByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -4499,7 +4334,7 @@ export const zContentCreatorPutContentCreatorsByIdResponse = z.object({
             isSuccessful: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             student: z.unknown().optional()
         })).optional()
     })
@@ -4609,7 +4444,7 @@ export const zCourseGetCoursesResponse = z.object({
         numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.056Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.032Z'),
         image: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -4629,7 +4464,7 @@ export const zCourseGetCoursesResponse = z.object({
             provider_metadata: z.unknown().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
             related: z.unknown()
         }).optional(),
         feedbacks: z.array(z.object({
@@ -4640,7 +4475,7 @@ export const zCourseGetCoursesResponse = z.object({
             dateCreated: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -4651,7 +4486,7 @@ export const zCourseGetCoursesResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -4671,7 +4506,7 @@ export const zCourseGetCoursesResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -4682,7 +4517,7 @@ export const zCourseGetCoursesResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -4690,7 +4525,7 @@ export const zCourseGetCoursesResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -4699,7 +4534,7 @@ export const zCourseGetCoursesResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -4710,7 +4545,7 @@ export const zCourseGetCoursesResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -4721,7 +4556,7 @@ export const zCourseGetCoursesResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -4754,7 +4589,7 @@ export const zCourseGetCoursesResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -4763,7 +4598,7 @@ export const zCourseGetCoursesResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -4777,7 +4612,7 @@ export const zCourseGetCoursesResponse = z.object({
             description: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercises: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -4785,7 +4620,7 @@ export const zCourseGetCoursesResponse = z.object({
                 question: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercise_options: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -4794,7 +4629,7 @@ export const zCourseGetCoursesResponse = z.object({
                     isCorrect: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     exercise: z.unknown().optional()
                 })).optional()
             })).optional(),
@@ -4805,7 +4640,7 @@ export const zCourseGetCoursesResponse = z.object({
                 completed: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 content: z.array(z.unknown()).optional()
             })).optional(),
             course: z.unknown().optional()
@@ -4816,7 +4651,7 @@ export const zCourseGetCoursesResponse = z.object({
             name: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
             courses: z.array(z.unknown()).optional()
         })).optional(),
         students: z.array(z.object({
@@ -4828,7 +4663,7 @@ export const zCourseGetCoursesResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -4837,7 +4672,7 @@ export const zCourseGetCoursesResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -4848,7 +4683,7 @@ export const zCourseGetCoursesResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -4868,7 +4703,7 @@ export const zCourseGetCoursesResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -4879,7 +4714,7 @@ export const zCourseGetCoursesResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -4887,7 +4722,7 @@ export const zCourseGetCoursesResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -4896,7 +4731,7 @@ export const zCourseGetCoursesResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -4907,7 +4742,7 @@ export const zCourseGetCoursesResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -4918,7 +4753,7 @@ export const zCourseGetCoursesResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -4951,7 +4786,7 @@ export const zCourseGetCoursesResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -4960,7 +4795,7 @@ export const zCourseGetCoursesResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -4977,7 +4812,7 @@ export const zCourseGetCoursesResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -4997,7 +4832,7 @@ export const zCourseGetCoursesResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -5008,7 +4843,7 @@ export const zCourseGetCoursesResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -5016,7 +4851,7 @@ export const zCourseGetCoursesResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -5025,7 +4860,7 @@ export const zCourseGetCoursesResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -5036,7 +4871,7 @@ export const zCourseGetCoursesResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -5047,7 +4882,7 @@ export const zCourseGetCoursesResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -5080,7 +4915,7 @@ export const zCourseGetCoursesResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -5089,7 +4924,7 @@ export const zCourseGetCoursesResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -5101,7 +4936,7 @@ export const zCourseGetCoursesResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -5113,7 +4948,7 @@ export const zCourseGetCoursesResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -5133,7 +4968,7 @@ export const zCourseGetCoursesResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -5144,7 +4979,7 @@ export const zCourseGetCoursesResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -5152,7 +4987,7 @@ export const zCourseGetCoursesResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -5161,7 +4996,7 @@ export const zCourseGetCoursesResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -5172,7 +5007,7 @@ export const zCourseGetCoursesResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -5183,7 +5018,7 @@ export const zCourseGetCoursesResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -5216,7 +5051,7 @@ export const zCourseGetCoursesResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -5225,7 +5060,7 @@ export const zCourseGetCoursesResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -5238,42 +5073,9 @@ export const zCourseGetCoursesResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         })).optional(),
         content_creators: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -5304,7 +5106,7 @@ export const zCourseGetCoursesResponse = z.object({
             jobDescription: z.string().min(1).max(400).optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             courses: z.array(z.unknown()).optional(),
             user_logs: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -5313,7 +5115,7 @@ export const zCourseGetCoursesResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
             })).optional()
         })).optional()
@@ -5328,7 +5130,7 @@ export const zCoursePostCoursesRequest = z.object({
             difficulty: z.number().int().gte(1).lte(3),
             numOfRatings: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
-            publishedAt: z.string().default('2025-11-11T19:49:07.061Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.038Z'),
             image: z.unknown().optional(),
             feedbacks: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
             course_sections: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
@@ -5389,7 +5191,7 @@ export const zCoursePostCoursesResponse = z.object({
         numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.062Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.039Z'),
         image: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -5409,7 +5211,7 @@ export const zCoursePostCoursesResponse = z.object({
             provider_metadata: z.unknown().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
             related: z.unknown()
         }).optional(),
         feedbacks: z.array(z.object({
@@ -5420,7 +5222,7 @@ export const zCoursePostCoursesResponse = z.object({
             dateCreated: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -5431,7 +5233,7 @@ export const zCoursePostCoursesResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -5451,7 +5253,7 @@ export const zCoursePostCoursesResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -5462,7 +5264,7 @@ export const zCoursePostCoursesResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -5470,7 +5272,7 @@ export const zCoursePostCoursesResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -5479,7 +5281,7 @@ export const zCoursePostCoursesResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -5490,7 +5292,7 @@ export const zCoursePostCoursesResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -5501,7 +5303,7 @@ export const zCoursePostCoursesResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -5534,7 +5336,7 @@ export const zCoursePostCoursesResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -5543,7 +5345,7 @@ export const zCoursePostCoursesResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -5557,7 +5359,7 @@ export const zCoursePostCoursesResponse = z.object({
             description: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercises: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -5565,7 +5367,7 @@ export const zCoursePostCoursesResponse = z.object({
                 question: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercise_options: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -5574,7 +5376,7 @@ export const zCoursePostCoursesResponse = z.object({
                     isCorrect: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     exercise: z.unknown().optional()
                 })).optional()
             })).optional(),
@@ -5585,7 +5387,7 @@ export const zCoursePostCoursesResponse = z.object({
                 completed: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 content: z.array(z.unknown()).optional()
             })).optional(),
             course: z.unknown().optional()
@@ -5596,7 +5398,7 @@ export const zCoursePostCoursesResponse = z.object({
             name: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
             courses: z.array(z.unknown()).optional()
         })).optional(),
         students: z.array(z.object({
@@ -5608,7 +5410,7 @@ export const zCoursePostCoursesResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -5617,7 +5419,7 @@ export const zCoursePostCoursesResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -5628,7 +5430,7 @@ export const zCoursePostCoursesResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -5648,7 +5450,7 @@ export const zCoursePostCoursesResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -5659,7 +5461,7 @@ export const zCoursePostCoursesResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -5667,7 +5469,7 @@ export const zCoursePostCoursesResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -5676,7 +5478,7 @@ export const zCoursePostCoursesResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -5687,7 +5489,7 @@ export const zCoursePostCoursesResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -5698,7 +5500,7 @@ export const zCoursePostCoursesResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -5731,7 +5533,7 @@ export const zCoursePostCoursesResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -5740,7 +5542,7 @@ export const zCoursePostCoursesResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -5757,7 +5559,7 @@ export const zCoursePostCoursesResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -5777,7 +5579,7 @@ export const zCoursePostCoursesResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -5788,7 +5590,7 @@ export const zCoursePostCoursesResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -5796,7 +5598,7 @@ export const zCoursePostCoursesResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -5805,7 +5607,7 @@ export const zCoursePostCoursesResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -5816,7 +5618,7 @@ export const zCoursePostCoursesResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -5827,7 +5629,7 @@ export const zCoursePostCoursesResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -5860,7 +5662,7 @@ export const zCoursePostCoursesResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -5869,7 +5671,7 @@ export const zCoursePostCoursesResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -5881,7 +5683,7 @@ export const zCoursePostCoursesResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -5893,7 +5695,7 @@ export const zCoursePostCoursesResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -5913,7 +5715,7 @@ export const zCoursePostCoursesResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -5924,7 +5726,7 @@ export const zCoursePostCoursesResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -5932,7 +5734,7 @@ export const zCoursePostCoursesResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -5941,7 +5743,7 @@ export const zCoursePostCoursesResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -5952,7 +5754,7 @@ export const zCoursePostCoursesResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -5963,7 +5765,7 @@ export const zCoursePostCoursesResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -5996,7 +5798,7 @@ export const zCoursePostCoursesResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -6005,7 +5807,7 @@ export const zCoursePostCoursesResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -6018,42 +5820,9 @@ export const zCoursePostCoursesResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         })).optional(),
         content_creators: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -6084,7 +5853,7 @@ export const zCoursePostCoursesResponse = z.object({
             jobDescription: z.string().min(1).max(400).optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             courses: z.array(z.unknown()).optional(),
             user_logs: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -6093,7 +5862,7 @@ export const zCoursePostCoursesResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
             })).optional()
         })).optional()
@@ -6157,7 +5926,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
         numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.065Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.042Z'),
         image: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -6177,7 +5946,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
             provider_metadata: z.unknown().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
             related: z.unknown()
         }).optional(),
         feedbacks: z.array(z.object({
@@ -6188,7 +5957,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
             dateCreated: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -6199,7 +5968,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -6219,7 +5988,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -6230,7 +5999,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -6238,7 +6007,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -6247,7 +6016,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -6258,7 +6027,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -6269,7 +6038,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -6302,7 +6071,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -6311,7 +6080,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -6325,7 +6094,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
             description: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercises: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -6333,7 +6102,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                 question: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercise_options: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -6342,7 +6111,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                     isCorrect: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     exercise: z.unknown().optional()
                 })).optional()
             })).optional(),
@@ -6353,7 +6122,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                 completed: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 content: z.array(z.unknown()).optional()
             })).optional(),
             course: z.unknown().optional()
@@ -6364,7 +6133,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
             name: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
             courses: z.array(z.unknown()).optional()
         })).optional(),
         students: z.array(z.object({
@@ -6376,7 +6145,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -6385,7 +6154,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -6396,7 +6165,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -6416,7 +6185,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -6427,7 +6196,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -6435,7 +6204,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -6444,7 +6213,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -6455,7 +6224,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -6466,7 +6235,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -6499,7 +6268,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -6508,7 +6277,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -6525,7 +6294,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -6545,7 +6314,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -6556,7 +6325,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -6564,7 +6333,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -6573,7 +6342,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -6584,7 +6353,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -6595,7 +6364,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -6628,7 +6397,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -6637,7 +6406,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -6649,7 +6418,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -6661,7 +6430,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -6681,7 +6450,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -6692,7 +6461,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -6700,7 +6469,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -6709,7 +6478,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -6720,7 +6489,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -6731,7 +6500,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -6764,7 +6533,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -6773,7 +6542,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -6786,42 +6555,9 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         })).optional(),
         content_creators: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -6852,7 +6588,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
             jobDescription: z.string().min(1).max(400).optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             courses: z.array(z.unknown()).optional(),
             user_logs: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -6861,7 +6597,7 @@ export const zCourseDeleteCoursesByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
             })).optional()
         })).optional()
@@ -6955,7 +6691,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
         numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.060Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.037Z'),
         image: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -6975,7 +6711,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
             provider_metadata: z.unknown().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
             related: z.unknown()
         }).optional(),
         feedbacks: z.array(z.object({
@@ -6986,7 +6722,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
             dateCreated: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -6997,7 +6733,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -7017,7 +6753,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -7028,7 +6764,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -7036,7 +6772,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -7045,7 +6781,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -7056,7 +6792,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -7067,7 +6803,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -7100,7 +6836,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -7109,7 +6845,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -7123,7 +6859,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
             description: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercises: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -7131,7 +6867,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                 question: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercise_options: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -7140,7 +6876,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                     isCorrect: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     exercise: z.unknown().optional()
                 })).optional()
             })).optional(),
@@ -7151,7 +6887,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                 completed: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 content: z.array(z.unknown()).optional()
             })).optional(),
             course: z.unknown().optional()
@@ -7162,7 +6898,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
             name: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
             courses: z.array(z.unknown()).optional()
         })).optional(),
         students: z.array(z.object({
@@ -7174,7 +6910,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -7183,7 +6919,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -7194,7 +6930,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -7214,7 +6950,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -7225,7 +6961,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -7233,7 +6969,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -7242,7 +6978,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -7253,7 +6989,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -7264,7 +7000,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -7297,7 +7033,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -7306,7 +7042,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -7323,7 +7059,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -7343,7 +7079,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -7354,7 +7090,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -7362,7 +7098,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -7371,7 +7107,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -7382,7 +7118,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -7393,7 +7129,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -7426,7 +7162,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -7435,7 +7171,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -7447,7 +7183,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -7459,7 +7195,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -7479,7 +7215,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -7490,7 +7226,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -7498,7 +7234,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -7507,7 +7243,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -7518,7 +7254,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -7529,7 +7265,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -7562,7 +7298,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -7571,7 +7307,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -7584,42 +7320,9 @@ export const zCourseGetCoursesByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         })).optional(),
         content_creators: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -7650,7 +7353,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
             jobDescription: z.string().min(1).max(400).optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             courses: z.array(z.unknown()).optional(),
             user_logs: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -7659,7 +7362,7 @@ export const zCourseGetCoursesByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
             })).optional()
         })).optional()
@@ -7674,7 +7377,7 @@ export const zCoursePutCoursesByIdRequest = z.object({
             difficulty: z.number().int().gte(1).lte(3).optional(),
             numOfRatings: z.number().int().gte(-9007199254740991).lte(9007199254740991).optional().default(0),
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).optional().default(0),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.063Z'),
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.040Z'),
             image: z.unknown().optional(),
             feedbacks: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
             course_sections: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
@@ -7737,7 +7440,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
         numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.064Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.041Z'),
         image: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -7757,7 +7460,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
             provider_metadata: z.unknown().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
             related: z.unknown()
         }).optional(),
         feedbacks: z.array(z.object({
@@ -7768,7 +7471,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
             dateCreated: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -7779,7 +7482,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -7799,7 +7502,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -7810,7 +7513,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -7818,7 +7521,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -7827,7 +7530,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -7838,7 +7541,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -7849,7 +7552,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -7882,7 +7585,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -7891,7 +7594,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -7905,7 +7608,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
             description: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercises: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -7913,7 +7616,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                 question: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercise_options: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -7922,7 +7625,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                     isCorrect: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     exercise: z.unknown().optional()
                 })).optional()
             })).optional(),
@@ -7933,7 +7636,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                 completed: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 content: z.array(z.unknown()).optional()
             })).optional(),
             course: z.unknown().optional()
@@ -7944,7 +7647,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
             name: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
             courses: z.array(z.unknown()).optional()
         })).optional(),
         students: z.array(z.object({
@@ -7956,7 +7659,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -7965,7 +7668,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -7976,7 +7679,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -7996,7 +7699,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -8007,7 +7710,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -8015,7 +7718,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -8024,7 +7727,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -8035,7 +7738,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -8046,7 +7749,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -8079,7 +7782,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -8088,7 +7791,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -8105,7 +7808,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -8125,7 +7828,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -8136,7 +7839,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -8144,7 +7847,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -8153,7 +7856,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -8164,7 +7867,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -8175,7 +7878,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -8208,7 +7911,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -8217,7 +7920,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -8229,7 +7932,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -8241,7 +7944,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -8261,7 +7964,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -8272,7 +7975,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -8280,7 +7983,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -8289,7 +7992,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -8300,7 +8003,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -8311,7 +8014,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -8344,7 +8047,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -8353,7 +8056,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -8366,42 +8069,9 @@ export const zCoursePutCoursesByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         })).optional(),
         content_creators: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -8432,7 +8102,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
             jobDescription: z.string().min(1).max(400).optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             courses: z.array(z.unknown()).optional(),
             user_logs: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -8441,7 +8111,7 @@ export const zCoursePutCoursesByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
             })).optional()
         })).optional()
@@ -8520,7 +8190,7 @@ export const zCourseCategoryGetCourseCategoriesResponse = z.object({
         name: z.string().min(1).max(50),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.070Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.043Z'),
         courses: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -8531,7 +8201,7 @@ export const zCourseCategoryGetCourseCategoriesResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -8551,7 +8221,7 @@ export const zCourseCategoryGetCourseCategoriesResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -8562,7 +8232,7 @@ export const zCourseCategoryGetCourseCategoriesResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -8570,7 +8240,7 @@ export const zCourseCategoryGetCourseCategoriesResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -8579,7 +8249,7 @@ export const zCourseCategoryGetCourseCategoriesResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -8590,7 +8260,7 @@ export const zCourseCategoryGetCourseCategoriesResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -8601,7 +8271,7 @@ export const zCourseCategoryGetCourseCategoriesResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -8634,7 +8304,7 @@ export const zCourseCategoryGetCourseCategoriesResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -8643,7 +8313,7 @@ export const zCourseCategoryGetCourseCategoriesResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -8655,7 +8325,7 @@ export const zCourseCategoryPostCourseCategoriesRequest = z.object({
     body: z.object({
         data: z.object({
             name: z.string().min(1).max(50),
-            publishedAt: z.string().default('2025-11-11T19:49:07.077Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.044Z'),
             courses: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional()
         })
     }).optional(),
@@ -8693,7 +8363,7 @@ export const zCourseCategoryPostCourseCategoriesResponse = z.object({
         name: z.string().min(1).max(50),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.077Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.044Z'),
         courses: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -8704,7 +8374,7 @@ export const zCourseCategoryPostCourseCategoriesResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -8724,7 +8394,7 @@ export const zCourseCategoryPostCourseCategoriesResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -8735,7 +8405,7 @@ export const zCourseCategoryPostCourseCategoriesResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -8743,7 +8413,7 @@ export const zCourseCategoryPostCourseCategoriesResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -8752,7 +8422,7 @@ export const zCourseCategoryPostCourseCategoriesResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -8763,7 +8433,7 @@ export const zCourseCategoryPostCourseCategoriesResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -8774,7 +8444,7 @@ export const zCourseCategoryPostCourseCategoriesResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -8807,7 +8477,7 @@ export const zCourseCategoryPostCourseCategoriesResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -8816,7 +8486,7 @@ export const zCourseCategoryPostCourseCategoriesResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -8863,7 +8533,7 @@ export const zCourseCategoryDeleteCourseCategoriesByIdResponse = z.object({
         name: z.string().min(1).max(50),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.079Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.046Z'),
         courses: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -8874,7 +8544,7 @@ export const zCourseCategoryDeleteCourseCategoriesByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -8894,7 +8564,7 @@ export const zCourseCategoryDeleteCourseCategoriesByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -8905,7 +8575,7 @@ export const zCourseCategoryDeleteCourseCategoriesByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -8913,7 +8583,7 @@ export const zCourseCategoryDeleteCourseCategoriesByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -8922,7 +8592,7 @@ export const zCourseCategoryDeleteCourseCategoriesByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -8933,7 +8603,7 @@ export const zCourseCategoryDeleteCourseCategoriesByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -8944,7 +8614,7 @@ export const zCourseCategoryDeleteCourseCategoriesByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -8977,7 +8647,7 @@ export const zCourseCategoryDeleteCourseCategoriesByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -8986,7 +8656,7 @@ export const zCourseCategoryDeleteCourseCategoriesByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -9055,7 +8725,7 @@ export const zCourseCategoryGetCourseCategoriesByIdResponse = z.object({
         name: z.string().min(1).max(50),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.077Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.044Z'),
         courses: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -9066,7 +8736,7 @@ export const zCourseCategoryGetCourseCategoriesByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -9086,7 +8756,7 @@ export const zCourseCategoryGetCourseCategoriesByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -9097,7 +8767,7 @@ export const zCourseCategoryGetCourseCategoriesByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -9105,7 +8775,7 @@ export const zCourseCategoryGetCourseCategoriesByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -9114,7 +8784,7 @@ export const zCourseCategoryGetCourseCategoriesByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -9125,7 +8795,7 @@ export const zCourseCategoryGetCourseCategoriesByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -9136,7 +8806,7 @@ export const zCourseCategoryGetCourseCategoriesByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -9169,7 +8839,7 @@ export const zCourseCategoryGetCourseCategoriesByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -9178,7 +8848,7 @@ export const zCourseCategoryGetCourseCategoriesByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -9190,7 +8860,7 @@ export const zCourseCategoryPutCourseCategoriesByIdRequest = z.object({
     body: z.object({
         data: z.object({
             name: z.string().min(1).max(50).optional(),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.078Z'),
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.045Z'),
             courses: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional()
         })
     }).optional(),
@@ -9230,7 +8900,7 @@ export const zCourseCategoryPutCourseCategoriesByIdResponse = z.object({
         name: z.string().min(1).max(50),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.078Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.045Z'),
         courses: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -9241,7 +8911,7 @@ export const zCourseCategoryPutCourseCategoriesByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -9261,7 +8931,7 @@ export const zCourseCategoryPutCourseCategoriesByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -9272,7 +8942,7 @@ export const zCourseCategoryPutCourseCategoriesByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -9280,7 +8950,7 @@ export const zCourseCategoryPutCourseCategoriesByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -9289,7 +8959,7 @@ export const zCourseCategoryPutCourseCategoriesByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -9300,7 +8970,7 @@ export const zCourseCategoryPutCourseCategoriesByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -9311,7 +8981,7 @@ export const zCourseCategoryPutCourseCategoriesByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -9344,7 +9014,7 @@ export const zCourseCategoryPutCourseCategoriesByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -9353,7 +9023,7 @@ export const zCourseCategoryPutCourseCategoriesByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -9441,7 +9111,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
         description: z.string().optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.080Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.047Z'),
         exercises: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -9449,7 +9119,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
             question: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercise_options: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -9458,7 +9128,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
                 isCorrect: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 exercise: z.unknown().optional()
             })).optional()
         })).optional(),
@@ -9469,7 +9139,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
             completed: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
             content: z.array(z.unknown()).optional()
         })).optional(),
         course: z.object({
@@ -9482,7 +9152,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -9502,7 +9172,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -9513,7 +9183,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -9521,7 +9191,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -9530,7 +9200,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -9541,7 +9211,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -9552,7 +9222,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -9585,7 +9255,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -9594,7 +9264,7 @@ export const zCourseSelectionGetCourseSelectionsResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -9607,7 +9277,7 @@ export const zCourseSelectionPostCourseSelectionsRequest = z.object({
         data: z.object({
             title: z.string().min(1).max(50),
             description: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.083Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.049Z'),
             exercises: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
             lectures: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
             course: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional()
@@ -9653,7 +9323,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
         description: z.string().optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.083Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.049Z'),
         exercises: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -9661,7 +9331,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
             question: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercise_options: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -9670,7 +9340,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
                 isCorrect: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 exercise: z.unknown().optional()
             })).optional()
         })).optional(),
@@ -9681,7 +9351,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
             completed: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
             content: z.array(z.unknown()).optional()
         })).optional(),
         course: z.object({
@@ -9694,7 +9364,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -9714,7 +9384,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -9725,7 +9395,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -9733,7 +9403,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -9742,7 +9412,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -9753,7 +9423,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -9764,7 +9434,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -9797,7 +9467,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -9806,7 +9476,7 @@ export const zCourseSelectionPostCourseSelectionsResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -9859,7 +9529,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
         description: z.string().optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.086Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.051Z'),
         exercises: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -9867,7 +9537,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
             question: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercise_options: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -9876,7 +9546,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
                 isCorrect: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 exercise: z.unknown().optional()
             })).optional()
         })).optional(),
@@ -9887,7 +9557,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
             completed: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
             content: z.array(z.unknown()).optional()
         })).optional(),
         course: z.object({
@@ -9900,7 +9570,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -9920,7 +9590,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -9931,7 +9601,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -9939,7 +9609,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -9948,7 +9618,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -9959,7 +9629,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -9970,7 +9640,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -10003,7 +9673,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -10012,7 +9682,7 @@ export const zCourseSelectionDeleteCourseSelectionsByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -10089,7 +9759,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
         description: z.string().optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.082Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.048Z'),
         exercises: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -10097,7 +9767,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
             question: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercise_options: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -10106,7 +9776,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
                 isCorrect: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 exercise: z.unknown().optional()
             })).optional()
         })).optional(),
@@ -10117,7 +9787,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
             completed: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
             content: z.array(z.unknown()).optional()
         })).optional(),
         course: z.object({
@@ -10130,7 +9800,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -10150,7 +9820,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -10161,7 +9831,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -10169,7 +9839,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -10178,7 +9848,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -10189,7 +9859,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -10200,7 +9870,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -10233,7 +9903,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -10242,7 +9912,7 @@ export const zCourseSelectionGetCourseSelectionsByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -10255,7 +9925,7 @@ export const zCourseSelectionPutCourseSelectionsByIdRequest = z.object({
         data: z.object({
             title: z.string().min(1).max(50).optional(),
             description: z.string().optional(),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.085Z'),
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.050Z'),
             exercises: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
             lectures: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
             course: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional()
@@ -10303,7 +9973,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
         description: z.string().optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.085Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.050Z'),
         exercises: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -10311,7 +9981,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
             question: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercise_options: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -10320,7 +9990,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
                 isCorrect: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 exercise: z.unknown().optional()
             })).optional()
         })).optional(),
@@ -10331,7 +10001,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
             completed: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
             content: z.array(z.unknown()).optional()
         })).optional(),
         course: z.object({
@@ -10344,7 +10014,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -10364,7 +10034,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -10375,7 +10045,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -10383,7 +10053,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -10392,7 +10062,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -10403,7 +10073,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -10414,7 +10084,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -10447,7 +10117,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -10456,7 +10126,7 @@ export const zCourseSelectionPutCourseSelectionsByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -10540,7 +10210,7 @@ export const zExerciseGetExercisesResponse = z.object({
         question: z.string().min(1).max(50),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.087Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.053Z'),
         exercise_options: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -10549,7 +10219,7 @@ export const zExerciseGetExercisesResponse = z.object({
             isCorrect: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
             exercise: z.unknown().optional()
         })).optional()
     }))
@@ -10560,7 +10230,7 @@ export const zExercisePostExercisesRequest = z.object({
         data: z.object({
             title: z.string(),
             question: z.string().min(1).max(50),
-            publishedAt: z.string().default('2025-11-11T19:49:07.088Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.054Z'),
             exercise_options: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional()
         })
     }).optional(),
@@ -10600,7 +10270,7 @@ export const zExercisePostExercisesResponse = z.object({
         question: z.string().min(1).max(50),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.089Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.054Z'),
         exercise_options: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -10609,7 +10279,7 @@ export const zExercisePostExercisesResponse = z.object({
             isCorrect: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
             exercise: z.unknown().optional()
         })).optional()
     })
@@ -10656,7 +10326,7 @@ export const zExerciseDeleteExercisesByIdResponse = z.object({
         question: z.string().min(1).max(50),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.090Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.056Z'),
         exercise_options: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -10665,7 +10335,7 @@ export const zExerciseDeleteExercisesByIdResponse = z.object({
             isCorrect: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
             exercise: z.unknown().optional()
         })).optional()
     })
@@ -10736,7 +10406,7 @@ export const zExerciseGetExercisesByIdResponse = z.object({
         question: z.string().min(1).max(50),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.088Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.053Z'),
         exercise_options: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -10745,7 +10415,7 @@ export const zExerciseGetExercisesByIdResponse = z.object({
             isCorrect: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
             exercise: z.unknown().optional()
         })).optional()
     })
@@ -10756,7 +10426,7 @@ export const zExercisePutExercisesByIdRequest = z.object({
         data: z.object({
             title: z.string().optional(),
             question: z.string().min(1).max(50).optional(),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.089Z'),
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.055Z'),
             exercise_options: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional()
         })
     }).optional(),
@@ -10798,7 +10468,7 @@ export const zExercisePutExercisesByIdResponse = z.object({
         question: z.string().min(1).max(50),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.089Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.055Z'),
         exercise_options: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -10807,7 +10477,7 @@ export const zExercisePutExercisesByIdResponse = z.object({
             isCorrect: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
             exercise: z.unknown().optional()
         })).optional()
     })
@@ -10893,7 +10563,7 @@ export const zExerciseOptionGetExerciseOptionsResponse = z.object({
         isCorrect: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.095Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.057Z'),
         exercise: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -10901,7 +10571,7 @@ export const zExerciseOptionGetExerciseOptionsResponse = z.object({
             question: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercise_options: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -10910,7 +10580,7 @@ export const zExerciseOptionGetExerciseOptionsResponse = z.object({
                 isCorrect: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 exercise: z.unknown().optional()
             })).optional()
         }).optional()
@@ -10930,7 +10600,7 @@ export const zExerciseOptionPostExerciseOptionsRequest = z.object({
                 'f',
                 'false'
             ]),
-            publishedAt: z.string().default('2025-11-11T19:49:07.096Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.059Z'),
             exercise: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional()
         })
     }).optional(),
@@ -10972,7 +10642,7 @@ export const zExerciseOptionPostExerciseOptionsResponse = z.object({
         isCorrect: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.097Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.059Z'),
         exercise: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -10980,7 +10650,7 @@ export const zExerciseOptionPostExerciseOptionsResponse = z.object({
             question: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercise_options: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -10989,7 +10659,7 @@ export const zExerciseOptionPostExerciseOptionsResponse = z.object({
                 isCorrect: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 exercise: z.unknown().optional()
             })).optional()
         }).optional()
@@ -11039,7 +10709,7 @@ export const zExerciseOptionDeleteExerciseOptionsByIdResponse = z.object({
         isCorrect: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.098Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.060Z'),
         exercise: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -11047,7 +10717,7 @@ export const zExerciseOptionDeleteExerciseOptionsByIdResponse = z.object({
             question: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercise_options: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -11056,7 +10726,7 @@ export const zExerciseOptionDeleteExerciseOptionsByIdResponse = z.object({
                 isCorrect: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 exercise: z.unknown().optional()
             })).optional()
         }).optional()
@@ -11132,7 +10802,7 @@ export const zExerciseOptionGetExerciseOptionsByIdResponse = z.object({
         isCorrect: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.096Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.058Z'),
         exercise: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -11140,7 +10810,7 @@ export const zExerciseOptionGetExerciseOptionsByIdResponse = z.object({
             question: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercise_options: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -11149,7 +10819,7 @@ export const zExerciseOptionGetExerciseOptionsByIdResponse = z.object({
                 isCorrect: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 exercise: z.unknown().optional()
             })).optional()
         }).optional()
@@ -11169,7 +10839,7 @@ export const zExerciseOptionPutExerciseOptionsByIdRequest = z.object({
                 'f',
                 'false'
             ]).optional(),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.097Z'),
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.059Z'),
             exercise: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional()
         })
     }).optional(),
@@ -11213,7 +10883,7 @@ export const zExerciseOptionPutExerciseOptionsByIdResponse = z.object({
         isCorrect: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.098Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.060Z'),
         exercise: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -11221,7 +10891,7 @@ export const zExerciseOptionPutExerciseOptionsByIdResponse = z.object({
             question: z.string().min(1).max(50),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
             exercise_options: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -11230,7 +10900,7 @@ export const zExerciseOptionPutExerciseOptionsByIdResponse = z.object({
                 isCorrect: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                 exercise: z.unknown().optional()
             })).optional()
         }).optional()
@@ -11319,7 +10989,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
         dateCreated: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.101Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.062Z'),
         course: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -11330,7 +11000,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -11350,7 +11020,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -11361,7 +11031,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -11369,7 +11039,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -11378,7 +11048,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -11389,7 +11059,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -11400,7 +11070,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -11433,7 +11103,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -11442,7 +11112,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -11456,7 +11126,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -11465,7 +11135,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -11476,7 +11146,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -11496,7 +11166,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -11507,7 +11177,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -11515,7 +11185,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -11524,7 +11194,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -11535,7 +11205,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -11546,7 +11216,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -11579,7 +11249,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -11588,7 +11258,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -11605,7 +11275,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -11625,7 +11295,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -11636,7 +11306,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -11644,7 +11314,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -11653,7 +11323,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -11664,7 +11334,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -11675,7 +11345,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -11708,7 +11378,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -11717,7 +11387,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -11729,7 +11399,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -11741,7 +11411,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -11761,7 +11431,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -11772,7 +11442,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -11780,7 +11450,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -11789,7 +11459,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -11800,7 +11470,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -11811,7 +11481,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -11844,7 +11514,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -11853,7 +11523,7 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -11866,42 +11536,9 @@ export const zFeedbackGetFeedbacksResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional()
     }))
 });
@@ -11912,7 +11549,7 @@ export const zFeedbackPostFeedbacksRequest = z.object({
             rating: z.number().int().gte(1).lte(5),
             feedbackText: z.string().optional(),
             dateCreated: z.string(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.103Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.067Z'),
             course: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional(),
             student: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional()
         })
@@ -11957,7 +11594,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
         dateCreated: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.103Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.067Z'),
         course: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -11968,7 +11605,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -11988,7 +11625,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -11999,7 +11636,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -12007,7 +11644,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -12016,7 +11653,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -12027,7 +11664,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -12038,7 +11675,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -12071,7 +11708,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -12080,7 +11717,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -12094,7 +11731,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -12103,7 +11740,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -12114,7 +11751,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -12134,7 +11771,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -12145,7 +11782,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -12153,7 +11790,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -12162,7 +11799,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -12173,7 +11810,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -12184,7 +11821,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -12217,7 +11854,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -12226,7 +11863,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -12243,7 +11880,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -12263,7 +11900,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -12274,7 +11911,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -12282,7 +11919,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -12291,7 +11928,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -12302,7 +11939,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -12313,7 +11950,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -12346,7 +11983,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -12355,7 +11992,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -12367,7 +12004,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -12379,7 +12016,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -12399,7 +12036,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -12410,7 +12047,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -12418,7 +12055,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -12427,7 +12064,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -12438,7 +12075,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -12449,7 +12086,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -12482,7 +12119,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -12491,7 +12128,7 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -12504,42 +12141,9 @@ export const zFeedbackPostFeedbacksResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional()
     })
 });
@@ -12589,7 +12193,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
         dateCreated: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.105Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.069Z'),
         course: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -12600,7 +12204,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -12620,7 +12224,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -12631,7 +12235,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -12639,7 +12243,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -12648,7 +12252,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -12659,7 +12263,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -12670,7 +12274,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -12703,7 +12307,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -12712,7 +12316,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -12726,7 +12330,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -12735,7 +12339,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -12746,7 +12350,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -12766,7 +12370,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -12777,7 +12381,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -12785,7 +12389,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -12794,7 +12398,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -12805,7 +12409,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -12816,7 +12420,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -12849,7 +12453,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -12858,7 +12462,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -12875,7 +12479,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -12895,7 +12499,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -12906,7 +12510,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -12914,7 +12518,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -12923,7 +12527,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -12934,7 +12538,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -12945,7 +12549,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -12978,7 +12582,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -12987,7 +12591,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -12999,7 +12603,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -13011,7 +12615,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -13031,7 +12635,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -13042,7 +12646,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -13050,7 +12654,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -13059,7 +12663,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -13070,7 +12674,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -13081,7 +12685,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -13114,7 +12718,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -13123,7 +12727,7 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -13136,42 +12740,9 @@ export const zFeedbackDeleteFeedbacksByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional()
     })
 });
@@ -13247,7 +12818,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
         dateCreated: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.102Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.066Z'),
         course: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -13258,7 +12829,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -13278,7 +12849,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -13289,7 +12860,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -13297,7 +12868,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -13306,7 +12877,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -13317,7 +12888,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -13328,7 +12899,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -13361,7 +12932,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -13370,7 +12941,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -13384,7 +12955,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -13393,7 +12964,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -13404,7 +12975,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -13424,7 +12995,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -13435,7 +13006,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -13443,7 +13014,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -13452,7 +13023,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -13463,7 +13034,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -13474,7 +13045,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -13507,7 +13078,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -13516,7 +13087,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -13533,7 +13104,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -13553,7 +13124,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -13564,7 +13135,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -13572,7 +13143,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -13581,7 +13152,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -13592,7 +13163,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -13603,7 +13174,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -13636,7 +13207,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -13645,7 +13216,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -13657,7 +13228,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -13669,7 +13240,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -13689,7 +13260,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -13700,7 +13271,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -13708,7 +13279,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -13717,7 +13288,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -13728,7 +13299,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -13739,7 +13310,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -13772,7 +13343,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -13781,7 +13352,7 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -13794,42 +13365,9 @@ export const zFeedbackGetFeedbacksByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional()
     })
 });
@@ -13840,7 +13378,7 @@ export const zFeedbackPutFeedbacksByIdRequest = z.object({
             rating: z.number().int().gte(1).lte(5).optional(),
             feedbackText: z.string().optional(),
             dateCreated: z.string().optional(),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.104Z'),
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.068Z'),
             course: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional(),
             student: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional()
         })
@@ -13887,7 +13425,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
         dateCreated: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.104Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.068Z'),
         course: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -13898,7 +13436,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -13918,7 +13456,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -13929,7 +13467,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -13937,7 +13475,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -13946,7 +13484,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -13957,7 +13495,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -13968,7 +13506,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -14001,7 +13539,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -14010,7 +13548,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -14024,7 +13562,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -14033,7 +13571,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -14044,7 +13582,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -14064,7 +13602,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -14075,7 +13613,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -14083,7 +13621,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -14092,7 +13630,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -14103,7 +13641,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -14114,7 +13652,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -14147,7 +13685,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -14156,7 +13694,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -14173,7 +13711,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -14193,7 +13731,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -14204,7 +13742,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -14212,7 +13750,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -14221,7 +13759,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -14232,7 +13770,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -14243,7 +13781,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -14276,7 +13814,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -14285,7 +13823,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -14297,7 +13835,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -14309,7 +13847,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -14329,7 +13867,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -14340,7 +13878,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -14348,7 +13886,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -14357,7 +13895,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -14368,7 +13906,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -14379,7 +13917,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -14412,7 +13950,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -14421,7 +13959,7 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -14434,42 +13972,9 @@ export const zFeedbackPutFeedbacksByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional()
     })
 });
@@ -14550,7 +14055,7 @@ export const zLectureGetLecturesResponse = z.object({
         completed: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.106Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.070Z'),
         content: z.array(z.unknown()).optional()
     }))
 });
@@ -14567,7 +14072,7 @@ export const zLecturePostLecturesRequest = z.object({
                 'f',
                 'false'
             ]),
-            publishedAt: z.string().default('2025-11-11T19:49:07.109Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.071Z'),
             content: z.array(z.unknown()).optional()
         })
     }).optional(),
@@ -14607,7 +14112,7 @@ export const zLecturePostLecturesResponse = z.object({
         completed: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.109Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.072Z'),
         content: z.array(z.unknown()).optional()
     })
 });
@@ -14653,7 +14158,7 @@ export const zLectureDeleteLecturesByIdResponse = z.object({
         completed: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.111Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.073Z'),
         content: z.array(z.unknown()).optional()
     })
 });
@@ -14723,7 +14228,7 @@ export const zLectureGetLecturesByIdResponse = z.object({
         completed: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.107Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.071Z'),
         content: z.array(z.unknown()).optional()
     })
 });
@@ -14740,7 +14245,7 @@ export const zLecturePutLecturesByIdRequest = z.object({
                 'f',
                 'false'
             ]).optional(),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.110Z'),
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.072Z'),
             content: z.array(z.unknown()).optional()
         })
     }).optional(),
@@ -14782,7 +14287,7 @@ export const zLecturePutLecturesByIdResponse = z.object({
         completed: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.110Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.072Z'),
         content: z.array(z.unknown()).optional()
     })
 });
@@ -14859,7 +14364,7 @@ export const zPasswordResetTokenGetPasswordResetTokensResponse = z.object({
         expiresAt: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.112Z')
+        publishedAt: z.string().default('2025-11-13T09:51:09.074Z')
     }))
 });
 
@@ -14869,7 +14374,7 @@ export const zPasswordResetTokenPostPasswordResetTokensRequest = z.object({
             userEmail: z.string().email().min(1).max(50).regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
             token: z.string(),
             expiresAt: z.string(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.491Z')
+            publishedAt: z.string().default('2025-11-13T09:51:09.361Z')
         })
     }).optional(),
     path: z.never().optional(),
@@ -14902,7 +14407,7 @@ export const zPasswordResetTokenPostPasswordResetTokensResponse = z.object({
         expiresAt: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.114Z')
+        publishedAt: z.string().default('2025-11-13T09:51:09.076Z')
     })
 });
 
@@ -14941,7 +14446,7 @@ export const zPasswordResetTokenDeletePasswordResetTokensByIdResponse = z.object
         expiresAt: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.117Z')
+        publishedAt: z.string().default('2025-11-13T09:51:09.077Z')
     })
 });
 
@@ -15006,7 +14511,7 @@ export const zPasswordResetTokenGetPasswordResetTokensByIdResponse = z.object({
         expiresAt: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.113Z')
+        publishedAt: z.string().default('2025-11-13T09:51:09.075Z')
     })
 });
 
@@ -15016,7 +14521,7 @@ export const zPasswordResetTokenPutPasswordResetTokensByIdRequest = z.object({
             userEmail: z.string().email().min(1).max(50).regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/).optional(),
             token: z.string().optional(),
             expiresAt: z.string().optional(),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.114Z')
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.076Z')
         })
     }).optional(),
     path: z.object({
@@ -15051,7 +14556,7 @@ export const zPasswordResetTokenPutPasswordResetTokensByIdResponse = z.object({
         expiresAt: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.116Z')
+        publishedAt: z.string().default('2025-11-13T09:51:09.076Z')
     })
 });
 
@@ -15119,15 +14624,13 @@ export const zStudentGetStudentsRequest = z.object({
                 'feedbacks',
                 'courses',
                 'certificates',
-                'user_logs',
-                'user'
+                'user_logs'
             ]),
             z.array(z.enum([
                 'feedbacks',
                 'courses',
                 'certificates',
-                'user_logs',
-                'user'
+                'user_logs'
             ]))
         ]).optional(),
         status: z.enum([
@@ -15150,7 +14653,7 @@ export const zStudentGetStudentsResponse = z.object({
         verifiedAt: z.string().optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.118Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.078Z'),
         feedbacks: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -15159,7 +14662,7 @@ export const zStudentGetStudentsResponse = z.object({
             dateCreated: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -15170,7 +14673,7 @@ export const zStudentGetStudentsResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -15190,7 +14693,7 @@ export const zStudentGetStudentsResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -15201,7 +14704,7 @@ export const zStudentGetStudentsResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -15209,7 +14712,7 @@ export const zStudentGetStudentsResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -15218,7 +14721,7 @@ export const zStudentGetStudentsResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -15229,7 +14732,7 @@ export const zStudentGetStudentsResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -15240,7 +14743,7 @@ export const zStudentGetStudentsResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -15273,7 +14776,7 @@ export const zStudentGetStudentsResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -15282,7 +14785,7 @@ export const zStudentGetStudentsResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -15299,7 +14802,7 @@ export const zStudentGetStudentsResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -15319,7 +14822,7 @@ export const zStudentGetStudentsResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -15330,7 +14833,7 @@ export const zStudentGetStudentsResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -15338,7 +14841,7 @@ export const zStudentGetStudentsResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -15347,7 +14850,7 @@ export const zStudentGetStudentsResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -15358,7 +14861,7 @@ export const zStudentGetStudentsResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -15369,7 +14872,7 @@ export const zStudentGetStudentsResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -15402,7 +14905,7 @@ export const zStudentGetStudentsResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -15411,7 +14914,7 @@ export const zStudentGetStudentsResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -15423,7 +14926,7 @@ export const zStudentGetStudentsResponse = z.object({
             completionDate: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
             student: z.unknown().optional(),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -15435,7 +14938,7 @@ export const zStudentGetStudentsResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -15455,7 +14958,7 @@ export const zStudentGetStudentsResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -15466,7 +14969,7 @@ export const zStudentGetStudentsResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -15474,7 +14977,7 @@ export const zStudentGetStudentsResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -15483,7 +14986,7 @@ export const zStudentGetStudentsResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -15494,7 +14997,7 @@ export const zStudentGetStudentsResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -15505,7 +15008,7 @@ export const zStudentGetStudentsResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -15538,7 +15041,7 @@ export const zStudentGetStudentsResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -15547,7 +15050,7 @@ export const zStudentGetStudentsResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -15560,42 +15063,9 @@ export const zStudentGetStudentsResponse = z.object({
             isSuccessful: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             student: z.unknown().optional()
-        })).optional(),
-        user: z.object({
-            documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-            id: z.number(),
-            username: z.string(),
-            email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-            provider: z.string().optional(),
-            confirmed: z.boolean().default(false),
-            blocked: z.boolean().default(false),
-            createdAt: z.string().optional(),
-            updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-            role: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                name: z.string(),
-                description: z.string().optional(),
-                type: z.string().optional(),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                permissions: z.array(z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    action: z.string(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    role: z.unknown().optional()
-                })).optional(),
-                users: z.array(z.unknown()).optional()
-            }).optional(),
-            student: z.unknown().optional()
-        }).optional()
+        })).optional()
     }))
 });
 
@@ -15607,12 +15077,11 @@ export const zStudentPostStudentsRequest = z.object({
             email: z.string().email().min(1).max(50).regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
             password: z.string(),
             verifiedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.120Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.080Z'),
             feedbacks: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
             courses: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
             certificates: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
-            user_logs: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
-            user: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional()
+            user_logs: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional()
         })
     }).optional(),
     path: z.never().optional(),
@@ -15633,15 +15102,13 @@ export const zStudentPostStudentsRequest = z.object({
                 'feedbacks',
                 'courses',
                 'certificates',
-                'user_logs',
-                'user'
+                'user_logs'
             ]),
             z.array(z.enum([
                 'feedbacks',
                 'courses',
                 'certificates',
-                'user_logs',
-                'user'
+                'user_logs'
             ]))
         ]).optional(),
         status: z.enum([
@@ -15664,7 +15131,7 @@ export const zStudentPostStudentsResponse = z.object({
         verifiedAt: z.string().optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.121Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.081Z'),
         feedbacks: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -15673,7 +15140,7 @@ export const zStudentPostStudentsResponse = z.object({
             dateCreated: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -15684,7 +15151,7 @@ export const zStudentPostStudentsResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -15704,7 +15171,7 @@ export const zStudentPostStudentsResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -15715,7 +15182,7 @@ export const zStudentPostStudentsResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -15723,7 +15190,7 @@ export const zStudentPostStudentsResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -15732,7 +15199,7 @@ export const zStudentPostStudentsResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -15743,7 +15210,7 @@ export const zStudentPostStudentsResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -15754,7 +15221,7 @@ export const zStudentPostStudentsResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -15787,7 +15254,7 @@ export const zStudentPostStudentsResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -15796,7 +15263,7 @@ export const zStudentPostStudentsResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -15813,7 +15280,7 @@ export const zStudentPostStudentsResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -15833,7 +15300,7 @@ export const zStudentPostStudentsResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -15844,7 +15311,7 @@ export const zStudentPostStudentsResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -15852,7 +15319,7 @@ export const zStudentPostStudentsResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -15861,7 +15328,7 @@ export const zStudentPostStudentsResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -15872,7 +15339,7 @@ export const zStudentPostStudentsResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -15883,7 +15350,7 @@ export const zStudentPostStudentsResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -15916,7 +15383,7 @@ export const zStudentPostStudentsResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -15925,7 +15392,7 @@ export const zStudentPostStudentsResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -15937,7 +15404,7 @@ export const zStudentPostStudentsResponse = z.object({
             completionDate: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
             student: z.unknown().optional(),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -15949,7 +15416,7 @@ export const zStudentPostStudentsResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -15969,7 +15436,7 @@ export const zStudentPostStudentsResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -15980,7 +15447,7 @@ export const zStudentPostStudentsResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -15988,7 +15455,7 @@ export const zStudentPostStudentsResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -15997,7 +15464,7 @@ export const zStudentPostStudentsResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -16008,7 +15475,7 @@ export const zStudentPostStudentsResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -16019,7 +15486,7 @@ export const zStudentPostStudentsResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -16052,7 +15519,7 @@ export const zStudentPostStudentsResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -16061,7 +15528,7 @@ export const zStudentPostStudentsResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -16074,42 +15541,9 @@ export const zStudentPostStudentsResponse = z.object({
             isSuccessful: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             student: z.unknown().optional()
-        })).optional(),
-        user: z.object({
-            documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-            id: z.number(),
-            username: z.string(),
-            email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-            provider: z.string().optional(),
-            confirmed: z.boolean().default(false),
-            blocked: z.boolean().default(false),
-            createdAt: z.string().optional(),
-            updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-            role: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                name: z.string(),
-                description: z.string().optional(),
-                type: z.string().optional(),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                permissions: z.array(z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    action: z.string(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    role: z.unknown().optional()
-                })).optional(),
-                users: z.array(z.unknown()).optional()
-            }).optional(),
-            student: z.unknown().optional()
-        }).optional()
+        })).optional()
     })
 });
 
@@ -16135,15 +15569,13 @@ export const zStudentDeleteStudentsByIdRequest = z.object({
                 'feedbacks',
                 'courses',
                 'certificates',
-                'user_logs',
-                'user'
+                'user_logs'
             ]),
             z.array(z.enum([
                 'feedbacks',
                 'courses',
                 'certificates',
-                'user_logs',
-                'user'
+                'user_logs'
             ]))
         ]).optional(),
         filters: z.record(z.unknown()).optional(),
@@ -16167,7 +15599,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
         verifiedAt: z.string().optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.125Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.083Z'),
         feedbacks: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -16176,7 +15608,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
             dateCreated: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -16187,7 +15619,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -16207,7 +15639,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -16218,7 +15650,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -16226,7 +15658,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -16235,7 +15667,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -16246,7 +15678,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -16257,7 +15689,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -16290,7 +15722,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -16299,7 +15731,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -16316,7 +15748,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -16336,7 +15768,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -16347,7 +15779,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -16355,7 +15787,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -16364,7 +15796,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -16375,7 +15807,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -16386,7 +15818,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -16419,7 +15851,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -16428,7 +15860,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -16440,7 +15872,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
             completionDate: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
             student: z.unknown().optional(),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -16452,7 +15884,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -16472,7 +15904,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -16483,7 +15915,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -16491,7 +15923,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -16500,7 +15932,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -16511,7 +15943,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -16522,7 +15954,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -16555,7 +15987,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -16564,7 +15996,7 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -16577,42 +16009,9 @@ export const zStudentDeleteStudentsByIdResponse = z.object({
             isSuccessful: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             student: z.unknown().optional()
-        })).optional(),
-        user: z.object({
-            documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-            id: z.number(),
-            username: z.string(),
-            email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-            provider: z.string().optional(),
-            confirmed: z.boolean().default(false),
-            blocked: z.boolean().default(false),
-            createdAt: z.string().optional(),
-            updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-            role: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                name: z.string(),
-                description: z.string().optional(),
-                type: z.string().optional(),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                permissions: z.array(z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    action: z.string(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    role: z.unknown().optional()
-                })).optional(),
-                users: z.array(z.unknown()).optional()
-            }).optional(),
-            student: z.unknown().optional()
-        }).optional()
+        })).optional()
     })
 });
 
@@ -16638,15 +16037,13 @@ export const zStudentGetStudentsByIdRequest = z.object({
                 'feedbacks',
                 'courses',
                 'certificates',
-                'user_logs',
-                'user'
+                'user_logs'
             ]),
             z.array(z.enum([
                 'feedbacks',
                 'courses',
                 'certificates',
-                'user_logs',
-                'user'
+                'user_logs'
             ]))
         ]).optional(),
         filters: z.record(z.unknown()).optional(),
@@ -16700,7 +16097,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
         verifiedAt: z.string().optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.120Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.080Z'),
         feedbacks: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -16709,7 +16106,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
             dateCreated: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -16720,7 +16117,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -16740,7 +16137,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -16751,7 +16148,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -16759,7 +16156,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -16768,7 +16165,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -16779,7 +16176,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -16790,7 +16187,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -16823,7 +16220,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -16832,7 +16229,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -16849,7 +16246,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -16869,7 +16266,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -16880,7 +16277,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -16888,7 +16285,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -16897,7 +16294,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -16908,7 +16305,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -16919,7 +16316,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -16952,7 +16349,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -16961,7 +16358,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -16973,7 +16370,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
             completionDate: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
             student: z.unknown().optional(),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -16985,7 +16382,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -17005,7 +16402,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -17016,7 +16413,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -17024,7 +16421,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -17033,7 +16430,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -17044,7 +16441,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -17055,7 +16452,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -17088,7 +16485,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -17097,7 +16494,7 @@ export const zStudentGetStudentsByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -17110,42 +16507,9 @@ export const zStudentGetStudentsByIdResponse = z.object({
             isSuccessful: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             student: z.unknown().optional()
-        })).optional(),
-        user: z.object({
-            documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-            id: z.number(),
-            username: z.string(),
-            email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-            provider: z.string().optional(),
-            confirmed: z.boolean().default(false),
-            blocked: z.boolean().default(false),
-            createdAt: z.string().optional(),
-            updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-            role: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                name: z.string(),
-                description: z.string().optional(),
-                type: z.string().optional(),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                permissions: z.array(z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    action: z.string(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    role: z.unknown().optional()
-                })).optional(),
-                users: z.array(z.unknown()).optional()
-            }).optional(),
-            student: z.unknown().optional()
-        }).optional()
+        })).optional()
     })
 });
 
@@ -17157,12 +16521,11 @@ export const zStudentPutStudentsByIdRequest = z.object({
             email: z.string().email().min(1).max(50).regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/).optional(),
             password: z.string().optional(),
             verifiedAt: z.string().optional(),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.123Z'),
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.082Z'),
             feedbacks: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
             courses: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
             certificates: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
-            user_logs: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional(),
-            user: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional()
+            user_logs: z.array(z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/)).optional()
         })
     }).optional(),
     path: z.object({
@@ -17185,15 +16548,13 @@ export const zStudentPutStudentsByIdRequest = z.object({
                 'feedbacks',
                 'courses',
                 'certificates',
-                'user_logs',
-                'user'
+                'user_logs'
             ]),
             z.array(z.enum([
                 'feedbacks',
                 'courses',
                 'certificates',
-                'user_logs',
-                'user'
+                'user_logs'
             ]))
         ]).optional(),
         status: z.enum([
@@ -17216,7 +16577,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
         verifiedAt: z.string().optional(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.124Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.082Z'),
         feedbacks: z.array(z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -17225,7 +16586,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
             dateCreated: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -17236,7 +16597,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -17256,7 +16617,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -17267,7 +16628,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -17275,7 +16636,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -17284,7 +16645,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -17295,7 +16656,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -17306,7 +16667,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -17339,7 +16700,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -17348,7 +16709,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -17365,7 +16726,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
             numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
             image: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -17385,7 +16746,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                 provider_metadata: z.unknown().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                 related: z.unknown()
             }).optional(),
             feedbacks: z.array(z.unknown()).optional(),
@@ -17396,7 +16757,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                 description: z.string().optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                 exercises: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -17404,7 +16765,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                     question: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercise_options: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -17413,7 +16774,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                         isCorrect: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         exercise: z.unknown().optional()
                     })).optional()
                 })).optional(),
@@ -17424,7 +16785,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                     completed: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                     content: z.array(z.unknown()).optional()
                 })).optional(),
                 course: z.unknown().optional()
@@ -17435,7 +16796,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                 name: z.string().min(1).max(50),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                 courses: z.array(z.unknown()).optional()
             })).optional(),
             students: z.array(z.unknown()).optional(),
@@ -17468,7 +16829,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                 jobDescription: z.string().min(1).max(400).optional(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 courses: z.array(z.unknown()).optional(),
                 user_logs: z.array(z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -17477,7 +16838,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                     isSuccessful: z.boolean().default(false),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     student: z.unknown().optional()
                 })).optional()
             })).optional()
@@ -17489,7 +16850,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
             completionDate: z.string(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
             student: z.unknown().optional(),
             course: z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -17501,7 +16862,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -17521,7 +16882,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -17532,7 +16893,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -17540,7 +16901,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -17549,7 +16910,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -17560,7 +16921,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -17571,7 +16932,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -17604,7 +16965,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -17613,7 +16974,7 @@ export const zStudentPutStudentsByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -17626,42 +16987,9 @@ export const zStudentPutStudentsByIdResponse = z.object({
             isSuccessful: z.boolean().default(false),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
             student: z.unknown().optional()
-        })).optional(),
-        user: z.object({
-            documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-            id: z.number(),
-            username: z.string(),
-            email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-            provider: z.string().optional(),
-            confirmed: z.boolean().default(false),
-            blocked: z.boolean().default(false),
-            createdAt: z.string().optional(),
-            updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-            role: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                name: z.string(),
-                description: z.string().optional(),
-                type: z.string().optional(),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                permissions: z.array(z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    action: z.string(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    role: z.unknown().optional()
-                })).optional(),
-                users: z.array(z.unknown()).optional()
-            }).optional(),
-            student: z.unknown().optional()
-        }).optional()
+        })).optional()
     })
 });
 
@@ -17779,7 +17107,7 @@ export const zUserLogGetUserLogsResponse = z.object({
         isSuccessful: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.126Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.084Z'),
         student: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -17789,7 +17117,7 @@ export const zUserLogGetUserLogsResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -17798,7 +17126,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -17809,7 +17137,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -17829,7 +17157,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -17840,7 +17168,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -17848,7 +17176,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -17857,7 +17185,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -17868,7 +17196,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -17879,7 +17207,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -17912,7 +17240,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -17921,7 +17249,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -17938,7 +17266,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -17958,7 +17286,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -17969,7 +17297,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -17977,7 +17305,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -17986,7 +17314,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -17997,7 +17325,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -18008,7 +17336,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -18041,7 +17369,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -18050,7 +17378,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -18062,7 +17390,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -18074,7 +17402,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -18094,7 +17422,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -18105,7 +17433,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -18113,7 +17441,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -18122,7 +17450,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -18133,7 +17461,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -18144,7 +17472,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -18177,7 +17505,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -18186,7 +17514,7 @@ export const zUserLogGetUserLogsResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -18199,42 +17527,9 @@ export const zUserLogGetUserLogsResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional()
     }))
 });
@@ -18251,7 +17546,7 @@ export const zUserLogPostUserLogsRequest = z.object({
                 'f',
                 'false'
             ]),
-            publishedAt: z.string().default('2025-11-11T19:49:07.128Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.086Z'),
             student: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional()
         })
     }).optional(),
@@ -18287,7 +17582,7 @@ export const zUserLogPostUserLogsResponse = z.object({
         isSuccessful: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.128Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.086Z'),
         student: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -18297,7 +17592,7 @@ export const zUserLogPostUserLogsResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -18306,7 +17601,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -18317,7 +17612,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -18337,7 +17632,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -18348,7 +17643,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -18356,7 +17651,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -18365,7 +17660,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -18376,7 +17671,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -18387,7 +17682,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -18420,7 +17715,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -18429,7 +17724,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -18446,7 +17741,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -18466,7 +17761,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -18477,7 +17772,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -18485,7 +17780,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -18494,7 +17789,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -18505,7 +17800,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -18516,7 +17811,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -18549,7 +17844,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -18558,7 +17853,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -18570,7 +17865,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -18582,7 +17877,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -18602,7 +17897,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -18613,7 +17908,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -18621,7 +17916,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -18630,7 +17925,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -18641,7 +17936,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -18652,7 +17947,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -18685,7 +17980,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -18694,7 +17989,7 @@ export const zUserLogPostUserLogsResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -18707,42 +18002,9 @@ export const zUserLogPostUserLogsResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional()
     })
 });
@@ -18784,7 +18046,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
         isSuccessful: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.131Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.087Z'),
         student: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -18794,7 +18056,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -18803,7 +18065,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -18814,7 +18076,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -18834,7 +18096,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -18845,7 +18107,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -18853,7 +18115,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -18862,7 +18124,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -18873,7 +18135,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -18884,7 +18146,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -18917,7 +18179,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -18926,7 +18188,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -18943,7 +18205,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -18963,7 +18225,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -18974,7 +18236,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -18982,7 +18244,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -18991,7 +18253,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -19002,7 +18264,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -19013,7 +18275,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -19046,7 +18308,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -19055,7 +18317,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -19067,7 +18329,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -19079,7 +18341,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -19099,7 +18361,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -19110,7 +18372,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -19118,7 +18380,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -19127,7 +18389,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -19138,7 +18400,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -19149,7 +18411,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -19182,7 +18444,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -19191,7 +18453,7 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -19204,42 +18466,9 @@ export const zUserLogDeleteUserLogsByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional()
     })
 });
@@ -19305,7 +18534,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
         isSuccessful: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.127Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.085Z'),
         student: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -19315,7 +18544,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -19324,7 +18553,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -19335,7 +18564,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -19355,7 +18584,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -19366,7 +18595,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -19374,7 +18603,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -19383,7 +18612,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -19394,7 +18623,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -19405,7 +18634,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -19438,7 +18667,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -19447,7 +18676,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -19464,7 +18693,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -19484,7 +18713,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -19495,7 +18724,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -19503,7 +18732,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -19512,7 +18741,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -19523,7 +18752,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -19534,7 +18763,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -19567,7 +18796,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -19576,7 +18805,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -19588,7 +18817,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -19600,7 +18829,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -19620,7 +18849,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -19631,7 +18860,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -19639,7 +18868,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -19648,7 +18877,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -19659,7 +18888,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -19670,7 +18899,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -19703,7 +18932,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -19712,7 +18941,7 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -19725,42 +18954,9 @@ export const zUserLogGetUserLogsByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional()
     })
 });
@@ -19777,7 +18973,7 @@ export const zUserLogPutUserLogsByIdRequest = z.object({
                 'f',
                 'false'
             ]).optional(),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.128Z'),
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.086Z'),
             student: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/).optional()
         })
     }).optional(),
@@ -19815,7 +19011,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
         isSuccessful: z.boolean().default(false),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.128Z'),
+        publishedAt: z.string().default('2025-11-13T09:51:09.087Z'),
         student: z.object({
             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
             id: z.number(),
@@ -19825,7 +19021,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
             verifiedAt: z.string().optional(),
             createdAt: z.string().optional(),
             updatedAt: z.string().optional(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.021Z'),
+            publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
             feedbacks: z.array(z.object({
                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                 id: z.number(),
@@ -19834,7 +19030,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                 dateCreated: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.022Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.006Z'),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -19845,7 +19041,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -19865,7 +19061,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -19876,7 +19072,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -19884,7 +19080,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -19893,7 +19089,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -19904,7 +19100,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -19915,7 +19111,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -19948,7 +19144,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -19957,7 +19153,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -19974,7 +19170,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                 numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                 image: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                     id: z.number(),
@@ -19994,7 +19190,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                     provider_metadata: z.unknown().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                     related: z.unknown()
                 }).optional(),
                 feedbacks: z.array(z.unknown()).optional(),
@@ -20005,7 +19201,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                     description: z.string().optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                     exercises: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -20013,7 +19209,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                         question: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercise_options: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -20022,7 +19218,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                             isCorrect: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             exercise: z.unknown().optional()
                         })).optional()
                     })).optional(),
@@ -20033,7 +19229,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                         completed: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                         content: z.array(z.unknown()).optional()
                     })).optional(),
                     course: z.unknown().optional()
@@ -20044,7 +19240,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                     name: z.string().min(1).max(50),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                     courses: z.array(z.unknown()).optional()
                 })).optional(),
                 students: z.array(z.unknown()).optional(),
@@ -20077,7 +19273,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                     jobDescription: z.string().min(1).max(400).optional(),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                     courses: z.array(z.unknown()).optional(),
                     user_logs: z.array(z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -20086,7 +19282,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                         isSuccessful: z.boolean().default(false),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         student: z.unknown().optional()
                     })).optional()
                 })).optional()
@@ -20098,7 +19294,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                 completionDate: z.string(),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.031Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.013Z'),
                 student: z.unknown().optional(),
                 course: z.object({
                     documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -20110,7 +19306,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                     numOfSubscriptions: z.number().int().gte(-9007199254740991).lte(9007199254740991).default(0),
                     createdAt: z.string().optional(),
                     updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.023Z'),
+                    publishedAt: z.string().default('2025-11-13T09:51:09.007Z'),
                     image: z.object({
                         documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                         id: z.number(),
@@ -20130,7 +19326,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                         provider_metadata: z.unknown().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.024Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.008Z'),
                         related: z.unknown()
                     }).optional(),
                     feedbacks: z.array(z.unknown()).optional(),
@@ -20141,7 +19337,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                         description: z.string().optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                         exercises: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                             id: z.number(),
@@ -20149,7 +19345,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                             question: z.string().min(1).max(50),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.025Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.009Z'),
                             exercise_options: z.array(z.object({
                                 documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
                                 id: z.number(),
@@ -20158,7 +19354,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                                 isCorrect: z.boolean().default(false),
                                 createdAt: z.string().optional(),
                                 updatedAt: z.string().optional(),
-                                publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                                publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                                 exercise: z.unknown().optional()
                             })).optional()
                         })).optional(),
@@ -20169,7 +19365,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                             completed: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.026Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.010Z'),
                             content: z.array(z.unknown()).optional()
                         })).optional(),
                         course: z.unknown().optional()
@@ -20180,7 +19376,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                         name: z.string().min(1).max(50),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.027Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.011Z'),
                         courses: z.array(z.unknown()).optional()
                     })).optional(),
                     students: z.array(z.unknown()).optional(),
@@ -20213,7 +19409,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                         jobDescription: z.string().min(1).max(400).optional(),
                         createdAt: z.string().optional(),
                         updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                        publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                         courses: z.array(z.unknown()).optional(),
                         user_logs: z.array(z.object({
                             documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
@@ -20222,7 +19418,7 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                             isSuccessful: z.boolean().default(false),
                             createdAt: z.string().optional(),
                             updatedAt: z.string().optional(),
-                            publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                            publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                             student: z.unknown().optional()
                         })).optional()
                     })).optional()
@@ -20235,42 +19431,9 @@ export const zUserLogPutUserLogsByIdResponse = z.object({
                 isSuccessful: z.boolean().default(false),
                 createdAt: z.string().optional(),
                 updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.030Z'),
+                publishedAt: z.string().default('2025-11-13T09:51:09.012Z'),
                 student: z.unknown().optional()
-            })).optional(),
-            user: z.object({
-                documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                id: z.number(),
-                username: z.string(),
-                email: z.string().email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
-                provider: z.string().optional(),
-                confirmed: z.boolean().default(false),
-                blocked: z.boolean().default(false),
-                createdAt: z.string().optional(),
-                updatedAt: z.string().optional(),
-                publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                role: z.object({
-                    documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                    id: z.number(),
-                    name: z.string(),
-                    description: z.string().optional(),
-                    type: z.string().optional(),
-                    createdAt: z.string().optional(),
-                    updatedAt: z.string().optional(),
-                    publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                    permissions: z.array(z.object({
-                        documentId: z.string().uuid().regex(/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/),
-                        id: z.number(),
-                        action: z.string(),
-                        createdAt: z.string().optional(),
-                        updatedAt: z.string().optional(),
-                        publishedAt: z.string().default('2025-11-11T19:49:07.032Z'),
-                        role: z.unknown().optional()
-                    })).optional(),
-                    users: z.array(z.unknown()).optional()
-                }).optional(),
-                student: z.unknown().optional()
-            }).optional()
+            })).optional()
         }).optional()
     })
 });
@@ -20347,7 +19510,7 @@ export const zVerificationTokenGetVerificationTokensResponse = z.object({
         expiresAt: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.132Z')
+        publishedAt: z.string().default('2025-11-13T09:51:09.088Z')
     }))
 });
 
@@ -20357,7 +19520,7 @@ export const zVerificationTokenPostVerificationTokensRequest = z.object({
             userEmail: z.string().email().min(1).max(50).regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
             token: z.string(),
             expiresAt: z.string(),
-            publishedAt: z.string().default('2025-11-11T19:49:07.502Z')
+            publishedAt: z.string().default('2025-11-13T09:51:09.370Z')
         })
     }).optional(),
     path: z.never().optional(),
@@ -20390,7 +19553,7 @@ export const zVerificationTokenPostVerificationTokensResponse = z.object({
         expiresAt: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.133Z')
+        publishedAt: z.string().default('2025-11-13T09:51:09.090Z')
     })
 });
 
@@ -20429,7 +19592,7 @@ export const zVerificationTokenDeleteVerificationTokensByIdResponse = z.object({
         expiresAt: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.135Z')
+        publishedAt: z.string().default('2025-11-13T09:51:09.095Z')
     })
 });
 
@@ -20494,7 +19657,7 @@ export const zVerificationTokenGetVerificationTokensByIdResponse = z.object({
         expiresAt: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.133Z')
+        publishedAt: z.string().default('2025-11-13T09:51:09.089Z')
     })
 });
 
@@ -20504,7 +19667,7 @@ export const zVerificationTokenPutVerificationTokensByIdRequest = z.object({
             userEmail: z.string().email().min(1).max(50).regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/).optional(),
             token: z.string().optional(),
             expiresAt: z.string().optional(),
-            publishedAt: z.string().optional().default('2025-11-11T19:49:07.134Z')
+            publishedAt: z.string().optional().default('2025-11-13T09:51:09.090Z')
         })
     }).optional(),
     path: z.object({
@@ -20539,7 +19702,7 @@ export const zVerificationTokenPutVerificationTokensByIdResponse = z.object({
         expiresAt: z.string(),
         createdAt: z.string().optional(),
         updatedAt: z.string().optional(),
-        publishedAt: z.string().default('2025-11-11T19:49:07.135Z')
+        publishedAt: z.string().default('2025-11-13T09:51:09.094Z')
     })
 });
 
