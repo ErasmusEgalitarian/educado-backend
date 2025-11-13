@@ -1,4 +1,4 @@
-const middlewares = ({ env }) => [
+export default [
   'strapi::logger',
   'strapi::errors',
   {
@@ -17,13 +17,7 @@ const middlewares = ({ env }) => [
       },
     },
   },
-  {
-    name: 'strapi::cors',
-    config: {
-      origin: env('CORS_ORIGIN', '*').split(',').map(origin => origin.trim()),
-      credentials: true,
-    },
-  },
+  'strapi::cors',
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
@@ -31,4 +25,3 @@ const middlewares = ({ env }) => [
   'strapi::favicon',
   'strapi::public',
 ];
-export default middlewares;
