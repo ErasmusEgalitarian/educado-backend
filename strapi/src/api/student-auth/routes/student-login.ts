@@ -5,6 +5,7 @@ export default {
       path: '/student/login',
       handler: 'student-login.loginAction',
       config: {
+        auth: false,
         policies: ['global::rate-limit'],
         middlewares: [],
       },
