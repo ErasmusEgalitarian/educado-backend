@@ -12,6 +12,8 @@
     "test": "cross-env ENV_PATH=../.env jest --verbose --runInBand --detectOpenHandles",
     "lint:check": "cross-env ENV_PATH=../.env eslint .",
     "lint:fix": "cross-env ENV_PATH=../.env eslint --fix .",
+    "lint:check:changed": "node scripts/lint-changed.js",
+    "lint:fix:changed": "node scripts/lint-changed.js --fix",
     "format:check": "prettier --check \"{,!(node_modules)/**/}*.{js,jsx,ts,tsx}\"",
     "format:fix": "prettier --write \"{,!(node_modules)/**/}*.{js,jsx,ts,tsx}\"",
     "type-check": "tsc --noEmit",

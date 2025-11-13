@@ -24,6 +24,7 @@ export default [
       "node_modules/",
       "__tests__/",
       "cypress/",
+      "scripts/",
       "vite.config.ts",
       "tailwind.config.cjs",
       "postcss.config.js",
@@ -85,6 +86,8 @@ export default [
     },
     // Our custom rules and overrides.
     rules: {
+      // Disable unified-signatures rule due to crashes in @typescript-eslint/eslint-plugin
+      "@typescript-eslint/unified-signatures": "off",
       // Prevents bugs from using "truthy" or "falsy" values in conditions.
       "@typescript-eslint/strict-boolean-expressions": [
         "error",
