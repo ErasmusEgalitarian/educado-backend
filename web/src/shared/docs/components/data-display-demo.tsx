@@ -1,6 +1,10 @@
-import { mdiTable, mdiViewGrid } from "@mdi/js";
+import {
+  mdiTable,
+  mdiViewGrid,
+  mdiStar,
+  mdiBookOpenBlankVariantOutline,
+} from "@mdi/js";
 import Icon from "@mdi/react";
-import { BookOpen, Star } from "lucide-react";
 
 import { Badge } from "@/shared/components/shadcn/badge";
 import {
@@ -25,7 +29,7 @@ const DataDisplayDemo = () => {
     <Card>
       <CardHeader>
         <div className="flex items-center gap-2 text-[#28363E]">
-          <BookOpen className="h-5 w-5" />
+          <Icon path={mdiBookOpenBlankVariantOutline} className="h-5 w-5" />
           <CardTitle className="truncate" title={course.title}>
             {course.title}
           </CardTitle>
@@ -40,7 +44,10 @@ const DataDisplayDemo = () => {
           ))}
         </div>
         <div className="mt-2 flex items-center gap-1">
-          <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+          <Icon
+            path={mdiStar}
+            className="h-4 w-4 fill-yellow-400 text-yellow-400"
+          />
           <span className="text-sm">{course.rating}</span>
         </div>
       </CardContent>

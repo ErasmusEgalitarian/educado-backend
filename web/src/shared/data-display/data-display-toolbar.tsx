@@ -4,10 +4,12 @@ import {
   mdiSortAscending,
   mdiSortDescending,
   mdiViewColumn,
+  mdiChevronDown,
+  mdiGrid,
+  mdiFormatListBulleted,
 } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { Table } from "@tanstack/react-table";
-import { ChevronDown, Grid, List } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { SelectionSummary } from "@/shared/components/item-selector";
@@ -65,7 +67,7 @@ const DataDisplayToolbar = <TData,>({
               onViewModeChange("grid");
             }}
           >
-            <Grid className="h-4 w-4" />
+            <Icon path={mdiGrid} className="h-4 w-4" />
           </Button>
           <Button
             variant={viewMode === "table" ? "toggle" : "outline"}
@@ -74,7 +76,7 @@ const DataDisplayToolbar = <TData,>({
               onViewModeChange("table");
             }}
           >
-            <List className="h-4 w-4" />
+            <Icon path={mdiFormatListBulleted} className="h-4 w-4" />
           </Button>
         </ButtonGroup>
       )}
@@ -104,7 +106,7 @@ const DataDisplayToolbar = <TData,>({
               <Button variant="outline" size="md" className="ml-auto">
                 <Icon path={mdiSort} size={1} className="mr-2 h-4 w-4" />
                 {t("common.sort")}
-                <ChevronDown className="ml-2 h-4 w-4" />
+                <Icon path={mdiChevronDown} className="ml-2 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-[250px]">
@@ -185,7 +187,7 @@ const DataDisplayToolbar = <TData,>({
               >
                 <Icon path={mdiViewColumn} size={1} className="mr-2 h-4 w-4" />
                 {t("common.columns")}
-                <ChevronDown className="ml-2 h-4 w-4" />
+                <Icon path={mdiChevronDown} className="ml-2 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-[150px]">
