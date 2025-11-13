@@ -8,23 +8,11 @@ export default factories.createCoreRouter('api::course-category.course-category'
     config: {
         find: {
             auth: false,
-            policies: ['global::is-student-or-content-creator'],
+            policies: ['global::is-student'],
         },
         findOne: {
             auth: false,
-            policies: ['global::is-student-or-content-creator'],
-        },
-        create: {
-            auth: false,
-            policies: ['global::is-content-creator'],
-        },
-        update: {
-            auth: false,
-            policies: ['global::is-content-creator'],
-        },
-        delete: {
-            auth: false,
-            policies: ['global::is-content-creator'],
+            policies: ['global::is-student'],
         },
     }
 });

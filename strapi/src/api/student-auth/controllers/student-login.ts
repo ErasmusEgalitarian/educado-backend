@@ -56,7 +56,7 @@ export default {
         documentId: user.documentId,
         name: user.name,
         email: user.email,
-        verifiedAt: user.verifiedAt ? new Date(user.verifiedAt) : null,
+        verifiedAt: new Date(user.verifiedAt),
       };
 
       //log successful login
@@ -71,7 +71,7 @@ export default {
           documentId: user.documentId,
           name: user.name,
           email: user.email,
-          verifiedAt: user.verifiedAt ? new Date(user.verifiedAt).toISOString() : null,
+          verifiedAt: new Date(user.verifiedAt).toISOString(),
         },
       };
     } catch (err) {
@@ -185,10 +185,8 @@ export default {
 
       // If token is not provided or token is expired, return error E0404
       if (
-        !(
-          passwordResetToken &&
-          passwordResetToken.token === token &&
-          new Date(passwordResetToken.expiresAt) > new Date()
+        !( passwordResetToken ||
+          (passwordResetToken.token == token && new Date(passwordResetToken.expiresAt) > new Date(Date.now()))
         )
       ) {
         ctx.response.status = 400;
@@ -260,7 +258,7 @@ function getRandomNumber(min, max) {
 }
 
 function generatePasswordResetToken() {
-  const length = 8;
+  const length = 4;
   let retVal = "";
   for (let i = 0; i < length; i++) {
     retVal += getRandomNumber(0, 9);

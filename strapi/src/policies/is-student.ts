@@ -16,18 +16,10 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
     const secretKey = process.env.JWT_SECRET;
     let user : any;
 
-    const authHeader = policyContext.request.ctx.headers.authorization;
-
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        throw new PolicyError("Missing or invalid authorization header", {
-            policy: 'is-student',
-        });
-    }
-
     try {
         // Extract the authenticated user from the policy context
         // We remove the "Bearer " prefix from the authorization header
-        user = jwt.verify(authHeader.split("Bearer ")[1], secretKey);
+        user = jwt.verify(policyContext.request.ctx.headers.authorization.split("Bearer ")[1], secretKey);
     } catch (error) {
         strapi.log.error("JWT verification failed:", error);
         throw new PolicyError("JWT verification failed", {
@@ -43,12 +35,6 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
         });
     }
 
-    if(user.verifiedAt == null){
-        throw new PolicyError("User not verified", {
-            policy: 'is-student',
-        });
-    }
-
     try {
         // Query the Student collection to find a record
         // that matches both the user's email and documentId
@@ -58,6 +44,12 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
                 documentId: user.documentId 
             },
         });
+
+        if(user.verifiedAt == null){
+            throw new PolicyError("User not verified", {
+                policy: 'is-student',
+            });
+        }
 
         // Return true if a matching Student exists (grant access),
         // or false if not (deny access)

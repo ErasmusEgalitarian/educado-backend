@@ -8,11 +8,11 @@ export default factories.createCoreRouter('api::certificate.certificate', {
     config: {
         find: {
             auth: false,
-            policies: ['global::is-student-or-content-creator'],
+            policies: ['global::is-student'],
         },
         findOne: {
             auth: false,
-            policies: ['global::is-student-or-content-creator'],
+            policies: ['global::is-student'],
         },
     }
 });

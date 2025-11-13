@@ -14,17 +14,5 @@ export default factories.createCoreRouter('api::course-selection.course-selectio
             auth: false,
             policies: ['global::is-student'],
         },
-        create: {
-            auth: false,
-            policies: ['global::is-student'],
-        },
-        update: {
-            auth: false,
-            policies: ['global::is-student'],
-        },
-        delete: {
-            auth: false,
-            policies: ['global::is-student'],
-        },
     }
 });

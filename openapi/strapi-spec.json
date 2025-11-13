@@ -10881,8 +10881,7 @@
                     "feedbacks",
                     "courses",
                     "certificates",
-                    "user_logs",
-                    "user"
+                    "user_logs"
                   ]
                 },
                 {
@@ -10893,8 +10892,7 @@
                       "feedbacks",
                       "courses",
                       "certificates",
-                      "user_logs",
-                      "user"
+                      "user_logs"
                     ]
                   }
                 }
@@ -11029,8 +11027,7 @@
                     "feedbacks",
                     "courses",
                     "certificates",
-                    "user_logs",
-                    "user"
+                    "user_logs"
                   ]
                 },
                 {
@@ -11041,8 +11038,7 @@
                       "feedbacks",
                       "courses",
                       "certificates",
-                      "user_logs",
-                      "user"
+                      "user_logs"
                     ]
                   }
                 }
@@ -11198,8 +11194,7 @@
                     "feedbacks",
                     "courses",
                     "certificates",
-                    "user_logs",
-                    "user"
+                    "user_logs"
                   ]
                 },
                 {
@@ -11210,8 +11205,7 @@
                       "feedbacks",
                       "courses",
                       "certificates",
-                      "user_logs",
-                      "user"
+                      "user_logs"
                     ]
                   }
                 }
@@ -11468,8 +11462,7 @@
                     "feedbacks",
                     "courses",
                     "certificates",
-                    "user_logs",
-                    "user"
+                    "user_logs"
                   ]
                 },
                 {
@@ -11480,8 +11473,7 @@
                       "feedbacks",
                       "courses",
                       "certificates",
-                      "user_logs",
-                      "user"
+                      "user_logs"
                     ]
                   }
                 }
@@ -11635,8 +11627,7 @@
                     "feedbacks",
                     "courses",
                     "certificates",
-                    "user_logs",
-                    "user"
+                    "user_logs"
                   ]
                 },
                 {
@@ -11647,8 +11638,7 @@
                       "feedbacks",
                       "courses",
                       "certificates",
-                      "user_logs",
-                      "user"
+                      "user_logs"
                     ]
                   }
                 }
@@ -36096,7 +36086,30 @@
         }
       },
       "JWTResponse": {
-        "type": "string"
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "userInfo": {
+            "type": "object",
+            "properties": {
+              "documentId": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "verifiedAt": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
       },
       "ResetPasswordRequestRequest": {
         "type": "object",
