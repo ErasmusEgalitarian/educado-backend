@@ -6184,39 +6184,6 @@ export type CertificateGetCertificatesResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
             course?: {
                 documentId: string;
@@ -6796,39 +6763,6 @@ export type CertificatePostCertificatesResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
             course?: {
                 documentId: string;
@@ -7405,39 +7339,6 @@ export type CertificateDeleteCertificatesByIdResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
             course?: {
                 documentId: string;
@@ -8019,39 +7920,6 @@ export type CertificateGetCertificatesByIdResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
             course?: {
                 documentId: string;
@@ -8633,39 +8501,6 @@ export type CertificatePutCertificatesByIdResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
             course?: {
                 documentId: string;
@@ -10550,39 +10385,6 @@ export type CourseGetCoursesResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             }>;
             content_creators?: Array<{
                 documentId: string;
@@ -11288,39 +11090,6 @@ export type CoursePostCoursesResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             }>;
             content_creators?: Array<{
                 documentId: string;
@@ -12016,39 +11785,6 @@ export type CourseDeleteCoursesByIdResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             }>;
             content_creators?: Array<{
                 documentId: string;
@@ -12749,39 +12485,6 @@ export type CourseGetCoursesByIdResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             }>;
             content_creators?: Array<{
                 documentId: string;
@@ -13489,39 +13192,6 @@ export type CoursePutCoursesByIdResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             }>;
             content_creators?: Array<{
                 documentId: string;
@@ -16901,39 +16571,6 @@ export type FeedbackGetFeedbacksResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
         }>;
     };
@@ -17515,39 +17152,6 @@ export type FeedbackPostFeedbacksResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
         };
     };
@@ -18125,39 +17729,6 @@ export type FeedbackDeleteFeedbacksByIdResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
         };
     };
@@ -18740,39 +18311,6 @@ export type FeedbackGetFeedbacksByIdResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
         };
     };
@@ -19356,39 +18894,6 @@ export type FeedbackPutFeedbacksByIdResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
         };
     };
@@ -20052,7 +19557,7 @@ export type StudentGetStudentsRequest = {
         } | Array<{
             [key: string]: 'asc' | 'desc';
         }>;
-        populate?: '*' | 'feedbacks' | 'courses' | 'certificates' | 'user_logs' | 'user' | Array<'feedbacks' | 'courses' | 'certificates' | 'user_logs' | 'user'>;
+        populate?: '*' | 'feedbacks' | 'courses' | 'certificates' | 'user_logs' | Array<'feedbacks' | 'courses' | 'certificates' | 'user_logs'>;
         status?: 'draft' | 'published';
     };
     url: '/students';
@@ -20484,39 +19989,6 @@ export type StudentGetStudentsResponses = {
                 publishedAt: string;
                 student?: unknown;
             }>;
-            user?: {
-                documentId: string;
-                id: number;
-                username: string;
-                email: string;
-                provider?: string;
-                confirmed: boolean;
-                blocked: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                role?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    description?: string;
-                    type?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    permissions?: Array<{
-                        documentId: string;
-                        id: number;
-                        action: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        role?: unknown;
-                    }>;
-                    users?: Array<unknown>;
-                };
-                student?: unknown;
-            };
         }>;
     };
 };
@@ -20536,13 +20008,12 @@ export type StudentPostStudentsRequest = {
             courses?: Array<string>;
             certificates?: Array<string>;
             user_logs?: Array<string>;
-            user?: string;
         };
     };
     path?: never;
     query?: {
         readonly fields?: Array<'name' | 'biography' | 'email' | 'password' | 'verifiedAt' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'feedbacks' | 'courses' | 'certificates' | 'user_logs' | 'user' | Array<'feedbacks' | 'courses' | 'certificates' | 'user_logs' | 'user'>;
+        populate?: '*' | 'feedbacks' | 'courses' | 'certificates' | 'user_logs' | Array<'feedbacks' | 'courses' | 'certificates' | 'user_logs'>;
         status?: 'draft' | 'published';
     };
     url: '/students';
@@ -20974,39 +20445,6 @@ export type StudentPostStudentsResponses = {
                 publishedAt: string;
                 student?: unknown;
             }>;
-            user?: {
-                documentId: string;
-                id: number;
-                username: string;
-                email: string;
-                provider?: string;
-                confirmed: boolean;
-                blocked: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                role?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    description?: string;
-                    type?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    permissions?: Array<{
-                        documentId: string;
-                        id: number;
-                        action: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        role?: unknown;
-                    }>;
-                    users?: Array<unknown>;
-                };
-                student?: unknown;
-            };
         };
     };
 };
@@ -21020,7 +20458,7 @@ export type StudentDeleteStudentsByIdRequest = {
     };
     query?: {
         readonly fields?: Array<'name' | 'biography' | 'email' | 'password' | 'verifiedAt' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'feedbacks' | 'courses' | 'certificates' | 'user_logs' | 'user' | Array<'feedbacks' | 'courses' | 'certificates' | 'user_logs' | 'user'>;
+        populate?: '*' | 'feedbacks' | 'courses' | 'certificates' | 'user_logs' | Array<'feedbacks' | 'courses' | 'certificates' | 'user_logs'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -21455,39 +20893,6 @@ export type StudentDeleteStudentsByIdResponses = {
                 publishedAt: string;
                 student?: unknown;
             }>;
-            user?: {
-                documentId: string;
-                id: number;
-                username: string;
-                email: string;
-                provider?: string;
-                confirmed: boolean;
-                blocked: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                role?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    description?: string;
-                    type?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    permissions?: Array<{
-                        documentId: string;
-                        id: number;
-                        action: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        role?: unknown;
-                    }>;
-                    users?: Array<unknown>;
-                };
-                student?: unknown;
-            };
         };
     };
 };
@@ -21501,7 +20906,7 @@ export type StudentGetStudentsByIdRequest = {
     };
     query?: {
         readonly fields?: Array<'name' | 'biography' | 'email' | 'password' | 'verifiedAt' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'feedbacks' | 'courses' | 'certificates' | 'user_logs' | 'user' | Array<'feedbacks' | 'courses' | 'certificates' | 'user_logs' | 'user'>;
+        populate?: '*' | 'feedbacks' | 'courses' | 'certificates' | 'user_logs' | Array<'feedbacks' | 'courses' | 'certificates' | 'user_logs'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -21941,39 +21346,6 @@ export type StudentGetStudentsByIdResponses = {
                 publishedAt: string;
                 student?: unknown;
             }>;
-            user?: {
-                documentId: string;
-                id: number;
-                username: string;
-                email: string;
-                provider?: string;
-                confirmed: boolean;
-                blocked: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                role?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    description?: string;
-                    type?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    permissions?: Array<{
-                        documentId: string;
-                        id: number;
-                        action: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        role?: unknown;
-                    }>;
-                    users?: Array<unknown>;
-                };
-                student?: unknown;
-            };
         };
     };
 };
@@ -21993,7 +21365,6 @@ export type StudentPutStudentsByIdRequest = {
             courses?: Array<string>;
             certificates?: Array<string>;
             user_logs?: Array<string>;
-            user?: string;
         };
     };
     path: {
@@ -22001,7 +21372,7 @@ export type StudentPutStudentsByIdRequest = {
     };
     query?: {
         readonly fields?: Array<'name' | 'biography' | 'email' | 'password' | 'verifiedAt' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'feedbacks' | 'courses' | 'certificates' | 'user_logs' | 'user' | Array<'feedbacks' | 'courses' | 'certificates' | 'user_logs' | 'user'>;
+        populate?: '*' | 'feedbacks' | 'courses' | 'certificates' | 'user_logs' | Array<'feedbacks' | 'courses' | 'certificates' | 'user_logs'>;
         status?: 'draft' | 'published';
     };
     url: '/students/{id}';
@@ -22433,39 +21804,6 @@ export type StudentPutStudentsByIdResponses = {
                 publishedAt: string;
                 student?: unknown;
             }>;
-            user?: {
-                documentId: string;
-                id: number;
-                username: string;
-                email: string;
-                provider?: string;
-                confirmed: boolean;
-                blocked: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                role?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    description?: string;
-                    type?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    permissions?: Array<{
-                        documentId: string;
-                        id: number;
-                        action: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        role?: unknown;
-                    }>;
-                    users?: Array<unknown>;
-                };
-                student?: unknown;
-            };
         };
     };
 };
@@ -23144,39 +22482,6 @@ export type UserLogGetUserLogsResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
         }>;
     };
@@ -23635,39 +22940,6 @@ export type UserLogPostUserLogsResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
         };
     };
@@ -24124,39 +23396,6 @@ export type UserLogDeleteUserLogsByIdResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
         };
     };
@@ -24618,39 +23857,6 @@ export type UserLogGetUserLogsByIdResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
         };
     };
@@ -25111,39 +24317,6 @@ export type UserLogPutUserLogsByIdResponses = {
                     publishedAt: string;
                     student?: unknown;
                 }>;
-                user?: {
-                    documentId: string;
-                    id: number;
-                    username: string;
-                    email: string;
-                    provider?: string;
-                    confirmed: boolean;
-                    blocked: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    role?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        description?: string;
-                        type?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        permissions?: Array<{
-                            documentId: string;
-                            id: number;
-                            action: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            role?: unknown;
-                        }>;
-                        users?: Array<unknown>;
-                    };
-                    student?: unknown;
-                };
             };
         };
     };
