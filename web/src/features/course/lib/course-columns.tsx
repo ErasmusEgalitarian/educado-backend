@@ -57,7 +57,7 @@ export const createCourseColumns = ({
     },
     {
       accessorKey: "course_categories",
-      header: t("categories.categories"),
+      header: t("courseManager.categories"),
       cell: ({ row }) => {
         const course = row.original;
         const categories = course.course_categories ?? [];
@@ -97,7 +97,7 @@ export const createCourseColumns = ({
     },
     {
       id: "rating",
-      header: t("common.rating"),
+      header: t("rating.rating"),
       cell: () => {
         // Placeholder rating - you can replace this with actual rating data later
         const rating = 4.2;
@@ -130,7 +130,7 @@ export const createCourseColumns = ({
 
         const handleDelete = () => {
           toast.info(
-            "Delete functionality is not implemented yet: " + documentId
+            "Delete functionality is not implemented yet: " + documentId,
           );
         };
 

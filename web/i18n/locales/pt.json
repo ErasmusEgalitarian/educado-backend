@@ -192,12 +192,37 @@
     "describeTheImage": "Descreva a imagem para acessibilidade",
     "addACaption": "Adicione uma legenda ou descrição",
     "previewShortcuts": "Pressione ESC para fechar • Setas para navegar • +/- para ampliar"
+  },"carousel":
+  {
+    "title1":"Junte-se a nós para transformar vidas a partir do seu conhecimento",
+    "section1":"Oferecemos acesso a conteúdo personalizado para pessoas que precisam, melhorando condições de vida e oportunidades de emprego",
+    "title2":"Para criadores de conteúdo", 
+    "section2":"Divulgue seu trabalho e alcance um público ainda maior. Mostre suas ideias para quem quer aprender e se inspirar.",
+    "title3":"Cadastre-se agora e ajude a fazer a diferença!",
+    "section3":"Faça parte de uma comunidade que facilita o acesso a conteúdos relevantes e incentiva o compartilhamento de conhecimento de forma simples e prática."
   },
-  "multiSelect": {
+   "multiSelect": {
     "createCategory": "Criar categoria",
     "EnterCategoryTitle": "Digite um título de categoria curto e claro.",
     "newCategory": "Nova Categoria",
     "creatingCategory": "Criando Categoria",
     "minNameLength": "O nome da categoria deve ter pelo menos {{count}} caracteres"
+  },
+  "login":{
+      "back-button":"Voltar",
+      "welcome-back":"Bem-vindo(a) de volta!",
+      "email":"Email",
+      "password":"Senha",
+      "login-button":"Entrar",
+      "forgot-password":"Esqueceu sua senha?",
+      "no-account":"Ainda não tem conta?",
+      "register-now":"Cadastre-se agora",
+      "email-error":"EMAIL OU SENHA INCORRETOS. POR FAVOR, TENTE NOVAMENTE."
+  },"welcome":{
+    "title": "Boas vindas ao EDUCADO!",
+    "subtitle": "Cadastre-se agora e ajude a promover seu trabalho e atingir um público mais amplo por meio da criação de conteúdo.",
+    "register-button": "Cadastrar",
+    "login-text": "Já possui uma conta?",
+    "login-button": "Entrar"
   }
 }

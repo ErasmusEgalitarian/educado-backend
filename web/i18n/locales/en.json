@@ -193,11 +193,36 @@
     "addACaption": "Add a caption or description",
     "previewShortcuts": "Press ESC to close • Arrow keys to navigate • +/- to zoom"
   },
-  "multiSelect": {
+   "multiSelect": {
     "createCategory": "Create category",
     "EnterCategoryTitle": "Enter a short and clear category title.",
     "newCategory": "New Category",
     "creatingCategory": "Creating Category",
     "minNameLength": "Category name must be at least {{count}} characters"
-  }
+  },
+    "carousel": {
+    "title1": "Join us to transform lives through your knowledge",
+    "section1": "We offer access to personalized content for people in need, improving living conditions and job opportunities.",
+    "title2": "For content creators",
+    "section2": "Promote your work and reach an even wider audience. Share your ideas with those who want to learn and be inspired.",
+    "title3": "Sign up now and help make a difference!",
+    "section3": "Be part of a community that makes it easier to access relevant content and encourages knowledge sharing in a simple and practical way."
+  },
+  "login":{
+    "back-button":"Back",
+    "welcome-back":"Welcome back!",
+    "email":"Email",
+    "password":"Password",
+    "login-button":"Log In",
+    "forgot-password":"Forgot your password?",
+    "no-account":"Don't have an account yet?",
+    "register-now":"Register now",
+    "email-error":"INCORRECT EMAIL OR PASSWORD. PLEASE TRY AGAIN."
+  },"welcome":{
+  "title": "Welcome to EDUCADO!",
+  "subtitle": "Sign up now and help promote your work and reach a wider audience through content creation.",
+  "register-button": "Register",
+  "login-text": "Already have an account?",
+  "login-button": "Sign in"
+}
 }

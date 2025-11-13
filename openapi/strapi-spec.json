@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "x-powered-by": "strapi",
-  "x-strapi-version": "5.29.0",
+  "x-strapi-version": "5.30.0",
   "info": {
     "title": "strapi",
     "description": "API documentation for strapi v0.1.0",
@@ -2322,6 +2322,35 @@
         "tags": [
           "content-creator"
         ]
+      }
+    },
+    "/content-creator/login": {
+      "post": {
+        "tags": [
+          "Content Creator - Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JWTResponse"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/courses": {
