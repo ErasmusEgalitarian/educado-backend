@@ -12,7 +12,6 @@ import {
 } from "@tanstack/react-table";
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 
-import { useAuth } from "@/auth/hooks/use-auth";
 import { fetchHeaders, getBaseApiUrl } from "@/shared/config/api-config";
 
 import {
@@ -166,9 +165,9 @@ export default function usePaginatedData<T>(
   // Extract mode-specific props
   const isIntegratedMode = props.mode === "integrated";
   const tableState = isIntegratedMode ? props.tableState : undefined;
-  const initialPageSize = !isIntegratedMode
-    ? (props.initialPageSize ?? 10)
-    : 10;
+  const initialPageSize = isIntegratedMode
+    ? 10
+    : (props.initialPageSize ?? 10);
 
   // Construct the full base URL for API requests
   const baseUrl = getBaseApiUrl() + urlPath;
@@ -231,8 +230,8 @@ export default function usePaginatedData<T>(
       "detect",
       fields,
       populate,
-      ...(staticFilters !== undefined ? [{ staticFilters }] : []),
-      ...(effectiveStatus !== undefined ? [{ status: effectiveStatus }] : []),
+      ...(staticFilters === undefined ? [] : [{ staticFilters }]),
+      ...(effectiveStatus === undefined ? [] : [{ status: effectiveStatus }]),
     ],
     queryFn: async ({ signal }) => {
       console.debug("usePaginatedData: Auto-detecting mode...");
