@@ -68,7 +68,7 @@ export default {
           documentId: studentJWT.documentId,
           name: studentJWT.name,
           email: studentJWT.email,
-          verifiedAt: studentJWT.verifiedAt,
+          verifiedAt: new Date(studentJWT.verifiedAt).toISOString(),
         },
       };
 
@@ -239,7 +239,7 @@ async function generateStudentDraftAndPublish(name: string, email: string, passw
     documentId: studentPublished.documentId,
     name: studentEntry.name,
     email: studentEntry.email,
-    verifiedAt: null
+    verifiedAt: new Date(Date.now())
   }
 
   return studentJWT;
