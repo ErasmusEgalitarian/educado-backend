@@ -37564,7 +37564,6 @@
   ],
   "security": [
     {
-      "bearerAuth": []
     }
   ]
 }
