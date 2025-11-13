@@ -21,6 +21,9 @@ import { CourseCard } from "../components/course-card";
 import CourseOverviewSidebar from "../components/course-overview-sidebar";
 import { createCourseColumns } from "../lib/course-columns";
 
+// Lint: move inline icon component out of render scope
+const PlusIcon = () => <Icon path={mdiPlus} size={1} />;
+
 const CourseOverviewPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -55,7 +58,7 @@ const CourseOverviewPage = () => {
                 <Button
                   variant="primary"
                   iconPlacement="left"
-                  icon={() => <Icon path={mdiPlus} size={1} />}
+                  icon={PlusIcon}
                   onClick={() => {
                     navigate("create");
                   }}
@@ -72,7 +75,13 @@ const CourseOverviewPage = () => {
                 allowedViewModes="both"
                 gridItemRender={courseCard}
                 fields={
-                  ["title", "difficulty", "description"] as (keyof Course)[]
+                  [
+                    "title",
+                    "difficulty",
+                    "description",
+                    "updatedAt",
+                    "publishedAt",
+                  ] as (keyof Course)[]
                 }
                 populate={["course_categories"]}
                 config={{
@@ -81,19 +90,19 @@ const CourseOverviewPage = () => {
                 }}
                 selection={{
                   enabled: true,
-                  limit: 2,
+                  limit: 7,
                   onChange: handleSelectionChange,
                 }}
               />
               {/* Display selected courses count for demo */}
-              {selectedCourses.length > 0 && (
+              {selectedCourses.length > 0 ? (
                 <div className="mt-4 p-4 bg-primary-surface-lighter rounded-lg">
                   <p className="text-sm font-medium">
                     {selectedCourses.length} course(s) selected:{" "}
                     {selectedCourses.map((c) => c.title).join(", ")}
                   </p>
                 </div>
-              )}
+              ) : null}
             </CardContent>
           </Card>
         </div>

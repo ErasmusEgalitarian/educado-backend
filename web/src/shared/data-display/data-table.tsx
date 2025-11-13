@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { type Table as ReactTableType } from "@tanstack/react-table";
 import { Check, Minus } from "lucide-react";
 
@@ -20,6 +21,7 @@ interface DataTableProps<TData extends DataDisplayItem> {
   table: ReactTableType<TData>;
   isLoading: boolean;
   className?: string;
+  emptyState?: React.ReactNode;
   selectable?: boolean;
 }
 
@@ -89,9 +91,10 @@ const DataTable = <TData extends DataDisplayItem>({
   isLoading,
   className,
   selectable = false,
+  emptyState,
 }: Readonly<DataTableProps<TData>>) => {
   return (
-    <div className={`rounded-md border ${className ?? ""}`}>
+    <div className={className ?? ""}>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -115,6 +118,7 @@ const DataTable = <TData extends DataDisplayItem>({
             table={table}
             isLoading={isLoading}
             selectable={selectable}
+            emptyState={emptyState}
           />
         </TableBody>
       </Table>

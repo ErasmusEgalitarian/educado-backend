@@ -11,7 +11,7 @@ const buttonVariants = cva(
         primary:
           "bg-primary-surface-default text-greyscale-text-negative hover:bg-primary-surface-lighter hover:text-greyscale-text-caption focus-visible:ring-primary-border-subtle",
         secondary:
-          "border-2 border-primary-border-default bg-greyscale-surface-subtle text-greyscale-text-body hover:border-primary-border-lighter focus-visible:ring-primary-border-subtle",
+          "border border-primary-border-default bg-greyscale-surface-subtle text-greyscale-text-body hover:border-primary-border-lighter focus-visible:ring-primary-border-subtle",
         success:
           "bg-success-surface-default text-greyscale-text-negative hover:bg-success-surface-lighter hover:text-success-text-label focus-visible:ring-success-border-subtle",
         destructive:
@@ -42,15 +42,16 @@ const buttonVariants = cva(
           "bg-[size:400%] bg-[linear-gradient(-45deg,var(--gradient-lime),var(--gradient-ocean),var(--gradient-wine),var(--gradient-rust))] animate-gradient-flow",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        xs: "h-7 px-2.5 py-1 text-xs",
+        sm: "h-8 px-3 py-1.5 text-sm",
+        md: "h-9 px-3 py-2 text-sm",
+        lg: "h-10 px-4 py-2.5 text-base",
+        icon: "h-9 w-9",
       },
     },
     defaultVariants: {
       variant: "primary",
-      size: "default",
+      size: "md",
     },
   }
 );
@@ -110,7 +111,7 @@ const Button = React.forwardRef<
         {Icon &&
           iconPlacement === "right" &&
           (effect === "expandIcon" ? (
-            <div className="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100">
+            <div className="w-0 translate-x-full pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100">
               <Icon />
             </div>
           ) : (
