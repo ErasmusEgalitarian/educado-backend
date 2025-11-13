@@ -138,6 +138,21 @@ const mergeSwaggerDocumentation = (): void => {
         .filter(f => f.endsWith('.json'))
         .map(f => customFolder + f);
 
+    // Step 4: Inject servers and auth
+    newSpec.servers = [
+        {
+            url: "http://localhost:1337/api",
+            description: "Local development server"
+        }
+    ];
+
+    newSpec.components.securitySchemes = {
+        bearerAuth: {
+            type: 'http',
+            scheme: 'bearer'
+        }
+    };
+
     if (customFiles.length > 0) {
         const customSpecs = customFiles.map(f => JSON.parse(fs.readFileSync(f, 'utf-8')));
 
