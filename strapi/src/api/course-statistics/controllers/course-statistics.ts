@@ -4,6 +4,22 @@
  */
 import { errorCodes } from "../../../helpers/errorCodes";
 import jwt, { JwtPayload } from "jsonwebtoken";
+
+interface courseRelationType {
+  enrollmentDate: Date;
+}
+interface feedbackType {
+  createdAt: Date;
+  rating: number;
+}
+
+interface populatedCourse {
+  documentId: string
+  createdAt: Date;
+  course_relations: courseRelationType[];
+  feedbacks: feedbackType[];
+}
+
 const DAYS_30_MS = 30 * 24 * 60 * 60 * 1000;
 const DAYS_7_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -17,11 +33,32 @@ export default {
       // This object is populated by Strapi when the user is logged in
       const user_type = jwt.verify(jwtCC, secretKey) as ContentCreator;
       const courseIds : string[] = ctx.request.body.documentIds as string[];
+
+      // Find Content Creator
+      const user = await strapi
+        .documents("api::content-creator.content-creator")
+        .findFirst({
+          populate: {
+            courses: {
+              populate: ["course_relations", "feedbacks"],
+            },
+          },
+          filters: {
+            documentId: user_type.documentId as string,
+          },
+        });
+      if (!user) {
+        throw { error: errorCodes["E0504"] };
+      }
+      //Filter courses
+      const filteredCourses = filterCoursesBasedOnCid(user.courses, courseIds) as populatedCourse[];  
+
+
       ctx.response.body = {
-        courses: await getCoursesStats(user_type.documentId as string, courseIds),
-        students: await getStudentStats(user_type.documentId as string, courseIds),
-        certificates: await getCertificatesStats(user_type.documentId as string, courseIds),
-        evaluation: await getContentCreatorFeedback(user_type.documentId as string) 
+        courses: await getCoursesStats(filteredCourses),
+        students: await getStudentStats(filteredCourses),
+        certificates: await getCertificatesStats(filteredCourses),
+        evaluation: await getContentCreatorFeedback(filteredCourses) 
       };
     } catch (err) {
       ctx.status = 500;
@@ -29,22 +66,10 @@ export default {
     }
   },
 };
-export async function getCoursesStats(documentId: string, cIds: string[]) {
+export async function getCoursesStats(filteredCourses : populatedCourse[]) {
   try {
-    //Find content creator and populate courses
-    const creator = await strapi
-      .documents("api::content-creator.content-creator")
-      .findOne({
-        documentId,
-        populate: ["courses"],
-      });
-    if (!creator) {
-      throw { error: errorCodes["E0504"] };
-    }
-    //filter courses
-    const courses = filterCoursesBasedOnCid(creator.courses, cIds);
     //Statistic variables
-    const countTotal = courses.length;
+    const countTotal = filteredCourses.length;
     let count7 = 0;
     let count30 = 0;
     let countMonth = 0;
@@ -53,7 +78,7 @@ export async function getCoursesStats(documentId: string, cIds: string[]) {
     const date30DaysAgo = new Date(Date.now() - DAYS_30_MS);
     const firstDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth());
     //Count stats
-    for (const course of courses) {
+    for (const course of filteredCourses) {
       const createdAt = new Date(course.createdAt);
       if (createdAt > date7DaysAgo) count7++;
       if (createdAt > date30DaysAgo) count30++;
@@ -71,30 +96,14 @@ export async function getCoursesStats(documentId: string, cIds: string[]) {
     throw err;
   }
 }
-export async function getStudentStats(documentId: string, cIds: string[]) {
-  // Find Content Creator
-  const user = await strapi
-    .documents("api::content-creator.content-creator")
-    .findFirst({
-      populate: {
-        courses: {
-          populate: ["course_relations"],
-        },
-      },
-      filters: {
-        documentId: documentId,
-      },
-    });
-  if (!user) {
-    throw { error: errorCodes["E0504"] };
-  }
-
+export async function getStudentStats(filteredCourses : populatedCourse[]) {
+  
   // Declare and initialise all varibles hosting the statistics
   let countTotal = 0;
   let count7 = 0;
   let count30 = 0;
   let countMonth = 0;
-  const filteredCourses = filterCoursesBasedOnCid(user.courses, cIds);  //Filter courses
+
   // double for loop running counting all students on each course, and counting each based on enrollmentDate thorugh 3 if statements
   for (const course of filteredCourses) {
     for (const courseRelation of course.course_relations) {
@@ -131,21 +140,8 @@ export async function getStudentStats(documentId: string, cIds: string[]) {
     } 
   }
 }
-export async function getCertificatesStats(documentId: string, cIds: string[] = []) {
+export async function getCertificatesStats(filteredCourses : populatedCourse[]) {
   try {
-    const creator = await strapi
-      .documents("api::content-creator.content-creator")
-      .findOne({
-        documentId: documentId,
-        populate: ["courses"],
-      });
-
-    if (!creator) {
-      throw { error: errorCodes["E0013"] };
-    }
-
-    // Filter courses based on provided cIds and extract their documentIds
-    const filteredCourses = filterCoursesBasedOnCid(creator.courses, cIds);
     const courseIds = filteredCourses.map((c) => c.documentId); 
     // Fetch certificates for the creator's courses
     const certificates = await strapi
@@ -199,24 +195,8 @@ export async function getCertificatesStats(documentId: string, cIds: string[] = 
   }
 }
 
-export async function getContentCreatorFeedback(documentId: string) {
+export async function getContentCreatorFeedback(filteredCourses : populatedCourse[]) {
   try {
-    // Find Content Creator and related Course feedbacks
-    const user = await strapi.documents('api::content-creator.content-creator').findFirst(
-      {
-        populate: {
-          courses: {
-            populate: ["feedbacks"]
-          }
-        },
-        filters: {
-          documentId: documentId
-        }
-      }
-    );
-    if (!user) {
-      throw { error: errorCodes['E0504'] }
-    }
 
     // Aggregate feedbacks & time variations
     let totalFeedbacks = 0, totalRating = 0;
@@ -224,15 +204,14 @@ export async function getContentCreatorFeedback(documentId: string) {
     let count30dFeedbacks = 0, count30dRating = 0;
     let countCurrentMonthFeedbacks = 0, countCurrentMonthRating = 0;
 
-    for (const course of user.courses) {
-      const feedbacks = course.feedbacks;
-      for (const feedback of feedbacks) {
+    for (const course of filteredCourses) {
+      for (const feedback of course.feedbacks) {
         totalFeedbacks++;
         totalRating += feedback.rating;
 
         //30 days
         if (
-          new Date(feedback.dateCreated) >
+          new Date(feedback.createdAt) >
           new Date(Date.now() - DAYS_30_MS)
         ) {
           count30dFeedbacks++;
@@ -240,7 +219,7 @@ export async function getContentCreatorFeedback(documentId: string) {
         }
         //7 days
         if (
-          new Date(feedback.dateCreated) >
+          new Date(feedback.createdAt) >
           new Date(Date.now() - DAYS_7_MS)
         ) {
           count7dFeedbacks++;
@@ -248,7 +227,7 @@ export async function getContentCreatorFeedback(documentId: string) {
         }
         //Month
         if (
-          new Date(feedback.dateCreated) >
+          new Date(feedback.createdAt) >
           new Date(new Date().getFullYear(), new Date().getMonth())
         ) {
           countCurrentMonthFeedbacks++;
