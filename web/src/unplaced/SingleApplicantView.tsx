@@ -180,7 +180,7 @@ const SingleApplicantView = () => {
                       d="M4 12a 8 8 0 018-8v8H4z"
                     />
                   </svg>
-                  Processando.
+                  Processando...
                 </>
               ) : (
                 "Aprovar"
@@ -243,7 +243,7 @@ const SingleApplicantView = () => {
                             d="M4 12a8 8 0 018-8v8H4z"
                           />
                         </svg>
-                        Rejeitando.
+                        Rejeitando...
                       </>
                     ) : (
                       "Confirmar Rejeição"
