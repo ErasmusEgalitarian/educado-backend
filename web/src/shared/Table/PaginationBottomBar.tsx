@@ -1,11 +1,11 @@
 import { ReactElement } from "react";
-import { IconContext } from "react-icons";
+import Icon from "@mdi/react";
 import {
-  GoArrowLeft,
-  GoChevronLeft,
-  GoChevronRight,
-  GoArrowRight,
-} from "react-icons/go";
+  mdiArrowLeft,
+  mdiChevronLeft,
+  mdiChevronRight,
+  mdiArrowRight,
+} from "@mdi/js";
 
 interface PaginationBottomBatProps {
   currentPage: number;
@@ -50,39 +50,37 @@ export const PaginationBottomBar = ({
         </span>
       </div>
       <div className="flex items-center space-x-4">
-        <IconContext.Provider value={{ size: "20" }}>
-          <NavigationButton
-            isDisabled={currentPage === 1}
-            onPageChange={() => {
-              onChangePage(1);
-            }}
-            icon={<GoArrowLeft />}
-          />
+        <NavigationButton
+          isDisabled={currentPage === 1}
+          onPageChange={() => {
+            onChangePage(1);
+          }}
+          icon={<Icon path={mdiArrowLeft} size={0.9} />}
+        />
 
-          <NavigationButton
-            isDisabled={currentPage === 1}
-            onPageChange={() => {
-              onChangePage(currentPage - 1);
-            }}
-            icon={<GoChevronLeft />}
-          />
+        <NavigationButton
+          isDisabled={currentPage === 1}
+          onPageChange={() => {
+            onChangePage(currentPage - 1);
+          }}
+          icon={<Icon path={mdiChevronLeft} size={0.9} />}
+        />
 
-          <NavigationButton
-            isDisabled={currentPage === totalPages}
-            onPageChange={() => {
-              onChangePage(currentPage + 1);
-            }}
-            icon={<GoChevronRight />}
-          />
+        <NavigationButton
+          isDisabled={currentPage === totalPages}
+          onPageChange={() => {
+            onChangePage(currentPage + 1);
+          }}
+          icon={<Icon path={mdiChevronRight} size={0.9} />}
+        />
 
-          <NavigationButton
-            isDisabled={currentPage === totalPages}
-            onPageChange={() => {
-              onChangePage(totalPages);
-            }}
-            icon={<GoArrowRight />}
-          />
-        </IconContext.Provider>
+        <NavigationButton
+          isDisabled={currentPage === totalPages}
+          onPageChange={() => {
+            onChangePage(totalPages);
+          }}
+          icon={<Icon path={mdiArrowRight} size={0.9} />}
+        />
       </div>
     </div>
   );
