@@ -36165,6 +36165,18 @@
           }
         }
       }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
     }
-  }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:1337/api",
+      "description": "Local development server"
+    }
+  ]
 }
