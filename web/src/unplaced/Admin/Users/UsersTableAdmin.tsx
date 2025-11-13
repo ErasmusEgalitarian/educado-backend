@@ -14,8 +14,8 @@ import ViewUserButton from "@/unplaced/ViewUserButton";
 import { ContentCreator } from "@/user/types/ContentCreator";
 import { User } from "@/user/types/User";
 
-import AdminToggleButton from "./AdminToggle";
-import DeleteUserButton from "./DeleteUserButton";
+import AdminToggleButton from "../AdminToggle";
+import DeleteUserButton from "../DeleteUserButton";
 
 export const UsersTableAdmin = () => {
   const [searchTerm, setSearchTerm] = useState("");
