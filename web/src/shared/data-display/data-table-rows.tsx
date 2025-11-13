@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import {
   flexRender,
   type Row,
   type Table as ReactTableType,
 } from "@tanstack/react-table";
 import { Check } from "lucide-react";
-import { useTranslation } from "react-i18next";
 
 import { useItemSelector } from "@/shared/components/item-selector";
 import { TableRow, TableCell } from "@/shared/components/shadcn/table";

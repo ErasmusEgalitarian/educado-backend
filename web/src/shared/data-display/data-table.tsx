@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { type Table as ReactTableType } from "@tanstack/react-table";
 import { Check, Minus } from "lucide-react";
 
@@ -93,7 +94,7 @@ const DataTable = <TData extends DataDisplayItem>({
   emptyState,
 }: Readonly<DataTableProps<TData>>) => {
   return (
-    <div className={`${className ?? ""}`}>
+    <div className={className ?? ""}>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

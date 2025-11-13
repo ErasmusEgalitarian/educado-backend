@@ -1,15 +1,6 @@
 import { Table } from "@tanstack/react-table";
-import { ChevronDown } from "lucide-react";
 
-import { Button } from "@/shared/components/shadcn/button";
-import { Input } from "@/shared/components/shadcn/input";
-
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "../components/shadcn/dropdown-menu";
+import { FilterDropdown } from "./filter-dropdown";
 
 // Re-export for convenience
 export type { QuickFilter } from "./types/table";
@@ -31,109 +22,28 @@ function setColumnFilter<TData>(
   });
 }
 
-const TextQuickFilterComponent = <TData,>({
+const QuickFilterButton = <TData,>({
   table,
-  label,
+  quickFilter,
   columnId,
-  placeholder,
 }: Readonly<{
   table: Table<TData>;
-  label: string;
+  quickFilter: QuickFilter;
   columnId: string;
-  placeholder?: string;
 }>) => {
   const current = table.getColumn(columnId)?.getFilterValue();
-  const currentText = typeof current === "string" ? current : "";
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant={currentText ? "secondary" : "ghost"} size="sm">
-          {label}
-          <ChevronDown className="ml-2 h-4 w-4" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="min-w-[220px] p-2">
-        <Input
-          placeholder={placeholder ?? "Type to filter..."}
-          value={currentText}
-          onChange={(e) => {
-            const v = e.target.value;
-            setColumnFilter(table, columnId, v.trim() === "" ? undefined : v);
-          }}
-        />
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-};
-
-const SelectQuickFilterComponent = <TData,>({
-  table,
-  label,
-  columnId,
-  multi,
-  options,
-}: Readonly<{
-  table: Table<TData>;
-  label: string;
-  columnId: string;
-  multi?: boolean;
-  options: { label: string; value: unknown }[];
-}>) => {
-  const col = table.getColumn(columnId);
-  const current = col?.getFilterValue();
-  const isMulti = multi === true;
-
-  const setSingle = (checked: boolean, value: unknown) => {
-    setColumnFilter(table, columnId, checked ? value : undefined);
-  };
-
-  const setMulti = (checked: boolean, value: unknown) => {
-    const arr = Array.isArray(current) ? (current as unknown[]).slice() : [];
-    const idx = arr.indexOf(value as never);
-    if (checked && idx === -1) arr.push(value);
-    if (!checked && idx !== -1) arr.splice(idx, 1);
-    setColumnFilter(table, columnId, arr.length > 0 ? arr : undefined);
-  };
-
-  // Determine whether any value is currently set for this column's filter
-  const isActive = Array.isArray(current)
-    ? (current as unknown[]).length > 0
-    : current !== undefined && current !== null && current !== "";
+  const isFiltered = !isEmpty(current);
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant={isActive ? "secondary" : "ghost"} size="sm">
-          {label}
-          <ChevronDown className="ml-2 h-4 w-4" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="min-w-[200px]">
-        {options.map((opt) => {
-          const currentArr = Array.isArray(current)
-            ? (current as unknown[])
-            : null;
-          const isChecked = currentArr
-            ? currentArr.includes(opt.value as never)
-            : current === opt.value;
-          return (
-            <DropdownMenuCheckboxItem
-              key={opt.label}
-              checked={isChecked}
-              onCheckedChange={(checked) => {
-                if (isMulti) {
-                  setMulti(checked, opt.value);
-                } else {
-                  setSingle(checked, opt.value);
-                }
-              }}
-            >
-              {opt.label}
-            </DropdownMenuCheckboxItem>
-          );
-        })}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <FilterDropdown
+      quickFilter={quickFilter}
+      current={current}
+      isFiltered={isFiltered}
+      onSetFilter={(value) => setColumnFilter(table, columnId, value)}
+      triggerVariant="outline"
+      triggerSize="sm"
+      contentClassName="min-w-[200px]"
+    />
   );
 };
 
@@ -169,7 +79,7 @@ export const QuickFilters = <TData,>({
     const meta = col.columnDef.meta;
     const qf = meta?.quickFilter;
 
-    if (!meta?.filterable || !qf) continue;
+    if (!qf) continue;
     if (!shouldDisplayFilter(qf, viewMode)) continue;
 
     const label =
@@ -188,27 +98,15 @@ export const QuickFilters = <TData,>({
   if (quickFilters.length === 0) return null;
 
   return (
-    <div className="flex items-center gap-2">
-      {quickFilters.map((qf) =>
-        qf.type === "text" ? (
-          <TextQuickFilterComponent
-            key={qf.columnId}
-            table={table}
-            label={qf.label}
-            columnId={qf.columnId}
-            placeholder={qf.placeholder}
-          />
-        ) : (
-          <SelectQuickFilterComponent
-            key={qf.columnId}
-            table={table}
-            label={qf.label}
-            columnId={qf.columnId}
-            multi={qf.multi}
-            options={qf.options}
-          />
-        )
-      )}
+    <div className="flex items-center gap-2 flex-wrap">
+      {quickFilters.map((qf) => (
+        <QuickFilterButton
+          key={qf.columnId}
+          table={table}
+          quickFilter={qf}
+          columnId={qf.columnId}
+        />
+      ))}
     </div>
   );
 };

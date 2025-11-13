@@ -27,8 +27,8 @@ import DataTable from "./data-table";
 import usePaginatedData, {
   type UsePaginatedDataConfig,
 } from "./hooks/used-paginated-data";
-import { getDefaultColumnVisibility } from "./lib/visibility-utility";
 import { type Status, type StaticFilters } from "./lib/query-params-builder";
+import { getDefaultColumnVisibility } from "./lib/visibility-utility";
 import PaginationBar from "./pagination-bar";
 
 /* ----------------------------- Exported types ----------------------------- */
@@ -230,7 +230,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
   const table = useReactTable({
     data,
     columns,
-    getRowId: (row, index) => row.documentId ?? `row-${index}`,
+    getRowId: (row, index) => row.documentId ?? `row-${String(index)}`,
     state: {
       sorting,
       columnFilters,

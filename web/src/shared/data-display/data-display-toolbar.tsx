@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import {
   mdiMagnify,
   mdiSort,
@@ -61,14 +62,14 @@ const ViewToggle = ({
 }) => {
   if (!(hasTable && hasGrid)) return null;
   return (
-    <div className="flex items-center bg-muted rounded-lg p-1">
+    <div className="flex items-center bg-muted rounded-lg gap-0">
       <Button
         variant={viewMode === "grid" ? "primary" : "ghost"}
         size="sm"
         onClick={() => {
           onViewModeChange("grid");
         }}
-        className="h-8 w-8 p-0"
+        className="w-8 px-0"
       >
         <Grid className="h-4 w-4" />
       </Button>
@@ -78,7 +79,7 @@ const ViewToggle = ({
         onClick={() => {
           onViewModeChange("table");
         }}
-        className="h-8 w-8 p-0"
+        className="w-8 px-0"
       >
         <List className="h-4 w-4" />
       </Button>
@@ -99,7 +100,7 @@ const SortDropdown = <TData,>({ table }: { table: Table<TData> }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary" size="sm" className="ml-auto">
+        <Button variant="secondary" size="sm">
           <Icon path={mdiSort} size={1} className="mr-2 h-4 w-4" />
           {t("common.sort")}
           <ChevronDown className="ml-2 h-4 w-4" />
@@ -207,10 +208,10 @@ const ColumnToggler = <TData,>({ table }: { table: Table<TData> }) => {
 };
 
 /* ------------------------------ Global Search ----------------------------- */
-type SearchBoxProps = {
+interface SearchBoxProps {
   value: string;
   onChange?: (value: string) => void;
-};
+}
 
 const SearchBox = ({ value, onChange }: SearchBoxProps) => {
   const { t } = useTranslation();
@@ -225,7 +226,9 @@ const SearchBox = ({ value, onChange }: SearchBoxProps) => {
       <Input
         placeholder={t("actions.search") + "..."}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => {
+          onChange(e.target.value);
+        }}
         inputSize="sm"
         className="pl-10 w-full"
       />
@@ -233,8 +236,10 @@ const SearchBox = ({ value, onChange }: SearchBoxProps) => {
         <Button
           variant="blank"
           size="sm"
-          className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 p-0"
-          onClick={() => onChange("")}
+          className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 p-0"
+          onClick={() => {
+            onChange("");
+          }}
           aria-label={t("actions.clear")}
           title={t("actions.clear")}
         >
@@ -269,7 +274,8 @@ const DataDisplayToolbar = <TData,>({
   if (visibility.showToolbar === false) return null;
 
   return (
-    <div className={`flex items-center justify-between gap-4 ${className}`}>
+    <div className={`flex items-center gap-3 flex-wrap ${className}`}>
+      {/* View toggle - always first */}
       <ViewToggle
         viewMode={viewMode}
         onViewModeChange={onViewModeChange}
@@ -277,21 +283,24 @@ const DataDisplayToolbar = <TData,>({
         hasGrid={hasGrid}
       />
 
+      {/* Filters - wraps to new line when space is tight */}
       <QuickFilters table={table} viewMode={viewMode} />
 
-      {/* Selection Summary */}
-      {selectable && <SelectionSummary />}
+      {/* Right section - selection, sort/columns, search - stays together */}
+      <div className="flex items-center gap-3 ml-auto shrink-0">
+        {selectable && <SelectionSummary />}
 
-      {visibility.showSortGrid === true && viewMode === "grid" && (
-        <SortDropdown table={table} />
-      )}
-      {visibility.showColumnTogglerTable === true && viewMode === "table" && (
-        <ColumnToggler table={table} />
-      )}
+        {visibility.showSortGrid === true && viewMode === "grid" && (
+          <SortDropdown table={table} />
+        )}
+        {visibility.showColumnTogglerTable === true && viewMode === "table" && (
+          <ColumnToggler table={table} />
+        )}
 
-      {visibility.showSearch === true && (
-        <SearchBox value={searchValue} onChange={onSearchChange} />
-      )}
+        {visibility.showSearch === true && (
+          <SearchBox value={searchValue} onChange={onSearchChange} />
+        )}
+      </div>
     </div>
   );
 };

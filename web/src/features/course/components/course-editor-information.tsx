@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "i18next";
@@ -10,6 +11,7 @@ import {
 } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 import z from "zod";
 
 import type { Course, CourseCategory } from "@/shared/api/types.gen";
@@ -21,9 +23,11 @@ import { FormInput } from "@/shared/components/form/form-input";
 import { FormMultiSelect } from "@/shared/components/form/form-multi-select";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
-import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
-import { Card, CardContent } from "@/shared/components/shadcn/card";
+import ReusableAlertDialog from "@/shared/components/modals/reusable-alert-dialog";
 import { useAlertDialog } from "@/shared/components/modals/use-alert-dialog";
+import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
+import { Button } from "@/shared/components/shadcn/button";
+import { Card, CardContent } from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
 import {
   MultiSelectOption,
@@ -37,12 +41,9 @@ import {
   useCreateCourseMutation,
   useUpdateCourseMutation,
 } from "../api/course-mutations";
+import { difficultyToTranslation } from "../lib/difficulty-to-translation";
 
 import CategoryCreateModal from "./category-create-modal";
-import { difficultyToTranslation } from "../lib/difficulty-to-translation";
-import { Button } from "@/shared/components/shadcn/button";
-import { useNavigate } from "react-router";
-import ReusableAlertDialog from "@/shared/components/modals/reusable-alert-dialog";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
@@ -206,11 +207,7 @@ const CourseEditorInformation = forwardRef<
       const imageId = imageIds?.[0];
 
       // Edit = update mutation
-      if (
-        isEditMode &&
-        course?.documentId != null &&
-        course.documentId !== ""
-      ) {
+      if (isEditMode && course.documentId != null && course.documentId !== "") {
         // Update existing course
         const result = await updateMutation.mutateAsync({
           documentId: course.documentId,

@@ -1,3 +1,10 @@
+import {
+  mdiNumeric1BoxOutline,
+  mdiNumeric2BoxOutline,
+  mdiNumeric3BoxOutline,
+  mdiPublish,
+  mdiPublishOff,
+} from "@mdi/js";
 import { type CellContext, type ColumnDef } from "@tanstack/react-table";
 import { BookOpen, MoreHorizontal, Star, Edit, Eye } from "lucide-react";
 import { toast } from "sonner";
@@ -35,19 +42,18 @@ export const createCourseColumns = ({
       },
       meta: {
         sortable: true,
-        filterable: true,
         visibleByDefault: false,
       },
     },
     {
       accessorKey: "publishedAt",
-      header: t("common.status"),
+      header: t("common.publicationStatus"),
       cell: ({ row }) => {
         const publishedAt = row.getValue<string | null>("publishedAt");
         const isDraft = publishedAt === null;
         return (
           <Badge variant={isDraft ? "outline" : "default"}>
-            {isDraft ? t("common.draft") : t("common.published")}
+            {isDraft ? t("common.unpublished") : t("common.published")}
           </Badge>
         );
       },
@@ -56,15 +62,22 @@ export const createCourseColumns = ({
       filterFn: () => true,
       meta: {
         sortable: true,
-        filterable: true,
         visibleByDefault: true,
         quickFilter: {
           type: "select",
           displayType: { where: "both", when: "both" },
-          label: t("common.status"),
+          label: t("common.publicationStatus"),
           options: [
-            { label: t("common.draft"), value: "draft" },
-            { label: t("common.published"), value: "published" },
+            {
+              label: t("common.draft"),
+              value: "draft",
+              mdiIcon: mdiPublishOff,
+            },
+            {
+              label: t("common.published"),
+              value: "published",
+              mdiIcon: mdiPublish,
+            },
           ],
         },
       },
@@ -83,14 +96,7 @@ export const createCourseColumns = ({
       },
       meta: {
         sortable: true,
-        filterable: true,
         visibleByDefault: true,
-        quickFilter: {
-          type: "text",
-          displayType: { where: "both", when: "both" },
-          label: t("courseManager.courseName"),
-          placeholder: t("actions.search"),
-        },
       },
     },
     {
@@ -109,16 +115,27 @@ export const createCourseColumns = ({
       filterFn: "equalsString",
       meta: {
         sortable: true,
-        filterable: true,
         visibleByDefault: true,
         quickFilter: {
           type: "select",
           displayType: { where: "both", when: "both" },
           label: t("difficulty.difficulty"),
           options: [
-            { label: t("courseManager.beginner"), value: "1" },
-            { label: t("courseManager.intermediate"), value: "2" },
-            { label: t("courseManager.advanced"), value: "3" },
+            {
+              label: t("courseManager.beginner"),
+              value: "1",
+              mdiIcon: mdiNumeric1BoxOutline,
+            },
+            {
+              label: t("courseManager.intermediate"),
+              value: "2",
+              mdiIcon: mdiNumeric2BoxOutline,
+            },
+            {
+              label: t("courseManager.advanced"),
+              value: "3",
+              mdiIcon: mdiNumeric3BoxOutline,
+            },
           ],
         },
       },
@@ -188,7 +205,6 @@ export const createCourseColumns = ({
       },
       meta: {
         sortable: false,
-        filterable: true,
         visibleByDefault: true,
         quickFilter: {
           type: "text",
@@ -213,7 +229,6 @@ export const createCourseColumns = ({
       },
       meta: {
         sortable: true,
-        filterable: false,
         visibleByDefault: true,
       },
     },
@@ -279,7 +294,6 @@ export const createCourseColumns = ({
       },
       meta: {
         sortable: false,
-        filterable: false,
         visibleByDefault: true,
       },
     },
