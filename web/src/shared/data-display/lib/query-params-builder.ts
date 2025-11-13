@@ -170,7 +170,7 @@ export const buildApiQueryParams = (
     }
   }
 
-  // Translate TanStack columnFilters into Strapi v4 filter syntax
+  // Translate TanStack columnFilters into Strapi v5 filter syntax
   function applyColumnFilters() {
     appendFiltersFromColumnFilters(
       searchParams,
