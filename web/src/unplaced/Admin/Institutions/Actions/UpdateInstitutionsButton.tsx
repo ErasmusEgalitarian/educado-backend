@@ -1,7 +1,6 @@
 import { useState, useEffect, FormEvent } from "react";
 import { MdCreate } from "react-icons/md";
 import { toast } from "react-toastify";
-import { KeyedMutator } from "swr";
 
 import { getUserToken } from "@/auth/lib/userInfo";
 import GenericModalComponent from "@/shared/components/GenericModalComponent";
@@ -15,7 +14,8 @@ export const UpdateInstitutionButton = ({
   refreshFn,
 }: {
   institution: Institution;
-  refreshFn: KeyedMutator<Institution[]>;
+  // generic refresh function (React Query refetch, etc)
+  refreshFn: () => void | Promise<unknown>;
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -29,11 +29,14 @@ export const UpdateInstitutionButton = ({
     institutionService.updateInstitution,
   );
 
+  // Reset inputs whenever the modal opens or the institution changes
   useEffect(() => {
-    setNameInput(institution.institutionName);
-    setDomainInput(institution.domain);
-    setSecondaryDomainInput(institution.secondaryDomain);
-  }, [showModal]);
+    if (showModal) {
+      setNameInput(institution.institutionName);
+      setDomainInput(institution.domain);
+      setSecondaryDomainInput(institution.secondaryDomain);
+    }
+  }, [showModal, institution]);
 
   const { addNotification } = useNotifications();
 
@@ -53,7 +56,7 @@ export const UpdateInstitutionButton = ({
         secondaryDomain: secondaryDomainInput,
       });
 
-      refreshFn();
+      await refreshFn();
       setShowModal(false);
       addNotification("Instituição atualizada com sucesso !");
     } catch (err) {
@@ -114,7 +117,7 @@ export const UpdateInstitutionButton = ({
                   type="text"
                   name="domain"
                   required
-                  pattern="@([\w\-]+\.)+[\w\-]{2,4}"
+                  pattern="@([\\w\\-]+\\.)+[\\w\\-]{2,4}"
                   title="@domain.com"
                   placeholder="@domain.com"
                   value={domainInput}
@@ -132,7 +135,7 @@ export const UpdateInstitutionButton = ({
                   name="secondary-domain"
                   placeholder="@domain.com (opcional)"
                   title="@domain.com (opcional)"
-                  pattern="@([\w\-]+\.)+[\w\-]{2,4}$"
+                  pattern="@([\\w\\-]+\\.)+[\\w\\-]{2,4}$"
                   value={secondaryDomainInput}
                   onChange={(e) => {
                     setSecondaryDomainInput(e.target.value);

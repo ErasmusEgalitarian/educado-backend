@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
-import { KeyedMutator } from "swr";
 
 import { getUserToken } from "@/features/auth/lib/userInfo";
 import { Institution } from "@/features/user/types/Institution";
@@ -15,7 +14,8 @@ export const DeleteInstitutionButton = ({
   refreshFn,
 }: {
   institutionId: string;
-  refreshFn: KeyedMutator<Institution[]>;
+  // now just a generic refresh function, e.g. React Query's refetch
+  refreshFn: () => void | Promise<unknown>;
 }) => {
   const [showModal, setShowModal] = useState(false);
   const { call: deleteInstitution, isLoading } = useApi(
@@ -27,7 +27,7 @@ export const DeleteInstitutionButton = ({
   const handleConfirm = async () => {
     try {
       await deleteInstitution(institutionId, getUserToken());
-      refreshFn();
+      await refreshFn();
       addNotification("Instituição deletada com sucesso !");
     } catch (err) {
       toast.error(err as string);
