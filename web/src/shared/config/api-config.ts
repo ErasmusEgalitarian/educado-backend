@@ -13,7 +13,19 @@ export const getBaseApiUrl = (): string => {
 export const configureApiClient = () => {
   const baseUrl = getBaseApiUrl();
 
-  // Configure the client with base URL, authorization header, and error handling
+  // Set the API token if available
+  const apiToken = import.meta.env.VITE_STRAPI_API_TOKEN as string | undefined;
+
+  if (apiToken == undefined) {
+    globalThis.alert(
+      "Warning: VITE_STRAPI_API_TOKEN is not set in environment variables. API requests may fail.",
+    );
+    throw new Error(
+      "VITE_STRAPI_API_TOKEN is not set in environment variables",
+    );
+  }
+
+  // Configure the client with base URL and authorization header
   client.setConfig({
     baseUrl,
     throwOnError: true,
@@ -43,33 +55,6 @@ export const configureApiClient = () => {
       updateApiClientToken();
     }
 
-    return response;
-  });
-
-  // Configure the client with base URL and authorization header
-  client.setConfig({
-    baseUrl,
-    headers: {
-      Authorization: `Bearer ${apiToken}`,
-    },
-    throwOnError: true,
-  });
-
-  // Request interceptor for logging in development
-  client.interceptors.request.use((request) => {
-    if (import.meta.env.DEV) {
-      // eslint-disable-next-line no-console
-      console.log(`Request 📤 ${request.method} ${request.url}`);
-    }
-    return request;
-  });
-
-  // Response interceptor for logging
-  client.interceptors.response.use((response) => {
-    if (import.meta.env.DEV) {
-      // eslint-disable-next-line no-console
-      console.log(`Response 📥 ${response.url}`, { status: response.status });
-    }
     return response;
   });
 

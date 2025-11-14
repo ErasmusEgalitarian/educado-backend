@@ -84,7 +84,10 @@ const Login = () => {
         /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
         const token = res?.accessToken;
 
-        const user = res?.userInfo;
+        /* eslint-disable  @typescript-eslint/no-unsafe-assignment */ /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
+        const token = res.jwt;
+        /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
+        const user = res.user;
         /* eslint-disable  @typescript-eslint/no-unsafe-argument */
 
         localStorage.setItem("token", token ?? "");
@@ -93,7 +96,7 @@ const Login = () => {
         // Update the API client with the new token
         updateApiClientToken();
 
-        await loginSaver(token ?? "", user);
+        await loginSaver(String(token), user);
         navigate("/courses");
         // error messages for email and password
       })
