@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { ToggleModalContext } from "../login";
+import { ToggleModalContext } from "../Login";
 
 import { HandleContinueContext } from "./PasswordRecoveryModal";
 
