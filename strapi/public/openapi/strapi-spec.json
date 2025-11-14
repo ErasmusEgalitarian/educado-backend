@@ -96,10 +96,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -116,10 +113,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -172,10 +166,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -194,10 +185,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -220,19 +208,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "student",
-                    "course"
-                  ]
+                  "enum": ["student", "course"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "student",
-                      "course"
-                    ]
+                    "enum": ["student", "course"]
                   }
                 }
               ]
@@ -246,10 +228,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -316,9 +295,7 @@
             }
           }
         },
-        "tags": [
-          "certificate"
-        ]
+        "tags": ["certificate"]
       },
       "post": {
         "operationId": "certificate/post/certificates",
@@ -359,19 +336,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "student",
-                    "course"
-                  ]
+                  "enum": ["student", "course"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "student",
-                      "course"
-                    ]
+                    "enum": ["student", "course"]
                   }
                 }
               ]
@@ -385,10 +356,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -455,9 +423,7 @@
             }
           }
         },
-        "tags": [
-          "certificate"
-        ],
+        "tags": ["certificate"],
         "requestBody": {
           "required": true,
           "content": {
@@ -519,19 +485,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "student",
-                    "course"
-                  ]
+                  "enum": ["student", "course"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "student",
-                      "course"
-                    ]
+                    "enum": ["student", "course"]
                   }
                 }
               ]
@@ -603,10 +563,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -625,10 +582,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -643,10 +597,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -713,9 +664,7 @@
             }
           }
         },
-        "tags": [
-          "certificate"
-        ]
+        "tags": ["certificate"]
       },
       "put": {
         "operationId": "certificate/put/certificates_by_id",
@@ -765,19 +714,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "student",
-                    "course"
-                  ]
+                  "enum": ["student", "course"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "student",
-                      "course"
-                    ]
+                    "enum": ["student", "course"]
                   }
                 }
               ]
@@ -791,10 +734,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -861,9 +801,7 @@
             }
           }
         },
-        "tags": [
-          "certificate"
-        ],
+        "tags": ["certificate"],
         "requestBody": {
           "required": true,
           "content": {
@@ -923,19 +861,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "student",
-                    "course"
-                  ]
+                  "enum": ["student", "course"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "student",
-                      "course"
-                    ]
+                    "enum": ["student", "course"]
                   }
                 }
               ]
@@ -970,10 +902,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -1041,9 +970,7 @@
             }
           }
         },
-        "tags": [
-          "certificate"
-        ]
+        "tags": ["certificate"]
       }
     },
     "/content-creators": {
@@ -1164,10 +1091,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -1184,10 +1108,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -1285,10 +1206,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -1322,10 +1240,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -1348,19 +1263,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "courses",
-                    "user_logs"
-                  ]
+                  "enum": ["courses", "user_logs"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "courses",
-                      "user_logs"
-                    ]
+                    "enum": ["courses", "user_logs"]
                   }
                 }
               ]
@@ -1374,10 +1283,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -1444,9 +1350,7 @@
             }
           }
         },
-        "tags": [
-          "content-creator"
-        ]
+        "tags": ["content-creator"]
       },
       "post": {
         "operationId": "content-creator/post/content_creators",
@@ -1502,19 +1406,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "courses",
-                    "user_logs"
-                  ]
+                  "enum": ["courses", "user_logs"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "courses",
-                      "user_logs"
-                    ]
+                    "enum": ["courses", "user_logs"]
                   }
                 }
               ]
@@ -1528,10 +1426,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -1598,9 +1493,7 @@
             }
           }
         },
-        "tags": [
-          "content-creator"
-        ],
+        "tags": ["content-creator"],
         "requestBody": {
           "required": true,
           "content": {
@@ -1677,19 +1570,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "courses",
-                    "user_logs"
-                  ]
+                  "enum": ["courses", "user_logs"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "courses",
-                      "user_logs"
-                    ]
+                    "enum": ["courses", "user_logs"]
                   }
                 }
               ]
@@ -1821,10 +1708,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -1858,10 +1742,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -1876,10 +1757,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -1946,9 +1824,7 @@
             }
           }
         },
-        "tags": [
-          "content-creator"
-        ]
+        "tags": ["content-creator"]
       },
       "put": {
         "operationId": "content-creator/put/content_creators_by_id",
@@ -2013,19 +1889,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "courses",
-                    "user_logs"
-                  ]
+                  "enum": ["courses", "user_logs"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "courses",
-                      "user_logs"
-                    ]
+                    "enum": ["courses", "user_logs"]
                   }
                 }
               ]
@@ -2039,10 +1909,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -2109,9 +1976,7 @@
             }
           }
         },
-        "tags": [
-          "content-creator"
-        ],
+        "tags": ["content-creator"],
         "requestBody": {
           "required": true,
           "content": {
@@ -2186,19 +2051,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "courses",
-                    "user_logs"
-                  ]
+                  "enum": ["courses", "user_logs"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "courses",
-                      "user_logs"
-                    ]
+                    "enum": ["courses", "user_logs"]
                   }
                 }
               ]
@@ -2248,10 +2107,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -2319,16 +2175,12 @@
             }
           }
         },
-        "tags": [
-          "content-creator"
-        ]
+        "tags": ["content-creator"]
       }
     },
     "/content-creator/login": {
       "post": {
-        "tags": [
-          "Content Creator - Auth"
-        ],
+        "tags": ["Content Creator - Auth"],
         "requestBody": {
           "required": true,
           "content": {
@@ -2449,10 +2301,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -2469,10 +2318,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -2537,10 +2383,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -2563,10 +2406,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -2623,10 +2463,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -2693,9 +2530,7 @@
             }
           }
         },
-        "tags": [
-          "course"
-        ]
+        "tags": ["course"]
       },
       "post": {
         "operationId": "course/post/courses",
@@ -2774,10 +2609,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -2844,9 +2676,7 @@
             }
           }
         },
-        "tags": [
-          "course"
-        ],
+        "tags": ["course"],
         "requestBody": {
           "required": true,
           "content": {
@@ -3020,10 +2850,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -3046,10 +2873,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -3064,10 +2888,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -3134,9 +2955,7 @@
             }
           }
         },
-        "tags": [
-          "course"
-        ]
+        "tags": ["course"]
       },
       "put": {
         "operationId": "course/put/courses_by_id",
@@ -3224,10 +3043,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -3294,9 +3110,7 @@
             }
           }
         },
-        "tags": [
-          "course"
-        ],
+        "tags": ["course"],
         "requestBody": {
           "required": true,
           "content": {
@@ -3419,10 +3233,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -3490,9 +3301,7 @@
             }
           }
         },
-        "tags": [
-          "course"
-        ]
+        "tags": ["course"]
       }
     },
     "/course-categories": {
@@ -3509,12 +3318,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [
-                  "name",
-                  "createdAt",
-                  "updatedAt",
-                  "publishedAt"
-                ]
+                "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
               }
             },
             "x-strapi-serialize": "querystring"
@@ -3528,12 +3332,7 @@
               "type": "object",
               "propertyNames": {
                 "type": "string",
-                "enum": [
-                  "name",
-                  "createdAt",
-                  "updatedAt",
-                  "publishedAt"
-                ]
+                "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
               },
               "additionalProperties": {}
             },
@@ -3581,10 +3380,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -3601,10 +3397,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -3622,42 +3415,24 @@
               "anyOf": [
                 {
                   "type": "string",
-                  "enum": [
-                    "name",
-                    "createdAt",
-                    "updatedAt",
-                    "publishedAt"
-                  ]
+                  "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "name",
-                      "createdAt",
-                      "updatedAt",
-                      "publishedAt"
-                    ]
+                    "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
                   }
                 },
                 {
                   "type": "object",
                   "propertyNames": {
                     "type": "string",
-                    "enum": [
-                      "name",
-                      "createdAt",
-                      "updatedAt",
-                      "publishedAt"
-                    ]
+                    "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -3666,19 +3441,11 @@
                     "type": "object",
                     "propertyNames": {
                       "type": "string",
-                      "enum": [
-                        "name",
-                        "createdAt",
-                        "updatedAt",
-                        "publishedAt"
-                      ]
+                      "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -3701,17 +3468,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "courses"
-                  ]
+                  "enum": ["courses"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "courses"
-                    ]
+                    "enum": ["courses"]
                   }
                 }
               ]
@@ -3725,10 +3488,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -3795,9 +3555,7 @@
             }
           }
         },
-        "tags": [
-          "course-category"
-        ]
+        "tags": ["course-category"]
       },
       "post": {
         "operationId": "course-category/post/course_categories",
@@ -3812,12 +3570,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [
-                  "name",
-                  "createdAt",
-                  "updatedAt",
-                  "publishedAt"
-                ]
+                "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
               }
             },
             "x-strapi-serialize": "querystring"
@@ -3837,17 +3590,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "courses"
-                  ]
+                  "enum": ["courses"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "courses"
-                    ]
+                    "enum": ["courses"]
                   }
                 }
               ]
@@ -3861,10 +3610,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -3931,9 +3677,7 @@
             }
           }
         },
-        "tags": [
-          "course-category"
-        ],
+        "tags": ["course-category"],
         "requestBody": {
           "required": true,
           "content": {
@@ -3969,12 +3713,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [
-                  "name",
-                  "createdAt",
-                  "updatedAt",
-                  "publishedAt"
-                ]
+                "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
               }
             },
             "x-strapi-serialize": "querystring"
@@ -3994,17 +3733,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "courses"
-                  ]
+                  "enum": ["courses"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "courses"
-                    ]
+                    "enum": ["courses"]
                   }
                 }
               ]
@@ -4020,12 +3755,7 @@
               "type": "object",
               "propertyNames": {
                 "type": "string",
-                "enum": [
-                  "name",
-                  "createdAt",
-                  "updatedAt",
-                  "publishedAt"
-                ]
+                "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
               },
               "additionalProperties": {}
             },
@@ -4040,42 +3770,24 @@
               "anyOf": [
                 {
                   "type": "string",
-                  "enum": [
-                    "name",
-                    "createdAt",
-                    "updatedAt",
-                    "publishedAt"
-                  ]
+                  "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "name",
-                      "createdAt",
-                      "updatedAt",
-                      "publishedAt"
-                    ]
+                    "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
                   }
                 },
                 {
                   "type": "object",
                   "propertyNames": {
                     "type": "string",
-                    "enum": [
-                      "name",
-                      "createdAt",
-                      "updatedAt",
-                      "publishedAt"
-                    ]
+                    "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -4084,19 +3796,11 @@
                     "type": "object",
                     "propertyNames": {
                       "type": "string",
-                      "enum": [
-                        "name",
-                        "createdAt",
-                        "updatedAt",
-                        "publishedAt"
-                      ]
+                      "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -4111,10 +3815,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -4181,9 +3882,7 @@
             }
           }
         },
-        "tags": [
-          "course-category"
-        ]
+        "tags": ["course-category"]
       },
       "put": {
         "operationId": "course-category/put/course_categories_by_id",
@@ -4207,12 +3906,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [
-                  "name",
-                  "createdAt",
-                  "updatedAt",
-                  "publishedAt"
-                ]
+                "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
               }
             },
             "x-strapi-serialize": "querystring"
@@ -4232,17 +3926,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "courses"
-                  ]
+                  "enum": ["courses"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "courses"
-                    ]
+                    "enum": ["courses"]
                   }
                 }
               ]
@@ -4256,10 +3946,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -4326,9 +4013,7 @@
             }
           }
         },
-        "tags": [
-          "course-category"
-        ],
+        "tags": ["course-category"],
         "requestBody": {
           "required": true,
           "content": {
@@ -4362,12 +4047,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [
-                  "name",
-                  "createdAt",
-                  "updatedAt",
-                  "publishedAt"
-                ]
+                "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
               }
             },
             "x-strapi-serialize": "querystring"
@@ -4387,17 +4067,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "courses"
-                  ]
+                  "enum": ["courses"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "courses"
-                    ]
+                    "enum": ["courses"]
                   }
                 }
               ]
@@ -4413,12 +4089,7 @@
               "type": "object",
               "propertyNames": {
                 "type": "string",
-                "enum": [
-                  "name",
-                  "createdAt",
-                  "updatedAt",
-                  "publishedAt"
-                ]
+                "enum": ["name", "createdAt", "updatedAt", "publishedAt"]
               },
               "additionalProperties": {}
             },
@@ -4431,10 +4102,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -4502,9 +4170,7 @@
             }
           }
         },
-        "tags": [
-          "course-category"
-        ]
+        "tags": ["course-category"]
       }
     },
     "/course-selections": {
@@ -4595,10 +4261,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -4615,10 +4278,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -4671,10 +4331,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -4693,10 +4350,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -4719,21 +4373,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercises",
-                    "lectures",
-                    "course"
-                  ]
+                  "enum": ["exercises", "lectures", "course"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercises",
-                      "lectures",
-                      "course"
-                    ]
+                    "enum": ["exercises", "lectures", "course"]
                   }
                 }
               ]
@@ -4747,10 +4393,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -4817,9 +4460,7 @@
             }
           }
         },
-        "tags": [
-          "course-selection"
-        ]
+        "tags": ["course-selection"]
       },
       "post": {
         "operationId": "course-selection/post/course_selections",
@@ -4860,21 +4501,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercises",
-                    "lectures",
-                    "course"
-                  ]
+                  "enum": ["exercises", "lectures", "course"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercises",
-                      "lectures",
-                      "course"
-                    ]
+                    "enum": ["exercises", "lectures", "course"]
                   }
                 }
               ]
@@ -4888,10 +4521,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -4958,9 +4588,7 @@
             }
           }
         },
-        "tags": [
-          "course-selection"
-        ],
+        "tags": ["course-selection"],
         "requestBody": {
           "required": true,
           "content": {
@@ -5022,21 +4650,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercises",
-                    "lectures",
-                    "course"
-                  ]
+                  "enum": ["exercises", "lectures", "course"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercises",
-                      "lectures",
-                      "course"
-                    ]
+                    "enum": ["exercises", "lectures", "course"]
                   }
                 }
               ]
@@ -5108,10 +4728,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -5130,10 +4747,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -5148,10 +4762,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -5218,9 +4829,7 @@
             }
           }
         },
-        "tags": [
-          "course-selection"
-        ]
+        "tags": ["course-selection"]
       },
       "put": {
         "operationId": "course-selection/put/course_selections_by_id",
@@ -5270,21 +4879,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercises",
-                    "lectures",
-                    "course"
-                  ]
+                  "enum": ["exercises", "lectures", "course"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercises",
-                      "lectures",
-                      "course"
-                    ]
+                    "enum": ["exercises", "lectures", "course"]
                   }
                 }
               ]
@@ -5298,10 +4899,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -5368,9 +4966,7 @@
             }
           }
         },
-        "tags": [
-          "course-selection"
-        ],
+        "tags": ["course-selection"],
         "requestBody": {
           "required": true,
           "content": {
@@ -5430,21 +5026,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercises",
-                    "lectures",
-                    "course"
-                  ]
+                  "enum": ["exercises", "lectures", "course"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercises",
-                      "lectures",
-                      "course"
-                    ]
+                    "enum": ["exercises", "lectures", "course"]
                   }
                 }
               ]
@@ -5479,10 +5067,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -5550,9 +5135,7 @@
             }
           }
         },
-        "tags": [
-          "course-selection"
-        ]
+        "tags": ["course-selection"]
       }
     },
     "/exercises": {
@@ -5643,10 +5226,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -5663,10 +5243,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -5719,10 +5296,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -5741,10 +5315,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -5767,17 +5338,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercise_options"
-                  ]
+                  "enum": ["exercise_options"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercise_options"
-                    ]
+                    "enum": ["exercise_options"]
                   }
                 }
               ]
@@ -5791,10 +5358,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -5861,9 +5425,7 @@
             }
           }
         },
-        "tags": [
-          "exercise"
-        ]
+        "tags": ["exercise"]
       },
       "post": {
         "operationId": "exercise/post/exercises",
@@ -5904,17 +5466,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercise_options"
-                  ]
+                  "enum": ["exercise_options"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercise_options"
-                    ]
+                    "enum": ["exercise_options"]
                   }
                 }
               ]
@@ -5928,10 +5486,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -5998,9 +5553,7 @@
             }
           }
         },
-        "tags": [
-          "exercise"
-        ],
+        "tags": ["exercise"],
         "requestBody": {
           "required": true,
           "content": {
@@ -6062,17 +5615,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercise_options"
-                  ]
+                  "enum": ["exercise_options"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercise_options"
-                    ]
+                    "enum": ["exercise_options"]
                   }
                 }
               ]
@@ -6144,10 +5693,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -6166,10 +5712,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -6184,10 +5727,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -6254,9 +5794,7 @@
             }
           }
         },
-        "tags": [
-          "exercise"
-        ]
+        "tags": ["exercise"]
       },
       "put": {
         "operationId": "exercise/put/exercises_by_id",
@@ -6306,17 +5844,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercise_options"
-                  ]
+                  "enum": ["exercise_options"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercise_options"
-                    ]
+                    "enum": ["exercise_options"]
                   }
                 }
               ]
@@ -6330,10 +5864,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -6400,9 +5931,7 @@
             }
           }
         },
-        "tags": [
-          "exercise"
-        ],
+        "tags": ["exercise"],
         "requestBody": {
           "required": true,
           "content": {
@@ -6462,17 +5991,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercise_options"
-                  ]
+                  "enum": ["exercise_options"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercise_options"
-                    ]
+                    "enum": ["exercise_options"]
                   }
                 }
               ]
@@ -6507,10 +6032,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -6578,9 +6100,7 @@
             }
           }
         },
-        "tags": [
-          "exercise"
-        ]
+        "tags": ["exercise"]
       }
     },
     "/exercise-options": {
@@ -6673,10 +6193,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -6693,10 +6210,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -6752,10 +6266,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -6775,10 +6286,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -6801,17 +6309,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercise"
-                  ]
+                  "enum": ["exercise"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercise"
-                    ]
+                    "enum": ["exercise"]
                   }
                 }
               ]
@@ -6825,10 +6329,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -6895,9 +6396,7 @@
             }
           }
         },
-        "tags": [
-          "exercise-option"
-        ]
+        "tags": ["exercise-option"]
       },
       "post": {
         "operationId": "exercise-option/post/exercise_options",
@@ -6939,17 +6438,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercise"
-                  ]
+                  "enum": ["exercise"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercise"
-                    ]
+                    "enum": ["exercise"]
                   }
                 }
               ]
@@ -6963,10 +6458,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -7033,9 +6525,7 @@
             }
           }
         },
-        "tags": [
-          "exercise-option"
-        ],
+        "tags": ["exercise-option"],
         "requestBody": {
           "required": true,
           "content": {
@@ -7098,17 +6588,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercise"
-                  ]
+                  "enum": ["exercise"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercise"
-                    ]
+                    "enum": ["exercise"]
                   }
                 }
               ]
@@ -7184,10 +6670,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -7207,10 +6690,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -7225,10 +6705,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -7295,9 +6772,7 @@
             }
           }
         },
-        "tags": [
-          "exercise-option"
-        ]
+        "tags": ["exercise-option"]
       },
       "put": {
         "operationId": "exercise-option/put/exercise_options_by_id",
@@ -7348,17 +6823,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercise"
-                  ]
+                  "enum": ["exercise"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercise"
-                    ]
+                    "enum": ["exercise"]
                   }
                 }
               ]
@@ -7372,10 +6843,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -7442,9 +6910,7 @@
             }
           }
         },
-        "tags": [
-          "exercise-option"
-        ],
+        "tags": ["exercise-option"],
         "requestBody": {
           "required": true,
           "content": {
@@ -7505,17 +6971,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "exercise"
-                  ]
+                  "enum": ["exercise"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "exercise"
-                    ]
+                    "enum": ["exercise"]
                   }
                 }
               ]
@@ -7551,10 +7013,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -7622,9 +7081,7 @@
             }
           }
         },
-        "tags": [
-          "exercise-option"
-        ]
+        "tags": ["exercise-option"]
       }
     },
     "/feedbacks": {
@@ -7717,10 +7174,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -7737,10 +7191,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -7796,10 +7247,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -7819,10 +7267,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -7845,19 +7290,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "course",
-                    "student"
-                  ]
+                  "enum": ["course", "student"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "course",
-                      "student"
-                    ]
+                    "enum": ["course", "student"]
                   }
                 }
               ]
@@ -7871,10 +7310,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -7941,9 +7377,7 @@
             }
           }
         },
-        "tags": [
-          "feedback"
-        ]
+        "tags": ["feedback"]
       },
       "post": {
         "operationId": "feedback/post/feedbacks",
@@ -7985,19 +7419,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "course",
-                    "student"
-                  ]
+                  "enum": ["course", "student"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "course",
-                      "student"
-                    ]
+                    "enum": ["course", "student"]
                   }
                 }
               ]
@@ -8011,10 +7439,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -8081,9 +7506,7 @@
             }
           }
         },
-        "tags": [
-          "feedback"
-        ],
+        "tags": ["feedback"],
         "requestBody": {
           "required": true,
           "content": {
@@ -8146,19 +7569,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "course",
-                    "student"
-                  ]
+                  "enum": ["course", "student"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "course",
-                      "student"
-                    ]
+                    "enum": ["course", "student"]
                   }
                 }
               ]
@@ -8234,10 +7651,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -8257,10 +7671,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -8275,10 +7686,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -8345,9 +7753,7 @@
             }
           }
         },
-        "tags": [
-          "feedback"
-        ]
+        "tags": ["feedback"]
       },
       "put": {
         "operationId": "feedback/put/feedbacks_by_id",
@@ -8398,19 +7804,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "course",
-                    "student"
-                  ]
+                  "enum": ["course", "student"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "course",
-                      "student"
-                    ]
+                    "enum": ["course", "student"]
                   }
                 }
               ]
@@ -8424,10 +7824,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -8494,9 +7891,7 @@
             }
           }
         },
-        "tags": [
-          "feedback"
-        ],
+        "tags": ["feedback"],
         "requestBody": {
           "required": true,
           "content": {
@@ -8557,19 +7952,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "course",
-                    "student"
-                  ]
+                  "enum": ["course", "student"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "course",
-                      "student"
-                    ]
+                    "enum": ["course", "student"]
                   }
                 }
               ]
@@ -8605,10 +7994,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -8676,9 +8062,7 @@
             }
           }
         },
-        "tags": [
-          "feedback"
-        ]
+        "tags": ["feedback"]
       }
     },
     "/lectures": {
@@ -8769,10 +8153,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -8789,10 +8170,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -8845,10 +8223,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -8867,10 +8242,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -8893,17 +8265,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "content"
-                  ]
+                  "enum": ["content"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "content"
-                    ]
+                    "enum": ["content"]
                   }
                 }
               ]
@@ -8917,10 +8285,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -8987,9 +8352,7 @@
             }
           }
         },
-        "tags": [
-          "lecture"
-        ]
+        "tags": ["lecture"]
       },
       "post": {
         "operationId": "lecture/post/lectures",
@@ -9030,17 +8393,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "content"
-                  ]
+                  "enum": ["content"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "content"
-                    ]
+                    "enum": ["content"]
                   }
                 }
               ]
@@ -9054,10 +8413,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -9124,9 +8480,7 @@
             }
           }
         },
-        "tags": [
-          "lecture"
-        ],
+        "tags": ["lecture"],
         "requestBody": {
           "required": true,
           "content": {
@@ -9188,17 +8542,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "content"
-                  ]
+                  "enum": ["content"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "content"
-                    ]
+                    "enum": ["content"]
                   }
                 }
               ]
@@ -9270,10 +8620,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -9292,10 +8639,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -9310,10 +8654,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -9380,9 +8721,7 @@
             }
           }
         },
-        "tags": [
-          "lecture"
-        ]
+        "tags": ["lecture"]
       },
       "put": {
         "operationId": "lecture/put/lectures_by_id",
@@ -9432,17 +8771,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "content"
-                  ]
+                  "enum": ["content"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "content"
-                    ]
+                    "enum": ["content"]
                   }
                 }
               ]
@@ -9456,10 +8791,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -9526,9 +8858,7 @@
             }
           }
         },
-        "tags": [
-          "lecture"
-        ],
+        "tags": ["lecture"],
         "requestBody": {
           "required": true,
           "content": {
@@ -9588,17 +8918,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "content"
-                  ]
+                  "enum": ["content"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "content"
-                    ]
+                    "enum": ["content"]
                   }
                 }
               ]
@@ -9633,10 +8959,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -9704,9 +9027,7 @@
             }
           }
         },
-        "tags": [
-          "lecture"
-        ]
+        "tags": ["lecture"]
       }
     },
     "/password-reset-tokens": {
@@ -9799,10 +9120,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -9819,10 +9137,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -9878,10 +9193,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -9901,10 +9213,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -10003,9 +9312,7 @@
             }
           }
         },
-        "tags": [
-          "password-reset-token"
-        ]
+        "tags": ["password-reset-token"]
       },
       "post": {
         "operationId": "password-reset-token/post/password_reset_tokens",
@@ -10123,9 +9430,7 @@
             }
           }
         },
-        "tags": [
-          "password-reset-token"
-        ],
+        "tags": ["password-reset-token"],
         "requestBody": {
           "required": true,
           "content": {
@@ -10270,10 +9575,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -10293,10 +9595,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -10367,9 +9666,7 @@
             }
           }
         },
-        "tags": [
-          "password-reset-token"
-        ]
+        "tags": ["password-reset-token"]
       },
       "put": {
         "operationId": "password-reset-token/put/password_reset_tokens_by_id",
@@ -10496,9 +9793,7 @@
             }
           }
         },
-        "tags": [
-          "password-reset-token"
-        ],
+        "tags": ["password-reset-token"],
         "requestBody": {
           "required": true,
           "content": {
@@ -10658,9 +9953,7 @@
             }
           }
         },
-        "tags": [
-          "password-reset-token"
-        ]
+        "tags": ["password-reset-token"]
       }
     },
     "/students": {
@@ -10757,10 +10050,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -10777,10 +10067,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -10842,10 +10129,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -10867,10 +10151,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -10893,12 +10174,7 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "feedbacks",
-                    "courses",
-                    "certificates",
-                    "user_logs"
-                  ]
+                  "enum": ["feedbacks", "courses", "certificates", "user_logs"]
                 },
                 {
                   "type": "array",
@@ -10923,10 +10199,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -10993,9 +10266,7 @@
             }
           }
         },
-        "tags": [
-          "student"
-        ]
+        "tags": ["student"]
       },
       "post": {
         "operationId": "student/post/students",
@@ -11039,12 +10310,7 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "feedbacks",
-                    "courses",
-                    "certificates",
-                    "user_logs"
-                  ]
+                  "enum": ["feedbacks", "courses", "certificates", "user_logs"]
                 },
                 {
                   "type": "array",
@@ -11069,10 +10335,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -11139,9 +10402,7 @@
             }
           }
         },
-        "tags": [
-          "student"
-        ],
+        "tags": ["student"],
         "requestBody": {
           "required": true,
           "content": {
@@ -11206,12 +10467,7 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "feedbacks",
-                    "courses",
-                    "certificates",
-                    "user_logs"
-                  ]
+                  "enum": ["feedbacks", "courses", "certificates", "user_logs"]
                 },
                 {
                   "type": "array",
@@ -11306,10 +10562,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -11331,10 +10584,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -11349,10 +10599,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -11419,9 +10666,7 @@
             }
           }
         },
-        "tags": [
-          "student"
-        ]
+        "tags": ["student"]
       },
       "put": {
         "operationId": "student/put/students_by_id",
@@ -11474,12 +10719,7 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "feedbacks",
-                    "courses",
-                    "certificates",
-                    "user_logs"
-                  ]
+                  "enum": ["feedbacks", "courses", "certificates", "user_logs"]
                 },
                 {
                   "type": "array",
@@ -11504,10 +10744,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -11574,9 +10811,7 @@
             }
           }
         },
-        "tags": [
-          "student"
-        ],
+        "tags": ["student"],
         "requestBody": {
           "required": true,
           "content": {
@@ -11639,12 +10874,7 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "feedbacks",
-                    "courses",
-                    "certificates",
-                    "user_logs"
-                  ]
+                  "enum": ["feedbacks", "courses", "certificates", "user_logs"]
                 },
                 {
                   "type": "array",
@@ -11693,10 +10923,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
+              "enum": ["draft", "published"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -11764,16 +10991,12 @@
             }
           }
         },
-        "tags": [
-          "student"
-        ]
+        "tags": ["student"]
       }
     },
     "/student/login": {
       "post": {
-        "tags": [
-          "Student - Auth"
-        ],
+        "tags": ["Student - Auth"],
         "requestBody": {
           "required": true,
           "content": {
@@ -11800,9 +11023,7 @@
     },
     "/student/reset-password-request": {
       "post": {
-        "tags": [
-          "Student - Auth"
-        ],
+        "tags": ["Student - Auth"],
         "requestBody": {
           "required": true,
           "content": {
@@ -11829,9 +11050,7 @@
     },
     "/student/reset-password-code": {
       "post": {
-        "tags": [
-          "Student - Auth"
-        ],
+        "tags": ["Student - Auth"],
         "requestBody": {
           "required": true,
           "content": {
@@ -11858,9 +11077,7 @@
     },
     "/student/reset-password-update": {
       "patch": {
-        "tags": [
-          "Student - Auth"
-        ],
+        "tags": ["Student - Auth"],
         "requestBody": {
           "required": true,
           "content": {
@@ -11887,9 +11104,7 @@
     },
     "/student/signup": {
       "post": {
-        "tags": [
-          "Student - Auth"
-        ],
+        "tags": ["Student - Auth"],
         "requestBody": {
           "required": true,
           "content": {
@@ -11916,9 +11131,7 @@
     },
     "/student/send-verification-token": {
       "post": {
-        "tags": [
-          "Student - Auth"
-        ],
+        "tags": ["Student - Auth"],
         "requestBody": {
           "required": true,
           "content": {
@@ -11945,9 +11158,7 @@
     },
     "/student/verify-email": {
       "post": {
-        "tags": [
-          "Student - Auth"
-        ],
+        "tags": ["Student - Auth"],
         "requestBody": {
           "required": true,
           "content": {
@@ -12060,10 +11271,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -12080,10 +11288,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -12136,10 +11341,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -12158,10 +11360,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -12184,17 +11383,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "student"
-                  ]
+                  "enum": ["student"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "student"
-                    ]
+                    "enum": ["student"]
                   }
                 }
               ]
@@ -12264,9 +11459,7 @@
             }
           }
         },
-        "tags": [
-          "user-log"
-        ]
+        "tags": ["user-log"]
       },
       "post": {
         "operationId": "user-log/post/user_logs",
@@ -12307,17 +11500,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "student"
-                  ]
+                  "enum": ["student"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "student"
-                    ]
+                    "enum": ["student"]
                   }
                 }
               ]
@@ -12387,9 +11576,7 @@
             }
           }
         },
-        "tags": [
-          "user-log"
-        ],
+        "tags": ["user-log"],
         "requestBody": {
           "required": true,
           "content": {
@@ -12451,17 +11638,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "student"
-                  ]
+                  "enum": ["student"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "student"
-                    ]
+                    "enum": ["student"]
                   }
                 }
               ]
@@ -12533,10 +11716,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -12555,10 +11735,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -12629,9 +11806,7 @@
             }
           }
         },
-        "tags": [
-          "user-log"
-        ]
+        "tags": ["user-log"]
       },
       "put": {
         "operationId": "user-log/put/user_logs_by_id",
@@ -12681,17 +11856,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "student"
-                  ]
+                  "enum": ["student"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "student"
-                    ]
+                    "enum": ["student"]
                   }
                 }
               ]
@@ -12761,9 +11932,7 @@
             }
           }
         },
-        "tags": [
-          "user-log"
-        ],
+        "tags": ["user-log"],
         "requestBody": {
           "required": true,
           "content": {
@@ -12823,17 +11992,13 @@
                 {
                   "readOnly": true,
                   "type": "string",
-                  "enum": [
-                    "student"
-                  ]
+                  "enum": ["student"]
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "student"
-                    ]
+                    "enum": ["student"]
                   }
                 }
               ]
@@ -12925,9 +12090,7 @@
             }
           }
         },
-        "tags": [
-          "user-log"
-        ]
+        "tags": ["user-log"]
       }
     },
     "/verification-tokens": {
@@ -13020,10 +12183,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -13040,10 +12200,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -13099,10 +12256,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -13122,10 +12276,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -13224,9 +12375,7 @@
             }
           }
         },
-        "tags": [
-          "verification-token"
-        ]
+        "tags": ["verification-token"]
       },
       "post": {
         "operationId": "verification-token/post/verification_tokens",
@@ -13344,9 +12493,7 @@
             }
           }
         },
-        "tags": [
-          "verification-token"
-        ],
+        "tags": ["verification-token"],
         "requestBody": {
           "required": true,
           "content": {
@@ -13491,10 +12638,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -13514,10 +12658,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -13588,9 +12729,7 @@
             }
           }
         },
-        "tags": [
-          "verification-token"
-        ]
+        "tags": ["verification-token"]
       },
       "put": {
         "operationId": "verification-token/put/verification_tokens_by_id",
@@ -13717,9 +12856,7 @@
             }
           }
         },
-        "tags": [
-          "verification-token"
-        ],
+        "tags": ["verification-token"],
         "requestBody": {
           "required": true,
           "content": {
@@ -13879,9 +13016,7 @@
             }
           }
         },
-        "tags": [
-          "verification-token"
-        ]
+        "tags": ["verification-token"]
       }
     },
     "/content-types": {
@@ -13895,10 +13030,7 @@
             "schema": {
               "$schema": "https://json-schema.org/draft/2020-12/schema",
               "type": "string",
-              "enum": [
-                "collectionType",
-                "singleType"
-              ]
+              "enum": ["collectionType", "singleType"]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -13947,10 +13079,7 @@
                               },
                               "kind": {
                                 "type": "string",
-                                "enum": [
-                                  "collectionType",
-                                  "singleType"
-                                ]
+                                "enum": ["collectionType", "singleType"]
                               },
                               "collectionName": {
                                 "type": "string"
@@ -13996,10 +13125,7 @@
                                           }
                                         }
                                       },
-                                      "required": [
-                                        "type",
-                                        "multiple"
-                                      ],
+                                      "required": ["type", "multiple"],
                                       "additionalProperties": false
                                     },
                                     {
@@ -14140,10 +13266,7 @@
                                           "type": "number"
                                         }
                                       },
-                                      "required": [
-                                        "type",
-                                        "components"
-                                      ],
+                                      "required": ["type", "components"],
                                       "additionalProperties": false
                                     },
                                     {
@@ -14171,9 +13294,7 @@
                                           "type": "string"
                                         }
                                       },
-                                      "required": [
-                                        "type"
-                                      ],
+                                      "required": ["type"],
                                       "additionalProperties": false
                                     },
                                     {
@@ -14238,9 +13359,7 @@
                                           "additionalProperties": {}
                                         }
                                       },
-                                      "required": [
-                                        "type"
-                                      ],
+                                      "required": ["type"],
                                       "additionalProperties": false
                                     }
                                   ]
@@ -14303,18 +13422,12 @@
                             "additionalProperties": false
                           }
                         },
-                        "required": [
-                          "uid",
-                          "apiID",
-                          "schema"
-                        ],
+                        "required": ["uid", "apiID", "schema"],
                         "additionalProperties": false
                       }
                     }
                   },
-                  "required": [
-                    "data"
-                  ],
+                  "required": ["data"],
                   "additionalProperties": false
                 }
               }
@@ -14336,9 +13449,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "content-type-builder"
-        ]
+        "tags": ["content-type-builder"]
       }
     },
     "/content-types/{uid}": {
@@ -14398,10 +13509,7 @@
                             },
                             "kind": {
                               "type": "string",
-                              "enum": [
-                                "collectionType",
-                                "singleType"
-                              ]
+                              "enum": ["collectionType", "singleType"]
                             },
                             "collectionName": {
                               "type": "string"
@@ -14447,10 +13555,7 @@
                                         }
                                       }
                                     },
-                                    "required": [
-                                      "type",
-                                      "multiple"
-                                    ],
+                                    "required": ["type", "multiple"],
                                     "additionalProperties": false
                                   },
                                   {
@@ -14591,10 +13696,7 @@
                                         "type": "number"
                                       }
                                     },
-                                    "required": [
-                                      "type",
-                                      "components"
-                                    ],
+                                    "required": ["type", "components"],
                                     "additionalProperties": false
                                   },
                                   {
@@ -14622,9 +13724,7 @@
                                         "type": "string"
                                       }
                                     },
-                                    "required": [
-                                      "type"
-                                    ],
+                                    "required": ["type"],
                                     "additionalProperties": false
                                   },
                                   {
@@ -14689,9 +13789,7 @@
                                         "additionalProperties": {}
                                       }
                                     },
-                                    "required": [
-                                      "type"
-                                    ],
+                                    "required": ["type"],
                                     "additionalProperties": false
                                   }
                                 ]
@@ -14754,17 +13852,11 @@
                           "additionalProperties": false
                         }
                       },
-                      "required": [
-                        "uid",
-                        "apiID",
-                        "schema"
-                      ],
+                      "required": ["uid", "apiID", "schema"],
                       "additionalProperties": false
                     }
                   },
-                  "required": [
-                    "data"
-                  ],
+                  "required": ["data"],
                   "additionalProperties": false
                 }
               }
@@ -14786,9 +13878,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "content-type-builder"
-        ]
+        "tags": ["content-type-builder"]
       }
     },
     "/components": {
@@ -14878,10 +13968,7 @@
                                           }
                                         }
                                       },
-                                      "required": [
-                                        "type",
-                                        "multiple"
-                                      ],
+                                      "required": ["type", "multiple"],
                                       "additionalProperties": false
                                     },
                                     {
@@ -15022,10 +14109,7 @@
                                           "type": "number"
                                         }
                                       },
-                                      "required": [
-                                        "type",
-                                        "components"
-                                      ],
+                                      "required": ["type", "components"],
                                       "additionalProperties": false
                                     },
                                     {
@@ -15053,9 +14137,7 @@
                                           "type": "string"
                                         }
                                       },
-                                      "required": [
-                                        "type"
-                                      ],
+                                      "required": ["type"],
                                       "additionalProperties": false
                                     },
                                     {
@@ -15120,9 +14202,7 @@
                                           "additionalProperties": {}
                                         }
                                       },
-                                      "required": [
-                                        "type"
-                                      ],
+                                      "required": ["type"],
                                       "additionalProperties": false
                                     }
                                   ]
@@ -15144,19 +14224,12 @@
                             "additionalProperties": false
                           }
                         },
-                        "required": [
-                          "uid",
-                          "category",
-                          "apiId",
-                          "schema"
-                        ],
+                        "required": ["uid", "category", "apiId", "schema"],
                         "additionalProperties": false
                       }
                     }
                   },
-                  "required": [
-                    "data"
-                  ],
+                  "required": ["data"],
                   "additionalProperties": false
                 }
               }
@@ -15178,9 +14251,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "content-type-builder"
-        ]
+        "tags": ["content-type-builder"]
       }
     },
     "/components/{uid}": {
@@ -15279,10 +14350,7 @@
                                         }
                                       }
                                     },
-                                    "required": [
-                                      "type",
-                                      "multiple"
-                                    ],
+                                    "required": ["type", "multiple"],
                                     "additionalProperties": false
                                   },
                                   {
@@ -15423,10 +14491,7 @@
                                         "type": "number"
                                       }
                                     },
-                                    "required": [
-                                      "type",
-                                      "components"
-                                    ],
+                                    "required": ["type", "components"],
                                     "additionalProperties": false
                                   },
                                   {
@@ -15454,9 +14519,7 @@
                                         "type": "string"
                                       }
                                     },
-                                    "required": [
-                                      "type"
-                                    ],
+                                    "required": ["type"],
                                     "additionalProperties": false
                                   },
                                   {
@@ -15521,9 +14584,7 @@
                                         "additionalProperties": {}
                                       }
                                     },
-                                    "required": [
-                                      "type"
-                                    ],
+                                    "required": ["type"],
                                     "additionalProperties": false
                                   }
                                 ]
@@ -15545,18 +14606,11 @@
                           "additionalProperties": false
                         }
                       },
-                      "required": [
-                        "uid",
-                        "category",
-                        "apiId",
-                        "schema"
-                      ],
+                      "required": ["uid", "category", "apiId", "schema"],
                       "additionalProperties": false
                     }
                   },
-                  "required": [
-                    "data"
-                  ],
+                  "required": ["data"],
                   "additionalProperties": false
                 }
               }
@@ -15578,9 +14632,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "content-type-builder"
-        ]
+        "tags": ["content-type-builder"]
       }
     },
     "/": {
@@ -15890,9 +14942,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "upload"
-        ]
+        "tags": ["upload"]
       }
     },
     "/files": {
@@ -15973,10 +15023,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -15988,10 +15035,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -16031,10 +15075,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -16051,10 +15092,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -16235,9 +15273,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "upload"
-        ]
+        "tags": ["upload"]
       }
     },
     "/files/{id}": {
@@ -16461,9 +15497,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "upload"
-        ]
+        "tags": ["upload"]
       },
       "delete": {
         "operationId": "upload/delete/files_by_id",
@@ -16634,9 +15668,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "upload"
-        ]
+        "tags": ["upload"]
       }
     },
     "/locales": {
@@ -16724,9 +15756,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "i18n"
-        ]
+        "tags": ["i18n"]
       }
     },
     "/connect/(.*)": {
@@ -16750,9 +15780,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       }
     },
     "/auth/local": {
@@ -16781,9 +15809,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ],
+        "tags": ["users-permissions"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -16834,9 +15860,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ],
+        "tags": ["users-permissions"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -16901,9 +15925,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       }
     },
     "/auth/forgot-password": {
@@ -16920,9 +15942,7 @@
                   "properties": {
                     "ok": {
                       "type": "string",
-                      "enum": [
-                        true
-                      ]
+                      "enum": [true]
                     }
                   }
                 }
@@ -16940,9 +15960,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ],
+        "tags": ["users-permissions"],
         "requestBody": {
           "required": true,
           "content": {
@@ -16989,9 +16007,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ],
+        "tags": ["users-permissions"],
         "requestBody": {
           "required": true,
           "content": {
@@ -17039,9 +16055,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       }
     },
     "/auth/send-email-confirmation": {
@@ -17061,9 +16075,7 @@
                     },
                     "sent": {
                       "type": "string",
-                      "enum": [
-                        true
-                      ]
+                      "enum": [true]
                     }
                   }
                 }
@@ -17081,9 +16093,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ],
+        "tags": ["users-permissions"],
         "requestBody": {
           "required": true,
           "content": {
@@ -17127,9 +16137,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ],
+        "tags": ["users-permissions"],
         "requestBody": {
           "required": true,
           "content": {
@@ -17179,9 +16187,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       }
     },
     "/auth/logout": {
@@ -17205,9 +16211,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       }
     },
     "/users/count": {
@@ -17252,9 +16256,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       }
     },
     "/users": {
@@ -17335,10 +16337,7 @@
                   },
                   "additionalProperties": {
                     "type": "string",
-                    "enum": [
-                      "asc",
-                      "desc"
-                    ]
+                    "enum": ["asc", "desc"]
                   }
                 },
                 {
@@ -17350,10 +16349,7 @@
                     },
                     "additionalProperties": {
                       "type": "string",
-                      "enum": [
-                        "asc",
-                        "desc"
-                      ]
+                      "enum": ["asc", "desc"]
                     }
                   }
                 }
@@ -17393,10 +16389,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "page",
-                        "pageSize"
-                      ],
+                      "required": ["page", "pageSize"],
                       "additionalProperties": false
                     },
                     {
@@ -17413,10 +16406,7 @@
                           "maximum": 9007199254740991
                         }
                       },
-                      "required": [
-                        "start",
-                        "limit"
-                      ],
+                      "required": ["start", "limit"],
                       "additionalProperties": false
                     }
                   ]
@@ -17477,9 +16467,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       },
       "post": {
         "operationId": "users-permissions/post/users",
@@ -17536,20 +16524,14 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ],
+        "tags": ["users-permissions"],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "username",
-                  "email",
-                  "password"
-                ],
+                "required": ["username", "email", "password"],
                 "properties": {
                   "email": {
                     "type": "string"
@@ -17660,9 +16642,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       }
     },
     "/users/{id}": {
@@ -17762,9 +16742,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       },
       "put": {
         "operationId": "users-permissions/put/users_by_id",
@@ -17831,20 +16809,14 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ],
+        "tags": ["users-permissions"],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "username",
-                  "email",
-                  "password"
-                ],
+                "required": ["username", "email", "password"],
                 "properties": {
                   "email": {
                     "type": "string"
@@ -17915,9 +16887,7 @@
             }
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       }
     },
     "/roles/{id}": {
@@ -18008,18 +16978,13 @@
                                         "type": "string"
                                       }
                                     },
-                                    "required": [
-                                      "enabled",
-                                      "policy"
-                                    ],
+                                    "required": ["enabled", "policy"],
                                     "additionalProperties": false
                                   }
                                 }
                               }
                             },
-                            "required": [
-                              "controllers"
-                            ],
+                            "required": ["controllers"],
                             "additionalProperties": false
                           }
                         },
@@ -18041,9 +17006,7 @@
                       "additionalProperties": false
                     }
                   },
-                  "required": [
-                    "role"
-                  ],
+                  "required": ["role"],
                   "additionalProperties": false
                 }
               }
@@ -18065,9 +17028,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       }
     },
     "/roles": {
@@ -18150,18 +17111,13 @@
                                           "type": "string"
                                         }
                                       },
-                                      "required": [
-                                        "enabled",
-                                        "policy"
-                                      ],
+                                      "required": ["enabled", "policy"],
                                       "additionalProperties": false
                                     }
                                   }
                                 }
                               },
-                              "required": [
-                                "controllers"
-                              ],
+                              "required": ["controllers"],
                               "additionalProperties": false
                             }
                           },
@@ -18184,9 +17140,7 @@
                       }
                     }
                   },
-                  "required": [
-                    "roles"
-                  ],
+                  "required": ["roles"],
                   "additionalProperties": false
                 }
               }
@@ -18208,9 +17162,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       },
       "post": {
         "operationId": "users-permissions/post/roles",
@@ -18228,9 +17180,7 @@
                       "type": "boolean"
                     }
                   },
-                  "required": [
-                    "ok"
-                  ],
+                  "required": ["ok"],
                   "additionalProperties": false
                 }
               }
@@ -18252,9 +17202,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "users-permissions"
-        ],
+        "tags": ["users-permissions"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -18279,10 +17227,7 @@
                     "additionalProperties": {}
                   }
                 },
-                "required": [
-                  "name",
-                  "type"
-                ],
+                "required": ["name", "type"],
                 "additionalProperties": false
               }
             }
@@ -18317,9 +17262,7 @@
                       "type": "boolean"
                     }
                   },
-                  "required": [
-                    "ok"
-                  ],
+                  "required": ["ok"],
                   "additionalProperties": false
                 }
               }
@@ -18341,9 +17284,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "users-permissions"
-        ],
+        "tags": ["users-permissions"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -18400,9 +17341,7 @@
                       "type": "boolean"
                     }
                   },
-                  "required": [
-                    "ok"
-                  ],
+                  "required": ["ok"],
                   "additionalProperties": false
                 }
               }
@@ -18424,9 +17363,7 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       }
     },
     "/permissions": {
@@ -18470,25 +17407,18 @@
                                     "type": "string"
                                   }
                                 },
-                                "required": [
-                                  "enabled",
-                                  "policy"
-                                ],
+                                "required": ["enabled", "policy"],
                                 "additionalProperties": false
                               }
                             }
                           }
                         },
-                        "required": [
-                          "controllers"
-                        ],
+                        "required": ["controllers"],
                         "additionalProperties": false
                       }
                     }
                   },
-                  "required": [
-                    "permissions"
-                  ],
+                  "required": ["permissions"],
                   "additionalProperties": false
                 }
               }
@@ -18510,16 +17440,12 @@
             "description": "Internal server error"
           }
         },
-        "tags": [
-          "users-permissions"
-        ]
+        "tags": ["users-permissions"]
       }
     },
     "/CC-dashboard-activity": {
       "get": {
-        "tags": [
-          "Content Creator - Dashboard"
-        ],
+        "tags": ["Content Creator - Dashboard"],
         "responses": {
           "200": {
             "description": "OK - Array of dashboard activities",
@@ -18542,9 +17468,7 @@
     "schemas": {
       "Error": {
         "type": "object",
-        "required": [
-          "error"
-        ],
+        "required": ["error"],
         "properties": {
           "data": {
             "nullable": true,
@@ -18581,15 +17505,10 @@
       },
       "CertificateRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "link",
-              "completionDate"
-            ],
+            "required": ["link", "completionDate"],
             "type": "object",
             "properties": {
               "link": {
@@ -18679,10 +17598,7 @@
       },
       "Certificate": {
         "type": "object",
-        "required": [
-          "link",
-          "completionDate"
-        ],
+        "required": ["link", "completionDate"],
         "properties": {
           "id": {
             "type": "number"
@@ -19835,19 +18751,11 @@
                               },
                               "education": {
                                 "type": "string",
-                                "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
-                                ]
+                                "enum": ["TODO1", "TODO2", "TODO3"]
                               },
                               "statusValue": {
                                 "type": "string",
-                                "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
-                                ]
+                                "enum": ["TODO1", "TODO2", "TODO3"]
                               },
                               "courseExperience": {
                                 "type": "string"
@@ -20486,9 +19394,7 @@
           },
           "__component": {
             "type": "string",
-            "enum": [
-              "content.video"
-            ]
+            "enum": ["content.video"]
           },
           "video": {
             "type": "array",
@@ -20632,9 +19538,7 @@
           },
           "__component": {
             "type": "string",
-            "enum": [
-              "content.description"
-            ]
+            "enum": ["content.description"]
           },
           "text": {
             "type": "string"
@@ -20643,9 +19547,7 @@
       },
       "ContentCreatorRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
             "required": [
@@ -20688,19 +19590,11 @@
               },
               "education": {
                 "type": "string",
-                "enum": [
-                  "TODO1",
-                  "TODO2",
-                  "TODO3"
-                ]
+                "enum": ["TODO1", "TODO2", "TODO3"]
               },
               "statusValue": {
                 "type": "string",
-                "enum": [
-                  "TODO1",
-                  "TODO2",
-                  "TODO3"
-                ]
+                "enum": ["TODO1", "TODO2", "TODO3"]
               },
               "courseExperience": {
                 "type": "string"
@@ -20873,19 +19767,11 @@
           },
           "education": {
             "type": "string",
-            "enum": [
-              "TODO1",
-              "TODO2",
-              "TODO3"
-            ]
+            "enum": ["TODO1", "TODO2", "TODO3"]
           },
           "statusValue": {
             "type": "string",
-            "enum": [
-              "TODO1",
-              "TODO2",
-              "TODO3"
-            ]
+            "enum": ["TODO1", "TODO2", "TODO3"]
           },
           "courseExperience": {
             "type": "string"
@@ -22367,19 +21253,11 @@
                       },
                       "education": {
                         "type": "string",
-                        "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
-                        ]
+                        "enum": ["TODO1", "TODO2", "TODO3"]
                       },
                       "statusValue": {
                         "type": "string",
-                        "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
-                        ]
+                        "enum": ["TODO1", "TODO2", "TODO3"]
                       },
                       "courseExperience": {
                         "type": "string"
@@ -22721,16 +21599,10 @@
       },
       "CourseRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "title",
-              "difficulty",
-              "durationHours"
-            ],
+            "required": ["title", "difficulty", "durationHours"],
             "type": "object",
             "properties": {
               "title": {
@@ -22890,11 +21762,7 @@
       },
       "Course": {
         "type": "object",
-        "required": [
-          "title",
-          "difficulty",
-          "durationHours"
-        ],
+        "required": ["title", "difficulty", "durationHours"],
         "properties": {
           "id": {
             "type": "number"
@@ -24434,19 +23302,11 @@
                           },
                           "education": {
                             "type": "string",
-                            "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
-                            ]
+                            "enum": ["TODO1", "TODO2", "TODO3"]
                           },
                           "statusValue": {
                             "type": "string",
-                            "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
-                            ]
+                            "enum": ["TODO1", "TODO2", "TODO3"]
                           },
                           "courseExperience": {
                             "type": "string"
@@ -24880,14 +23740,10 @@
       },
       "CourseCategoryRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "name"
-            ],
+            "required": ["name"],
             "type": "object",
             "properties": {
               "name": {
@@ -24965,9 +23821,7 @@
       },
       "CourseCategory": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "properties": {
           "id": {
             "type": "number"
@@ -26427,19 +25281,11 @@
                       },
                       "education": {
                         "type": "string",
-                        "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
-                        ]
+                        "enum": ["TODO1", "TODO2", "TODO3"]
                       },
                       "statusValue": {
                         "type": "string",
-                        "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
-                        ]
+                        "enum": ["TODO1", "TODO2", "TODO3"]
                       },
                       "courseExperience": {
                         "type": "string"
@@ -26753,14 +25599,10 @@
       },
       "CourseSelectionRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "title"
-            ],
+            "required": ["title"],
             "type": "object",
             "properties": {
               "title": {
@@ -26866,9 +25708,7 @@
       },
       "CourseSelection": {
         "type": "object",
-        "required": [
-          "title"
-        ],
+        "required": ["title"],
         "properties": {
           "id": {
             "type": "number"
@@ -28140,19 +26980,11 @@
                     },
                     "education": {
                       "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
+                      "enum": ["TODO1", "TODO2", "TODO3"]
                     },
                     "statusValue": {
                       "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
+                      "enum": ["TODO1", "TODO2", "TODO3"]
                     },
                     "courseExperience": {
                       "type": "string"
@@ -28465,9 +27297,7 @@
       },
       "DashboardActivityRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
             "type": "object",
@@ -28569,15 +27399,10 @@
       },
       "ExerciseRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "title",
-              "question"
-            ],
+            "required": ["title", "question"],
             "type": "object",
             "properties": {
               "title": {
@@ -28658,10 +27483,7 @@
       },
       "Exercise": {
         "type": "object",
-        "required": [
-          "title",
-          "question"
-        ],
+        "required": ["title", "question"],
         "properties": {
           "id": {
             "type": "number"
@@ -29149,16 +27971,10 @@
       },
       "ExerciseOptionRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "text",
-              "explanation",
-              "isCorrect"
-            ],
+            "required": ["text", "explanation", "isCorrect"],
             "type": "object",
             "properties": {
               "text": {
@@ -29239,11 +28055,7 @@
       },
       "ExerciseOption": {
         "type": "object",
-        "required": [
-          "text",
-          "explanation",
-          "isCorrect"
-        ],
+        "required": ["text", "explanation", "isCorrect"],
         "properties": {
           "id": {
             "type": "number"
@@ -29731,15 +28543,10 @@
       },
       "FeedbackRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "rating",
-              "dateCreated"
-            ],
+            "required": ["rating", "dateCreated"],
             "type": "object",
             "properties": {
               "rating": {
@@ -29832,10 +28639,7 @@
       },
       "Feedback": {
         "type": "object",
-        "required": [
-          "rating",
-          "dateCreated"
-        ],
+        "required": ["rating", "dateCreated"],
         "properties": {
           "id": {
             "type": "number"
@@ -31300,19 +30104,11 @@
                     },
                     "education": {
                       "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
+                      "enum": ["TODO1", "TODO2", "TODO3"]
                     },
                     "statusValue": {
                       "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
+                      "enum": ["TODO1", "TODO2", "TODO3"]
                     },
                     "courseExperience": {
                       "type": "string"
@@ -31636,14 +30432,10 @@
       },
       "LectureRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "title"
-            ],
+            "required": ["title"],
             "type": "object",
             "properties": {
               "title": {
@@ -31730,9 +30522,7 @@
       },
       "Lecture": {
         "type": "object",
-        "required": [
-          "title"
-        ],
+        "required": ["title"],
         "properties": {
           "id": {
             "type": "number"
@@ -31909,16 +30699,10 @@
       },
       "PasswordResetTokenRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "userEmail",
-              "token",
-              "expiresAt"
-            ],
+            "required": ["userEmail", "token", "expiresAt"],
             "type": "object",
             "properties": {
               "userEmail": {
@@ -31990,11 +30774,7 @@
       },
       "PasswordResetToken": {
         "type": "object",
-        "required": [
-          "userEmail",
-          "token",
-          "expiresAt"
-        ],
+        "required": ["userEmail", "token", "expiresAt"],
         "properties": {
           "id": {
             "type": "number"
@@ -32393,16 +31173,10 @@
       },
       "StudentRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "name",
-              "email",
-              "password"
-            ],
+            "required": ["name", "email", "password"],
             "type": "object",
             "properties": {
               "name": {
@@ -32538,11 +31312,7 @@
       },
       "Student": {
         "type": "object",
-        "required": [
-          "name",
-          "email",
-          "password"
-        ],
+        "required": ["name", "email", "password"],
         "properties": {
           "id": {
             "type": "number"
@@ -33949,19 +32719,11 @@
                           },
                           "education": {
                             "type": "string",
-                            "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
-                            ]
+                            "enum": ["TODO1", "TODO2", "TODO3"]
                           },
                           "statusValue": {
                             "type": "string",
-                            "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
-                            ]
+                            "enum": ["TODO1", "TODO2", "TODO3"]
                           },
                           "courseExperience": {
                             "type": "string"
@@ -34381,15 +33143,10 @@
       },
       "UserLogRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "loginDate",
-              "isSuccessful"
-            ],
+            "required": ["loginDate", "isSuccessful"],
             "type": "object",
             "properties": {
               "loginDate": {
@@ -34468,10 +33225,7 @@
       },
       "UserLog": {
         "type": "object",
-        "required": [
-          "loginDate",
-          "isSuccessful"
-        ],
+        "required": ["loginDate", "isSuccessful"],
         "properties": {
           "id": {
             "type": "number"
@@ -35624,19 +34378,11 @@
                               },
                               "education": {
                                 "type": "string",
-                                "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
-                                ]
+                                "enum": ["TODO1", "TODO2", "TODO3"]
                               },
                               "statusValue": {
                                 "type": "string",
-                                "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
-                                ]
+                                "enum": ["TODO1", "TODO2", "TODO3"]
                               },
                               "courseExperience": {
                                 "type": "string"
@@ -36258,16 +35004,10 @@
       },
       "VerificationTokenRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "userEmail",
-              "token",
-              "expiresAt"
-            ],
+            "required": ["userEmail", "token", "expiresAt"],
             "type": "object",
             "properties": {
               "userEmail": {
@@ -36339,11 +35079,7 @@
       },
       "VerificationToken": {
         "type": "object",
-        "required": [
-          "userEmail",
-          "token",
-          "expiresAt"
-        ],
+        "required": ["userEmail", "token", "expiresAt"],
         "properties": {
           "id": {
             "type": "number"
@@ -36906,10 +35642,7 @@
       },
       "LoginRequest": {
         "type": "object",
-        "required": [
-          "email",
-          "password"
-        ],
+        "required": ["email", "password"],
         "properties": {
           "email": {
             "type": "string"
