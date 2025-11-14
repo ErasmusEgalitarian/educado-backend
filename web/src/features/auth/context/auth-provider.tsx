@@ -27,37 +27,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     defaultUserPreferences,
   );
 
-  // Mock login: accepts email/password and returns a fake user
-  const login = useCallback(
-    (email: string, password: string): Promise<User> => {
-      // Create a simple mock user from the email
-      const [namePart] = email.split("@");
-      const now = new Date().toISOString();
-
-      const mockUser: User = {
-        // Using Math.random for a temporary mock ID is acceptable in mock code.
-        // eslint-disable-next-line sonarjs/pseudo-random
-        _id: Math.random().toString(36).slice(2),
-        role: email.includes("admin") ? "admin" : "user",
-        firstName:
-          namePart.length > 0
-            ? namePart.charAt(0).toUpperCase() + namePart.slice(1)
-            : "User",
-        lastName: "",
-        email,
-        joinedAt: now,
-        dateUpdated: now,
-      };
-
-      // Store a mock token
-      setAuthToken(btoa(`${email}:${password}`));
-
-      // Set the user in local storage
-      setLoggedInUserLS(mockUser);
-      return Promise.resolve(mockUser);
-    },
-    [setLoggedInUserLS, setAuthToken],
-  );
+  // accepts email/password and returns a user
+  const loginSaver = useCallback(
+  async (token: string, user: any): Promise<void> => {
+    try {
+      // just set auth state
+      setAuthToken(token);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      setLoggedInUserLS(user);
+    } catch (error) {
+      console.error("Failed to set auth state:", error);
+      throw error;
+    }
+  },
+  [setAuthToken, setLoggedInUserLS],
+);
 
   // Mock logout: clears user from storage
   const logout = useCallback(() => {
@@ -82,12 +66,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoggedInUser: (u) => {
         setLoggedInUserLS(u);
       },
-      login,
+      loginSaver,
       logout,
       preferences,
       setPreferences,
     }),
-    [loggedInUser, setLoggedInUserLS, login, logout, preferences, setPreferences],
+    [loggedInUser, setLoggedInUserLS, loginSaver, logout, preferences, setPreferences],
   );
 
   // Bootstrap: ensure userPreferences is source of truth for i18n language.

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import * as React from "react";
 import { FieldValues } from "react-hook-form";
 
@@ -22,10 +23,7 @@ interface FormElementWrapperProps<
   readonly inputSize?: InputSize;
   readonly childProps?: Partial<TChildProps>;
 }
-/* The intention of this component, is to wrap form elements (inputs, selects, etc.) with reusable
- * logic for labels, descriptions, error messages, and wiring up react-hook-form.
- * It has however become difficult to type properly. Should probably be rewritten or removed in future.
- */
+
 export const FormElementWrapper = <
   TFieldValues extends FieldValues,
   TChildProps extends Record<string, unknown> = Record<string, unknown>,
@@ -73,78 +71,29 @@ export const FormElementWrapper = <
             )}
             <FormControl>
               {React.isValidElement(children)
-                ? (() => {
-                    // Build props safely, only attaching handlers that the child supports
-                    const mergedProps: Partial<TChildProps> = {
-                      ...children.props,
-                      ...(childProps ?? ({} as Partial<TChildProps>)),
-                    };
-
-                    // Always wire in standard form props when not overridden
-                    (mergedProps as Record<string, unknown>).name = field.name;
-                    (mergedProps as Record<string, unknown>).onBlur =
-                      field.onBlur;
-                    (mergedProps as Record<string, unknown>)["aria-required"] =
-                      isRequired;
-                    (mergedProps as Record<string, unknown>).variant =
-                      variantProp;
-                    (mergedProps as Record<string, unknown>)["data-error"] =
-                      hasError;
-
-                    // If child uses onValueChange (e.g., MultiSelect), don't attach value/onChange from RHF.
-                    const usesOnValueChange =
-                      "onValueChange" in
-                        (children.props as Record<string, unknown>) ||
-                      !!(
-                        childProps && "onValueChange" in (childProps as object)
-                      );
-
-                    if (!usesOnValueChange) {
-                      // Standard inputs/selects: attach value and onChange unless childProps override
-                      const childProvidedValue = !!(
-                        childProps && "value" in (childProps as object)
-                      );
-                      if (!childProvidedValue) {
-                        (mergedProps as Record<string, unknown>).value =
-                          field.value ?? "";
-                      }
-
-                      const childProvidedOnChange = !!(
-                        childProps && "onChange" in (childProps as object)
-                      );
-                      if (!childProvidedOnChange) {
-                        (mergedProps as Record<string, unknown>).onChange =
-                          field.onChange;
-                      }
-                    }
-
-                    // onValueChange: only attach if the child supports it already or childProps provided it
-                    const childHasOnValueChange =
-                      "onValueChange" in
-                        (children.props as Record<string, unknown>) ||
-                      !!(
-                        childProps && "onValueChange" in (childProps as object)
-                      );
-                    if (childHasOnValueChange) {
-                      (mergedProps as Record<string, unknown>).onValueChange =
-                        childProps && "onValueChange" in (childProps as object)
-                          ? (childProps as Record<string, unknown>)
-                              .onValueChange
-                          : field.onChange;
-                    }
-
-                    // ref: prefer child's provided ref (via childProps) if present, else RHF ref
-                    const childProvidedRef = !!(
-                      childProps &&
-                      "ref" in (childProps as Record<string, unknown>)
-                    );
-                    (mergedProps as Record<string, unknown>).ref =
-                      childProvidedRef
-                        ? (childProps as Record<string, unknown>).ref
-                        : field.ref;
-
-                    return React.cloneElement(children, mergedProps);
-                  })()
+                ? React.cloneElement(children, {
+                    ...children.props,
+                    ...childProps,
+                    name: field.name,
+                    value:
+                      childProps && "value" in (childProps as object)
+                        ? (childProps as Record<string, unknown>).value
+                        : (field.value ?? ""),
+                    onChange:
+                      childProps && "onChange" in (childProps as object)
+                        ? (childProps as Record<string, unknown>).onChange
+                        : field.onChange,
+                    onValueChange:
+                      childProps && "onValueChange" in (childProps as object)
+                        ? (childProps as Record<string, unknown>).onValueChange
+                        : field.onChange, // Use field.onChange as fallback for components like MultiSelect
+                    onBlur: field.onBlur,
+                    ref: field.ref,
+                    "aria-required": isRequired,
+                    // Forward error state via variant and data attribute (if the child supports it)
+                    variant: variantProp,
+                    "data-error": hasError,
+                  })
                 : null}
             </FormControl>
             {description != undefined && (

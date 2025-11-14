@@ -9,7 +9,7 @@ export type _Error = {
         [key: string]: unknown;
     } | Array<{
         [key: string]: unknown;
-    }> | null;
+    }>;
     error: {
         status?: number;
         name?: string;
@@ -5973,6 +5973,22 @@ export type ContentCreatorPutContentCreatorsByIdResponses = {
 };
 
 export type ContentCreatorPutContentCreatorsByIdResponse = ContentCreatorPutContentCreatorsByIdResponses[keyof ContentCreatorPutContentCreatorsByIdResponses];
+
+export type PostContentCreatorLoginRequest = {
+    body: LoginRequest;
+    path?: never;
+    query?: never;
+    url: '/content-creator/login';
+};
+
+export type PostContentCreatorLoginResponses = {
+    /**
+     * OK
+     */
+    200: JwtResponse;
+};
+
+export type PostContentCreatorLoginResponse = PostContentCreatorLoginResponses[keyof PostContentCreatorLoginResponses];
 
 export type CourseGetCoursesRequest = {
     body?: never;

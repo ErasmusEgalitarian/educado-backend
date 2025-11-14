@@ -82,6 +82,8 @@ ssl
 nbproject
 public/uploads/*
 !public/uploads/.gitkeep
+public/openapi/*
+!public/openapi/.gitkeep
 .tsbuildinfo
 .eslintcache
 

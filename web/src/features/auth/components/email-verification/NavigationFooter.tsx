@@ -7,7 +7,7 @@ import { LoginResponseError } from "@/auth/types/LoginResponseError";
 import { useApi } from "@/shared/hooks/useAPI";
 import AuthServices from "@/unplaced/services/auth.services";
 
-import { ToggleModalContext } from "../Login";
+import { ToggleModalContext } from "../login";
 import { FormDataContext } from "../Signup";
 
 import { HandleContinueContext } from "./EmailVerificationModal";
