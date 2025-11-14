@@ -5599,6 +5599,17 @@ export const zLoginRequest = z.object({
     password: z.string()
 });
 
+export const zJwtContentCreatorResponse = z.object({
+    accessToken: z.string().optional(),
+    userInfo: z.object({
+        documentId: z.string().optional(),
+        firstName: z.string().optional(),
+        lastName: z.string().optional(),
+        email: z.string().optional(),
+        verifiedAt: z.string().date().optional()
+    }).optional()
+});
+
 export const zJwtResponse = z.object({
     accessToken: z.string().optional(),
     userInfo: z.object({

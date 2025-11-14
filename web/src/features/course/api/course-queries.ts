@@ -1,3 +1,4 @@
+import { client } from "@/shared/api/client.gen";
 import { courseGetCoursesById } from "@/shared/api/sdk.gen";
 import type { Course } from "@/shared/api/types.gen";
 
