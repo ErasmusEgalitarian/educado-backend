@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 
 import { postContentCreatorLogin } from "@/shared/api/sdk.gen";
 import background from "@/shared/assets/background.jpg";
+import { updateApiClientToken } from "@/shared/config/api-config";
 
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
@@ -86,14 +87,18 @@ const Login = () => {
       .then(async (res) => {
 
         /* eslint-disable  @typescript-eslint/no-unsafe-assignment *//* eslint-disable  @typescript-eslint/no-unsafe-member-access */
-        const token = res.jwt; 
+        const token = res?.accessToken; 
         /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
-        const user = res.user;
+        const user = res?.userInfo;
         /* eslint-disable  @typescript-eslint/no-unsafe-argument */
-        localStorage.setItem("token", token);
-        localStorage.setItem("id", user.id);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        localStorage.setItem("token", token ?? "");
+        localStorage.setItem("id", user?.documentId ?? "");
+
+        // Update the API client with the new token
+        updateApiClientToken();
+
+         
         await loginSaver(token, user);
         navigate("/courses");
         // error messages for email and password

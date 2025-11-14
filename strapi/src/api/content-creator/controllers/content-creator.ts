@@ -52,12 +52,13 @@ export default factories.createCoreController('api::content-creator.content-crea
 
         // 4. Respond with token and user info
         return ctx.send({
-            jwt: token,
-            user: {
-            id: user.documentId,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
+            accessToken: token,
+            userInfo: {
+                documentId: user.documentId,
+                email: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                verifiedAt: new Date(user.verifiedAt),
             },
         });
         } catch (err) {
