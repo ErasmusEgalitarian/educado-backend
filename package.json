@@ -24,7 +24,7 @@
     "docker:build:web": "cd web && npm run docker:build",
     "docker:down": "docker compose down",
     "docker:restart": "docker compose restart",
-    "generate-api": "turbo run generate-spec && turbo run generate-strapi-client",
+    "generate-api": "turbo run generate-merged-spec && turbo run generate-strapi-client",
     "release:patch": "npm version patch && git push --follow-tags",
     "release:minor": "npm version minor && git push --follow-tags",
     "release:major": "npm version major && git push --follow-tags",

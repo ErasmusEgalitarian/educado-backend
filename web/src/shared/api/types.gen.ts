@@ -4,6 +4,5464 @@ export type ClientOptions = {
     baseUrl: `${string}://${string}` | (string & {});
 };
 
+export type _Error = {
+    data?: {
+        [key: string]: unknown;
+    } | Array<{
+        [key: string]: unknown;
+    }>;
+    error: {
+        status?: number;
+        name?: string;
+        message?: string;
+        details?: {
+            [key: string]: unknown;
+        };
+    };
+};
+
+export type CertificateRequest = {
+    data: {
+        link: string;
+        completionDate: string;
+        student?: number | string;
+        course?: number | string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type CertificateListResponse = {
+    data?: Array<Certificate>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type Certificate = {
+    id?: number;
+    documentId?: string;
+    link: string;
+    completionDate: string;
+    student?: {
+        id?: number;
+        documentId?: string;
+        name?: string;
+        biography?: string;
+        email?: string;
+        verifiedAt?: string;
+        feedbacks?: Array<{
+            id?: number;
+            documentId?: string;
+            rating?: number;
+            feedbackText?: string;
+            dateCreated?: string;
+            course?: {
+                id?: number;
+                documentId?: string;
+                title?: string;
+                description?: string;
+                difficulty?: number;
+                numOfRatings?: number;
+                numOfSubscriptions?: number;
+                image?: {
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    alternativeText?: string;
+                    caption?: string;
+                    width?: number;
+                    height?: number;
+                    formats?: unknown;
+                    hash?: string;
+                    ext?: string;
+                    mime?: string;
+                    size?: number;
+                    url?: string;
+                    previewUrl?: string;
+                    provider?: string;
+                    provider_metadata?: unknown;
+                    related?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    folder?: {
+                        id?: number;
+                        documentId?: string;
+                        name?: string;
+                        pathId?: number;
+                        parent?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        children?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                        files?: Array<{
+                            id?: number;
+                            documentId?: string;
+                            name?: string;
+                            alternativeText?: string;
+                            caption?: string;
+                            width?: number;
+                            height?: number;
+                            formats?: unknown;
+                            hash?: string;
+                            ext?: string;
+                            mime?: string;
+                            size?: number;
+                            url?: string;
+                            previewUrl?: string;
+                            provider?: string;
+                            provider_metadata?: unknown;
+                            related?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                            folder?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            folderPath?: string;
+                            createdAt?: string;
+                            updatedAt?: string;
+                            publishedAt?: string;
+                            createdBy?: {
+                                id?: number;
+                                documentId?: string;
+                                firstname?: string;
+                                lastname?: string;
+                                username?: string;
+                                email?: string;
+                                resetPasswordToken?: string;
+                                registrationToken?: string;
+                                isActive?: boolean;
+                                roles?: Array<{
+                                    id?: number;
+                                    documentId?: string;
+                                    name?: string;
+                                    code?: string;
+                                    description?: string;
+                                    users?: Array<{
+                                        id?: number;
+                                        documentId?: string;
+                                    }>;
+                                    permissions?: Array<{
+                                        id?: number;
+                                        documentId?: string;
+                                        action?: string;
+                                        actionParameters?: unknown;
+                                        subject?: string;
+                                        properties?: unknown;
+                                        conditions?: unknown;
+                                        role?: {
+                                            id?: number;
+                                            documentId?: string;
+                                        };
+                                        createdAt?: string;
+                                        updatedAt?: string;
+                                        publishedAt?: string;
+                                        createdBy?: {
+                                            id?: number;
+                                            documentId?: string;
+                                        };
+                                        updatedBy?: {
+                                            id?: number;
+                                            documentId?: string;
+                                        };
+                                        locale?: string;
+                                        localizations?: Array<{
+                                            id?: number;
+                                            documentId?: string;
+                                        }>;
+                                    }>;
+                                    createdAt?: string;
+                                    updatedAt?: string;
+                                    publishedAt?: string;
+                                    createdBy?: {
+                                        id?: number;
+                                        documentId?: string;
+                                    };
+                                    updatedBy?: {
+                                        id?: number;
+                                        documentId?: string;
+                                    };
+                                    locale?: string;
+                                    localizations?: Array<{
+                                        id?: number;
+                                        documentId?: string;
+                                    }>;
+                                }>;
+                                blocked?: boolean;
+                                preferedLanguage?: string;
+                                createdAt?: string;
+                                updatedAt?: string;
+                                publishedAt?: string;
+                                createdBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                updatedBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                locale?: string;
+                                localizations?: Array<{
+                                    id?: number;
+                                    documentId?: string;
+                                }>;
+                            };
+                            updatedBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            locale?: string;
+                            localizations?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                        }>;
+                        path?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    };
+                    folderPath?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                };
+                feedbacks?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                course_sections?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    title?: string;
+                    description?: string;
+                    exercises?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        title?: string;
+                        question?: string;
+                        exercise_options?: Array<{
+                            id?: number;
+                            documentId?: string;
+                            text?: string;
+                            explanation?: string;
+                            isCorrect?: boolean;
+                            exercise?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            createdAt?: string;
+                            updatedAt?: string;
+                            publishedAt?: string;
+                            createdBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            updatedBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            locale?: string;
+                            localizations?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                        }>;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    lectures?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        title?: string;
+                        completed?: boolean;
+                        content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                course_categories?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    courses?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                students?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                content_creators?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    firstName?: string;
+                    lastName?: string;
+                    verifiedAt?: string;
+                    biography?: string;
+                    email?: string;
+                    education?: 'TODO1' | 'TODO2' | 'TODO3';
+                    statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
+                    courseExperience?: string;
+                    institution?: string;
+                    eduStart?: string;
+                    eduEnd?: string;
+                    currentCompany?: string;
+                    currentJobTitle?: string;
+                    companyStart?: string;
+                    companyEnd?: string;
+                    jobDescription?: string;
+                    courses?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    user_logs?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        loginDate?: string;
+                        isSuccessful?: boolean;
+                        student?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            student?: {
+                id?: number;
+                documentId?: string;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        courses?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        certificates?: Array<{
+            id?: number;
+            documentId?: string;
+            link?: string;
+            completionDate?: string;
+            student?: {
+                id?: number;
+                documentId?: string;
+            };
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        user_logs?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    course?: {
+        id?: number;
+        documentId?: string;
+    };
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+};
+
+export type CertificateResponse = {
+    data?: Certificate;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type ContentVideoComponent = {
+    id?: number;
+    __component?: 'content.video';
+    video?: Array<{
+        id?: number;
+        documentId?: string;
+        name?: string;
+        alternativeText?: string;
+        caption?: string;
+        width?: number;
+        height?: number;
+        formats?: unknown;
+        hash?: string;
+        ext?: string;
+        mime?: string;
+        size?: number;
+        url?: string;
+        previewUrl?: string;
+        provider?: string;
+        provider_metadata?: unknown;
+        related?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        folder?: {
+            id?: number;
+            documentId?: string;
+        };
+        folderPath?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+};
+
+export type ContentDescriptionComponent = {
+    id?: number;
+    __component?: 'content.description';
+    text?: string;
+};
+
+export type ContentCreatorRequest = {
+    data: {
+        firstName: string;
+        lastName?: string;
+        verifiedAt?: string;
+        biography?: string;
+        email: string;
+        password: string;
+        education: 'TODO1' | 'TODO2' | 'TODO3';
+        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
+        courseExperience: string;
+        institution: string;
+        eduStart: string;
+        eduEnd: string;
+        currentCompany: string;
+        currentJobTitle: string;
+        companyStart: string;
+        companyEnd?: string;
+        jobDescription?: string;
+        courses?: Array<number | string>;
+        user_logs?: Array<number | string>;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type ContentCreatorListResponse = {
+    data?: Array<ContentCreator>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type ContentCreator = {
+    id?: number;
+    documentId?: string;
+    firstName: string;
+    lastName?: string;
+    verifiedAt?: string;
+    biography?: string;
+    email: string;
+    education: 'TODO1' | 'TODO2' | 'TODO3';
+    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
+    courseExperience: string;
+    institution: string;
+    eduStart: string;
+    eduEnd: string;
+    currentCompany: string;
+    currentJobTitle: string;
+    companyStart: string;
+    companyEnd?: string;
+    jobDescription?: string;
+    courses?: Array<{
+        id?: number;
+        documentId?: string;
+        title?: string;
+        description?: string;
+        difficulty?: number;
+        numOfRatings?: number;
+        numOfSubscriptions?: number;
+        image?: {
+            id?: number;
+            documentId?: string;
+            name?: string;
+            alternativeText?: string;
+            caption?: string;
+            width?: number;
+            height?: number;
+            formats?: unknown;
+            hash?: string;
+            ext?: string;
+            mime?: string;
+            size?: number;
+            url?: string;
+            previewUrl?: string;
+            provider?: string;
+            provider_metadata?: unknown;
+            related?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            folder?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                pathId?: number;
+                parent?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                children?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                files?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    alternativeText?: string;
+                    caption?: string;
+                    width?: number;
+                    height?: number;
+                    formats?: unknown;
+                    hash?: string;
+                    ext?: string;
+                    mime?: string;
+                    size?: number;
+                    url?: string;
+                    previewUrl?: string;
+                    provider?: string;
+                    provider_metadata?: unknown;
+                    related?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    folder?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    folderPath?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                        firstname?: string;
+                        lastname?: string;
+                        username?: string;
+                        email?: string;
+                        resetPasswordToken?: string;
+                        registrationToken?: string;
+                        isActive?: boolean;
+                        roles?: Array<{
+                            id?: number;
+                            documentId?: string;
+                            name?: string;
+                            code?: string;
+                            description?: string;
+                            users?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                            permissions?: Array<{
+                                id?: number;
+                                documentId?: string;
+                                action?: string;
+                                actionParameters?: unknown;
+                                subject?: string;
+                                properties?: unknown;
+                                conditions?: unknown;
+                                role?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                createdAt?: string;
+                                updatedAt?: string;
+                                publishedAt?: string;
+                                createdBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                updatedBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                locale?: string;
+                                localizations?: Array<{
+                                    id?: number;
+                                    documentId?: string;
+                                }>;
+                            }>;
+                            createdAt?: string;
+                            updatedAt?: string;
+                            publishedAt?: string;
+                            createdBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            updatedBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            locale?: string;
+                            localizations?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                        }>;
+                        blocked?: boolean;
+                        preferedLanguage?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                path?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            folderPath?: string;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        };
+        feedbacks?: Array<{
+            id?: number;
+            documentId?: string;
+            rating?: number;
+            feedbackText?: string;
+            dateCreated?: string;
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            student?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                biography?: string;
+                email?: string;
+                verifiedAt?: string;
+                feedbacks?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                courses?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                certificates?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    link?: string;
+                    completionDate?: string;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                user_logs?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    loginDate?: string;
+                    isSuccessful?: boolean;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        course_sections?: Array<{
+            id?: number;
+            documentId?: string;
+            title?: string;
+            description?: string;
+            exercises?: Array<{
+                id?: number;
+                documentId?: string;
+                title?: string;
+                question?: string;
+                exercise_options?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    text?: string;
+                    explanation?: string;
+                    isCorrect?: boolean;
+                    exercise?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            lectures?: Array<{
+                id?: number;
+                documentId?: string;
+                title?: string;
+                completed?: boolean;
+                content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        course_categories?: Array<{
+            id?: number;
+            documentId?: string;
+            name?: string;
+            courses?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        students?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        content_creators?: Array<{
+            id?: number;
+            documentId?: string;
+            firstName?: string;
+            lastName?: string;
+            verifiedAt?: string;
+            biography?: string;
+            email?: string;
+            education?: 'TODO1' | 'TODO2' | 'TODO3';
+            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
+            courseExperience?: string;
+            institution?: string;
+            eduStart?: string;
+            eduEnd?: string;
+            currentCompany?: string;
+            currentJobTitle?: string;
+            companyStart?: string;
+            companyEnd?: string;
+            jobDescription?: string;
+            courses?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            user_logs?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+    user_logs?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+};
+
+export type ContentCreatorResponse = {
+    data?: ContentCreator;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type CourseRequest = {
+    data: {
+        title: string;
+        description?: string;
+        difficulty: number;
+        numOfRatings?: number;
+        numOfSubscriptions?: number;
+        image?: number | string;
+        feedbacks?: Array<number | string>;
+        course_sections?: Array<number | string>;
+        course_categories?: Array<number | string>;
+        students?: Array<number | string>;
+        content_creators?: Array<number | string>;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type CourseListResponse = {
+    data?: Array<Course>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type Course = {
+    id?: number;
+    documentId?: string;
+    title: string;
+    description?: string;
+    difficulty: number;
+    numOfRatings?: number;
+    numOfSubscriptions?: number;
+    image?: {
+        id?: number;
+        documentId?: string;
+        name?: string;
+        alternativeText?: string;
+        caption?: string;
+        width?: number;
+        height?: number;
+        formats?: unknown;
+        hash?: string;
+        ext?: string;
+        mime?: string;
+        size?: number;
+        url?: string;
+        previewUrl?: string;
+        provider?: string;
+        provider_metadata?: unknown;
+        related?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        folder?: {
+            id?: number;
+            documentId?: string;
+            name?: string;
+            pathId?: number;
+            parent?: {
+                id?: number;
+                documentId?: string;
+            };
+            children?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            files?: Array<{
+                id?: number;
+                documentId?: string;
+                name?: string;
+                alternativeText?: string;
+                caption?: string;
+                width?: number;
+                height?: number;
+                formats?: unknown;
+                hash?: string;
+                ext?: string;
+                mime?: string;
+                size?: number;
+                url?: string;
+                previewUrl?: string;
+                provider?: string;
+                provider_metadata?: unknown;
+                related?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                folder?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                folderPath?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    username?: string;
+                    email?: string;
+                    resetPasswordToken?: string;
+                    registrationToken?: string;
+                    isActive?: boolean;
+                    roles?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        name?: string;
+                        code?: string;
+                        description?: string;
+                        users?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                        permissions?: Array<{
+                            id?: number;
+                            documentId?: string;
+                            action?: string;
+                            actionParameters?: unknown;
+                            subject?: string;
+                            properties?: unknown;
+                            conditions?: unknown;
+                            role?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            createdAt?: string;
+                            updatedAt?: string;
+                            publishedAt?: string;
+                            createdBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            updatedBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            locale?: string;
+                            localizations?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                        }>;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    blocked?: boolean;
+                    preferedLanguage?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            path?: string;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        };
+        folderPath?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    feedbacks?: Array<{
+        id?: number;
+        documentId?: string;
+        rating?: number;
+        feedbackText?: string;
+        dateCreated?: string;
+        course?: {
+            id?: number;
+            documentId?: string;
+            title?: string;
+            description?: string;
+            difficulty?: number;
+            numOfRatings?: number;
+            numOfSubscriptions?: number;
+            image?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                alternativeText?: string;
+                caption?: string;
+                width?: number;
+                height?: number;
+                formats?: unknown;
+                hash?: string;
+                ext?: string;
+                mime?: string;
+                size?: number;
+                url?: string;
+                previewUrl?: string;
+                provider?: string;
+                provider_metadata?: unknown;
+                related?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                folder?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                folderPath?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            feedbacks?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            course_sections?: Array<{
+                id?: number;
+                documentId?: string;
+                title?: string;
+                description?: string;
+                exercises?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    title?: string;
+                    question?: string;
+                    exercise_options?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        text?: string;
+                        explanation?: string;
+                        isCorrect?: boolean;
+                        exercise?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                lectures?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    title?: string;
+                    completed?: boolean;
+                    content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                course?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            course_categories?: Array<{
+                id?: number;
+                documentId?: string;
+                name?: string;
+                courses?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            students?: Array<{
+                id?: number;
+                documentId?: string;
+                name?: string;
+                biography?: string;
+                email?: string;
+                verifiedAt?: string;
+                feedbacks?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                courses?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                certificates?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    link?: string;
+                    completionDate?: string;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                user_logs?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    loginDate?: string;
+                    isSuccessful?: boolean;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            content_creators?: Array<{
+                id?: number;
+                documentId?: string;
+                firstName?: string;
+                lastName?: string;
+                verifiedAt?: string;
+                biography?: string;
+                email?: string;
+                education?: 'TODO1' | 'TODO2' | 'TODO3';
+                statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
+                courseExperience?: string;
+                institution?: string;
+                eduStart?: string;
+                eduEnd?: string;
+                currentCompany?: string;
+                currentJobTitle?: string;
+                companyStart?: string;
+                companyEnd?: string;
+                jobDescription?: string;
+                courses?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                user_logs?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        };
+        student?: {
+            id?: number;
+            documentId?: string;
+        };
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+    course_sections?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+    course_categories?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+    students?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+    content_creators?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+};
+
+export type CourseResponse = {
+    data?: Course;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type CourseCategoryRequest = {
+    data: {
+        name: string;
+        courses?: Array<number | string>;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type CourseCategoryListResponse = {
+    data?: Array<CourseCategory>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type CourseCategory = {
+    id?: number;
+    documentId?: string;
+    name: string;
+    courses?: Array<{
+        id?: number;
+        documentId?: string;
+        title?: string;
+        description?: string;
+        difficulty?: number;
+        numOfRatings?: number;
+        numOfSubscriptions?: number;
+        image?: {
+            id?: number;
+            documentId?: string;
+            name?: string;
+            alternativeText?: string;
+            caption?: string;
+            width?: number;
+            height?: number;
+            formats?: unknown;
+            hash?: string;
+            ext?: string;
+            mime?: string;
+            size?: number;
+            url?: string;
+            previewUrl?: string;
+            provider?: string;
+            provider_metadata?: unknown;
+            related?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            folder?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                pathId?: number;
+                parent?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                children?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                files?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    alternativeText?: string;
+                    caption?: string;
+                    width?: number;
+                    height?: number;
+                    formats?: unknown;
+                    hash?: string;
+                    ext?: string;
+                    mime?: string;
+                    size?: number;
+                    url?: string;
+                    previewUrl?: string;
+                    provider?: string;
+                    provider_metadata?: unknown;
+                    related?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    folder?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    folderPath?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                        firstname?: string;
+                        lastname?: string;
+                        username?: string;
+                        email?: string;
+                        resetPasswordToken?: string;
+                        registrationToken?: string;
+                        isActive?: boolean;
+                        roles?: Array<{
+                            id?: number;
+                            documentId?: string;
+                            name?: string;
+                            code?: string;
+                            description?: string;
+                            users?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                            permissions?: Array<{
+                                id?: number;
+                                documentId?: string;
+                                action?: string;
+                                actionParameters?: unknown;
+                                subject?: string;
+                                properties?: unknown;
+                                conditions?: unknown;
+                                role?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                createdAt?: string;
+                                updatedAt?: string;
+                                publishedAt?: string;
+                                createdBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                updatedBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                locale?: string;
+                                localizations?: Array<{
+                                    id?: number;
+                                    documentId?: string;
+                                }>;
+                            }>;
+                            createdAt?: string;
+                            updatedAt?: string;
+                            publishedAt?: string;
+                            createdBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            updatedBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            locale?: string;
+                            localizations?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                        }>;
+                        blocked?: boolean;
+                        preferedLanguage?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                path?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            folderPath?: string;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        };
+        feedbacks?: Array<{
+            id?: number;
+            documentId?: string;
+            rating?: number;
+            feedbackText?: string;
+            dateCreated?: string;
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            student?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                biography?: string;
+                email?: string;
+                verifiedAt?: string;
+                feedbacks?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                courses?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                certificates?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    link?: string;
+                    completionDate?: string;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                user_logs?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    loginDate?: string;
+                    isSuccessful?: boolean;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        course_sections?: Array<{
+            id?: number;
+            documentId?: string;
+            title?: string;
+            description?: string;
+            exercises?: Array<{
+                id?: number;
+                documentId?: string;
+                title?: string;
+                question?: string;
+                exercise_options?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    text?: string;
+                    explanation?: string;
+                    isCorrect?: boolean;
+                    exercise?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            lectures?: Array<{
+                id?: number;
+                documentId?: string;
+                title?: string;
+                completed?: boolean;
+                content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        course_categories?: Array<{
+            id?: number;
+            documentId?: string;
+            name?: string;
+            courses?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        students?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        content_creators?: Array<{
+            id?: number;
+            documentId?: string;
+            firstName?: string;
+            lastName?: string;
+            verifiedAt?: string;
+            biography?: string;
+            email?: string;
+            education?: 'TODO1' | 'TODO2' | 'TODO3';
+            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
+            courseExperience?: string;
+            institution?: string;
+            eduStart?: string;
+            eduEnd?: string;
+            currentCompany?: string;
+            currentJobTitle?: string;
+            companyStart?: string;
+            companyEnd?: string;
+            jobDescription?: string;
+            courses?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            user_logs?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+};
+
+export type CourseCategoryResponse = {
+    data?: CourseCategory;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type CourseSelectionRequest = {
+    data: {
+        title: string;
+        description?: string;
+        exercises?: Array<number | string>;
+        lectures?: Array<number | string>;
+        course?: number | string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type CourseSelectionListResponse = {
+    data?: Array<CourseSelection>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type CourseSelection = {
+    id?: number;
+    documentId?: string;
+    title: string;
+    description?: string;
+    exercises?: Array<{
+        id?: number;
+        documentId?: string;
+        title?: string;
+        question?: string;
+        exercise_options?: Array<{
+            id?: number;
+            documentId?: string;
+            text?: string;
+            explanation?: string;
+            isCorrect?: boolean;
+            exercise?: {
+                id?: number;
+                documentId?: string;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+                firstname?: string;
+                lastname?: string;
+                username?: string;
+                email?: string;
+                resetPasswordToken?: string;
+                registrationToken?: string;
+                isActive?: boolean;
+                roles?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    code?: string;
+                    description?: string;
+                    users?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    permissions?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        action?: string;
+                        actionParameters?: unknown;
+                        subject?: string;
+                        properties?: unknown;
+                        conditions?: unknown;
+                        role?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                blocked?: boolean;
+                preferedLanguage?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+    lectures?: Array<{
+        id?: number;
+        documentId?: string;
+        title?: string;
+        completed?: boolean;
+        content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+    course?: {
+        id?: number;
+        documentId?: string;
+        title?: string;
+        description?: string;
+        difficulty?: number;
+        numOfRatings?: number;
+        numOfSubscriptions?: number;
+        image?: {
+            id?: number;
+            documentId?: string;
+            name?: string;
+            alternativeText?: string;
+            caption?: string;
+            width?: number;
+            height?: number;
+            formats?: unknown;
+            hash?: string;
+            ext?: string;
+            mime?: string;
+            size?: number;
+            url?: string;
+            previewUrl?: string;
+            provider?: string;
+            provider_metadata?: unknown;
+            related?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            folder?: {
+                id?: number;
+                documentId?: string;
+            };
+            folderPath?: string;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        };
+        feedbacks?: Array<{
+            id?: number;
+            documentId?: string;
+            rating?: number;
+            feedbackText?: string;
+            dateCreated?: string;
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            student?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                biography?: string;
+                email?: string;
+                verifiedAt?: string;
+                feedbacks?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                courses?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                certificates?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    link?: string;
+                    completionDate?: string;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                user_logs?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    loginDate?: string;
+                    isSuccessful?: boolean;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        course_sections?: Array<{
+            id?: number;
+            documentId?: string;
+            title?: string;
+            description?: string;
+            exercises?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            lectures?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        course_categories?: Array<{
+            id?: number;
+            documentId?: string;
+            name?: string;
+            courses?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        students?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        content_creators?: Array<{
+            id?: number;
+            documentId?: string;
+            firstName?: string;
+            lastName?: string;
+            verifiedAt?: string;
+            biography?: string;
+            email?: string;
+            education?: 'TODO1' | 'TODO2' | 'TODO3';
+            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
+            courseExperience?: string;
+            institution?: string;
+            eduStart?: string;
+            eduEnd?: string;
+            currentCompany?: string;
+            currentJobTitle?: string;
+            companyStart?: string;
+            companyEnd?: string;
+            jobDescription?: string;
+            courses?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            user_logs?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+};
+
+export type CourseSelectionResponse = {
+    data?: CourseSelection;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type ExerciseRequest = {
+    data: {
+        title: string;
+        question: string;
+        exercise_options?: Array<number | string>;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type ExerciseListResponse = {
+    data?: Array<Exercise>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type Exercise = {
+    id?: number;
+    documentId?: string;
+    title: string;
+    question: string;
+    exercise_options?: Array<{
+        id?: number;
+        documentId?: string;
+        text?: string;
+        explanation?: string;
+        isCorrect?: boolean;
+        exercise?: {
+            id?: number;
+            documentId?: string;
+            title?: string;
+            question?: string;
+            exercise_options?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+                firstname?: string;
+                lastname?: string;
+                username?: string;
+                email?: string;
+                resetPasswordToken?: string;
+                registrationToken?: string;
+                isActive?: boolean;
+                roles?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    code?: string;
+                    description?: string;
+                    users?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    permissions?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        action?: string;
+                        actionParameters?: unknown;
+                        subject?: string;
+                        properties?: unknown;
+                        conditions?: unknown;
+                        role?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                blocked?: boolean;
+                preferedLanguage?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        };
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+};
+
+export type ExerciseResponse = {
+    data?: Exercise;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type ExerciseOptionRequest = {
+    data: {
+        text: string;
+        explanation: string;
+        isCorrect: boolean;
+        exercise?: number | string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type ExerciseOptionListResponse = {
+    data?: Array<ExerciseOption>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type ExerciseOption = {
+    id?: number;
+    documentId?: string;
+    text: string;
+    explanation: string;
+    isCorrect: boolean;
+    exercise?: {
+        id?: number;
+        documentId?: string;
+        title?: string;
+        question?: string;
+        exercise_options?: Array<{
+            id?: number;
+            documentId?: string;
+            text?: string;
+            explanation?: string;
+            isCorrect?: boolean;
+            exercise?: {
+                id?: number;
+                documentId?: string;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+                firstname?: string;
+                lastname?: string;
+                username?: string;
+                email?: string;
+                resetPasswordToken?: string;
+                registrationToken?: string;
+                isActive?: boolean;
+                roles?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    code?: string;
+                    description?: string;
+                    users?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    permissions?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        action?: string;
+                        actionParameters?: unknown;
+                        subject?: string;
+                        properties?: unknown;
+                        conditions?: unknown;
+                        role?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                blocked?: boolean;
+                preferedLanguage?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+};
+
+export type ExerciseOptionResponse = {
+    data?: ExerciseOption;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type FeedbackRequest = {
+    data: {
+        rating: number;
+        feedbackText?: string;
+        dateCreated: string;
+        course?: number | string;
+        student?: number | string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type FeedbackListResponse = {
+    data?: Array<Feedback>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type Feedback = {
+    id?: number;
+    documentId?: string;
+    rating: number;
+    feedbackText?: string;
+    dateCreated: string;
+    course?: {
+        id?: number;
+        documentId?: string;
+        title?: string;
+        description?: string;
+        difficulty?: number;
+        numOfRatings?: number;
+        numOfSubscriptions?: number;
+        image?: {
+            id?: number;
+            documentId?: string;
+            name?: string;
+            alternativeText?: string;
+            caption?: string;
+            width?: number;
+            height?: number;
+            formats?: unknown;
+            hash?: string;
+            ext?: string;
+            mime?: string;
+            size?: number;
+            url?: string;
+            previewUrl?: string;
+            provider?: string;
+            provider_metadata?: unknown;
+            related?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            folder?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                pathId?: number;
+                parent?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                children?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                files?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    alternativeText?: string;
+                    caption?: string;
+                    width?: number;
+                    height?: number;
+                    formats?: unknown;
+                    hash?: string;
+                    ext?: string;
+                    mime?: string;
+                    size?: number;
+                    url?: string;
+                    previewUrl?: string;
+                    provider?: string;
+                    provider_metadata?: unknown;
+                    related?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    folder?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    folderPath?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                        firstname?: string;
+                        lastname?: string;
+                        username?: string;
+                        email?: string;
+                        resetPasswordToken?: string;
+                        registrationToken?: string;
+                        isActive?: boolean;
+                        roles?: Array<{
+                            id?: number;
+                            documentId?: string;
+                            name?: string;
+                            code?: string;
+                            description?: string;
+                            users?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                            permissions?: Array<{
+                                id?: number;
+                                documentId?: string;
+                                action?: string;
+                                actionParameters?: unknown;
+                                subject?: string;
+                                properties?: unknown;
+                                conditions?: unknown;
+                                role?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                createdAt?: string;
+                                updatedAt?: string;
+                                publishedAt?: string;
+                                createdBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                updatedBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                locale?: string;
+                                localizations?: Array<{
+                                    id?: number;
+                                    documentId?: string;
+                                }>;
+                            }>;
+                            createdAt?: string;
+                            updatedAt?: string;
+                            publishedAt?: string;
+                            createdBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            updatedBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            locale?: string;
+                            localizations?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                        }>;
+                        blocked?: boolean;
+                        preferedLanguage?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                path?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            folderPath?: string;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        };
+        feedbacks?: Array<{
+            id?: number;
+            documentId?: string;
+            rating?: number;
+            feedbackText?: string;
+            dateCreated?: string;
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            student?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                biography?: string;
+                email?: string;
+                verifiedAt?: string;
+                feedbacks?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                courses?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                certificates?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    link?: string;
+                    completionDate?: string;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                user_logs?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    loginDate?: string;
+                    isSuccessful?: boolean;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        course_sections?: Array<{
+            id?: number;
+            documentId?: string;
+            title?: string;
+            description?: string;
+            exercises?: Array<{
+                id?: number;
+                documentId?: string;
+                title?: string;
+                question?: string;
+                exercise_options?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    text?: string;
+                    explanation?: string;
+                    isCorrect?: boolean;
+                    exercise?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            lectures?: Array<{
+                id?: number;
+                documentId?: string;
+                title?: string;
+                completed?: boolean;
+                content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        course_categories?: Array<{
+            id?: number;
+            documentId?: string;
+            name?: string;
+            courses?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        students?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        content_creators?: Array<{
+            id?: number;
+            documentId?: string;
+            firstName?: string;
+            lastName?: string;
+            verifiedAt?: string;
+            biography?: string;
+            email?: string;
+            education?: 'TODO1' | 'TODO2' | 'TODO3';
+            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
+            courseExperience?: string;
+            institution?: string;
+            eduStart?: string;
+            eduEnd?: string;
+            currentCompany?: string;
+            currentJobTitle?: string;
+            companyStart?: string;
+            companyEnd?: string;
+            jobDescription?: string;
+            courses?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            user_logs?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    student?: {
+        id?: number;
+        documentId?: string;
+    };
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+};
+
+export type FeedbackResponse = {
+    data?: Feedback;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type LectureRequest = {
+    data: {
+        title: string;
+        completed?: boolean;
+        content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type LectureListResponse = {
+    data?: Array<Lecture>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type Lecture = {
+    id?: number;
+    documentId?: string;
+    title: string;
+    completed?: boolean;
+    content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+        title?: string;
+        completed?: boolean;
+        content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+};
+
+export type LectureResponse = {
+    data?: Lecture;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type PasswordResetTokenRequest = {
+    data: {
+        userEmail: string;
+        token: string;
+        expiresAt: string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type PasswordResetTokenListResponse = {
+    data?: Array<PasswordResetToken>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type PasswordResetToken = {
+    id?: number;
+    documentId?: string;
+    userEmail: string;
+    token: string;
+    expiresAt: string;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+        firstname?: string;
+        lastname?: string;
+        username?: string;
+        email?: string;
+        resetPasswordToken?: string;
+        registrationToken?: string;
+        isActive?: boolean;
+        roles?: Array<{
+            id?: number;
+            documentId?: string;
+            name?: string;
+            code?: string;
+            description?: string;
+            users?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            permissions?: Array<{
+                id?: number;
+                documentId?: string;
+                action?: string;
+                actionParameters?: unknown;
+                subject?: string;
+                properties?: unknown;
+                conditions?: unknown;
+                role?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        blocked?: boolean;
+        preferedLanguage?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+        userEmail?: string;
+        token?: string;
+        expiresAt?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+};
+
+export type PasswordResetTokenResponse = {
+    data?: PasswordResetToken;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type StudentRequest = {
+    data: {
+        name: string;
+        biography?: string;
+        email: string;
+        password: string;
+        verifiedAt?: string;
+        feedbacks?: Array<number | string>;
+        courses?: Array<number | string>;
+        certificates?: Array<number | string>;
+        user_logs?: Array<number | string>;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type StudentListResponse = {
+    data?: Array<Student>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type Student = {
+    id?: number;
+    documentId?: string;
+    name: string;
+    biography?: string;
+    email: string;
+    verifiedAt?: string;
+    feedbacks?: Array<{
+        id?: number;
+        documentId?: string;
+        rating?: number;
+        feedbackText?: string;
+        dateCreated?: string;
+        course?: {
+            id?: number;
+            documentId?: string;
+            title?: string;
+            description?: string;
+            difficulty?: number;
+            numOfRatings?: number;
+            numOfSubscriptions?: number;
+            image?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                alternativeText?: string;
+                caption?: string;
+                width?: number;
+                height?: number;
+                formats?: unknown;
+                hash?: string;
+                ext?: string;
+                mime?: string;
+                size?: number;
+                url?: string;
+                previewUrl?: string;
+                provider?: string;
+                provider_metadata?: unknown;
+                related?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                folder?: {
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    pathId?: number;
+                    parent?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    children?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    files?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        name?: string;
+                        alternativeText?: string;
+                        caption?: string;
+                        width?: number;
+                        height?: number;
+                        formats?: unknown;
+                        hash?: string;
+                        ext?: string;
+                        mime?: string;
+                        size?: number;
+                        url?: string;
+                        previewUrl?: string;
+                        provider?: string;
+                        provider_metadata?: unknown;
+                        related?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                        folder?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        folderPath?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                            firstname?: string;
+                            lastname?: string;
+                            username?: string;
+                            email?: string;
+                            resetPasswordToken?: string;
+                            registrationToken?: string;
+                            isActive?: boolean;
+                            roles?: Array<{
+                                id?: number;
+                                documentId?: string;
+                                name?: string;
+                                code?: string;
+                                description?: string;
+                                users?: Array<{
+                                    id?: number;
+                                    documentId?: string;
+                                }>;
+                                permissions?: Array<{
+                                    id?: number;
+                                    documentId?: string;
+                                    action?: string;
+                                    actionParameters?: unknown;
+                                    subject?: string;
+                                    properties?: unknown;
+                                    conditions?: unknown;
+                                    role?: {
+                                        id?: number;
+                                        documentId?: string;
+                                    };
+                                    createdAt?: string;
+                                    updatedAt?: string;
+                                    publishedAt?: string;
+                                    createdBy?: {
+                                        id?: number;
+                                        documentId?: string;
+                                    };
+                                    updatedBy?: {
+                                        id?: number;
+                                        documentId?: string;
+                                    };
+                                    locale?: string;
+                                    localizations?: Array<{
+                                        id?: number;
+                                        documentId?: string;
+                                    }>;
+                                }>;
+                                createdAt?: string;
+                                updatedAt?: string;
+                                publishedAt?: string;
+                                createdBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                updatedBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                locale?: string;
+                                localizations?: Array<{
+                                    id?: number;
+                                    documentId?: string;
+                                }>;
+                            }>;
+                            blocked?: boolean;
+                            preferedLanguage?: string;
+                            createdAt?: string;
+                            updatedAt?: string;
+                            publishedAt?: string;
+                            createdBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            updatedBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            locale?: string;
+                            localizations?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    path?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                };
+                folderPath?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            feedbacks?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            course_sections?: Array<{
+                id?: number;
+                documentId?: string;
+                title?: string;
+                description?: string;
+                exercises?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    title?: string;
+                    question?: string;
+                    exercise_options?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        text?: string;
+                        explanation?: string;
+                        isCorrect?: boolean;
+                        exercise?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                lectures?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    title?: string;
+                    completed?: boolean;
+                    content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                course?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            course_categories?: Array<{
+                id?: number;
+                documentId?: string;
+                name?: string;
+                courses?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            students?: Array<{
+                id?: number;
+                documentId?: string;
+                name?: string;
+                biography?: string;
+                email?: string;
+                verifiedAt?: string;
+                feedbacks?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                courses?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                certificates?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    link?: string;
+                    completionDate?: string;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                user_logs?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    loginDate?: string;
+                    isSuccessful?: boolean;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            content_creators?: Array<{
+                id?: number;
+                documentId?: string;
+                firstName?: string;
+                lastName?: string;
+                verifiedAt?: string;
+                biography?: string;
+                email?: string;
+                education?: 'TODO1' | 'TODO2' | 'TODO3';
+                statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
+                courseExperience?: string;
+                institution?: string;
+                eduStart?: string;
+                eduEnd?: string;
+                currentCompany?: string;
+                currentJobTitle?: string;
+                companyStart?: string;
+                companyEnd?: string;
+                jobDescription?: string;
+                courses?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                user_logs?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        };
+        student?: {
+            id?: number;
+            documentId?: string;
+        };
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+    courses?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+    certificates?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+    user_logs?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+};
+
+export type StudentResponse = {
+    data?: Student;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type UserLogRequest = {
+    data: {
+        loginDate: string;
+        isSuccessful: boolean;
+        student?: number | string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type UserLogListResponse = {
+    data?: Array<UserLog>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type UserLog = {
+    id?: number;
+    documentId?: string;
+    loginDate: string;
+    isSuccessful: boolean;
+    student?: {
+        id?: number;
+        documentId?: string;
+        name?: string;
+        biography?: string;
+        email?: string;
+        verifiedAt?: string;
+        feedbacks?: Array<{
+            id?: number;
+            documentId?: string;
+            rating?: number;
+            feedbackText?: string;
+            dateCreated?: string;
+            course?: {
+                id?: number;
+                documentId?: string;
+                title?: string;
+                description?: string;
+                difficulty?: number;
+                numOfRatings?: number;
+                numOfSubscriptions?: number;
+                image?: {
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    alternativeText?: string;
+                    caption?: string;
+                    width?: number;
+                    height?: number;
+                    formats?: unknown;
+                    hash?: string;
+                    ext?: string;
+                    mime?: string;
+                    size?: number;
+                    url?: string;
+                    previewUrl?: string;
+                    provider?: string;
+                    provider_metadata?: unknown;
+                    related?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    folder?: {
+                        id?: number;
+                        documentId?: string;
+                        name?: string;
+                        pathId?: number;
+                        parent?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        children?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                        files?: Array<{
+                            id?: number;
+                            documentId?: string;
+                            name?: string;
+                            alternativeText?: string;
+                            caption?: string;
+                            width?: number;
+                            height?: number;
+                            formats?: unknown;
+                            hash?: string;
+                            ext?: string;
+                            mime?: string;
+                            size?: number;
+                            url?: string;
+                            previewUrl?: string;
+                            provider?: string;
+                            provider_metadata?: unknown;
+                            related?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                            folder?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            folderPath?: string;
+                            createdAt?: string;
+                            updatedAt?: string;
+                            publishedAt?: string;
+                            createdBy?: {
+                                id?: number;
+                                documentId?: string;
+                                firstname?: string;
+                                lastname?: string;
+                                username?: string;
+                                email?: string;
+                                resetPasswordToken?: string;
+                                registrationToken?: string;
+                                isActive?: boolean;
+                                roles?: Array<{
+                                    id?: number;
+                                    documentId?: string;
+                                    name?: string;
+                                    code?: string;
+                                    description?: string;
+                                    users?: Array<{
+                                        id?: number;
+                                        documentId?: string;
+                                    }>;
+                                    permissions?: Array<{
+                                        id?: number;
+                                        documentId?: string;
+                                        action?: string;
+                                        actionParameters?: unknown;
+                                        subject?: string;
+                                        properties?: unknown;
+                                        conditions?: unknown;
+                                        role?: {
+                                            id?: number;
+                                            documentId?: string;
+                                        };
+                                        createdAt?: string;
+                                        updatedAt?: string;
+                                        publishedAt?: string;
+                                        createdBy?: {
+                                            id?: number;
+                                            documentId?: string;
+                                        };
+                                        updatedBy?: {
+                                            id?: number;
+                                            documentId?: string;
+                                        };
+                                        locale?: string;
+                                        localizations?: Array<{
+                                            id?: number;
+                                            documentId?: string;
+                                        }>;
+                                    }>;
+                                    createdAt?: string;
+                                    updatedAt?: string;
+                                    publishedAt?: string;
+                                    createdBy?: {
+                                        id?: number;
+                                        documentId?: string;
+                                    };
+                                    updatedBy?: {
+                                        id?: number;
+                                        documentId?: string;
+                                    };
+                                    locale?: string;
+                                    localizations?: Array<{
+                                        id?: number;
+                                        documentId?: string;
+                                    }>;
+                                }>;
+                                blocked?: boolean;
+                                preferedLanguage?: string;
+                                createdAt?: string;
+                                updatedAt?: string;
+                                publishedAt?: string;
+                                createdBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                updatedBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                locale?: string;
+                                localizations?: Array<{
+                                    id?: number;
+                                    documentId?: string;
+                                }>;
+                            };
+                            updatedBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            locale?: string;
+                            localizations?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                        }>;
+                        path?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    };
+                    folderPath?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                };
+                feedbacks?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                course_sections?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    title?: string;
+                    description?: string;
+                    exercises?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        title?: string;
+                        question?: string;
+                        exercise_options?: Array<{
+                            id?: number;
+                            documentId?: string;
+                            text?: string;
+                            explanation?: string;
+                            isCorrect?: boolean;
+                            exercise?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            createdAt?: string;
+                            updatedAt?: string;
+                            publishedAt?: string;
+                            createdBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            updatedBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            locale?: string;
+                            localizations?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                        }>;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    lectures?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        title?: string;
+                        completed?: boolean;
+                        content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                course_categories?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    courses?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                students?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                content_creators?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    firstName?: string;
+                    lastName?: string;
+                    verifiedAt?: string;
+                    biography?: string;
+                    email?: string;
+                    education?: 'TODO1' | 'TODO2' | 'TODO3';
+                    statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
+                    courseExperience?: string;
+                    institution?: string;
+                    eduStart?: string;
+                    eduEnd?: string;
+                    currentCompany?: string;
+                    currentJobTitle?: string;
+                    companyStart?: string;
+                    companyEnd?: string;
+                    jobDescription?: string;
+                    courses?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    user_logs?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        loginDate?: string;
+                        isSuccessful?: boolean;
+                        student?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            student?: {
+                id?: number;
+                documentId?: string;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        courses?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        certificates?: Array<{
+            id?: number;
+            documentId?: string;
+            link?: string;
+            completionDate?: string;
+            student?: {
+                id?: number;
+                documentId?: string;
+            };
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        user_logs?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+};
+
+export type UserLogResponse = {
+    data?: UserLog;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type VerificationTokenRequest = {
+    data: {
+        userEmail: string;
+        token: string;
+        expiresAt: string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type VerificationTokenListResponse = {
+    data?: Array<VerificationToken>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type VerificationToken = {
+    id?: number;
+    documentId?: string;
+    userEmail: string;
+    token: string;
+    expiresAt: string;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+        firstname?: string;
+        lastname?: string;
+        username?: string;
+        email?: string;
+        resetPasswordToken?: string;
+        registrationToken?: string;
+        isActive?: boolean;
+        roles?: Array<{
+            id?: number;
+            documentId?: string;
+            name?: string;
+            code?: string;
+            description?: string;
+            users?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            permissions?: Array<{
+                id?: number;
+                documentId?: string;
+                action?: string;
+                actionParameters?: unknown;
+                subject?: string;
+                properties?: unknown;
+                conditions?: unknown;
+                role?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        blocked?: boolean;
+        preferedLanguage?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+        userEmail?: string;
+        token?: string;
+        expiresAt?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+};
+
+export type VerificationTokenResponse = {
+    data?: VerificationToken;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type UploadFile = {
+    id?: number;
+    name?: string;
+    alternativeText?: string;
+    caption?: string;
+    width?: number;
+    height?: number;
+    formats?: number;
+    hash?: string;
+    ext?: string;
+    mime?: string;
+    size?: number;
+    url?: string;
+    previewUrl?: string;
+    provider?: string;
+    provider_metadata?: {
+        [key: string]: unknown;
+    };
+    createdAt?: string;
+    updatedAt?: string;
+};
+
+export type UsersPermissionsRole = {
+    id?: number;
+    name?: string;
+    description?: string;
+    type?: string;
+    createdAt?: string;
+    updatedAt?: string;
+};
+
+export type UsersPermissionsUser = {
+    id?: number;
+    username?: string;
+    email?: string;
+    provider?: string;
+    confirmed?: boolean;
+    blocked?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
+};
+
+export type UsersPermissionsUserRegistration = {
+    jwt?: string;
+    user?: UsersPermissionsUser;
+};
+
+export type UsersPermissionsPermissionsTree = {
+    [key: string]: {
+        /**
+         * every controller of the api
+         */
+        controllers?: {
+            [key: string]: {
+                [key: string]: {
+                    enabled?: boolean;
+                    policy?: string;
+                };
+            };
+        };
+    };
+};
+
+export type LoginRequest = {
+    email: string;
+    password: string;
+};
+
+export type JwtResponse = {
+    accessToken?: string;
+    userInfo?: {
+        documentId?: string;
+        name?: string;
+        email?: string;
+        verifiedAt?: string;
+    };
+};
+
+export type ResetPasswordRequestRequest = {
+    email?: string;
+};
+
+export type SuccessResponse = {
+    status?: string;
+};
+
+export type ResetPasswordCodeRequest = {
+    studentEmail?: string;
+    resetTokenCode?: string;
+};
+
+export type ResetPasswordRequest = {
+    email?: string;
+    token?: string;
+    newPassword?: string;
+};
+
+export type SignupRequest = {
+    name?: string;
+    email?: string;
+    password?: string;
+};
+
+export type OkResponse = string;
+
+export type StudentVerificationTokenRequest = {
+    email?: string;
+};
+
+export type VerifyEmailRequest = {
+    email?: string;
+    tokenCode?: string;
+};
+
 export type CertificateGetCertificatesRequest = {
     body?: never;
     path?: never;
@@ -35,574 +5493,40 @@ export type CertificateGetCertificatesRequest = {
 
 export type CertificateGetCertificatesErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CertificateGetCertificatesError = CertificateGetCertificatesErrors[keyof CertificateGetCertificatesErrors];
 
 export type CertificateGetCertificatesResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            link: string;
-            completionDate: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-        }>;
-    };
+    200: CertificateListResponse;
 };
 
 export type CertificateGetCertificatesResponse = CertificateGetCertificatesResponses[keyof CertificateGetCertificatesResponses];
 
 export type CertificatePostCertificatesRequest = {
-    body?: {
-        data: {
-            link: string;
-            completionDate: string;
-            publishedAt: string;
-            student?: string;
-            course?: string;
-        };
-    };
+    body: CertificateRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'link' | 'completionDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -614,560 +5538,34 @@ export type CertificatePostCertificatesRequest = {
 
 export type CertificatePostCertificatesErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CertificatePostCertificatesError = CertificatePostCertificatesErrors[keyof CertificatePostCertificatesErrors];
 
 export type CertificatePostCertificatesResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            link: string;
-            completionDate: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-        };
-    };
+    200: CertificateResponse;
 };
 
 export type CertificatePostCertificatesResponse = CertificatePostCertificatesResponses[keyof CertificatePostCertificatesResponses];
@@ -1190,560 +5588,34 @@ export type CertificateDeleteCertificatesByIdRequest = {
 
 export type CertificateDeleteCertificatesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CertificateDeleteCertificatesByIdError = CertificateDeleteCertificatesByIdErrors[keyof CertificateDeleteCertificatesByIdErrors];
 
 export type CertificateDeleteCertificatesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            link: string;
-            completionDate: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-        };
-    };
+    200: number;
 };
 
 export type CertificateDeleteCertificatesByIdResponse = CertificateDeleteCertificatesByIdResponses[keyof CertificateDeleteCertificatesByIdResponses];
@@ -1771,574 +5643,40 @@ export type CertificateGetCertificatesByIdRequest = {
 
 export type CertificateGetCertificatesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CertificateGetCertificatesByIdError = CertificateGetCertificatesByIdErrors[keyof CertificateGetCertificatesByIdErrors];
 
 export type CertificateGetCertificatesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            link: string;
-            completionDate: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-        };
-    };
+    200: CertificateResponse;
 };
 
 export type CertificateGetCertificatesByIdResponse = CertificateGetCertificatesByIdResponses[keyof CertificateGetCertificatesByIdResponses];
 
 export type CertificatePutCertificatesByIdRequest = {
-    body?: {
-        data: {
-            link?: string;
-            completionDate?: string;
-            publishedAt?: string;
-            student?: string;
-            course?: string;
-        };
-    };
+    body: CertificateRequest;
     path: {
         id: string;
     };
@@ -2352,560 +5690,34 @@ export type CertificatePutCertificatesByIdRequest = {
 
 export type CertificatePutCertificatesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CertificatePutCertificatesByIdError = CertificatePutCertificatesByIdErrors[keyof CertificatePutCertificatesByIdErrors];
 
 export type CertificatePutCertificatesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            link: string;
-            completionDate: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-        };
-    };
+    200: CertificateResponse;
 };
 
 export type CertificatePutCertificatesByIdResponse = CertificatePutCertificatesByIdResponses[keyof CertificatePutCertificatesByIdResponses];
@@ -2941,214 +5753,40 @@ export type ContentCreatorGetContentCreatorsRequest = {
 
 export type ContentCreatorGetContentCreatorsErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ContentCreatorGetContentCreatorsError = ContentCreatorGetContentCreatorsErrors[keyof ContentCreatorGetContentCreatorsErrors];
 
 export type ContentCreatorGetContentCreatorsResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            firstName: string;
-            lastName?: string;
-            verifiedAt?: string;
-            biography?: string;
-            email: string;
-            education: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience: string;
-            institution: string;
-            eduStart: string;
-            eduEnd: string;
-            currentCompany: string;
-            currentJobTitle: string;
-            companyStart: string;
-            companyEnd?: string;
-            jobDescription?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-            user_logs?: Array<{
-                documentId: string;
-                id: number;
-                loginDate: string;
-                isSuccessful: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-            }>;
-        }>;
-    };
+    200: ContentCreatorListResponse;
 };
 
 export type ContentCreatorGetContentCreatorsResponse = ContentCreatorGetContentCreatorsResponses[keyof ContentCreatorGetContentCreatorsResponses];
 
 export type ContentCreatorPostContentCreatorsRequest = {
-    body?: {
-        data: {
-            firstName: string;
-            lastName?: string;
-            verifiedAt?: string;
-            biography?: string;
-            email: string;
-            password: string;
-            education: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience: string;
-            institution: string;
-            eduStart: string;
-            eduEnd: string;
-            currentCompany: string;
-            currentJobTitle: string;
-            companyStart: string;
-            companyEnd?: string;
-            jobDescription?: string;
-            publishedAt: string;
-            courses?: Array<string>;
-            user_logs?: Array<string>;
-        };
-    };
+    body: ContentCreatorRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -3160,185 +5798,34 @@ export type ContentCreatorPostContentCreatorsRequest = {
 
 export type ContentCreatorPostContentCreatorsErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ContentCreatorPostContentCreatorsError = ContentCreatorPostContentCreatorsErrors[keyof ContentCreatorPostContentCreatorsErrors];
 
 export type ContentCreatorPostContentCreatorsResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            firstName: string;
-            lastName?: string;
-            verifiedAt?: string;
-            biography?: string;
-            email: string;
-            education: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience: string;
-            institution: string;
-            eduStart: string;
-            eduEnd: string;
-            currentCompany: string;
-            currentJobTitle: string;
-            companyStart: string;
-            companyEnd?: string;
-            jobDescription?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-            user_logs?: Array<{
-                documentId: string;
-                id: number;
-                loginDate: string;
-                isSuccessful: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-            }>;
-        };
-    };
+    200: ContentCreatorResponse;
 };
 
 export type ContentCreatorPostContentCreatorsResponse = ContentCreatorPostContentCreatorsResponses[keyof ContentCreatorPostContentCreatorsResponses];
@@ -3361,185 +5848,34 @@ export type ContentCreatorDeleteContentCreatorsByIdRequest = {
 
 export type ContentCreatorDeleteContentCreatorsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ContentCreatorDeleteContentCreatorsByIdError = ContentCreatorDeleteContentCreatorsByIdErrors[keyof ContentCreatorDeleteContentCreatorsByIdErrors];
 
 export type ContentCreatorDeleteContentCreatorsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            firstName: string;
-            lastName?: string;
-            verifiedAt?: string;
-            biography?: string;
-            email: string;
-            education: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience: string;
-            institution: string;
-            eduStart: string;
-            eduEnd: string;
-            currentCompany: string;
-            currentJobTitle: string;
-            companyStart: string;
-            companyEnd?: string;
-            jobDescription?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-            user_logs?: Array<{
-                documentId: string;
-                id: number;
-                loginDate: string;
-                isSuccessful: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-            }>;
-        };
-    };
+    200: number;
 };
 
 export type ContentCreatorDeleteContentCreatorsByIdResponse = ContentCreatorDeleteContentCreatorsByIdResponses[keyof ContentCreatorDeleteContentCreatorsByIdResponses];
@@ -3567,214 +5903,40 @@ export type ContentCreatorGetContentCreatorsByIdRequest = {
 
 export type ContentCreatorGetContentCreatorsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ContentCreatorGetContentCreatorsByIdError = ContentCreatorGetContentCreatorsByIdErrors[keyof ContentCreatorGetContentCreatorsByIdErrors];
 
 export type ContentCreatorGetContentCreatorsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            firstName: string;
-            lastName?: string;
-            verifiedAt?: string;
-            biography?: string;
-            email: string;
-            education: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience: string;
-            institution: string;
-            eduStart: string;
-            eduEnd: string;
-            currentCompany: string;
-            currentJobTitle: string;
-            companyStart: string;
-            companyEnd?: string;
-            jobDescription?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-            user_logs?: Array<{
-                documentId: string;
-                id: number;
-                loginDate: string;
-                isSuccessful: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-            }>;
-        };
-    };
+    200: ContentCreatorResponse;
 };
 
 export type ContentCreatorGetContentCreatorsByIdResponse = ContentCreatorGetContentCreatorsByIdResponses[keyof ContentCreatorGetContentCreatorsByIdResponses];
 
 export type ContentCreatorPutContentCreatorsByIdRequest = {
-    body?: {
-        data: {
-            firstName?: string;
-            lastName?: string;
-            verifiedAt?: string;
-            biography?: string;
-            email?: string;
-            password?: string;
-            education?: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience?: string;
-            institution?: string;
-            eduStart?: string;
-            eduEnd?: string;
-            currentCompany?: string;
-            currentJobTitle?: string;
-            companyStart?: string;
-            companyEnd?: string;
-            jobDescription?: string;
-            publishedAt?: string;
-            courses?: Array<string>;
-            user_logs?: Array<string>;
-        };
-    };
+    body: ContentCreatorRequest;
     path: {
         id: string;
     };
@@ -3788,218 +5950,53 @@ export type ContentCreatorPutContentCreatorsByIdRequest = {
 
 export type ContentCreatorPutContentCreatorsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ContentCreatorPutContentCreatorsByIdError = ContentCreatorPutContentCreatorsByIdErrors[keyof ContentCreatorPutContentCreatorsByIdErrors];
 
 export type ContentCreatorPutContentCreatorsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            firstName: string;
-            lastName?: string;
-            verifiedAt?: string;
-            biography?: string;
-            email: string;
-            education: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience: string;
-            institution: string;
-            eduStart: string;
-            eduEnd: string;
-            currentCompany: string;
-            currentJobTitle: string;
-            companyStart: string;
-            companyEnd?: string;
-            jobDescription?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-            user_logs?: Array<{
-                documentId: string;
-                id: number;
-                loginDate: string;
-                isSuccessful: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-            }>;
-        };
-    };
+    200: ContentCreatorResponse;
 };
 
 export type ContentCreatorPutContentCreatorsByIdResponse = ContentCreatorPutContentCreatorsByIdResponses[keyof ContentCreatorPutContentCreatorsByIdResponses];
 
-export type ContentCreatorPostContentCreatorLoginRequest = {
-    body?: never;
+export type PostContentCreatorLoginRequest = {
+    body: LoginRequest;
     path?: never;
     query?: never;
     url: '/content-creator/login';
 };
 
-export type ContentCreatorPostContentCreatorLoginErrors = {
+export type PostContentCreatorLoginResponses = {
     /**
-     * Bad request
+     * OK
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    200: JwtResponse;
 };
+
+export type PostContentCreatorLoginResponse = PostContentCreatorLoginResponses[keyof PostContentCreatorLoginResponses];
 
 export type CourseGetCoursesRequest = {
     body?: never;
@@ -4032,700 +6029,40 @@ export type CourseGetCoursesRequest = {
 
 export type CourseGetCoursesErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseGetCoursesError = CourseGetCoursesErrors[keyof CourseGetCoursesErrors];
 
 export type CourseGetCoursesResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            title: string;
-            description?: string;
-            difficulty: number;
-            numOfRatings: number;
-            numOfSubscriptions: number;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            image?: {
-                documentId: string;
-                id: number;
-                name: string;
-                alternativeText?: string;
-                caption?: string;
-                width?: number;
-                height?: number;
-                formats?: unknown;
-                hash: string;
-                ext?: string;
-                mime: string;
-                size: number;
-                url: string;
-                previewUrl?: string;
-                provider: string;
-                provider_metadata?: unknown;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                related: unknown;
-            };
-            feedbacks?: Array<{
-                documentId: string;
-                id: number;
-                rating: number;
-                feedbackText?: string;
-                dateCreated: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-                student?: unknown;
-            }>;
-            course_sections?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercises?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    question: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise_options?: Array<{
-                        documentId: string;
-                        id: number;
-                        text: string;
-                        explanation: string;
-                        isCorrect: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise?: unknown;
-                    }>;
-                }>;
-                lectures?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    completed: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    content?: Array<unknown>;
-                }>;
-                course?: unknown;
-            }>;
-            course_categories?: Array<{
-                documentId: string;
-                id: number;
-                name: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                courses?: Array<unknown>;
-            }>;
-            students?: Array<{
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            }>;
-            content_creators?: Array<{
-                documentId: string;
-                id: number;
-                firstName: string;
-                lastName?: string;
-                verifiedAt?: string;
-                biography?: string;
-                email: string;
-                education: 'TODO1' | 'TODO2' | 'TODO3';
-                statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                courseExperience: string;
-                institution: string;
-                eduStart: string;
-                eduEnd: string;
-                currentCompany: string;
-                currentJobTitle: string;
-                companyStart: string;
-                companyEnd?: string;
-                jobDescription?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                courses?: Array<unknown>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            }>;
-        }>;
-    };
+    200: CourseListResponse;
 };
 
 export type CourseGetCoursesResponse = CourseGetCoursesResponses[keyof CourseGetCoursesResponses];
 
 export type CoursePostCoursesRequest = {
-    body?: {
-        data: {
-            title: string;
-            description?: string;
-            difficulty: number;
-            numOfRatings: number;
-            numOfSubscriptions: number;
-            publishedAt: string;
-            image?: unknown;
-            feedbacks?: Array<string>;
-            course_sections?: Array<string>;
-            course_categories?: Array<string>;
-            students?: Array<string>;
-            content_creators?: Array<string>;
-        };
-    };
+    body: CourseRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'title' | 'description' | 'difficulty' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -4737,679 +6074,34 @@ export type CoursePostCoursesRequest = {
 
 export type CoursePostCoursesErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CoursePostCoursesError = CoursePostCoursesErrors[keyof CoursePostCoursesErrors];
 
 export type CoursePostCoursesResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            description?: string;
-            difficulty: number;
-            numOfRatings: number;
-            numOfSubscriptions: number;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            image?: {
-                documentId: string;
-                id: number;
-                name: string;
-                alternativeText?: string;
-                caption?: string;
-                width?: number;
-                height?: number;
-                formats?: unknown;
-                hash: string;
-                ext?: string;
-                mime: string;
-                size: number;
-                url: string;
-                previewUrl?: string;
-                provider: string;
-                provider_metadata?: unknown;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                related: unknown;
-            };
-            feedbacks?: Array<{
-                documentId: string;
-                id: number;
-                rating: number;
-                feedbackText?: string;
-                dateCreated: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-                student?: unknown;
-            }>;
-            course_sections?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercises?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    question: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise_options?: Array<{
-                        documentId: string;
-                        id: number;
-                        text: string;
-                        explanation: string;
-                        isCorrect: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise?: unknown;
-                    }>;
-                }>;
-                lectures?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    completed: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    content?: Array<unknown>;
-                }>;
-                course?: unknown;
-            }>;
-            course_categories?: Array<{
-                documentId: string;
-                id: number;
-                name: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                courses?: Array<unknown>;
-            }>;
-            students?: Array<{
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            }>;
-            content_creators?: Array<{
-                documentId: string;
-                id: number;
-                firstName: string;
-                lastName?: string;
-                verifiedAt?: string;
-                biography?: string;
-                email: string;
-                education: 'TODO1' | 'TODO2' | 'TODO3';
-                statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                courseExperience: string;
-                institution: string;
-                eduStart: string;
-                eduEnd: string;
-                currentCompany: string;
-                currentJobTitle: string;
-                companyStart: string;
-                companyEnd?: string;
-                jobDescription?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                courses?: Array<unknown>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            }>;
-        };
-    };
+    200: CourseResponse;
 };
 
 export type CoursePostCoursesResponse = CoursePostCoursesResponses[keyof CoursePostCoursesResponses];
@@ -5432,679 +6124,34 @@ export type CourseDeleteCoursesByIdRequest = {
 
 export type CourseDeleteCoursesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseDeleteCoursesByIdError = CourseDeleteCoursesByIdErrors[keyof CourseDeleteCoursesByIdErrors];
 
 export type CourseDeleteCoursesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            description?: string;
-            difficulty: number;
-            numOfRatings: number;
-            numOfSubscriptions: number;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            image?: {
-                documentId: string;
-                id: number;
-                name: string;
-                alternativeText?: string;
-                caption?: string;
-                width?: number;
-                height?: number;
-                formats?: unknown;
-                hash: string;
-                ext?: string;
-                mime: string;
-                size: number;
-                url: string;
-                previewUrl?: string;
-                provider: string;
-                provider_metadata?: unknown;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                related: unknown;
-            };
-            feedbacks?: Array<{
-                documentId: string;
-                id: number;
-                rating: number;
-                feedbackText?: string;
-                dateCreated: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-                student?: unknown;
-            }>;
-            course_sections?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercises?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    question: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise_options?: Array<{
-                        documentId: string;
-                        id: number;
-                        text: string;
-                        explanation: string;
-                        isCorrect: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise?: unknown;
-                    }>;
-                }>;
-                lectures?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    completed: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    content?: Array<unknown>;
-                }>;
-                course?: unknown;
-            }>;
-            course_categories?: Array<{
-                documentId: string;
-                id: number;
-                name: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                courses?: Array<unknown>;
-            }>;
-            students?: Array<{
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            }>;
-            content_creators?: Array<{
-                documentId: string;
-                id: number;
-                firstName: string;
-                lastName?: string;
-                verifiedAt?: string;
-                biography?: string;
-                email: string;
-                education: 'TODO1' | 'TODO2' | 'TODO3';
-                statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                courseExperience: string;
-                institution: string;
-                eduStart: string;
-                eduEnd: string;
-                currentCompany: string;
-                currentJobTitle: string;
-                companyStart: string;
-                companyEnd?: string;
-                jobDescription?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                courses?: Array<unknown>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            }>;
-        };
-    };
+    200: number;
 };
 
 export type CourseDeleteCoursesByIdResponse = CourseDeleteCoursesByIdResponses[keyof CourseDeleteCoursesByIdResponses];
@@ -6132,700 +6179,40 @@ export type CourseGetCoursesByIdRequest = {
 
 export type CourseGetCoursesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseGetCoursesByIdError = CourseGetCoursesByIdErrors[keyof CourseGetCoursesByIdErrors];
 
 export type CourseGetCoursesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            description?: string;
-            difficulty: number;
-            numOfRatings: number;
-            numOfSubscriptions: number;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            image?: {
-                documentId: string;
-                id: number;
-                name: string;
-                alternativeText?: string;
-                caption?: string;
-                width?: number;
-                height?: number;
-                formats?: unknown;
-                hash: string;
-                ext?: string;
-                mime: string;
-                size: number;
-                url: string;
-                previewUrl?: string;
-                provider: string;
-                provider_metadata?: unknown;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                related: unknown;
-            };
-            feedbacks?: Array<{
-                documentId: string;
-                id: number;
-                rating: number;
-                feedbackText?: string;
-                dateCreated: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-                student?: unknown;
-            }>;
-            course_sections?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercises?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    question: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise_options?: Array<{
-                        documentId: string;
-                        id: number;
-                        text: string;
-                        explanation: string;
-                        isCorrect: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise?: unknown;
-                    }>;
-                }>;
-                lectures?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    completed: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    content?: Array<unknown>;
-                }>;
-                course?: unknown;
-            }>;
-            course_categories?: Array<{
-                documentId: string;
-                id: number;
-                name: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                courses?: Array<unknown>;
-            }>;
-            students?: Array<{
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            }>;
-            content_creators?: Array<{
-                documentId: string;
-                id: number;
-                firstName: string;
-                lastName?: string;
-                verifiedAt?: string;
-                biography?: string;
-                email: string;
-                education: 'TODO1' | 'TODO2' | 'TODO3';
-                statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                courseExperience: string;
-                institution: string;
-                eduStart: string;
-                eduEnd: string;
-                currentCompany: string;
-                currentJobTitle: string;
-                companyStart: string;
-                companyEnd?: string;
-                jobDescription?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                courses?: Array<unknown>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            }>;
-        };
-    };
+    200: CourseResponse;
 };
 
 export type CourseGetCoursesByIdResponse = CourseGetCoursesByIdResponses[keyof CourseGetCoursesByIdResponses];
 
 export type CoursePutCoursesByIdRequest = {
-    body?: {
-        data: {
-            title?: string;
-            description?: string;
-            difficulty?: number;
-            numOfRatings?: number;
-            numOfSubscriptions?: number;
-            publishedAt?: string;
-            image?: unknown;
-            feedbacks?: Array<string>;
-            course_sections?: Array<string>;
-            course_categories?: Array<string>;
-            students?: Array<string>;
-            content_creators?: Array<string>;
-        };
-    };
+    body: CourseRequest;
     path: {
         id: string;
     };
@@ -6839,679 +6226,34 @@ export type CoursePutCoursesByIdRequest = {
 
 export type CoursePutCoursesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CoursePutCoursesByIdError = CoursePutCoursesByIdErrors[keyof CoursePutCoursesByIdErrors];
 
 export type CoursePutCoursesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            description?: string;
-            difficulty: number;
-            numOfRatings: number;
-            numOfSubscriptions: number;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            image?: {
-                documentId: string;
-                id: number;
-                name: string;
-                alternativeText?: string;
-                caption?: string;
-                width?: number;
-                height?: number;
-                formats?: unknown;
-                hash: string;
-                ext?: string;
-                mime: string;
-                size: number;
-                url: string;
-                previewUrl?: string;
-                provider: string;
-                provider_metadata?: unknown;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                related: unknown;
-            };
-            feedbacks?: Array<{
-                documentId: string;
-                id: number;
-                rating: number;
-                feedbackText?: string;
-                dateCreated: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-                student?: unknown;
-            }>;
-            course_sections?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercises?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    question: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise_options?: Array<{
-                        documentId: string;
-                        id: number;
-                        text: string;
-                        explanation: string;
-                        isCorrect: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise?: unknown;
-                    }>;
-                }>;
-                lectures?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    completed: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    content?: Array<unknown>;
-                }>;
-                course?: unknown;
-            }>;
-            course_categories?: Array<{
-                documentId: string;
-                id: number;
-                name: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                courses?: Array<unknown>;
-            }>;
-            students?: Array<{
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            }>;
-            content_creators?: Array<{
-                documentId: string;
-                id: number;
-                firstName: string;
-                lastName?: string;
-                verifiedAt?: string;
-                biography?: string;
-                email: string;
-                education: 'TODO1' | 'TODO2' | 'TODO3';
-                statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                courseExperience: string;
-                institution: string;
-                eduStart: string;
-                eduEnd: string;
-                currentCompany: string;
-                currentJobTitle: string;
-                companyStart: string;
-                companyEnd?: string;
-                jobDescription?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                courses?: Array<unknown>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            }>;
-        };
-    };
+    200: CourseResponse;
 };
 
 export type CoursePutCoursesByIdResponse = CoursePutCoursesByIdResponses[keyof CoursePutCoursesByIdResponses];
@@ -7547,172 +6289,40 @@ export type CourseCategoryGetCourseCategoriesRequest = {
 
 export type CourseCategoryGetCourseCategoriesErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseCategoryGetCourseCategoriesError = CourseCategoryGetCourseCategoriesErrors[keyof CourseCategoryGetCourseCategoriesErrors];
 
 export type CourseCategoryGetCourseCategoriesResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            name: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-        }>;
-    };
+    200: CourseCategoryListResponse;
 };
 
 export type CourseCategoryGetCourseCategoriesResponse = CourseCategoryGetCourseCategoriesResponses[keyof CourseCategoryGetCourseCategoriesResponses];
 
 export type CourseCategoryPostCourseCategoriesRequest = {
-    body?: {
-        data: {
-            name: string;
-            publishedAt: string;
-            courses?: Array<string>;
-        };
-    };
+    body: CourseCategoryRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'name' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -7724,160 +6334,34 @@ export type CourseCategoryPostCourseCategoriesRequest = {
 
 export type CourseCategoryPostCourseCategoriesErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseCategoryPostCourseCategoriesError = CourseCategoryPostCourseCategoriesErrors[keyof CourseCategoryPostCourseCategoriesErrors];
 
 export type CourseCategoryPostCourseCategoriesResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            name: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-        };
-    };
+    200: CourseCategoryResponse;
 };
 
 export type CourseCategoryPostCourseCategoriesResponse = CourseCategoryPostCourseCategoriesResponses[keyof CourseCategoryPostCourseCategoriesResponses];
@@ -7900,160 +6384,34 @@ export type CourseCategoryDeleteCourseCategoriesByIdRequest = {
 
 export type CourseCategoryDeleteCourseCategoriesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseCategoryDeleteCourseCategoriesByIdError = CourseCategoryDeleteCourseCategoriesByIdErrors[keyof CourseCategoryDeleteCourseCategoriesByIdErrors];
 
 export type CourseCategoryDeleteCourseCategoriesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            name: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-        };
-    };
+    200: number;
 };
 
 export type CourseCategoryDeleteCourseCategoriesByIdResponse = CourseCategoryDeleteCourseCategoriesByIdResponses[keyof CourseCategoryDeleteCourseCategoriesByIdResponses];
@@ -8081,172 +6439,40 @@ export type CourseCategoryGetCourseCategoriesByIdRequest = {
 
 export type CourseCategoryGetCourseCategoriesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseCategoryGetCourseCategoriesByIdError = CourseCategoryGetCourseCategoriesByIdErrors[keyof CourseCategoryGetCourseCategoriesByIdErrors];
 
 export type CourseCategoryGetCourseCategoriesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            name: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-        };
-    };
+    200: CourseCategoryResponse;
 };
 
 export type CourseCategoryGetCourseCategoriesByIdResponse = CourseCategoryGetCourseCategoriesByIdResponses[keyof CourseCategoryGetCourseCategoriesByIdResponses];
 
 export type CourseCategoryPutCourseCategoriesByIdRequest = {
-    body?: {
-        data: {
-            name?: string;
-            publishedAt?: string;
-            courses?: Array<string>;
-        };
-    };
+    body: CourseCategoryRequest;
     path: {
         id: string;
     };
@@ -8260,160 +6486,34 @@ export type CourseCategoryPutCourseCategoriesByIdRequest = {
 
 export type CourseCategoryPutCourseCategoriesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseCategoryPutCourseCategoriesByIdError = CourseCategoryPutCourseCategoriesByIdErrors[keyof CourseCategoryPutCourseCategoriesByIdErrors];
 
 export type CourseCategoryPutCourseCategoriesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            name: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-        };
-    };
+    200: CourseCategoryResponse;
 };
 
 export type CourseCategoryPutCourseCategoriesByIdResponse = CourseCategoryPutCourseCategoriesByIdResponses[keyof CourseCategoryPutCourseCategoriesByIdResponses];
@@ -8449,206 +6549,40 @@ export type CourseSelectionGetCourseSelectionsRequest = {
 
 export type CourseSelectionGetCourseSelectionsErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseSelectionGetCourseSelectionsError = CourseSelectionGetCourseSelectionsErrors[keyof CourseSelectionGetCourseSelectionsErrors];
 
 export type CourseSelectionGetCourseSelectionsResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            title: string;
-            description?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercises?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                question: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise_options?: Array<{
-                    documentId: string;
-                    id: number;
-                    text: string;
-                    explanation: string;
-                    isCorrect: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise?: unknown;
-                }>;
-            }>;
-            lectures?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                completed: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                content?: Array<unknown>;
-            }>;
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-        }>;
-    };
+    200: CourseSelectionListResponse;
 };
 
 export type CourseSelectionGetCourseSelectionsResponse = CourseSelectionGetCourseSelectionsResponses[keyof CourseSelectionGetCourseSelectionsResponses];
 
 export type CourseSelectionPostCourseSelectionsRequest = {
-    body?: {
-        data: {
-            title: string;
-            description?: string;
-            publishedAt: string;
-            exercises?: Array<string>;
-            lectures?: Array<string>;
-            course?: string;
-        };
-    };
+    body: CourseSelectionRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'title' | 'description' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -8660,191 +6594,34 @@ export type CourseSelectionPostCourseSelectionsRequest = {
 
 export type CourseSelectionPostCourseSelectionsErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseSelectionPostCourseSelectionsError = CourseSelectionPostCourseSelectionsErrors[keyof CourseSelectionPostCourseSelectionsErrors];
 
 export type CourseSelectionPostCourseSelectionsResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            description?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercises?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                question: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise_options?: Array<{
-                    documentId: string;
-                    id: number;
-                    text: string;
-                    explanation: string;
-                    isCorrect: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise?: unknown;
-                }>;
-            }>;
-            lectures?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                completed: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                content?: Array<unknown>;
-            }>;
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-        };
-    };
+    200: CourseSelectionResponse;
 };
 
 export type CourseSelectionPostCourseSelectionsResponse = CourseSelectionPostCourseSelectionsResponses[keyof CourseSelectionPostCourseSelectionsResponses];
@@ -8867,191 +6644,34 @@ export type CourseSelectionDeleteCourseSelectionsByIdRequest = {
 
 export type CourseSelectionDeleteCourseSelectionsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseSelectionDeleteCourseSelectionsByIdError = CourseSelectionDeleteCourseSelectionsByIdErrors[keyof CourseSelectionDeleteCourseSelectionsByIdErrors];
 
 export type CourseSelectionDeleteCourseSelectionsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            description?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercises?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                question: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise_options?: Array<{
-                    documentId: string;
-                    id: number;
-                    text: string;
-                    explanation: string;
-                    isCorrect: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise?: unknown;
-                }>;
-            }>;
-            lectures?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                completed: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                content?: Array<unknown>;
-            }>;
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-        };
-    };
+    200: number;
 };
 
 export type CourseSelectionDeleteCourseSelectionsByIdResponse = CourseSelectionDeleteCourseSelectionsByIdResponses[keyof CourseSelectionDeleteCourseSelectionsByIdResponses];
@@ -9079,206 +6699,40 @@ export type CourseSelectionGetCourseSelectionsByIdRequest = {
 
 export type CourseSelectionGetCourseSelectionsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseSelectionGetCourseSelectionsByIdError = CourseSelectionGetCourseSelectionsByIdErrors[keyof CourseSelectionGetCourseSelectionsByIdErrors];
 
 export type CourseSelectionGetCourseSelectionsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            description?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercises?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                question: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise_options?: Array<{
-                    documentId: string;
-                    id: number;
-                    text: string;
-                    explanation: string;
-                    isCorrect: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise?: unknown;
-                }>;
-            }>;
-            lectures?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                completed: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                content?: Array<unknown>;
-            }>;
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-        };
-    };
+    200: CourseSelectionResponse;
 };
 
 export type CourseSelectionGetCourseSelectionsByIdResponse = CourseSelectionGetCourseSelectionsByIdResponses[keyof CourseSelectionGetCourseSelectionsByIdResponses];
 
 export type CourseSelectionPutCourseSelectionsByIdRequest = {
-    body?: {
-        data: {
-            title?: string;
-            description?: string;
-            publishedAt?: string;
-            exercises?: Array<string>;
-            lectures?: Array<string>;
-            course?: string;
-        };
-    };
+    body: CourseSelectionRequest;
     path: {
         id: string;
     };
@@ -9292,191 +6746,34 @@ export type CourseSelectionPutCourseSelectionsByIdRequest = {
 
 export type CourseSelectionPutCourseSelectionsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type CourseSelectionPutCourseSelectionsByIdError = CourseSelectionPutCourseSelectionsByIdErrors[keyof CourseSelectionPutCourseSelectionsByIdErrors];
 
 export type CourseSelectionPutCourseSelectionsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            description?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercises?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                question: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise_options?: Array<{
-                    documentId: string;
-                    id: number;
-                    text: string;
-                    explanation: string;
-                    isCorrect: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise?: unknown;
-                }>;
-            }>;
-            lectures?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                completed: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                content?: Array<unknown>;
-            }>;
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-        };
-    };
+    200: CourseSelectionResponse;
 };
 
 export type CourseSelectionPutCourseSelectionsByIdResponse = CourseSelectionPutCourseSelectionsByIdResponses[keyof CourseSelectionPutCourseSelectionsByIdResponses];
@@ -9512,66 +6809,40 @@ export type ExerciseGetExercisesRequest = {
 
 export type ExerciseGetExercisesErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ExerciseGetExercisesError = ExerciseGetExercisesErrors[keyof ExerciseGetExercisesErrors];
 
 export type ExerciseGetExercisesResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            title: string;
-            question: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercise_options?: Array<{
-                documentId: string;
-                id: number;
-                text: string;
-                explanation: string;
-                isCorrect: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise?: unknown;
-            }>;
-        }>;
-    };
+    200: ExerciseListResponse;
 };
 
 export type ExerciseGetExercisesResponse = ExerciseGetExercisesResponses[keyof ExerciseGetExercisesResponses];
 
 export type ExercisePostExercisesRequest = {
-    body?: {
-        data: {
-            title: string;
-            question: string;
-            publishedAt: string;
-            exercise_options?: Array<string>;
-        };
-    };
+    body: ExerciseRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'title' | 'question' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -9583,53 +6854,34 @@ export type ExercisePostExercisesRequest = {
 
 export type ExercisePostExercisesErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ExercisePostExercisesError = ExercisePostExercisesErrors[keyof ExercisePostExercisesErrors];
 
 export type ExercisePostExercisesResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            question: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercise_options?: Array<{
-                documentId: string;
-                id: number;
-                text: string;
-                explanation: string;
-                isCorrect: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise?: unknown;
-            }>;
-        };
-    };
+    200: ExerciseResponse;
 };
 
 export type ExercisePostExercisesResponse = ExercisePostExercisesResponses[keyof ExercisePostExercisesResponses];
@@ -9652,53 +6904,34 @@ export type ExerciseDeleteExercisesByIdRequest = {
 
 export type ExerciseDeleteExercisesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ExerciseDeleteExercisesByIdError = ExerciseDeleteExercisesByIdErrors[keyof ExerciseDeleteExercisesByIdErrors];
 
 export type ExerciseDeleteExercisesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            question: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercise_options?: Array<{
-                documentId: string;
-                id: number;
-                text: string;
-                explanation: string;
-                isCorrect: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise?: unknown;
-            }>;
-        };
-    };
+    200: number;
 };
 
 export type ExerciseDeleteExercisesByIdResponse = ExerciseDeleteExercisesByIdResponses[keyof ExerciseDeleteExercisesByIdResponses];
@@ -9726,66 +6959,40 @@ export type ExerciseGetExercisesByIdRequest = {
 
 export type ExerciseGetExercisesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ExerciseGetExercisesByIdError = ExerciseGetExercisesByIdErrors[keyof ExerciseGetExercisesByIdErrors];
 
 export type ExerciseGetExercisesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            question: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercise_options?: Array<{
-                documentId: string;
-                id: number;
-                text: string;
-                explanation: string;
-                isCorrect: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise?: unknown;
-            }>;
-        };
-    };
+    200: ExerciseResponse;
 };
 
 export type ExerciseGetExercisesByIdResponse = ExerciseGetExercisesByIdResponses[keyof ExerciseGetExercisesByIdResponses];
 
 export type ExercisePutExercisesByIdRequest = {
-    body?: {
-        data: {
-            title?: string;
-            question?: string;
-            publishedAt?: string;
-            exercise_options?: Array<string>;
-        };
-    };
+    body: ExerciseRequest;
     path: {
         id: string;
     };
@@ -9799,53 +7006,34 @@ export type ExercisePutExercisesByIdRequest = {
 
 export type ExercisePutExercisesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ExercisePutExercisesByIdError = ExercisePutExercisesByIdErrors[keyof ExercisePutExercisesByIdErrors];
 
 export type ExercisePutExercisesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            question: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercise_options?: Array<{
-                documentId: string;
-                id: number;
-                text: string;
-                explanation: string;
-                isCorrect: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise?: unknown;
-            }>;
-        };
-    };
+    200: ExerciseResponse;
 };
 
 export type ExercisePutExercisesByIdResponse = ExercisePutExercisesByIdResponses[keyof ExercisePutExercisesByIdResponses];
@@ -9881,77 +7069,40 @@ export type ExerciseOptionGetExerciseOptionsRequest = {
 
 export type ExerciseOptionGetExerciseOptionsErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ExerciseOptionGetExerciseOptionsError = ExerciseOptionGetExerciseOptionsErrors[keyof ExerciseOptionGetExerciseOptionsErrors];
 
 export type ExerciseOptionGetExerciseOptionsResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            text: string;
-            explanation: string;
-            isCorrect: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercise?: {
-                documentId: string;
-                id: number;
-                title: string;
-                question: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise_options?: Array<{
-                    documentId: string;
-                    id: number;
-                    text: string;
-                    explanation: string;
-                    isCorrect: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise?: unknown;
-                }>;
-            };
-        }>;
-    };
+    200: ExerciseOptionListResponse;
 };
 
 export type ExerciseOptionGetExerciseOptionsResponse = ExerciseOptionGetExerciseOptionsResponses[keyof ExerciseOptionGetExerciseOptionsResponses];
 
 export type ExerciseOptionPostExerciseOptionsRequest = {
-    body?: {
-        data: {
-            text: string;
-            explanation: string;
-            isCorrect: '0' | '1' | 't' | 'true' | 'f' | 'false';
-            publishedAt: string;
-            exercise?: string;
-        };
-    };
+    body: ExerciseOptionRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'text' | 'explanation' | 'isCorrect' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -9963,63 +7114,34 @@ export type ExerciseOptionPostExerciseOptionsRequest = {
 
 export type ExerciseOptionPostExerciseOptionsErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ExerciseOptionPostExerciseOptionsError = ExerciseOptionPostExerciseOptionsErrors[keyof ExerciseOptionPostExerciseOptionsErrors];
 
 export type ExerciseOptionPostExerciseOptionsResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            text: string;
-            explanation: string;
-            isCorrect: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercise?: {
-                documentId: string;
-                id: number;
-                title: string;
-                question: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise_options?: Array<{
-                    documentId: string;
-                    id: number;
-                    text: string;
-                    explanation: string;
-                    isCorrect: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise?: unknown;
-                }>;
-            };
-        };
-    };
+    200: ExerciseOptionResponse;
 };
 
 export type ExerciseOptionPostExerciseOptionsResponse = ExerciseOptionPostExerciseOptionsResponses[keyof ExerciseOptionPostExerciseOptionsResponses];
@@ -10042,63 +7164,34 @@ export type ExerciseOptionDeleteExerciseOptionsByIdRequest = {
 
 export type ExerciseOptionDeleteExerciseOptionsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ExerciseOptionDeleteExerciseOptionsByIdError = ExerciseOptionDeleteExerciseOptionsByIdErrors[keyof ExerciseOptionDeleteExerciseOptionsByIdErrors];
 
 export type ExerciseOptionDeleteExerciseOptionsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            text: string;
-            explanation: string;
-            isCorrect: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercise?: {
-                documentId: string;
-                id: number;
-                title: string;
-                question: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise_options?: Array<{
-                    documentId: string;
-                    id: number;
-                    text: string;
-                    explanation: string;
-                    isCorrect: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise?: unknown;
-                }>;
-            };
-        };
-    };
+    200: number;
 };
 
 export type ExerciseOptionDeleteExerciseOptionsByIdResponse = ExerciseOptionDeleteExerciseOptionsByIdResponses[keyof ExerciseOptionDeleteExerciseOptionsByIdResponses];
@@ -10126,77 +7219,40 @@ export type ExerciseOptionGetExerciseOptionsByIdRequest = {
 
 export type ExerciseOptionGetExerciseOptionsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ExerciseOptionGetExerciseOptionsByIdError = ExerciseOptionGetExerciseOptionsByIdErrors[keyof ExerciseOptionGetExerciseOptionsByIdErrors];
 
 export type ExerciseOptionGetExerciseOptionsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            text: string;
-            explanation: string;
-            isCorrect: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercise?: {
-                documentId: string;
-                id: number;
-                title: string;
-                question: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise_options?: Array<{
-                    documentId: string;
-                    id: number;
-                    text: string;
-                    explanation: string;
-                    isCorrect: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise?: unknown;
-                }>;
-            };
-        };
-    };
+    200: ExerciseOptionResponse;
 };
 
 export type ExerciseOptionGetExerciseOptionsByIdResponse = ExerciseOptionGetExerciseOptionsByIdResponses[keyof ExerciseOptionGetExerciseOptionsByIdResponses];
 
 export type ExerciseOptionPutExerciseOptionsByIdRequest = {
-    body?: {
-        data: {
-            text?: string;
-            explanation?: string;
-            isCorrect?: '0' | '1' | 't' | 'true' | 'f' | 'false';
-            publishedAt?: string;
-            exercise?: string;
-        };
-    };
+    body: ExerciseOptionRequest;
     path: {
         id: string;
     };
@@ -10210,63 +7266,34 @@ export type ExerciseOptionPutExerciseOptionsByIdRequest = {
 
 export type ExerciseOptionPutExerciseOptionsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type ExerciseOptionPutExerciseOptionsByIdError = ExerciseOptionPutExerciseOptionsByIdErrors[keyof ExerciseOptionPutExerciseOptionsByIdErrors];
 
 export type ExerciseOptionPutExerciseOptionsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            text: string;
-            explanation: string;
-            isCorrect: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            exercise?: {
-                documentId: string;
-                id: number;
-                title: string;
-                question: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                exercise_options?: Array<{
-                    documentId: string;
-                    id: number;
-                    text: string;
-                    explanation: string;
-                    isCorrect: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercise?: unknown;
-                }>;
-            };
-        };
-    };
+    200: ExerciseOptionResponse;
 };
 
 export type ExerciseOptionPutExerciseOptionsByIdResponse = ExerciseOptionPutExerciseOptionsByIdResponses[keyof ExerciseOptionPutExerciseOptionsByIdResponses];
@@ -10302,576 +7329,40 @@ export type FeedbackGetFeedbacksRequest = {
 
 export type FeedbackGetFeedbacksErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type FeedbackGetFeedbacksError = FeedbackGetFeedbacksErrors[keyof FeedbackGetFeedbacksErrors];
 
 export type FeedbackGetFeedbacksResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            rating: number;
-            feedbackText?: string;
-            dateCreated: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-        }>;
-    };
+    200: FeedbackListResponse;
 };
 
 export type FeedbackGetFeedbacksResponse = FeedbackGetFeedbacksResponses[keyof FeedbackGetFeedbacksResponses];
 
 export type FeedbackPostFeedbacksRequest = {
-    body?: {
-        data: {
-            rating: number;
-            feedbackText?: string;
-            dateCreated: string;
-            publishedAt: string;
-            course?: string;
-            student?: string;
-        };
-    };
+    body: FeedbackRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'rating' | 'feedbackText' | 'dateCreated' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -10883,561 +7374,34 @@ export type FeedbackPostFeedbacksRequest = {
 
 export type FeedbackPostFeedbacksErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type FeedbackPostFeedbacksError = FeedbackPostFeedbacksErrors[keyof FeedbackPostFeedbacksErrors];
 
 export type FeedbackPostFeedbacksResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            rating: number;
-            feedbackText?: string;
-            dateCreated: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-        };
-    };
+    200: FeedbackResponse;
 };
 
 export type FeedbackPostFeedbacksResponse = FeedbackPostFeedbacksResponses[keyof FeedbackPostFeedbacksResponses];
@@ -11460,561 +7424,34 @@ export type FeedbackDeleteFeedbacksByIdRequest = {
 
 export type FeedbackDeleteFeedbacksByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type FeedbackDeleteFeedbacksByIdError = FeedbackDeleteFeedbacksByIdErrors[keyof FeedbackDeleteFeedbacksByIdErrors];
 
 export type FeedbackDeleteFeedbacksByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            rating: number;
-            feedbackText?: string;
-            dateCreated: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-        };
-    };
+    200: number;
 };
 
 export type FeedbackDeleteFeedbacksByIdResponse = FeedbackDeleteFeedbacksByIdResponses[keyof FeedbackDeleteFeedbacksByIdResponses];
@@ -12042,576 +7479,40 @@ export type FeedbackGetFeedbacksByIdRequest = {
 
 export type FeedbackGetFeedbacksByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type FeedbackGetFeedbacksByIdError = FeedbackGetFeedbacksByIdErrors[keyof FeedbackGetFeedbacksByIdErrors];
 
 export type FeedbackGetFeedbacksByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            rating: number;
-            feedbackText?: string;
-            dateCreated: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-        };
-    };
+    200: FeedbackResponse;
 };
 
 export type FeedbackGetFeedbacksByIdResponse = FeedbackGetFeedbacksByIdResponses[keyof FeedbackGetFeedbacksByIdResponses];
 
 export type FeedbackPutFeedbacksByIdRequest = {
-    body?: {
-        data: {
-            rating?: number;
-            feedbackText?: string;
-            dateCreated?: string;
-            publishedAt?: string;
-            course?: string;
-            student?: string;
-        };
-    };
+    body: FeedbackRequest;
     path: {
         id: string;
     };
@@ -12625,561 +7526,34 @@ export type FeedbackPutFeedbacksByIdRequest = {
 
 export type FeedbackPutFeedbacksByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type FeedbackPutFeedbacksByIdError = FeedbackPutFeedbacksByIdErrors[keyof FeedbackPutFeedbacksByIdErrors];
 
 export type FeedbackPutFeedbacksByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            rating: number;
-            feedbackText?: string;
-            dateCreated: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            course?: {
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            };
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-        };
-    };
+    200: FeedbackResponse;
 };
 
 export type FeedbackPutFeedbacksByIdResponse = FeedbackPutFeedbacksByIdResponses[keyof FeedbackPutFeedbacksByIdResponses];
@@ -13215,56 +7589,40 @@ export type LectureGetLecturesRequest = {
 
 export type LectureGetLecturesErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type LectureGetLecturesError = LectureGetLecturesErrors[keyof LectureGetLecturesErrors];
 
 export type LectureGetLecturesResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            title: string;
-            completed: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            content?: Array<unknown>;
-        }>;
-    };
+    200: LectureListResponse;
 };
 
 export type LectureGetLecturesResponse = LectureGetLecturesResponses[keyof LectureGetLecturesResponses];
 
 export type LecturePostLecturesRequest = {
-    body?: {
-        data: {
-            title: string;
-            completed: '0' | '1' | 't' | 'true' | 'f' | 'false';
-            publishedAt: string;
-            content?: Array<unknown>;
-        };
-    };
+    body: LectureRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'title' | 'completed' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -13276,43 +7634,34 @@ export type LecturePostLecturesRequest = {
 
 export type LecturePostLecturesErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type LecturePostLecturesError = LecturePostLecturesErrors[keyof LecturePostLecturesErrors];
 
 export type LecturePostLecturesResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            completed: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            content?: Array<unknown>;
-        };
-    };
+    200: LectureResponse;
 };
 
 export type LecturePostLecturesResponse = LecturePostLecturesResponses[keyof LecturePostLecturesResponses];
@@ -13335,43 +7684,34 @@ export type LectureDeleteLecturesByIdRequest = {
 
 export type LectureDeleteLecturesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type LectureDeleteLecturesByIdError = LectureDeleteLecturesByIdErrors[keyof LectureDeleteLecturesByIdErrors];
 
 export type LectureDeleteLecturesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            completed: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            content?: Array<unknown>;
-        };
-    };
+    200: number;
 };
 
 export type LectureDeleteLecturesByIdResponse = LectureDeleteLecturesByIdResponses[keyof LectureDeleteLecturesByIdResponses];
@@ -13399,56 +7739,40 @@ export type LectureGetLecturesByIdRequest = {
 
 export type LectureGetLecturesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type LectureGetLecturesByIdError = LectureGetLecturesByIdErrors[keyof LectureGetLecturesByIdErrors];
 
 export type LectureGetLecturesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            completed: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            content?: Array<unknown>;
-        };
-    };
+    200: LectureResponse;
 };
 
 export type LectureGetLecturesByIdResponse = LectureGetLecturesByIdResponses[keyof LectureGetLecturesByIdResponses];
 
 export type LecturePutLecturesByIdRequest = {
-    body?: {
-        data: {
-            title?: string;
-            completed?: '0' | '1' | 't' | 'true' | 'f' | 'false';
-            publishedAt?: string;
-            content?: Array<unknown>;
-        };
-    };
+    body: LectureRequest;
     path: {
         id: string;
     };
@@ -13462,43 +7786,34 @@ export type LecturePutLecturesByIdRequest = {
 
 export type LecturePutLecturesByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type LecturePutLecturesByIdError = LecturePutLecturesByIdErrors[keyof LecturePutLecturesByIdErrors];
 
 export type LecturePutLecturesByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            title: string;
-            completed: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            content?: Array<unknown>;
-        };
-    };
+    200: LectureResponse;
 };
 
 export type LecturePutLecturesByIdResponse = LecturePutLecturesByIdResponses[keyof LecturePutLecturesByIdResponses];
@@ -13533,56 +7848,40 @@ export type PasswordResetTokenGetPasswordResetTokensRequest = {
 
 export type PasswordResetTokenGetPasswordResetTokensErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type PasswordResetTokenGetPasswordResetTokensError = PasswordResetTokenGetPasswordResetTokensErrors[keyof PasswordResetTokenGetPasswordResetTokensErrors];
 
 export type PasswordResetTokenGetPasswordResetTokensResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            userEmail: string;
-            token: string;
-            expiresAt: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-        }>;
-    };
+    200: PasswordResetTokenListResponse;
 };
 
 export type PasswordResetTokenGetPasswordResetTokensResponse = PasswordResetTokenGetPasswordResetTokensResponses[keyof PasswordResetTokenGetPasswordResetTokensResponses];
 
 export type PasswordResetTokenPostPasswordResetTokensRequest = {
-    body?: {
-        data: {
-            userEmail: string;
-            token: string;
-            expiresAt: string;
-            publishedAt: string;
-        };
-    };
+    body: PasswordResetTokenRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'userEmail' | 'token' | 'expiresAt' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -13593,43 +7892,34 @@ export type PasswordResetTokenPostPasswordResetTokensRequest = {
 
 export type PasswordResetTokenPostPasswordResetTokensErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type PasswordResetTokenPostPasswordResetTokensError = PasswordResetTokenPostPasswordResetTokensErrors[keyof PasswordResetTokenPostPasswordResetTokensErrors];
 
 export type PasswordResetTokenPostPasswordResetTokensResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            userEmail: string;
-            token: string;
-            expiresAt: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-        };
-    };
+    200: PasswordResetTokenResponse;
 };
 
 export type PasswordResetTokenPostPasswordResetTokensResponse = PasswordResetTokenPostPasswordResetTokensResponses[keyof PasswordResetTokenPostPasswordResetTokensResponses];
@@ -13651,43 +7941,34 @@ export type PasswordResetTokenDeletePasswordResetTokensByIdRequest = {
 
 export type PasswordResetTokenDeletePasswordResetTokensByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type PasswordResetTokenDeletePasswordResetTokensByIdError = PasswordResetTokenDeletePasswordResetTokensByIdErrors[keyof PasswordResetTokenDeletePasswordResetTokensByIdErrors];
 
 export type PasswordResetTokenDeletePasswordResetTokensByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            userEmail: string;
-            token: string;
-            expiresAt: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-        };
-    };
+    200: number;
 };
 
 export type PasswordResetTokenDeletePasswordResetTokensByIdResponse = PasswordResetTokenDeletePasswordResetTokensByIdResponses[keyof PasswordResetTokenDeletePasswordResetTokensByIdResponses];
@@ -13714,56 +7995,40 @@ export type PasswordResetTokenGetPasswordResetTokensByIdRequest = {
 
 export type PasswordResetTokenGetPasswordResetTokensByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type PasswordResetTokenGetPasswordResetTokensByIdError = PasswordResetTokenGetPasswordResetTokensByIdErrors[keyof PasswordResetTokenGetPasswordResetTokensByIdErrors];
 
 export type PasswordResetTokenGetPasswordResetTokensByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            userEmail: string;
-            token: string;
-            expiresAt: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-        };
-    };
+    200: PasswordResetTokenResponse;
 };
 
 export type PasswordResetTokenGetPasswordResetTokensByIdResponse = PasswordResetTokenGetPasswordResetTokensByIdResponses[keyof PasswordResetTokenGetPasswordResetTokensByIdResponses];
 
 export type PasswordResetTokenPutPasswordResetTokensByIdRequest = {
-    body?: {
-        data: {
-            userEmail?: string;
-            token?: string;
-            expiresAt?: string;
-            publishedAt?: string;
-        };
-    };
+    body: PasswordResetTokenRequest;
     path: {
         id: string;
     };
@@ -13776,43 +8041,34 @@ export type PasswordResetTokenPutPasswordResetTokensByIdRequest = {
 
 export type PasswordResetTokenPutPasswordResetTokensByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type PasswordResetTokenPutPasswordResetTokensByIdError = PasswordResetTokenPutPasswordResetTokensByIdErrors[keyof PasswordResetTokenPutPasswordResetTokensByIdErrors];
 
 export type PasswordResetTokenPutPasswordResetTokensByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            userEmail: string;
-            token: string;
-            expiresAt: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-        };
-    };
+    200: PasswordResetTokenResponse;
 };
 
 export type PasswordResetTokenPutPasswordResetTokensByIdResponse = PasswordResetTokenPutPasswordResetTokensByIdResponses[keyof PasswordResetTokenPutPasswordResetTokensByIdResponses];
@@ -13848,451 +8104,40 @@ export type StudentGetStudentsRequest = {
 
 export type StudentGetStudentsErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type StudentGetStudentsError = StudentGetStudentsErrors[keyof StudentGetStudentsErrors];
 
 export type StudentGetStudentsResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            name: string;
-            biography?: string;
-            email: string;
-            verifiedAt?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            feedbacks?: Array<{
-                documentId: string;
-                id: number;
-                rating: number;
-                feedbackText?: string;
-                dateCreated: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-                student?: unknown;
-            }>;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-            certificates?: Array<{
-                documentId: string;
-                id: number;
-                link: string;
-                completionDate: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-            }>;
-            user_logs?: Array<{
-                documentId: string;
-                id: number;
-                loginDate: string;
-                isSuccessful: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-            }>;
-        }>;
-    };
+    200: StudentListResponse;
 };
 
 export type StudentGetStudentsResponse = StudentGetStudentsResponses[keyof StudentGetStudentsResponses];
 
 export type StudentPostStudentsRequest = {
-    body?: {
-        data: {
-            name: string;
-            biography?: string;
-            email: string;
-            password: string;
-            verifiedAt?: string;
-            publishedAt: string;
-            feedbacks?: Array<string>;
-            courses?: Array<string>;
-            certificates?: Array<string>;
-            user_logs?: Array<string>;
-        };
-    };
+    body: StudentRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'name' | 'biography' | 'email' | 'password' | 'verifiedAt' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -14304,432 +8149,34 @@ export type StudentPostStudentsRequest = {
 
 export type StudentPostStudentsErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type StudentPostStudentsError = StudentPostStudentsErrors[keyof StudentPostStudentsErrors];
 
 export type StudentPostStudentsResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            name: string;
-            biography?: string;
-            email: string;
-            verifiedAt?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            feedbacks?: Array<{
-                documentId: string;
-                id: number;
-                rating: number;
-                feedbackText?: string;
-                dateCreated: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-                student?: unknown;
-            }>;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-            certificates?: Array<{
-                documentId: string;
-                id: number;
-                link: string;
-                completionDate: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-            }>;
-            user_logs?: Array<{
-                documentId: string;
-                id: number;
-                loginDate: string;
-                isSuccessful: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-            }>;
-        };
-    };
+    200: StudentResponse;
 };
 
 export type StudentPostStudentsResponse = StudentPostStudentsResponses[keyof StudentPostStudentsResponses];
@@ -14752,432 +8199,34 @@ export type StudentDeleteStudentsByIdRequest = {
 
 export type StudentDeleteStudentsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type StudentDeleteStudentsByIdError = StudentDeleteStudentsByIdErrors[keyof StudentDeleteStudentsByIdErrors];
 
 export type StudentDeleteStudentsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            name: string;
-            biography?: string;
-            email: string;
-            verifiedAt?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            feedbacks?: Array<{
-                documentId: string;
-                id: number;
-                rating: number;
-                feedbackText?: string;
-                dateCreated: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-                student?: unknown;
-            }>;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-            certificates?: Array<{
-                documentId: string;
-                id: number;
-                link: string;
-                completionDate: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-            }>;
-            user_logs?: Array<{
-                documentId: string;
-                id: number;
-                loginDate: string;
-                isSuccessful: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-            }>;
-        };
-    };
+    200: number;
 };
 
 export type StudentDeleteStudentsByIdResponse = StudentDeleteStudentsByIdResponses[keyof StudentDeleteStudentsByIdResponses];
@@ -15205,451 +8254,40 @@ export type StudentGetStudentsByIdRequest = {
 
 export type StudentGetStudentsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type StudentGetStudentsByIdError = StudentGetStudentsByIdErrors[keyof StudentGetStudentsByIdErrors];
 
 export type StudentGetStudentsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            name: string;
-            biography?: string;
-            email: string;
-            verifiedAt?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            feedbacks?: Array<{
-                documentId: string;
-                id: number;
-                rating: number;
-                feedbackText?: string;
-                dateCreated: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-                student?: unknown;
-            }>;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-            certificates?: Array<{
-                documentId: string;
-                id: number;
-                link: string;
-                completionDate: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-            }>;
-            user_logs?: Array<{
-                documentId: string;
-                id: number;
-                loginDate: string;
-                isSuccessful: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-            }>;
-        };
-    };
+    200: StudentResponse;
 };
 
 export type StudentGetStudentsByIdResponse = StudentGetStudentsByIdResponses[keyof StudentGetStudentsByIdResponses];
 
 export type StudentPutStudentsByIdRequest = {
-    body?: {
-        data: {
-            name?: string;
-            biography?: string;
-            email?: string;
-            password?: string;
-            verifiedAt?: string;
-            publishedAt?: string;
-            feedbacks?: Array<string>;
-            courses?: Array<string>;
-            certificates?: Array<string>;
-            user_logs?: Array<string>;
-        };
-    };
+    body: StudentRequest;
     path: {
         id: string;
     };
@@ -15663,645 +8301,149 @@ export type StudentPutStudentsByIdRequest = {
 
 export type StudentPutStudentsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type StudentPutStudentsByIdError = StudentPutStudentsByIdErrors[keyof StudentPutStudentsByIdErrors];
 
 export type StudentPutStudentsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            name: string;
-            biography?: string;
-            email: string;
-            verifiedAt?: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            feedbacks?: Array<{
-                documentId: string;
-                id: number;
-                rating: number;
-                feedbackText?: string;
-                dateCreated: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-                student?: unknown;
-            }>;
-            courses?: Array<{
-                documentId: string;
-                id: number;
-                title: string;
-                description?: string;
-                difficulty: number;
-                numOfRatings: number;
-                numOfSubscriptions: number;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                image?: {
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    alternativeText?: string;
-                    caption?: string;
-                    width?: number;
-                    height?: number;
-                    formats?: unknown;
-                    hash: string;
-                    ext?: string;
-                    mime: string;
-                    size: number;
-                    url: string;
-                    previewUrl?: string;
-                    provider: string;
-                    provider_metadata?: unknown;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    related: unknown;
-                };
-                feedbacks?: Array<unknown>;
-                course_sections?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    exercises?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        question: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercise_options?: Array<{
-                            documentId: string;
-                            id: number;
-                            text: string;
-                            explanation: string;
-                            isCorrect: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise?: unknown;
-                        }>;
-                    }>;
-                    lectures?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        completed: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        content?: Array<unknown>;
-                    }>;
-                    course?: unknown;
-                }>;
-                course_categories?: Array<{
-                    documentId: string;
-                    id: number;
-                    name: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                }>;
-                students?: Array<unknown>;
-                content_creators?: Array<{
-                    documentId: string;
-                    id: number;
-                    firstName: string;
-                    lastName?: string;
-                    verifiedAt?: string;
-                    biography?: string;
-                    email: string;
-                    education: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience: string;
-                    institution: string;
-                    eduStart: string;
-                    eduEnd: string;
-                    currentCompany: string;
-                    currentJobTitle: string;
-                    companyStart: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    courses?: Array<unknown>;
-                    user_logs?: Array<{
-                        documentId: string;
-                        id: number;
-                        loginDate: string;
-                        isSuccessful: boolean;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        student?: unknown;
-                    }>;
-                }>;
-            }>;
-            certificates?: Array<{
-                documentId: string;
-                id: number;
-                link: string;
-                completionDate: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-                course?: {
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                };
-            }>;
-            user_logs?: Array<{
-                documentId: string;
-                id: number;
-                loginDate: string;
-                isSuccessful: boolean;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                student?: unknown;
-            }>;
-        };
-    };
+    200: StudentResponse;
 };
 
 export type StudentPutStudentsByIdResponse = StudentPutStudentsByIdResponses[keyof StudentPutStudentsByIdResponses];
 
-export type StudentAuthPostStudentLoginRequest = {
-    body?: never;
+export type PostStudentLoginRequest = {
+    body: LoginRequest;
     path?: never;
     query?: never;
     url: '/student/login';
 };
 
-export type StudentAuthPostStudentLoginErrors = {
+export type PostStudentLoginResponses = {
     /**
-     * Bad request
+     * OK
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    200: JwtResponse;
 };
 
-export type StudentAuthPostStudentResetPasswordRequestRequest = {
-    body?: never;
+export type PostStudentLoginResponse = PostStudentLoginResponses[keyof PostStudentLoginResponses];
+
+export type PostStudentResetPasswordRequestRequest = {
+    body: ResetPasswordRequestRequest;
     path?: never;
     query?: never;
     url: '/student/reset-password-request';
 };
 
-export type StudentAuthPostStudentResetPasswordRequestErrors = {
+export type PostStudentResetPasswordRequestResponses = {
     /**
-     * Bad request
+     * OK
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    200: SuccessResponse;
 };
 
-export type StudentAuthPostStudentResetPasswordCodeRequest = {
-    body?: never;
+export type PostStudentResetPasswordRequestResponse = PostStudentResetPasswordRequestResponses[keyof PostStudentResetPasswordRequestResponses];
+
+export type PostStudentResetPasswordCodeRequest = {
+    body: ResetPasswordCodeRequest;
     path?: never;
     query?: never;
     url: '/student/reset-password-code';
 };
 
-export type StudentAuthPostStudentResetPasswordCodeErrors = {
+export type PostStudentResetPasswordCodeResponses = {
     /**
-     * Bad request
+     * OK
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    200: SuccessResponse;
 };
 
-export type StudentAuthPatchStudentResetPasswordUpdateRequest = {
-    body?: never;
+export type PostStudentResetPasswordCodeResponse = PostStudentResetPasswordCodeResponses[keyof PostStudentResetPasswordCodeResponses];
+
+export type PatchStudentResetPasswordUpdateRequest = {
+    body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/student/reset-password-update';
 };
 
-export type StudentAuthPatchStudentResetPasswordUpdateErrors = {
+export type PatchStudentResetPasswordUpdateResponses = {
     /**
-     * Bad request
+     * OK
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    200: SuccessResponse;
 };
 
-export type StudentAuthPostStudentSignupRequest = {
-    body?: never;
+export type PatchStudentResetPasswordUpdateResponse = PatchStudentResetPasswordUpdateResponses[keyof PatchStudentResetPasswordUpdateResponses];
+
+export type PostStudentSignupRequest = {
+    body: SignupRequest;
     path?: never;
     query?: never;
     url: '/student/signup';
 };
 
-export type StudentAuthPostStudentSignupErrors = {
+export type PostStudentSignupResponses = {
     /**
-     * Bad request
+     * OK
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    200: JwtResponse;
 };
 
-export type StudentAuthPostStudentSendVerificationTokenRequest = {
-    body?: never;
+export type PostStudentSignupResponse = PostStudentSignupResponses[keyof PostStudentSignupResponses];
+
+export type PostStudentSendVerificationTokenRequest = {
+    body: StudentVerificationTokenRequest;
     path?: never;
     query?: never;
     url: '/student/send-verification-token';
 };
 
-export type StudentAuthPostStudentSendVerificationTokenErrors = {
+export type PostStudentSendVerificationTokenResponses = {
     /**
-     * Bad request
+     * OK
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    200: OkResponse;
 };
 
-export type StudentAuthPostStudentVerifyEmailRequest = {
-    body?: never;
+export type PostStudentSendVerificationTokenResponse = PostStudentSendVerificationTokenResponses[keyof PostStudentSendVerificationTokenResponses];
+
+export type PostStudentVerifyEmailRequest = {
+    body: VerifyEmailRequest;
     path?: never;
     query?: never;
     url: '/student/verify-email';
 };
 
-export type StudentAuthPostStudentVerifyEmailErrors = {
+export type PostStudentVerifyEmailResponses = {
     /**
-     * Bad request
+     * OK
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    200: JwtResponse;
 };
+
+export type PostStudentVerifyEmailResponse = PostStudentVerifyEmailResponses[keyof PostStudentVerifyEmailResponses];
 
 export type UserLogGetUserLogsRequest = {
     body?: never;
@@ -16333,454 +8475,40 @@ export type UserLogGetUserLogsRequest = {
 
 export type UserLogGetUserLogsErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type UserLogGetUserLogsError = UserLogGetUserLogsErrors[keyof UserLogGetUserLogsErrors];
 
 export type UserLogGetUserLogsResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            loginDate: string;
-            isSuccessful: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-        }>;
-    };
+    200: UserLogListResponse;
 };
 
 export type UserLogGetUserLogsResponse = UserLogGetUserLogsResponses[keyof UserLogGetUserLogsResponses];
 
 export type UserLogPostUserLogsRequest = {
-    body?: {
-        data: {
-            loginDate: string;
-            isSuccessful: '0' | '1' | 't' | 'true' | 'f' | 'false';
-            publishedAt: string;
-            student?: string;
-        };
-    };
+    body: UserLogRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'loginDate' | 'isSuccessful' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -16791,441 +8519,34 @@ export type UserLogPostUserLogsRequest = {
 
 export type UserLogPostUserLogsErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type UserLogPostUserLogsError = UserLogPostUserLogsErrors[keyof UserLogPostUserLogsErrors];
 
 export type UserLogPostUserLogsResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            loginDate: string;
-            isSuccessful: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-        };
-    };
+    200: UserLogResponse;
 };
 
 export type UserLogPostUserLogsResponse = UserLogPostUserLogsResponses[keyof UserLogPostUserLogsResponses];
@@ -17247,441 +8568,34 @@ export type UserLogDeleteUserLogsByIdRequest = {
 
 export type UserLogDeleteUserLogsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type UserLogDeleteUserLogsByIdError = UserLogDeleteUserLogsByIdErrors[keyof UserLogDeleteUserLogsByIdErrors];
 
 export type UserLogDeleteUserLogsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            loginDate: string;
-            isSuccessful: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-        };
-    };
+    200: number;
 };
 
 export type UserLogDeleteUserLogsByIdResponse = UserLogDeleteUserLogsByIdResponses[keyof UserLogDeleteUserLogsByIdResponses];
@@ -17708,454 +8622,40 @@ export type UserLogGetUserLogsByIdRequest = {
 
 export type UserLogGetUserLogsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type UserLogGetUserLogsByIdError = UserLogGetUserLogsByIdErrors[keyof UserLogGetUserLogsByIdErrors];
 
 export type UserLogGetUserLogsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            loginDate: string;
-            isSuccessful: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-        };
-    };
+    200: UserLogResponse;
 };
 
 export type UserLogGetUserLogsByIdResponse = UserLogGetUserLogsByIdResponses[keyof UserLogGetUserLogsByIdResponses];
 
 export type UserLogPutUserLogsByIdRequest = {
-    body?: {
-        data: {
-            loginDate?: string;
-            isSuccessful?: '0' | '1' | 't' | 'true' | 'f' | 'false';
-            publishedAt?: string;
-            student?: string;
-        };
-    };
+    body: UserLogRequest;
     path: {
         id: string;
     };
@@ -18168,441 +8668,34 @@ export type UserLogPutUserLogsByIdRequest = {
 
 export type UserLogPutUserLogsByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type UserLogPutUserLogsByIdError = UserLogPutUserLogsByIdErrors[keyof UserLogPutUserLogsByIdErrors];
 
 export type UserLogPutUserLogsByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            loginDate: string;
-            isSuccessful: boolean;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-            student?: {
-                documentId: string;
-                id: number;
-                name: string;
-                biography?: string;
-                email: string;
-                verifiedAt?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt: string;
-                feedbacks?: Array<{
-                    documentId: string;
-                    id: number;
-                    rating: number;
-                    feedbackText?: string;
-                    dateCreated: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                    student?: unknown;
-                }>;
-                courses?: Array<{
-                    documentId: string;
-                    id: number;
-                    title: string;
-                    description?: string;
-                    difficulty: number;
-                    numOfRatings: number;
-                    numOfSubscriptions: number;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    image?: {
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        alternativeText?: string;
-                        caption?: string;
-                        width?: number;
-                        height?: number;
-                        formats?: unknown;
-                        hash: string;
-                        ext?: string;
-                        mime: string;
-                        size: number;
-                        url: string;
-                        previewUrl?: string;
-                        provider: string;
-                        provider_metadata?: unknown;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        related: unknown;
-                    };
-                    feedbacks?: Array<unknown>;
-                    course_sections?: Array<{
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        exercises?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            question: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercise_options?: Array<{
-                                documentId: string;
-                                id: number;
-                                text: string;
-                                explanation: string;
-                                isCorrect: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise?: unknown;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            completed: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            content?: Array<unknown>;
-                        }>;
-                        course?: unknown;
-                    }>;
-                    course_categories?: Array<{
-                        documentId: string;
-                        id: number;
-                        name: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                    }>;
-                    students?: Array<unknown>;
-                    content_creators?: Array<{
-                        documentId: string;
-                        id: number;
-                        firstName: string;
-                        lastName?: string;
-                        verifiedAt?: string;
-                        biography?: string;
-                        email: string;
-                        education: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience: string;
-                        institution: string;
-                        eduStart: string;
-                        eduEnd: string;
-                        currentCompany: string;
-                        currentJobTitle: string;
-                        companyStart: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        courses?: Array<unknown>;
-                        user_logs?: Array<{
-                            documentId: string;
-                            id: number;
-                            loginDate: string;
-                            isSuccessful: boolean;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            student?: unknown;
-                        }>;
-                    }>;
-                }>;
-                certificates?: Array<{
-                    documentId: string;
-                    id: number;
-                    link: string;
-                    completionDate: string;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                    course?: {
-                        documentId: string;
-                        id: number;
-                        title: string;
-                        description?: string;
-                        difficulty: number;
-                        numOfRatings: number;
-                        numOfSubscriptions: number;
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt: string;
-                        image?: {
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            alternativeText?: string;
-                            caption?: string;
-                            width?: number;
-                            height?: number;
-                            formats?: unknown;
-                            hash: string;
-                            ext?: string;
-                            mime: string;
-                            size: number;
-                            url: string;
-                            previewUrl?: string;
-                            provider: string;
-                            provider_metadata?: unknown;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            related: unknown;
-                        };
-                        feedbacks?: Array<unknown>;
-                        course_sections?: Array<{
-                            documentId: string;
-                            id: number;
-                            title: string;
-                            description?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            exercises?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                question: string;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                exercise_options?: Array<{
-                                    documentId: string;
-                                    id: number;
-                                    text: string;
-                                    explanation: string;
-                                    isCorrect: boolean;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt: string;
-                                    exercise?: unknown;
-                                }>;
-                            }>;
-                            lectures?: Array<{
-                                documentId: string;
-                                id: number;
-                                title: string;
-                                completed: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                content?: Array<unknown>;
-                            }>;
-                            course?: unknown;
-                        }>;
-                        course_categories?: Array<{
-                            documentId: string;
-                            id: number;
-                            name: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                        }>;
-                        students?: Array<unknown>;
-                        content_creators?: Array<{
-                            documentId: string;
-                            id: number;
-                            firstName: string;
-                            lastName?: string;
-                            verifiedAt?: string;
-                            biography?: string;
-                            email: string;
-                            education: 'TODO1' | 'TODO2' | 'TODO3';
-                            statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-                            courseExperience: string;
-                            institution: string;
-                            eduStart: string;
-                            eduEnd: string;
-                            currentCompany: string;
-                            currentJobTitle: string;
-                            companyStart: string;
-                            companyEnd?: string;
-                            jobDescription?: string;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt: string;
-                            courses?: Array<unknown>;
-                            user_logs?: Array<{
-                                documentId: string;
-                                id: number;
-                                loginDate: string;
-                                isSuccessful: boolean;
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt: string;
-                                student?: unknown;
-                            }>;
-                        }>;
-                    };
-                }>;
-                user_logs?: Array<{
-                    documentId: string;
-                    id: number;
-                    loginDate: string;
-                    isSuccessful: boolean;
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt: string;
-                    student?: unknown;
-                }>;
-            };
-        };
-    };
+    200: UserLogResponse;
 };
 
 export type UserLogPutUserLogsByIdResponse = UserLogPutUserLogsByIdResponses[keyof UserLogPutUserLogsByIdResponses];
@@ -18637,56 +8730,40 @@ export type VerificationTokenGetVerificationTokensRequest = {
 
 export type VerificationTokenGetVerificationTokensErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type VerificationTokenGetVerificationTokensError = VerificationTokenGetVerificationTokensErrors[keyof VerificationTokenGetVerificationTokensErrors];
 
 export type VerificationTokenGetVerificationTokensResponses = {
     /**
      * OK
      */
-    200: {
-        data: Array<{
-            documentId: string;
-            id: number;
-            userEmail: string;
-            token: string;
-            expiresAt: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-        }>;
-    };
+    200: VerificationTokenListResponse;
 };
 
 export type VerificationTokenGetVerificationTokensResponse = VerificationTokenGetVerificationTokensResponses[keyof VerificationTokenGetVerificationTokensResponses];
 
 export type VerificationTokenPostVerificationTokensRequest = {
-    body?: {
-        data: {
-            userEmail: string;
-            token: string;
-            expiresAt: string;
-            publishedAt: string;
-        };
-    };
+    body: VerificationTokenRequest;
     path?: never;
     query?: {
         readonly fields?: Array<'userEmail' | 'token' | 'expiresAt' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
@@ -18697,43 +8774,34 @@ export type VerificationTokenPostVerificationTokensRequest = {
 
 export type VerificationTokenPostVerificationTokensErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type VerificationTokenPostVerificationTokensError = VerificationTokenPostVerificationTokensErrors[keyof VerificationTokenPostVerificationTokensErrors];
 
 export type VerificationTokenPostVerificationTokensResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            userEmail: string;
-            token: string;
-            expiresAt: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-        };
-    };
+    200: VerificationTokenResponse;
 };
 
 export type VerificationTokenPostVerificationTokensResponse = VerificationTokenPostVerificationTokensResponses[keyof VerificationTokenPostVerificationTokensResponses];
@@ -18755,43 +8823,34 @@ export type VerificationTokenDeleteVerificationTokensByIdRequest = {
 
 export type VerificationTokenDeleteVerificationTokensByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type VerificationTokenDeleteVerificationTokensByIdError = VerificationTokenDeleteVerificationTokensByIdErrors[keyof VerificationTokenDeleteVerificationTokensByIdErrors];
 
 export type VerificationTokenDeleteVerificationTokensByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            userEmail: string;
-            token: string;
-            expiresAt: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-        };
-    };
+    200: number;
 };
 
 export type VerificationTokenDeleteVerificationTokensByIdResponse = VerificationTokenDeleteVerificationTokensByIdResponses[keyof VerificationTokenDeleteVerificationTokensByIdResponses];
@@ -18818,56 +8877,40 @@ export type VerificationTokenGetVerificationTokensByIdRequest = {
 
 export type VerificationTokenGetVerificationTokensByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type VerificationTokenGetVerificationTokensByIdError = VerificationTokenGetVerificationTokensByIdErrors[keyof VerificationTokenGetVerificationTokensByIdErrors];
 
 export type VerificationTokenGetVerificationTokensByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            userEmail: string;
-            token: string;
-            expiresAt: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-        };
-    };
+    200: VerificationTokenResponse;
 };
 
 export type VerificationTokenGetVerificationTokensByIdResponse = VerificationTokenGetVerificationTokensByIdResponses[keyof VerificationTokenGetVerificationTokensByIdResponses];
 
 export type VerificationTokenPutVerificationTokensByIdRequest = {
-    body?: {
-        data: {
-            userEmail?: string;
-            token?: string;
-            expiresAt?: string;
-            publishedAt?: string;
-        };
-    };
+    body: VerificationTokenRequest;
     path: {
         id: string;
     };
@@ -18880,43 +8923,34 @@ export type VerificationTokenPutVerificationTokensByIdRequest = {
 
 export type VerificationTokenPutVerificationTokensByIdErrors = {
     /**
-     * Bad request
+     * Bad Request
      */
-    400: unknown;
+    400: _Error;
     /**
      * Unauthorized
      */
-    401: unknown;
+    401: _Error;
     /**
      * Forbidden
      */
-    403: unknown;
+    403: _Error;
     /**
-     * Not found
+     * Not Found
      */
-    404: unknown;
+    404: _Error;
     /**
-     * Internal server error
+     * Internal Server Error
      */
-    500: unknown;
+    500: _Error;
 };
+
+export type VerificationTokenPutVerificationTokensByIdError = VerificationTokenPutVerificationTokensByIdErrors[keyof VerificationTokenPutVerificationTokensByIdErrors];
 
 export type VerificationTokenPutVerificationTokensByIdResponses = {
     /**
      * OK
      */
-    200: {
-        data: {
-            documentId: string;
-            id: number;
-            userEmail: string;
-            token: string;
-            expiresAt: string;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt: string;
-        };
-    };
+    200: VerificationTokenResponse;
 };
 
 export type VerificationTokenPutVerificationTokensByIdResponse = VerificationTokenPutVerificationTokensByIdResponses[keyof VerificationTokenPutVerificationTokensByIdResponses];
@@ -19864,9 +9898,9 @@ export type UsersPermissionsGetConnectErrors = {
 };
 
 export type UsersPermissionsPostAuthLocalRequest = {
-    body?: {
-        identifier: string;
-        password: string;
+    body: {
+        identifier?: string;
+        password?: string;
     };
     path?: never;
     query?: never;
@@ -19875,64 +9909,27 @@ export type UsersPermissionsPostAuthLocalRequest = {
 
 export type UsersPermissionsPostAuthLocalErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsPostAuthLocalError = UsersPermissionsPostAuthLocalErrors[keyof UsersPermissionsPostAuthLocalErrors];
 
 export type UsersPermissionsPostAuthLocalResponses = {
     /**
-     * OK
+     * Connection
      */
-    200: {
-        jwt: string;
-        refreshToken?: string;
-        user: {
-            id: number;
-            documentId: string;
-            username: string;
-            email: string;
-            provider: string;
-            confirmed: boolean;
-            blocked: boolean;
-            role?: number | {
-                id: number;
-                name: string;
-                description: string | null;
-                type: string;
-                createdAt: string;
-                updatedAt: string;
-            };
-            createdAt: string;
-            updatedAt: string;
-            publishedAt: string;
-        };
-    };
+    200: UsersPermissionsUserRegistration;
 };
 
 export type UsersPermissionsPostAuthLocalResponse = UsersPermissionsPostAuthLocalResponses[keyof UsersPermissionsPostAuthLocalResponses];
 
 export type UsersPermissionsPostAuthLocalRegisterRequest = {
-    body?: {
-        username: string;
-        email: string;
-        password: string;
+    body: {
+        username?: string;
+        email?: string;
+        password?: string;
     };
     path?: never;
     query?: never;
@@ -19941,76 +9938,18 @@ export type UsersPermissionsPostAuthLocalRegisterRequest = {
 
 export type UsersPermissionsPostAuthLocalRegisterErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsPostAuthLocalRegisterError = UsersPermissionsPostAuthLocalRegisterErrors[keyof UsersPermissionsPostAuthLocalRegisterErrors];
 
 export type UsersPermissionsPostAuthLocalRegisterResponses = {
     /**
-     * OK
+     * Successful registration
      */
-    200: {
-        jwt: string;
-        refreshToken?: string;
-        user: {
-            id: number;
-            documentId: string;
-            username: string;
-            email: string;
-            provider: string;
-            confirmed: boolean;
-            blocked: boolean;
-            role?: number | {
-                id: number;
-                name: string;
-                description: string | null;
-                type: string;
-                createdAt: string;
-                updatedAt: string;
-            };
-            createdAt: string;
-            updatedAt: string;
-            publishedAt: string;
-        };
-    } | {
-        user: {
-            id: number;
-            documentId: string;
-            username: string;
-            email: string;
-            provider: string;
-            confirmed: boolean;
-            blocked: boolean;
-            role?: number | {
-                id: number;
-                name: string;
-                description: string | null;
-                type: string;
-                createdAt: string;
-                updatedAt: string;
-            };
-            createdAt: string;
-            updatedAt: string;
-            publishedAt: string;
-        };
-    };
+    200: UsersPermissionsUserRegistration;
 };
 
 export type UsersPermissionsPostAuthLocalRegisterResponse = UsersPermissionsPostAuthLocalRegisterResponses[keyof UsersPermissionsPostAuthLocalRegisterResponses];
@@ -20026,62 +9965,25 @@ export type UsersPermissionsGetAuthByProviderCallbackRequest = {
 
 export type UsersPermissionsGetAuthByProviderCallbackErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsGetAuthByProviderCallbackError = UsersPermissionsGetAuthByProviderCallbackErrors[keyof UsersPermissionsGetAuthByProviderCallbackErrors];
 
 export type UsersPermissionsGetAuthByProviderCallbackResponses = {
     /**
-     * OK
+     * Returns a jwt token and user info
      */
-    200: {
-        jwt: string;
-        refreshToken?: string;
-        user: {
-            id: number;
-            documentId: string;
-            username: string;
-            email: string;
-            provider: string;
-            confirmed: boolean;
-            blocked: boolean;
-            role?: number | {
-                id: number;
-                name: string;
-                description: string | null;
-                type: string;
-                createdAt: string;
-                updatedAt: string;
-            };
-            createdAt: string;
-            updatedAt: string;
-            publishedAt: string;
-        };
-    };
+    200: UsersPermissionsUserRegistration;
 };
 
 export type UsersPermissionsGetAuthByProviderCallbackResponse = UsersPermissionsGetAuthByProviderCallbackResponses[keyof UsersPermissionsGetAuthByProviderCallbackResponses];
 
 export type UsersPermissionsPostAuthForgotPasswordRequest = {
-    body?: {
-        email: string;
+    body: {
+        email?: string;
     };
     path?: never;
     query?: never;
@@ -20090,43 +9992,29 @@ export type UsersPermissionsPostAuthForgotPasswordRequest = {
 
 export type UsersPermissionsPostAuthForgotPasswordErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsPostAuthForgotPasswordError = UsersPermissionsPostAuthForgotPasswordErrors[keyof UsersPermissionsPostAuthForgotPasswordErrors];
 
 export type UsersPermissionsPostAuthForgotPasswordResponses = {
     /**
-     * OK
+     * Returns ok
      */
     200: {
-        ok: boolean;
+        ok?: true;
     };
 };
 
 export type UsersPermissionsPostAuthForgotPasswordResponse = UsersPermissionsPostAuthForgotPasswordResponses[keyof UsersPermissionsPostAuthForgotPasswordResponses];
 
 export type UsersPermissionsPostAuthResetPasswordRequest = {
-    body?: {
-        code: string;
-        password: string;
-        passwordConfirmation: string;
+    body: {
+        password?: string;
+        passwordConfirmation?: string;
+        code?: string;
     };
     path?: never;
     query?: never;
@@ -20135,55 +10023,18 @@ export type UsersPermissionsPostAuthResetPasswordRequest = {
 
 export type UsersPermissionsPostAuthResetPasswordErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsPostAuthResetPasswordError = UsersPermissionsPostAuthResetPasswordErrors[keyof UsersPermissionsPostAuthResetPasswordErrors];
 
 export type UsersPermissionsPostAuthResetPasswordResponses = {
     /**
-     * OK
+     * Returns a jwt token and user info
      */
-    200: {
-        jwt: string;
-        refreshToken?: string;
-        user: {
-            id: number;
-            documentId: string;
-            username: string;
-            email: string;
-            provider: string;
-            confirmed: boolean;
-            blocked: boolean;
-            role?: number | {
-                id: number;
-                name: string;
-                description: string | null;
-                type: string;
-                createdAt: string;
-                updatedAt: string;
-            };
-            createdAt: string;
-            updatedAt: string;
-            publishedAt: string;
-        };
-    };
+    200: UsersPermissionsUserRegistration;
 };
 
 export type UsersPermissionsPostAuthResetPasswordResponse = UsersPermissionsPostAuthResetPasswordResponses[keyof UsersPermissionsPostAuthResetPasswordResponses];
@@ -20197,30 +10048,25 @@ export type UsersPermissionsGetAuthEmailConfirmationRequest = {
 
 export type UsersPermissionsGetAuthEmailConfirmationErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
 
+export type UsersPermissionsGetAuthEmailConfirmationError = UsersPermissionsGetAuthEmailConfirmationErrors[keyof UsersPermissionsGetAuthEmailConfirmationErrors];
+
+export type UsersPermissionsGetAuthEmailConfirmationResponses = {
+    /**
+     * Error
+     */
+    default: _Error;
+};
+
+export type UsersPermissionsGetAuthEmailConfirmationResponse = UsersPermissionsGetAuthEmailConfirmationResponses[keyof UsersPermissionsGetAuthEmailConfirmationResponses];
+
 export type UsersPermissionsPostAuthSendEmailConfirmationRequest = {
-    body?: {
-        email: string;
+    body: {
+        email?: string;
     };
     path?: never;
     query?: never;
@@ -20229,43 +10075,29 @@ export type UsersPermissionsPostAuthSendEmailConfirmationRequest = {
 
 export type UsersPermissionsPostAuthSendEmailConfirmationErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsPostAuthSendEmailConfirmationError = UsersPermissionsPostAuthSendEmailConfirmationErrors[keyof UsersPermissionsPostAuthSendEmailConfirmationErrors];
 
 export type UsersPermissionsPostAuthSendEmailConfirmationResponses = {
     /**
-     * OK
+     * Returns email and boolean to confirm email was sent
      */
     200: {
-        email: string;
-        sent: boolean;
+        email?: string;
+        sent?: true;
     };
 };
 
 export type UsersPermissionsPostAuthSendEmailConfirmationResponse = UsersPermissionsPostAuthSendEmailConfirmationResponses[keyof UsersPermissionsPostAuthSendEmailConfirmationResponses];
 
 export type UsersPermissionsPostAuthChangePasswordRequest = {
-    body?: {
-        currentPassword: string;
+    body: {
         password: string;
+        currentPassword: string;
         passwordConfirmation: string;
     };
     path?: never;
@@ -20275,55 +10107,18 @@ export type UsersPermissionsPostAuthChangePasswordRequest = {
 
 export type UsersPermissionsPostAuthChangePasswordErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsPostAuthChangePasswordError = UsersPermissionsPostAuthChangePasswordErrors[keyof UsersPermissionsPostAuthChangePasswordErrors];
 
 export type UsersPermissionsPostAuthChangePasswordResponses = {
     /**
-     * OK
+     * Returns a jwt token and user info
      */
-    200: {
-        jwt: string;
-        refreshToken?: string;
-        user: {
-            id: number;
-            documentId: string;
-            username: string;
-            email: string;
-            provider: string;
-            confirmed: boolean;
-            blocked: boolean;
-            role?: number | {
-                id: number;
-                name: string;
-                description: string | null;
-                type: string;
-                createdAt: string;
-                updatedAt: string;
-            };
-            createdAt: string;
-            updatedAt: string;
-            publishedAt: string;
-        };
-    };
+    200: UsersPermissionsUserRegistration;
 };
 
 export type UsersPermissionsPostAuthChangePasswordResponse = UsersPermissionsPostAuthChangePasswordResponses[keyof UsersPermissionsPostAuthChangePasswordResponses];
@@ -20401,30 +10196,16 @@ export type UsersPermissionsGetUsersCountRequest = {
 
 export type UsersPermissionsGetUsersCountErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsGetUsersCountError = UsersPermissionsGetUsersCountErrors[keyof UsersPermissionsGetUsersCountErrors];
 
 export type UsersPermissionsGetUsersCountResponses = {
     /**
-     * OK
+     * Returns a number
      */
     200: number;
 };
@@ -20462,61 +10243,27 @@ export type UsersPermissionsGetUsersRequest = {
 
 export type UsersPermissionsGetUsersErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsGetUsersError = UsersPermissionsGetUsersErrors[keyof UsersPermissionsGetUsersErrors];
 
 export type UsersPermissionsGetUsersResponses = {
     /**
-     * OK
+     * Returns an array of users
      */
-    200: Array<{
-        id: number;
-        documentId: string;
-        username: string;
-        email: string;
-        provider: string;
-        confirmed: boolean;
-        blocked: boolean;
-        role?: number | {
-            id: number;
-            name: string;
-            description: string | null;
-            type: string;
-            createdAt: string;
-            updatedAt: string;
-        };
-        createdAt: string;
-        updatedAt: string;
-        publishedAt: string;
-    }>;
+    200: Array<UsersPermissionsUser>;
 };
 
 export type UsersPermissionsGetUsersResponse = UsersPermissionsGetUsersResponses[keyof UsersPermissionsGetUsersResponses];
 
 export type UsersPermissionsPostUsersRequest = {
-    body?: {
-        username: string;
+    body: {
         email: string;
+        username: string;
         password: string;
-        role?: number;
     };
     path?: never;
     query?: never;
@@ -20525,50 +10272,19 @@ export type UsersPermissionsPostUsersRequest = {
 
 export type UsersPermissionsPostUsersErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsPostUsersError = UsersPermissionsPostUsersErrors[keyof UsersPermissionsPostUsersErrors];
 
 export type UsersPermissionsPostUsersResponses = {
     /**
-     * OK
+     * Returns created user info
      */
-    200: {
-        id: number;
-        documentId: string;
-        username: string;
-        email: string;
-        provider: string;
-        confirmed: boolean;
-        blocked: boolean;
-        role?: number | {
-            id: number;
-            name: string;
-            description: string | null;
-            type: string;
-            createdAt: string;
-            updatedAt: string;
-        };
-        createdAt: string;
-        updatedAt: string;
-        publishedAt: string;
+    201: UsersPermissionsUser & {
+        role?: UsersPermissionsRole;
     };
 };
 
@@ -20588,51 +10304,18 @@ export type UsersPermissionsGetUsersMeRequest = {
 
 export type UsersPermissionsGetUsersMeErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsGetUsersMeError = UsersPermissionsGetUsersMeErrors[keyof UsersPermissionsGetUsersMeErrors];
 
 export type UsersPermissionsGetUsersMeResponses = {
     /**
-     * OK
+     * Returns user info
      */
-    200: {
-        id: number;
-        documentId: string;
-        username: string;
-        email: string;
-        provider: string;
-        confirmed: boolean;
-        blocked: boolean;
-        role?: number | {
-            id: number;
-            name: string;
-            description: string | null;
-            type: string;
-            createdAt: string;
-            updatedAt: string;
-        };
-        createdAt: string;
-        updatedAt: string;
-        publishedAt: string;
-    };
+    200: UsersPermissionsUser;
 };
 
 export type UsersPermissionsGetUsersMeResponse = UsersPermissionsGetUsersMeResponses[keyof UsersPermissionsGetUsersMeResponses];
@@ -20648,51 +10331,18 @@ export type UsersPermissionsDeleteUsersByIdRequest = {
 
 export type UsersPermissionsDeleteUsersByIdErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsDeleteUsersByIdError = UsersPermissionsDeleteUsersByIdErrors[keyof UsersPermissionsDeleteUsersByIdErrors];
 
 export type UsersPermissionsDeleteUsersByIdResponses = {
     /**
-     * OK
+     * Returns deleted user info
      */
-    200: {
-        id: number;
-        documentId: string;
-        username: string;
-        email: string;
-        provider: string;
-        confirmed: boolean;
-        blocked: boolean;
-        role?: number | {
-            id: number;
-            name: string;
-            description: string | null;
-            type: string;
-            createdAt: string;
-            updatedAt: string;
-        };
-        createdAt: string;
-        updatedAt: string;
-        publishedAt: string;
-    };
+    200: UsersPermissionsUser;
 };
 
 export type UsersPermissionsDeleteUsersByIdResponse = UsersPermissionsDeleteUsersByIdResponses[keyof UsersPermissionsDeleteUsersByIdResponses];
@@ -20713,61 +10363,27 @@ export type UsersPermissionsGetUsersByIdRequest = {
 
 export type UsersPermissionsGetUsersByIdErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsGetUsersByIdError = UsersPermissionsGetUsersByIdErrors[keyof UsersPermissionsGetUsersByIdErrors];
 
 export type UsersPermissionsGetUsersByIdResponses = {
     /**
-     * OK
+     * Returns a user
      */
-    200: {
-        id: number;
-        documentId: string;
-        username: string;
-        email: string;
-        provider: string;
-        confirmed: boolean;
-        blocked: boolean;
-        role?: number | {
-            id: number;
-            name: string;
-            description: string | null;
-            type: string;
-            createdAt: string;
-            updatedAt: string;
-        };
-        createdAt: string;
-        updatedAt: string;
-        publishedAt: string;
-    };
+    200: UsersPermissionsUser;
 };
 
 export type UsersPermissionsGetUsersByIdResponse = UsersPermissionsGetUsersByIdResponses[keyof UsersPermissionsGetUsersByIdResponses];
 
 export type UsersPermissionsPutUsersByIdRequest = {
-    body?: {
-        username?: string;
-        email?: string;
-        password?: string;
-        role?: number;
+    body: {
+        email: string;
+        username: string;
+        password: string;
     };
     path: {
         id: string;
@@ -20778,50 +10394,19 @@ export type UsersPermissionsPutUsersByIdRequest = {
 
 export type UsersPermissionsPutUsersByIdErrors = {
     /**
-     * Bad request
+     * Error
      */
-    400: unknown;
-    /**
-     * Unauthorized
-     */
-    401: unknown;
-    /**
-     * Forbidden
-     */
-    403: unknown;
-    /**
-     * Not found
-     */
-    404: unknown;
-    /**
-     * Internal server error
-     */
-    500: unknown;
+    default: _Error;
 };
+
+export type UsersPermissionsPutUsersByIdError = UsersPermissionsPutUsersByIdErrors[keyof UsersPermissionsPutUsersByIdErrors];
 
 export type UsersPermissionsPutUsersByIdResponses = {
     /**
-     * OK
+     * Returns updated user info
      */
-    200: {
-        id: number;
-        documentId: string;
-        username: string;
-        email: string;
-        provider: string;
-        confirmed: boolean;
-        blocked: boolean;
-        role?: number | {
-            id: number;
-            name: string;
-            description: string | null;
-            type: string;
-            createdAt: string;
-            updatedAt: string;
-        };
-        createdAt: string;
-        updatedAt: string;
-        publishedAt: string;
+    200: UsersPermissionsUser & {
+        role?: UsersPermissionsRole;
     };
 };
 
