@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import { postContentCreatorLogin } from "@/shared/api/sdk.gen";
+import { contentCreatorPostContentCreatorLogin } from "@/shared/api/sdk.gen";
 import background from "@/shared/assets/background.jpg";
 
 
@@ -54,8 +54,7 @@ const Login = () => {
   };
   
   const { call: login, isLoading: submitLoading } = useApi(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    postContentCreatorLogin,
+    contentCreatorPostContentCreatorLogin,
   );
   //Variable determining the error message for both fields.
   const [emailError, setEmailError] = useState(null);
@@ -139,7 +138,7 @@ const Login = () => {
     ) as HTMLButtonElement;
     // Makes sure that the button is only clickable when both fields are filled and there are no email error
     const buttonContainer = submitloginButton.parentElement as HTMLDivElement;
-    if(isThereAnError === true){
+    if(isThereAnError){
       submitloginButton.setAttribute("disabled", "true");
       buttonContainer.style.backgroundColor = "#C1CFD7"; // default color when not filled
       submitloginButton.style.color = "#809CAD";
