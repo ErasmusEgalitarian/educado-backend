@@ -44,10 +44,8 @@ import {
 } from "../api/course-mutations";
 import { difficultyToTranslation } from "../lib/difficulty-to-translation";
 
+
 import CategoryCreateModal from "./category-create-modal";
-import { Button } from "@/shared/components/shadcn/button";
-import { useNavigate } from "react-router";
-import ReusableAlertDialog from "@/shared/components/modals/reusable-alert-dialog";
 
 /* ------------------------------- Interfaces ------------------------------- */
 interface CourseEditorInformationProps {
