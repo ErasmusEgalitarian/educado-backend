@@ -53,10 +53,6 @@
       "outputs": [],
       "cache": false
     },
-    "generate-spec": {
-      "dependsOn": [],
-      "outputs": ["../openapi/strapi-spec.json"]
-    },
     "generate-merged-spec": {
       "dependsOn": [],
       "outputs": [
