@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import { postContentCreatorLogin } from "@/shared/api/sdk.gen";
+import { contentCreatorPostContentCreatorLogin } from "@/shared/api/sdk.gen";
 import background from "@/shared/assets/background.jpg";
 import { updateApiClientToken } from "@/shared/config/api-config";
 
@@ -53,7 +53,7 @@ const Login = () => {
   };
 
   const { call: login, isLoading: submitLoading } = useApi(
-    postContentCreatorLogin
+    contentCreatorPostContentCreatorLogin,
   );
   //Variable determining the error message for both fields.
   const [emailError, setEmailError] = useState(null);
