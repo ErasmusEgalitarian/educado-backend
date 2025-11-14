@@ -1,3 +1,6 @@
+// This is the documentation for extending a plugin
+// https://docs.strapi.io/cms/plugins-development/plugins-extension
+
 export default (plugin) => {
   // Override the upload routes to use custom authentication policies
   plugin.routes['content-api'].routes = plugin.routes['content-api'].routes.map((route) => {
