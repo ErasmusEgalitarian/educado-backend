@@ -1,5 +1,6 @@
 import { type Table as ReactTableType } from "@tanstack/react-table";
-import { Check, Minus } from "lucide-react";
+import Icon from "@mdi/react";
+import { mdiCheck, mdiMinus } from "@mdi/js";
 
 import { useItemSelector } from "@/shared/components/item-selector";
 import {
@@ -78,8 +79,8 @@ const SelectAllCheckbox = <TData extends DataDisplayItem>({
       )}
       aria-label={allSelected || someSelected ? "Deselect all" : "Select all"}
     >
-      {allSelected && <Check className="h-3 w-3" />}
-      {someSelected && <Minus className="h-3 w-3" />}
+      {allSelected && <Icon path={mdiCheck} className="h-3 w-3" />}
+      {someSelected && <Icon path={mdiMinus} className="h-3 w-3" />}
     </button>
   );
 };

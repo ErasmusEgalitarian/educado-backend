@@ -1,5 +1,6 @@
 //icons
-import { TrashIcon } from "@heroicons/react/24/outline";
+import Icon from "@mdi/react";
+import { mdiTrashCanOutline } from "@mdi/js";
 
 export const SectionArea = ({ sections }: { sections: unknown[] }) => {
   return (
@@ -12,7 +13,7 @@ export const SectionArea = ({ sections }: { sections: unknown[] }) => {
           >
             <p className="font-semibold">{section.title}</p>
             <button>
-              <TrashIcon className="w-5 h-5" />
+              <Icon path={mdiTrashCanOutline} size={0.9} />
             </button>
           </div>
         );

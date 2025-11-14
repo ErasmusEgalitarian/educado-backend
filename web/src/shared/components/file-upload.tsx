@@ -1,17 +1,18 @@
 import type React from "react";
 import { useCallback, useState, useEffect } from "react";
+import Icon from "@mdi/react";
 import {
-  Upload,
-  X,
-  ImageIcon,
-  Video,
-  FileText,
-  ZoomIn,
-  ZoomOut,
-  ChevronLeft,
-  ChevronRight,
-  Download,
-} from "lucide-react";
+  mdiUpload,
+  mdiClose,
+  mdiImageOutline,
+  mdiVideoOutline,
+  mdiFileDocumentOutline,
+  mdiMagnifyPlusOutline,
+  mdiMagnifyMinusOutline,
+  mdiChevronLeft,
+  mdiChevronRight,
+  mdiDownload,
+} from "@mdi/js";
 import { Button } from "@/shared/components/shadcn/button";
 import { Input } from "@/shared/components/shadcn/input";
 import { Label } from "@/shared/components/shadcn/label";
@@ -71,17 +72,17 @@ export function FileUpload({
   > = {
     image: {
       accept: "image/*",
-      icon: <ImageIcon className="h-6 w-6" />,
+      icon: <Icon path={mdiImageOutline} className="h-6 w-6" />,
       label: t("files.images"),
     },
     video: {
       accept: "video/*",
-      icon: <Video className="h-6 w-6" />,
+      icon: <Icon path={mdiVideoOutline} className="h-6 w-6" />,
       label: t("files.videos"),
     },
     file: {
       accept: "*/*",
-      icon: <FileText className="h-6 w-6" />,
+      icon: <Icon path={mdiFileDocumentOutline} className="h-6 w-6" />,
       label: t("files.files"),
     },
   };
@@ -288,7 +289,9 @@ export function FileUpload({
               {uploadConfig.icon}
             </div>
           ) : (
-            <Upload
+            <Icon
+              path={mdiUpload}
+              size={1}
               className={cn(
                 "mb-4 h-12 w-12 transition-colors",
                 isDragging && !disabled && !isMaxFilesReached
@@ -365,11 +368,17 @@ export function FileUpload({
                         />
                       ) : fileData.file.type.startsWith("video/") ? (
                         <div className="flex h-16 w-16 items-center justify-center rounded bg-muted">
-                          <Video className="h-8 w-8 text-muted-foreground" />
+                          <Icon
+                            path={mdiVideoOutline}
+                            className="h-8 w-8 text-muted-foreground"
+                          />
                         </div>
                       ) : (
                         <div className="flex h-16 w-16 items-center justify-center rounded bg-muted">
-                          <File className="h-8 w-8 text-muted-foreground" />
+                          <Icon
+                            path={mdiFileDocumentOutline}
+                            className="h-8 w-8 text-muted-foreground"
+                          />
                         </div>
                       )}
                     </button>
@@ -389,7 +398,7 @@ export function FileUpload({
                       className="h-8 w-8 flex-shrink-0"
                       disabled={disabled}
                     >
-                      <X className="h-4 w-4" />
+                      <Icon path={mdiClose} className="h-4 w-4" />
                     </Button>
                   </div>
 
@@ -476,7 +485,7 @@ export function FileUpload({
                 onClick={handleDownload}
                 className="text-white hover:bg-white/10"
               >
-                <Download className="h-5 w-5" />
+                <Icon path={mdiDownload} className="h-5 w-5" />
               </Button>
               <Button
                 type="button"
@@ -485,7 +494,7 @@ export function FileUpload({
                 onClick={() => setIsPreviewOpen(false)}
                 className="text-white hover:bg-white/10"
               >
-                <X className="h-5 w-5" />
+                <Icon path={mdiClose} className="h-5 w-5" />
               </Button>
             </div>
           </div>
@@ -529,7 +538,7 @@ export function FileUpload({
                   disabled={previewIndex === 0}
                   className="text-white hover:bg-white/10 disabled:opacity-30"
                 >
-                  <ChevronLeft className="h-5 w-5" />
+                  <Icon path={mdiChevronLeft} className="h-5 w-5" />
                 </Button>
                 <Button
                   type="button"
@@ -539,7 +548,7 @@ export function FileUpload({
                   disabled={previewIndex === files.length - 1}
                   className="text-white hover:bg-white/10 disabled:opacity-30"
                 >
-                  <ChevronRight className="h-5 w-5" />
+                  <Icon path={mdiChevronRight} className="h-5 w-5" />
                 </Button>
               </div>
             )}
@@ -554,7 +563,7 @@ export function FileUpload({
                 disabled={zoom <= 0.5}
                 className="h-8 w-8 text-white hover:bg-white/10 disabled:opacity-30"
               >
-                <ZoomOut className="h-4 w-4" />
+                <Icon path={mdiMagnifyMinusOutline} className="h-4 w-4" />
               </Button>
               <span className="min-w-[4rem] text-center text-sm font-medium text-white">
                 {Math.round(zoom * 100)}%
@@ -567,7 +576,7 @@ export function FileUpload({
                 disabled={zoom >= 3}
                 className="h-8 w-8 text-white hover:bg-white/10 disabled:opacity-30"
               >
-                <ZoomIn className="h-4 w-4" />
+                <Icon path={mdiMagnifyPlusOutline} className="h-4 w-4" />
               </Button>
             </div>
           </div>

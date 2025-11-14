@@ -11,17 +11,20 @@ The web application is built with modern React patterns and provides an intuitiv
 ### Technology Stack
 
 #### Core Framework
+
 - **React 18** - Component-based UI library
 - **TypeScript** - Type-safe JavaScript
 - **Vite** - Build tool and dev server with HMR
 
 #### UI & Styling
+
 - **shadcn/ui** - Accessible component library built on Radix UI
 - **Tailwind CSS v4** - Utility-first styling
 - **Radix UI** - Unstyled, accessible component primitives
-- **Lucide React** - Icon library
+- **Material Design Icons (MDI)** - Icon library
 
 #### Data Management
+
 - **TanStack Query (React Query)** - Server state management
   - Declarative data fetching
   - Automatic caching and background updates
@@ -30,11 +33,13 @@ The web application is built with modern React patterns and provides an intuitiv
 - **Zustand** - Client state management
 
 #### Routing & Forms
+
 - **React Router v6** - Client-side routing
 - **React Hook Form** - Performant form validation
 - **Zod** - Schema validation
 
 #### Tables & Data Display
+
 - **TanStack Table** - Headless table primitives
   - Sorting, filtering, pagination
   - Virtualization support
@@ -76,6 +81,7 @@ npm run generate-strapi-client
 ```
 
 This ensures:
+
 - ✅ Type safety for all API calls
 - ✅ Auto-completion in IDE
 - ✅ Compile-time error checking
@@ -94,6 +100,7 @@ import { Dialog } from "@/components/ui/dialog"
 ```
 
 Benefits:
+
 - Own the code (no npm package bloat)
 - Full customization
 - Built on Radix UI (accessible by default)
@@ -102,14 +109,14 @@ Benefits:
 ### Data Fetching with TanStack Query
 
 ```typescript
-import { useQuery } from "@tanstack/react-query"
-import { coursesApi } from "@/shared/api"
+import { useQuery } from "@tanstack/react-query";
+import { coursesApi } from "@/shared/api";
 
 function Courses() {
   const { data, isLoading } = useQuery({
-    queryKey: ['courses'],
-    queryFn: () => coursesApi.getCourses()
-  })
+    queryKey: ["courses"],
+    queryFn: () => coursesApi.getCourses(),
+  });
 
   // Automatic caching, background refetch, stale-while-revalidate
 }
@@ -118,20 +125,20 @@ function Courses() {
 ### Form Validation
 
 ```typescript
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 const schema = z.object({
   title: z.string().min(1),
-  description: z.string().optional()
-})
+  description: z.string().optional(),
+});
 
 function CourseForm() {
   const form = useForm({
-    resolver: zodResolver(schema)
-  })
-  
+    resolver: zodResolver(schema),
+  });
+
   // Type-safe, validated forms
 }
 ```
@@ -240,7 +247,7 @@ npm run type-check
 Vite automatically code-splits by route. Additional splits can be added:
 
 ```typescript
-const HeavyComponent = lazy(() => import('./HeavyComponent'))
+const HeavyComponent = lazy(() => import("./HeavyComponent"));
 ```
 
 ### Asset Optimization
@@ -284,16 +291,19 @@ This will create a ~50MB nginx image serving static files.
 ### Common Issues
 
 **API calls failing**
+
 - Check `VITE_STRAPI_API_TOKEN` is set
 - Verify backend is running on `VITE_STRAPI_URL`
 - Check browser console for CORS errors
 
 **Build fails**
+
 - Clear `.turbo` cache: `rm -rf .turbo`
 - Clear node_modules: `npm ci`
 - Check for TypeScript errors: `npm run type-check`
 
 **Hot reload not working**
+
 - Restart dev server
 - Check Vite config
 - Ensure WSL users have proper file watching setup
@@ -304,34 +314,27 @@ This will create a ~50MB nginx image serving static files.
 
 ```typescript
 // ✅ Good: Collocate related files
-features/
-  courses/
-    components/
-      CourseCard.tsx
-      CourseForm.tsx
-    hooks/
-      useCourses.ts
-    types/
-      course.types.ts
-    
+features / courses / components / CourseCard.tsx;
+CourseForm.tsx;
+hooks / useCourses.ts;
+types / course.types.ts;
+
 // ❌ Bad: Separate by type
-components/
-  CourseCard.tsx
-  UserCard.tsx
-hooks/
-  useCourses.ts
-  useUsers.ts
+components / CourseCard.tsx;
+UserCard.tsx;
+hooks / useCourses.ts;
+useUsers.ts;
 ```
 
 ### API Calls
 
 ```typescript
 // ✅ Good: Use generated client
-import { coursesApi } from "@/shared/api"
-const courses = await coursesApi.getCourses()
+import { coursesApi } from "@/shared/api";
+const courses = await coursesApi.getCourses();
 
 // ❌ Bad: Manual fetch
-const res = await fetch('/api/courses')
+const res = await fetch("/api/courses");
 ```
 
 ### State Management
@@ -339,18 +342,18 @@ const res = await fetch('/api/courses')
 ```typescript
 // ✅ Good: Server state with React Query
 const { data } = useQuery({
-  queryKey: ['courses'],
-  queryFn: fetchCourses
-})
+  queryKey: ["courses"],
+  queryFn: fetchCourses,
+});
 
 // ✅ Good: Client state with Zustand
-const theme = useThemeStore(state => state.theme)
+const theme = useThemeStore((state) => state.theme);
 
 // ❌ Bad: Server state in local state
-const [courses, setCourses] = useState([])
+const [courses, setCourses] = useState([]);
 useEffect(() => {
-  fetchCourses().then(setCourses)
-}, [])
+  fetchCourses().then(setCourses);
+}, []);
 ```
 
 ## Additional Resources

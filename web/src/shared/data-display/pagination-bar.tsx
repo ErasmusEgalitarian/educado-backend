@@ -1,4 +1,5 @@
-import { ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
+import { mdiChevronLeft, mdiChevronRight, mdiChevronUp } from "@mdi/js";
+import Icon from "@mdi/react";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -180,7 +181,7 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
                   }}
                   disabled={!canGoBack}
                 >
-                  <ChevronLeft className="h-4 w-4" />
+                  <Icon path={mdiChevronLeft} className="h-4 w-4" />
                 </Button>
               </PaginationItem>
 
@@ -200,7 +201,7 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
                       {page + 1}
                     </PaginationLink>
                   </PaginationItem>
-                ),
+                )
               )}
 
               {/* Next Button */}
@@ -214,7 +215,7 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
                   }}
                   disabled={!canGoForward}
                 >
-                  <ChevronRight className="h-4 w-4" />
+                  <Icon path={mdiChevronRight} className="h-4 w-4" />
                 </Button>
               </PaginationItem>
             </PaginationContent>
@@ -228,7 +229,8 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
               onClick={scrollToTop}
               className="hidden lg:flex"
             >
-              Scroll to top <ChevronUp className="ml-2 h-4 w-4" />
+              Scroll to top{" "}
+              <Icon path={mdiChevronUp} className="ml-2 h-4 w-4" />
             </Button>
           )}
         </div>

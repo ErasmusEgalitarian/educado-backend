@@ -1,5 +1,6 @@
 import { useState, useEffect, FormEvent } from "react";
-import { MdCreate } from "react-icons/md";
+import Icon from "@mdi/react";
+import { mdiPencil } from "@mdi/js";
 import { toast } from "react-toastify";
 import { KeyedMutator } from "swr";
 
@@ -22,11 +23,11 @@ export const UpdateInstitutionButton = ({
   const [nameInput, setNameInput] = useState(institution.institutionName);
   const [domainInput, setDomainInput] = useState(institution.domain);
   const [secondaryDomainInput, setSecondaryDomainInput] = useState(
-    institution.secondaryDomain,
+    institution.secondaryDomain
   );
 
   const { call: updateInstitution, isLoading } = useApi(
-    institutionService.updateInstitution,
+    institutionService.updateInstitution
   );
 
   useEffect(() => {
@@ -78,7 +79,7 @@ export const UpdateInstitutionButton = ({
           setShowModal(true);
         }}
       >
-        <MdCreate />
+        <Icon path={mdiPencil} size={0.9} color="currentColor" />
       </button>
 
       {showModal && (
