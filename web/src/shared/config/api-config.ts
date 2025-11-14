@@ -59,10 +59,10 @@ export const configureApiClient = () => {
   // Configure the client with base URL and authorization header
   client.setConfig({
     baseUrl,
-    headers: {
-      Authorization: `Bearer ${apiToken}`,
-    },
     throwOnError: true,
+    headers: {
+      ...fetchHeaders(),
+    },
   });
 
   // Request interceptor for logging in development
@@ -80,6 +80,12 @@ export const configureApiClient = () => {
       // eslint-disable-next-line no-console
       console.log(`Response 📥 ${response.url}`, { status: response.status });
     }
+
+    // If token is invalid, try to refresh from localStorage
+    if (response.status === 403 || response.status === 401) {
+      updateApiClientToken();
+    }
+
     return response;
   });
 
