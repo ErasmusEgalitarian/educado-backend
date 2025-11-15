@@ -185,8 +185,10 @@ export default {
 
       // If token is not provided or token is expired, return error E0404
       if (
-        !( passwordResetToken ||
-          (passwordResetToken.token == token && new Date(passwordResetToken.expiresAt) > new Date(Date.now()))
+        !(
+          passwordResetToken &&
+          passwordResetToken.token === token &&
+          new Date(passwordResetToken.expiresAt) > new Date()
         )
       ) {
         ctx.response.status = 400;
@@ -258,7 +260,7 @@ function getRandomNumber(min, max) {
 }
 
 function generatePasswordResetToken() {
-  const length = 4;
+  const length = 8;
   let retVal = "";
   for (let i = 0; i < length; i++) {
     retVal += getRandomNumber(0, 9);
