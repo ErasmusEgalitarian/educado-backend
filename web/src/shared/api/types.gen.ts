@@ -5416,7 +5416,26 @@ export type LoginRequest = {
     password: string;
 };
 
-export type JwtResponse = string;
+export type JwtContentCreatorResponse = {
+    accessToken?: string;
+    userInfo?: {
+        documentId?: string;
+        firstName?: string;
+        lastName?: string;
+        email?: string;
+        verifiedAt?: string;
+    };
+};
+
+export type JwtResponse = {
+    accessToken?: string;
+    userInfo?: {
+        documentId?: string;
+        name?: string;
+        email?: string;
+        verifiedAt?: string;
+    };
+};
 
 export type ResetPasswordRequestRequest = {
     email?: string;

@@ -9,12 +9,13 @@ import { ToastContainer } from "react-toastify";
 
 import { postContentCreatorLogin } from "@/shared/api/sdk.gen";
 import background from "@/shared/assets/background.jpg";
+import { updateApiClientToken } from "@/shared/config/api-config";
 
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";
-import Carousel from "../../../unplaced/archive/carousel";
+import Carousel from "../../../unplaced/archive/Carousel";
 import { useAuth } from "../hooks/use-auth";
 import { LoginResponseError } from "../types/LoginResponseError";
 
@@ -54,7 +55,7 @@ const Login = () => {
   };
   
   const { call: login, isLoading: submitLoading } = useApi(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+     
     postContentCreatorLogin,
   );
   //Variable determining the error message for both fields.
@@ -85,16 +86,20 @@ const Login = () => {
     })
       .then(async (res) => {
 
-        /* eslint-disable  @typescript-eslint/no-unsafe-assignment *//* eslint-disable  @typescript-eslint/no-unsafe-member-access */
-        const token = res.jwt; 
-        /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
-        const user = res.user;
+         /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
+        const token = res?.accessToken; 
+         
+        const user = res?.userInfo;
         /* eslint-disable  @typescript-eslint/no-unsafe-argument */
-        localStorage.setItem("token", token);
-        localStorage.setItem("id", user.id);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-        await loginSaver(token, user);
+        localStorage.setItem("token", token ?? "");
+        localStorage.setItem("id", user?.documentId ?? "");
+
+        // Update the API client with the new token
+        updateApiClientToken();
+
+         
+        await loginSaver(token ?? "", user);
         navigate("/courses");
         // error messages for email and password
       })
@@ -137,35 +142,36 @@ const Login = () => {
     const submitloginButton = document.getElementById(
       "submit-login-button",
     ) as HTMLButtonElement;
+    
     // Makes sure that the button is only clickable when both fields are filled and there are no email error
     const buttonContainer = submitloginButton.parentElement as HTMLDivElement;
-    if(isThereAnError === true){
+    
+    if (isThereAnError) {
+      // Disable button when there's an error
       submitloginButton.setAttribute("disabled", "true");
-      buttonContainer.style.backgroundColor = "#C1CFD7"; // default color when not filled
+      buttonContainer.style.backgroundColor = "#C1CFD7";
       submitloginButton.style.color = "#809CAD";
-      
-    } else if (inputloginEmail.value.trim() && inputloginPass.value.trim() !== "" ) {
+    } else if (inputloginEmail.value.trim() !== "" && inputloginPass.value.trim() !== "") {
+      // Enable button when both fields are filled and no errors
       submitloginButton.removeAttribute("disabled");
       buttonContainer.style.backgroundColor = "#35A1B1";
       submitloginButton.style.color = "#FDFEFF";
 
-      // function to clear error messages once fields are empty
+      // Clear error messages when user starts typing again
       setEmailError(null);
       setEmailErrorMessage("");
       setNotApprovedError(null);
-      
     } else {
+      // Disable button when fields are empty
       submitloginButton.setAttribute("disabled", "true");
-      buttonContainer.style.backgroundColor = "#C1CFD7"; // default color when not filled
-      submitloginButton.style.color = "#809CAD";         // default text color
-      // function to clear error messages once fields are empty
+      buttonContainer.style.backgroundColor = "#C1CFD7";
+      submitloginButton.style.color = "#809CAD";
+      
+      // Clear error messages when fields are empty
       setEmailError(null);
       setEmailErrorMessage("");
       setNotApprovedError(null);
     }
-      
-      
-    
   }
   
   
@@ -244,7 +250,7 @@ const Login = () => {
                     {t("login.email")} {/*Email*/}
                   </label>
                   <input
-                    onInput={areFieldsFilled}
+                    onInput={() => { areFieldsFilled(); }}
                     type="email"
                     id="email-field"
                     className={`flex w-full py-3 px-4  placeholder-gray-400 text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? 'bg-error-surface-subtle border-error-surface-default focus:ring-error-surface-default' : ' bg-white border-greyscale-border-default focus:ring-sky-200'}`}
@@ -265,7 +271,7 @@ const Login = () => {
                     {t("login.password")}{/*Password*/}
                   </label>
                   <input
-                    onInput={areFieldsFilled}
+                    onInput={() => { areFieldsFilled(); }}
                     type={passwordVisible ? "text" : "password"}
                     id="password-field"
                     className={`flex w-full py-3 px-4  placeholder-greyscale-border-default text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? 'bg-error-surface-subtle border-error-surface-default focus:ring-error-surface-default' : ' bg-white border-greyscale-border-default focus:ring-sky-200'}`}
