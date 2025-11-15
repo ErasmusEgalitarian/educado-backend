@@ -56,7 +56,7 @@ export default {
         documentId: user.documentId,
         name: user.name,
         email: user.email,
-        verifiedAt: new Date(user.verifiedAt),
+        verifiedAt: user.verifiedAt ? new Date(user.verifiedAt) : null,
       };
 
       //log successful login
@@ -71,7 +71,7 @@ export default {
           documentId: user.documentId,
           name: user.name,
           email: user.email,
-          verifiedAt: new Date(user.verifiedAt).toISOString(),
+          verifiedAt: user.verifiedAt ? new Date(user.verifiedAt).toISOString() : null,
         },
       };
     } catch (err) {
