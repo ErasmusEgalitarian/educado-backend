@@ -56,7 +56,7 @@ export default {
         documentId: user.documentId,
         name: user.name,
         email: user.email,
-        verifiedAt: new Date(user.verifiedAt),
+        verifiedAt: user.verifiedAt ? new Date(user.verifiedAt) : null,
       };
 
       //log successful login
@@ -65,7 +65,15 @@ export default {
       const jwtToken = jwt.sign(studentJWT, secretKey, { expiresIn: "7d" });
       ctx.response.status = 200;
 
-      ctx.response.body = JSON.stringify(jwtToken);
+      ctx.response.body = {
+        accessToken: jwtToken,
+        userInfo: {
+          documentId: user.documentId,
+          name: user.name,
+          email: user.email,
+          verifiedAt: user.verifiedAt ? new Date(user.verifiedAt).toISOString() : null,
+        },
+      };
     } catch (err) {
       strapi.log.error("Login failed:", err);
       ctx.response.status = 500;
@@ -177,8 +185,10 @@ export default {
 
       // If token is not provided or token is expired, return error E0404
       if (
-        !( passwordResetToken ||
-          (passwordResetToken.token == token && new Date(passwordResetToken.expiresAt) > new Date(Date.now()))
+        !(
+          passwordResetToken &&
+          passwordResetToken.token === token &&
+          new Date(passwordResetToken.expiresAt) > new Date()
         )
       ) {
         ctx.response.status = 400;
@@ -250,7 +260,7 @@ function getRandomNumber(min, max) {
 }
 
 function generatePasswordResetToken() {
-  const length = 4;
+  const length = 8;
   let retVal = "";
   for (let i = 0; i < length; i++) {
     retVal += getRandomNumber(0, 9);

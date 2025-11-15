@@ -36085,8 +36085,60 @@
           }
         }
       },
+      "JWTContentCreatorResponse": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "userInfo": {
+            "type": "object",
+            "properties": {
+              "documentId": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "verifiedAt": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      },
       "JWTResponse": {
-        "type": "string"
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "userInfo": {
+            "type": "object",
+            "properties": {
+              "documentId": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "verifiedAt": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
       },
       "ResetPasswordRequestRequest": {
         "type": "object",

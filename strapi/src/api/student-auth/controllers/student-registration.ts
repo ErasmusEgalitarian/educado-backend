@@ -61,7 +61,16 @@ export default {
         return ctx.badRequest(err);
       }
 
-      ctx.response.body = JSON.stringify(jwt.sign(studentJWT, secretKey, { expiresIn: '7d' }));
+      const jwtToken = jwt.sign(studentJWT, secretKey, { expiresIn: '7d' });
+      ctx.response.body = {
+        accessToken: jwtToken,
+        userInfo: {
+          documentId: studentJWT.documentId,
+          name: studentJWT.name,
+          email: studentJWT.email,
+          verifiedAt: studentJWT.verifiedAt ? new Date(studentJWT.verifiedAt).toISOString() : null,
+        },
+      };
 
     } catch (err) {
       ctx.body = err;

@@ -42,19 +42,16 @@
           }
         }
       },
-      "JWTResponse": {
+      "JWTContentCreatorResponse": {
         "type": "object",
         "properties": {
-          "jwt": {
+          "accessToken": {
             "type": "string"
           },
-          "user": {
+          "userInfo": {
             "type": "object",
             "properties": {
-              "id": {
-                "type": "integer"
-              },
-              "email": {
+              "documentId": {
                 "type": "string"
               },
               "firstName": {
@@ -62,6 +59,13 @@
               },
               "lastName": {
                 "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "verifiedAt": {
+                "type": "string",
+                "format": "date"
               }
             }
           }

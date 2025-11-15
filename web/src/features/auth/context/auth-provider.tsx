@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, type ReactNode } from "react";
 import { AuthContext } from "@/auth/context/auth-context";
 import { defaultUserPreferences } from "@/auth/types/auth-context";
 import type { AuthContextType, UserPreferences } from "@/auth/types/auth-context";
+import { updateApiClientToken } from "@/shared/config/api-config";
 import { useLocalStorage } from "@/shared/hooks/use-local-storage";
 import type { User } from "@/user/types/User";
 
@@ -47,6 +48,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = useCallback(() => {
     removeAuthToken();
     removeLoggedInUser();
+    // Also clear the main token key used by the API client
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    // Update the API client to remove the Authorization header
+    updateApiClientToken();
   }, [removeAuthToken, removeLoggedInUser]);
 
   // Merge-only setter for preferences
