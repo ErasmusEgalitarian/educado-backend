@@ -25,6 +25,14 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
         });
     }
 
+    const authHeader = policyContext.request.ctx.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        throw new PolicyError("Missing or invalid authorization header", {
+            policy: 'is-student-or-content-creator',
+        });
+    }
+
     try {
         // Extract the authenticated user from the policy context
         // We remove the "Bearer " prefix from the authorization header
