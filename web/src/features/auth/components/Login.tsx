@@ -52,7 +52,7 @@ const Login = () => {
   };
 
   const { call: login, isLoading: submitLoading } = useApi(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+     
     postContentCreatorLogin,
   );
   //Variable determining the error message for both fields.
