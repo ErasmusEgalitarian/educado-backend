@@ -55,7 +55,7 @@ const Login = () => {
   };
   
   const { call: login, isLoading: submitLoading } = useApi(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+     
     postContentCreatorLogin,
   );
   //Variable determining the error message for both fields.
@@ -86,9 +86,9 @@ const Login = () => {
     })
       .then(async (res) => {
 
-        /* eslint-disable  @typescript-eslint/no-unsafe-assignment *//* eslint-disable  @typescript-eslint/no-unsafe-member-access */
+         /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
         const token = res?.accessToken; 
-        /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
+         
         const user = res?.userInfo;
         /* eslint-disable  @typescript-eslint/no-unsafe-argument */
 
@@ -99,7 +99,7 @@ const Login = () => {
         updateApiClientToken();
 
          
-        await loginSaver(token, user);
+        await loginSaver(token ?? "", user);
         navigate("/courses");
         // error messages for email and password
       })
