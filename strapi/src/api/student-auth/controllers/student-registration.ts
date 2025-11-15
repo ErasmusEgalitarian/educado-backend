@@ -68,7 +68,7 @@ export default {
           documentId: studentJWT.documentId,
           name: studentJWT.name,
           email: studentJWT.email,
-          verifiedAt: new Date(studentJWT.verifiedAt).toISOString(),
+          verifiedAt: studentJWT.verifiedAt ? new Date(studentJWT.verifiedAt).toISOString() : null,
         },
       };
 

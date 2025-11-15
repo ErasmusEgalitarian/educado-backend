@@ -41,7 +41,7 @@ export default factories.createCoreController('api::content-creator.content-crea
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            verifiedAt: new Date(user.verifiedAt)
+            verifiedAt: user.verifiedAt ? new Date(user.verifiedAt) : null,
         }
         // 3. Generate token
         const token = jwt.sign(
@@ -58,7 +58,7 @@ export default factories.createCoreController('api::content-creator.content-crea
                 email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                verifiedAt: new Date(user.verifiedAt),
+                verifiedAt: user.verifiedAt ? new Date(user.verifiedAt).toISOString() : null,
             },
         });
         } catch (err) {
