@@ -42,6 +42,12 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
         });
     }
 
+    if(user.verifiedAt == null){
+        throw new PolicyError("User not verified", {
+            policy: 'is-content-creator',
+        });
+    }
+
     try {
         // Query the Content Creator collection to find a record
         // that matches both the user's email and documentId
@@ -51,12 +57,6 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
                 documentId: user.documentId
             },
         });
-
-        if(user.verifiedAt == null){
-            throw new PolicyError("User not verified", {
-                policy: 'is-content-creator',
-            });
-        }
 
         // Return true if a matching Content Creator exists (grant access),
         // or false if not (deny access)
