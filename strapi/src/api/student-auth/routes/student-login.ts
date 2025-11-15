@@ -33,7 +33,7 @@ export default {
       path: '/student/reset-password-update',
       handler: 'student-login.passwordUpdateAction',
       config: {
-        policies: [],
+        policies: ['global::rate-limit'],
         middlewares: [],
       },
     },
