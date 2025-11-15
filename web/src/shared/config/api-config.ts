@@ -97,7 +97,7 @@ export const fetchHeaders = (): Record<string, string> => {
   const token = localStorage.getItem("token") ?? "";
 
   const headers: Record<string, string> = {
-    // Accept: "application/json",
+    Accept: "application/json",
     Authorization: token !== "" ? `Bearer ${token}` : "",
   };
 

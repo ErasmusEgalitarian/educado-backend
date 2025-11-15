@@ -51,7 +51,6 @@ const Login = () => {
   };
 
   const { call: login, isLoading: submitLoading } = useApi(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     postContentCreatorLogin
   );
   //Variable determining the error message for both fields.
@@ -84,10 +83,7 @@ const Login = () => {
         /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
         const token = res?.accessToken;
 
-        /* eslint-disable  @typescript-eslint/no-unsafe-assignment */ /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
-        const token = res.jwt;
-        /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
-        const user = res.user;
+        const user = res?.userInfo;
         /* eslint-disable  @typescript-eslint/no-unsafe-argument */
 
         localStorage.setItem("token", token ?? "");
@@ -96,7 +92,7 @@ const Login = () => {
         // Update the API client with the new token
         updateApiClientToken();
 
-        await loginSaver(String(token), user);
+        await loginSaver(token ?? "", user);
         navigate("/courses");
         // error messages for email and password
       })
@@ -106,7 +102,7 @@ const Login = () => {
         switch (err.error.details.error.code) {
           case "E0106": //Invalid Email and password
             setEmailError(err);
-            setEmailErrorMessage(t("login.email-error"));
+            setEmailErrorMessage(t("auth.emailError"));
             setError("");
             areFieldsFilled(true);
             break;
@@ -142,7 +138,9 @@ const Login = () => {
 
     // Makes sure that the button is only clickable when both fields are filled and there are no email error
     const buttonContainer = submitloginButton.parentElement as HTMLDivElement;
+
     if (isThereAnError) {
+      // Disable button when there's an error
       submitloginButton.setAttribute("disabled", "true");
       buttonContainer.style.backgroundColor =
         "var(--greyscale-surface-disabled)";
@@ -194,7 +192,7 @@ const Login = () => {
         </div>
 
         {/*Container for right side of the page - frame 2332*/}
-        <div className="relative right-0 h-screen flex flex-col justify-center items-center bg-linear-to-b from-(--gradient-start) via-(--gradient-end) to-(--gradient-end) w-full">
+        <div className="relative right-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[var(--gradient-start)] via-[var(--gradient-end)] to-[var(--gradient-end)] w-full">
           {/*Error message for when email or password is incorrect*/}
           <div className="fixed right-0 top-16 z-10">
             {error && (
@@ -225,10 +223,10 @@ const Login = () => {
                 </Link>
                 <Link
                   to="/welcome"
-                  className="text-lg text-primary-text-title font-normal font-montserrat text-greyscale-text-subtle"
+                  className="text-lg text-primary-text-title font-normal font-montserrat text-[var(--greyscale-text-subtle)]"
                 >
                   <button className="cursor-pointer">
-                    {t("login.back-button")}
+                    {t("auth.backButton")}
                   </button>
                 </Link>
               </h1>
@@ -236,7 +234,7 @@ const Login = () => {
 
             {/*Title*/}
             <h1 className="text-primary-text-title text-3xl font-bold font-montserrat leading-normal self-stretch mb-10 px-10">
-              {t("login.welcome-back")}
+              {t("auth.welcomeBack")}
               {/*Welcome back to Educado!*/}
             </h1>
 
@@ -252,7 +250,7 @@ const Login = () => {
                     className="after:content-['*'] after:ml-0.5 after:text-red-500 text-primary-text-title text-[18px] text-sm font-bold font-montserrat mt-6"
                     htmlFor="email-field"
                   >
-                    {t("login.email")} {/*Email*/}
+                    {t("auth.email")} {/*Email*/}
                   </label>
                   <input
                     onInput={() => {
@@ -273,7 +271,7 @@ const Login = () => {
                     className="after:content-['*'] after:ml-0.5 after:text-error-surface-default text-primary-text-title text-[18px] text-sm font-bold font-montserrat mt-6"
                     htmlFor="password-field"
                   >
-                    {t("login.password")}
+                    {t("auth.password")}
                     {/*Password*/}
                   </label>
                   <input
@@ -324,7 +322,7 @@ const Login = () => {
                   }}
                   className="text--greyscale-text-subtle text-lg font-normal font-montserrat cursor-pointer hover:text-primary-surface-default"
                 >
-                  {t("login.forgot-password")}
+                  {t("auth.forgotPassword")}
                   {/*Forgot your password?*/}
                 </label>
               </div>
@@ -343,7 +341,7 @@ const Login = () => {
                     ) : (
                       false
                     )}
-                    {t("login.login-button")}
+                    {t("auth.logIn")}
                     {/*Log In*/}
                   </button>
                 </div>
@@ -352,13 +350,13 @@ const Login = () => {
               {/*Link to Signup page*/}
               <div className="flex justify-center space-x-1">
                 <span className="text-primary-text-subtitle text-lg font-normal font-['Montserrat']">
-                  {t("login.no-account")} {/*Don't have an account yet?*/}
+                  {t("auth.noAccount")} {/*Don't have an account yet?*/}
                 </span>
                 <Link
                   to="/signup"
                   className="text-primary-text-title text-lg font-normal font-montserrat underline hover:text-primary-surface-default gap-4"
                 >
-                  {t("login.register-now")}
+                  {t("auth.registerNow")}
                   {/*Register now*/}
                 </Link>
               </div>
