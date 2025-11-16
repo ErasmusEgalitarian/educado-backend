@@ -1,26 +1,28 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-
 import background from "@/shared/assets/background.jpg";
 
 import MiniNavbar from "../../../shared/components/MiniNavbar";
 import Carousel from "../../../unplaced/archive/Carousel";
 
-
 const Welcome = () => {
   const { t } = useTranslation();
 
   const texts = [
-    <div key="title" className="p-4 px-8 sm:px-0 sm:max-w-[500px] self-stretch text-center text-[var( --primary-text-title)] text-[34px]  font-bold font-['Montserrat']">
+    <div
+      key="title"
+      className="p-4 px-8 sm:px-0 sm:max-w-[500px] self-stretch text-center text-[#383838] text-[34px]  font-bold font-['Montserrat']"
+    >
       {t("welcome.title")}
     </div>,
 
-    <div key="subtitle" className="relative sm:max-w-[750px] text-2xl font-['Montserrat'] text-[var(--primary-text-subtitle)] text-center mb-6 mt-4 px-20">
+    <div
+      key="subtitle"
+      className="relative sm:max-w-[750px] text-2xl font-['Montserrat'] text-[#A1ACB2] text-center mb-6 mt-4 px-20"
+    >
       {t("welcome.subtitle")}
-    </div>
-    
-
+    </div>,
   ];
 
   return (
@@ -48,20 +50,19 @@ const Welcome = () => {
             <img src="/logo.svg" alt="Image" />
             <h1 className="relative text-4xl font-['Lato'] text-[var(--primary-text-title)] text-[34px] text-center mb-6 mt-4 font-black px-10">
               {texts[0]}
-                {/*Warm welcome to the learning platform*/}
-                </h1>
+              {/*Warm welcome to the learning platform*/}
+            </h1>
             {texts[1]}
             {/*Sign up now and help promote your work and reach a wider audience through content creation*/}
             {/*Container for the buttons*/}
-            <div className="relative flex gap-4 px-35 flex-row items-center justify-center w-full mt-10">            
-
+            <div className="relative flex gap-4 px-35 flex-row items-center justify-center w-full mt-10">
               {/*Button for routing to the Signup page*/}
               <Link
-                className="flex-auto  h-[3.3rem] w-[300px] items-center justify-center rounded-[15px] text-lg font-bold font-['Montserrat'] bg-[var(--primary-surface-default)] inline-flex text-[var(--gradient-end)] transform transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50"
-                  to="/signup">
+                className="flex-auto  h-[3.3rem] w-[300px] items-center justify-center rounded-[15px] text-lg font-bold font-['Montserrat'] bg-[#35A1B1] inline-flex text-[#FFFFFF] transform transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50"
+                to="/signup"
+              >
                 <button type="submit">Cadastrar</button>
               </Link>
-
             </div>
             <div className="relative flex flex-row items-center justify-center  mt-2 text-[var(--greyscale-text-subtle)] font-['Montserrat']">
               <div className="text-lg">{t("welcome.login-text")}</div>
@@ -72,10 +73,9 @@ const Welcome = () => {
                 Entrar
               </Link>
             </div>
-
           </div>
         </div>
-      </body> 
+      </body>
     </main>
   );
 };
