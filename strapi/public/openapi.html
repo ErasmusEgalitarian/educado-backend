@@ -14,12 +14,40 @@
     <script src="https://unpkg.com/swagger-ui-dist@5.0.0/swagger-ui-standalone-preset.js"></script>
     <script>
       window.onload = function () {
-        SwaggerUIBundle({
+        const ui = SwaggerUIBundle({
           url: "/openapi/strapi-spec.json",
           dom_id: "#swagger-ui",
           presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
           layout: "StandaloneLayout",
+          persistAuthorization: true,
+          withCredentials: true,
+          requestInterceptor: function (request) {
+            console.log("🔍 Swagger UI making request:", {
+              url: request.url,
+              method: request.method,
+              headers: request.headers,
+              hasAuthHeader: !!request.headers.Authorization,
+            });
+            if (!request.headers.Authorization) {
+              console.warn(
+                "⚠️  WARNING: Authorization header is missing from this request!"
+              );
+            }
+            return request;
+          },
+          responseInterceptor: function (response) {
+            console.log(
+              "📡 Response status:",
+              response.status,
+              "for",
+              response.url
+            );
+            return response;
+          },
         });
+
+        // Make UI available globally for debugging
+        globalThis.swaggerUI = ui;
       };
     </script>
   </body>

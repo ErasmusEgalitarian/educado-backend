@@ -149,9 +149,34 @@ const mergeSwaggerDocumentation = (): void => {
     newSpec.components.securitySchemes = {
         bearerAuth: {
             type: 'http',
-            scheme: 'bearer'
+            scheme: 'bearer',
+            description: 'JWT or API token bearer authentication'
         }
     };
+
+    // Step 4.5: Add security requirement to all endpoints to show auth field in Swagger UI
+    // This tells Swagger UI that endpoints can be called with or without the bearer token
+    for (const [path, pathItem] of Object.entries(newSpec.paths || {})) {
+        for (const [method, operation] of Object.entries(pathItem as any)) {
+            const op = operation as any;
+            if (typeof operation === 'object' && operation !== null && 'responses' in operation) {
+                // Add optional security to each operation
+                // Empty array means auth is optional, can still test without it
+                if (!op.security) {
+                    op.security = [
+                        { bearerAuth: [] }
+                    ];
+                }
+            }
+        }
+    }
+
+    // Global security setting - makes bearerAuth available to all operations
+    if (!newSpec.security) {
+        newSpec.security = [
+            { bearerAuth: [] }
+        ];
+    }
 
     if (customFiles.length > 0) {
         const customSpecs = customFiles.map(f => JSON.parse(fs.readFileSync(f, 'utf-8')));
