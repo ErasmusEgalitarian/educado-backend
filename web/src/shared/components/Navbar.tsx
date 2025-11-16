@@ -168,7 +168,7 @@ export const Navbar = () => {
                   border-1 border-primary-border-lighter rounded-full w-10 h-10 
                   flex items-center justify-center "
                 >
-                  <span className="text-md text-center font-bold select-none">{`${userInfo.firstName.charAt(0)}${userInfo.lastName.charAt(0)}`}</span>
+                  <span className="text-md text-center font-bold select-none">{`${userInfo.firstName?.charAt(0)}${userInfo.lastName?.charAt(0)}`}</span>
                 </div>
               </div>
             </DropdownMenuTrigger>

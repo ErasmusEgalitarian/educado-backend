@@ -9,7 +9,7 @@ import "../i18n/i18n.ts";
 import { AuthProvider } from "@/auth/context/auth-provider";
 import { TooltipProvider } from "@/shared/components/shadcn/tooltip";
 
-import App from "./App";
+import App from "./app.tsx";
 import "./index.css";
 import { configureApiClient } from "./shared/config/api-config";
 import { NotificationProvider } from "./shared/context/NotificationContext";
@@ -35,7 +35,10 @@ if (rootElement && rootElement.innerHTML === "") {
             </TooltipProvider>
           </NotificationProvider>
         </AuthProvider>
-        <ReactQueryDevtools buttonPosition={"bottom-right"} initialIsOpen={false} />
+        <ReactQueryDevtools
+          buttonPosition={"bottom-right"}
+          initialIsOpen={false}
+        />
       </QueryClientProvider>
     </StrictMode>
   );
