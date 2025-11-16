@@ -88,6 +88,11 @@ export default [
     rules: {
       // Disable unified-signatures rule due to crashes in @typescript-eslint/eslint-plugin
       "@typescript-eslint/unified-signatures": "off",
+      // Prevents bugs from using "truthy" or "falsy" values in conditions.
+      "@typescript-eslint/strict-boolean-expressions": [
+        "error",
+        { allowString: false, allowNumber: false, allowNullableObject: true },
+      ],
       // Prevents `console.log` (In prod), but allows `console.warn` and `console.error`.
       "no-console": ["error", { allow: ["warn", "error"] }],
       // Enforces the project's coding conventions for naming variables, functions, etc.
