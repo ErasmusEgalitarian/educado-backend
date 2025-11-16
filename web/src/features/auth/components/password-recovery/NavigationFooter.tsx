@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { ToggleModalContext } from "../Login";
+import { ToggleModalContext } from "../login";
 
 import { HandleContinueContext } from "./PasswordRecoveryModal";
 
@@ -16,7 +16,9 @@ interface propsType {
  * - `codeVerified`: boolean that indicates if the code has been verified
  * @returns {JSX.Element} the navigation footer component for the modal
  */
-export default function NavigationFooter(props: propsType): JSX.Element {
+export default function NavigationFooter(
+  props: Readonly<propsType>
+): JSX.Element {
   const toggleModal = useContext(ToggleModalContext);
   const handleContinue = useContext(HandleContinueContext);
 
