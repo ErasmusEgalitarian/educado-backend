@@ -24,7 +24,7 @@
     "docker:build:web": "cd web && npm run docker:build",
     "docker:down": "docker compose down",
     "docker:restart": "docker compose restart",
-    "generate-api": "turbo run generate-spec && turbo run generate-strapi-client",
+    "generate-api": "turbo run generate-merged-spec && turbo run generate-strapi-client",
     "release:patch": "npm version patch && git push --follow-tags",
     "release:minor": "npm version minor && git push --follow-tags",
     "release:major": "npm version major && git push --follow-tags",
@@ -37,7 +37,9 @@
     "tag:web": "git tag web-v$(node -p \"require('./web/package.json').version\") && git push --tags",
     "tag:strapi": "git tag strapi-v$(node -p \"require('./strapi/package.json').version\") && git push --tags"
   },
-  "dependencies": {},
+  "dependencies": {
+    "pg": "^8.16.3"
+  },
   "devDependencies": {
     "turbo": "^2.5.8"
   },

@@ -100,7 +100,6 @@ const postNewApplication = async (data: {
   };
   
 const AuthServices = Object.freeze({
-  postUserLogin,
   postUserSignup,
   GetCCApplications,
   GetSingleCCApplication,

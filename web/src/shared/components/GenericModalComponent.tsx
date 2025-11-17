@@ -19,8 +19,8 @@ interface GenericModalProps {
 const GenericModalComponent: React.FC<GenericModalProps> = ({
   title,
   contentText,
-  confirmBtnText, // If empty, no confirmation button will be displayed
-  cancelBtnText = "Cancelar", // Renameable to e.g. "Fechar" (close) when invoking the component
+  confirmBtnText,
+  cancelBtnText = "Cancelar",
   onClose,
   isVisible = false,
   onConfirm,
@@ -32,50 +32,49 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div className={`modal ${isVisible ? "modal-open" : null}`}>
+    // Overlay: fixed + full screen + center content
+    
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div
-        className={`modal-box flex flex-col w-auto min-w-[300px] max-w-[85%] max-h-[85%] bg-[#f1f9fb] space-y-8 m-10 p-10 ${
+        className={`flex flex-col w-[500px] h-[350px] bg-[#f1f9fb] space-y-8 p-10 rounded-xl text-center ${
           width || ""
         }`}
       >
         {/* Top bar */}
-        <div className="flex justify-between">
-          {title !== null ? (
-            <span className="font-bold text-xl">{title}</span>
-          ) : null}
+        <div className="flex justify-between items-center">
+          {title && <span className="text-[24px] font-['Montserrat'] text-[#141B1F] text-xl">{title}</span>}
 
-          {/* Window close button (X) */}
-          <button onClick={onClose} className="btn btn-sm btn-circle btn-ghost">
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            className="btn btn-sm btn-circle btn-ghost"
+          >
             <MdClose size={25} className="text-slate-400" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="overflow-auto">
-          {contentText !== null ? (
-            <p className="whitespace-normal text-wrap">{contentText}</p>
-          ) : null}
-          {children}
+        <div>
+        {contentText && (
+          <p className="text-[20px] text-[#383838] text-left font-['Montserrat'] whitespace-normal text-wrap">{contentText}</p>
+        )}
+        {children}
         </div>
 
+        {/* Footer buttons */}
         {(cancelBtnText || confirmBtnText) && (
           <div
             className={`flex w-full ${
-              confirmBtnText === null ? "justify-center" : "justify-between"
+              confirmBtnText ? "justify-between" : "justify-end"
             }`}
           >
-            {/* Cancel */}
             {cancelBtnText && (
               <button
-                id="confirm-button"
                 type="button"
-                className="flex flex-col btn bg-transparent border-none hover:bg-transparent px-0"
                 onClick={onClose}
+                className="h-[2.5rem] min-w-[100px] px-4 whitespace-nowrap items-center justify-center rounded-[15px] text-lg font-bold font-['Montserrat'] bg-[#D62B25] text-white inline-flex transform transition duration-100 ease-in hover:bg-red-700 hover:text-gray-50"
               >
-                <span className="text-primary normal-case text-lg">
-                  {cancelBtnText}
-                </span>
-                <hr className="w-4/5 border-primary" />
+                {cancelBtnText}
               </button>
             )}
 
@@ -86,9 +85,9 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
                 onClick={() => onConfirm?.()}
                 disabled={isConfirmDisabled || loading}
               >
-                {loading ? (
+                {loading && (
                   <span className="spinner-border animate-spin inline-block w-4 h-4 border-2 border-t-transparent rounded-full mr-2" />
-                ) : null}
+                )}
                 <span className="normal-case text-base font-bold">
                   {confirmBtnText}
                 </span>

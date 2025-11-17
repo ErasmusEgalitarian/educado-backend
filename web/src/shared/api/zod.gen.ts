@@ -5,8 +5,7 @@ import { z } from 'zod';
 export const zError = z.object({
     data: z.union([
         z.record(z.unknown()),
-        z.array(z.record(z.unknown())),
-        z.null()
+        z.array(z.record(z.unknown()))
     ]).optional(),
     error: z.object({
         status: z.number().int().optional(),
@@ -5600,7 +5599,26 @@ export const zLoginRequest = z.object({
     password: z.string()
 });
 
-export const zJwtResponse = z.string();
+export const zJwtContentCreatorResponse = z.object({
+    accessToken: z.string().optional(),
+    userInfo: z.object({
+        documentId: z.string().optional(),
+        firstName: z.string().optional(),
+        lastName: z.string().optional(),
+        email: z.string().optional(),
+        verifiedAt: z.string().date().optional()
+    }).optional()
+});
+
+export const zJwtResponse = z.object({
+    accessToken: z.string().optional(),
+    userInfo: z.object({
+        documentId: z.string().optional(),
+        name: z.string().optional(),
+        email: z.string().optional(),
+        verifiedAt: z.string().date().optional()
+    }).optional()
+});
 
 export const zResetPasswordRequestRequest = z.object({
     email: z.string().optional()
@@ -6252,6 +6270,17 @@ export const zContentCreatorPutContentCreatorsByIdRequest = z.object({
  * OK
  */
 export const zContentCreatorPutContentCreatorsByIdResponse = zContentCreatorResponse;
+
+export const zPostContentCreatorLoginRequest = z.object({
+    body: zLoginRequest,
+    path: z.never().optional(),
+    query: z.never().optional()
+});
+
+/**
+ * OK
+ */
+export const zPostContentCreatorLoginResponse = zJwtResponse;
 
 export const zCourseGetCoursesRequest = z.object({
     body: z.never().optional(),

@@ -7,9 +7,16 @@ export default {
             config: {
                 auth:false,
             },
-        }
+        },
 
-    ]
-
-
-}
+      {
+        method: 'POST',
+        path: '/content-creator/login',
+        handler: 'content-creator.login',
+        config: {
+          auth: false,
+          policies: ['global::rate-limit'],
+        },
+      },
+  ],
+};

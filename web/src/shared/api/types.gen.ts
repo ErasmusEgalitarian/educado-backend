@@ -9,7 +9,7 @@ export type _Error = {
         [key: string]: unknown;
     } | Array<{
         [key: string]: unknown;
-    }> | null;
+    }>;
     error: {
         status?: number;
         name?: string;
@@ -5416,7 +5416,26 @@ export type LoginRequest = {
     password: string;
 };
 
-export type JwtResponse = string;
+export type JwtContentCreatorResponse = {
+    accessToken?: string;
+    userInfo?: {
+        documentId?: string;
+        firstName?: string;
+        lastName?: string;
+        email?: string;
+        verifiedAt?: string;
+    };
+};
+
+export type JwtResponse = {
+    accessToken?: string;
+    userInfo?: {
+        documentId?: string;
+        name?: string;
+        email?: string;
+        verifiedAt?: string;
+    };
+};
 
 export type ResetPasswordRequestRequest = {
     email?: string;
@@ -5973,6 +5992,22 @@ export type ContentCreatorPutContentCreatorsByIdResponses = {
 };
 
 export type ContentCreatorPutContentCreatorsByIdResponse = ContentCreatorPutContentCreatorsByIdResponses[keyof ContentCreatorPutContentCreatorsByIdResponses];
+
+export type PostContentCreatorLoginRequest = {
+    body: LoginRequest;
+    path?: never;
+    query?: never;
+    url: '/content-creator/login';
+};
+
+export type PostContentCreatorLoginResponses = {
+    /**
+     * OK
+     */
+    200: JwtResponse;
+};
+
+export type PostContentCreatorLoginResponse = PostContentCreatorLoginResponses[keyof PostContentCreatorLoginResponses];
 
 export type CourseGetCoursesRequest = {
     body?: never;
