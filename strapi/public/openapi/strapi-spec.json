@@ -23299,12 +23299,8 @@
               "creator_published_at": {
                 "type": "string"
               },
-              "locale": {
               },
-              "localizations": {
-                "type": "array",
-                    {
-                      "type": "integer"
+                    {        "type": "integer"
                     },
                     {
                       "type": "string"
@@ -25290,12 +25286,9 @@
             "type": "string"
           },
           "createdAt": {
-            "type": "string",
             "format": "date-time"
           },
           "updatedAt": {
-            "type": "string",
-            "format": "date-time"
           },
           "publishedAt": {
             "type": "string",
@@ -28833,12 +28826,9 @@
                 "type": "string"
               },
               "createdAt": {
-                "type": "string",
                 "format": "date-time"
               },
               "updatedAt": {
-                "type": "string",
-                "format": "date-time"
               },
               "publishedAt": {
                 "type": "string",

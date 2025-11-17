@@ -490,6 +490,8 @@ export type Certificate = {
             documentId?: string;
           }>;
         }>;
+        creator_published_at?: string;
+        admin_control_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -1240,6 +1242,179 @@ export type ContentCreator = {
         documentId?: string;
       }>;
     }>;
+    course_sections?: Array<{
+      id?: number;
+      documentId?: string;
+      title?: string;
+      description?: string;
+      exercises?: Array<{
+        id?: number;
+        documentId?: string;
+        title?: string;
+        question?: string;
+        exercise_options?: Array<{
+          id?: number;
+          documentId?: string;
+          text?: string;
+          explanation?: string;
+          isCorrect?: boolean;
+          exercise?: {
+            id?: number;
+            documentId?: string;
+          };
+          createdAt?: string;
+          updatedAt?: string;
+          publishedAt?: string;
+          createdBy?: {
+            id?: number;
+            documentId?: string;
+          };
+          updatedBy?: {
+            id?: number;
+            documentId?: string;
+          };
+          locale?: string;
+          localizations?: Array<{
+            id?: number;
+            documentId?: string;
+          }>;
+        }>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+          id?: number;
+          documentId?: string;
+        };
+        updatedBy?: {
+          id?: number;
+          documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+          id?: number;
+          documentId?: string;
+        }>;
+      }>;
+      lectures?: Array<{
+        id?: number;
+        documentId?: string;
+        title?: string;
+        completed?: boolean;
+        content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+          id?: number;
+          documentId?: string;
+        };
+        updatedBy?: {
+          id?: number;
+          documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+          id?: number;
+          documentId?: string;
+        }>;
+      }>;
+      course?: {
+        id?: number;
+        documentId?: string;
+      };
+      createdAt?: string;
+      updatedAt?: string;
+      publishedAt?: string;
+      createdBy?: {
+        id?: number;
+        documentId?: string;
+      };
+      updatedBy?: {
+        id?: number;
+        documentId?: string;
+      };
+      locale?: string;
+      localizations?: Array<{
+        id?: number;
+        documentId?: string;
+      }>;
+    }>;
+    course_categories?: Array<{
+      id?: number;
+      documentId?: string;
+      name?: string;
+      courses?: Array<{
+        id?: number;
+        documentId?: string;
+      }>;
+      createdAt?: string;
+      updatedAt?: string;
+      publishedAt?: string;
+      createdBy?: {
+        id?: number;
+        documentId?: string;
+      };
+      updatedBy?: {
+        id?: number;
+        documentId?: string;
+      };
+      locale?: string;
+      localizations?: Array<{
+        id?: number;
+        documentId?: string;
+      }>;
+    }>;
+    students?: Array<{
+      id?: number;
+      documentId?: string;
+    }>;
+    content_creators?: Array<{
+      id?: number;
+      documentId?: string;
+      firstName?: string;
+      lastName?: string;
+      verifiedAt?: string;
+      biography?: string;
+      email?: string;
+      education?: "TODO1" | "TODO2" | "TODO3";
+      statusValue?: "TODO1" | "TODO2" | "TODO3";
+      courseExperience?: string;
+      institution?: string;
+      eduStart?: string;
+      eduEnd?: string;
+      currentCompany?: string;
+      currentJobTitle?: string;
+      companyStart?: string;
+      companyEnd?: string;
+      jobDescription?: string;
+      courses?: Array<{
+        id?: number;
+        documentId?: string;
+      }>;
+      user_logs?: Array<{
+        id?: number;
+        documentId?: string;
+      }>;
+      createdAt?: string;
+      updatedAt?: string;
+      publishedAt?: string;
+      createdBy?: {
+        id?: number;
+        documentId?: string;
+      };
+      updatedBy?: {
+        id?: number;
+        documentId?: string;
+      };
+      locale?: string;
+      localizations?: Array<{
+        id?: number;
+        documentId?: string;
+      }>;
+    }>;
+    creator_published_at?: string;
+    admin_control_at?: string;
     createdAt?: string;
     updatedAt?: string;
     publishedAt?: string;
@@ -2490,6 +2665,81 @@ export type CourseCategory = {
         documentId?: string;
       }>;
     }>;
+    course_categories?: Array<{
+      id?: number;
+      documentId?: string;
+      name?: string;
+      courses?: Array<{
+        id?: number;
+        documentId?: string;
+      }>;
+      createdAt?: string;
+      updatedAt?: string;
+      publishedAt?: string;
+      createdBy?: {
+        id?: number;
+        documentId?: string;
+      };
+      updatedBy?: {
+        id?: number;
+        documentId?: string;
+      };
+      locale?: string;
+      localizations?: Array<{
+        id?: number;
+        documentId?: string;
+      }>;
+    }>;
+    students?: Array<{
+      id?: number;
+      documentId?: string;
+    }>;
+    content_creators?: Array<{
+      id?: number;
+      documentId?: string;
+      firstName?: string;
+      lastName?: string;
+      verifiedAt?: string;
+      biography?: string;
+      email?: string;
+      education?: "TODO1" | "TODO2" | "TODO3";
+      statusValue?: "TODO1" | "TODO2" | "TODO3";
+      courseExperience?: string;
+      institution?: string;
+      eduStart?: string;
+      eduEnd?: string;
+      currentCompany?: string;
+      currentJobTitle?: string;
+      companyStart?: string;
+      companyEnd?: string;
+      jobDescription?: string;
+      courses?: Array<{
+        id?: number;
+        documentId?: string;
+      }>;
+      user_logs?: Array<{
+        id?: number;
+        documentId?: string;
+      }>;
+      createdAt?: string;
+      updatedAt?: string;
+      publishedAt?: string;
+      createdBy?: {
+        id?: number;
+        documentId?: string;
+      };
+      updatedBy?: {
+        id?: number;
+        documentId?: string;
+      };
+      locale?: string;
+      localizations?: Array<{
+        id?: number;
+        documentId?: string;
+      }>;
+    }>;
+    creator_published_at?: string;
+    admin_control_at?: string;
     createdAt?: string;
     updatedAt?: string;
     publishedAt?: string;

@@ -1283,10 +1283,6 @@ export const zContentCreator = z.object({
         admin_control_at: z.string().datetime().optional(),
         creator_published_at: z.string().optional(),
         createdAt: z.string().datetime().optional(),
-        updatedAt: z.string().datetime().optional(),
-        publishedAt: z.string().datetime().optional(),
-        createdBy: z.object({
-            id: z.number().optional(),
             documentId: z.string().optional()
         }).optional(),
         updatedBy: z.object({

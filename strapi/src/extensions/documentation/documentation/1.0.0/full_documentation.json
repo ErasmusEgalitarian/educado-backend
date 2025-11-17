@@ -10284,12 +10284,9 @@
                           "type": "string"
                         },
                         "createdAt": {
-                          "type": "string",
                           "format": "date-time"
                         },
                         "updatedAt": {
-                          "type": "string",
-                          "format": "date-time"
                         },
                         "publishedAt": {
                           "type": "string",
@@ -12754,12 +12751,9 @@
                   "type": "string"
                 },
                 "createdAt": {
-                  "type": "string",
                   "format": "date-time"
                 },
                 "updatedAt": {
-                  "type": "string",
-                  "format": "date-time"
                 },
                 "publishedAt": {
                   "type": "string",
@@ -13015,11 +13009,7 @@
               "creator_published_at": {
                 "type": "string"
               },
-              "locale": {
               },
-              "localizations": {
-                "type": "array",
-                    {
                       "type": "integer"
                     },
                     {
@@ -20395,6 +20385,14 @@
                     }
                   }
                 }
+              },
+              "creator_published_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
               },
               "createdAt": {
                 "type": "string",

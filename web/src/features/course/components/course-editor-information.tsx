@@ -476,7 +476,7 @@ const CourseEditorInformation = forwardRef(({ course, onComplete }, ref) => {
             formId="course-information-form"
             submitLabel={
               isEditMode
-                ? t("common.saveChanges")
+                // ? t("common.saveChanges")
                 : t("courseManager.createAndContinue")
             }
             submittingLabel={
