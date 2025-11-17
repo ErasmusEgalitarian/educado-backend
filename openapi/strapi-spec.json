@@ -36948,6 +36948,102 @@
           }
         }
       },
+      "CourseStatisticsRequest": {
+        "type": "object",
+        "required": [
+          "documentIds"
+        ],
+        "properties": {
+          "documentIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of course documentId strings"
+          }
+        },
+        "example": {
+          "documentIds": [
+            "course-doc-id-1",
+            "course-doc-id-2"
+          ]
+        }
+      },
+      "ProgressObject": {
+        "type": "object",
+        "required": [
+          "lastThirtyDays",
+          "lastSevenDays",
+          "thisMonth"
+        ],
+        "properties": {
+          "lastThirtyDays": {
+            "type": "number",
+            "description": "Progress percentage comparing last 30 days vs previous period"
+          },
+          "lastSevenDays": {
+            "type": "number",
+            "description": "Progress percentage comparing last 7 days vs previous period"
+          },
+          "thisMonth": {
+            "type": "number",
+            "description": "Progress percentage for current month vs previous month"
+          }
+        }
+      },
+      "CourseStatsSection": {
+        "type": "object",
+        "required": [
+          "total",
+          "progress"
+        ],
+        "properties": {
+          "total": {
+            "type": "number",
+            "description": "Total count (e.g., total courses / students / certificates)"
+          },
+          "progress": {
+            "$ref": "#/components/schemas/ProgressObject"
+          }
+        }
+      },
+      "CourseStatisticsResponse": {
+        "type": "object",
+        "required": [
+          "courses",
+          "students",
+          "certificates",
+          "evaluation"
+        ],
+        "properties": {
+          "courses": {
+            "$ref": "#/components/schemas/CourseStatsSection"
+          },
+          "students": {
+            "$ref": "#/components/schemas/CourseStatsSection"
+          },
+          "certificates": {
+            "$ref": "#/components/schemas/CourseStatsSection"
+          },
+          "evaluation": {
+            "$ref": "#/components/schemas/CourseStatsSection"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer"
+          }
+        }
+      },
       "JWTResponse": {
         "type": "object",
         "properties": {

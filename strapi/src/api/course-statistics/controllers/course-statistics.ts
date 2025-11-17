@@ -26,12 +26,8 @@ const DAYS_7_MS = 7 * 24 * 60 * 60 * 1000;
 export default {
   statisticsAction: async (ctx, next) => {
     try {
-      const secretKey = process.env.JWT_SECRET;
-      const jwtCC = ctx.headers.authorization
-
       // Extract the authenticated user from the policy context
-      // This object is populated by Strapi when the user is logged in
-      const user_type = jwt.verify(jwtCC, secretKey) as ContentCreator;
+      const user_type = jsonWebTokenVerify(ctx.headers.authorization as string) as ContentCreator;
       const courseIds : string[] = ctx.request.body.documentIds as string[];
 
       // Find Content Creator
@@ -255,7 +251,7 @@ function filterCoursesBasedOnCid <T extends { documentId: string }> (courses : T
   if (courseIds.length == 0){
     return [];
   }
-  let filteredCourses : any[] = [];
+  let filteredCourses : T[] = [];
   //Filter courses
   for (const course of courses){
     for (const cId of courseIds){
@@ -266,4 +262,17 @@ function filterCoursesBasedOnCid <T extends { documentId: string }> (courses : T
     }
   }
   return filteredCourses;
+}
+
+function jsonWebTokenVerify (jwtInput : string) {
+  const secretKey = process.env.JWT_SECRET;
+  //Splits Bearer
+  let user : ContentCreator;
+  try {
+    // Extract the authenticated user from the policy context
+    user = jwt.verify(jwtInput.split("Bearer ")[1], secretKey) as ContentCreator;
+  } catch (error) {
+    throw error;
+  }
+  return user;
 }

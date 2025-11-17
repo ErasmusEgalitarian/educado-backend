@@ -38,14 +38,10 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
     const fetchStatistics = async () => {
       setLoading(true);
       try {
-        const token = localStorage.getItem("token");
         const data = await postCourseStatisticsStatisticsAction({
           body: {
             documentIds: documentIds
           },
-          headers: {
-            Authorization: token
-          }
         });
         setStatistics(data);
       } catch (error) {
