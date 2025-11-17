@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-17T10:00:02.756Z"
+    "x-generation-date": "2025-11-17T10:30:45.685Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -8249,8 +8249,7 @@
                           "type": "integer"
                         },
                         "durationHours": {
-                          "type": "number",
-                          "format": "float"
+                          "type": "integer"
                         },
                         "numOfRatings": {
                           "type": "integer"
@@ -10336,8 +10335,7 @@
                   "type": "integer"
                 },
                 "durationHours": {
-                  "type": "number",
-                  "format": "float"
+                  "type": "integer"
                 },
                 "numOfRatings": {
                   "type": "integer"
@@ -12048,8 +12046,7 @@
                 "type": "integer"
               },
               "durationHours": {
-                "type": "number",
-                "format": "float"
+                "type": "integer"
               },
               "numOfRatings": {
                 "type": "integer"
@@ -12218,8 +12215,7 @@
             "type": "integer"
           },
           "durationHours": {
-            "type": "number",
-            "format": "float"
+            "type": "integer"
           },
           "numOfRatings": {
             "type": "integer"
@@ -12865,8 +12861,7 @@
                       "type": "integer"
                     },
                     "durationHours": {
-                      "type": "number",
-                      "format": "float"
+                      "type": "integer"
                     },
                     "numOfRatings": {
                       "type": "integer"
@@ -14228,8 +14223,7 @@
                   "type": "integer"
                 },
                 "durationHours": {
-                  "type": "number",
-                  "format": "float"
+                  "type": "integer"
                 },
                 "numOfRatings": {
                   "type": "integer"
@@ -16551,8 +16545,7 @@
                 "type": "integer"
               },
               "durationHours": {
-                "type": "number",
-                "format": "float"
+                "type": "integer"
               },
               "numOfRatings": {
                 "type": "integer"
@@ -18841,8 +18834,7 @@
                 "type": "integer"
               },
               "durationHours": {
-                "type": "number",
-                "format": "float"
+                "type": "integer"
               },
               "numOfRatings": {
                 "type": "integer"
@@ -21495,8 +21487,7 @@
                       "type": "integer"
                     },
                     "durationHours": {
-                      "type": "number",
-                      "format": "float"
+                      "type": "integer"
                     },
                     "numOfRatings": {
                       "type": "integer"
@@ -23362,8 +23353,7 @@
                           "type": "integer"
                         },
                         "durationHours": {
-                          "type": "number",
-                          "format": "float"
+                          "type": "integer"
                         },
                         "numOfRatings": {
                           "type": "integer"

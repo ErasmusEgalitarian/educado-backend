@@ -18722,8 +18722,7 @@
                           "type": "integer"
                         },
                         "durationHours": {
-                          "type": "number",
-                          "format": "float"
+                          "type": "integer"
                         },
                         "numOfRatings": {
                           "type": "integer"
@@ -20809,8 +20808,7 @@
                   "type": "integer"
                 },
                 "durationHours": {
-                  "type": "number",
-                  "format": "float"
+                  "type": "integer"
                 },
                 "numOfRatings": {
                   "type": "integer"
@@ -22521,8 +22519,7 @@
                 "type": "integer"
               },
               "durationHours": {
-                "type": "number",
-                "format": "float"
+                "type": "integer"
               },
               "numOfRatings": {
                 "type": "integer"
@@ -22691,8 +22688,7 @@
             "type": "integer"
           },
           "durationHours": {
-            "type": "number",
-            "format": "float"
+            "type": "integer"
           },
           "numOfRatings": {
             "type": "integer"
@@ -23338,8 +23334,7 @@
                       "type": "integer"
                     },
                     "durationHours": {
-                      "type": "number",
-                      "format": "float"
+                      "type": "integer"
                     },
                     "numOfRatings": {
                       "type": "integer"
@@ -24701,8 +24696,7 @@
                   "type": "integer"
                 },
                 "durationHours": {
-                  "type": "number",
-                  "format": "float"
+                  "type": "integer"
                 },
                 "numOfRatings": {
                   "type": "integer"
@@ -27024,8 +27018,7 @@
                 "type": "integer"
               },
               "durationHours": {
-                "type": "number",
-                "format": "float"
+                "type": "integer"
               },
               "numOfRatings": {
                 "type": "integer"
@@ -29314,8 +29307,7 @@
                 "type": "integer"
               },
               "durationHours": {
-                "type": "number",
-                "format": "float"
+                "type": "integer"
               },
               "numOfRatings": {
                 "type": "integer"
@@ -31968,8 +31960,7 @@
                       "type": "integer"
                     },
                     "durationHours": {
-                      "type": "number",
-                      "format": "float"
+                      "type": "integer"
                     },
                     "numOfRatings": {
                       "type": "integer"
@@ -33835,8 +33826,7 @@
                           "type": "integer"
                         },
                         "durationHours": {
-                          "type": "number",
-                          "format": "float"
+                          "type": "integer"
                         },
                         "numOfRatings": {
                           "type": "integer"
