@@ -83,8 +83,13 @@ const Login = () => {
         /* eslint-disable  @typescript-eslint/no-unsafe-assignment */ /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
         const token = res.jwt;
         /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
-        const user = res.user;
+        const user = res.userInfo;
         /* eslint-disable  @typescript-eslint/no-unsafe-argument */
+
+        /* eslint-disable  @typescript-eslint/no-unsafe-argument */
+        localStorage.setItem("token", token);
+        localStorage.setItem("id", user?.documentId ?? "");
+
 
         await loginSaver(token, user);
         navigate("/courses");
