@@ -22,7 +22,9 @@ import StarRating from "../../../shared/components/star-rating";
  * @param {Course} course The course to be displayed
  * @returns HTML Element
  */
-export const CourseCard = ({ course }: { course: Course & { durationHours?: number | null } }) => {
+
+
+export const CourseCard = ({ course }: { course: Course }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
