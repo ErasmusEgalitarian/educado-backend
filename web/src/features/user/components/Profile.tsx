@@ -137,7 +137,7 @@ const Profile = () => {
             biography: (formData as any).bio || "",
             // Note: Keep existing required fields from the current data
             email: contentCreatorData?.email || (formData as any).UserEmail,
-            password: contentCreatorData?.password || "",
+            password: "", // Send empty string - controller will remove it before processing
             education: contentCreatorData?.education || "TODO1",
             statusValue: contentCreatorData?.statusValue || "TODO1",
             courseExperience: contentCreatorData?.courseExperience || "",

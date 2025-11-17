@@ -538,7 +538,6 @@ export interface ApiContentCreatorContentCreator
     > &
       Schema.Attribute.Private;
     password: Schema.Attribute.Password &
-      Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 8;
       }>;

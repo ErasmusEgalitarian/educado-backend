@@ -38,7 +38,7 @@
     },
     "password": {
       "type": "password",
-      "required": true,
+      "required": false,
       "minLength": 8
     },
     "education": {
