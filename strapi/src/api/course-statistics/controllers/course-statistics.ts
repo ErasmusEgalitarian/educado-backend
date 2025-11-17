@@ -53,7 +53,6 @@ export default {
       //Filter courses
       const filteredCourses = filterCoursesBasedOnCid(user.courses, courseIds) as populatedCourse[];  
 
-
       ctx.response.body = {
         courses: await getCoursesStats(filteredCourses),
         students: await getStudentStats(filteredCourses),
@@ -66,6 +65,7 @@ export default {
     }
   },
 };
+
 export async function getCoursesStats(filteredCourses : populatedCourse[]) {
   try {
     //Statistic variables
@@ -97,7 +97,6 @@ export async function getCoursesStats(filteredCourses : populatedCourse[]) {
   }
 }
 export async function getStudentStats(filteredCourses : populatedCourse[]) {
-  
   // Declare and initialise all varibles hosting the statistics
   let countTotal = 0;
   let count7 = 0;
@@ -140,6 +139,7 @@ export async function getStudentStats(filteredCourses : populatedCourse[]) {
     } 
   }
 }
+
 export async function getCertificatesStats(filteredCourses : populatedCourse[]) {
   try {
     const courseIds = filteredCourses.map((c) => c.documentId); 
@@ -163,11 +163,11 @@ export async function getCertificatesStats(filteredCourses : populatedCourse[]) 
     // Timestamp for the first day of the current month (e.g., Nov 1, 2025, 00:00:00)
     const firstDayOfMonth = new Date(
       new Date().getFullYear(),
-      new Date().getMonth());
+      new Date().getMonth()
+    );
 
     for (const cert of certificates) {
       const issueTime = new Date(cert.completionDate);
-
       // 30 days
       if (issueTime > date30DaysAgo) {
         count30++;
@@ -181,7 +181,6 @@ export async function getCertificatesStats(filteredCourses : populatedCourse[]) 
         countMonth++;
       }
     }
-
     return {
       total: countTotal ?? 0,
       progress: {
@@ -197,7 +196,6 @@ export async function getCertificatesStats(filteredCourses : populatedCourse[]) 
 
 export async function getContentCreatorFeedback(filteredCourses : populatedCourse[]) {
   try {
-
     // Aggregate feedbacks & time variations
     let totalFeedbacks = 0, totalRating = 0;
     let count7dFeedbacks = 0, count7dRating = 0;
@@ -235,7 +233,6 @@ export async function getContentCreatorFeedback(filteredCourses : populatedCours
         }
       }
     }
-
     const Totalaverage = totalFeedbacks != 0 ? totalRating / totalFeedbacks : 0;
     const Totalaverage7dProgress = totalFeedbacks - Totalaverage != 0 ? count7dRating / count7dFeedbacks - Totalaverage : 0;
     const Totalaverage30dProgress = count30dFeedbacks - Totalaverage != 0 ? count30dRating / count30dFeedbacks - Totalaverage : 0;
@@ -249,14 +246,14 @@ export async function getContentCreatorFeedback(filteredCourses : populatedCours
         lastThirtyDays: Number(Totalaverage30dProgress.toFixed(1))
       }
     };
-
+    
   } catch (err) {
     throw { error: errorCodes['E0001'] }
   }
 }
 
 
-//Uses any[] on purpose, as it avoids parsing to helper type, and the filter function should be able to filter any type of array aslong as it has courseIds
+//Uses any[] on purpose, as it avoids parsing to helper type, and the filter function should be able to filter any type of array as long as it has courseIds
 function filterCoursesBasedOnCid(courses : any[], courseIds : string[]){
   if (courseIds.length == 0){
     return [];
