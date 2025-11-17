@@ -46,9 +46,6 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
 
     // Add the notification to the dropdown list
     setNotifications((prev) => [...prev, newNotification]);
-
-    // Trigger a toast message
-    toast.info(newNotification.message);
   };
 
   return (
