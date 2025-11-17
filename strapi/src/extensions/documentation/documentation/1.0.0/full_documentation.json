@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-16T16:35:30.141Z"
+    "x-generation-date": "2025-11-17T13:21:35.263Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -9517,6 +9517,14 @@
                             }
                           }
                         },
+                        "creator_published_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "admin_control_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -11884,6 +11892,14 @@
                     }
                   }
                 },
+                "creator_published_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "admin_control_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -12124,6 +12140,14 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "creator_published_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
               },
               "locale": {
                 "type": "string"
@@ -13847,6 +13871,14 @@
                         }
                       }
                     },
+                    "creator_published_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "admin_control_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -14020,6 +14052,14 @@
                 }
               }
             }
+          },
+          "creator_published_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "admin_control_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "createdAt": {
             "type": "string",
@@ -15758,6 +15798,14 @@
                     }
                   }
                 },
+                "creator_published_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "admin_control_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -17388,6 +17436,14 @@
                     }
                   }
                 }
+              },
+              "creator_published_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
               },
               "createdAt": {
                 "type": "string",
@@ -20363,6 +20419,14 @@
                   }
                 }
               },
+              "creator_published_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
               "createdAt": {
                 "type": "string",
                 "format": "date-time"
@@ -22930,6 +22994,14 @@
                         }
                       }
                     },
+                    "creator_published_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "admin_control_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -24591,6 +24663,14 @@
                               }
                             }
                           }
+                        },
+                        "creator_published_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "admin_control_at": {
+                          "type": "string",
+                          "format": "date-time"
                         },
                         "createdAt": {
                           "type": "string",

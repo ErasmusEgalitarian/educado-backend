@@ -2423,6 +2423,8 @@
                   "difficulty",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2446,6 +2448,8 @@
                   "difficulty",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2544,6 +2548,8 @@
                     "difficulty",
                     "numOfRatings",
                     "numOfSubscriptions",
+                    "creator_published_at",
+                    "admin_control_at",
                     "createdAt",
                     "updatedAt",
                     "publishedAt"
@@ -2559,6 +2565,8 @@
                       "difficulty",
                       "numOfRatings",
                       "numOfSubscriptions",
+                      "creator_published_at",
+                      "admin_control_at",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -2575,6 +2583,8 @@
                       "difficulty",
                       "numOfRatings",
                       "numOfSubscriptions",
+                      "creator_published_at",
+                      "admin_control_at",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -2600,6 +2610,8 @@
                         "difficulty",
                         "numOfRatings",
                         "numOfSubscriptions",
+                        "creator_published_at",
+                        "admin_control_at",
                         "createdAt",
                         "updatedAt",
                         "publishedAt"
@@ -2656,20 +2668,6 @@
                     ]
                   }
                 }
-              ]
-            },
-            "x-strapi-serialize": "querystring"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string",
-              "enum": [
-                "draft",
-                "published"
               ]
             },
             "x-strapi-serialize": "querystring"
@@ -2765,6 +2763,8 @@
                   "difficulty",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2811,20 +2811,6 @@
                     ]
                   }
                 }
-              ]
-            },
-            "x-strapi-serialize": "querystring"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string",
-              "enum": [
-                "draft",
-                "published"
               ]
             },
             "x-strapi-serialize": "querystring"
@@ -2941,6 +2927,8 @@
                   "difficulty",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -3006,6 +2994,8 @@
                   "difficulty",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -3030,6 +3020,8 @@
                     "difficulty",
                     "numOfRatings",
                     "numOfSubscriptions",
+                    "creator_published_at",
+                    "admin_control_at",
                     "createdAt",
                     "updatedAt",
                     "publishedAt"
@@ -3045,6 +3037,8 @@
                       "difficulty",
                       "numOfRatings",
                       "numOfSubscriptions",
+                      "creator_published_at",
+                      "admin_control_at",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -3061,6 +3055,8 @@
                       "difficulty",
                       "numOfRatings",
                       "numOfSubscriptions",
+                      "creator_published_at",
+                      "admin_control_at",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -3086,6 +3082,8 @@
                         "difficulty",
                         "numOfRatings",
                         "numOfSubscriptions",
+                        "creator_published_at",
+                        "admin_control_at",
                         "createdAt",
                         "updatedAt",
                         "publishedAt"
@@ -3100,20 +3098,6 @@
                     }
                   }
                 }
-              ]
-            },
-            "x-strapi-serialize": "querystring"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string",
-              "enum": [
-                "draft",
-                "published"
               ]
             },
             "x-strapi-serialize": "querystring"
@@ -3218,6 +3202,8 @@
                   "difficulty",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -3264,20 +3250,6 @@
                     ]
                   }
                 }
-              ]
-            },
-            "x-strapi-serialize": "querystring"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string",
-              "enum": [
-                "draft",
-                "published"
               ]
             },
             "x-strapi-serialize": "querystring"
@@ -3392,6 +3364,8 @@
                   "difficulty",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -3457,26 +3431,14 @@
                   "difficulty",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
                 ]
               },
               "additionalProperties": {}
-            },
-            "x-strapi-serialize": "querystring"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -20480,6 +20442,14 @@
                             }
                           }
                         },
+                        "creator_published_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "admin_control_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -22847,6 +22817,14 @@
                     }
                   }
                 },
+                "creator_published_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "admin_control_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -23087,6 +23065,14 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "creator_published_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
               },
               "locale": {
                 "type": "string"
@@ -24810,6 +24796,14 @@
                         }
                       }
                     },
+                    "creator_published_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "admin_control_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -24983,6 +24977,14 @@
                 }
               }
             }
+          },
+          "creator_published_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "admin_control_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "createdAt": {
             "type": "string",
@@ -26721,6 +26723,14 @@
                     }
                   }
                 },
+                "creator_published_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "admin_control_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -28351,6 +28361,14 @@
                     }
                   }
                 }
+              },
+              "creator_published_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
               },
               "createdAt": {
                 "type": "string",
@@ -31326,6 +31344,14 @@
                   }
                 }
               },
+              "creator_published_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
               "createdAt": {
                 "type": "string",
                 "format": "date-time"
@@ -33893,6 +33919,14 @@
                         }
                       }
                     },
+                    "creator_published_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "admin_control_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -35554,6 +35588,14 @@
                               }
                             }
                           }
+                        },
+                        "creator_published_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "admin_control_at": {
+                          "type": "string",
+                          "format": "date-time"
                         },
                         "createdAt": {
                           "type": "string",
