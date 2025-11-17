@@ -6,18 +6,18 @@ import { errorCodes } from "../../../helpers/errorCodes";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 //Custom types
-interface courseRelationType {
+interface CourseRelationType {
   enrollmentDate: Date;
 }
-interface feedbackType {
+interface FeedbackType {
   createdAt: Date;
   rating: number;
 }
-interface populatedCourse {
+interface PopulatedCourse {
   documentId: string
   createdAt: Date;
-  course_relations: courseRelationType[];
-  feedbacks: feedbackType[];
+  course_relations: CourseRelationType[];
+  feedbacks: FeedbackType[];
 }
 
 const DAYS_30_MS = 30 * 24 * 60 * 60 * 1000;
@@ -51,13 +51,13 @@ export default {
         throw { error: errorCodes["E0504"] };
       }
       //Filter courses
-      const filteredCourses = filterCoursesBasedOnCid(user.courses, courseIds) as populatedCourse[];  
+      const filteredCourses = filterCoursesBasedOnCid(user.courses, courseIds) as PopulatedCourse[];  
 
       ctx.response.body = {
-        courses: await getCoursesStats(filteredCourses),
-        students: await getStudentStats(filteredCourses),
+        courses: getCoursesStats(filteredCourses),
+        students: getStudentStats(filteredCourses),
         certificates: await getCertificatesStats(filteredCourses),
-        evaluation: await getContentCreatorFeedback(filteredCourses) 
+        evaluation: getContentCreatorFeedback(filteredCourses) 
       };
     } catch (err) {
       ctx.status = 500;
@@ -66,37 +66,34 @@ export default {
   },
 };
 
-export async function getCoursesStats(filteredCourses : populatedCourse[]) {
-  try {
-    //Statistic variables
-    const countTotal = filteredCourses.length;
-    let count7 = 0;
-    let count30 = 0;
-    let countMonth = 0;
-    //Dates
-    const date7DaysAgo = new Date(Date.now() - DAYS_7_MS);
-    const date30DaysAgo = new Date(Date.now() - DAYS_30_MS);
-    const firstDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth());
-    //Count stats
-    for (const course of filteredCourses) {
-      const createdAt = new Date(course.createdAt);
-      if (createdAt > date7DaysAgo) count7++;
-      if (createdAt > date30DaysAgo) count30++;
-      if (createdAt > firstDayOfMonth) countMonth++;
-    }
-    return {
-      total: countTotal ?? 0,
-      progress: {
-        lastThirtyDays: Math.round((count30/(countTotal-count30))*100) ?? 0, 
-        lastSevenDays:  Math.round((count7/(countTotal-count7))*100) ?? 0, 
-        thisMonth:      Math.round((countMonth/(countTotal-countMonth))*100)?? 0
-      },
-    };
-  } catch (err) {
-    throw err;
+export function getCoursesStats(filteredCourses : PopulatedCourse[]) {
+  //Statistic variables
+  const countTotal = filteredCourses.length;
+  let count7 = 0;
+  let count30 = 0;
+  let countMonth = 0;
+  //Dates
+  const date7DaysAgo = new Date(Date.now() - DAYS_7_MS);
+  const date30DaysAgo = new Date(Date.now() - DAYS_30_MS);
+  const firstDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth());
+  //Count stats
+  for (const course of filteredCourses) {
+    const createdAt = new Date(course.createdAt);
+    if (createdAt > date7DaysAgo) count7++;
+    if (createdAt > date30DaysAgo) count30++;
+    if (createdAt > firstDayOfMonth) countMonth++;
   }
+  return {
+    total: countTotal ?? 0,
+    progress: {
+      lastThirtyDays: Math.round((count30/(countTotal-count30))*100) ?? 0, 
+      lastSevenDays:  Math.round((count7/(countTotal-count7))*100) ?? 0, 
+      thisMonth:      Math.round((countMonth/(countTotal-countMonth))*100)?? 0
+    },
+  };
 }
-export async function getStudentStats(filteredCourses : populatedCourse[]) {
+
+export function getStudentStats(filteredCourses : PopulatedCourse[]) {
   // Declare and initialise all varibles hosting the statistics
   let countTotal = 0;
   let count7 = 0;
@@ -140,7 +137,7 @@ export async function getStudentStats(filteredCourses : populatedCourse[]) {
   }
 }
 
-export async function getCertificatesStats(filteredCourses : populatedCourse[]) {
+export async function getCertificatesStats(filteredCourses : PopulatedCourse[]) {
   try {
     const courseIds = filteredCourses.map((c) => c.documentId); 
     // Fetch certificates for the creator's courses
@@ -194,7 +191,7 @@ export async function getCertificatesStats(filteredCourses : populatedCourse[]) 
   }
 }
 
-export async function getContentCreatorFeedback(filteredCourses : populatedCourse[]) {
+export function getContentCreatorFeedback(filteredCourses : PopulatedCourse[]) {
   try {
     // Aggregate feedbacks & time variations
     let totalFeedbacks = 0, totalRating = 0;
@@ -246,15 +243,15 @@ export async function getContentCreatorFeedback(filteredCourses : populatedCours
         lastThirtyDays: Number(Totalaverage30dProgress.toFixed(1))
       }
     };
-    
+
   } catch (err) {
     throw { error: errorCodes['E0001'] }
   }
 }
 
 
-//Uses any[] on purpose, as it avoids parsing to helper type, and the filter function should be able to filter any type of array as long as it has courseIds
-function filterCoursesBasedOnCid(courses : any[], courseIds : string[]){
+//Uses generic, as it avoids parsing to helper type, and the filter function should be able to filter any type of array as long as it has courseIds
+function filterCoursesBasedOnCid <T extends { documentId: string }> (courses : T[], courseIds : string[]){
   if (courseIds.length == 0){
     return [];
   }
