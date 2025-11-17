@@ -28,9 +28,9 @@
       "max": 3
     },
     "durationHours": {
-      "type": "decimal",
+      "type": "integer",
       "required": true,
-      "min": 0.1
+      "min": 1
     },
     "numOfRatings": {
       "type": "integer",

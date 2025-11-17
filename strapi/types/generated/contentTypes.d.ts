@@ -668,11 +668,11 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
         },
         number
       >;
-    durationHours: Schema.Attribute.Decimal &
+    durationHours: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
         {
-          min: 0.1;
+          min: 1;
         },
         number
       >;
