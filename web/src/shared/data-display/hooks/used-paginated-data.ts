@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable no-console */
 import {
   useQuery,
@@ -164,6 +165,7 @@ export default function usePaginatedData<T>(
 ): UsePaginatedDataReturn<T> {
   const { queryKey, urlPath, fields, populate, config, staticFilters, status } = props;
 
+  const { preferences: { preferredRenderMode, clientServerThreshold } } = useAuth();
   // Extract mode-specific props
   const isIntegratedMode = props.mode === "integrated";
   const tableState = isIntegratedMode ? props.tableState : undefined;
@@ -175,7 +177,7 @@ export default function usePaginatedData<T>(
   const baseUrl = getBaseApiUrl() + urlPath;
   if (LOGGING_ENABLED) console.debug("usePaginatedData: Base URL:", baseUrl);
 
-  const { renderMode, clientModeThreshold } = config ?? {};
+  const { renderMode, clientModeThreshold } = config ?? { renderMode: preferredRenderMode, clientModeThreshold: clientServerThreshold };
 
   // Internal state for STANDALONE mode only
   const [internalPagination, setInternalPagination] = useState<PaginationState>(
@@ -220,7 +222,7 @@ export default function usePaginatedData<T>(
 
   // --- Mode Resolution ---
   const effectiveMode = renderMode ?? "auto";
-  console.debug("usePaginatedData: Effective mode:", effectiveMode);
+  if (LOGGING_ENABLED) console.debug("usePaginatedData: Effective mode:", effectiveMode);
   const effectiveClientModeThreshold = clientModeThreshold ?? 10000;
 
   // 1. DETECTION QUERY: Runs only in "auto" mode to determine the total number of items.
@@ -236,7 +238,7 @@ export default function usePaginatedData<T>(
       ...(effectiveStatus === undefined ? [] : [{ status: effectiveStatus }]),
     ],
     queryFn: async ({ signal }) => {
-      console.debug("usePaginatedData: Auto-detecting mode...");
+      if (LOGGING_ENABLED) console.debug("usePaginatedData: Auto-detecting mode...");
 
       // Fetch just one item to get the total count from Strapi's pagination meta
       // NOTE: Detection ignores globalFilter - we want total item count, not filtered count
@@ -284,7 +286,7 @@ export default function usePaginatedData<T>(
   const resolvedMode = useMemo<ResolvedRenderMode | null>(() => {
     // If override is set, use it immediately (don't wait for detection)
     if (renderMode !== undefined && renderMode !== "auto") {
-      console.debug(
+      if (LOGGING_ENABLED) console.debug(
         `usePaginatedData: Using explicit render mode: ${renderMode}`,
       );
       return renderMode;
@@ -295,13 +297,13 @@ export default function usePaginatedData<T>(
       const totalElements = detectionQuery.data.meta.pagination.total;
       const newMode =
         totalElements <= effectiveClientModeThreshold ? "client" : "server";
-      console.debug(
+      if (LOGGING_ENABLED) console.debug(
         `usePaginatedData: Auto-detected mode: ${newMode} (Total: ${String(totalElements)}, Threshold: ${String(effectiveClientModeThreshold)})`,
       );
       return newMode;
     }
     if (detectionQuery.isError) {
-      console.debug(
+      if (LOGGING_ENABLED) console.debug(
         "Auto-detection failed, defaulting to server mode.",
         detectionQuery.error,
       );
@@ -345,7 +347,7 @@ export default function usePaginatedData<T>(
     ],
     // The query function fetches data based on the current mode and state
     queryFn: async ({ signal }) => {
-      console.debug(
+      if (LOGGING_ENABLED) console.debug(
         `usePaginatedData: Fetching data in ${String(resolvedMode)} mode`,
         {
           pageIndex: pagination?.pageIndex,
@@ -449,7 +451,7 @@ export default function usePaginatedData<T>(
     ) {
       // Reset to page 0 when filters/sorting change
       if (pagination?.pageIndex !== 0) {
-        console.debug(
+        if (LOGGING_ENABLED) console.debug(
           "usePaginatedData: Sorting/filtering changed in standalone mode, resetting to page 0.",
         );
         setInternalPagination((p) => ({ ...p, pageIndex: 0 }));

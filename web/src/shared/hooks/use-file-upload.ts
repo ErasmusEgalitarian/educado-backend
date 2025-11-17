@@ -4,7 +4,7 @@ import { fetchHeaders, getBaseApiUrl } from "../config/api-config";
 import type { UploadPostResponses } from "../api/types.gen";
 
 interface useFileUploadReturn {
-  uploadFile: (files: FileWithMetadata[]) => Promise<string[] | undefined>;
+  uploadFile: (files: FileWithMetadata[]) => Promise<number[] | undefined>;
 }
 
 // The upload response can be either a single file object or an array of file objects
