@@ -522,6 +522,8 @@ export const zCertificate = z.object({
                         documentId: z.string().optional()
                     })).optional()
                 })).optional(),
+                creator_published_at: z.string().datetime().optional(),
+                admin_control_at: z.string().datetime().optional(),
                 createdAt: z.string().datetime().optional(),
                 updatedAt: z.string().datetime().optional(),
                 publishedAt: z.string().datetime().optional(),
@@ -1224,6 +1226,8 @@ export const zContentCreator = z.object({
                 documentId: z.string().optional()
             })).optional()
         })).optional(),
+        creator_published_at: z.string().datetime().optional(),
+        admin_control_at: z.string().datetime().optional(),
         createdAt: z.string().datetime().optional(),
         updatedAt: z.string().datetime().optional(),
         publishedAt: z.string().datetime().optional(),
@@ -1312,6 +1316,8 @@ export const zCourseRequest = z.object({
             z.number().int(),
             z.string()
         ])).optional(),
+        creator_published_at: z.string().datetime().optional(),
+        admin_control_at: z.string().datetime().optional(),
         locale: z.string().optional(),
         localizations: z.array(z.union([
             z.number().int(),
@@ -1851,6 +1857,8 @@ export const zCourse = z.object({
                     documentId: z.string().optional()
                 })).optional()
             })).optional(),
+            creator_published_at: z.string().datetime().optional(),
+            admin_control_at: z.string().datetime().optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -1905,6 +1913,8 @@ export const zCourse = z.object({
         id: z.number().optional(),
         documentId: z.string().optional()
     })).optional(),
+    creator_published_at: z.string().datetime().optional(),
+    admin_control_at: z.string().datetime().optional(),
     createdAt: z.string().datetime().optional(),
     updatedAt: z.string().datetime().optional(),
     publishedAt: z.string().datetime().optional(),
@@ -2459,6 +2469,8 @@ export const zCourseCategory = z.object({
                 documentId: z.string().optional()
             })).optional()
         })).optional(),
+        creator_published_at: z.string().datetime().optional(),
+        admin_control_at: z.string().datetime().optional(),
         createdAt: z.string().datetime().optional(),
         updatedAt: z.string().datetime().optional(),
         publishedAt: z.string().datetime().optional(),
@@ -2978,6 +2990,8 @@ export const zCourseSelection = z.object({
                 documentId: z.string().optional()
             })).optional()
         })).optional(),
+        creator_published_at: z.string().datetime().optional(),
+        admin_control_at: z.string().datetime().optional(),
         createdAt: z.string().datetime().optional(),
         updatedAt: z.string().datetime().optional(),
         publishedAt: z.string().datetime().optional(),
@@ -3931,6 +3945,8 @@ export const zFeedback = z.object({
                 documentId: z.string().optional()
             })).optional()
         })).optional(),
+        creator_published_at: z.string().datetime().optional(),
+        admin_control_at: z.string().datetime().optional(),
         createdAt: z.string().datetime().optional(),
         updatedAt: z.string().datetime().optional(),
         publishedAt: z.string().datetime().optional(),
@@ -4740,6 +4756,8 @@ export const zStudent = z.object({
                     documentId: z.string().optional()
                 })).optional()
             })).optional(),
+            creator_published_at: z.string().datetime().optional(),
+            admin_control_at: z.string().datetime().optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -5270,6 +5288,8 @@ export const zUserLog = z.object({
                         documentId: z.string().optional()
                     })).optional()
                 })).optional(),
+                creator_published_at: z.string().datetime().optional(),
+                admin_control_at: z.string().datetime().optional(),
                 createdAt: z.string().datetime().optional(),
                 updatedAt: z.string().datetime().optional(),
                 publishedAt: z.string().datetime().optional(),
@@ -6303,6 +6323,8 @@ export const zCourseGetCoursesRequest = z.object({
             'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
+            'creator_published_at',
+            'admin_control_at',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -6329,6 +6351,8 @@ export const zCourseGetCoursesRequest = z.object({
                 'durationHours',
                 'numOfRatings',
                 'numOfSubscriptions',
+                'creator_published_at',
+                'admin_control_at',
                 'createdAt',
                 'updatedAt',
                 'publishedAt'
@@ -6340,6 +6364,8 @@ export const zCourseGetCoursesRequest = z.object({
                 'durationHours',
                 'numOfRatings',
                 'numOfSubscriptions',
+                'creator_published_at',
+                'admin_control_at',
                 'createdAt',
                 'updatedAt',
                 'publishedAt'
@@ -6371,10 +6397,6 @@ export const zCourseGetCoursesRequest = z.object({
                 'students',
                 'content_creators'
             ]))
-        ]).optional(),
-        status: z.enum([
-            'draft',
-            'published'
         ]).optional()
     }).optional()
 });
@@ -6395,6 +6417,8 @@ export const zCoursePostCoursesRequest = z.object({
             'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
+            'creator_published_at',
+            'admin_control_at',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -6417,10 +6441,6 @@ export const zCoursePostCoursesRequest = z.object({
                 'students',
                 'content_creators'
             ]))
-        ]).optional(),
-        status: z.enum([
-            'draft',
-            'published'
         ]).optional()
     }).optional()
 });
@@ -6443,6 +6463,8 @@ export const zCourseDeleteCoursesByIdRequest = z.object({
             'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
+            'creator_published_at',
+            'admin_control_at',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -6466,11 +6488,7 @@ export const zCourseDeleteCoursesByIdRequest = z.object({
                 'content_creators'
             ]))
         ]).optional(),
-        filters: z.record(z.unknown()).optional(),
-        status: z.enum([
-            'draft',
-            'published'
-        ]).optional()
+        filters: z.record(z.unknown()).optional()
     }).optional()
 });
 
@@ -6492,6 +6510,8 @@ export const zCourseGetCoursesByIdRequest = z.object({
             'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
+            'creator_published_at',
+            'admin_control_at',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -6524,6 +6544,8 @@ export const zCourseGetCoursesByIdRequest = z.object({
                 'durationHours',
                 'numOfRatings',
                 'numOfSubscriptions',
+                'creator_published_at',
+                'admin_control_at',
                 'createdAt',
                 'updatedAt',
                 'publishedAt'
@@ -6535,6 +6557,8 @@ export const zCourseGetCoursesByIdRequest = z.object({
                 'durationHours',
                 'numOfRatings',
                 'numOfSubscriptions',
+                'creator_published_at',
+                'admin_control_at',
                 'createdAt',
                 'updatedAt',
                 'publishedAt'
@@ -6547,10 +6571,6 @@ export const zCourseGetCoursesByIdRequest = z.object({
                 'asc',
                 'desc'
             ])))
-        ]).optional(),
-        status: z.enum([
-            'draft',
-            'published'
         ]).optional()
     }).optional()
 });
@@ -6573,6 +6593,8 @@ export const zCoursePutCoursesByIdRequest = z.object({
             'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
+            'creator_published_at',
+            'admin_control_at',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -6595,10 +6617,6 @@ export const zCoursePutCoursesByIdRequest = z.object({
                 'students',
                 'content_creators'
             ]))
-        ]).optional(),
-        status: z.enum([
-            'draft',
-            'published'
         ]).optional()
     }).optional()
 });
