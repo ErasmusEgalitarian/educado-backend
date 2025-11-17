@@ -26,21 +26,29 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
   toast.success("Submitted values: " + JSON.stringify(values));
 }
 
-// Define the Zod schema for validation and form data shape.
-const formSchema = z.object({
-  motivation: z.string().min(0),
+const educationSchema = z.object({
   educationType: z.string().min(0),
   isInProgress: z.string().min(0),
   course: z.string().min(0),
   institution: z.string().min(0),
   acedemicStartDate: z.string().min(0),
   acedemicEndDate: z.string().min(0),
+});
+
+const jobSchema = z.object({
   organization: z.string().min(0),
   jobTitle: z.string().min(0),
   jobStartDate: z.string().min(0),
   jobEndDate: z.string().min(0),
   description: z.string().min(0),
 });
+
+// Define the Zod schema for validation and form data shape.
+const formSchema = z.object({
+  motivation: z.string().min(0),
+  educations: z.array(educationSchema).min(1),
+  jobs: z.array(jobSchema).min(1),
+}); 
 
 // Note: the parent container should provide a single useForm instance via
 // FormProvider. The child form components below use useFormContext() to
