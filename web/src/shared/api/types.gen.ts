@@ -1008,6 +1008,8 @@ export type ContentCreator = {
             documentId?: string;
           }>;
         }>;
+        creator_published_at?: string;
+        admin_control_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -1442,6 +1444,8 @@ export type Course = {
                 documentId?: string;
               }>;
             }>;
+            creator_published_at?: string;
+            admin_control_at?: string;
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -2254,6 +2258,8 @@ export type CourseCategory = {
             documentId?: string;
           }>;
         }>;
+        creator_published_at?: string;
+        admin_control_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;

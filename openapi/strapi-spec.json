@@ -20570,12 +20570,9 @@
                           "type": "string"
                         },
                         "createdAt": {
-                          "type": "string",
                           "format": "date-time"
                         },
                         "updatedAt": {
-                          "type": "string",
-                          "format": "date-time"
                         },
                         "publishedAt": {
                           "type": "string",
@@ -23040,12 +23037,9 @@
                   "type": "string"
                 },
                 "createdAt": {
-                  "type": "string",
                   "format": "date-time"
                 },
                 "updatedAt": {
-                  "type": "string",
-                  "format": "date-time"
                 },
                 "publishedAt": {
                   "type": "string",
@@ -23306,26 +23300,24 @@
                 "type": "string"
               },
               "locale": {
-                "type": "string"
               },
               "localizations": {
                 "type": "array",
                 "items": {
-                  "oneOf": [
-                    {
-                      "type": "integer"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
                     },
-                    {
+                    "documentId": {
                       "type": "string"
                     }
-                  ],
-                  "example": "string or id"
+                  }
                 }
               }
             }
           }
-        }
-      },
+        },
       "CourseListResponse": {
         "type": "object",
         "properties": {
@@ -25302,12 +25294,9 @@
             "type": "string"
           },
           "createdAt": {
-            "type": "string",
             "format": "date-time"
           },
           "updatedAt": {
-            "type": "string",
-            "format": "date-time"
           },
           "publishedAt": {
             "type": "string",
@@ -27128,12 +27117,9 @@
                   "type": "string"
                 },
                 "createdAt": {
-                  "type": "string",
                   "format": "date-time"
                 },
                 "updatedAt": {
-                  "type": "string",
-                  "format": "date-time"
                 },
                 "publishedAt": {
                   "type": "string",
@@ -28848,12 +28834,9 @@
                 "type": "string"
               },
               "createdAt": {
-                "type": "string",
                 "format": "date-time"
               },
               "updatedAt": {
-                "type": "string",
-                "format": "date-time"
               },
               "publishedAt": {
                 "type": "string",
@@ -32015,12 +31998,9 @@
                 "type": "string"
               },
               "createdAt": {
-                "type": "string",
                 "format": "date-time"
               },
               "updatedAt": {
-                "type": "string",
-                "format": "date-time"
               },
               "publishedAt": {
                 "type": "string",
@@ -34671,12 +34651,9 @@
                       "type": "string"
                     },
                     "createdAt": {
-                      "type": "string",
                       "format": "date-time"
                     },
                     "updatedAt": {
-                      "type": "string",
-                      "format": "date-time"
                     },
                     "publishedAt": {
                       "type": "string",
@@ -36422,12 +36399,9 @@
                           "type": "string"
                         },
                         "createdAt": {
-                          "type": "string",
                           "format": "date-time"
                         },
                         "updatedAt": {
-                          "type": "string",
-                          "format": "date-time"
                         },
                         "publishedAt": {
                           "type": "string",

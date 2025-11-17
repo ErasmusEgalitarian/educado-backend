@@ -13016,12 +13016,9 @@
                 "type": "string"
               },
               "locale": {
-                "type": "string"
               },
               "localizations": {
                 "type": "array",
-                "items": {
-                  "oneOf": [
                     {
                       "type": "integer"
                     },
@@ -14827,12 +14824,9 @@
                       "type": "string"
                     },
                     "createdAt": {
-                      "type": "string",
                       "format": "date-time"
                     },
                     "updatedAt": {
-                      "type": "string",
-                      "format": "date-time"
                     },
                     "publishedAt": {
                       "type": "string",
@@ -15008,12 +15002,9 @@
             "type": "string"
           },
           "createdAt": {
-            "type": "string",
             "format": "date-time"
           },
           "updatedAt": {
-            "type": "string",
-            "format": "date-time"
           },
           "publishedAt": {
             "type": "string",
@@ -16834,12 +16825,9 @@
                   "type": "string"
                 },
                 "createdAt": {
-                  "type": "string",
                   "format": "date-time"
                 },
                 "updatedAt": {
-                  "type": "string",
-                  "format": "date-time"
                 },
                 "publishedAt": {
                   "type": "string",
@@ -18554,12 +18542,9 @@
                 "type": "string"
               },
               "createdAt": {
-                "type": "string",
                 "format": "date-time"
               },
               "updatedAt": {
-                "type": "string",
-                "format": "date-time"
               },
               "publishedAt": {
                 "type": "string",
@@ -23478,12 +23463,9 @@
                 "type": "string"
               },
               "createdAt": {
-                "type": "string",
                 "format": "date-time"
               },
               "updatedAt": {
-                "type": "string",
-                "format": "date-time"
               },
               "publishedAt": {
                 "type": "string",
@@ -26134,12 +26116,9 @@
                       "type": "string"
                     },
                     "createdAt": {
-                      "type": "string",
                       "format": "date-time"
                     },
                     "updatedAt": {
-                      "type": "string",
-                      "format": "date-time"
                     },
                     "publishedAt": {
                       "type": "string",
@@ -27885,12 +27864,9 @@
                           "type": "string"
                         },
                         "createdAt": {
-                          "type": "string",
                           "format": "date-time"
                         },
                         "updatedAt": {
-                          "type": "string",
-                          "format": "date-time"
                         },
                         "publishedAt": {
                           "type": "string",
