@@ -58,7 +58,7 @@ const CourseEditorReview = ({
       });
 
       onComplete?.();
-      addNotification("Published course!");
+      addNotification(`Published course '${course.title}'.`);
       navigate("/courses");
     } catch (error) {
       console.error("Error publishing course:", error);
