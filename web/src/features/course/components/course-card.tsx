@@ -63,7 +63,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
           </div>
 
           <p className="text-sm text-gray-600">
-            {course.durationHours != null ? `${course.durationHours} horas` : "—"}
+            {course.durationHours != null ? `${course.durationHours} ${t("courses.hours")}` : "—"}
           </p>
         </div>
 
