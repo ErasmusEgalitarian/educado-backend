@@ -72,7 +72,7 @@ const CourseOverviewPage = () => {
                 allowedViewModes="both"
                 gridItemRender={courseCard}
                 fields={
-                  ["title", "difficulty", "description"] as (keyof Course)[]
+                  ["title", "difficulty", "description", "durationHours", ] as (keyof Course)[]
                 }
                 populate={["course_categories"]}
                 config={{

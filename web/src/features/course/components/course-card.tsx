@@ -22,6 +22,8 @@ import StarRating from "../../../shared/components/star-rating";
  * @param {Course} course The course to be displayed
  * @returns HTML Element
  */
+
+
 export const CourseCard = ({ course }: { course: Course }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -60,7 +62,9 @@ export const CourseCard = ({ course }: { course: Course }) => {
             ))}
           </div>
 
-          <p className="text-sm text-gray-600">8 horas</p>
+          <p className="text-sm text-gray-600">
+            {course.durationHours != null ? `${course.durationHours} ${t("courses.hours")}` : "—"}
+          </p>
         </div>
 
         <StarRating rating={4.2} size="sm" className="mt-2" />

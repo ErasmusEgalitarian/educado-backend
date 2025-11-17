@@ -2371,6 +2371,7 @@
                   "title",
                   "description",
                   "difficulty",
+                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -2394,6 +2395,7 @@
                   "title",
                   "description",
                   "difficulty",
+                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -2492,6 +2494,7 @@
                     "title",
                     "description",
                     "difficulty",
+                    "durationHours",
                     "numOfRatings",
                     "numOfSubscriptions",
                     "createdAt",
@@ -2507,6 +2510,7 @@
                       "title",
                       "description",
                       "difficulty",
+                      "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
                       "createdAt",
@@ -2523,6 +2527,7 @@
                       "title",
                       "description",
                       "difficulty",
+                      "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
                       "createdAt",
@@ -2548,6 +2553,7 @@
                         "title",
                         "description",
                         "difficulty",
+                        "durationHours",
                         "numOfRatings",
                         "numOfSubscriptions",
                         "createdAt",
@@ -2708,6 +2714,7 @@
                   "title",
                   "description",
                   "difficulty",
+                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -2879,6 +2886,7 @@
                   "title",
                   "description",
                   "difficulty",
+                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -2944,6 +2952,7 @@
                   "title",
                   "description",
                   "difficulty",
+                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -2968,6 +2977,7 @@
                     "title",
                     "description",
                     "difficulty",
+                    "durationHours",
                     "numOfRatings",
                     "numOfSubscriptions",
                     "createdAt",
@@ -2983,6 +2993,7 @@
                       "title",
                       "description",
                       "difficulty",
+                      "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
                       "createdAt",
@@ -2999,6 +3010,7 @@
                       "title",
                       "description",
                       "difficulty",
+                      "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
                       "createdAt",
@@ -3024,6 +3036,7 @@
                         "title",
                         "description",
                         "difficulty",
+                        "durationHours",
                         "numOfRatings",
                         "numOfSubscriptions",
                         "createdAt",
@@ -3151,6 +3164,7 @@
                   "title",
                   "description",
                   "difficulty",
+                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -3320,6 +3334,7 @@
                   "title",
                   "description",
                   "difficulty",
+                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -3385,6 +3400,7 @@
                   "title",
                   "description",
                   "difficulty",
+                  "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
                   "createdAt",
@@ -18721,6 +18737,9 @@
                         "difficulty": {
                           "type": "integer"
                         },
+                        "durationHours": {
+                          "type": "integer"
+                        },
                         "numOfRatings": {
                           "type": "integer"
                         },
@@ -20804,6 +20823,9 @@
                 "difficulty": {
                   "type": "integer"
                 },
+                "durationHours": {
+                  "type": "integer"
+                },
                 "numOfRatings": {
                   "type": "integer"
                 },
@@ -22498,7 +22520,8 @@
           "data": {
             "required": [
               "title",
-              "difficulty"
+              "difficulty",
+              "durationHours"
             ],
             "type": "object",
             "properties": {
@@ -22509,6 +22532,9 @@
                 "type": "string"
               },
               "difficulty": {
+                "type": "integer"
+              },
+              "durationHours": {
                 "type": "integer"
               },
               "numOfRatings": {
@@ -22658,7 +22684,8 @@
         "type": "object",
         "required": [
           "title",
-          "difficulty"
+          "difficulty",
+          "durationHours"
         ],
         "properties": {
           "id": {
@@ -22674,6 +22701,9 @@
             "type": "string"
           },
           "difficulty": {
+            "type": "integer"
+          },
+          "durationHours": {
             "type": "integer"
           },
           "numOfRatings": {
@@ -23317,6 +23347,9 @@
                       "type": "string"
                     },
                     "difficulty": {
+                      "type": "integer"
+                    },
+                    "durationHours": {
                       "type": "integer"
                     },
                     "numOfRatings": {
@@ -24676,6 +24709,9 @@
                   "type": "string"
                 },
                 "difficulty": {
+                  "type": "integer"
+                },
+                "durationHours": {
                   "type": "integer"
                 },
                 "numOfRatings": {
@@ -26997,6 +27033,9 @@
               "difficulty": {
                 "type": "integer"
               },
+              "durationHours": {
+                "type": "integer"
+              },
               "numOfRatings": {
                 "type": "integer"
               },
@@ -29281,6 +29320,9 @@
                 "type": "string"
               },
               "difficulty": {
+                "type": "integer"
+              },
+              "durationHours": {
                 "type": "integer"
               },
               "numOfRatings": {
@@ -31933,6 +31975,9 @@
                     "difficulty": {
                       "type": "integer"
                     },
+                    "durationHours": {
+                      "type": "integer"
+                    },
                     "numOfRatings": {
                       "type": "integer"
                     },
@@ -33794,6 +33839,9 @@
                           "type": "string"
                         },
                         "difficulty": {
+                          "type": "integer"
+                        },
+                        "durationHours": {
                           "type": "integer"
                         },
                         "numOfRatings": {
@@ -36082,6 +36130,35 @@
           },
           "password": {
             "type": "string"
+          }
+        }
+      },
+      "JWTContentCreatorResponse": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "userInfo": {
+            "type": "object",
+            "properties": {
+              "documentId": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "verifiedAt": {
+                "type": "string",
+                "format": "date"
+              }
+            }
           }
         }
       },
