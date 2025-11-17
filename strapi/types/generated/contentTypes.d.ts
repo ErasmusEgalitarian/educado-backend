@@ -477,14 +477,6 @@ export interface ApiContentCreatorContentCreator
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 400;
       }>;
-    companyEnd: Schema.Attribute.Date;
-    companyStart: Schema.Attribute.Date & Schema.Attribute.Required;
-    courseExperience: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 40;
-        minLength: 1;
-      }>;
     courses: Schema.Attribute.Relation<'manyToMany', 'api::course.course'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -495,16 +487,12 @@ export interface ApiContentCreatorContentCreator
         maxLength: 40;
         minLength: 1;
       }>;
-    currentJobTitle: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 40;
-        minLength: 1;
-      }>;
     education: Schema.Attribute.Enumeration<['TODO1', 'TODO2', 'TODO3']> &
       Schema.Attribute.Required;
-    eduEnd: Schema.Attribute.Date & Schema.Attribute.Required;
-    eduStart: Schema.Attribute.Date & Schema.Attribute.Required;
+    educations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::education.education'
+    >;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
@@ -514,17 +502,7 @@ export interface ApiContentCreatorContentCreator
         maxLength: 50;
         minLength: 1;
       }>;
-    institution: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 40;
-        minLength: 1;
-      }>;
-    jobDescription: Schema.Attribute.String &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 400;
-        minLength: 1;
-      }>;
+    jobs: Schema.Attribute.Relation<'oneToMany', 'api::job.job'>;
     lastName: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 50;
@@ -693,6 +671,38 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiEducationEducation extends Struct.CollectionTypeSchema {
+  collectionName: 'educations';
+  info: {
+    displayName: 'Education';
+    pluralName: 'educations';
+    singularName: 'education';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    courseExperience: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    educationType: Schema.Attribute.String;
+    endDate: Schema.Attribute.Date;
+    institution: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::education.education'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    startDate: Schema.Attribute.Date;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiExerciseOptionExerciseOption
   extends Struct.CollectionTypeSchema {
   collectionName: 'exercise_options';
@@ -812,6 +822,35 @@ export interface ApiFeedbackFeedback extends Struct.CollectionTypeSchema {
         number
       >;
     student: Schema.Attribute.Relation<'manyToOne', 'api::student.student'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiJobJob extends Struct.CollectionTypeSchema {
+  collectionName: 'jobs';
+  info: {
+    displayName: 'Job';
+    pluralName: 'jobs';
+    singularName: 'job';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Company: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Description: Schema.Attribute.String;
+    EndDate: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::job.job'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    StartDate: Schema.Attribute.Date;
+    Title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1532,9 +1571,11 @@ declare module '@strapi/strapi' {
       'api::course-category.course-category': ApiCourseCategoryCourseCategory;
       'api::course-selection.course-selection': ApiCourseSelectionCourseSelection;
       'api::course.course': ApiCourseCourse;
+      'api::education.education': ApiEducationEducation;
       'api::exercise-option.exercise-option': ApiExerciseOptionExerciseOption;
       'api::exercise.exercise': ApiExerciseExercise;
       'api::feedback.feedback': ApiFeedbackFeedback;
+      'api::job.job': ApiJobJob;
       'api::lecture.lecture': ApiLectureLecture;
       'api::password-reset-token.password-reset-token': ApiPasswordResetTokenPasswordResetToken;
       'api::student.student': ApiStudentStudent;
