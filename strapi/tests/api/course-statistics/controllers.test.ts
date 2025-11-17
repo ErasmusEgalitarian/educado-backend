@@ -67,7 +67,7 @@ describe('Test statistics', () => {
     });
 
     it('Get students statistics for a content creator', async () => {
-        const result = await getStudentStats(mockFilteredCourses);
+        const result = getStudentStats(mockFilteredCourses);
         expect(result).toBeDefined();
         expect(result.total).toBeDefined();
         expect(result.progress).toBeDefined();
@@ -80,7 +80,7 @@ describe('Test statistics', () => {
     });
 
     it('Get all course feedbacks for a content creator', async () => {
-        const result = await getContentCreatorFeedback(mockFilteredCourses);
+        const result = getContentCreatorFeedback(mockFilteredCourses);
         expect(result).toBeDefined();
         expect(result.total).toBeDefined();
         expect(result.progress).toBeDefined();
@@ -93,7 +93,7 @@ describe('Test statistics', () => {
     });
 
     it('Get course statistics for a content creator', async () => {
-        const result = await getCoursesStats(mockFilteredCourses);
+        const result = getCoursesStats(mockFilteredCourses);
         expect(result).toBeDefined();
         expect(result.total).toBeDefined();
         expect(result.progress).toBeDefined();
