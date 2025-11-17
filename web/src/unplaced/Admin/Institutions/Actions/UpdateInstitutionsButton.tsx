@@ -14,7 +14,6 @@ export const UpdateInstitutionButton = ({
   refreshFn,
 }: {
   institution: Institution;
-  // generic refresh function (React Query refetch, etc)
   refreshFn: () => void | Promise<unknown>;
 }) => {
   const [showModal, setShowModal] = useState(false);
