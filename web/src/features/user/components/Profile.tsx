@@ -9,6 +9,7 @@ import { z } from "zod";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import { tempObjects } from "@/shared/lib/formStates";
+import { contentCreatorGetContentCreatorsById, contentCreatorPutContentCreatorsById } from "@/shared/api/sdk.gen";
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import Layout from "../../../shared/components/Layout";
@@ -44,6 +45,7 @@ const Profile = () => {
     handleFileChange,
     handleCharCountBio,
     formData,
+    setFormData,
     handleInputChange,
     fetchuser,
     fetchStaticData,
@@ -64,7 +66,7 @@ const Profile = () => {
     addNewExperienceForm,
     handleEducationDelete,
     addNewEducationForm,
-    SubmitValidation,
+    SubmitValidation: _SubmitValidation,
     submitError,
     handleEducationInputChange,
     experienceFormData,
@@ -96,79 +98,69 @@ const Profile = () => {
     useState(false);
   const [isProfessionalExperienceOpen, setIsProfessionalExperienceOpen] =
     useState(false);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [_hasSubmitted, setHasSubmitted] = useState(false);
   const [isAccountDeletionModalVisible, setIsAccountDeletionModalVisible] =
     useState(false);
-  const [areAllFormsFilledCorrect, setAreAllFormsFilledCorrect] =
+  const [_areAllFormsFilledCorrect, setAreAllFormsFilledCorrect] =
     useState(false);
   const { clearToken } = useAuthStore((state) => state);
 
-  //callback
+  //callback (kept for legacy compatibility but not used)
   const {
-    call: saveEdits,
     isLoading: submitLoading,
-    error,
   } = useApi(ProfileServices.putFormOne);
 
+  // State for storing content creator data
+  const [contentCreatorData, setContentCreatorData] = useState<any>(null);
+
   // Form submit, sends data to backend upon user interaction
-  const handleUpdateSubmit = async (index: any, data: any) => {
-    const personalData = {
-      userID: userID,
-      userName: formData.UserName,
-      userBio: formData.bio,
-      userLinkedInLink: formData.linkedin,
-      userEmail: formData.UserEmail,
-      userPhoto: formData.photo,
-    };
-
-    const educationData = {
-      userID: userID,
-      educationLevel: educationFormData
-        .map((data) => data.educationLevel)
-        .flat(),
-      status: educationFormData.map((data) => data.status).flat(),
-      course: educationFormData.map((data) => data.course).flat(),
-      institution: educationFormData.map((data) => data.institution).flat(),
-      startDate: educationFormData
-        .map((data) => data.educationStartDate)
-        .flat(),
-      endDate: educationFormData.map((data) => data.educationEndDate).flat(),
-    };
-
-    const workData = {
-      userID: userID,
-      company: experienceFormData.map((data) => data.company).flat(),
-      jobTitle: experienceFormData.map((data) => data.jobTitle).flat(),
-      startDate: experienceFormData.map((data) => data.workStartDate).flat(),
-      endDate: experienceFormData.map((data) => data.workEndDate).flat(),
-      isCurrentJob: experienceFormData.map((data) => data.isCurrentJob).flat(),
-      description: experienceFormData.map((data) => data.description).flat(),
-    };
-
+  const handleUpdateSubmit = async (_index: any, _data: any) => {
     try {
-      const response = await saveEdits(personalData);
+      const documentId = localStorage.getItem("id");
+      if (!documentId) {
+        toast.error("Erro: ID do usuário não encontrado");
+        return;
+      }
 
-      if (response.status === 200) {
-        // Delete existing education data on the backend before sending new updated data
-        await Promise.all(
-          educationFormData.map(async (item, index) => {
-            if (item._id) await ProfileServices.deleteEducationForm(item._id);
-          })
-        );
+      // Split the name into firstName and lastName
+      const nameParts = (formData as any).UserName.trim().split(" ");
+      const firstName = nameParts[0] || "";
+      const lastName = nameParts.slice(1).join(" ");
 
-        // Send the updated educationData to the backend
-        await ProfileServices.putFormTwo(educationData);
+      // Update content creator profile in Strapi
+      const response = await contentCreatorPutContentCreatorsById({
+        path: { id: documentId },
+        body: {
+          data: {
+            firstName: firstName,
+            ...(lastName && { lastName: lastName }), // Only include lastName if it's not empty
+            biography: (formData as any).bio || "",
+            // Note: Keep existing required fields from the current data
+            email: contentCreatorData?.email || (formData as any).UserEmail,
+            password: contentCreatorData?.password || "",
+            education: contentCreatorData?.education || "TODO1",
+            statusValue: contentCreatorData?.statusValue || "TODO1",
+            courseExperience: contentCreatorData?.courseExperience || "",
+            institution: contentCreatorData?.institution || "",
+            eduStart: contentCreatorData?.eduStart || new Date().toISOString().split('T')[0],
+            eduEnd: contentCreatorData?.eduEnd || new Date().toISOString().split('T')[0],
+            currentCompany: contentCreatorData?.currentCompany || "",
+            currentJobTitle: contentCreatorData?.currentJobTitle || "",
+            companyStart: contentCreatorData?.companyStart || new Date().toISOString().split('T')[0],
+          },
+        },
+      });
 
-        // Delete existing work data on the backend before sending new updated data
-        await Promise.all(
-          experienceFormData.map(async (item, index) => {
-            if (item._id) await ProfileServices.deleteExperienceForm(item._id);
-          })
-        );
+      if (response) {
+        // Update local storage with new name
+        const userInfo = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+        userInfo.firstName = firstName;
+        userInfo.lastName = lastName;
+        localStorage.setItem("loggedInUser", JSON.stringify(userInfo));
 
-        // Send the updated workData to the backend
-        await ProfileServices.putFormThree(workData);
-
+        // Show success message
+        toast.success("Perfil atualizado com sucesso!");
+        
         // Disable submit button after successful submission
         setAreAllFormsFilledCorrect(false);
         setHasSubmitted(true);
@@ -184,6 +176,40 @@ const Profile = () => {
   useEffect(() => {
     setHasSubmitted(false);
   }, [educationFormData, experienceFormData, formData]);
+
+  // Fetch content creator data from Strapi
+  useEffect(() => {
+    const fetchContentCreatorData = async () => {
+      try {
+        const documentId = localStorage.getItem("id");
+        if (!documentId) {
+          console.error("No documentId found in localStorage");
+          return;
+        }
+
+        const response = await contentCreatorGetContentCreatorsById({
+          path: { id: documentId },
+        });
+
+        if (response?.data) {
+          setContentCreatorData(response.data);
+          // Update formData with fetched data
+          setFormData((prevData) => ({
+            ...prevData,
+            UserName: `${response.data?.firstName || ""} ${response.data?.lastName || ""}`.trim(),
+            UserEmail: response.data?.email || "",
+            bio: response.data?.biography || "",
+            linkedin: "", // LinkedIn not in content creator model
+          }));
+        }
+      } catch (error) {
+        console.error("Error fetching content creator data:", error);
+        toast.error("Erro ao carregar dados do perfil");
+      }
+    };
+
+    fetchContentCreatorData();
+  }, []);
 
   // Render and fetch signup user details
   useEffect(() => {
@@ -355,7 +381,7 @@ const Profile = () => {
                   errors={errors}
                 />
               ) : (
-                educationFormData.map((form, index) => (
+                educationFormData.map((_form, index) => (
                   <AcademicExperienceForm
                     key={index}
                     index={index}
@@ -421,7 +447,7 @@ const Profile = () => {
                   errors={errors}
                 />
               ) : (
-                experienceFormData.map((form, index) => (
+                experienceFormData.map((_form, index) => (
                   <ProfessionalExperienceForm
                     key={index}
                     index={index}
@@ -436,18 +462,6 @@ const Profile = () => {
                   />
                 ))
               ))}
-
-            {/* Warning text for empty/incorrect forms */}
-            <div>
-              {submitError && (
-                <p
-                  className="flex items-center mt-1 ml-4 text-warning text-sm text-right"
-                  role="alert"
-                >
-                  Alguns campos não estão preenchidos corretamente!
-                </p>
-              )}
-            </div>
 
             {/* Bottom page buttons */}
             <div className="w-[1000px] h-[52px] justify-between items-center inline-flex gap-4 mt-16">
@@ -474,19 +488,9 @@ const Profile = () => {
               <button
                 type="button"
                 onClick={() => {
-                  SubmitValidation();
-
-                  if (areAllFormsFilledCorrect) {
-                    handleSubmit(handleUpdateSubmit)();
-                  }
+                  handleSubmit(handleUpdateSubmit)();
                 }}
-                className={`px-10 py-4 rounded-lg justify-center items-center gap-2.5 flex text-center text-lg font-bold ${
-                  // Opacity dimmed when button is disabled
-                  areAllFormsFilledCorrect
-                    ? "bg-primary hover:bg-cyan-900 text-white"
-                    : "bg-primary text-gray-200 cursor-not-allowed opacity-60"
-                }`}
-                // Button is disabled if form fields are not filled out correctly
+                className="px-10 py-4 rounded-lg justify-center items-center gap-2.5 flex text-center text-lg font-bold bg-primary hover:bg-cyan-900 text-white"
                 disabled={submitLoading}
               >
                 {" "}

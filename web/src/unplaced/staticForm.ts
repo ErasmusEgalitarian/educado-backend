@@ -93,6 +93,7 @@ export default () => {
     handleInputChange,
     handleFileChange,
     formData,
+    setFormData,
     handleCharCountBio,
   };
 };
