@@ -18721,6 +18721,10 @@
                         "difficulty": {
                           "type": "integer"
                         },
+                        "durationHours": {
+                          "type": "number",
+                          "format": "float"
+                        },
                         "numOfRatings": {
                           "type": "integer"
                         },
@@ -20804,6 +20808,10 @@
                 "difficulty": {
                   "type": "integer"
                 },
+                "durationHours": {
+                  "type": "number",
+                  "format": "float"
+                },
                 "numOfRatings": {
                   "type": "integer"
                 },
@@ -22498,7 +22506,8 @@
           "data": {
             "required": [
               "title",
-              "difficulty"
+              "difficulty",
+              "durationHours"
             ],
             "type": "object",
             "properties": {
@@ -22510,6 +22519,10 @@
               },
               "difficulty": {
                 "type": "integer"
+              },
+              "durationHours": {
+                "type": "number",
+                "format": "float"
               },
               "numOfRatings": {
                 "type": "integer"
@@ -22658,7 +22671,8 @@
         "type": "object",
         "required": [
           "title",
-          "difficulty"
+          "difficulty",
+          "durationHours"
         ],
         "properties": {
           "id": {
@@ -22675,6 +22689,10 @@
           },
           "difficulty": {
             "type": "integer"
+          },
+          "durationHours": {
+            "type": "number",
+            "format": "float"
           },
           "numOfRatings": {
             "type": "integer"
@@ -23318,6 +23336,10 @@
                     },
                     "difficulty": {
                       "type": "integer"
+                    },
+                    "durationHours": {
+                      "type": "number",
+                      "format": "float"
                     },
                     "numOfRatings": {
                       "type": "integer"
@@ -24677,6 +24699,10 @@
                 },
                 "difficulty": {
                   "type": "integer"
+                },
+                "durationHours": {
+                  "type": "number",
+                  "format": "float"
                 },
                 "numOfRatings": {
                   "type": "integer"
@@ -26997,6 +27023,10 @@
               "difficulty": {
                 "type": "integer"
               },
+              "durationHours": {
+                "type": "number",
+                "format": "float"
+              },
               "numOfRatings": {
                 "type": "integer"
               },
@@ -29282,6 +29312,10 @@
               },
               "difficulty": {
                 "type": "integer"
+              },
+              "durationHours": {
+                "type": "number",
+                "format": "float"
               },
               "numOfRatings": {
                 "type": "integer"
@@ -31933,6 +31967,10 @@
                     "difficulty": {
                       "type": "integer"
                     },
+                    "durationHours": {
+                      "type": "number",
+                      "format": "float"
+                    },
                     "numOfRatings": {
                       "type": "integer"
                     },
@@ -33795,6 +33833,10 @@
                         },
                         "difficulty": {
                           "type": "integer"
+                        },
+                        "durationHours": {
+                          "type": "number",
+                          "format": "float"
                         },
                         "numOfRatings": {
                           "type": "integer"

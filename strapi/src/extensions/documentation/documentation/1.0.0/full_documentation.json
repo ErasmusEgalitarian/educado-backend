@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-15T14:56:26.440Z"
+    "x-generation-date": "2025-11-17T10:00:02.756Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -8248,6 +8248,10 @@
                         "difficulty": {
                           "type": "integer"
                         },
+                        "durationHours": {
+                          "type": "number",
+                          "format": "float"
+                        },
                         "numOfRatings": {
                           "type": "integer"
                         },
@@ -10331,6 +10335,10 @@
                 "difficulty": {
                   "type": "integer"
                 },
+                "durationHours": {
+                  "type": "number",
+                  "format": "float"
+                },
                 "numOfRatings": {
                   "type": "integer"
                 },
@@ -12025,7 +12033,8 @@
           "data": {
             "required": [
               "title",
-              "difficulty"
+              "difficulty",
+              "durationHours"
             ],
             "type": "object",
             "properties": {
@@ -12037,6 +12046,10 @@
               },
               "difficulty": {
                 "type": "integer"
+              },
+              "durationHours": {
+                "type": "number",
+                "format": "float"
               },
               "numOfRatings": {
                 "type": "integer"
@@ -12185,7 +12198,8 @@
         "type": "object",
         "required": [
           "title",
-          "difficulty"
+          "difficulty",
+          "durationHours"
         ],
         "properties": {
           "id": {
@@ -12202,6 +12216,10 @@
           },
           "difficulty": {
             "type": "integer"
+          },
+          "durationHours": {
+            "type": "number",
+            "format": "float"
           },
           "numOfRatings": {
             "type": "integer"
@@ -12845,6 +12863,10 @@
                     },
                     "difficulty": {
                       "type": "integer"
+                    },
+                    "durationHours": {
+                      "type": "number",
+                      "format": "float"
                     },
                     "numOfRatings": {
                       "type": "integer"
@@ -14204,6 +14226,10 @@
                 },
                 "difficulty": {
                   "type": "integer"
+                },
+                "durationHours": {
+                  "type": "number",
+                  "format": "float"
                 },
                 "numOfRatings": {
                   "type": "integer"
@@ -16524,6 +16550,10 @@
               "difficulty": {
                 "type": "integer"
               },
+              "durationHours": {
+                "type": "number",
+                "format": "float"
+              },
               "numOfRatings": {
                 "type": "integer"
               },
@@ -18809,6 +18839,10 @@
               },
               "difficulty": {
                 "type": "integer"
+              },
+              "durationHours": {
+                "type": "number",
+                "format": "float"
               },
               "numOfRatings": {
                 "type": "integer"
@@ -21460,6 +21494,10 @@
                     "difficulty": {
                       "type": "integer"
                     },
+                    "durationHours": {
+                      "type": "number",
+                      "format": "float"
+                    },
                     "numOfRatings": {
                       "type": "integer"
                     },
@@ -23322,6 +23360,10 @@
                         },
                         "difficulty": {
                           "type": "integer"
+                        },
+                        "durationHours": {
+                          "type": "number",
+                          "format": "float"
                         },
                         "numOfRatings": {
                           "type": "integer"

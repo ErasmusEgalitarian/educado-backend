@@ -668,6 +668,14 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
         },
         number
       >;
+    durationHours: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0.1;
+        },
+        number
+      >;
     feedbacks: Schema.Attribute.Relation<'oneToMany', 'api::feedback.feedback'>;
     image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
