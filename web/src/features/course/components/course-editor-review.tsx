@@ -1,6 +1,8 @@
 import { CheckCircle, AlertCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useNotifications } from "@/shared/context/NotificationContext"
+
 
 import type { Course } from "@/shared/api/types.gen";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
@@ -18,6 +20,7 @@ const CourseEditorReview = ({
 }: CourseEditorReviewProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { addNotification } = useNotifications();
 
   const publishMutation = usePublishCourseMutation();
   const isLoading = publishMutation.isPending;
@@ -55,6 +58,7 @@ const CourseEditorReview = ({
       });
 
       onComplete?.();
+      addNotification("Published course!");
       navigate("/courses");
     } catch (error) {
       console.error("Error publishing course:", error);
