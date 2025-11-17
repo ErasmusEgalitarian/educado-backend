@@ -5,6 +5,7 @@
 import { errorCodes } from "../../../helpers/errorCodes";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
+//Custom types
 interface courseRelationType {
   enrollmentDate: Date;
 }
@@ -12,7 +13,6 @@ interface feedbackType {
   createdAt: Date;
   rating: number;
 }
-
 interface populatedCourse {
   documentId: string
   createdAt: Date;
