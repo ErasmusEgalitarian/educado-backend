@@ -14,7 +14,6 @@ export const DeleteInstitutionButton = ({
   refreshFn,
 }: {
   institutionId: string;
-  // now just a generic refresh function, e.g. React Query's refetch
   refreshFn: () => void | Promise<unknown>;
 }) => {
   const [showModal, setShowModal] = useState(false);
