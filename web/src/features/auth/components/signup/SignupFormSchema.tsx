@@ -199,6 +199,7 @@ export const EducationForm = () => {
               acedemicEndDate: "",
             })
           }
+          className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
         >
           <img src={plusIcon} /> Adicionar outra formação
         </Button>
@@ -341,6 +342,7 @@ export const ExperienceForm = () => {
               description: "",
             })
           }
+          className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
         >
           <img src={plusIcon} /> Adicionar outra experiência
         </Button>
