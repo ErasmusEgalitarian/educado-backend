@@ -77,7 +77,7 @@ const CourseOverviewPage = () => {
                     "difficulty",
                     "description",
                     "durationHours",
-                    "publishedAt", // 👈 we need this
+                    "publishedAt",
                   ] as (keyof Course)[]
                 }
                 populate={["course_categories"]}
