@@ -32,6 +32,8 @@ import {
   useUpdateCourseMutation,
 } from "../api/course-mutations";
 
+import { Badge } from "@/shared/components/shadcn/badge";
+
 type SaveDraftLoader = "none" | "success" | "error";
 
 const CourseEditorPage = () => {
@@ -228,6 +230,11 @@ const CourseEditorPage = () => {
     return `${t("common.create")} ${t("courseManager.course")}`;
   };
 
+  const isPublished = Boolean(queryCourse?.publishedAt);
+  const statusLabel = isPublished
+    ? t("courses.status.published", "Published")
+    : t("courses.status.draft", "Draft");
+
   return (
     <PageContainer title={getPageTitle()}>
       <div className="flex gap-x-20">
@@ -237,6 +244,19 @@ const CourseEditorPage = () => {
             <h1 className="text-2xl text-greyscale-text-caption">
               {getPageTitle()}
             </h1>
+
+            {/* Status badge (Draft / Published) */}
+            <Badge
+              variant="outline"
+              className={
+                "whitespace-nowrap text-xs font-medium px-2 py-0.5 " +
+                (isPublished
+                  ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                  : "border-amber-200 bg-amber-50 text-amber-800")
+              }
+            >
+              {statusLabel}
+            </Badge>
           </div>
           <Separator className="my-6" />
           <div className="flex flex-col gap-y-5 my-6">
