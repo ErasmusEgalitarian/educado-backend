@@ -53,6 +53,7 @@ const Footer = () => {
   return (
     <div className="flex flex-row">
       <Button
+        type="button"
         variant="link"
         className="text-error-surface-default font-bold font-['Montserrat'] underline"
         style={{ fontSize: "18px", lineHeight: "23.4px" }}
