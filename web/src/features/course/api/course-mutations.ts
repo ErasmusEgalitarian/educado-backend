@@ -48,7 +48,10 @@ export const useCreateCourseMutation = () => {
             // Default values for Strapi fields
             numOfRatings: 0,
             numOfSubscriptions: 0,
-            creator_published_at: undefined,
+            creator_published_at:
+              input.creator_published_at == undefined
+                ? undefined
+                : new Date().toISOString(),
             admin_control_at: undefined,
           },
         },
@@ -93,7 +96,10 @@ export const useUpdateCourseMutation = () => {
             description: input.description,
             course_categories: input.course_categories,
             image: input.image,
-            creator_published_at: input.creator_published_at == undefined ? undefined : new Date().toISOString() ,
+            creator_published_at:
+              input.creator_published_at == undefined
+                ? undefined
+                : new Date().toISOString(),
           },
         },
       });
@@ -134,7 +140,10 @@ export const usePublishCourseMutation = () => {
         path: { id: documentId },
         body: {
           // Do not send documentId in body; Strapi expects ID only in path
-          data: { ...dataWithoutId, creator_published_at: new Date().toISOString() },
+          data: {
+            ...dataWithoutId,
+            creator_published_at: new Date().toISOString(),
+          },
         },
       });
 
@@ -182,7 +191,6 @@ export const useDeleteCourseMutation = () => {
   });
 };
 
-
 export const useUnpublishCourseMutation = () => {
   const queryClient = useQueryClient();
 
@@ -193,7 +201,10 @@ export const useUnpublishCourseMutation = () => {
         path: { id: documentId },
         body: {
           // Do not send documentId in body; Strapi expects ID only in path
-          data: { ...dataWithoutId, creator_published_at: undefined },
+          data: {
+            ...dataWithoutId,
+            creator_published_at: undefined,
+          },
         },
       });
 
