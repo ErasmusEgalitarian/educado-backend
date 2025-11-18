@@ -56,7 +56,8 @@
     "retry": "Retry",
     "rating": "Rating",
     "error": "Error",
-    "goPrevious": "Go to previous"
+    "goPrevious": "Go to previous",
+    "status": "Status"
   },
   "pagination": {
     "items": "items",
@@ -126,7 +127,8 @@
     "createError": "Failed to Create Course",
     "updateError": "Failed to Update Course",
     "genericError": "An unexpected error occurred. Please try again.",
-    "rating": "Rating"
+    "rating": "Rating",
+    "duplicate": "Duplicate"
   },
   "courses": {
     "pageTitle": "Courses list",

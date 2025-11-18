@@ -13,6 +13,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/shared/components/shadcn/dropdown-menu";
+import { CourseQueryFunction } from "../api/course-queries";
+import { useCreateCourseMutation } from "../api/course-mutations";
 
 interface CoursesColumnsProps {
   t: (key: string) => string;
@@ -119,6 +121,7 @@ export const createCourseColumns = ({
       header: t("common.actions"),
       cell: ({ row }: CellContext<Course, unknown>) => {
         const documentId = row.original.documentId;
+        const createMutation = useCreateCourseMutation();
 
         const handleView = () => {
           toast.info("View course feature coming soon!");
@@ -130,8 +133,43 @@ export const createCourseColumns = ({
 
         const handleDelete = () => {
           toast.info(
-            "Delete functionality is not implemented yet: " + documentId,
+            "Delete functionality is not implemented yet: " + documentId
           );
+        };
+
+        const handleDuplicate = async (e: React.MouseEvent) => {
+          if (!documentId) return;
+          e.stopPropagation();
+
+          try {
+            const { queryFn } = CourseQueryFunction(documentId);
+            const courseDetail = await queryFn();
+
+            if (!courseDetail) {
+              toast.error("Failed to duplicate course");
+            }
+
+            const newTitle = `[DUPLICATE] ${courseDetail.title ?? "unknown"}`;
+
+            const result = await createMutation.mutateAsync({
+              title: newTitle,
+              difficulty: Number(courseDetail.difficulty),
+              course_categories: courseDetail.course_categories?.map(
+                (category: Object) => category.id
+              ),
+              description: courseDetail.description,
+              image: courseDetail.image,
+            });
+
+            const id = result?.data?.documentId;
+            toast.info(
+              `Duplicated course: "${courseDetail.title ?? "Unknown"}"`
+            );
+            navigate(`/courses/${id}/edit`);
+          } catch (error) {
+            console.error(`Duplicate error ${error}`);
+            toast.error(`Failed to duplicate course`);
+          }
         };
 
         return (
@@ -151,6 +189,11 @@ export const createCourseColumns = ({
               <DropdownMenuItem onClick={handleEdit}>
                 <Edit className="mr-2 h-4 w-4" />
                 {t("common.edit")} {t("courseManager.course").toLowerCase()}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleDuplicate}>
+                <Edit className="mr-2 h-4 w-4" />
+                {t("courseManager.duplicate")}{" "}
+                {t("courseManager.course").toLowerCase()}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
