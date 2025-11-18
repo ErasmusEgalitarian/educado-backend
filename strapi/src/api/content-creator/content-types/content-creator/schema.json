@@ -113,6 +113,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::user-log.user-log"
+    },
+    "dashboard_activities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::dashboard-activity.dashboard-activity",
+      "mappedBy": "content_creator"
     }
   }
 }
