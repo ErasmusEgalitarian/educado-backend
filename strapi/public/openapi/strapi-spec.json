@@ -2371,7 +2371,7 @@
                   "title",
                   "description",
                   "difficulty",
-                  "numOfRatings",
+                  "averageRating",
                   "numOfSubscriptions",
                   "createdAt",
                   "updatedAt",
@@ -2394,7 +2394,7 @@
                   "title",
                   "description",
                   "difficulty",
-                  "numOfRatings",
+                  "averageRating",
                   "numOfSubscriptions",
                   "createdAt",
                   "updatedAt",
@@ -2492,7 +2492,7 @@
                     "title",
                     "description",
                     "difficulty",
-                    "numOfRatings",
+                    "averageRating",
                     "numOfSubscriptions",
                     "createdAt",
                     "updatedAt",
@@ -2507,7 +2507,7 @@
                       "title",
                       "description",
                       "difficulty",
-                      "numOfRatings",
+                      "averageRating",
                       "numOfSubscriptions",
                       "createdAt",
                       "updatedAt",
@@ -2523,7 +2523,7 @@
                       "title",
                       "description",
                       "difficulty",
-                      "numOfRatings",
+                      "averageRating",
                       "numOfSubscriptions",
                       "createdAt",
                       "updatedAt",
@@ -2548,7 +2548,7 @@
                         "title",
                         "description",
                         "difficulty",
-                        "numOfRatings",
+                        "averageRating",
                         "numOfSubscriptions",
                         "createdAt",
                         "updatedAt",
@@ -2708,7 +2708,7 @@
                   "title",
                   "description",
                   "difficulty",
-                  "numOfRatings",
+                  "averageRating",
                   "numOfSubscriptions",
                   "createdAt",
                   "updatedAt",
@@ -2879,7 +2879,7 @@
                   "title",
                   "description",
                   "difficulty",
-                  "numOfRatings",
+                  "averageRating",
                   "numOfSubscriptions",
                   "createdAt",
                   "updatedAt",
@@ -2944,7 +2944,7 @@
                   "title",
                   "description",
                   "difficulty",
-                  "numOfRatings",
+                  "averageRating",
                   "numOfSubscriptions",
                   "createdAt",
                   "updatedAt",
@@ -2968,7 +2968,7 @@
                     "title",
                     "description",
                     "difficulty",
-                    "numOfRatings",
+                    "averageRating",
                     "numOfSubscriptions",
                     "createdAt",
                     "updatedAt",
@@ -2983,7 +2983,7 @@
                       "title",
                       "description",
                       "difficulty",
-                      "numOfRatings",
+                      "averageRating",
                       "numOfSubscriptions",
                       "createdAt",
                       "updatedAt",
@@ -2999,7 +2999,7 @@
                       "title",
                       "description",
                       "difficulty",
-                      "numOfRatings",
+                      "averageRating",
                       "numOfSubscriptions",
                       "createdAt",
                       "updatedAt",
@@ -3024,7 +3024,7 @@
                         "title",
                         "description",
                         "difficulty",
-                        "numOfRatings",
+                        "averageRating",
                         "numOfSubscriptions",
                         "createdAt",
                         "updatedAt",
@@ -3151,7 +3151,7 @@
                   "title",
                   "description",
                   "difficulty",
-                  "numOfRatings",
+                  "averageRating",
                   "numOfSubscriptions",
                   "createdAt",
                   "updatedAt",
@@ -3320,7 +3320,7 @@
                   "title",
                   "description",
                   "difficulty",
-                  "numOfRatings",
+                  "averageRating",
                   "numOfSubscriptions",
                   "createdAt",
                   "updatedAt",
@@ -3385,7 +3385,7 @@
                   "title",
                   "description",
                   "difficulty",
-                  "numOfRatings",
+                  "averageRating",
                   "numOfSubscriptions",
                   "createdAt",
                   "updatedAt",
@@ -18721,8 +18721,9 @@
                         "difficulty": {
                           "type": "integer"
                         },
-                        "numOfRatings": {
-                          "type": "integer"
+                        "averageRating": {
+                          "type": "number",
+                          "format": "float"
                         },
                         "numOfSubscriptions": {
                           "type": "integer"
@@ -20804,8 +20805,9 @@
                 "difficulty": {
                   "type": "integer"
                 },
-                "numOfRatings": {
-                  "type": "integer"
+                "averageRating": {
+                  "type": "number",
+                  "format": "float"
                 },
                 "numOfSubscriptions": {
                   "type": "integer"
@@ -22511,8 +22513,9 @@
               "difficulty": {
                 "type": "integer"
               },
-              "numOfRatings": {
-                "type": "integer"
+              "averageRating": {
+                "type": "number",
+                "format": "float"
               },
               "numOfSubscriptions": {
                 "type": "integer"
@@ -22676,8 +22679,9 @@
           "difficulty": {
             "type": "integer"
           },
-          "numOfRatings": {
-            "type": "integer"
+          "averageRating": {
+            "type": "number",
+            "format": "float"
           },
           "numOfSubscriptions": {
             "type": "integer"
@@ -23319,8 +23323,9 @@
                     "difficulty": {
                       "type": "integer"
                     },
-                    "numOfRatings": {
-                      "type": "integer"
+                    "averageRating": {
+                      "type": "number",
+                      "format": "float"
                     },
                     "numOfSubscriptions": {
                       "type": "integer"
@@ -24678,8 +24683,9 @@
                 "difficulty": {
                   "type": "integer"
                 },
-                "numOfRatings": {
-                  "type": "integer"
+                "averageRating": {
+                  "type": "number",
+                  "format": "float"
                 },
                 "numOfSubscriptions": {
                   "type": "integer"
@@ -26997,8 +27003,9 @@
               "difficulty": {
                 "type": "integer"
               },
-              "numOfRatings": {
-                "type": "integer"
+              "averageRating": {
+                "type": "number",
+                "format": "float"
               },
               "numOfSubscriptions": {
                 "type": "integer"
@@ -29283,8 +29290,9 @@
               "difficulty": {
                 "type": "integer"
               },
-              "numOfRatings": {
-                "type": "integer"
+              "averageRating": {
+                "type": "number",
+                "format": "float"
               },
               "numOfSubscriptions": {
                 "type": "integer"
@@ -31933,8 +31941,9 @@
                     "difficulty": {
                       "type": "integer"
                     },
-                    "numOfRatings": {
-                      "type": "integer"
+                    "averageRating": {
+                      "type": "number",
+                      "format": "float"
                     },
                     "numOfSubscriptions": {
                       "type": "integer"
@@ -33796,8 +33805,9 @@
                         "difficulty": {
                           "type": "integer"
                         },
-                        "numOfRatings": {
-                          "type": "integer"
+                        "averageRating": {
+                          "type": "number",
+                          "format": "float"
                         },
                         "numOfSubscriptions": {
                           "type": "integer"
@@ -36082,6 +36092,35 @@
           },
           "password": {
             "type": "string"
+          }
+        }
+      },
+      "JWTContentCreatorResponse": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "userInfo": {
+            "type": "object",
+            "properties": {
+              "documentId": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "verifiedAt": {
+                "type": "string",
+                "format": "date"
+              }
+            }
           }
         }
       },
