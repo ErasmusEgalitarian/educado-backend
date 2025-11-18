@@ -2,7 +2,6 @@ import { mdiCheck, mdiMinus } from "@mdi/js";
 import Icon from "@mdi/react";
 import { type Table as ReactTableType } from "@tanstack/react-table";
 
-import { useItemSelector } from "@/shared/components/item-selector";
 import {
   Table,
   TableBody,
@@ -10,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/shared/components/shadcn/table";
+import { useItemSelector } from "@/shared/data-display/item-selector";
 import { cn } from "@/shared/lib/utils";
 
 import DataTableHeaderCell from "./data-table-header-cell";
@@ -94,7 +94,7 @@ const DataTable = <TData extends DataDisplayItem>({
   emptyState,
 }: Readonly<DataTableProps<TData>>) => {
   return (
-    <div className={className ?? ""}>
+    <div className={cn(className, "w-full overflow-auto")}>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

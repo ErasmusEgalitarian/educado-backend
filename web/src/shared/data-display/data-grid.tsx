@@ -1,5 +1,5 @@
-import { SelectableCard } from "@/shared/components/item-selector";
 import { Card, CardContent } from "@/shared/components/shadcn/card";
+import { SelectableCard } from "@/shared/data-display/item-selector";
 import { cn } from "@/shared/lib/utils";
 
 import { DataDisplayItem } from "./data-display";
@@ -53,10 +53,11 @@ const DataGrid = <T extends DataDisplayItem>({
   if (isLoading === true) {
     return (
       <div
-        className={cn(
-          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4",
-          className
-        )}
+        className={cn("grid gap-4", className)}
+        style={{
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(min(320px, 100%), 1fr))",
+        }}
       >
         {Array.from({ length: 12 }, (_, index) => (
           <div key={`loading-grid-${String(index)}`}>
@@ -83,10 +84,10 @@ const DataGrid = <T extends DataDisplayItem>({
 
   return (
     <div
-      className={cn(
-        "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6",
-        className
-      )}
+      className={cn("grid gap-6", className)}
+      style={{
+        gridTemplateColumns: "repeat(auto-fit, minmax(min(320px, 100%), 1fr))",
+      }}
     >
       {data.map((item, index) =>
         selectable &&

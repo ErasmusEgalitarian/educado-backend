@@ -8,7 +8,7 @@ import {
   FileUpload,
   type UploadType,
   type FileWithMetadata,
-} from "../file-upload";
+} from "../../../features/media/components/file-upload";
 import { cn } from "@/shared/lib/utils";
 
 interface FormFileUploadProps<T extends FieldValues> {
@@ -21,7 +21,7 @@ interface FormFileUploadProps<T extends FieldValues> {
   className?: string;
 }
 
-export function FormFileUpload<T extends FieldValues>({
+export const FormFileUpload = <T extends FieldValues>({
   name,
   control,
   uploadType,
@@ -29,7 +29,7 @@ export function FormFileUpload<T extends FieldValues>({
   maxFiles,
   disabled = false,
   className,
-}: FormFileUploadProps<T>) {
+}: FormFileUploadProps<T>) => {
   const {
     field: { value, onChange },
     fieldState: { error },
@@ -53,4 +53,4 @@ export function FormFileUpload<T extends FieldValues>({
       {error && <p className="text-sm text-destructive">{error.message}</p>}
     </div>
   );
-}
+};
