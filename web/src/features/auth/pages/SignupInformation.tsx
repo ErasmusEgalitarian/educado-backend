@@ -1,26 +1,14 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useEffect } from "react";
 import MiniNavbar from "@/shared/components/MiniNavbar";
 import { Button } from "@/shared/components/shadcn/button";
 import { SignupSchema } from "../components/signup/micro-services";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Cards } from "../components/signup/SignupCards";
 
+
+
+
 const Header = () => {
-  const navigate = useNavigate();
-
-  const location = useLocation() as {
-    state?: { initial?: z.infer<typeof SignupSchema> };
-  };
-
-  /* useEffect(() => {
-    if (!location.state?.initial) {
-      navigate("/signup", { replace: true });
-    }
-  }, [location.state, navigate]); */
-
-  const initial = location.state?.initial;
 
   return (
     <div className="flex flex-col items-center gap-7 mx-32">
@@ -74,13 +62,30 @@ const Footer = () => {
 };
 
 const SignupInfo = () => {
+  
+   const navigate = useNavigate();
+
+  const location = useLocation() as {
+    state?: { initial?: z.infer<typeof SignupSchema> };
+  };
+  
+  //Not working yet
+  /* useEffect(() => {
+    if (!location.state?.initial) {
+      navigate("/signup", { replace: true });
+    }
+  }, [location.state, navigate]); */
+
+  const initial = location.state?.initial;
+
+
   return (
     <>
       <MiniNavbar />
       <div className="bg-primary-surface-subtle">
         <div className="mx-[220px] my-20">
           <Header />
-          <Cards />
+          <Cards initialData = {initial} />
           <Footer />
         </div>
       </div>

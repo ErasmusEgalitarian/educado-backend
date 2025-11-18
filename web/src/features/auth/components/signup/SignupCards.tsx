@@ -19,61 +19,9 @@ import {
   CardDescription,
   CardContent,
 } from "@/shared/components/shadcn/card";
+import { postUserSignup, SignupPayload } from "@/unplaced/services/auth.services";
 
 type SectionKey = "motive" | "education" | "experience";
-
-const CardContainer = ({
-  openKey,
-  toggle,
-}: {
-  openKey: SectionKey | null;
-  toggle: (k: SectionKey) => void;
-}) => {
-  const methods = useForm({
-    defaultValues: {
-      motivation: "",
-      educationType: "",
-      isInProgress: "",
-      course: "",
-      institution: "",
-      acedemicStartDate: "",
-      acedemicEndDate: "",
-      organization: "",
-      jobTitle: "",
-      jobStartDate: "",
-      jobEndDate: "",
-      description: "",
-    },
-    mode: "onTouched",
-  });
-
-  const onSubmit = (values: any) => {
-    console.log("submit all values", values);
-  };
-
-  return (
-    <FormProvider {...methods}>
-      <form id="signup-info-form" onSubmit={methods.handleSubmit(onSubmit)}>
-        <MotivationCard
-          open={openKey === "motive"}
-          onToggle={() => toggle("motive")}
-        />
-
-        <EducationCard
-          open={openKey === "education"}
-          onToggle={() => toggle("education")}
-        />
-
-        <ExperienceCard
-          open={openKey === "experience"}
-          onToggle={() => toggle("experience")}
-        />
-
-  {/* FormActions removed - external 'Enviar para análise' button will submit the form */}
-      </form>
-    </FormProvider>
-  );
-};
 
 const MotivationCard = ({
   open,
@@ -189,6 +137,7 @@ const EducationCard = ({
             <hr className="border border-greyscale-border-lighter my-4" />
             <div className="flex justify-center items-center pt-2">
               <Button
+                type="button"
                 variant="outline"
                 size={"lg"}
                 className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
@@ -262,6 +211,7 @@ const ExperienceCard = ({
             <hr className="border border-greyscale-border-lighter my-4" />
             <div className="flex justify-center items-center pt-2">
               <Button
+                type="button"
                 variant="outline"
                 size={"lg"}
                 className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
@@ -278,7 +228,11 @@ const ExperienceCard = ({
   );
 };
 
-export const Cards = () => {
+type CardsProps = {
+  initialData?: any;
+};
+
+export const Cards = ({ initialData }: CardsProps) => {
   const [openKey, setOpenKey] = useState<SectionKey | null>("motive");
 
   const toggle = (key: SectionKey) =>
@@ -306,8 +260,37 @@ export const Cards = () => {
     mode: "onTouched",
   });
 
-  const onSubmit = (values: any) => {
-    console.log("submit all values", values);
+  const onSubmit = async (data: any) => {
+    const payload: SignupPayload = {
+      firstName: initialData?.firstName,
+      lastName: initialData?.lastName,
+      email: initialData?.email,
+      password: initialData?.password,
+      //job
+      company: data.organization,
+      title: data.jobTitle,
+      jobstartDate: data.jobStartDate,
+      jobendDate: data.jobEndDate,
+      description: data.description,
+      //education
+      educationType: data.educationType,
+      isInProgress: data.isInProgress,
+      course: data.course,
+      institution: data.institution,
+      edustartDate: data.acedemicStartDate,
+      eduendDate: data.acedemicEndDate,
+    };
+
+    console.log("submit all values", payload);
+
+    try {
+      const response = await postUserSignup(payload);
+      console.log("Signup information submitted successfully:", response);
+      // Handle successful submission (e.g., navigate to a different page)
+
+    } catch (error) {
+      console.error("Error during signup information submission:", error);
+    }
   };
 
   return (

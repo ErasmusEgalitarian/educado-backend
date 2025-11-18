@@ -12,7 +12,7 @@ import { Checkbox } from "@/shared/components/shadcn/checkbox";
 import { Form, FormItem } from "@/shared/components/shadcn/form";
 
 const maxChars = 400;
-const STATUS = ["YES", "NO"] as const;
+const STATUS = ["Em andamento", "Concluída"] as const;
 const STATUS_OPTIONS = STATUS.map((type) => ({
   value: type,
   label: type,

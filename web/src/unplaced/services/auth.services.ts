@@ -20,15 +20,29 @@ interface UserCredentials {
   isContentCreator: boolean;
 }
 
+
 export interface SignupPayload {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  role: string;
-  token: null; 
-  
 
+  //job
+  company: string;
+  title: string;
+  jobstartDate: string;
+  jobendDate: string;
+  description: string;
+
+  //education
+  educationType: string;
+  isInProgress: string;
+  course: string;
+  institution: string;
+  edustartDate: string;
+  eduendDate: string;
+ 
+  
 }
 
 
@@ -42,7 +56,7 @@ const postUserLogin = async (credentials: UserCredentials) => {
   return api.post(`/api/auth/login`, credentials);
 };
 
-const postUserSignup = async (payload: SignupPayload) => {
+export const postUserSignup = async (payload: SignupPayload) => {
   return await api.post(`/api/content-creator/register`, payload)
   .then(r => r.data);
 };

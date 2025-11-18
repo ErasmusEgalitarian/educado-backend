@@ -54,13 +54,7 @@ const Signup = () => {
     mode: "onChange",
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid, isSubmitting },
-    watch,
-    resetField,
-  } = realMethods;
+  const {register,handleSubmit,formState: { errors, isValid}} = realMethods;
   
   const [emailExistsError, setEmailExistError] = useState(null);
   const [emailNotValid, setEmailNotValid] = useState(false);

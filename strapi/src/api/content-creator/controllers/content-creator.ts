@@ -11,6 +11,7 @@ import { sendVerificationEmail } from '../../../helpers/email';
 export default factories.createCoreController('api::content-creator.content-creator',({strapi}) => ({
     async register(ctx){
         try{
+            console.log("Registration request received:", ctx.request.body);
             const institutionalMails = ["student.aau.dk"];
             const {firstName, lastName, email, password } = ctx.request.body;
 
@@ -28,24 +29,24 @@ export default factories.createCoreController('api::content-creator.content-crea
             
             const confirmationDate = isTrusted ? new Date() : null;
 
-            const newUser = await strapi.db.query('api::content-creator.content-creator').create({
-                data:{
-                    email: email,
-                    password: encryptedPassword,
-                    firstName: firstName,
-                    lastName: lastName,
-                    verifiedAt: confirmationDate
-                }
-            })
+            // const newUser = await strapi.db.query('api::content-creator.content-creator').create({
+            //     data:{
+            //         email: email,
+            //         password: encryptedPassword,
+            //         firstName: firstName,
+            //         lastName: lastName,
+            //         verifiedAt: confirmationDate
+            //     }
+            // })
 
-            ctx.send({
-          status: isTrusted ? 'approved' : 'pending',
-          userId: newUser.id,
-          verifiedAt: confirmationDate,
-          message: isTrusted
-            ? `User registered and auto-approved on ${confirmationDate!.toISOString()}.`
-            : 'Registration successful. Waiting for admin approval.',
-        });
+        //     ctx.send({
+        //   status: isTrusted ? 'approved' : 'pending',
+        //   userId: newUser.id,
+        //   verifiedAt: confirmationDate,
+        //   message: isTrusted
+        //     ? `User registered and auto-approved on ${confirmationDate!.toISOString()}.`
+        //     : 'Registration successful. Waiting for admin approval.',
+        //});
 
         // Utility functions
         function generateTokenCode(length) {
@@ -58,11 +59,17 @@ export default factories.createCoreController('api::content-creator.content-crea
             return result;
         }
   
-
-        sendVerificationEmail(newUser, generateTokenCode(4));
+        //temp ctx send for testing
+        ctx.body = {
+            status: "ok",
+            message: "Payload received",
+            data: ctx.request.body,
+        };
+        // sendVerificationEmail(newUser, generateTokenCode(4));
         
         }
         catch(err){
+            console.log("Jeg kom ned i catch blokken:", err);
             ctx.badRequest('Registration failed', {error: err.message});
         }
         
