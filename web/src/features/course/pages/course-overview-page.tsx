@@ -66,13 +66,19 @@ const CourseOverviewPage = () => {
             </CardHeader>
             <CardContent>
               <DataDisplay<Course>
-                urlPath="/courses"
+                urlPath="/courses?publicationState=preview"
                 columns={courseColumns}
                 queryKey={["courses"]}
                 allowedViewModes="both"
                 gridItemRender={courseCard}
                 fields={
-                  ["title", "difficulty", "description", "durationHours", ] as (keyof Course)[]
+                  [
+                    "title",
+                    "difficulty",
+                    "description",
+                    "durationHours",
+                    "publishedAt", // 👈 we need this
+                  ] as (keyof Course)[]
                 }
                 populate={["course_categories"]}
                 config={{
