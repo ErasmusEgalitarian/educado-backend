@@ -91,6 +91,11 @@ const CourseEditorReview = ({
       isSuccess={isSuccess}
       loadingMessage={t("common.publishing")}
       successMessage={t("common.published")}
+      onSuccessComplete={() => {
+        onComplete?.();
+        publishMutation.reset();
+        navigate("/courses");
+      }}
     >
       <div className="flex flex-col gap-y-6">
         {/* Course Status Banner */}
