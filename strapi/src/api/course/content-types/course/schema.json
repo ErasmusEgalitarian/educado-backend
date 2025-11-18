@@ -27,8 +27,8 @@
       "min": 1,
       "max": 3
     },
-    "numOfRatings": {
-      "type": "integer",
+    "averageRating": {
+      "type": "decimal",
       "default": 0
     },
     "numOfSubscriptions": {

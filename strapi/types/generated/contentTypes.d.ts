@@ -640,6 +640,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    averageRating: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0>;
     content_creators: Schema.Attribute.Relation<
       'manyToMany',
       'api::content-creator.content-creator'
@@ -676,7 +677,6 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
       'api::course.course'
     > &
       Schema.Attribute.Private;
-    numOfRatings: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     numOfSubscriptions: Schema.Attribute.Integer &
       Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;

@@ -63,7 +63,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
           <p className="text-sm text-gray-600">8 horas</p>
         </div>
 
-        <StarRating rating={4.2} size="sm" className="mt-2" />
+        <StarRating rating={course.averageRating} size="sm" className="mt-2" />
       </CardContent>
       <CardFooter className="flex justify-end items-center">
         <Button
