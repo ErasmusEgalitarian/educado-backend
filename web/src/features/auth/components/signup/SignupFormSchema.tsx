@@ -7,6 +7,7 @@ import plusIcon from "@/shared/assets/plus 2.svg";
 
 import { EDUCATION_OPTIONS } from "@/auth/constants/educationOptions";
 import { FormInput } from "@/shared/components/form/form-input";
+import { MonthYearInput } from "@/components/MonthYearInput";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { Checkbox } from "@/shared/components/shadcn/checkbox";
@@ -149,22 +150,22 @@ export const EducationForm = () => {
                 className="h-[59px]"
               />
 
-              <FormInput
+              <MonthYearInput
                 control={control}
-                fieldName={`educations.${index}.acedemicStartDate`}
-                placeholder="Mês / Ano"
+                name={`educations.${index}.acedemicStartDate`}
                 label="Início"
-                isRequired
+                placeholder="Mês / Ano"
                 className="h-[59px]"
+                isRequired={true}
               />
 
-              <FormInput
+              <MonthYearInput
                 control={control}
-                fieldName={`educations.${index}.acedemicEndDate`}
-                placeholder="Mês / Ano"
+                name={`educations.${index}.acedemicEndDate`}
                 label="Fim"
-                isRequired
+                placeholder="Mês / Ano"
                 className="h-[59px]"
+                isRequired={true}
               />
               <div className="pb-2 col-span-2 text-right">
                 <CardFooter className="justify-end col-start-2 p-0">
@@ -259,20 +260,18 @@ export const ExperienceForm = () => {
                 isRequired
                 className="h-[59px]"
               />
-              <FormInput
+              <MonthYearInput
                 control={control}
-                fieldName={`jobs.${index}.jobStartDate`}
-                placeholder="Mês / Ano"
+                name={`jobs.${index}.jobStartDate`}
                 label="Início"
-                isRequired
+                placeholder="Mês / Ano"
                 className="h-[59px]"
               />
-              <FormInput
+              <MonthYearInput
                 control={control}
-                fieldName={`jobs.${index}.jobEndDate`}
-                placeholder="Mês / Ano"
+                name={`jobs.${index}.jobEndDate`}
                 label="Fim"
-                isRequired
+                placeholder="Mês / Ano"
                 className="h-[59px]"
               />
 
