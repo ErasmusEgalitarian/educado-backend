@@ -58,49 +58,11 @@
         "TODO3"
       ]
     },
-    "courseExperience": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 40,
-      "required": true
-    },
-    "institution": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 40,
-      "required": true
-    },
-    "eduStart": {
-      "type": "date",
-      "required": true
-    },
-    "eduEnd": {
-      "type": "date",
-      "required": true
-    },
     "currentCompany": {
       "type": "string",
       "minLength": 1,
       "maxLength": 40,
       "required": true
-    },
-    "currentJobTitle": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 40,
-      "required": true
-    },
-    "companyStart": {
-      "type": "date",
-      "required": true
-    },
-    "companyEnd": {
-      "type": "date"
-    },
-    "jobDescription": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 400
     },
     "courses": {
       "type": "relation",
@@ -112,6 +74,16 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::user-log.user-log"
+    },
+    "jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job.job"
+    },
+    "educations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::education.education"
     }
   }
 }

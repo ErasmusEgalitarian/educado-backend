@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "x-powered-by": "strapi",
-  "x-strapi-version": "5.29.0",
+  "x-strapi-version": "5.30.0",
   "info": {
     "title": "strapi",
     "description": "API documentation for strapi v0.1.0",
@@ -2322,6 +2322,35 @@
         "tags": [
           "content-creator"
         ]
+      }
+    },
+    "/content-creator/login": {
+      "post": {
+        "tags": [
+          "Content Creator - Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JWTResponse"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/courses": {
@@ -19779,35 +19808,7 @@
                                   "TODO3"
                                 ]
                               },
-                              "courseExperience": {
-                                "type": "string"
-                              },
-                              "institution": {
-                                "type": "string"
-                              },
-                              "eduStart": {
-                                "type": "string",
-                                "format": "date"
-                              },
-                              "eduEnd": {
-                                "type": "string",
-                                "format": "date"
-                              },
                               "currentCompany": {
-                                "type": "string"
-                              },
-                              "currentJobTitle": {
-                                "type": "string"
-                              },
-                              "companyStart": {
-                                "type": "string",
-                                "format": "date"
-                              },
-                              "companyEnd": {
-                                "type": "string",
-                                "format": "date"
-                              },
-                              "jobDescription": {
                                 "type": "string"
                               },
                               "courses": {
@@ -19852,6 +19853,170 @@
                                           "type": "string"
                                         }
                                       }
+                                    },
+                                    "createdAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "publishedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "createdBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "documentId": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "updatedBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "documentId": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "locale": {
+                                      "type": "string"
+                                    },
+                                    "localizations": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "number"
+                                          },
+                                          "documentId": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "jobs": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    },
+                                    "Company": {
+                                      "type": "string"
+                                    },
+                                    "Title": {
+                                      "type": "string"
+                                    },
+                                    "StartDate": {
+                                      "type": "string",
+                                      "format": "date"
+                                    },
+                                    "EndDate": {
+                                      "type": "string",
+                                      "format": "date"
+                                    },
+                                    "Description": {
+                                      "type": "string"
+                                    },
+                                    "createdAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "publishedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "createdBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "documentId": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "updatedBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "documentId": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "locale": {
+                                      "type": "string"
+                                    },
+                                    "localizations": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "number"
+                                          },
+                                          "documentId": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "educations": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    },
+                                    "educationType": {
+                                      "type": "string"
+                                    },
+                                    "courseExperience": {
+                                      "type": "string"
+                                    },
+                                    "institution": {
+                                      "type": "string"
+                                    },
+                                    "startDate": {
+                                      "type": "string",
+                                      "format": "date"
+                                    },
+                                    "endDate": {
+                                      "type": "string",
+                                      "format": "date"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -20505,13 +20670,7 @@
               "password",
               "education",
               "statusValue",
-              "courseExperience",
-              "institution",
-              "eduStart",
-              "eduEnd",
-              "currentCompany",
-              "currentJobTitle",
-              "companyStart"
+              "currentCompany"
             ],
             "type": "object",
             "properties": {
@@ -20553,35 +20712,7 @@
                   "TODO3"
                 ]
               },
-              "courseExperience": {
-                "type": "string"
-              },
-              "institution": {
-                "type": "string"
-              },
-              "eduStart": {
-                "type": "string",
-                "format": "date"
-              },
-              "eduEnd": {
-                "type": "string",
-                "format": "date"
-              },
               "currentCompany": {
-                "type": "string"
-              },
-              "currentJobTitle": {
-                "type": "string"
-              },
-              "companyStart": {
-                "type": "string",
-                "format": "date"
-              },
-              "companyEnd": {
-                "type": "string",
-                "format": "date"
-              },
-              "jobDescription": {
                 "type": "string"
               },
               "courses": {
@@ -20599,6 +20730,34 @@
                 }
               },
               "user_logs": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
+              },
+              "jobs": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
+              },
+              "educations": {
                 "type": "array",
                 "items": {
                   "oneOf": [
@@ -20676,13 +20835,7 @@
           "password",
           "education",
           "statusValue",
-          "courseExperience",
-          "institution",
-          "eduStart",
-          "eduEnd",
-          "currentCompany",
-          "currentJobTitle",
-          "companyStart"
+          "currentCompany"
         ],
         "properties": {
           "id": {
@@ -20724,35 +20877,7 @@
               "TODO3"
             ]
           },
-          "courseExperience": {
-            "type": "string"
-          },
-          "institution": {
-            "type": "string"
-          },
-          "eduStart": {
-            "type": "string",
-            "format": "date"
-          },
-          "eduEnd": {
-            "type": "string",
-            "format": "date"
-          },
           "currentCompany": {
-            "type": "string"
-          },
-          "currentJobTitle": {
-            "type": "string"
-          },
-          "companyStart": {
-            "type": "string",
-            "format": "date"
-          },
-          "companyEnd": {
-            "type": "string",
-            "format": "date"
-          },
-          "jobDescription": {
             "type": "string"
           },
           "courses": {
@@ -22215,35 +22340,7 @@
                           "TODO3"
                         ]
                       },
-                      "courseExperience": {
-                        "type": "string"
-                      },
-                      "institution": {
-                        "type": "string"
-                      },
-                      "eduStart": {
-                        "type": "string",
-                        "format": "date"
-                      },
-                      "eduEnd": {
-                        "type": "string",
-                        "format": "date"
-                      },
                       "currentCompany": {
-                        "type": "string"
-                      },
-                      "currentJobTitle": {
-                        "type": "string"
-                      },
-                      "companyStart": {
-                        "type": "string",
-                        "format": "date"
-                      },
-                      "companyEnd": {
-                        "type": "string",
-                        "format": "date"
-                      },
-                      "jobDescription": {
                         "type": "string"
                       },
                       "courses": {
@@ -22270,6 +22367,170 @@
                             },
                             "documentId": {
                               "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "jobs": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "documentId": {
+                              "type": "string"
+                            },
+                            "Company": {
+                              "type": "string"
+                            },
+                            "Title": {
+                              "type": "string"
+                            },
+                            "StartDate": {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            "EndDate": {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            "Description": {
+                              "type": "string"
+                            },
+                            "createdAt": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "updatedAt": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "publishedAt": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "createdBy": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "updatedBy": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "locale": {
+                              "type": "string"
+                            },
+                            "localizations": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "documentId": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "educations": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "documentId": {
+                              "type": "string"
+                            },
+                            "educationType": {
+                              "type": "string"
+                            },
+                            "courseExperience": {
+                              "type": "string"
+                            },
+                            "institution": {
+                              "type": "string"
+                            },
+                            "startDate": {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            "endDate": {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            "createdAt": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "updatedAt": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "publishedAt": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "createdBy": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "updatedBy": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "locale": {
+                              "type": "string"
+                            },
+                            "localizations": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "documentId": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
                             }
                           }
                         }
@@ -22383,6 +22644,34 @@
             }
           },
           "user_logs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "jobs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "educations": {
             "type": "array",
             "items": {
               "type": "object",
@@ -24178,35 +24467,7 @@
                               "TODO3"
                             ]
                           },
-                          "courseExperience": {
-                            "type": "string"
-                          },
-                          "institution": {
-                            "type": "string"
-                          },
-                          "eduStart": {
-                            "type": "string",
-                            "format": "date"
-                          },
-                          "eduEnd": {
-                            "type": "string",
-                            "format": "date"
-                          },
                           "currentCompany": {
-                            "type": "string"
-                          },
-                          "currentJobTitle": {
-                            "type": "string"
-                          },
-                          "companyStart": {
-                            "type": "string",
-                            "format": "date"
-                          },
-                          "companyEnd": {
-                            "type": "string",
-                            "format": "date"
-                          },
-                          "jobDescription": {
                             "type": "string"
                           },
                           "courses": {
@@ -24233,6 +24494,170 @@
                                 },
                                 "documentId": {
                                   "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "jobs": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                },
+                                "Company": {
+                                  "type": "string"
+                                },
+                                "Title": {
+                                  "type": "string"
+                                },
+                                "StartDate": {
+                                  "type": "string",
+                                  "format": "date"
+                                },
+                                "EndDate": {
+                                  "type": "string",
+                                  "format": "date"
+                                },
+                                "Description": {
+                                  "type": "string"
+                                },
+                                "createdAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "updatedAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "publishedAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "createdBy": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "updatedBy": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "locale": {
+                                  "type": "string"
+                                },
+                                "localizations": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "documentId": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "educations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                },
+                                "educationType": {
+                                  "type": "string"
+                                },
+                                "courseExperience": {
+                                  "type": "string"
+                                },
+                                "institution": {
+                                  "type": "string"
+                                },
+                                "startDate": {
+                                  "type": "string",
+                                  "format": "date"
+                                },
+                                "endDate": {
+                                  "type": "string",
+                                  "format": "date"
+                                },
+                                "createdAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "updatedAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "publishedAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "createdBy": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "updatedBy": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "locale": {
+                                  "type": "string"
+                                },
+                                "localizations": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "documentId": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -26089,35 +26514,7 @@
                           "TODO3"
                         ]
                       },
-                      "courseExperience": {
-                        "type": "string"
-                      },
-                      "institution": {
-                        "type": "string"
-                      },
-                      "eduStart": {
-                        "type": "string",
-                        "format": "date"
-                      },
-                      "eduEnd": {
-                        "type": "string",
-                        "format": "date"
-                      },
                       "currentCompany": {
-                        "type": "string"
-                      },
-                      "currentJobTitle": {
-                        "type": "string"
-                      },
-                      "companyStart": {
-                        "type": "string",
-                        "format": "date"
-                      },
-                      "companyEnd": {
-                        "type": "string",
-                        "format": "date"
-                      },
-                      "jobDescription": {
                         "type": "string"
                       },
                       "courses": {
@@ -26144,6 +26541,170 @@
                             },
                             "documentId": {
                               "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "jobs": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "documentId": {
+                              "type": "string"
+                            },
+                            "Company": {
+                              "type": "string"
+                            },
+                            "Title": {
+                              "type": "string"
+                            },
+                            "StartDate": {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            "EndDate": {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            "Description": {
+                              "type": "string"
+                            },
+                            "createdAt": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "updatedAt": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "publishedAt": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "createdBy": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "updatedBy": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "locale": {
+                              "type": "string"
+                            },
+                            "localizations": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "documentId": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "educations": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "documentId": {
+                              "type": "string"
+                            },
+                            "educationType": {
+                              "type": "string"
+                            },
+                            "courseExperience": {
+                              "type": "string"
+                            },
+                            "institution": {
+                              "type": "string"
+                            },
+                            "startDate": {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            "endDate": {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            "createdAt": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "updatedAt": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "publishedAt": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "createdBy": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "updatedBy": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "locale": {
+                              "type": "string"
+                            },
+                            "localizations": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "documentId": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
                             }
                           }
                         }
@@ -27720,35 +28281,7 @@
                         "TODO3"
                       ]
                     },
-                    "courseExperience": {
-                      "type": "string"
-                    },
-                    "institution": {
-                      "type": "string"
-                    },
-                    "eduStart": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "eduEnd": {
-                      "type": "string",
-                      "format": "date"
-                    },
                     "currentCompany": {
-                      "type": "string"
-                    },
-                    "currentJobTitle": {
-                      "type": "string"
-                    },
-                    "companyStart": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "companyEnd": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "jobDescription": {
                       "type": "string"
                     },
                     "courses": {
@@ -27775,6 +28308,170 @@
                           },
                           "documentId": {
                             "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "jobs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          },
+                          "Company": {
+                            "type": "string"
+                          },
+                          "Title": {
+                            "type": "string"
+                          },
+                          "StartDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "EndDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "Description": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "publishedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "createdBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "updatedBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "locale": {
+                            "type": "string"
+                          },
+                          "localizations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "educations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          },
+                          "educationType": {
+                            "type": "string"
+                          },
+                          "courseExperience": {
+                            "type": "string"
+                          },
+                          "institution": {
+                            "type": "string"
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "publishedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "createdBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "updatedBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "locale": {
+                            "type": "string"
+                          },
+                          "localizations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -27944,6 +28641,498 @@
         "properties": {
           "data": {
             "$ref": "#/components/schemas/CourseSelection"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      },
+      "EducationRequest": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "educationType": {
+                "type": "string"
+              },
+              "courseExperience": {
+                "type": "string"
+              },
+              "institution": {
+                "type": "string"
+              },
+              "startDate": {
+                "type": "string",
+                "format": "date"
+              },
+              "endDate": {
+                "type": "string",
+                "format": "date"
+              },
+              "locale": {
+                "type": "string"
+              },
+              "localizations": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
+              }
+            }
+          }
+        }
+      },
+      "EducationListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Education"
+            }
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "integer"
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "minimum": 25
+                  },
+                  "pageCount": {
+                    "type": "integer",
+                    "maximum": 1
+                  },
+                  "total": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Education": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "documentId": {
+            "type": "string"
+          },
+          "educationType": {
+            "type": "string"
+          },
+          "courseExperience": {
+            "type": "string"
+          },
+          "institution": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              },
+              "firstname": {
+                "type": "string"
+              },
+              "lastname": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "registrationToken": {
+                "type": "string"
+              },
+              "isActive": {
+                "type": "boolean"
+              },
+              "roles": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "users": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          },
+                          "action": {
+                            "type": "string"
+                          },
+                          "actionParameters": {},
+                          "subject": {
+                            "type": "string"
+                          },
+                          "properties": {},
+                          "conditions": {},
+                          "role": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "publishedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "createdBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "updatedBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "locale": {
+                            "type": "string"
+                          },
+                          "localizations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "publishedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "createdBy": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "documentId": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "updatedBy": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "documentId": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "locale": {
+                      "type": "string"
+                    },
+                    "localizations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "preferedLanguage": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "publishedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "createdBy": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "documentId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "updatedBy": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "documentId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "locale": {
+                "type": "string"
+              },
+              "localizations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "updatedBy": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "locale": {
+            "type": "string"
+          },
+          "localizations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                },
+                "educationType": {
+                  "type": "string"
+                },
+                "courseExperience": {
+                  "type": "string"
+                },
+                "institution": {
+                  "type": "string"
+                },
+                "startDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "endDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "publishedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "createdBy": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "updatedBy": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "locale": {
+                  "type": "string"
+                },
+                "localizations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "documentId": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "EducationResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Education"
           },
           "meta": {
             "type": "object"
@@ -30694,35 +31883,7 @@
                         "TODO3"
                       ]
                     },
-                    "courseExperience": {
-                      "type": "string"
-                    },
-                    "institution": {
-                      "type": "string"
-                    },
-                    "eduStart": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "eduEnd": {
-                      "type": "string",
-                      "format": "date"
-                    },
                     "currentCompany": {
-                      "type": "string"
-                    },
-                    "currentJobTitle": {
-                      "type": "string"
-                    },
-                    "companyStart": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "companyEnd": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "jobDescription": {
                       "type": "string"
                     },
                     "courses": {
@@ -30749,6 +31910,170 @@
                           },
                           "documentId": {
                             "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "jobs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          },
+                          "Company": {
+                            "type": "string"
+                          },
+                          "Title": {
+                            "type": "string"
+                          },
+                          "StartDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "EndDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "Description": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "publishedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "createdBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "updatedBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "locale": {
+                            "type": "string"
+                          },
+                          "localizations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "educations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          },
+                          "educationType": {
+                            "type": "string"
+                          },
+                          "courseExperience": {
+                            "type": "string"
+                          },
+                          "institution": {
+                            "type": "string"
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "publishedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "createdBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "updatedBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "locale": {
+                            "type": "string"
+                          },
+                          "localizations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -30929,6 +32254,498 @@
         "properties": {
           "data": {
             "$ref": "#/components/schemas/Feedback"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      },
+      "JobRequest": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "Company": {
+                "type": "string"
+              },
+              "Title": {
+                "type": "string"
+              },
+              "StartDate": {
+                "type": "string",
+                "format": "date"
+              },
+              "EndDate": {
+                "type": "string",
+                "format": "date"
+              },
+              "Description": {
+                "type": "string"
+              },
+              "locale": {
+                "type": "string"
+              },
+              "localizations": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
+              }
+            }
+          }
+        }
+      },
+      "JobListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Job"
+            }
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "integer"
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "minimum": 25
+                  },
+                  "pageCount": {
+                    "type": "integer",
+                    "maximum": 1
+                  },
+                  "total": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Job": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "documentId": {
+            "type": "string"
+          },
+          "Company": {
+            "type": "string"
+          },
+          "Title": {
+            "type": "string"
+          },
+          "StartDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "EndDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              },
+              "firstname": {
+                "type": "string"
+              },
+              "lastname": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "registrationToken": {
+                "type": "string"
+              },
+              "isActive": {
+                "type": "boolean"
+              },
+              "roles": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "users": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          },
+                          "action": {
+                            "type": "string"
+                          },
+                          "actionParameters": {},
+                          "subject": {
+                            "type": "string"
+                          },
+                          "properties": {},
+                          "conditions": {},
+                          "role": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "publishedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "createdBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "updatedBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "locale": {
+                            "type": "string"
+                          },
+                          "localizations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "publishedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "createdBy": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "documentId": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "updatedBy": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "documentId": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "locale": {
+                      "type": "string"
+                    },
+                    "localizations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "preferedLanguage": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "publishedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "createdBy": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "documentId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "updatedBy": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "documentId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "locale": {
+                "type": "string"
+              },
+              "localizations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "updatedBy": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "locale": {
+            "type": "string"
+          },
+          "localizations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                },
+                "Company": {
+                  "type": "string"
+                },
+                "Title": {
+                  "type": "string"
+                },
+                "StartDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "EndDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "Description": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "publishedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "createdBy": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "updatedBy": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "locale": {
+                  "type": "string"
+                },
+                "localizations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "documentId": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "JobResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Job"
           },
           "meta": {
             "type": "object"
@@ -33261,35 +35078,7 @@
                               "TODO3"
                             ]
                           },
-                          "courseExperience": {
-                            "type": "string"
-                          },
-                          "institution": {
-                            "type": "string"
-                          },
-                          "eduStart": {
-                            "type": "string",
-                            "format": "date"
-                          },
-                          "eduEnd": {
-                            "type": "string",
-                            "format": "date"
-                          },
                           "currentCompany": {
-                            "type": "string"
-                          },
-                          "currentJobTitle": {
-                            "type": "string"
-                          },
-                          "companyStart": {
-                            "type": "string",
-                            "format": "date"
-                          },
-                          "companyEnd": {
-                            "type": "string",
-                            "format": "date"
-                          },
-                          "jobDescription": {
                             "type": "string"
                           },
                           "courses": {
@@ -33316,6 +35105,170 @@
                                 },
                                 "documentId": {
                                   "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "jobs": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                },
+                                "Company": {
+                                  "type": "string"
+                                },
+                                "Title": {
+                                  "type": "string"
+                                },
+                                "StartDate": {
+                                  "type": "string",
+                                  "format": "date"
+                                },
+                                "EndDate": {
+                                  "type": "string",
+                                  "format": "date"
+                                },
+                                "Description": {
+                                  "type": "string"
+                                },
+                                "createdAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "updatedAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "publishedAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "createdBy": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "updatedBy": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "locale": {
+                                  "type": "string"
+                                },
+                                "localizations": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "documentId": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "educations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                },
+                                "educationType": {
+                                  "type": "string"
+                                },
+                                "courseExperience": {
+                                  "type": "string"
+                                },
+                                "institution": {
+                                  "type": "string"
+                                },
+                                "startDate": {
+                                  "type": "string",
+                                  "format": "date"
+                                },
+                                "endDate": {
+                                  "type": "string",
+                                  "format": "date"
+                                },
+                                "createdAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "updatedAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "publishedAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "createdBy": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "updatedBy": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "locale": {
+                                  "type": "string"
+                                },
+                                "localizations": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "documentId": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -34854,35 +36807,7 @@
                                   "TODO3"
                                 ]
                               },
-                              "courseExperience": {
-                                "type": "string"
-                              },
-                              "institution": {
-                                "type": "string"
-                              },
-                              "eduStart": {
-                                "type": "string",
-                                "format": "date"
-                              },
-                              "eduEnd": {
-                                "type": "string",
-                                "format": "date"
-                              },
                               "currentCompany": {
-                                "type": "string"
-                              },
-                              "currentJobTitle": {
-                                "type": "string"
-                              },
-                              "companyStart": {
-                                "type": "string",
-                                "format": "date"
-                              },
-                              "companyEnd": {
-                                "type": "string",
-                                "format": "date"
-                              },
-                              "jobDescription": {
                                 "type": "string"
                               },
                               "courses": {
@@ -34927,6 +36852,170 @@
                                           "type": "string"
                                         }
                                       }
+                                    },
+                                    "createdAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "publishedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "createdBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "documentId": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "updatedBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "documentId": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "locale": {
+                                      "type": "string"
+                                    },
+                                    "localizations": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "number"
+                                          },
+                                          "documentId": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "jobs": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    },
+                                    "Company": {
+                                      "type": "string"
+                                    },
+                                    "Title": {
+                                      "type": "string"
+                                    },
+                                    "StartDate": {
+                                      "type": "string",
+                                      "format": "date"
+                                    },
+                                    "EndDate": {
+                                      "type": "string",
+                                      "format": "date"
+                                    },
+                                    "Description": {
+                                      "type": "string"
+                                    },
+                                    "createdAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "publishedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "createdBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "documentId": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "updatedBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "documentId": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "locale": {
+                                      "type": "string"
+                                    },
+                                    "localizations": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "number"
+                                          },
+                                          "documentId": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "educations": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    },
+                                    "educationType": {
+                                      "type": "string"
+                                    },
+                                    "courseExperience": {
+                                      "type": "string"
+                                    },
+                                    "institution": {
+                                      "type": "string"
+                                    },
+                                    "startDate": {
+                                      "type": "string",
+                                      "format": "date"
+                                    },
+                                    "endDate": {
+                                      "type": "string",
+                                      "format": "date"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -36056,8 +38145,60 @@
           }
         }
       },
+      "JWTContentCreatorResponse": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "userInfo": {
+            "type": "object",
+            "properties": {
+              "documentId": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "verifiedAt": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      },
       "JWTResponse": {
-        "type": "string"
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "userInfo": {
+            "type": "object",
+            "properties": {
+              "documentId": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "verifiedAt": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
       },
       "ResetPasswordRequestRequest": {
         "type": "object",
