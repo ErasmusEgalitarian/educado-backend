@@ -2,8 +2,8 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { CertificateDeleteCertificatesByIdErrors, CertificateDeleteCertificatesByIdRequest, CertificateDeleteCertificatesByIdResponses, CertificateGetCertificatesByIdErrors, CertificateGetCertificatesByIdRequest, CertificateGetCertificatesByIdResponses, CertificateGetCertificatesErrors, CertificateGetCertificatesRequest, CertificateGetCertificatesResponses, CertificatePostCertificatesErrors, CertificatePostCertificatesRequest, CertificatePostCertificatesResponses, CertificatePutCertificatesByIdErrors, CertificatePutCertificatesByIdRequest, CertificatePutCertificatesByIdResponses, ContentCreatorDeleteContentCreatorsByIdErrors, ContentCreatorDeleteContentCreatorsByIdRequest, ContentCreatorDeleteContentCreatorsByIdResponses, ContentCreatorGetContentCreatorsByIdErrors, ContentCreatorGetContentCreatorsByIdRequest, ContentCreatorGetContentCreatorsByIdResponses, ContentCreatorGetContentCreatorsErrors, ContentCreatorGetContentCreatorsRequest, ContentCreatorGetContentCreatorsResponses, ContentCreatorPostContentCreatorsErrors, ContentCreatorPostContentCreatorsRequest, ContentCreatorPostContentCreatorsResponses, ContentCreatorPutContentCreatorsByIdErrors, ContentCreatorPutContentCreatorsByIdRequest, ContentCreatorPutContentCreatorsByIdResponses, ContentTypeBuilderGetComponentsByUidErrors, ContentTypeBuilderGetComponentsByUidRequest, ContentTypeBuilderGetComponentsByUidResponses, ContentTypeBuilderGetComponentsErrors, ContentTypeBuilderGetComponentsRequest, ContentTypeBuilderGetComponentsResponses, ContentTypeBuilderGetContentTypesByUidErrors, ContentTypeBuilderGetContentTypesByUidRequest, ContentTypeBuilderGetContentTypesByUidResponses, ContentTypeBuilderGetContentTypesErrors, ContentTypeBuilderGetContentTypesRequest, ContentTypeBuilderGetContentTypesResponses, CourseCategoryDeleteCourseCategoriesByIdErrors, CourseCategoryDeleteCourseCategoriesByIdRequest, CourseCategoryDeleteCourseCategoriesByIdResponses, CourseCategoryGetCourseCategoriesByIdErrors, CourseCategoryGetCourseCategoriesByIdRequest, CourseCategoryGetCourseCategoriesByIdResponses, CourseCategoryGetCourseCategoriesErrors, CourseCategoryGetCourseCategoriesRequest, CourseCategoryGetCourseCategoriesResponses, CourseCategoryPostCourseCategoriesErrors, CourseCategoryPostCourseCategoriesRequest, CourseCategoryPostCourseCategoriesResponses, CourseCategoryPutCourseCategoriesByIdErrors, CourseCategoryPutCourseCategoriesByIdRequest, CourseCategoryPutCourseCategoriesByIdResponses, CourseDeleteCoursesByIdErrors, CourseDeleteCoursesByIdRequest, CourseDeleteCoursesByIdResponses, CourseGetCoursesByIdErrors, CourseGetCoursesByIdRequest, CourseGetCoursesByIdResponses, CourseGetCoursesErrors, CourseGetCoursesRequest, CourseGetCoursesResponses, CoursePostCoursesErrors, CoursePostCoursesRequest, CoursePostCoursesResponses, CoursePutCoursesByIdErrors, CoursePutCoursesByIdRequest, CoursePutCoursesByIdResponses, CourseSelectionDeleteCourseSelectionsByIdErrors, CourseSelectionDeleteCourseSelectionsByIdRequest, CourseSelectionDeleteCourseSelectionsByIdResponses, CourseSelectionGetCourseSelectionsByIdErrors, CourseSelectionGetCourseSelectionsByIdRequest, CourseSelectionGetCourseSelectionsByIdResponses, CourseSelectionGetCourseSelectionsErrors, CourseSelectionGetCourseSelectionsRequest, CourseSelectionGetCourseSelectionsResponses, CourseSelectionPostCourseSelectionsErrors, CourseSelectionPostCourseSelectionsRequest, CourseSelectionPostCourseSelectionsResponses, CourseSelectionPutCourseSelectionsByIdErrors, CourseSelectionPutCourseSelectionsByIdRequest, CourseSelectionPutCourseSelectionsByIdResponses, ExerciseDeleteExercisesByIdErrors, ExerciseDeleteExercisesByIdRequest, ExerciseDeleteExercisesByIdResponses, ExerciseGetExercisesByIdErrors, ExerciseGetExercisesByIdRequest, ExerciseGetExercisesByIdResponses, ExerciseGetExercisesErrors, ExerciseGetExercisesRequest, ExerciseGetExercisesResponses, ExerciseOptionDeleteExerciseOptionsByIdErrors, ExerciseOptionDeleteExerciseOptionsByIdRequest, ExerciseOptionDeleteExerciseOptionsByIdResponses, ExerciseOptionGetExerciseOptionsByIdErrors, ExerciseOptionGetExerciseOptionsByIdRequest, ExerciseOptionGetExerciseOptionsByIdResponses, ExerciseOptionGetExerciseOptionsErrors, ExerciseOptionGetExerciseOptionsRequest, ExerciseOptionGetExerciseOptionsResponses, ExerciseOptionPostExerciseOptionsErrors, ExerciseOptionPostExerciseOptionsRequest, ExerciseOptionPostExerciseOptionsResponses, ExerciseOptionPutExerciseOptionsByIdErrors, ExerciseOptionPutExerciseOptionsByIdRequest, ExerciseOptionPutExerciseOptionsByIdResponses, ExercisePostExercisesErrors, ExercisePostExercisesRequest, ExercisePostExercisesResponses, ExercisePutExercisesByIdErrors, ExercisePutExercisesByIdRequest, ExercisePutExercisesByIdResponses, FeedbackDeleteFeedbacksByIdErrors, FeedbackDeleteFeedbacksByIdRequest, FeedbackDeleteFeedbacksByIdResponses, FeedbackGetFeedbacksByIdErrors, FeedbackGetFeedbacksByIdRequest, FeedbackGetFeedbacksByIdResponses, FeedbackGetFeedbacksErrors, FeedbackGetFeedbacksRequest, FeedbackGetFeedbacksResponses, FeedbackPostFeedbacksErrors, FeedbackPostFeedbacksRequest, FeedbackPostFeedbacksResponses, FeedbackPutFeedbacksByIdErrors, FeedbackPutFeedbacksByIdRequest, FeedbackPutFeedbacksByIdResponses, I18nGetLocalesErrors, I18nGetLocalesRequest, I18nGetLocalesResponses, LectureDeleteLecturesByIdErrors, LectureDeleteLecturesByIdRequest, LectureDeleteLecturesByIdResponses, LectureGetLecturesByIdErrors, LectureGetLecturesByIdRequest, LectureGetLecturesByIdResponses, LectureGetLecturesErrors, LectureGetLecturesRequest, LectureGetLecturesResponses, LecturePostLecturesErrors, LecturePostLecturesRequest, LecturePostLecturesResponses, LecturePutLecturesByIdErrors, LecturePutLecturesByIdRequest, LecturePutLecturesByIdResponses, PasswordResetTokenDeletePasswordResetTokensByIdErrors, PasswordResetTokenDeletePasswordResetTokensByIdRequest, PasswordResetTokenDeletePasswordResetTokensByIdResponses, PasswordResetTokenGetPasswordResetTokensByIdErrors, PasswordResetTokenGetPasswordResetTokensByIdRequest, PasswordResetTokenGetPasswordResetTokensByIdResponses, PasswordResetTokenGetPasswordResetTokensErrors, PasswordResetTokenGetPasswordResetTokensRequest, PasswordResetTokenGetPasswordResetTokensResponses, PasswordResetTokenPostPasswordResetTokensErrors, PasswordResetTokenPostPasswordResetTokensRequest, PasswordResetTokenPostPasswordResetTokensResponses, PasswordResetTokenPutPasswordResetTokensByIdErrors, PasswordResetTokenPutPasswordResetTokensByIdRequest, PasswordResetTokenPutPasswordResetTokensByIdResponses, PatchStudentResetPasswordUpdateRequest, PatchStudentResetPasswordUpdateResponses, PostContentCreatorLoginRequest, PostContentCreatorLoginResponses, PostStudentLoginRequest, PostStudentLoginResponses, PostStudentResetPasswordCodeRequest, PostStudentResetPasswordCodeResponses, PostStudentResetPasswordRequestRequest, PostStudentResetPasswordRequestResponses, PostStudentSendVerificationTokenRequest, PostStudentSendVerificationTokenResponses, PostStudentSignupRequest, PostStudentSignupResponses, PostStudentVerifyEmailRequest, PostStudentVerifyEmailResponses, StudentDeleteStudentsByIdErrors, StudentDeleteStudentsByIdRequest, StudentDeleteStudentsByIdResponses, StudentGetStudentsByIdErrors, StudentGetStudentsByIdRequest, StudentGetStudentsByIdResponses, StudentGetStudentsErrors, StudentGetStudentsRequest, StudentGetStudentsResponses, StudentPostStudentsErrors, StudentPostStudentsRequest, StudentPostStudentsResponses, StudentPutStudentsByIdErrors, StudentPutStudentsByIdRequest, StudentPutStudentsByIdResponses, UploadDeleteFilesByIdErrors, UploadDeleteFilesByIdRequest, UploadDeleteFilesByIdResponses, UploadGetFilesByIdErrors, UploadGetFilesByIdRequest, UploadGetFilesByIdResponses, UploadGetFilesErrors, UploadGetFilesRequest, UploadGetFilesResponses, UploadPostErrors, UploadPostRequest, UploadPostResponses, UserLogDeleteUserLogsByIdErrors, UserLogDeleteUserLogsByIdRequest, UserLogDeleteUserLogsByIdResponses, UserLogGetUserLogsByIdErrors, UserLogGetUserLogsByIdRequest, UserLogGetUserLogsByIdResponses, UserLogGetUserLogsErrors, UserLogGetUserLogsRequest, UserLogGetUserLogsResponses, UserLogPostUserLogsErrors, UserLogPostUserLogsRequest, UserLogPostUserLogsResponses, UserLogPutUserLogsByIdErrors, UserLogPutUserLogsByIdRequest, UserLogPutUserLogsByIdResponses, UsersPermissionsDeleteRolesByRoleErrors, UsersPermissionsDeleteRolesByRoleRequest, UsersPermissionsDeleteRolesByRoleResponses, UsersPermissionsDeleteUsersByIdErrors, UsersPermissionsDeleteUsersByIdRequest, UsersPermissionsDeleteUsersByIdResponses, UsersPermissionsGetAuthByProviderCallbackErrors, UsersPermissionsGetAuthByProviderCallbackRequest, UsersPermissionsGetAuthByProviderCallbackResponses, UsersPermissionsGetAuthEmailConfirmationErrors, UsersPermissionsGetAuthEmailConfirmationRequest, UsersPermissionsGetAuthEmailConfirmationResponses, UsersPermissionsGetConnectErrors, UsersPermissionsGetConnectRequest, UsersPermissionsGetPermissionsErrors, UsersPermissionsGetPermissionsRequest, UsersPermissionsGetPermissionsResponses, UsersPermissionsGetRolesByIdErrors, UsersPermissionsGetRolesByIdRequest, UsersPermissionsGetRolesByIdResponses, UsersPermissionsGetRolesErrors, UsersPermissionsGetRolesRequest, UsersPermissionsGetRolesResponses, UsersPermissionsGetUsersByIdErrors, UsersPermissionsGetUsersByIdRequest, UsersPermissionsGetUsersByIdResponses, UsersPermissionsGetUsersCountErrors, UsersPermissionsGetUsersCountRequest, UsersPermissionsGetUsersCountResponses, UsersPermissionsGetUsersErrors, UsersPermissionsGetUsersMeErrors, UsersPermissionsGetUsersMeRequest, UsersPermissionsGetUsersMeResponses, UsersPermissionsGetUsersRequest, UsersPermissionsGetUsersResponses, UsersPermissionsPostAuthChangePasswordErrors, UsersPermissionsPostAuthChangePasswordRequest, UsersPermissionsPostAuthChangePasswordResponses, UsersPermissionsPostAuthForgotPasswordErrors, UsersPermissionsPostAuthForgotPasswordRequest, UsersPermissionsPostAuthForgotPasswordResponses, UsersPermissionsPostAuthLocalErrors, UsersPermissionsPostAuthLocalRegisterErrors, UsersPermissionsPostAuthLocalRegisterRequest, UsersPermissionsPostAuthLocalRegisterResponses, UsersPermissionsPostAuthLocalRequest, UsersPermissionsPostAuthLocalResponses, UsersPermissionsPostAuthLogoutErrors, UsersPermissionsPostAuthLogoutRequest, UsersPermissionsPostAuthRefreshErrors, UsersPermissionsPostAuthRefreshRequest, UsersPermissionsPostAuthResetPasswordErrors, UsersPermissionsPostAuthResetPasswordRequest, UsersPermissionsPostAuthResetPasswordResponses, UsersPermissionsPostAuthSendEmailConfirmationErrors, UsersPermissionsPostAuthSendEmailConfirmationRequest, UsersPermissionsPostAuthSendEmailConfirmationResponses, UsersPermissionsPostRolesErrors, UsersPermissionsPostRolesRequest, UsersPermissionsPostRolesResponses, UsersPermissionsPostUsersErrors, UsersPermissionsPostUsersRequest, UsersPermissionsPostUsersResponses, UsersPermissionsPutRolesByRoleErrors, UsersPermissionsPutRolesByRoleRequest, UsersPermissionsPutRolesByRoleResponses, UsersPermissionsPutUsersByIdErrors, UsersPermissionsPutUsersByIdRequest, UsersPermissionsPutUsersByIdResponses, VerificationTokenDeleteVerificationTokensByIdErrors, VerificationTokenDeleteVerificationTokensByIdRequest, VerificationTokenDeleteVerificationTokensByIdResponses, VerificationTokenGetVerificationTokensByIdErrors, VerificationTokenGetVerificationTokensByIdRequest, VerificationTokenGetVerificationTokensByIdResponses, VerificationTokenGetVerificationTokensErrors, VerificationTokenGetVerificationTokensRequest, VerificationTokenGetVerificationTokensResponses, VerificationTokenPostVerificationTokensErrors, VerificationTokenPostVerificationTokensRequest, VerificationTokenPostVerificationTokensResponses, VerificationTokenPutVerificationTokensByIdErrors, VerificationTokenPutVerificationTokensByIdRequest, VerificationTokenPutVerificationTokensByIdResponses } from './types.gen';
-import { zCertificateDeleteCertificatesByIdRequest, zCertificateGetCertificatesByIdRequest, zCertificateGetCertificatesRequest, zCertificatePostCertificatesRequest, zCertificatePutCertificatesByIdRequest, zContentCreatorDeleteContentCreatorsByIdRequest, zContentCreatorGetContentCreatorsByIdRequest, zContentCreatorGetContentCreatorsRequest, zContentCreatorPostContentCreatorsRequest, zContentCreatorPutContentCreatorsByIdRequest, zContentTypeBuilderGetComponentsByUidRequest, zContentTypeBuilderGetComponentsRequest, zContentTypeBuilderGetContentTypesByUidRequest, zContentTypeBuilderGetContentTypesRequest, zCourseCategoryDeleteCourseCategoriesByIdRequest, zCourseCategoryGetCourseCategoriesByIdRequest, zCourseCategoryGetCourseCategoriesRequest, zCourseCategoryPostCourseCategoriesRequest, zCourseCategoryPutCourseCategoriesByIdRequest, zCourseDeleteCoursesByIdRequest, zCourseGetCoursesByIdRequest, zCourseGetCoursesRequest, zCoursePostCoursesRequest, zCoursePutCoursesByIdRequest, zCourseSelectionDeleteCourseSelectionsByIdRequest, zCourseSelectionGetCourseSelectionsByIdRequest, zCourseSelectionGetCourseSelectionsRequest, zCourseSelectionPostCourseSelectionsRequest, zCourseSelectionPutCourseSelectionsByIdRequest, zExerciseDeleteExercisesByIdRequest, zExerciseGetExercisesByIdRequest, zExerciseGetExercisesRequest, zExerciseOptionDeleteExerciseOptionsByIdRequest, zExerciseOptionGetExerciseOptionsByIdRequest, zExerciseOptionGetExerciseOptionsRequest, zExerciseOptionPostExerciseOptionsRequest, zExerciseOptionPutExerciseOptionsByIdRequest, zExercisePostExercisesRequest, zExercisePutExercisesByIdRequest, zFeedbackDeleteFeedbacksByIdRequest, zFeedbackGetFeedbacksByIdRequest, zFeedbackGetFeedbacksRequest, zFeedbackPostFeedbacksRequest, zFeedbackPutFeedbacksByIdRequest, zI18nGetLocalesRequest, zLectureDeleteLecturesByIdRequest, zLectureGetLecturesByIdRequest, zLectureGetLecturesRequest, zLecturePostLecturesRequest, zLecturePutLecturesByIdRequest, zPasswordResetTokenDeletePasswordResetTokensByIdRequest, zPasswordResetTokenGetPasswordResetTokensByIdRequest, zPasswordResetTokenGetPasswordResetTokensRequest, zPasswordResetTokenPostPasswordResetTokensRequest, zPasswordResetTokenPutPasswordResetTokensByIdRequest, zPatchStudentResetPasswordUpdateRequest, zPostContentCreatorLoginRequest, zPostStudentLoginRequest, zPostStudentResetPasswordCodeRequest, zPostStudentResetPasswordRequestRequest, zPostStudentSendVerificationTokenRequest, zPostStudentSignupRequest, zPostStudentVerifyEmailRequest, zStudentDeleteStudentsByIdRequest, zStudentGetStudentsByIdRequest, zStudentGetStudentsRequest, zStudentPostStudentsRequest, zStudentPutStudentsByIdRequest, zUploadDeleteFilesByIdRequest, zUploadGetFilesByIdRequest, zUploadGetFilesRequest, zUploadPostRequest, zUserLogDeleteUserLogsByIdRequest, zUserLogGetUserLogsByIdRequest, zUserLogGetUserLogsRequest, zUserLogPostUserLogsRequest, zUserLogPutUserLogsByIdRequest, zUsersPermissionsDeleteRolesByRoleRequest, zUsersPermissionsDeleteUsersByIdRequest, zUsersPermissionsGetAuthByProviderCallbackRequest, zUsersPermissionsGetAuthEmailConfirmationRequest, zUsersPermissionsGetConnectRequest, zUsersPermissionsGetPermissionsRequest, zUsersPermissionsGetRolesByIdRequest, zUsersPermissionsGetRolesRequest, zUsersPermissionsGetUsersByIdRequest, zUsersPermissionsGetUsersCountRequest, zUsersPermissionsGetUsersMeRequest, zUsersPermissionsGetUsersRequest, zUsersPermissionsPostAuthChangePasswordRequest, zUsersPermissionsPostAuthForgotPasswordRequest, zUsersPermissionsPostAuthLocalRegisterRequest, zUsersPermissionsPostAuthLocalRequest, zUsersPermissionsPostAuthLogoutRequest, zUsersPermissionsPostAuthRefreshRequest, zUsersPermissionsPostAuthResetPasswordRequest, zUsersPermissionsPostAuthSendEmailConfirmationRequest, zUsersPermissionsPostRolesRequest, zUsersPermissionsPostUsersRequest, zUsersPermissionsPutRolesByRoleRequest, zUsersPermissionsPutUsersByIdRequest, zVerificationTokenDeleteVerificationTokensByIdRequest, zVerificationTokenGetVerificationTokensByIdRequest, zVerificationTokenGetVerificationTokensRequest, zVerificationTokenPostVerificationTokensRequest, zVerificationTokenPutVerificationTokensByIdRequest } from './zod.gen';
+import type { ActivityDeleteActivitiesByIdErrors, ActivityDeleteActivitiesByIdRequest, ActivityDeleteActivitiesByIdResponses, ActivityGetActivitiesByIdErrors, ActivityGetActivitiesByIdRequest, ActivityGetActivitiesByIdResponses, ActivityGetActivitiesErrors, ActivityGetActivitiesRequest, ActivityGetActivitiesResponses, ActivityPostActivitiesErrors, ActivityPostActivitiesRequest, ActivityPostActivitiesResponses, ActivityPutActivitiesByIdErrors, ActivityPutActivitiesByIdRequest, ActivityPutActivitiesByIdResponses, CertificateDeleteCertificatesByIdErrors, CertificateDeleteCertificatesByIdRequest, CertificateDeleteCertificatesByIdResponses, CertificateGetCertificatesByIdErrors, CertificateGetCertificatesByIdRequest, CertificateGetCertificatesByIdResponses, CertificateGetCertificatesErrors, CertificateGetCertificatesRequest, CertificateGetCertificatesResponses, CertificatePostCertificatesErrors, CertificatePostCertificatesRequest, CertificatePostCertificatesResponses, CertificatePutCertificatesByIdErrors, CertificatePutCertificatesByIdRequest, CertificatePutCertificatesByIdResponses, ContentCreatorDeleteContentCreatorsByIdErrors, ContentCreatorDeleteContentCreatorsByIdRequest, ContentCreatorDeleteContentCreatorsByIdResponses, ContentCreatorGetContentCreatorsByIdErrors, ContentCreatorGetContentCreatorsByIdRequest, ContentCreatorGetContentCreatorsByIdResponses, ContentCreatorGetContentCreatorsErrors, ContentCreatorGetContentCreatorsRequest, ContentCreatorGetContentCreatorsResponses, ContentCreatorPostContentCreatorsErrors, ContentCreatorPostContentCreatorsRequest, ContentCreatorPostContentCreatorsResponses, ContentCreatorPutContentCreatorsByIdErrors, ContentCreatorPutContentCreatorsByIdRequest, ContentCreatorPutContentCreatorsByIdResponses, ContentTypeBuilderGetComponentsByUidErrors, ContentTypeBuilderGetComponentsByUidRequest, ContentTypeBuilderGetComponentsByUidResponses, ContentTypeBuilderGetComponentsErrors, ContentTypeBuilderGetComponentsRequest, ContentTypeBuilderGetComponentsResponses, ContentTypeBuilderGetContentTypesByUidErrors, ContentTypeBuilderGetContentTypesByUidRequest, ContentTypeBuilderGetContentTypesByUidResponses, ContentTypeBuilderGetContentTypesErrors, ContentTypeBuilderGetContentTypesRequest, ContentTypeBuilderGetContentTypesResponses, CourseCategoryDeleteCourseCategoriesByIdErrors, CourseCategoryDeleteCourseCategoriesByIdRequest, CourseCategoryDeleteCourseCategoriesByIdResponses, CourseCategoryGetCourseCategoriesByIdErrors, CourseCategoryGetCourseCategoriesByIdRequest, CourseCategoryGetCourseCategoriesByIdResponses, CourseCategoryGetCourseCategoriesErrors, CourseCategoryGetCourseCategoriesRequest, CourseCategoryGetCourseCategoriesResponses, CourseCategoryPostCourseCategoriesErrors, CourseCategoryPostCourseCategoriesRequest, CourseCategoryPostCourseCategoriesResponses, CourseCategoryPutCourseCategoriesByIdErrors, CourseCategoryPutCourseCategoriesByIdRequest, CourseCategoryPutCourseCategoriesByIdResponses, CourseDeleteCoursesByIdErrors, CourseDeleteCoursesByIdRequest, CourseDeleteCoursesByIdResponses, CourseGetCoursesByIdErrors, CourseGetCoursesByIdRequest, CourseGetCoursesByIdResponses, CourseGetCoursesErrors, CourseGetCoursesRequest, CourseGetCoursesResponses, CoursePostCoursesErrors, CoursePostCoursesRequest, CoursePostCoursesResponses, CoursePutCoursesByIdErrors, CoursePutCoursesByIdRequest, CoursePutCoursesByIdResponses, CourseSectionDeleteCourseSectionsByIdErrors, CourseSectionDeleteCourseSectionsByIdRequest, CourseSectionDeleteCourseSectionsByIdResponses, CourseSectionGetCourseSectionsByIdErrors, CourseSectionGetCourseSectionsByIdRequest, CourseSectionGetCourseSectionsByIdResponses, CourseSectionGetCourseSectionsErrors, CourseSectionGetCourseSectionsRequest, CourseSectionGetCourseSectionsResponses, CourseSectionPostCourseSectionsErrors, CourseSectionPostCourseSectionsRequest, CourseSectionPostCourseSectionsResponses, CourseSectionPutCourseSectionsByIdErrors, CourseSectionPutCourseSectionsByIdRequest, CourseSectionPutCourseSectionsByIdResponses, DeleteCoursesByCourseIdSectionsByIdErrors, DeleteCoursesByCourseIdSectionsByIdRequest, DeleteCoursesByCourseIdSectionsByIdResponses, ExerciseDeleteExercisesByIdErrors, ExerciseDeleteExercisesByIdRequest, ExerciseDeleteExercisesByIdResponses, ExerciseGetExercisesByIdErrors, ExerciseGetExercisesByIdRequest, ExerciseGetExercisesByIdResponses, ExerciseGetExercisesErrors, ExerciseGetExercisesRequest, ExerciseGetExercisesResponses, ExerciseOptionDeleteExerciseOptionsByIdErrors, ExerciseOptionDeleteExerciseOptionsByIdRequest, ExerciseOptionDeleteExerciseOptionsByIdResponses, ExerciseOptionGetExerciseOptionsByIdErrors, ExerciseOptionGetExerciseOptionsByIdRequest, ExerciseOptionGetExerciseOptionsByIdResponses, ExerciseOptionGetExerciseOptionsErrors, ExerciseOptionGetExerciseOptionsRequest, ExerciseOptionGetExerciseOptionsResponses, ExerciseOptionPostExerciseOptionsErrors, ExerciseOptionPostExerciseOptionsRequest, ExerciseOptionPostExerciseOptionsResponses, ExerciseOptionPutExerciseOptionsByIdErrors, ExerciseOptionPutExerciseOptionsByIdRequest, ExerciseOptionPutExerciseOptionsByIdResponses, ExercisePostExercisesErrors, ExercisePostExercisesRequest, ExercisePostExercisesResponses, ExercisePutExercisesByIdErrors, ExercisePutExercisesByIdRequest, ExercisePutExercisesByIdResponses, FeedbackDeleteFeedbacksByIdErrors, FeedbackDeleteFeedbacksByIdRequest, FeedbackDeleteFeedbacksByIdResponses, FeedbackGetFeedbacksByIdErrors, FeedbackGetFeedbacksByIdRequest, FeedbackGetFeedbacksByIdResponses, FeedbackGetFeedbacksErrors, FeedbackGetFeedbacksRequest, FeedbackGetFeedbacksResponses, FeedbackPostFeedbacksErrors, FeedbackPostFeedbacksRequest, FeedbackPostFeedbacksResponses, FeedbackPutFeedbacksByIdErrors, FeedbackPutFeedbacksByIdRequest, FeedbackPutFeedbacksByIdResponses, GetCoursesByCourseIdSectionsByIdErrors, GetCoursesByCourseIdSectionsByIdRequest, GetCoursesByCourseIdSectionsByIdResponses, GetCoursesByCourseIdSectionsErrors, GetCoursesByCourseIdSectionsRequest, GetCoursesByCourseIdSectionsResponses, I18nGetLocalesErrors, I18nGetLocalesRequest, I18nGetLocalesResponses, LectureDeleteLecturesByIdErrors, LectureDeleteLecturesByIdRequest, LectureDeleteLecturesByIdResponses, LectureGetLecturesByIdErrors, LectureGetLecturesByIdRequest, LectureGetLecturesByIdResponses, LectureGetLecturesErrors, LectureGetLecturesRequest, LectureGetLecturesResponses, LecturePostLecturesErrors, LecturePostLecturesRequest, LecturePostLecturesResponses, LecturePutLecturesByIdErrors, LecturePutLecturesByIdRequest, LecturePutLecturesByIdResponses, PasswordResetTokenDeletePasswordResetTokensByIdErrors, PasswordResetTokenDeletePasswordResetTokensByIdRequest, PasswordResetTokenDeletePasswordResetTokensByIdResponses, PasswordResetTokenGetPasswordResetTokensByIdErrors, PasswordResetTokenGetPasswordResetTokensByIdRequest, PasswordResetTokenGetPasswordResetTokensByIdResponses, PasswordResetTokenGetPasswordResetTokensErrors, PasswordResetTokenGetPasswordResetTokensRequest, PasswordResetTokenGetPasswordResetTokensResponses, PasswordResetTokenPostPasswordResetTokensErrors, PasswordResetTokenPostPasswordResetTokensRequest, PasswordResetTokenPostPasswordResetTokensResponses, PasswordResetTokenPutPasswordResetTokensByIdErrors, PasswordResetTokenPutPasswordResetTokensByIdRequest, PasswordResetTokenPutPasswordResetTokensByIdResponses, PatchStudentResetPasswordUpdateRequest, PatchStudentResetPasswordUpdateResponses, PostContentCreatorLoginRequest, PostContentCreatorLoginResponses, PostCoursesByCourseIdSectionsErrors, PostCoursesByCourseIdSectionsRequest, PostCoursesByCourseIdSectionsResponses, PostStudentLoginRequest, PostStudentLoginResponses, PostStudentResetPasswordCodeRequest, PostStudentResetPasswordCodeResponses, PostStudentResetPasswordRequestRequest, PostStudentResetPasswordRequestResponses, PostStudentSendVerificationTokenRequest, PostStudentSendVerificationTokenResponses, PostStudentSignupRequest, PostStudentSignupResponses, PostStudentVerifyEmailRequest, PostStudentVerifyEmailResponses, PutCoursesByCourseIdSectionsByIdErrors, PutCoursesByCourseIdSectionsByIdRequest, PutCoursesByCourseIdSectionsByIdResponses, StudentDeleteStudentsByIdErrors, StudentDeleteStudentsByIdRequest, StudentDeleteStudentsByIdResponses, StudentGetStudentsByIdErrors, StudentGetStudentsByIdRequest, StudentGetStudentsByIdResponses, StudentGetStudentsErrors, StudentGetStudentsRequest, StudentGetStudentsResponses, StudentPostStudentsErrors, StudentPostStudentsRequest, StudentPostStudentsResponses, StudentPutStudentsByIdErrors, StudentPutStudentsByIdRequest, StudentPutStudentsByIdResponses, UploadDeleteFilesByIdErrors, UploadDeleteFilesByIdRequest, UploadDeleteFilesByIdResponses, UploadGetFilesByIdErrors, UploadGetFilesByIdRequest, UploadGetFilesByIdResponses, UploadGetFilesErrors, UploadGetFilesRequest, UploadGetFilesResponses, UploadPostErrors, UploadPostRequest, UploadPostResponses, UserLogDeleteUserLogsByIdErrors, UserLogDeleteUserLogsByIdRequest, UserLogDeleteUserLogsByIdResponses, UserLogGetUserLogsByIdErrors, UserLogGetUserLogsByIdRequest, UserLogGetUserLogsByIdResponses, UserLogGetUserLogsErrors, UserLogGetUserLogsRequest, UserLogGetUserLogsResponses, UserLogPostUserLogsErrors, UserLogPostUserLogsRequest, UserLogPostUserLogsResponses, UserLogPutUserLogsByIdErrors, UserLogPutUserLogsByIdRequest, UserLogPutUserLogsByIdResponses, UsersPermissionsDeleteRolesByRoleErrors, UsersPermissionsDeleteRolesByRoleRequest, UsersPermissionsDeleteRolesByRoleResponses, UsersPermissionsDeleteUsersByIdErrors, UsersPermissionsDeleteUsersByIdRequest, UsersPermissionsDeleteUsersByIdResponses, UsersPermissionsGetAuthByProviderCallbackErrors, UsersPermissionsGetAuthByProviderCallbackRequest, UsersPermissionsGetAuthByProviderCallbackResponses, UsersPermissionsGetAuthEmailConfirmationErrors, UsersPermissionsGetAuthEmailConfirmationRequest, UsersPermissionsGetAuthEmailConfirmationResponses, UsersPermissionsGetConnectErrors, UsersPermissionsGetConnectRequest, UsersPermissionsGetPermissionsErrors, UsersPermissionsGetPermissionsRequest, UsersPermissionsGetPermissionsResponses, UsersPermissionsGetRolesByIdErrors, UsersPermissionsGetRolesByIdRequest, UsersPermissionsGetRolesByIdResponses, UsersPermissionsGetRolesErrors, UsersPermissionsGetRolesRequest, UsersPermissionsGetRolesResponses, UsersPermissionsGetUsersByIdErrors, UsersPermissionsGetUsersByIdRequest, UsersPermissionsGetUsersByIdResponses, UsersPermissionsGetUsersCountErrors, UsersPermissionsGetUsersCountRequest, UsersPermissionsGetUsersCountResponses, UsersPermissionsGetUsersErrors, UsersPermissionsGetUsersMeErrors, UsersPermissionsGetUsersMeRequest, UsersPermissionsGetUsersMeResponses, UsersPermissionsGetUsersRequest, UsersPermissionsGetUsersResponses, UsersPermissionsPostAuthChangePasswordErrors, UsersPermissionsPostAuthChangePasswordRequest, UsersPermissionsPostAuthChangePasswordResponses, UsersPermissionsPostAuthForgotPasswordErrors, UsersPermissionsPostAuthForgotPasswordRequest, UsersPermissionsPostAuthForgotPasswordResponses, UsersPermissionsPostAuthLocalErrors, UsersPermissionsPostAuthLocalRegisterErrors, UsersPermissionsPostAuthLocalRegisterRequest, UsersPermissionsPostAuthLocalRegisterResponses, UsersPermissionsPostAuthLocalRequest, UsersPermissionsPostAuthLocalResponses, UsersPermissionsPostAuthLogoutErrors, UsersPermissionsPostAuthLogoutRequest, UsersPermissionsPostAuthRefreshErrors, UsersPermissionsPostAuthRefreshRequest, UsersPermissionsPostAuthResetPasswordErrors, UsersPermissionsPostAuthResetPasswordRequest, UsersPermissionsPostAuthResetPasswordResponses, UsersPermissionsPostAuthSendEmailConfirmationErrors, UsersPermissionsPostAuthSendEmailConfirmationRequest, UsersPermissionsPostAuthSendEmailConfirmationResponses, UsersPermissionsPostRolesErrors, UsersPermissionsPostRolesRequest, UsersPermissionsPostRolesResponses, UsersPermissionsPostUsersErrors, UsersPermissionsPostUsersRequest, UsersPermissionsPostUsersResponses, UsersPermissionsPutRolesByRoleErrors, UsersPermissionsPutRolesByRoleRequest, UsersPermissionsPutRolesByRoleResponses, UsersPermissionsPutUsersByIdErrors, UsersPermissionsPutUsersByIdRequest, UsersPermissionsPutUsersByIdResponses, VerificationTokenDeleteVerificationTokensByIdErrors, VerificationTokenDeleteVerificationTokensByIdRequest, VerificationTokenDeleteVerificationTokensByIdResponses, VerificationTokenGetVerificationTokensByIdErrors, VerificationTokenGetVerificationTokensByIdRequest, VerificationTokenGetVerificationTokensByIdResponses, VerificationTokenGetVerificationTokensErrors, VerificationTokenGetVerificationTokensRequest, VerificationTokenGetVerificationTokensResponses, VerificationTokenPostVerificationTokensErrors, VerificationTokenPostVerificationTokensRequest, VerificationTokenPostVerificationTokensResponses, VerificationTokenPutVerificationTokensByIdErrors, VerificationTokenPutVerificationTokensByIdRequest, VerificationTokenPutVerificationTokensByIdResponses } from './types.gen';
+import { zActivityDeleteActivitiesByIdRequest, zActivityGetActivitiesByIdRequest, zActivityGetActivitiesRequest, zActivityPostActivitiesRequest, zActivityPutActivitiesByIdRequest, zCertificateDeleteCertificatesByIdRequest, zCertificateGetCertificatesByIdRequest, zCertificateGetCertificatesRequest, zCertificatePostCertificatesRequest, zCertificatePutCertificatesByIdRequest, zContentCreatorDeleteContentCreatorsByIdRequest, zContentCreatorGetContentCreatorsByIdRequest, zContentCreatorGetContentCreatorsRequest, zContentCreatorPostContentCreatorsRequest, zContentCreatorPutContentCreatorsByIdRequest, zContentTypeBuilderGetComponentsByUidRequest, zContentTypeBuilderGetComponentsRequest, zContentTypeBuilderGetContentTypesByUidRequest, zContentTypeBuilderGetContentTypesRequest, zCourseCategoryDeleteCourseCategoriesByIdRequest, zCourseCategoryGetCourseCategoriesByIdRequest, zCourseCategoryGetCourseCategoriesRequest, zCourseCategoryPostCourseCategoriesRequest, zCourseCategoryPutCourseCategoriesByIdRequest, zCourseDeleteCoursesByIdRequest, zCourseGetCoursesByIdRequest, zCourseGetCoursesRequest, zCoursePostCoursesRequest, zCoursePutCoursesByIdRequest, zCourseSectionDeleteCourseSectionsByIdRequest, zCourseSectionGetCourseSectionsByIdRequest, zCourseSectionGetCourseSectionsRequest, zCourseSectionPostCourseSectionsRequest, zCourseSectionPutCourseSectionsByIdRequest, zDeleteCoursesByCourseIdSectionsByIdRequest, zExerciseDeleteExercisesByIdRequest, zExerciseGetExercisesByIdRequest, zExerciseGetExercisesRequest, zExerciseOptionDeleteExerciseOptionsByIdRequest, zExerciseOptionGetExerciseOptionsByIdRequest, zExerciseOptionGetExerciseOptionsRequest, zExerciseOptionPostExerciseOptionsRequest, zExerciseOptionPutExerciseOptionsByIdRequest, zExercisePostExercisesRequest, zExercisePutExercisesByIdRequest, zFeedbackDeleteFeedbacksByIdRequest, zFeedbackGetFeedbacksByIdRequest, zFeedbackGetFeedbacksRequest, zFeedbackPostFeedbacksRequest, zFeedbackPutFeedbacksByIdRequest, zGetCoursesByCourseIdSectionsByIdRequest, zGetCoursesByCourseIdSectionsRequest, zI18nGetLocalesRequest, zLectureDeleteLecturesByIdRequest, zLectureGetLecturesByIdRequest, zLectureGetLecturesRequest, zLecturePostLecturesRequest, zLecturePutLecturesByIdRequest, zPasswordResetTokenDeletePasswordResetTokensByIdRequest, zPasswordResetTokenGetPasswordResetTokensByIdRequest, zPasswordResetTokenGetPasswordResetTokensRequest, zPasswordResetTokenPostPasswordResetTokensRequest, zPasswordResetTokenPutPasswordResetTokensByIdRequest, zPatchStudentResetPasswordUpdateRequest, zPostContentCreatorLoginRequest, zPostCoursesByCourseIdSectionsRequest, zPostStudentLoginRequest, zPostStudentResetPasswordCodeRequest, zPostStudentResetPasswordRequestRequest, zPostStudentSendVerificationTokenRequest, zPostStudentSignupRequest, zPostStudentVerifyEmailRequest, zPutCoursesByCourseIdSectionsByIdRequest, zStudentDeleteStudentsByIdRequest, zStudentGetStudentsByIdRequest, zStudentGetStudentsRequest, zStudentPostStudentsRequest, zStudentPutStudentsByIdRequest, zUploadDeleteFilesByIdRequest, zUploadGetFilesByIdRequest, zUploadGetFilesRequest, zUploadPostRequest, zUserLogDeleteUserLogsByIdRequest, zUserLogGetUserLogsByIdRequest, zUserLogGetUserLogsRequest, zUserLogPostUserLogsRequest, zUserLogPutUserLogsByIdRequest, zUsersPermissionsDeleteRolesByRoleRequest, zUsersPermissionsDeleteUsersByIdRequest, zUsersPermissionsGetAuthByProviderCallbackRequest, zUsersPermissionsGetAuthEmailConfirmationRequest, zUsersPermissionsGetConnectRequest, zUsersPermissionsGetPermissionsRequest, zUsersPermissionsGetRolesByIdRequest, zUsersPermissionsGetRolesRequest, zUsersPermissionsGetUsersByIdRequest, zUsersPermissionsGetUsersCountRequest, zUsersPermissionsGetUsersMeRequest, zUsersPermissionsGetUsersRequest, zUsersPermissionsPostAuthChangePasswordRequest, zUsersPermissionsPostAuthForgotPasswordRequest, zUsersPermissionsPostAuthLocalRegisterRequest, zUsersPermissionsPostAuthLocalRequest, zUsersPermissionsPostAuthLogoutRequest, zUsersPermissionsPostAuthRefreshRequest, zUsersPermissionsPostAuthResetPasswordRequest, zUsersPermissionsPostAuthSendEmailConfirmationRequest, zUsersPermissionsPostRolesRequest, zUsersPermissionsPostUsersRequest, zUsersPermissionsPutRolesByRoleRequest, zUsersPermissionsPutUsersByIdRequest, zVerificationTokenDeleteVerificationTokensByIdRequest, zVerificationTokenGetVerificationTokensByIdRequest, zVerificationTokenGetVerificationTokensRequest, zVerificationTokenPostVerificationTokensRequest, zVerificationTokenPutVerificationTokensByIdRequest } from './zod.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -17,6 +17,96 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
      * used to access values that aren't defined as part of the SDK function.
      */
     meta?: Record<string, unknown>;
+};
+
+export const activityGetActivities = <ThrowOnError extends boolean = false>(options?: Options<ActivityGetActivitiesRequest, ThrowOnError>) => {
+    return (options?.client ?? client).get<ActivityGetActivitiesResponses, ActivityGetActivitiesErrors, ThrowOnError, 'data'>({
+        querySerializer: {
+            parameters: {
+                filters: {
+                    object: {
+                        style: 'form'
+                    }
+                }
+            }
+        },
+        requestValidator: async (data) => {
+            return await zActivityGetActivitiesRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/activities',
+        ...options
+    });
+};
+
+export const activityPostActivities = <ThrowOnError extends boolean = false>(options: Options<ActivityPostActivitiesRequest, ThrowOnError>) => {
+    return (options.client ?? client).post<ActivityPostActivitiesResponses, ActivityPostActivitiesErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zActivityPostActivitiesRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/activities',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
+export const activityDeleteActivitiesById = <ThrowOnError extends boolean = false>(options: Options<ActivityDeleteActivitiesByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).delete<ActivityDeleteActivitiesByIdResponses, ActivityDeleteActivitiesByIdErrors, ThrowOnError, 'data'>({
+        querySerializer: {
+            parameters: {
+                filters: {
+                    object: {
+                        style: 'form'
+                    }
+                }
+            }
+        },
+        requestValidator: async (data) => {
+            return await zActivityDeleteActivitiesByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/activities/{id}',
+        ...options
+    });
+};
+
+export const activityGetActivitiesById = <ThrowOnError extends boolean = false>(options: Options<ActivityGetActivitiesByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).get<ActivityGetActivitiesByIdResponses, ActivityGetActivitiesByIdErrors, ThrowOnError, 'data'>({
+        querySerializer: {
+            parameters: {
+                filters: {
+                    object: {
+                        style: 'form'
+                    }
+                }
+            }
+        },
+        requestValidator: async (data) => {
+            return await zActivityGetActivitiesByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/activities/{id}',
+        ...options
+    });
+};
+
+export const activityPutActivitiesById = <ThrowOnError extends boolean = false>(options: Options<ActivityPutActivitiesByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).put<ActivityPutActivitiesByIdResponses, ActivityPutActivitiesByIdErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zActivityPutActivitiesByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/activities/{id}',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
 };
 
 export const certificateGetCertificates = <ThrowOnError extends boolean = false>(options?: Options<CertificateGetCertificatesRequest, ThrowOnError>) => {
@@ -394,8 +484,8 @@ export const courseCategoryPutCourseCategoriesById = <ThrowOnError extends boole
     });
 };
 
-export const courseSelectionGetCourseSelections = <ThrowOnError extends boolean = false>(options?: Options<CourseSelectionGetCourseSelectionsRequest, ThrowOnError>) => {
-    return (options?.client ?? client).get<CourseSelectionGetCourseSelectionsResponses, CourseSelectionGetCourseSelectionsErrors, ThrowOnError, 'data'>({
+export const courseSectionGetCourseSections = <ThrowOnError extends boolean = false>(options?: Options<CourseSectionGetCourseSectionsRequest, ThrowOnError>) => {
+    return (options?.client ?? client).get<CourseSectionGetCourseSectionsResponses, CourseSectionGetCourseSectionsErrors, ThrowOnError, 'data'>({
         querySerializer: {
             parameters: {
                 filters: {
@@ -406,21 +496,21 @@ export const courseSelectionGetCourseSelections = <ThrowOnError extends boolean 
             }
         },
         requestValidator: async (data) => {
-            return await zCourseSelectionGetCourseSelectionsRequest.parseAsync(data);
+            return await zCourseSectionGetCourseSectionsRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-selections',
+        url: '/course-sections',
         ...options
     });
 };
 
-export const courseSelectionPostCourseSelections = <ThrowOnError extends boolean = false>(options: Options<CourseSelectionPostCourseSelectionsRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<CourseSelectionPostCourseSelectionsResponses, CourseSelectionPostCourseSelectionsErrors, ThrowOnError, 'data'>({
+export const courseSectionPostCourseSections = <ThrowOnError extends boolean = false>(options: Options<CourseSectionPostCourseSectionsRequest, ThrowOnError>) => {
+    return (options.client ?? client).post<CourseSectionPostCourseSectionsResponses, CourseSectionPostCourseSectionsErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zCourseSelectionPostCourseSelectionsRequest.parseAsync(data);
+            return await zCourseSectionPostCourseSectionsRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-selections',
+        url: '/course-sections',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -429,8 +519,8 @@ export const courseSelectionPostCourseSelections = <ThrowOnError extends boolean
     });
 };
 
-export const courseSelectionDeleteCourseSelectionsById = <ThrowOnError extends boolean = false>(options: Options<CourseSelectionDeleteCourseSelectionsByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).delete<CourseSelectionDeleteCourseSelectionsByIdResponses, CourseSelectionDeleteCourseSelectionsByIdErrors, ThrowOnError, 'data'>({
+export const courseSectionDeleteCourseSectionsById = <ThrowOnError extends boolean = false>(options: Options<CourseSectionDeleteCourseSectionsByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).delete<CourseSectionDeleteCourseSectionsByIdResponses, CourseSectionDeleteCourseSectionsByIdErrors, ThrowOnError, 'data'>({
         querySerializer: {
             parameters: {
                 filters: {
@@ -441,16 +531,16 @@ export const courseSelectionDeleteCourseSelectionsById = <ThrowOnError extends b
             }
         },
         requestValidator: async (data) => {
-            return await zCourseSelectionDeleteCourseSelectionsByIdRequest.parseAsync(data);
+            return await zCourseSectionDeleteCourseSectionsByIdRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-selections/{id}',
+        url: '/course-sections/{id}',
         ...options
     });
 };
 
-export const courseSelectionGetCourseSelectionsById = <ThrowOnError extends boolean = false>(options: Options<CourseSelectionGetCourseSelectionsByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).get<CourseSelectionGetCourseSelectionsByIdResponses, CourseSelectionGetCourseSelectionsByIdErrors, ThrowOnError, 'data'>({
+export const courseSectionGetCourseSectionsById = <ThrowOnError extends boolean = false>(options: Options<CourseSectionGetCourseSectionsByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).get<CourseSectionGetCourseSectionsByIdResponses, CourseSectionGetCourseSectionsByIdErrors, ThrowOnError, 'data'>({
         querySerializer: {
             parameters: {
                 filters: {
@@ -461,21 +551,21 @@ export const courseSelectionGetCourseSelectionsById = <ThrowOnError extends bool
             }
         },
         requestValidator: async (data) => {
-            return await zCourseSelectionGetCourseSelectionsByIdRequest.parseAsync(data);
+            return await zCourseSectionGetCourseSectionsByIdRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-selections/{id}',
+        url: '/course-sections/{id}',
         ...options
     });
 };
 
-export const courseSelectionPutCourseSelectionsById = <ThrowOnError extends boolean = false>(options: Options<CourseSelectionPutCourseSelectionsByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).put<CourseSelectionPutCourseSelectionsByIdResponses, CourseSelectionPutCourseSelectionsByIdErrors, ThrowOnError, 'data'>({
+export const courseSectionPutCourseSectionsById = <ThrowOnError extends boolean = false>(options: Options<CourseSectionPutCourseSectionsByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).put<CourseSectionPutCourseSectionsByIdResponses, CourseSectionPutCourseSectionsByIdErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zCourseSelectionPutCourseSelectionsByIdRequest.parseAsync(data);
+            return await zCourseSectionPutCourseSectionsByIdRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-selections/{id}',
+        url: '/course-sections/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1736,5 +1826,93 @@ export const usersPermissionsGetPermissions = <ThrowOnError extends boolean = fa
         responseStyle: 'data',
         url: '/permissions',
         ...options
+    });
+};
+
+/**
+ * Get all sections for a course
+ *
+ * Retrieve all sections belonging to a specific course. Requires student authentication.
+ */
+export const getCoursesByCourseIdSections = <ThrowOnError extends boolean = false>(options: Options<GetCoursesByCourseIdSectionsRequest, ThrowOnError>) => {
+    return (options.client ?? client).get<GetCoursesByCourseIdSectionsResponses, GetCoursesByCourseIdSectionsErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zGetCoursesByCourseIdSectionsRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/courses/{courseId}/sections',
+        ...options
+    });
+};
+
+/**
+ * Create a new section for a course
+ *
+ * Create a new section within a specific course. Requires content creator authentication and course ownership.
+ */
+export const postCoursesByCourseIdSections = <ThrowOnError extends boolean = false>(options: Options<PostCoursesByCourseIdSectionsRequest, ThrowOnError>) => {
+    return (options.client ?? client).post<PostCoursesByCourseIdSectionsResponses, PostCoursesByCourseIdSectionsErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zPostCoursesByCourseIdSectionsRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/courses/{courseId}/sections',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
+/**
+ * Delete a section from a course
+ *
+ * Delete an existing section from a specific course. Requires content creator authentication and course ownership.
+ */
+export const deleteCoursesByCourseIdSectionsById = <ThrowOnError extends boolean = false>(options: Options<DeleteCoursesByCourseIdSectionsByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).delete<DeleteCoursesByCourseIdSectionsByIdResponses, DeleteCoursesByCourseIdSectionsByIdErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zDeleteCoursesByCourseIdSectionsByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/courses/{courseId}/sections/{id}',
+        ...options
+    });
+};
+
+/**
+ * Get a specific section from a course
+ *
+ * Retrieve a specific section by ID from a specific course. Requires student authentication.
+ */
+export const getCoursesByCourseIdSectionsById = <ThrowOnError extends boolean = false>(options: Options<GetCoursesByCourseIdSectionsByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).get<GetCoursesByCourseIdSectionsByIdResponses, GetCoursesByCourseIdSectionsByIdErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zGetCoursesByCourseIdSectionsByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/courses/{courseId}/sections/{id}',
+        ...options
+    });
+};
+
+/**
+ * Update a section in a course
+ *
+ * Update an existing section within a specific course. Requires content creator authentication and course ownership.
+ */
+export const putCoursesByCourseIdSectionsById = <ThrowOnError extends boolean = false>(options: Options<PutCoursesByCourseIdSectionsByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).put<PutCoursesByCourseIdSectionsByIdResponses, PutCoursesByCourseIdSectionsByIdErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zPutCoursesByCourseIdSectionsByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/courses/{courseId}/sections/{id}',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
     });
 };

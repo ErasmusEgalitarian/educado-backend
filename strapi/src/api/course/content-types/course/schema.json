@@ -48,12 +48,6 @@
       "target": "api::feedback.feedback",
       "mappedBy": "course"
     },
-    "course_sections": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::course-section.course-section",
-      "mappedBy": "course"
-    },
     "course_categories": {
       "type": "relation",
       "relation": "manyToMany",
@@ -71,6 +65,12 @@
       "relation": "manyToMany",
       "target": "api::content-creator.content-creator",
       "mappedBy": "courses"
+    },
+    "course_sections": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course-section.course-section",
+      "mappedBy": "course"
     }
   }
 }

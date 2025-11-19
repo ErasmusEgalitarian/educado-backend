@@ -624,7 +624,7 @@ export interface ApiCourseSectionCourseSection
   extends Struct.CollectionTypeSchema {
   collectionName: 'course_sections';
   info: {
-    displayName: 'Course Section';
+    displayName: 'Course section';
     pluralName: 'course-sections';
     singularName: 'course-section';
   };
@@ -640,10 +640,7 @@ export interface ApiCourseSectionCourseSection
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 400;
-      }>;
+    description: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -651,12 +648,7 @@ export interface ApiCourseSectionCourseSection
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 50;
-        minLength: 1;
-      }>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
