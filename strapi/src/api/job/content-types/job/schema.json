@@ -19,16 +19,16 @@
       "type": "string",
       "required": true
     },
+    "Description": {
+      "type": "string"
+    },
     "StartDate": {
-      "type": "date",
+      "type": "string",
       "required": true
     },
     "EndDate": {
-      "type": "date",
+      "type": "string",
       "required": true
-    },
-    "Description": {
-      "type": "string"
     }
   }
 }

@@ -19909,15 +19909,13 @@
                                     "Title": {
                                       "type": "string"
                                     },
+                                    "Description": {
+                                      "type": "string"
+                                    },
                                     "StartDate": {
-                                      "type": "string",
-                                      "format": "date"
+                                      "type": "string"
                                     },
                                     "EndDate": {
-                                      "type": "string",
-                                      "format": "date"
-                                    },
-                                    "Description": {
                                       "type": "string"
                                     },
                                     "createdAt": {
@@ -19995,12 +19993,10 @@
                                       "type": "string"
                                     },
                                     "startDate": {
-                                      "type": "string",
-                                      "format": "date"
+                                      "type": "string"
                                     },
                                     "endDate": {
-                                      "type": "string",
-                                      "format": "date"
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -22318,15 +22314,13 @@
                             "Title": {
                               "type": "string"
                             },
+                            "Description": {
+                              "type": "string"
+                            },
                             "StartDate": {
-                              "type": "string",
-                              "format": "date"
+                              "type": "string"
                             },
                             "EndDate": {
-                              "type": "string",
-                              "format": "date"
-                            },
-                            "Description": {
                               "type": "string"
                             },
                             "createdAt": {
@@ -22404,12 +22398,10 @@
                               "type": "string"
                             },
                             "startDate": {
-                              "type": "string",
-                              "format": "date"
+                              "type": "string"
                             },
                             "endDate": {
-                              "type": "string",
-                              "format": "date"
+                              "type": "string"
                             },
                             "createdAt": {
                               "type": "string",
@@ -24429,15 +24421,13 @@
                                 "Title": {
                                   "type": "string"
                                 },
+                                "Description": {
+                                  "type": "string"
+                                },
                                 "StartDate": {
-                                  "type": "string",
-                                  "format": "date"
+                                  "type": "string"
                                 },
                                 "EndDate": {
-                                  "type": "string",
-                                  "format": "date"
-                                },
-                                "Description": {
                                   "type": "string"
                                 },
                                 "createdAt": {
@@ -24515,12 +24505,10 @@
                                   "type": "string"
                                 },
                                 "startDate": {
-                                  "type": "string",
-                                  "format": "date"
+                                  "type": "string"
                                 },
                                 "endDate": {
-                                  "type": "string",
-                                  "format": "date"
+                                  "type": "string"
                                 },
                                 "createdAt": {
                                   "type": "string",
@@ -26460,15 +26448,13 @@
                             "Title": {
                               "type": "string"
                             },
+                            "Description": {
+                              "type": "string"
+                            },
                             "StartDate": {
-                              "type": "string",
-                              "format": "date"
+                              "type": "string"
                             },
                             "EndDate": {
-                              "type": "string",
-                              "format": "date"
-                            },
-                            "Description": {
                               "type": "string"
                             },
                             "createdAt": {
@@ -26546,12 +26532,10 @@
                               "type": "string"
                             },
                             "startDate": {
-                              "type": "string",
-                              "format": "date"
+                              "type": "string"
                             },
                             "endDate": {
-                              "type": "string",
-                              "format": "date"
+                              "type": "string"
                             },
                             "createdAt": {
                               "type": "string",
@@ -28211,15 +28195,13 @@
                           "Title": {
                             "type": "string"
                           },
+                          "Description": {
+                            "type": "string"
+                          },
                           "StartDate": {
-                            "type": "string",
-                            "format": "date"
+                            "type": "string"
                           },
                           "EndDate": {
-                            "type": "string",
-                            "format": "date"
-                          },
-                          "Description": {
                             "type": "string"
                           },
                           "createdAt": {
@@ -28297,12 +28279,10 @@
                             "type": "string"
                           },
                           "startDate": {
-                            "type": "string",
-                            "format": "date"
+                            "type": "string"
                           },
                           "endDate": {
-                            "type": "string",
-                            "format": "date"
+                            "type": "string"
                           },
                           "createdAt": {
                             "type": "string",
@@ -28555,12 +28535,10 @@
                 "type": "string"
               },
               "startDate": {
-                "type": "string",
-                "format": "date"
+                "type": "string"
               },
               "endDate": {
-                "type": "string",
-                "format": "date"
+                "type": "string"
               },
               "locale": {
                 "type": "string"
@@ -28644,12 +28622,10 @@
             "type": "string"
           },
           "startDate": {
-            "type": "string",
-            "format": "date"
+            "type": "string"
           },
           "endDate": {
-            "type": "string",
-            "format": "date"
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -28961,12 +28937,10 @@
                   "type": "string"
                 },
                 "startDate": {
-                  "type": "string",
-                  "format": "date"
+                  "type": "string"
                 },
                 "endDate": {
-                  "type": "string",
-                  "format": "date"
+                  "type": "string"
                 },
                 "createdAt": {
                   "type": "string",
@@ -31811,15 +31785,13 @@
                           "Title": {
                             "type": "string"
                           },
+                          "Description": {
+                            "type": "string"
+                          },
                           "StartDate": {
-                            "type": "string",
-                            "format": "date"
+                            "type": "string"
                           },
                           "EndDate": {
-                            "type": "string",
-                            "format": "date"
-                          },
-                          "Description": {
                             "type": "string"
                           },
                           "createdAt": {
@@ -31897,12 +31869,10 @@
                             "type": "string"
                           },
                           "startDate": {
-                            "type": "string",
-                            "format": "date"
+                            "type": "string"
                           },
                           "endDate": {
-                            "type": "string",
-                            "format": "date"
+                            "type": "string"
                           },
                           "createdAt": {
                             "type": "string",
@@ -32161,15 +32131,13 @@
               "Title": {
                 "type": "string"
               },
+              "Description": {
+                "type": "string"
+              },
               "StartDate": {
-                "type": "string",
-                "format": "date"
+                "type": "string"
               },
               "EndDate": {
-                "type": "string",
-                "format": "date"
-              },
-              "Description": {
                 "type": "string"
               },
               "locale": {
@@ -32249,15 +32217,13 @@
           "Title": {
             "type": "string"
           },
+          "Description": {
+            "type": "string"
+          },
           "StartDate": {
-            "type": "string",
-            "format": "date"
+            "type": "string"
           },
           "EndDate": {
-            "type": "string",
-            "format": "date"
-          },
-          "Description": {
             "type": "string"
           },
           "createdAt": {
@@ -32566,15 +32532,13 @@
                 "Title": {
                   "type": "string"
                 },
+                "Description": {
+                  "type": "string"
+                },
                 "StartDate": {
-                  "type": "string",
-                  "format": "date"
+                  "type": "string"
                 },
                 "EndDate": {
-                  "type": "string",
-                  "format": "date"
-                },
-                "Description": {
                   "type": "string"
                 },
                 "createdAt": {
@@ -35002,15 +34966,13 @@
                                 "Title": {
                                   "type": "string"
                                 },
+                                "Description": {
+                                  "type": "string"
+                                },
                                 "StartDate": {
-                                  "type": "string",
-                                  "format": "date"
+                                  "type": "string"
                                 },
                                 "EndDate": {
-                                  "type": "string",
-                                  "format": "date"
-                                },
-                                "Description": {
                                   "type": "string"
                                 },
                                 "createdAt": {
@@ -35088,12 +35050,10 @@
                                   "type": "string"
                                 },
                                 "startDate": {
-                                  "type": "string",
-                                  "format": "date"
+                                  "type": "string"
                                 },
                                 "endDate": {
-                                  "type": "string",
-                                  "format": "date"
+                                  "type": "string"
                                 },
                                 "createdAt": {
                                   "type": "string",
@@ -36784,15 +36744,13 @@
                                     "Title": {
                                       "type": "string"
                                     },
+                                    "Description": {
+                                      "type": "string"
+                                    },
                                     "StartDate": {
-                                      "type": "string",
-                                      "format": "date"
+                                      "type": "string"
                                     },
                                     "EndDate": {
-                                      "type": "string",
-                                      "format": "date"
-                                    },
-                                    "Description": {
                                       "type": "string"
                                     },
                                     "createdAt": {
@@ -36870,12 +36828,10 @@
                                       "type": "string"
                                     },
                                     "startDate": {
-                                      "type": "string",
-                                      "format": "date"
+                                      "type": "string"
                                     },
                                     "endDate": {
-                                      "type": "string",
-                                      "format": "date"
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",

@@ -24,11 +24,11 @@
       "required": true
     },
     "startDate": {
-      "type": "date",
+      "type": "string",
       "required": true
     },
     "endDate": {
-      "type": "date",
+      "type": "string",
       "required": true
     }
   }

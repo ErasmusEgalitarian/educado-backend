@@ -682,7 +682,7 @@ export interface ApiEducationEducation extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     educationType: Schema.Attribute.String & Schema.Attribute.Required;
-    endDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    endDate: Schema.Attribute.String & Schema.Attribute.Required;
     institution: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -691,7 +691,7 @@ export interface ApiEducationEducation extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    startDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    startDate: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -839,12 +839,12 @@ export interface ApiJobJob extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Description: Schema.Attribute.String;
-    EndDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    EndDate: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::job.job'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    StartDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    StartDate: Schema.Attribute.String & Schema.Attribute.Required;
     Title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
