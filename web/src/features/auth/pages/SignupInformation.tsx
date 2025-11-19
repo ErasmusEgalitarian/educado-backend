@@ -47,6 +47,7 @@ const Header = () => {
 };
 
 const Footer = () => {
+  const navigateBack = useNavigate();
   return (
     <div className="flex flex-row">
       <Button
@@ -54,6 +55,7 @@ const Footer = () => {
         variant="link"
         className="text-error-surface-default font-bold font-['Montserrat'] underline"
         style={{ fontSize: "18px", lineHeight: "23.4px" }}
+        onClick={() => navigateBack(-1)}
       >
         Voltar para o cadastro
       </Button>
