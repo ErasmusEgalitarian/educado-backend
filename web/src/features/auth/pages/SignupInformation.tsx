@@ -4,6 +4,9 @@ import { Button } from "@/shared/components/shadcn/button";
 import { SignupSchema } from "../components/signup/micro-services";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Cards } from "../components/signup/SignupCards";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { formSchema } from "../components/signup/SignupFormSchema";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -46,7 +49,7 @@ const Header = () => {
   );
 };
 
-const Footer = () => {
+const Footer = ({ disabled }: { disabled: boolean }) => {
   const navigateBack = useNavigate();
   return (
     <div className="flex flex-row">
@@ -64,6 +67,7 @@ const Footer = () => {
         className="justify-end ml-auto"
         type="submit"
         form="signup-info-form"
+        disabled={disabled}
       >
         <span className="font-['Montserrat'] font-bold" style={{ fontSize: 20, lineHeight: '26px' }}>
           Enviar para análise
@@ -74,14 +78,27 @@ const Footer = () => {
 };
 
 const SignupInfo = () => {
+  // Create form methods here so Footer (submit button) can read formState
+  const methods = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      motivation: "",
+      educations: [],
+      jobs: [],
+    },
+    mode: "onChange",
+  });
+
+  const { isValid, isSubmitting } = methods.formState;
+
   return (
     <>
       <MiniNavbar />
       <div className="bg-primary-surface-subtle">
         <div className="mx-[220px] my-20">
           <Header />
-          <Cards />
-          <Footer />
+          <Cards methods={methods} />
+          <Footer disabled={!isValid || isSubmitting} />
         </div>
       </div>
     </>

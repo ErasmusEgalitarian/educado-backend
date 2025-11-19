@@ -1,9 +1,8 @@
-import { useForm, FormProvider } from "react-hook-form";
+import { FormProvider, UseFormReturn } from "react-hook-form";
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { formSchema } from "./SignupFormSchema";
-// FormActions removed: external "Enviar para análise" button in SignupInformation will submit the form
 import {
   MotivationForm,
   EducationForm,
@@ -14,20 +13,11 @@ import { Card, CardHeader, CardContent } from "@/shared/components/shadcn/card";
 
 type SectionKey = "motive" | "education" | "experience";
 
-export const Cards = () => {
+export const Cards = ({ methods }: { methods: UseFormReturn<z.infer<typeof formSchema>> }) => {
   const [openKey, setOpenKey] = useState<SectionKey | null>("motive");
 
   const toggle = (key: SectionKey) =>
     setOpenKey((k) => (k === key ? null : key)); // only one card open at a time
-
-  const methods = useForm({
-    defaultValues: {
-      motivation: "",
-      educations: [],
-      jobs: [],
-    },
-    mode: "onSubmit",
-  });
 
   // Submit handler with inferred data shape from the schema.
   const onSubmit = async (values: z.infer<typeof formSchema>) => {

@@ -27,27 +27,27 @@ const STATUS_OPTIONS = STATUS.map((type) => ({
 }));
 
 const educationSchema = z.object({
-  educationType: z.string().min(0),
-  isInProgress: z.string().min(0),
-  course: z.string().min(0),
-  institution: z.string().min(0),
-  acedemicStartDate: z.string().min(0),
-  acedemicEndDate: z.string().min(0),
+  educationType: z.string().min(1),
+  isInProgress: z.string().min(1),
+  course: z.string().min(1),
+  institution: z.string().min(1),
+  acedemicStartDate: z.string().min(1),
+  acedemicEndDate: z.string().min(1),
 });
 
 const jobSchema = z.object({
-  organization: z.string().min(0),
-  jobTitle: z.string().min(0),
-  jobStartDate: z.string().min(0),
-  jobEndDate: z.string().min(0),
-  description: z.string().min(0),
+  organization: z.string().min(1),
+  jobTitle: z.string().min(1),
+  jobStartDate: z.string().min(1),
+  jobEndDate: z.string().min(1),
+  description: z.string(),
 });
 
 
 export const formSchema = z.object({
   motivation: z.string().min(0),
-  educations: z.array(educationSchema).min(1),
-  jobs: z.array(jobSchema).min(1),
+  educations: z.array(educationSchema),
+  jobs: z.array(jobSchema),
 });
 
 export const MotivationForm = () => {
@@ -271,15 +271,15 @@ export const ExperienceForm = () => {
               />
               <div className="col-start-2 flex items-center gap-2 pr-1">
                 <Checkbox
-                  id={`agree-${index}`}
+                  id={`isCurrentJob-${index}`}
                   checked={checked}
                   onCheckedChange={(value) => {
                     setChecked(value === true);
                   }}
-                  className="border-primary-border-lighter data-[state=checked]:bg-primary-surface-default data-[state=checked]:border-primary-border-lighter"
+                  className="border-primary-border-lighter data-[state=checked]:bg-primary-surface-default data-[state=checked]:border-primary-border-lighter cursor-pointer"
                 />
                 <label
-                  htmlFor={`agree-${index}`}
+                  htmlFor={`isCurrentJob-${index}`}
                   className="font-['Montserrat'] font-normal text-greyscale-text-body cursor-pointer"
                   style={{ fontSize: "16px", lineHeight: "20.8px" }}
                 >
