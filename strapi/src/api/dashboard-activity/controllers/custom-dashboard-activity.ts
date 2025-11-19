@@ -28,7 +28,10 @@ export default {
       // Pushes all of the Dashboard activites to an array and returns said array.
       let dashboard_activities : Dashboard_activity[] = [];
       for (const dashboard_activity of contentCreator.dashboard_activities){
-        dashboard_activities.push({description: dashboard_activity.activityDesc, date: new Date(dashboard_activity.updatedAt)});
+        dashboard_activities.push({
+          description: dashboard_activity.activityDesc, 
+          date: new Date(dashboard_activity.updatedAt)
+        });
       }
 
       ctx.response.body = dashboard_activities;
