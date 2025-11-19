@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useController } from "react-hook-form";
 import { FormLabel } from "@/shared/components/shadcn/form";
+import { Input } from "@/shared/components/shadcn/input";
 
 const MONTHS = [
   "January", "February", "March", "April", "May", "June",
@@ -174,7 +175,7 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
         </div>
       )}
 
-      <input
+      <Input
         ref={inputRef}
         type="text"
         value={displayValue}

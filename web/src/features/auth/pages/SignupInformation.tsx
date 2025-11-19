@@ -1,6 +1,4 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useEffect } from "react";
 import MiniNavbar from "@/shared/components/MiniNavbar";
 import { Button } from "@/shared/components/shadcn/button";
 import { SignupSchema } from "../components/signup/micro-services";
@@ -20,7 +18,6 @@ const Header = () => {
     }
   }, [location.state, navigate]); */
 
-  const initial = location.state?.initial;
 
   return (
     <div className="flex flex-col items-center gap-7 mx-32">
