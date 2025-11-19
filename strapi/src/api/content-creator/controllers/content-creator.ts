@@ -13,7 +13,22 @@ export default factories.createCoreController('api::content-creator.content-crea
         try{
             console.log("Registration request received:", ctx.request.body);
             const institutionalMails = ["student.aau.dk"];
-            const {firstName, lastName, email, password } = ctx.request.body;
+            const {firstName,
+                 lastName, 
+                 email, 
+                 password, 
+                 motivation,
+                 company, 
+                 title, 
+                 jobstartDate, 
+                 jobendDate, 
+                 description, 
+                 educationType, 
+                 isInProgress, 
+                 course, 
+                 institution,
+                 edustartDate,
+                 eduendDate } = ctx.request.body;
 
             const existing = await strapi.db.query('api::content-creator.content-creator').findOne({
             where: { email },
@@ -23,30 +38,70 @@ export default factories.createCoreController('api::content-creator.content-crea
                 return ctx.badRequest('Email already in use')
             }
                 
-            const encryptedPassword = await bcrypt.hash(password,10)
             const domain = email.split('@')[1]?.toLowerCase();
             const isTrusted = institutionalMails.includes(domain)
             
             const confirmationDate = isTrusted ? new Date() : null;
+            
+            // currentcompany = job with null end date
+            // end date = smth crazy to identify no end date 
 
-            // const newUser = await strapi.db.query('api::content-creator.content-creator').create({
-            //     data:{
-            //         email: email,
-            //         password: encryptedPassword,
-            //         firstName: firstName,
-            //         lastName: lastName,
-            //         verifiedAt: confirmationDate
-            //     }
-            // })
+            /*
+            
+            
+            */ 
+           
+            const job = await strapi.documents('api::job.job').create({
+                data:{
+                    Company: company,
+                    Title: title,
+                    StartDate: jobstartDate,
+                    EndDate: jobendDate,
+                    Description: description,
+                },
+                status: "published"
+                    
 
-        //     ctx.send({
-        //   status: isTrusted ? 'approved' : 'pending',
-        //   userId: newUser.id,
-        //   verifiedAt: confirmationDate,
-        //   message: isTrusted
-        //     ? `User registered and auto-approved on ${confirmationDate!.toISOString()}.`
-        //     : 'Registration successful. Waiting for admin approval.',
-        //});
+            })
+            
+
+            const education = await strapi.documents('api::education.education').create({
+                data:{
+                    educationType: educationType,
+                    courseExperience: course,
+                    institution: institution,
+                    startDate: edustartDate,
+                    endDate: eduendDate,
+                },
+                status: "published"
+                
+            })
+                
+             const newUser = await strapi.documents('api::content-creator.content-creator').create({
+                 data:{
+                     email: email,
+                     password: password,
+                     firstName: firstName,
+                     lastName: lastName,
+                     verifiedAt: confirmationDate,
+                     motivation: description,
+                     /*currentCompany: company,*/
+                     jobs: [job.documentId],
+                     educations: [education.documentId]
+                 }, 
+                 status: "published"
+                
+             })
+
+
+                ctx.send({
+                status: isTrusted ? 'approved' : 'pending',
+                userId: newUser.id,
+                verifiedAt: confirmationDate,
+                message: isTrusted
+                ? `User registered and auto-approved on ${confirmationDate!.toISOString()}.`
+                : 'Registration successful. Waiting for admin approval.',
+                });
 
         // Utility functions
         function generateTokenCode(length) {
@@ -65,11 +120,11 @@ export default factories.createCoreController('api::content-creator.content-crea
             message: "Payload received",
             data: ctx.request.body,
         };
-        // sendVerificationEmail(newUser, generateTokenCode(4));
+        sendVerificationEmail(newUser, generateTokenCode(4));
         
         }
         catch(err){
-            console.log("Jeg kom ned i catch blokken:", err);
+           
             ctx.badRequest('Registration failed', {error: err.message});
         }
         

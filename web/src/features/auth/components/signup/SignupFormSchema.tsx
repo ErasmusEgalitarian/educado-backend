@@ -27,25 +27,25 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
 }
 
 const educationSchema = z.object({
-  educationType: z.string().min(0),
-  isInProgress: z.string().min(0),
-  course: z.string().min(0),
-  institution: z.string().min(0),
-  acedemicStartDate: z.string().min(0),
-  acedemicEndDate: z.string().min(0),
+  educationType: z.string().min(1),
+  isInProgress: z.string().min(1),
+  course: z.string().min(1),
+  institution: z.string().min(1),
+  acedemicStartDate: z.string().min(1),
+  acedemicEndDate: z.string().min(1),
 });
 
 const jobSchema = z.object({
-  organization: z.string().min(0),
-  jobTitle: z.string().min(0),
-  jobStartDate: z.string().min(0),
-  jobEndDate: z.string().min(0),
-  description: z.string().min(0),
+  organization: z.string().min(1),
+  jobTitle: z.string().min(1),
+  jobStartDate: z.string().min(1),
+  jobEndDate: z.string().min(1),
+  description: z.string(),
 });
 
 // Define the Zod schema for validation and form data shape.
 const formSchema = z.object({
-  motivation: z.string().min(0),
+  motivation: z.string(),
   educations: z.array(educationSchema).min(1),
   jobs: z.array(jobSchema).min(1),
 }); 
@@ -79,7 +79,7 @@ export const MotivationForm = () => {
 
 // The form component itself
 export const EducationForm = () => {
-  const { control, watch } = useFormContext();
+  const {control} = useFormContext();
 
   return (
     // two-column layout: inputs occupy two columns, spacing matches previous layout

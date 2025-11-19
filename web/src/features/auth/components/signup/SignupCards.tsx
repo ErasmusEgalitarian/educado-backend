@@ -258,14 +258,17 @@ export const Cards = ({ initialData }: CardsProps) => {
       description: "",
     },
     mode: "onTouched",
+    shouldUnregister: false
   });
 
   const onSubmit = async (data: any) => {
+    console.log("form data", data);
     const payload: SignupPayload = {
       firstName: initialData?.firstName,
       lastName: initialData?.lastName,
       email: initialData?.email,
       password: initialData?.password,
+      motivation: data.motivation,
       //job
       company: data.organization,
       title: data.jobTitle,

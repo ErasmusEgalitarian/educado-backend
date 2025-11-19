@@ -19785,28 +19785,12 @@
                                 "type": "string",
                                 "format": "date"
                               },
-                              "biography": {
+                              "motivation": {
                                 "type": "string"
                               },
                               "email": {
                                 "type": "string",
                                 "format": "email"
-                              },
-                              "education": {
-                                "type": "string",
-                                "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
-                                ]
-                              },
-                              "statusValue": {
-                                "type": "string",
-                                "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
-                                ]
                               },
                               "currentCompany": {
                                 "type": "string"
@@ -20667,10 +20651,7 @@
             "required": [
               "firstName",
               "email",
-              "password",
-              "education",
-              "statusValue",
-              "currentCompany"
+              "password"
             ],
             "type": "object",
             "properties": {
@@ -20684,7 +20665,7 @@
                 "type": "string",
                 "format": "date"
               },
-              "biography": {
+              "motivation": {
                 "type": "string"
               },
               "email": {
@@ -20695,22 +20676,6 @@
                 "type": "string",
                 "format": "password",
                 "example": "*******"
-              },
-              "education": {
-                "type": "string",
-                "enum": [
-                  "TODO1",
-                  "TODO2",
-                  "TODO3"
-                ]
-              },
-              "statusValue": {
-                "type": "string",
-                "enum": [
-                  "TODO1",
-                  "TODO2",
-                  "TODO3"
-                ]
               },
               "currentCompany": {
                 "type": "string"
@@ -20832,10 +20797,7 @@
         "required": [
           "firstName",
           "email",
-          "password",
-          "education",
-          "statusValue",
-          "currentCompany"
+          "password"
         ],
         "properties": {
           "id": {
@@ -20854,28 +20816,12 @@
             "type": "string",
             "format": "date"
           },
-          "biography": {
+          "motivation": {
             "type": "string"
           },
           "email": {
             "type": "string",
             "format": "email"
-          },
-          "education": {
-            "type": "string",
-            "enum": [
-              "TODO1",
-              "TODO2",
-              "TODO3"
-            ]
-          },
-          "statusValue": {
-            "type": "string",
-            "enum": [
-              "TODO1",
-              "TODO2",
-              "TODO3"
-            ]
           },
           "currentCompany": {
             "type": "string"
@@ -22317,28 +22263,12 @@
                         "type": "string",
                         "format": "date"
                       },
-                      "biography": {
+                      "motivation": {
                         "type": "string"
                       },
                       "email": {
                         "type": "string",
                         "format": "email"
-                      },
-                      "education": {
-                        "type": "string",
-                        "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
-                        ]
-                      },
-                      "statusValue": {
-                        "type": "string",
-                        "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
-                        ]
                       },
                       "currentCompany": {
                         "type": "string"
@@ -24444,28 +24374,12 @@
                             "type": "string",
                             "format": "date"
                           },
-                          "biography": {
+                          "motivation": {
                             "type": "string"
                           },
                           "email": {
                             "type": "string",
                             "format": "email"
-                          },
-                          "education": {
-                            "type": "string",
-                            "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
-                            ]
-                          },
-                          "statusValue": {
-                            "type": "string",
-                            "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
-                            ]
                           },
                           "currentCompany": {
                             "type": "string"
@@ -26491,28 +26405,12 @@
                         "type": "string",
                         "format": "date"
                       },
-                      "biography": {
+                      "motivation": {
                         "type": "string"
                       },
                       "email": {
                         "type": "string",
                         "format": "email"
-                      },
-                      "education": {
-                        "type": "string",
-                        "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
-                        ]
-                      },
-                      "statusValue": {
-                        "type": "string",
-                        "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
-                        ]
                       },
                       "currentCompany": {
                         "type": "string"
@@ -28258,28 +28156,12 @@
                       "type": "string",
                       "format": "date"
                     },
-                    "biography": {
+                    "motivation": {
                       "type": "string"
                     },
                     "email": {
                       "type": "string",
                       "format": "email"
-                    },
-                    "education": {
-                      "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
-                    },
-                    "statusValue": {
-                      "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
                     },
                     "currentCompany": {
                       "type": "string"
@@ -28654,6 +28536,13 @@
         ],
         "properties": {
           "data": {
+            "required": [
+              "educationType",
+              "courseExperience",
+              "institution",
+              "startDate",
+              "endDate"
+            ],
             "type": "object",
             "properties": {
               "educationType": {
@@ -28731,6 +28620,13 @@
       },
       "Education": {
         "type": "object",
+        "required": [
+          "educationType",
+          "courseExperience",
+          "institution",
+          "startDate",
+          "endDate"
+        ],
         "properties": {
           "id": {
             "type": "number"
@@ -31860,28 +31756,12 @@
                       "type": "string",
                       "format": "date"
                     },
-                    "biography": {
+                    "motivation": {
                       "type": "string"
                     },
                     "email": {
                       "type": "string",
                       "format": "email"
-                    },
-                    "education": {
-                      "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
-                    },
-                    "statusValue": {
-                      "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
                     },
                     "currentCompany": {
                       "type": "string"
@@ -32267,6 +32147,12 @@
         ],
         "properties": {
           "data": {
+            "required": [
+              "Company",
+              "Title",
+              "StartDate",
+              "EndDate"
+            ],
             "type": "object",
             "properties": {
               "Company": {
@@ -32344,6 +32230,12 @@
       },
       "Job": {
         "type": "object",
+        "required": [
+          "Company",
+          "Title",
+          "StartDate",
+          "EndDate"
+        ],
         "properties": {
           "id": {
             "type": "number"
@@ -35055,28 +34947,12 @@
                             "type": "string",
                             "format": "date"
                           },
-                          "biography": {
+                          "motivation": {
                             "type": "string"
                           },
                           "email": {
                             "type": "string",
                             "format": "email"
-                          },
-                          "education": {
-                            "type": "string",
-                            "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
-                            ]
-                          },
-                          "statusValue": {
-                            "type": "string",
-                            "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
-                            ]
                           },
                           "currentCompany": {
                             "type": "string"
@@ -36784,28 +36660,12 @@
                                 "type": "string",
                                 "format": "date"
                               },
-                              "biography": {
+                              "motivation": {
                                 "type": "string"
                               },
                               "email": {
                                 "type": "string",
                                 "format": "email"
-                              },
-                              "education": {
-                                "type": "string",
-                                "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
-                                ]
-                              },
-                              "statusValue": {
-                                "type": "string",
-                                "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
-                                ]
                               },
                               "currentCompany": {
                                 "type": "string"

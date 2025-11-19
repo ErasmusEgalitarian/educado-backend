@@ -473,22 +473,15 @@ export interface ApiContentCreatorContentCreator
     draftAndPublish: true;
   };
   attributes: {
-    biography: Schema.Attribute.Text &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 400;
-      }>;
     courses: Schema.Attribute.Relation<'manyToMany', 'api::course.course'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     currentCompany: Schema.Attribute.String &
-      Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 40;
         minLength: 1;
       }>;
-    education: Schema.Attribute.Enumeration<['TODO1', 'TODO2', 'TODO3']> &
-      Schema.Attribute.Required;
     educations: Schema.Attribute.Relation<
       'oneToMany',
       'api::education.education'
@@ -514,14 +507,16 @@ export interface ApiContentCreatorContentCreator
       'api::content-creator.content-creator'
     > &
       Schema.Attribute.Private;
+    motivation: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 400;
+      }>;
     password: Schema.Attribute.Password &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 8;
       }>;
     publishedAt: Schema.Attribute.DateTime;
-    statusValue: Schema.Attribute.Enumeration<['TODO1', 'TODO2', 'TODO3']> &
-      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -682,13 +677,13 @@ export interface ApiEducationEducation extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    courseExperience: Schema.Attribute.String;
+    courseExperience: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    educationType: Schema.Attribute.String;
-    endDate: Schema.Attribute.Date;
-    institution: Schema.Attribute.String;
+    educationType: Schema.Attribute.String & Schema.Attribute.Required;
+    endDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    institution: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -696,7 +691,7 @@ export interface ApiEducationEducation extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    startDate: Schema.Attribute.Date;
+    startDate: Schema.Attribute.Date & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -839,18 +834,18 @@ export interface ApiJobJob extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    Company: Schema.Attribute.String;
+    Company: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Description: Schema.Attribute.String;
-    EndDate: Schema.Attribute.Date;
+    EndDate: Schema.Attribute.Date & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::job.job'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    StartDate: Schema.Attribute.Date;
-    Title: Schema.Attribute.String;
+    StartDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    Title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

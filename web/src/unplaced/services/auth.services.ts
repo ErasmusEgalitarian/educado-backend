@@ -26,7 +26,7 @@ export interface SignupPayload {
   lastName: string;
   email: string;
   password: string;
-
+  motivation: string;
   //job
   company: string;
   title: string;
