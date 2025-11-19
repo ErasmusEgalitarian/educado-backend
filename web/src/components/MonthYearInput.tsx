@@ -162,21 +162,21 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
         ref={inputRef}
         type="text"
         value={displayValue}
-        placeholder={step === "month" ? placeholder : "Ano..."}
+        placeholder={placeholder}
         onChange={handleInputChange}
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
         disabled={disabled}
         aria-required={isRequired}
-        className={`h-[59px] block w-full px-3 py-2 border border-greyscale-border-lighter rounded-md focus:outline-none focus:ring-2 focus:ring-primary-border-lighter text-base font-['Montserrat'] font-normal text-greyscale-text-body ${className}`}
+        className={`block w-full px-3 py-2 border border-greyscale-border-lighter rounded-md focus:outline-none focus:ring-2 focus:ring-primary-border-lighter font-['Montserrat'] text-greyscale-text-body ${className}`}
       />
 
       {showDropdown && (
-        <ul ref={listRef} className="absolute left-0 right-0 mt-1 bg-white border border-greyscale-border-lighter rounded-md shadow-lg z-10 max-h-40 overflow-y-auto p-0 list-none">
+        <ul ref={listRef} className="absolute left-0 right-0 mt-1 bg-white border border-greyscale-border-lighter rounded-md shadow-lg max-h-40 overflow-y-auto p-0 list-none">
           {filteredOptions.map((option, idx) => (
             <li
               key={option}
-              className={`px-3 py-2 cursor-pointer text-base font-['Montserrat'] font-normal text-greyscale-text-body ${highlightedIndex === idx ? 'bg-accent text-accent-foreground' : ''} hover:bg-accent hover:text-accent-foreground`}
+              className={`px-3 py-2 cursor-pointer font-['Montserrat'] text-greyscale-text-body ${highlightedIndex === idx ? 'bg-accent text-accent-foreground' : ''} hover:bg-accent hover:text-accent-foreground`}
               onMouseDown={() => handleOptionSelect(option)}
               onMouseEnter={() => setHighlightedIndex(idx)}
             >

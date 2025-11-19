@@ -66,10 +66,10 @@ export const MotivationForm = () => {
         placeholder="Escreva aqui por que você quer fazer parte do projeto"
         rows={3}
         maxLength={maxChars}
-        className="resize-none"
+        className="resize-none placeholder:text-greyscale-text-body font-['Montserrat']"
       />
       <div
-        className="text-right font-normal font-['Montserrat'] text-greyscale-text-caption py-2"
+        className="text-right font-['Montserrat'] text-greyscale-text-caption py-2"
         style={{ fontSize: "14px", lineHeight: "17px" }}
       >
         {currentLength} / {maxChars} caracteres
@@ -119,9 +119,8 @@ export const EducationForm = () => {
                 options={EDUCATION_OPTIONS}
                 placeholder="Superior"
                 isRequired
-                wrapperClassName="[&_[role=combobox]]:h-[59px]"
+                wrapperClassName="[&_[role=combobox]]:h-[59px] [&_[data-slot=select-trigger]]:text-base [&_[data-slot=select-value]]:text-base [&_[data-slot=select-value]]:font-['Montserrat'] [&_[role=combobox]]:border-greyscale-border-lighter [&_[role=combobox]]:text-greyscale-text-body"
               />
-
               <FormSelect
                 control={control}
                 fieldName={`educations.${index}.isInProgress`}
@@ -129,42 +128,38 @@ export const EducationForm = () => {
                 options={STATUS_OPTIONS}
                 placeholder="Em andamento"
                 isRequired
-                wrapperClassName="[&_[role=combobox]]:h-[59px]"
+                wrapperClassName="[&_[role=combobox]]:h-[59px] [&_[data-slot=select-trigger]]:text-base [&_[data-slot=select-value]]:text-base [&_[data-slot=select-value]]:font-['Montserrat'] [&_[role=combobox]]:border-greyscale-border-lighter [&_[role=combobox]]:text-greyscale-text-body"
               />
-
               <FormInput
                 control={control}
                 fieldName={`educations.${index}.course`}
                 placeholder="Curso"
                 label="Curso"
                 isRequired
-                className="h-[59px]"
+                className="h-[59px] border-greyscale-border-lighter placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
               />
-
               <FormInput
                 control={control}
                 fieldName={`educations.${index}.institution`}
                 placeholder="Instituição"
                 label="Instituição"
                 isRequired
-                className="h-[59px]"
+                className="h-[59px] border-greyscale-border-lighter placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
               />
-
               <MonthYearInput
                 control={control}
                 name={`educations.${index}.acedemicStartDate`}
                 label="Início"
                 placeholder="Mês / Ano"
-                className="h-[59px]"
+                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat']"
                 isRequired={true}
               />
-
               <MonthYearInput
                 control={control}
                 name={`educations.${index}.acedemicEndDate`}
                 label="Fim"
                 placeholder="Mês / Ano"
-                className="h-[59px]"
+                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat']"
                 isRequired={true}
               />
               <div className="pb-2 col-span-2 text-right">
@@ -250,7 +245,7 @@ export const ExperienceForm = () => {
                 placeholder="Mobile Education"
                 label="Empresa"
                 isRequired
-                className="h-[59px]"
+                className="h-[59px] border-greyscale-border-lighter placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
               />
               <FormInput
                 control={control}
@@ -258,23 +253,22 @@ export const ExperienceForm = () => {
                 placeholder="Product Designer"
                 label="Cargo"
                 isRequired
-                className="h-[59px]"
+                className="h-[59px] border-greyscale-border-lighter placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
               />
               <MonthYearInput
                 control={control}
                 name={`jobs.${index}.jobStartDate`}
                 label="Início"
                 placeholder="Mês / Ano"
-                className="h-[59px]"
+                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat']"
               />
               <MonthYearInput
                 control={control}
                 name={`jobs.${index}.jobEndDate`}
                 label="Fim"
                 placeholder="Mês / Ano"
-                className="h-[59px]"
+                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat']"
               />
-
               <div className="col-start-2 flex items-center gap-2 pr-1">
                 <Checkbox
                   id={`agree-${index}`}
@@ -301,7 +295,7 @@ export const ExperienceForm = () => {
                   label="Descrição das atividades"
                   rows={3}
                   maxLength={maxChars}
-                  className="resize-none"
+                  className="resize-none placeholder:text-greyscale-text-body font-['Montserrat']"
                 />
               </div>
             </div>
