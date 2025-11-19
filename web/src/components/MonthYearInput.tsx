@@ -64,6 +64,12 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
         YEARS.filter((y) => y.startsWith(value))
       );
     }
+      // Save to form if both month and year are filled and valid
+      const validMonth = MONTHS.find(m => m.toLowerCase() === (step === "month" ? value.trim().toLowerCase() : monthInput.trim().toLowerCase()));
+      const yearVal = step === "year" ? value : yearInput;
+      if (validMonth && yearVal.length === 4) {
+        field.onChange(`${validMonth} / ${yearVal}`);
+      }
   };
 
   // Handle option select
@@ -87,6 +93,11 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
   // Handle input blur
   const handleBlur = () => {
     setTimeout(() => setShowDropdown(false), 100);
+      // Save to form if both month and year are filled and valid
+      const validMonth = MONTHS.find(m => m.toLowerCase() === monthInput.trim().toLowerCase());
+      if (validMonth && yearInput.length === 4) {
+        field.onChange(`${validMonth} / ${yearInput}`);
+      }
   };
 
   // Scroll highlighted item into view when navigating with keyboard or when mouse highlights
@@ -132,9 +143,14 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
     }
   };
 
-  // Reset if field is cleared
+  // Sync local state from field.value
   React.useEffect(() => {
-    if (!field.value) {
+    if (field.value) {
+      const [month, year] = String(field.value).split(" / ");
+      setMonthInput(month || "");
+      setYearInput(year || "");
+      setStep(year ? "year" : "month");
+    } else {
       setMonthInput("");
       setYearInput("");
       setStep("month");
