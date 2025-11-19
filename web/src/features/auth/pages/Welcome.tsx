@@ -12,7 +12,7 @@ const Welcome = () => {
   const { t } = useTranslation();
 
   const texts = [
-    <div key="title" className="p-4 px-8 sm:px-0 sm:max-w-[500px] self-stretch text-center text-[#383838] text-[34px]  font-bold font-['Montserrat']">
+    <div key="title" className="p-4 px-8 sm:px-0 sm:max-w-[500px] self-stretch text-center text-[var( --primary-text-title)] text-[34px]  font-bold font-['Montserrat']">
       {t("welcome.title")}
     </div>,
 
