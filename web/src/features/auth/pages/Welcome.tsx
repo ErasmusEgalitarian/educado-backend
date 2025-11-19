@@ -16,7 +16,7 @@ const Welcome = () => {
       {t("welcome.title")}
     </div>,
 
-    <div key="subtitle" className="relative sm:max-w-[750px] text-2xl font-['Montserrat'] text-[#A1ACB2] text-center mb-6 mt-4 px-20">
+    <div key="subtitle" className="relative sm:max-w-[750px] text-2xl font-['Montserrat'] text-[var(--primary-text-subtitle)] text-center mb-6 mt-4 px-20">
       {t("welcome.subtitle")}
     </div>
     
@@ -25,7 +25,7 @@ const Welcome = () => {
 
   return (
     //background for frame 2332
-    <main className="self-stretch flex flex-col items-center justify-center gap-20 overflow-hidden flex-1 rounded-xs bg-linear-to-br from-[#C9E5EC] 0% to-[#FFF] 100%">
+    <main className="self-stretch flex flex-col items-center justify-center gap-20 overflow-hidden flex-1 rounded-xs bg-linear-to-br from-[var(--gradient-start)] 0% to-[var(--gradient-end)] 100%">
       {/* Mini navbar */}
       <MiniNavbar />
 
@@ -44,9 +44,9 @@ const Welcome = () => {
           </div>
 
           {/*Container for right side of the page*/}
-          <div className="relative right-0 h-screen flex flex-col justify-center items-center  bg-gradient-to-b from-[#C9E5EC] via-[#FFFFFF] to-[#FFFFFF] w-full">
+          <div className="relative right-0 h-screen flex flex-col justify-center items-center  bg-gradient-to-b from-[var(--gradient-start)] via-[var(--gradient-end)] to-[var(--gradient-end)] w-full">
             <img src="/logo.svg" alt="Image" />
-            <h1 className="relative text-4xl font-['Lato'] text-[#383838] text-[34px] text-center mb-6 mt-4 font-black px-10">
+            <h1 className="relative text-4xl font-['Lato'] text-[var(--primary-text-title)] text-[34px] text-center mb-6 mt-4 font-black px-10">
               {texts[0]}
                 {/*Warm welcome to the learning platform*/}
                 </h1>
@@ -57,16 +57,16 @@ const Welcome = () => {
 
               {/*Button for routing to the Signup page*/}
               <Link
-                className="flex-auto  h-[3.3rem] w-[300px] items-center justify-center rounded-[15px] text-lg font-bold font-['Montserrat'] bg-[#35A1B1] inline-flex text-[#FFFFFF] transform transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50"
+                className="flex-auto  h-[3.3rem] w-[300px] items-center justify-center rounded-[15px] text-lg font-bold font-['Montserrat'] bg-[var(--primary-surface-default)] inline-flex text-[var(--gradient-end)] transform transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50"
                   to="/signup">
                 <button type="submit">Cadastrar</button>
               </Link>
 
             </div>
-            <div className="relative flex flex-row items-center justify-center  mt-2 text-[#4E6879] font-['Montserrat']">
+            <div className="relative flex flex-row items-center justify-center  mt-2 text-[var(--greyscale-text-subtle)] font-['Montserrat']">
               <div className="text-lg">{t("welcome.login-text")}</div>
               <Link
-                className="h-[3.3rem] w-[80px] flex items-center justify-center rounded-[15px] text-lg underline font-bold text-[#4E6879] transition duration-100 ease-in hover:text-blue-900"
+                className="h-[3.3rem] w-[80px] flex items-center justify-center rounded-[15px] text-lg underline font-bold text-[var(--greyscale-text-subtle)] transition duration-100 ease-in hover:text-blue-900"
                 to="/login"
               >
                 Entrar
