@@ -27,22 +27,23 @@ export interface SignupPayload {
   email: string;
   password: string;
   motivation: string;
-  //job
-  company: string;
-  title: string;
-  jobstartDate: string;
-  jobendDate: string;
-  description: string;
 
-  //education
-  educationType: string;
-  isInProgress: string;
-  course: string;
-  institution: string;
-  edustartDate: string;
-  eduendDate: string;
- 
-  
+  jobs: Array<{
+    company: string;
+    title: string;
+    startDate: string;
+    endDate: string;
+    description: string;
+  }>;
+
+  educations: Array<{
+    educationType: string;
+    isInProgress: string;
+    course: string;
+    institution: string;
+    startDate: string;
+    endDate: string;
+  }>;
 }
 
 

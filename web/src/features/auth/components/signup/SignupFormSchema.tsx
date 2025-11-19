@@ -246,7 +246,7 @@ export const ExperienceForm = () => {
             <div className="space-y-2 grid grid-cols-2 gap-x-6">
               <FormInput
                 control={control}
-                fieldName={`jobs.${index}.orginization`}
+                fieldName={`jobs.${index}.organization`}
                 placeholder="Mobile Education"
                 label="Empresa"
                 isRequired

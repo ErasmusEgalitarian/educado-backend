@@ -13,22 +13,23 @@ export default factories.createCoreController('api::content-creator.content-crea
         try{
             console.log("Registration request received:", ctx.request.body);
             const institutionalMails = ["student.aau.dk"];
+            
             const {firstName,
-                 lastName, 
-                 email, 
-                 password, 
-                 motivation,
-                 company, 
-                 title, 
-                 jobstartDate, 
-                 jobendDate, 
-                 description, 
-                 educationType, 
-                 isInProgress, 
-                 course, 
-                 institution,
-                 edustartDate,
-                 eduendDate } = ctx.request.body;
+                lastName, 
+                email, 
+                password, 
+                motivation,
+                jobs = [],
+                educations = []} = ctx.request.body;
+
+
+            if (!Array.isArray(jobs) || jobs.length === 0) {
+                return ctx.badRequest("At least one job is required");
+            }
+
+            if (!Array.isArray(educations) || educations.length === 0) {
+                return ctx.badRequest("At least one education is required");
+            }
 
             const existing = await strapi.db.query('api::content-creator.content-creator').findOne({
             where: { email },
@@ -47,35 +48,48 @@ export default factories.createCoreController('api::content-creator.content-crea
             // end date = smth crazy to identify no end date 
 
             /*
-            
+            dddsddssDSD
             
             */ 
            
-            const job = await strapi.documents('api::job.job').create({
-                data:{
-                    Company: company,
-                    Title: title,
-                    StartDate: jobstartDate,
-                    EndDate: jobendDate,
-                    Description: description,
-                },
-                status: "published"
-                    
-
-            })
+            const jobDocs = await Promise.all(
+                jobs.map((job) =>
+                    strapi.documents("api::job.job").create({
+                    data: {
+                        Company: job.company,
+                        Title: job.title,
+                        StartDate: job.startDate,
+                        EndDate: job.endDate,
+                        Description: job.description,
+                    },
+                    status: "published",
+                    })
+                )
+            );
             
 
-            const education = await strapi.documents('api::education.education').create({
-                data:{
-                    educationType: educationType,
-                    courseExperience: course,
-                    institution: institution,
-                    startDate: edustartDate,
-                    endDate: eduendDate,
-                },
-                status: "published"
-                
-            })
+            const educationDocs = await Promise.all(
+              educations.map((edu) =>
+                strapi.documents("api::education.education").create({
+                  data: {
+                    educationType: edu.educationType,
+                    courseExperience: edu.course, 
+                    institution: edu.institution,
+                    startDate: edu.startDate,
+                    endDate: edu.endDate,
+                   
+                  },
+                  status: "published",
+                })
+              )
+            );
+
+              const currentCompany =
+                jobDocs.find((j) => !j.EndDate)?.Company ??
+                jobs[0]?.company ?? // fallback to first job
+                null;
+
+
                 
              const newUser = await strapi.documents('api::content-creator.content-creator').create({
                  data:{
@@ -84,10 +98,10 @@ export default factories.createCoreController('api::content-creator.content-crea
                      firstName: firstName,
                      lastName: lastName,
                      verifiedAt: confirmationDate,
-                     motivation: description,
-                     /*currentCompany: company,*/
-                     jobs: [job.documentId],
-                     educations: [education.documentId]
+                     motivation: motivation,
+                     currentCompany: currentCompany,
+                     jobs: jobDocs.map((j) => j.documentId),
+                     educations: educationDocs.map((e) => e.documentId),
                  }, 
                  status: "published"
                 

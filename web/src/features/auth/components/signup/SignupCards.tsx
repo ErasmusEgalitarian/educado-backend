@@ -9,10 +9,7 @@ import {
   EducationForm,
   ExperienceForm,
 } from "./SignupFormSchema";
-import deleteIcon from "@/shared/assets/delete 1.svg";
-import plusIcon from "@/shared/assets/plus 2.svg";
 import { Chevron } from "@/shared/components/icons/chevron";
-import { Button } from "@/shared/components/shadcn/button";
 import {
   Card,
   CardHeader,
@@ -25,6 +22,7 @@ import {
 import { postUserSignup, SignupPayload } from "@/unplaced/services/auth.services";
 
 type SectionKey = "motive" | "education" | "experience";
+type FormData = z.infer<typeof formSchema>;
 
 const MotivationCard = ({
   open,
@@ -198,6 +196,7 @@ export const Cards = ({ initialData }: CardsProps) => {
       acedemicStartDate: "",
       acedemicEndDate: "",
     },
+    shouldUnregister: false
   });
 
   const jobForm = useForm({
@@ -208,6 +207,7 @@ export const Cards = ({ initialData }: CardsProps) => {
       jobEndDate: "",
       description: "",
     },
+    shouldUnregister: false
   });
 
   const methods = useForm({
@@ -217,29 +217,39 @@ export const Cards = ({ initialData }: CardsProps) => {
       jobs: [],
     },
     mode: "onTouched",
+    shouldUnregister: false
   });
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormData) => {
     console.log("form data", data);
+
+
+     const jobs = data.jobs.map(job => ({
+        company: job.organization,
+        title: job.jobTitle,
+        startDate: job.jobStartDate,
+        endDate: job.jobEndDate,
+        description: job.description,
+      }));
+
+      const educations = data.educations.map(edu => ({
+        educationType: edu.educationType,
+        isInProgress: edu.isInProgress,
+        course: edu.course,
+        institution: edu.institution,
+        startDate: edu.acedemicStartDate,
+        endDate: edu.acedemicEndDate,
+      }));
+
     const payload: SignupPayload = {
       firstName: initialData?.firstName,
       lastName: initialData?.lastName,
       email: initialData?.email,
       password: initialData?.password,
       motivation: data.motivation,
-      //job
-      company: data.organization,
-      title: data.jobTitle,
-      jobstartDate: data.jobStartDate,
-      jobendDate: data.jobEndDate,
-      description: data.description,
-      //education
-      educationType: data.educationType,
-      isInProgress: data.isInProgress,
-      course: data.course,
-      institution: data.institution,
-      edustartDate: data.acedemicStartDate,
-      eduendDate: data.acedemicEndDate,
+      
+      jobs: jobs,
+      educations: educations,
     };
 
     console.log("submit all values", payload);
