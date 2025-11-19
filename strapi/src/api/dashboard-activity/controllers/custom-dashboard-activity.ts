@@ -21,7 +21,11 @@ export default {
           filters: {
             email: user.email as string
           },
-          populate: ['dashboard_activities']
+          populate: {
+            dashboard_activities: {
+              sort: ['createdAt:desc']
+            }
+          }
         }
       );
 
