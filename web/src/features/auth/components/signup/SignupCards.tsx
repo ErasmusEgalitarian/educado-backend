@@ -1,7 +1,7 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { useState } from "react";
 import { toast } from "sonner";
-import { TypeOf, z } from "zod";
+import { z } from "zod";
 import { formSchema } from "./SignupFormSchema";
 // FormActions removed: external "Enviar para análise" button in SignupInformation will submit the form
 import {
@@ -9,21 +9,72 @@ import {
   EducationForm,
   ExperienceForm,
 } from "./SignupFormSchema";
-import deleteIcon from "@/shared/assets/delete 1.svg";
-import plusIcon from "@/shared/assets/plus 2.svg";
 import { Chevron } from "@/shared/components/icons/chevron";
-import { Button } from "@/shared/components/shadcn/button";
-import {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardAction,
-  CardDescription,
-  CardContent,
-} from "@/shared/components/shadcn/card";
+import { Card, CardHeader, CardContent } from "@/shared/components/shadcn/card";
 
 type SectionKey = "motive" | "education" | "experience";
+
+export const Cards = () => {
+  const [openKey, setOpenKey] = useState<SectionKey | null>("motive");
+
+  const toggle = (key: SectionKey) =>
+    setOpenKey((k) => (k === key ? null : key)); // only one card open at a time
+
+  const methods = useForm({
+    defaultValues: {
+      motivation: "",
+      educations: [],
+      jobs: [],
+    },
+    mode: "onSubmit",
+  });
+
+  // Submit handler with inferred data shape from the schema.
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    // eslint-disable-next-line no-console
+    console.log("Submitted values: " + JSON.stringify(values));
+    await new Promise((r) => setTimeout(r, 2000));
+    toast.success("Submitted values: " + JSON.stringify(values));
+  };
+
+  // Prevent form submission on Enter key press
+  const handleFormKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === "Enter") {
+      const target = e.target as HTMLElement;
+      // allow Enter in textareas (multi-line) and any element that explicitly wants Enter
+      if (target.tagName !== "TEXTAREA") {
+        e.preventDefault();
+      }
+    }
+  };
+
+  return (
+    <FormProvider {...methods}>
+      <form
+        id="signup-info-form"
+        onSubmit={methods.handleSubmit(onSubmit)}
+        onKeyDown={handleFormKeyDown}
+      >
+        <div className="flex flex-col gap-6 my-20">
+          <MotivationCard
+            open={openKey === "motive"}
+            onToggle={() => toggle("motive")}
+          />
+
+          <EducationCard
+            open={openKey === "education"}
+            onToggle={() => toggle("education")}
+          />
+
+          <ExperienceCard
+            open={openKey === "experience"}
+            onToggle={() => toggle("experience")}
+          />
+        </div>
+      </form>
+    </FormProvider>
+  );
+};
 
 const MotivationCard = ({
   open,
@@ -175,72 +226,5 @@ const ExperienceCard = ({
         </div>
       )}
     </Card>
-  );
-};
-
-export const Cards = () => {
-  const [openKey, setOpenKey] = useState<SectionKey | null>("motive");
-
-  const toggle = (key: SectionKey) =>
-    setOpenKey((k) => (k === key ? null : key)); // only one card open at a time
-
-  const EducationForm = useForm({
-    defaultValues: {
-      educationType: "",
-      isInProgress: "",
-      course: "",
-      institution: "",
-      acedemicStartDate: "",
-      acedemicEndDate: "",
-    },
-  });
-
-  const jobForm = useForm({
-    defaultValues: {
-      organization: "",
-      jobTitle: "",
-      jobStartDate: "",
-      jobEndDate: "",
-      description: "",
-    },
-  });
-
-  const methods = useForm({
-    defaultValues: {
-      motivation: "",
-      educations: [],
-      jobs: [],
-    },
-    mode: "onSubmit",
-  });
-
-  // Submit handler with inferred data shape from the schema.
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    // eslint-disable-next-line no-console
-    console.log("Submitted values: " + JSON.stringify(values));
-    await new Promise((r) => setTimeout(r, 2000));
-    toast.success("Submitted values: " + JSON.stringify(values));
-  };
-  return (
-    <FormProvider {...methods}>
-      <form id="signup-info-form" onSubmit={methods.handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-6 my-20">
-          <MotivationCard
-            open={openKey === "motive"}
-            onToggle={() => toggle("motive")}
-          />
-
-          <EducationCard
-            open={openKey === "education"}
-            onToggle={() => toggle("education")}
-          />
-
-          <ExperienceCard
-            open={openKey === "experience"}
-            onToggle={() => toggle("experience")}
-          />
-        </div>
-      </form>
-    </FormProvider>
   );
 };

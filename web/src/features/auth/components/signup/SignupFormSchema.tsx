@@ -165,6 +165,7 @@ export const EducationForm = () => {
               <div className="pb-2 col-span-2 text-right">
                 <CardFooter className="justify-end col-start-2 p-0">
                   <Button
+                    type="button"
                     variant="link"
                     className=" text-error-surface-default font-['Montserrat'] font-bold p-0"
                     style={{ fontSize: "14px", lineHeight: "17px" }}
