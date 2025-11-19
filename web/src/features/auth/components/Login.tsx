@@ -223,7 +223,7 @@ const Login = () => {
                 </Link>
                 <Link
                   to="/welcome"
-                  className="text-lg text-primary-text-title font-normal font-montserrat text-[var(--greyscale-text-subtle)]"
+                  className="text-lg text-primary-text-title font-normal font-montserrat text-[#4E6879]"
                 >
                   <button className="cursor-pointer">
                     {t("auth.backButton")}
