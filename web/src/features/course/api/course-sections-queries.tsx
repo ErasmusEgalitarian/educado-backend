@@ -1,9 +1,9 @@
 import {
-  getCoursesByCourseIdSections,
+  courseSectionGetCourseSections,
 } from "@/shared/api/sdk.gen.ts";
 import type { CourseSection } from "@/shared/api/types.gen.ts";
 
-export const courseQuery = (courseId: string) => ["course", courseId] as const;
+export const courseSectionQuery = (courseId: string) => ["course-sections", courseId] as const;
 
 /**
  * Fetch a single course by ID with Strapi query parameters
@@ -13,19 +13,21 @@ export const courseQuery = (courseId: string) => ["course", courseId] as const;
  * This allows editing courses in any state
  */
 export const CourseEditorSectionApiCall = (courseId: string) => ({
-  queryKey: courseQuery(courseId),
-  queryFn: async (): Promise<CourseSection> => {
-    const courseSectionResponse = await getCoursesByCourseIdSections({
-      path: { id: courseId },
+  queryKey: courseSectionQuery(courseId),
+  queryFn: async (): Promise<CourseSection[]> => {
+    const courseSectionResponse = await courseSectionGetCourseSections({
       query: {
+
+        // Filter for getting course by ID REMEMBER
+
         // Ensure drafts are retrievable during editing
         status: "draft",
         fields: [
           "title",
-          "completed",
+          "description",
         ],
         // Use "*" to populate all relations with their full data including nested fields
-        populate: "content",
+        populate: "activities",
       },
     });
 
