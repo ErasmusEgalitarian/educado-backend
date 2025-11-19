@@ -1,5 +1,8 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { useState } from "react";
+import { toast } from "sonner";
+import { TypeOf, z } from "zod";
+import { formSchema } from "./SignupFormSchema";
 // FormActions removed: external "Enviar para análise" button in SignupInformation will submit the form
 import {
   MotivationForm,
@@ -119,34 +122,8 @@ const EducationCard = ({
 
       {open && (
         <div>
-          <CardHeader className="text-greyscale-text-caption font-bold font-['Montserrat']">
-            Experiência acadêmica 1
-          </CardHeader>
           <CardContent id="edu-content" className="pb-6">
             <EducationForm />
-            <CardFooter className="justify-end p-0">
-              <Button
-                variant="link"
-                className=" text-error-surface-default font-['Montserrat'] font-bold p-0"
-                style={{ fontSize: "14px", lineHeight: "17px" }}
-              >
-                <img src={deleteIcon} />
-                Remover formação
-              </Button>
-            </CardFooter>
-            <hr className="border border-greyscale-border-lighter my-4" />
-            <div className="flex justify-center items-center pt-2">
-              <Button
-                type="button"
-                variant="outline"
-                size={"lg"}
-                className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
-                style={{ fontSize: "18px", lineHeight: "22" }}
-              >
-                <img src={plusIcon} />
-                Adicionar outra formação
-              </Button>
-            </div>
           </CardContent>
         </div>
       )}
@@ -193,34 +170,8 @@ const ExperienceCard = ({
 
       {open && (
         <div>
-          <CardHeader className="text-greyscale-text-caption font-bold font-['Montserrat']">
-            Experiência profissional 1
-          </CardHeader>
           <CardContent id="exp-content" className="pb-6">
             <ExperienceForm />
-            <CardFooter className="justify-end p-0">
-              <Button
-                variant="link"
-                className=" text-error-surface-default font-['Montserrat'] font-bold p-0"
-                style={{ fontSize: "14px", lineHeight: "17px" }}
-              >
-                <img src={deleteIcon} />
-                Remover formação
-              </Button>
-            </CardFooter>
-            <hr className="border border-greyscale-border-lighter my-4" />
-            <div className="flex justify-center items-center pt-2">
-              <Button
-                type="button"
-                variant="outline"
-                size={"lg"}
-                className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
-                style={{ fontSize: "18px", lineHeight: "22" }}
-              >
-                <img src={plusIcon} />
-                Adicionar outra formação
-              </Button>
-            </div>
           </CardContent>
         </div>
       )}
@@ -238,27 +189,34 @@ export const Cards = ({ initialData }: CardsProps) => {
   const toggle = (key: SectionKey) =>
     setOpenKey((k) => (k === key ? null : key)); // only one card open at a time
 
-  // Create a single shared useForm instance here and provide it to all
-  // child card forms via FormProvider so field values persist when switching
-  // cards. This preserves the original card DOM structure/ordering so
-  // Tailwind classes and layout remain unchanged.
-  const methods = useForm({
+  const EducationForm = useForm({
     defaultValues: {
-      motivation: "",
       educationType: "",
       isInProgress: "",
       course: "",
       institution: "",
       acedemicStartDate: "",
       acedemicEndDate: "",
+    },
+  });
+
+  const jobForm = useForm({
+    defaultValues: {
       organization: "",
       jobTitle: "",
       jobStartDate: "",
       jobEndDate: "",
       description: "",
     },
+  });
+
+  const methods = useForm({
+    defaultValues: {
+      motivation: "",
+      educations: [],
+      jobs: [],
+    },
     mode: "onTouched",
-    shouldUnregister: false
   });
 
   const onSubmit = async (data: any) => {
@@ -314,8 +272,6 @@ export const Cards = ({ initialData }: CardsProps) => {
             open={openKey === "experience"}
             onToggle={() => toggle("experience")}
           />
-
-          {/* Submit button moved to the SignupInformation footer; keep spacing if needed */}
         </div>
       </form>
     </FormProvider>
