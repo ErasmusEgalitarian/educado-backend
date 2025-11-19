@@ -1,16 +1,16 @@
-async function updateCourseAverageForCourse(courseId: string, excludeFeedbackId?: string) {
+async function updateCourseAverage(courseId: string, excludeFeedbackId?: string) {
   // Fetch course with feedbacks
   const course = await strapi.documents('api::course.course').findOne({
     documentId: courseId,
     populate: {
-  feedbacks: excludeFeedbackId
-    ? {
+      feedbacks: excludeFeedbackId
+      ? {
         filters: {
           documentId: { $ne: excludeFeedbackId },
         },
       }
-    : true,
-},
+      : true,
+    },
   });
 
   if (!course) return;
@@ -45,7 +45,7 @@ async function updateCourseAverageFromFeedback(feedbackId: string) {
 
   const courseId = feedback?.course?.documentId;
   if (courseId) {
-    await updateCourseAverageForCourse(courseId);
+    await updateCourseAverage(courseId);
   }
 }
 
@@ -82,7 +82,7 @@ export default {
     const courseId = fb?.course?.documentId;
 
     if (courseId) {
-      await updateCourseAverageForCourse(courseId, fb.documentId);
+      await updateCourseAverage(courseId, fb.documentId);
     }
   },
 };
