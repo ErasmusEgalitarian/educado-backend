@@ -460,8 +460,8 @@ export type Certificate = {
                         documentId?: string;
                     }>;
                 }>;
-                creator_published_at?: string;
                 admin_control_at?: string;
+                creator_published_at?: string;
                 createdAt?: string;
                 updatedAt?: string;
                 publishedAt?: string;
@@ -1183,8 +1183,8 @@ export type ContentCreator = {
                 documentId?: string;
             }>;
         }>;
-        creator_published_at?: string;
         admin_control_at?: string;
+        creator_published_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -1244,8 +1244,8 @@ export type CourseRequest = {
         course_categories?: Array<number | string>;
         students?: Array<number | string>;
         content_creators?: Array<number | string>;
-        creator_published_at?: string;
         admin_control_at?: string;
+        creator_published_at?: string;
         locale?: string;
         localizations?: Array<number | string>;
     };
@@ -1781,8 +1781,8 @@ export type Course = {
                     documentId?: string;
                 }>;
             }>;
-            creator_published_at?: string;
             admin_control_at?: string;
+            creator_published_at?: string;
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -1837,8 +1837,8 @@ export type Course = {
         id?: number;
         documentId?: string;
     }>;
-    creator_published_at?: string;
     admin_control_at?: string;
+    creator_published_at?: string;
     createdAt?: string;
     updatedAt?: string;
     publishedAt?: string;
@@ -2377,8 +2377,8 @@ export type CourseCategory = {
                 documentId?: string;
             }>;
         }>;
-        creator_published_at?: string;
         admin_control_at?: string;
+        creator_published_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -2876,8 +2876,8 @@ export type CourseSelection = {
                 documentId?: string;
             }>;
         }>;
-        creator_published_at?: string;
         admin_control_at?: string;
+        creator_published_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -3804,8 +3804,8 @@ export type Feedback = {
                 documentId?: string;
             }>;
         }>;
-        creator_published_at?: string;
         admin_control_at?: string;
+        creator_published_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -4579,8 +4579,8 @@ export type Student = {
                     documentId?: string;
                 }>;
             }>;
-            creator_published_at?: string;
             admin_control_at?: string;
+            creator_published_at?: string;
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -5095,8 +5095,8 @@ export type UserLog = {
                         documentId?: string;
                     }>;
                 }>;
-                creator_published_at?: string;
                 admin_control_at?: string;
+                creator_published_at?: string;
                 createdAt?: string;
                 updatedAt?: string;
                 publishedAt?: string;
