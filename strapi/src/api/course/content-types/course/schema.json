@@ -27,6 +27,11 @@
       "min": 1,
       "max": 3
     },
+    "durationHours": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
     "numOfRatings": {
       "type": "integer",
       "default": 0
