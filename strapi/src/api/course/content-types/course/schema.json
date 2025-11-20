@@ -77,11 +77,11 @@
       "target": "api::content-creator.content-creator",
       "mappedBy": "courses"
     },
-    "creator_published_at": {
-      "type": "datetime"
-    },
     "admin_control_at": {
       "type": "datetime"
+    },
+    "creator_published_at": {
+      "type": "string"
     }
   }
 }

@@ -129,11 +129,10 @@ const CourseEditorPage = () => {
           documentId: docId,
           title: values.title,
           difficulty: Number(values.difficulty),
-          course_categories: values.course_categories,
+          course_categories: values.categories,
           description: values.description,
           image: imageId,
         });
-        console.log("Updated draft course:", result);
         setTimeout(() => {
           navigate("/");
         }, 1500);
@@ -142,11 +141,14 @@ const CourseEditorPage = () => {
         const result = await createMutation.mutateAsync({
           title: values.title,
           difficulty: Number(values.difficulty),
-          course_categories: values.categories ?? [],
+          course_categories: values.categories,
           description: values.description,
           image: imageId,
-          creator_published_at: undefined,
+          creator_published_at: "",
         });
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
       }
     } catch (error) {
       console.error("Error saving course:", error);
