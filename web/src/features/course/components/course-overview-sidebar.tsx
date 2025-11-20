@@ -9,7 +9,6 @@ import {
 import { Separator } from "@/shared/components/shadcn/seperator";
 import StarRating from "@/shared/components/star-rating";
 import { SidebarActivity } from "../components/course-overview-sidebar-activity";
-import { map } from "zod";
 import { useEffect, useState } from "react";
 import { getCcDashboardActivity } from "@/shared/api/sdk.gen";
 import { DashboardActivity } from "@/shared/api/types.gen";
