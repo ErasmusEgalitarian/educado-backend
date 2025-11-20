@@ -2,7 +2,7 @@ module.exports = {
   routes: [
     {
       method: "POST",
-      path: "/course-statistics/statistics-action",
+      path: "/course-statistics",
       handler: "course-statistics.statisticsAction",
       config: {
         policies: ['global::is-content-creator'],

@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { getCcDashboardActivity } from "@/shared/api/sdk.gen";
 import { DashboardActivity } from "@/shared/api/types.gen";
 import { postCourseStatisticsStatisticsAction } from "@/shared/api/sdk.gen";
+import { postCourseStatistics } from "@/shared/api/sdk.gen";
 import { CourseStatisticsResponse } from "@/shared/api/types.gen";
 
 type PeriodKey = "thisMonth" | "lastSevenDays" | "lastThirtyDays";
@@ -38,7 +39,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
     const fetchStatistics = async () => {
       setLoading(true);
       try {
-        const data = await postCourseStatisticsStatisticsAction({
+        const data = await postCourseStatistics({
           body: {
             documentIds: documentIds
           },
