@@ -54,10 +54,10 @@
       "target": "api::user-log.user-log",
       "mappedBy": "student"
     },
-    "course_relations": {
+    "course_enrollment_relations": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::course-relation.course-relation",
+      "target": "api::course-enrollment-relation.course-enrollment-relation",
       "mappedBy": "student"
     }
   }
