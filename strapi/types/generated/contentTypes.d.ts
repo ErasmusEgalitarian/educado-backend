@@ -592,16 +592,16 @@ export interface ApiCourseCategoryCourseCategory
   };
 }
 
-export interface ApiCourseRelationCourseRelation
+export interface ApiCourseEnrollmentRelationCourseEnrollmentRelation
   extends Struct.CollectionTypeSchema {
-  collectionName: 'course_relations';
+  collectionName: 'course_enrollment_relations';
   info: {
-    displayName: 'Course Relation';
-    pluralName: 'course-relations';
-    singularName: 'course-relation';
+    displayName: 'Course Enrollment Relation';
+    pluralName: 'course-enrollment-relations';
+    singularName: 'course-enrollment-relation';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     course: Schema.Attribute.Relation<'manyToOne', 'api::course.course'>;
@@ -612,7 +612,7 @@ export interface ApiCourseRelationCourseRelation
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::course-relation.course-relation'
+      'api::course-enrollment-relation.course-enrollment-relation'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -683,9 +683,9 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::course-category.course-category'
     >;
-    course_relations: Schema.Attribute.Relation<
+    course_enrollment_relations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::course-relation.course-relation'
+      'api::course-enrollment-relation.course-enrollment-relation'
     >;
     course_sections: Schema.Attribute.Relation<
       'oneToMany',
@@ -990,9 +990,9 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::certificate.certificate'
     >;
-    course_relations: Schema.Attribute.Relation<
+    course_enrollment_relations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::course-relation.course-relation'
+      'api::course-enrollment-relation.course-enrollment-relation'
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1612,7 +1612,7 @@ declare module '@strapi/strapi' {
       'api::certificate.certificate': ApiCertificateCertificate;
       'api::content-creator.content-creator': ApiContentCreatorContentCreator;
       'api::course-category.course-category': ApiCourseCategoryCourseCategory;
-      'api::course-relation.course-relation': ApiCourseRelationCourseRelation;
+      'api::course-enrollment-relation.course-enrollment-relation': ApiCourseEnrollmentRelationCourseEnrollmentRelation;
       'api::course-selection.course-selection': ApiCourseSelectionCourseSelection;
       'api::course.course': ApiCourseCourse;
       'api::dashboard-activity.dashboard-activity': ApiDashboardActivityDashboardActivity;
