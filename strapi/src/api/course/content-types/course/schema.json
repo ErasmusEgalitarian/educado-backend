@@ -65,17 +65,17 @@
       "target": "api::course-category.course-category",
       "mappedBy": "courses"
     },
-    "course_relations": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::course-relation.course-relation",
-      "mappedBy": "course"
-    },
     "content_creators": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::content-creator.content-creator",
       "mappedBy": "courses"
+    },
+    "course_enrollment_relations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course-enrollment-relation.course-enrollment-relation",
+      "mappedBy": "course"
     }
   }
 }

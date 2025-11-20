@@ -16,7 +16,7 @@ interface FeedbackType {
 interface PopulatedCourse {
   documentId: string
   createdAt: Date;
-  course_relations: CourseRelationType[];
+  course_enrollment_relations: CourseRelationType[];
   feedbacks: FeedbackType[];
 }
 
@@ -36,7 +36,7 @@ export default {
         .findFirst({
           populate: {
             courses: {
-              populate: ["course_relations", "feedbacks"],
+              populate: ["course_enrollment_relations", "feedbacks"],
             },
           },
           filters: {
@@ -98,7 +98,7 @@ export function getStudentStats(filteredCourses : PopulatedCourse[]) {
 
   // double for loop running counting all students on each course, and counting each based on enrollmentDate thorugh 3 if statements
   for (const course of filteredCourses) {
-    for (const courseRelation of course.course_relations) {
+    for (const courseRelation of course.course_enrollment_relations) {
       countTotal++;
       //30 days
       if (
