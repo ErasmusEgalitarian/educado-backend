@@ -1,6 +1,5 @@
 import { FormProvider, UseFormReturn } from "react-hook-form";
 import { useState } from "react";
-import { toast } from "sonner";
 import { z } from "zod";
 import { formSchema } from "./SignupFormSchema";
 import {
@@ -9,23 +8,68 @@ import {
   ExperienceForm,
 } from "./SignupFormSchema";
 import { Chevron } from "@/shared/components/icons/chevron";
-import { Card, CardHeader, CardContent } from "@/shared/components/shadcn/card";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+} from "@/shared/components/shadcn/card";
+import { postUserSignup, SignupPayload } from "@/unplaced/services/auth.services";
 
 type SectionKey = "motive" | "education" | "experience";
+type FormData = z.infer<typeof formSchema>;
+type CardsProps = {
+    initialData?: any;
+};
 
-export const Cards = ({ methods }: { methods: UseFormReturn<z.infer<typeof formSchema>> }) => {
+export const Cards = ({ methods }: { methods: UseFormReturn<FormData> }, { initialData }: CardsProps) => {
   const [openKey, setOpenKey] = useState<SectionKey | null>("motive");
 
   const toggle = (key: SectionKey) =>
     setOpenKey((k) => (k === key ? null : key)); // only one card open at a time
 
-  // Submit handler with inferred data shape from the schema.
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    // eslint-disable-next-line no-console
-    console.log("Submitted values: " + JSON.stringify(values));
-    await new Promise((r) => setTimeout(r, 2000));
-    toast.success("Submitted values: " + JSON.stringify(values));
-  };
+    const onSubmit = async (data: FormData) => {
+        console.log("form data", data);
+
+
+        const jobs = data.jobs.map(job => ({
+            company: job.organization,
+            title: job.jobTitle,
+            startDate: job.jobStartDate,
+            endDate: job.jobEndDate,
+            description: job.description,
+        }));
+
+        const educations = data.educations.map(edu => ({
+            educationType: edu.educationType,
+            isInProgress: edu.isInProgress,
+            course: edu.course,
+            institution: edu.institution,
+            startDate: edu.acedemicStartDate,
+            endDate: edu.acedemicEndDate,
+        }));
+
+        const payload: SignupPayload = {
+            firstName: initialData?.firstName,
+            lastName: initialData?.lastName,
+            email: initialData?.email,
+            password: initialData?.password,
+            motivation: data.motivation,
+
+            jobs: jobs,
+            educations: educations,
+        };
+
+        console.log("submit all values", payload);
+
+        try {
+            const response = await postUserSignup(payload);
+            console.log("Signup information submitted successfully:", response);
+            // Handle successful submission (e.g., navigate to a different page)
+
+        } catch (error) {
+            console.error("Error during signup information submission:", error);
+        }
+    };
 
   // Prevent form submission on Enter key press
   const handleFormKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {

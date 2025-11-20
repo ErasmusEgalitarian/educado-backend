@@ -20,7 +20,7 @@ import {
 } from "@/shared/components/shadcn/card";
 
 const maxChars = 400;
-const STATUS = ["In Progress", "Finished"] as const;
+const STATUS = ["Em andamento", "Concluída"] as const;
 const STATUS_OPTIONS = STATUS.map((type) => ({
   value: type,
   label: type,
@@ -74,7 +74,7 @@ export const MotivationForm = () => {
   );
 };
 
-// The education form component
+// The form component itself
 export const EducationForm = () => {
   const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
