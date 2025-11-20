@@ -343,9 +343,6 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
     : table.getFilteredRowModel().rows;
 
   // Derive the list of items considered "filtered" from the component's perspective.
-  // In client mode this is the TanStack filtered rows (before pagination). In server mode
-  // the server provides `data` which already represents the filtered page; we expose that
-  // as the filtered set for the caller (parent) so it can always receive a consistent list.
   const filteredItems: DataDisplayItem[] = isUsingServerMode
     ? (data as DataDisplayItem[])
     : filteredRows.map((r) => r.original);
