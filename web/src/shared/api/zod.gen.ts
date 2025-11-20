@@ -522,8 +522,8 @@ export const zCertificate = z.object({
                         documentId: z.string().optional()
                     })).optional()
                 })).optional(),
-                creator_published_at: z.string().datetime().optional(),
                 admin_control_at: z.string().datetime().optional(),
+                creator_published_at: z.string().optional(),
                 createdAt: z.string().datetime().optional(),
                 updatedAt: z.string().datetime().optional(),
                 publishedAt: z.string().datetime().optional(),
@@ -1226,8 +1226,8 @@ export const zContentCreator = z.object({
                 documentId: z.string().optional()
             })).optional()
         })).optional(),
-        creator_published_at: z.string().datetime().optional(),
         admin_control_at: z.string().datetime().optional(),
+        creator_published_at: z.string().optional(),
         createdAt: z.string().datetime().optional(),
         updatedAt: z.string().datetime().optional(),
         publishedAt: z.string().datetime().optional(),
@@ -1316,8 +1316,8 @@ export const zCourseRequest = z.object({
             z.number().int(),
             z.string()
         ])).optional(),
-        creator_published_at: z.string().datetime().optional(),
         admin_control_at: z.string().datetime().optional(),
+        creator_published_at: z.string().optional(),
         locale: z.string().optional(),
         localizations: z.array(z.union([
             z.number().int(),
@@ -1857,8 +1857,8 @@ export const zCourse = z.object({
                     documentId: z.string().optional()
                 })).optional()
             })).optional(),
-            creator_published_at: z.string().datetime().optional(),
             admin_control_at: z.string().datetime().optional(),
+            creator_published_at: z.string().optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -1913,8 +1913,8 @@ export const zCourse = z.object({
         id: z.number().optional(),
         documentId: z.string().optional()
     })).optional(),
-    creator_published_at: z.string().datetime().optional(),
     admin_control_at: z.string().datetime().optional(),
+    creator_published_at: z.string().optional(),
     createdAt: z.string().datetime().optional(),
     updatedAt: z.string().datetime().optional(),
     publishedAt: z.string().datetime().optional(),
@@ -2469,8 +2469,8 @@ export const zCourseCategory = z.object({
                 documentId: z.string().optional()
             })).optional()
         })).optional(),
-        creator_published_at: z.string().datetime().optional(),
         admin_control_at: z.string().datetime().optional(),
+        creator_published_at: z.string().optional(),
         createdAt: z.string().datetime().optional(),
         updatedAt: z.string().datetime().optional(),
         publishedAt: z.string().datetime().optional(),
@@ -2990,8 +2990,8 @@ export const zCourseSelection = z.object({
                 documentId: z.string().optional()
             })).optional()
         })).optional(),
-        creator_published_at: z.string().datetime().optional(),
         admin_control_at: z.string().datetime().optional(),
+        creator_published_at: z.string().optional(),
         createdAt: z.string().datetime().optional(),
         updatedAt: z.string().datetime().optional(),
         publishedAt: z.string().datetime().optional(),
@@ -3945,8 +3945,8 @@ export const zFeedback = z.object({
                 documentId: z.string().optional()
             })).optional()
         })).optional(),
-        creator_published_at: z.string().datetime().optional(),
         admin_control_at: z.string().datetime().optional(),
+        creator_published_at: z.string().optional(),
         createdAt: z.string().datetime().optional(),
         updatedAt: z.string().datetime().optional(),
         publishedAt: z.string().datetime().optional(),
@@ -4756,8 +4756,8 @@ export const zStudent = z.object({
                     documentId: z.string().optional()
                 })).optional()
             })).optional(),
-            creator_published_at: z.string().datetime().optional(),
             admin_control_at: z.string().datetime().optional(),
+            creator_published_at: z.string().optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -5288,8 +5288,8 @@ export const zUserLog = z.object({
                         documentId: z.string().optional()
                     })).optional()
                 })).optional(),
-                creator_published_at: z.string().datetime().optional(),
                 admin_control_at: z.string().datetime().optional(),
+                creator_published_at: z.string().optional(),
                 createdAt: z.string().datetime().optional(),
                 updatedAt: z.string().datetime().optional(),
                 publishedAt: z.string().datetime().optional(),
