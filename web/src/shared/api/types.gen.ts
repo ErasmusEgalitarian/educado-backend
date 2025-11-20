@@ -1083,8 +1083,8 @@ export type ContentCreator = {
             documentId?: string;
           }>;
         }>;
-        creator_published_at?: string;
         admin_control_at?: string;
+        creator_published_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -1469,11 +1469,9 @@ export type ContentCreatorResponse = {
 
 export type CourseRequest = {
   data: {
-    title: string;
-    description?: string;
-    difficulty: number;
-    durationHours: number;
-    numOfRatings?: number;
+    data: {
+        title: string;
+        difficulty: number;
     numOfSubscriptions?: number;
     image?: number | string;
     feedbacks?: Array<number | string>;
@@ -2069,8 +2067,8 @@ export type Course = {
       documentId?: string;
     };
     }>;
-    creator_published_at?: string;
     admin_control_at?: string;
+    creator_published_at?: string;
     createdAt?: string;
     updatedAt?: string;
     publishedAt?: string;
@@ -2511,8 +2509,8 @@ export type CourseCategory = {
             documentId?: string;
           }>;
         }>;
-        creator_published_at?: string;
         admin_control_at?: string;
+        creator_published_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
