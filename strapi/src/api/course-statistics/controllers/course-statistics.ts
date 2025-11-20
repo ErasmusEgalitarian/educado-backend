@@ -226,10 +226,10 @@ export function getContentCreatorFeedback(filteredCourses : PopulatedCourse[]) {
         }
       }
     }
-    const Totalaverage = totalFeedbacks != 0 ? totalRating / totalFeedbacks : 0;
-    const Totalaverage7dProgress = totalFeedbacks - Totalaverage != 0 ? count7dRating / count7dFeedbacks - Totalaverage : 0;
-    const Totalaverage30dProgress = count30dFeedbacks - Totalaverage != 0 ? count30dRating / count30dFeedbacks - Totalaverage : 0;
-    const TotalaverageCurrentMonthProgress = countCurrentMonthFeedbacks - Totalaverage != 0 ? countCurrentMonthRating / countCurrentMonthFeedbacks - Totalaverage : 0;
+    const Totalaverage = totalRating / totalFeedbacks;
+    const Totalaverage7dProgress = Totalaverage - (totalRating - count7dRating) / (totalFeedbacks - count7dFeedbacks);
+    const Totalaverage30dProgress = Totalaverage - (totalRating - count30dRating) / (totalFeedbacks - count30dFeedbacks);
+    const TotalaverageCurrentMonthProgress = Totalaverage - (totalRating - countCurrentMonthRating) / (totalFeedbacks - countCurrentMonthFeedbacks);
     
     return {
       total: Number(Totalaverage.toFixed(1)),

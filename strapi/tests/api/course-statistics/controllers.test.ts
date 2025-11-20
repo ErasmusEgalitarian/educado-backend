@@ -86,9 +86,9 @@ describe('Test statistics', () => {
         expect(result.progress).toBeDefined();
         expect(result.total).toBe(3.6);
         expect(result.progress).toEqual({
-            thisMonth: -0.3,
-            lastSevenDays: -0.3,
-            lastThirtyDays: 0
+            thisMonth: -0.4,
+            lastSevenDays: -0.4,
+            lastThirtyDays: 0.1
         });
     });
 
