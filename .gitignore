@@ -145,4 +145,7 @@ vite.config.ts.timestamp-*
 .vite/
 
 .turbo/
-strapi/src/extensions/documentation/documentation/1.0.0/full_documentation.json
+
+# mise
+.mise.local.toml
+mise.local.toml

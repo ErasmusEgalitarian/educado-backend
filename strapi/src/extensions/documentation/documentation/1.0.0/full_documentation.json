@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-11T12:48:08.729Z"
+    "x-generation-date": "2025-11-17T11:42:19.267Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -8451,6 +8451,9 @@
                         "difficulty": {
                           "type": "integer"
                         },
+                        "durationHours": {
+                          "type": "integer"
+                        },
                         "numOfRatings": {
                           "type": "integer"
                         },
@@ -10534,6 +10537,9 @@
                 "difficulty": {
                   "type": "integer"
                 },
+                "durationHours": {
+                  "type": "integer"
+                },
                 "numOfRatings": {
                   "type": "integer"
                 },
@@ -12228,7 +12234,8 @@
           "data": {
             "required": [
               "title",
-              "difficulty"
+              "difficulty",
+              "durationHours"
             ],
             "type": "object",
             "properties": {
@@ -12239,6 +12246,9 @@
                 "type": "string"
               },
               "difficulty": {
+                "type": "integer"
+              },
+              "durationHours": {
                 "type": "integer"
               },
               "numOfRatings": {
@@ -12388,7 +12398,8 @@
         "type": "object",
         "required": [
           "title",
-          "difficulty"
+          "difficulty",
+          "durationHours"
         ],
         "properties": {
           "id": {
@@ -12404,6 +12415,9 @@
             "type": "string"
           },
           "difficulty": {
+            "type": "integer"
+          },
+          "durationHours": {
             "type": "integer"
           },
           "numOfRatings": {
@@ -13047,6 +13061,9 @@
                       "type": "string"
                     },
                     "difficulty": {
+                      "type": "integer"
+                    },
+                    "durationHours": {
                       "type": "integer"
                     },
                     "numOfRatings": {
@@ -14406,6 +14423,9 @@
                   "type": "string"
                 },
                 "difficulty": {
+                  "type": "integer"
+                },
+                "durationHours": {
                   "type": "integer"
                 },
                 "numOfRatings": {
@@ -16727,6 +16747,9 @@
               "difficulty": {
                 "type": "integer"
               },
+              "durationHours": {
+                "type": "integer"
+              },
               "numOfRatings": {
                 "type": "integer"
               },
@@ -19011,6 +19034,9 @@
                 "type": "string"
               },
               "difficulty": {
+                "type": "integer"
+              },
+              "durationHours": {
                 "type": "integer"
               },
               "numOfRatings": {
@@ -21663,6 +21689,9 @@
                     "difficulty": {
                       "type": "integer"
                     },
+                    "durationHours": {
+                      "type": "integer"
+                    },
                     "numOfRatings": {
                       "type": "integer"
                     },
@@ -23524,6 +23553,9 @@
                           "type": "string"
                         },
                         "difficulty": {
+                          "type": "integer"
+                        },
+                        "durationHours": {
                           "type": "integer"
                         },
                         "numOfRatings": {

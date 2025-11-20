@@ -5,6 +5,7 @@ export default {
       path: '/student/signup',
       handler: 'student-registration.signupAction',
       config: {
+        auth: false,
         policies: ['global::rate-limit'],
         middlewares: [],
       },

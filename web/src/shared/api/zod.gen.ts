@@ -117,6 +117,7 @@ export const zCertificate = z.object({
                 title: z.string().optional(),
                 description: z.string().optional(),
                 difficulty: z.number().int().optional(),
+                durationHours: z.number().int().optional(),
                 numOfRatings: z.number().int().optional(),
                 numOfSubscriptions: z.number().int().optional(),
                 image: z.object({
@@ -729,6 +730,7 @@ export const zContentCreator = z.object({
         title: z.string().optional(),
         description: z.string().optional(),
         difficulty: z.number().int().optional(),
+        durationHours: z.number().int().optional(),
         numOfRatings: z.number().int().optional(),
         numOfSubscriptions: z.number().int().optional(),
         image: z.object({
@@ -1283,6 +1285,7 @@ export const zCourseRequest = z.object({
         title: z.string(),
         description: z.string().optional(),
         difficulty: z.number().int(),
+        durationHours: z.number().int(),
         numOfRatings: z.number().int().optional(),
         numOfSubscriptions: z.number().int().optional(),
         image: z.union([
@@ -1323,6 +1326,7 @@ export const zCourse = z.object({
     title: z.string(),
     description: z.string().optional(),
     difficulty: z.number().int(),
+    durationHours: z.number().int(),
     numOfRatings: z.number().int().optional(),
     numOfSubscriptions: z.number().int().optional(),
     image: z.object({
@@ -1531,6 +1535,7 @@ export const zCourse = z.object({
             title: z.string().optional(),
             description: z.string().optional(),
             difficulty: z.number().int().optional(),
+            durationHours: z.number().int().optional(),
             numOfRatings: z.number().int().optional(),
             numOfSubscriptions: z.number().int().optional(),
             image: z.object({
@@ -1960,6 +1965,7 @@ export const zCourseCategory = z.object({
         title: z.string().optional(),
         description: z.string().optional(),
         difficulty: z.number().int().optional(),
+        durationHours: z.number().int().optional(),
         numOfRatings: z.number().int().optional(),
         numOfSubscriptions: z.number().int().optional(),
         image: z.object({
@@ -2696,6 +2702,7 @@ export const zCourseSelection = z.object({
         title: z.string().optional(),
         description: z.string().optional(),
         difficulty: z.number().int().optional(),
+        durationHours: z.number().int().optional(),
         numOfRatings: z.number().int().optional(),
         numOfSubscriptions: z.number().int().optional(),
         image: z.object({
@@ -3430,6 +3437,7 @@ export const zFeedback = z.object({
         title: z.string().optional(),
         description: z.string().optional(),
         difficulty: z.number().int().optional(),
+        durationHours: z.number().int().optional(),
         numOfRatings: z.number().int().optional(),
         numOfSubscriptions: z.number().int().optional(),
         image: z.object({
@@ -4265,6 +4273,7 @@ export const zStudent = z.object({
             title: z.string().optional(),
             description: z.string().optional(),
             difficulty: z.number().int().optional(),
+            durationHours: z.number().int().optional(),
             numOfRatings: z.number().int().optional(),
             numOfSubscriptions: z.number().int().optional(),
             image: z.object({
@@ -4856,6 +4865,7 @@ export const zUserLog = z.object({
                 title: z.string().optional(),
                 description: z.string().optional(),
                 difficulty: z.number().int().optional(),
+                durationHours: z.number().int().optional(),
                 numOfRatings: z.number().int().optional(),
                 numOfSubscriptions: z.number().int().optional(),
                 image: z.object({
@@ -5599,7 +5609,26 @@ export const zLoginRequest = z.object({
     password: z.string()
 });
 
-export const zJwtResponse = z.string();
+export const zJwtContentCreatorResponse = z.object({
+    accessToken: z.string().optional(),
+    userInfo: z.object({
+        documentId: z.string().optional(),
+        firstName: z.string().optional(),
+        lastName: z.string().optional(),
+        email: z.string().optional(),
+        verifiedAt: z.string().date().optional()
+    }).optional()
+});
+
+export const zJwtResponse = z.object({
+    accessToken: z.string().optional(),
+    userInfo: z.object({
+        documentId: z.string().optional(),
+        name: z.string().optional(),
+        email: z.string().optional(),
+        verifiedAt: z.string().date().optional()
+    }).optional()
+});
 
 export const zResetPasswordRequestRequest = z.object({
     email: z.string().optional()
@@ -6271,6 +6300,7 @@ export const zCourseGetCoursesRequest = z.object({
             'title',
             'description',
             'difficulty',
+            'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
             'createdAt',
@@ -6296,6 +6326,7 @@ export const zCourseGetCoursesRequest = z.object({
                 'title',
                 'description',
                 'difficulty',
+                'durationHours',
                 'numOfRatings',
                 'numOfSubscriptions',
                 'createdAt',
@@ -6306,6 +6337,7 @@ export const zCourseGetCoursesRequest = z.object({
                 'title',
                 'description',
                 'difficulty',
+                'durationHours',
                 'numOfRatings',
                 'numOfSubscriptions',
                 'createdAt',
@@ -6360,6 +6392,7 @@ export const zCoursePostCoursesRequest = z.object({
             'title',
             'description',
             'difficulty',
+            'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
             'createdAt',
@@ -6407,6 +6440,7 @@ export const zCourseDeleteCoursesByIdRequest = z.object({
             'title',
             'description',
             'difficulty',
+            'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
             'createdAt',
@@ -6455,6 +6489,7 @@ export const zCourseGetCoursesByIdRequest = z.object({
             'title',
             'description',
             'difficulty',
+            'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
             'createdAt',
@@ -6486,6 +6521,7 @@ export const zCourseGetCoursesByIdRequest = z.object({
                 'title',
                 'description',
                 'difficulty',
+                'durationHours',
                 'numOfRatings',
                 'numOfSubscriptions',
                 'createdAt',
@@ -6496,6 +6532,7 @@ export const zCourseGetCoursesByIdRequest = z.object({
                 'title',
                 'description',
                 'difficulty',
+                'durationHours',
                 'numOfRatings',
                 'numOfSubscriptions',
                 'createdAt',
@@ -6533,6 +6570,7 @@ export const zCoursePutCoursesByIdRequest = z.object({
             'title',
             'description',
             'difficulty',
+            'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
             'createdAt',

@@ -5,6 +5,7 @@ export default {
       path: '/student/login',
       handler: 'student-login.loginAction',
       config: {
+        auth: false,
         policies: ['global::rate-limit'],
         middlewares: [],
       },
@@ -32,7 +33,7 @@ export default {
       path: '/student/reset-password-update',
       handler: 'student-login.passwordUpdateAction',
       config: {
-        policies: [],
+        policies: ['global::rate-limit'],
         middlewares: [],
       },
     },
