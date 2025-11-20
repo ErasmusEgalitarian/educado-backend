@@ -44,7 +44,7 @@ export default {
           },
         });
       if (!user) {
-        throw { error: errorCodes["E0504"] };
+        throw { error: errorCodes["E0004"] };
       }
       //Filter courses
       const filteredCourses = filterCoursesBasedOnCid(user.courses, courseIds) as PopulatedCourse[];  
@@ -80,11 +80,11 @@ export function getCoursesStats(filteredCourses : PopulatedCourse[]) {
     if (createdAt > firstDayOfMonth) countMonth++;
   }
   return {
-    total: countTotal ?? 0,
+    total: countTotal,
     progress: {
-      lastThirtyDays: Math.round((count30/(countTotal-count30))*100) ?? 0, 
-      lastSevenDays:  Math.round((count7/(countTotal-count7))*100) ?? 0, 
-      thisMonth:      Math.round((countMonth/(countTotal-countMonth))*100)?? 0
+      lastThirtyDays: Math.round((count30/(countTotal-count30))*100), 
+      lastSevenDays:  Math.round((count7/(countTotal-count7))*100), 
+      thisMonth:      Math.round((countMonth/(countTotal-countMonth))*100)
     },
   };
 }
@@ -124,11 +124,11 @@ export function getStudentStats(filteredCourses : PopulatedCourse[]) {
     }
   }
   return { 
-    total: countTotal ?? 0, 
+    total: countTotal, 
     progress: {
-      lastThirtyDays: Math.round((count30/(countTotal-count30))*100) ?? 0, 
-      lastSevenDays:  Math.round((count7/(countTotal-count7))*100) ?? 0, 
-      thisMonth:      Math.round((countMonth/(countTotal-countMonth))*100)?? 0
+      lastThirtyDays: Math.round((count30/(countTotal-count30))*100), 
+      lastSevenDays:  Math.round((count7/(countTotal-count7))*100), 
+      thisMonth:      Math.round((countMonth/(countTotal-countMonth))*100)
     } 
   }
 }
@@ -175,11 +175,11 @@ export async function getCertificatesStats(filteredCourses : PopulatedCourse[]) 
       }
     }
     return {
-      total: countTotal ?? 0,
+      total: countTotal,
       progress: {
-        lastThirtyDays: Math.round((count30/(countTotal-count30))*100) ?? 0, 
-        lastSevenDays: Math.round((count7/(countTotal-count7))*100) ?? 0, 
-        thisMonth: Math.round((countMonth/(countTotal-countMonth))*100) ?? 0
+        lastThirtyDays: Math.round((count30/(countTotal-count30))*100), 
+        lastSevenDays: Math.round((count7/(countTotal-count7))*100), 
+        thisMonth: Math.round((countMonth/(countTotal-countMonth))*100)
       }
     };
   } catch (err) {
