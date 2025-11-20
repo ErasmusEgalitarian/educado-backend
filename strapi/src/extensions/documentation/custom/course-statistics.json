@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/course-statistics/statistics-action": {
+    "/course-statistics": {
       "post": {
         "tags": ["CourseStatistics"],
         "summary": "Get aggregated statistics for a content creator's selected courses",
