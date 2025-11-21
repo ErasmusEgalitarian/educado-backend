@@ -4,7 +4,7 @@ import { Button } from "@/shared/components/shadcn/button";
 import { SignupSchema } from "../components/signup/micro-services";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Cards } from "../components/signup/SignupCards";
-
+import { useState } from "react";
 
 
 
@@ -37,7 +37,11 @@ const Header = () => {
   );
 };
 
-const Footer = () => {
+type FooterProps = {
+  isSubmitDisabled: boolean;
+};
+
+const Footer = ({ isSubmitDisabled }: FooterProps) => {
   return (
     <div className="flex flex-row">
       <Button
@@ -50,11 +54,15 @@ const Footer = () => {
       </Button>
       <Button
         size="lg"
-        className="justify-end ml-auto"
+        className="justify-end ml-auto disabled:opacity-20 disabled:bg-slate-600"
         type="submit"
         form="signup-info-form"
+        disabled={isSubmitDisabled}
       >
-        <span className="font-['Montserrat'] font-bold" style={{ fontSize: 20, lineHeight: '26px' }}>
+        <span
+          className="font-['Montserrat'] font-bold"
+          style={{ fontSize: 20, lineHeight: "26px" }}
+        >
           Enviar para análise
         </span>
       </Button>
@@ -79,6 +87,8 @@ const SignupInfo = () => {
 
   const initial = location.state?.initial;
 
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+
 
   return (
     <>
@@ -87,7 +97,7 @@ const SignupInfo = () => {
         <div className="mx-[220px] my-20">
           <Header />
           <Cards initialData = {initial} />
-          <Footer />
+          <Footer isSubmitDisabled={isSubmitDisabled}/>
         </div>
       </div>
     </>

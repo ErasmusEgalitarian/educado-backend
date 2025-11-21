@@ -3,6 +3,9 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { TypeOf, z } from "zod";
 import { formSchema } from "./SignupFormSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
+
 // FormActions removed: external "Enviar para análise" button in SignupInformation will submit the form
 import {
   MotivationForm,
@@ -179,9 +182,13 @@ const ExperienceCard = ({
 
 type CardsProps = {
   initialData?: any;
+  onFormStateChange?: (state:{
+    isValid: boolean;
+    isSubmitting: boolean;
+  }) => void;
 };
 
-export const Cards = ({ initialData }: CardsProps) => {
+export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
   const [openKey, setOpenKey] = useState<SectionKey | null>("motive");
 
   const toggle = (key: SectionKey) =>
@@ -210,15 +217,29 @@ export const Cards = ({ initialData }: CardsProps) => {
     shouldUnregister: false
   });
 
-  const methods = useForm({
+  const methods = useForm<FormData>({
+    mode: "onChange",
     defaultValues: {
       motivation: "",
       educations: [],
       jobs: [],
     },
-    mode: "onTouched",
+    
     shouldUnregister: false
   });
+
+  const {
+    handleSubmit,
+    formState: { isValid, isSubmitting },
+  } = methods;
+
+  useEffect(() => {
+    if (onFormStateChange) {
+      onFormStateChange({ isValid, isSubmitting });
+    }
+  }, [isValid, isSubmitting, onFormStateChange]);
+
+
 
   const onSubmit = async (data: FormData) => {
     console.log("form data", data);
