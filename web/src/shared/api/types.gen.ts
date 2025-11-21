@@ -67,6 +67,7 @@ export type Certificate = {
                 title?: string;
                 description?: string;
                 difficulty?: number;
+                durationHours?: number;
                 numOfRatings?: number;
                 numOfSubscriptions?: number;
                 image?: {
@@ -699,6 +700,7 @@ export type ContentCreator = {
         title?: string;
         description?: string;
         difficulty?: number;
+        durationHours?: number;
         numOfRatings?: number;
         numOfSubscriptions?: number;
         image?: {
@@ -1232,6 +1234,7 @@ export type CourseRequest = {
         title: string;
         description?: string;
         difficulty: number;
+        durationHours: number;
         numOfRatings?: number;
         numOfSubscriptions?: number;
         image?: number | string;
@@ -1263,6 +1266,7 @@ export type Course = {
     title: string;
     description?: string;
     difficulty: number;
+    durationHours: number;
     numOfRatings?: number;
     numOfSubscriptions?: number;
     image?: {
@@ -1471,6 +1475,7 @@ export type Course = {
             title?: string;
             description?: string;
             difficulty?: number;
+            durationHours?: number;
             numOfRatings?: number;
             numOfSubscriptions?: number;
             image?: {
@@ -1885,6 +1890,7 @@ export type CourseCategory = {
         title?: string;
         description?: string;
         difficulty?: number;
+        durationHours?: number;
         numOfRatings?: number;
         numOfSubscriptions?: number;
         image?: {
@@ -2597,6 +2603,7 @@ export type CourseSelection = {
         title?: string;
         description?: string;
         difficulty?: number;
+        durationHours?: number;
         numOfRatings?: number;
         numOfSubscriptions?: number;
         image?: {
@@ -3308,6 +3315,7 @@ export type Feedback = {
         title?: string;
         description?: string;
         difficulty?: number;
+        durationHours?: number;
         numOfRatings?: number;
         numOfSubscriptions?: number;
         image?: {
@@ -4108,6 +4116,7 @@ export type Student = {
             title?: string;
             description?: string;
             difficulty?: number;
+            durationHours?: number;
             numOfRatings?: number;
             numOfSubscriptions?: number;
             image?: {
@@ -4684,6 +4693,7 @@ export type UserLog = {
                 title?: string;
                 description?: string;
                 difficulty?: number;
+                durationHours?: number;
                 numOfRatings?: number;
                 numOfSubscriptions?: number;
                 image?: {
@@ -6013,7 +6023,7 @@ export type CourseGetCoursesRequest = {
     body?: never;
     path?: never;
     query?: {
-        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -6027,7 +6037,7 @@ export type CourseGetCoursesRequest = {
             start: number;
             limit: number;
         });
-        sort?: 'title' | 'description' | 'difficulty' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'title' | 'description' | 'difficulty' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+        sort?: 'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
             [key: string]: 'asc' | 'desc';
         } | Array<{
             [key: string]: 'asc' | 'desc';
@@ -6076,7 +6086,7 @@ export type CoursePostCoursesRequest = {
     body: CourseRequest;
     path?: never;
     query?: {
-        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
         populate?: '*' | 'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'students' | 'content_creators' | Array<'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'students' | 'content_creators'>;
         status?: 'draft' | 'published';
     };
@@ -6123,7 +6133,7 @@ export type CourseDeleteCoursesByIdRequest = {
         id: string;
     };
     query?: {
-        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
         populate?: '*' | 'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'students' | 'content_creators' | Array<'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'students' | 'content_creators'>;
         filters?: {
             [key: string]: unknown;
@@ -6173,12 +6183,12 @@ export type CourseGetCoursesByIdRequest = {
         id: string;
     };
     query?: {
-        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
         populate?: '*' | 'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'students' | 'content_creators' | Array<'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'students' | 'content_creators'>;
         filters?: {
             [key: string]: unknown;
         };
-        sort?: 'title' | 'description' | 'difficulty' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'title' | 'description' | 'difficulty' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+        sort?: 'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
             [key: string]: 'asc' | 'desc';
         } | Array<{
             [key: string]: 'asc' | 'desc';
@@ -6228,7 +6238,7 @@ export type CoursePutCoursesByIdRequest = {
         id: string;
     };
     query?: {
-        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
         populate?: '*' | 'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'students' | 'content_creators' | Array<'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'students' | 'content_creators'>;
         status?: 'draft' | 'published';
     };
