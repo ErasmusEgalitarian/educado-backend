@@ -1,11 +1,7 @@
-import { FormProvider, UseFormReturn } from "react-hook-form";
+import { FormProvider} from "react-hook-form";
 import { useState } from "react";
 import { z } from "zod";
 import { formSchema } from "./SignupFormSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
-
-// FormActions removed: external "Enviar para análise" button in SignupInformation will submit the form
 import {
   MotivationForm,
   EducationForm,
@@ -18,18 +14,48 @@ import {
   CardContent,
 } from "@/shared/components/shadcn/card";
 import { postUserSignup, SignupPayload } from "@/unplaced/services/auth.services";
-
+import { useEffect } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 type SectionKey = "motive" | "education" | "experience";
 type FormData = z.infer<typeof formSchema>;
 type CardsProps = {
-    initialData?: any;
+  initialData?: any;
+  onFormStateChange?: (state:{
+    isValid: boolean;
+    isSubmitting: boolean;
+  }) => void;
 };
 
-export const Cards = ({ methods }: { methods: UseFormReturn<FormData> }, { initialData }: CardsProps) => {
+export const Cards = ({ initialData, onFormStateChange }: CardsProps) =>  {
   const [openKey, setOpenKey] = useState<SectionKey | null>("motive");
 
   const toggle = (key: SectionKey) =>
     setOpenKey((k) => (k === key ? null : key)); // only one card open at a time
+
+    const methods = useForm<FormData>({
+      resolver: zodResolver(formSchema),
+      mode: "onChange",
+      defaultValues: {
+        motivation: "",
+        educations: [],
+        jobs: [],
+      },
+      shouldUnregister: false
+  });
+  
+    const {
+      handleSubmit,
+      formState: { isValid, isSubmitting },
+    } = methods;
+
+    useEffect(() => {
+      if (onFormStateChange) {
+        onFormStateChange({ isValid, isSubmitting });
+      }
+    }, [isValid, isSubmitting, onFormStateChange]);
+
 
     const onSubmit = async (data: FormData) => {
         console.log("form data", data);
@@ -182,7 +208,7 @@ const EducationCard = ({
     <Card
       className={`p-0 ${open ? "border-2 border-primary-border-default" : ""}`}
     >
-      <CardHeader
+      <CardHeader 
         className={`py-6 ${
           open ? "bg-primary-surface-default rounded-t-lg" : "bg-transparent"
         }`}

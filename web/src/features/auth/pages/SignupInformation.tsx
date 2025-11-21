@@ -76,7 +76,6 @@ const Footer = ({ isSubmitDisabled }: FooterProps) => {
 };
 
 const SignupInfo = () => {
-
    const navigate = useNavigate();
 
   const location = useLocation() as {
@@ -101,7 +100,11 @@ const SignupInfo = () => {
       <div className="bg-primary-surface-subtle">
         <div className="mx-[220px] my-20">
           <Header />
-          <Cards initialData = {initial} />
+          <Cards initialData = {initial}
+           onFormStateChange={({ isValid, isSubmitting }) => {
+              setIsSubmitDisabled(!isValid || isSubmitting);
+            }}
+          />
           <Footer isSubmitDisabled={isSubmitDisabled}/>
         </div>
       </div>

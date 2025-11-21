@@ -45,9 +45,9 @@ const jobSchema = z.object({
 
 
 export const formSchema = z.object({
-  motivation: z.string().min(0),
-  educations: z.array(educationSchema),
-  jobs: z.array(jobSchema),
+  motivation: z.string().min(1, "Campo obrigatório"),
+  educations: z.array(educationSchema).min(1),
+  jobs: z.array(jobSchema).min(1),
 });
 
 export const MotivationForm = () => {
