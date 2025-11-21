@@ -53,13 +53,14 @@ export const FormSelect = <TFieldValues extends FieldValues>({
       hintTooltip={hintTooltip}
       description={description}
       wrapperClassName={wrapperClassName}
+      childProps={rest}
     >
       <Select value={value} onValueChange={onChange} {...rest}>
         <SelectTrigger
           size={inputSize}
           className={error ? "border-destructive" : undefined}
         >
-          <SelectValue placeholder={placeholder} />
+          <SelectValue placeholder={placeholder}/>
         </SelectTrigger>
 
         <SelectContent>
@@ -71,6 +72,7 @@ export const FormSelect = <TFieldValues extends FieldValues>({
                 value={opt.value}
                 data-selected={isSelected ? "true" : undefined}
                 aria-selected={isSelected}
+                className="text-greyscale-text-body font-['Montserrat']"
               >
                 {opt.label}
               </SelectItem>
