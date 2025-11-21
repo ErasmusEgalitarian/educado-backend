@@ -7,7 +7,7 @@ import plusIcon from "@/shared/assets/plus 2.svg";
 
 import { EDUCATION_OPTIONS } from "@/auth/constants/educationOptions";
 import { FormInput } from "@/shared/components/form/form-input";
-import { MonthYearInput } from "@/components/MonthYearInput";
+import { MonthYearInput } from "@/auth/components/signup/MonthYearInput";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { Checkbox } from "@/shared/components/shadcn/checkbox";
@@ -43,16 +43,12 @@ const jobSchema = z.object({
   description: z.string(),
 });
 
-// Define the Zod schema for validation and form data shape.
+
 export const formSchema = z.object({
   motivation: z.string().min(0),
-  educations: z.array(educationSchema).min(1),
-  jobs: z.array(jobSchema).min(1),
+  educations: z.array(educationSchema),
+  jobs: z.array(jobSchema),
 });
-
-// Note: the parent container should provide a single useForm instance via
-// FormProvider. The child form components below use useFormContext() to
-// access the shared methods.
 
 export const MotivationForm = () => {
   const { control, watch } = useFormContext();
@@ -66,7 +62,7 @@ export const MotivationForm = () => {
         placeholder="Escreva aqui por que você quer fazer parte do projeto"
         rows={3}
         maxLength={maxChars}
-        className="resize-none placeholder:text-greyscale-text-body font-['Montserrat']"
+        className="resize-none placeholder:text-greyscale-text-body font-['Montserrat'] border-greyscale-border-lighter"
       />
       <div
         className="text-right font-['Montserrat'] text-greyscale-text-caption py-2"
@@ -151,7 +147,7 @@ export const EducationForm = () => {
                 name={`educations.${index}.acedemicStartDate`}
                 label="Início"
                 placeholder="Mês / Ano"
-                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat']"
+                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
                 isRequired={true}
               />
               <MonthYearInput
@@ -159,12 +155,13 @@ export const EducationForm = () => {
                 name={`educations.${index}.acedemicEndDate`}
                 label="Fim"
                 placeholder="Mês / Ano"
-                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat']"
+                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
                 isRequired={true}
               />
               <div className="pb-2 col-span-2 text-right">
                 <CardFooter className="justify-end col-start-2 p-0">
                   <Button
+                    type="button"
                     variant="link"
                     className=" text-error-surface-default font-['Montserrat'] font-bold p-0"
                     style={{ fontSize: "14px", lineHeight: "17px" }}
@@ -260,26 +257,29 @@ export const ExperienceForm = () => {
                 name={`jobs.${index}.jobStartDate`}
                 label="Início"
                 placeholder="Mês / Ano"
-                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat']"
+                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
+                isRequired={true}
               />
               <MonthYearInput
                 control={control}
                 name={`jobs.${index}.jobEndDate`}
                 label="Fim"
                 placeholder="Mês / Ano"
-                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat']"
+                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
+                isRequired={true}
+                disabled={checked}
               />
               <div className="col-start-2 flex items-center gap-2 pr-1">
                 <Checkbox
-                  id={`agree-${index}`}
+                  id={`isCurrentJob-${index}`}
                   checked={checked}
                   onCheckedChange={(value) => {
                     setChecked(value === true);
                   }}
-                  className="border-primary-border-lighter data-[state=checked]:bg-primary-surface-default data-[state=checked]:border-primary-border-lighter"
+                  className="border-primary-border-lighter data-[state=checked]:bg-primary-surface-default data-[state=checked]:border-primary-border-lighter cursor-pointer"
                 />
                 <label
-                  htmlFor={`agree-${index}`}
+                  htmlFor={`isCurrentJob-${index}`}
                   className="font-['Montserrat'] font-normal text-greyscale-text-body cursor-pointer"
                   style={{ fontSize: "16px", lineHeight: "20.8px" }}
                 >
@@ -295,7 +295,7 @@ export const ExperienceForm = () => {
                   label="Descrição das atividades"
                   rows={3}
                   maxLength={maxChars}
-                  className="resize-none placeholder:text-greyscale-text-body font-['Montserrat']"
+                  className="resize-none placeholder:text-greyscale-text-body font-['Montserrat'] border-greyscale-border-lighter"
                 />
               </div>
             </div>

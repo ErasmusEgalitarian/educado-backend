@@ -4,11 +4,14 @@ import { Button } from "@/shared/components/shadcn/button";
 import { SignupSchema } from "../components/signup/micro-services";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Cards } from "../components/signup/SignupCards";
+import { useForm } from "react-hook-form";
+import { formSchema } from "../components/signup/SignupFormSchema";
 import { useState } from "react";
 
 
 
 const Header = () => {
+
 
   return (
     <div className="flex flex-col items-center gap-7 mx-32">
@@ -42,13 +45,15 @@ type FooterProps = {
 };
 
 const Footer = ({ isSubmitDisabled }: FooterProps) => {
-  return (
+    const navigateBack = useNavigate();
+    return (
     <div className="flex flex-row">
       <Button
         type="button"
         variant="link"
         className="text-error-surface-default font-bold font-['Montserrat'] underline"
         style={{ fontSize: "18px", lineHeight: "23.4px" }}
+        onClick={() => navigateBack(-1)}
       >
         Voltar para o cadastro
       </Button>
@@ -71,13 +76,13 @@ const Footer = ({ isSubmitDisabled }: FooterProps) => {
 };
 
 const SignupInfo = () => {
-  
+
    const navigate = useNavigate();
 
   const location = useLocation() as {
     state?: { initial?: z.infer<typeof SignupSchema> };
   };
-  
+
   //Not working yet
   /* useEffect(() => {
     if (!location.state?.initial) {
