@@ -18,6 +18,8 @@ import { useEffect } from "react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
+
 type SectionKey = "motive" | "education" | "experience";
 type FormData = z.infer<typeof formSchema>;
 type CardsProps = {
@@ -30,6 +32,8 @@ type CardsProps = {
 
 export const Cards = ({ initialData, onFormStateChange }: CardsProps) =>  {
   const [openKey, setOpenKey] = useState<SectionKey | null>("motive");
+  const navigate = useNavigate();
+
 
   const toggle = (key: SectionKey) =>
     setOpenKey((k) => (k === key ? null : key)); // only one card open at a time
@@ -65,7 +69,7 @@ export const Cards = ({ initialData, onFormStateChange }: CardsProps) =>  {
             company: job.organization,
             title: job.jobTitle,
             startDate: job.jobStartDate,
-            endDate: job.jobEndDate,
+            endDate: job.jobEndDate ?? "Current",
             description: job.description,
         }));
 
@@ -94,7 +98,8 @@ export const Cards = ({ initialData, onFormStateChange }: CardsProps) =>  {
         try {
             const response = await postUserSignup(payload);
             console.log("Signup information submitted successfully:", response);
-            // Handle successful submission (e.g., navigate to a different page)
+          
+            navigate("/login", { replace: true });
 
         } catch (error) {
             console.error("Error during signup information submission:", error);

@@ -39,9 +39,23 @@ const jobSchema = z.object({
   organization: z.string().min(1),
   jobTitle: z.string().min(1),
   jobStartDate: z.string().min(1),
-  jobEndDate: z.string().min(1),
+  jobEndDate: z.string().nullable(),
   description: z.string(),
-});
+  isCurrentJob: z.boolean(),
+})
+.refine(
+  (data) => {
+    if (data.isCurrentJob) {
+      return data.jobEndDate === null;        // ✔ must be null
+    } else {
+      return typeof data.jobEndDate === "string" && data.jobEndDate.length > 0; 
+    }
+  },
+  {
+    message: "Data de fim é obrigatória, exceto em empregos atuais.",
+    path: ["jobEndDate"],
+  }
+);
 
 
 export const formSchema = z.object({
@@ -202,10 +216,9 @@ export const EducationForm = () => {
 };
 
 export const ExperienceForm = () => {
-  const { control, watch } = useFormContext();
+  const { control, watch, setValue } = useFormContext();
   const currentLength =
     (watch(`jobs.0.description`) as string | undefined)?.length ?? 0;
-  const [checked, setChecked] = useState(false);
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -226,100 +239,121 @@ export const ExperienceForm = () => {
     }
   }, [fields.length, append]);
 
+  const jobs = watch("jobs") as any[] | undefined;
+
   return (
     <>
-      {fields.map((field, index) => (
-        <Card key={field.id} className="mb-4">
-          <CardHeader>
-            <CardTitle className="text-greyscale-text-caption font-bold font-['Montserrat']">{`Experiência profissional ${index + 1}`}</CardTitle>
-          </CardHeader>
+      {fields.map((field, index) => {
+        const isCurrent =
+          (jobs && jobs[index] && jobs[index].jobEndDate === null) || false;
 
-          <CardContent>
-            <div className="space-y-2 grid grid-cols-2 gap-x-6">
-              <FormInput
-                control={control}
-                fieldName={`jobs.${index}.organization`}
-                placeholder="Mobile Education"
-                label="Empresa"
-                isRequired
-                className="h-[59px] border-greyscale-border-lighter placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
-              />
-              <FormInput
-                control={control}
-                fieldName={`jobs.${index}.jobTitle`}
-                placeholder="Product Designer"
-                label="Cargo"
-                isRequired
-                className="h-[59px] border-greyscale-border-lighter placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
-              />
-              <MonthYearInput
-                control={control}
-                name={`jobs.${index}.jobStartDate`}
-                label="Início"
-                placeholder="Mês / Ano"
-                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
-                isRequired={true}
-              />
-              <MonthYearInput
-                control={control}
-                name={`jobs.${index}.jobEndDate`}
-                label="Fim"
-                placeholder="Mês / Ano"
-                className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
-                isRequired={true}
-                disabled={checked}
-              />
-              <div className="col-start-2 flex items-center gap-2 pr-1">
-                <Checkbox
-                  id={`isCurrentJob-${index}`}
-                  checked={checked}
-                  onCheckedChange={(value) => {
-                    setChecked(value === true);
-                  }}
-                  className="border-primary-border-lighter data-[state=checked]:bg-primary-surface-default data-[state=checked]:border-primary-border-lighter cursor-pointer"
-                />
-                <label
-                  htmlFor={`isCurrentJob-${index}`}
-                  className="font-['Montserrat'] font-normal text-greyscale-text-body cursor-pointer"
-                  style={{ fontSize: "16px", lineHeight: "20.8px" }}
-                >
-                  Meu emprego atual
-                </label>
-              </div>
+        return (
+          <Card key={field.id} className="mb-4">
+            <CardHeader>
+              <CardTitle className="text-greyscale-text-caption font-bold font-['Montserrat']">{`Experiência profissional ${index + 1}`}</CardTitle>
+            </CardHeader>
 
-              <div className="col-span-2">
-                <FormTextarea
+            <CardContent>
+              <div className="space-y-2 grid grid-cols-2 gap-x-6">
+                <FormInput
                   control={control}
-                  fieldName={`jobs.${index}.description`}
-                  placeholder="Escreva aqui as suas responsabilidades"
-                  label="Descrição das atividades"
-                  rows={3}
-                  maxLength={maxChars}
-                  className="resize-none placeholder:text-greyscale-text-body font-['Montserrat'] border-greyscale-border-lighter"
+                  fieldName={`jobs.${index}.organization`}
+                  placeholder="Mobile Education"
+                  label="Empresa"
+                  isRequired
+                  className="h-[59px] border-greyscale-border-lighter placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
                 />
-              </div>
-            </div>
+                <FormInput
+                  control={control}
+                  fieldName={`jobs.${index}.jobTitle`}
+                  placeholder="Product Designer"
+                  label="Cargo"
+                  isRequired
+                  className="h-[59px] border-greyscale-border-lighter placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
+                />
+                <MonthYearInput
+                  control={control}
+                  name={`jobs.${index}.jobStartDate`}
+                  label="Início"
+                  placeholder="Mês / Ano"
+                  className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
+                  isRequired={true}
+                />
+                <MonthYearInput
+                  control={control}
+                  name={`jobs.${index}.jobEndDate`}
+                  label="Fim"
+                  placeholder="Mês / Ano"
+                  className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
+                  isRequired={!isCurrent}
+                  disabled={isCurrent}
+                />
 
-            <div
-              className="text-right font-normal font-['Montserrat'] text-greyscale-text-caption py-2"
-              style={{ fontSize: "14px", lineHeight: "17px" }}
-            >
-              {currentLength} / {maxChars} caracteres
-              <CardFooter className="justify-end col-start-2 px-0 pt-3">
-                <Button
-                  variant="link"
-                  className=" text-error-surface-default font-['Montserrat'] font-bold p-0"
-                  style={{ fontSize: "14px", lineHeight: "17px" }}
-                  onClick={() => remove(index)}
-                >
-                  <img src={deleteIcon} /> Remover experiência
-                </Button>
-              </CardFooter>
-            </div>
-            <hr className="border border-greyscale-border-lighter" />
-          </CardContent>
-        </Card>
-      ))}
+                <div className="col-start-2 flex items-center gap-2 pr-1">
+                  <Checkbox
+                    id={`isCurrentJob-${index}`}
+                    checked={isCurrent}
+                    onCheckedChange={(value) => {
+                      const checked = value === true;
+
+                      setValue(`jobs.${index}.isCurrentJob`, checked, { shouldValidate: true });
+                      if (checked) {
+                        // current job: end date = null
+                        setValue(`jobs.${index}.jobEndDate`, null, {
+                          shouldValidate: true,
+                        });
+                      } else {
+                        // not current: clear value for user input
+                        setValue(`jobs.${index}.jobEndDate`, "", {
+                          shouldValidate: true,
+                        });
+                      }
+                    }}
+                    className="border-primary-border-lighter data-[state=checked]:bg-primary-surface-default data-[state=checked]:border-primary-border-lighter cursor-pointer"
+                  />
+                  <label
+                    htmlFor={`isCurrentJob-${index}`}
+                    className="font-['Montserrat'] font-normal text-greyscale-text-body cursor-pointer"
+                    style={{ fontSize: "16px", lineHeight: "20.8px" }}
+                  >
+                    Meu emprego atual
+                  </label>
+                </div>
+
+                <div className="col-span-2">
+                  <FormTextarea
+                    control={control}
+                    fieldName={`jobs.${index}.description`}
+                    placeholder="Escreva aqui as suas responsabilidades"
+                    label="Descrição das atividades"
+                    rows={3}
+                    maxLength={maxChars}
+                    className="resize-none placeholder:text-greyscale-text-body font-['Montserrat'] border-greyscale-border-lighter"
+                  />
+                </div>
+              </div>
+
+              <div
+                className="text-right font-normal font-['Montserrat'] text-greyscale-text-caption py-2"
+                style={{ fontSize: "14px", lineHeight: "17px" }}
+              >
+                {currentLength} / {maxChars} caracteres
+                <CardFooter className="justify-end col-start-2 px-0 pt-3">
+                  <Button
+                    variant="link"
+                    className=" text-error-surface-default font-['Montserrat'] font-bold p-0"
+                    style={{ fontSize: "14px", lineHeight: "17px" }}
+                    onClick={() => remove(index)}
+                  >
+                    <img src={deleteIcon} /> Remover experiência
+                  </Button>
+                </CardFooter>
+              </div>
+              <hr className="border border-greyscale-border-lighter" />
+            </CardContent>
+          </Card>
+        );
+      })}
 
       <div className="flex justify-center items-center pt-2">
         <Button
@@ -333,6 +367,7 @@ export const ExperienceForm = () => {
               jobStartDate: "",
               jobEndDate: "",
               description: "",
+              isCurrentJob: false,
             })
           }
           className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
