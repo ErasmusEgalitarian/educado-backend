@@ -27,21 +27,21 @@ const STATUS_OPTIONS = STATUS.map((type) => ({
 }));
 
 const educationSchema = z.object({
-  educationType: z.string().min(1),
+  educationType: z.string().min(1, "Campo obrigatório"),
   isInProgress: z.string().min(1),
-  course: z.string().min(1).max(50),
-  institution: z.string().min(1).max(50),
-  acedemicStartDate: z.string().min(1),
-  acedemicEndDate: z.string().min(1),
+  course: z.string().min(1, "Campo obrigatório").max(50),
+  institution: z.string().min(1, "Campo obrigatório").max(50),
+  acedemicStartDate: z.string().min(1, "Campo obrigatório"),
+  acedemicEndDate: z.string().min(1, "Campo obrigatório"),
 });
 
 const jobSchema = z.object({
-  organization: z.string().min(1),
-  jobTitle: z.string().min(1),
-  jobStartDate: z.string().min(1),
+  organization: z.string().min(1, "Campo obrigatório").max(50),
+  jobTitle: z.string().min(1, "Campo obrigatório").max(50),
+  jobStartDate: z.string().min(1, "Campo obrigatório"),
   jobEndDate: z.string().nullable(),
-  description: z.string(),
-  isCurrentJob: z.boolean(),
+  description: z.string().max(maxChars),
+  isCurrentJob: z.boolean().default(false),
 })
 .refine(
   (data) => {
@@ -59,7 +59,7 @@ const jobSchema = z.object({
 
 
 export const formSchema = z.object({
-  motivation: z.string().min(1).max(maxChars),
+  motivation: z.string().max(maxChars),
   educations: z.array(educationSchema).min(1),
   jobs: z.array(jobSchema).min(1),
 });
