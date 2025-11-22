@@ -51,21 +51,30 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const listRef = useRef<HTMLUListElement | null>(null);
-
-  // Helper: push sanitized value into RHF
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const updateFormValue = (month: string, year: string) => {
+    const trimmedMonth = month.trim();
+    const trimmedYear = year.trim();
+
     const validMonth = MONTHS.find(
-      (m) => m.toLowerCase() === month.trim().toLowerCase()
+      (m) => m.toLowerCase() === trimmedMonth.toLowerCase()
     );
 
-    if (validMonth && year.length === 4) {
-      setValue(name, `${validMonth} / ${year}`, {
+    // user fully cleared the field
+    if (!trimmedMonth && !trimmedYear) {
+      setValue(name, "", {
         shouldValidate: true,
         shouldTouch: true,
       });
       void trigger(name);
-    } else {
-      setValue(name, "", { shouldValidate: true, shouldTouch: true });
+      return;
+    }
+
+    if (validMonth && trimmedYear.length === 4) {
+      setValue(name, `${validMonth} / ${trimmedYear}`, {
+        shouldValidate: true,
+        shouldTouch: true,
+      });
       void trigger(name);
     }
   };
@@ -76,21 +85,19 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
     setHighlightedIndex(-1);
 
     if (step === "month") {
-      // only letters + space
+      // Only allow valid month names, block numbers and slashes
       value = value.replace(/[^a-zA-Z ]/g, "");
       setMonthInput(value);
       setShowDropdown(true);
       setFilteredOptions(
         MONTHS.filter((m) => m.toLowerCase().startsWith(value.toLowerCase()))
       );
-      updateFormValue(value, yearInput);
     } else {
-      // year: only digits, max 4
+      // Only allow 4-digit years from dropdown
       value = value.replace(/[^0-9]/g, "").slice(0, 4);
       setYearInput(value);
       setShowDropdown(true);
       setFilteredOptions(YEARS.filter((y) => y.startsWith(value)));
-      updateFormValue(monthInput, value);
     }
   };
 
@@ -101,12 +108,11 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
       setShowDropdown(false);
       setHighlightedIndex(-1);
       setTimeout(() => inputRef.current?.focus(), 0);
-      updateFormValue(option, yearInput);
     } else {
       setYearInput(option);
       setShowDropdown(false);
       setHighlightedIndex(-1);
-      updateFormValue(monthInput, option);
+      updateFormValue(monthInput, option); // month + year → now we sync form
     }
   };
 
@@ -124,8 +130,35 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
     }
   }, [highlightedIndex]);
 
+  React.useEffect(() => {
+    if (!showDropdown) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!containerRef.current) return;
+      const target = event.target as Node;
+      if (!containerRef.current.contains(target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showDropdown]);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    // (you can also add the “block digits in month mode” here if you like)
+    if (
+      step === "year" &&
+      yearInput.length === 0 && // nothing typed in year yet
+      (e.key === "Backspace" || e.key === "Delete")
+    ) {
+      e.preventDefault();
+      setStep("month");
+      setShowDropdown(false);
+      return;
+    }
+
     if (showDropdown && filteredOptions.length > 0) {
       if (e.key === "ArrowDown") {
         setHighlightedIndex((prev) => {
@@ -170,7 +203,10 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
       : `${validMonth || ""}${validMonth ? " / " : ""}${yearInput}`;
 
   return (
-    <div className={"relative w-full " + (wrapperClassName ?? "")}>
+    <div
+      ref={containerRef}
+      className={"relative w-full " + (wrapperClassName ?? "")}
+    >
       <FormInput
         fieldName={name}
         control={control}
@@ -200,7 +236,10 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
                   ? "bg-accent text-accent-foreground"
                   : ""
               } hover:bg-accent hover:text-accent-foreground`}
-              onMouseDown={() => handleOptionSelect(option)}
+              onMouseDown={(e) => {
+                e.preventDefault(); // keep focus on the input
+                handleOptionSelect(option);
+              }}
               onMouseEnter={() => setHighlightedIndex(idx)}
             >
               {option}
