@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useFormContext, useFieldArray } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/shared/components/shadcn/button";
@@ -29,8 +29,8 @@ const STATUS_OPTIONS = STATUS.map((type) => ({
 const educationSchema = z.object({
   educationType: z.string().min(1),
   isInProgress: z.string().min(1),
-  course: z.string().min(1),
-  institution: z.string().min(1),
+  course: z.string().min(1).max(50),
+  institution: z.string().min(1).max(50),
   acedemicStartDate: z.string().min(1),
   acedemicEndDate: z.string().min(1),
 });
@@ -59,7 +59,7 @@ const jobSchema = z.object({
 
 
 export const formSchema = z.object({
-  motivation: z.string().min(1, "Campo obrigatório"),
+  motivation: z.string().min(1).max(maxChars),
   educations: z.array(educationSchema).min(1),
   jobs: z.array(jobSchema).min(1),
 });
@@ -88,7 +88,6 @@ export const MotivationForm = () => {
   );
 };
 
-// The form component itself
 export const EducationForm = () => {
   const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
@@ -102,7 +101,7 @@ export const EducationForm = () => {
       initializedRef.current = true;
       append({
         educationType: "",
-        isInProgress: "",
+        isInProgress: "Em andamento",
         course: "",
         institution: "",
         acedemicStartDate: "",
@@ -162,7 +161,7 @@ export const EducationForm = () => {
                 label="Início"
                 placeholder="Mês / Ano"
                 className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
-                isRequired={true}
+                isRequired
               />
               <MonthYearInput
                 control={control}
@@ -170,7 +169,7 @@ export const EducationForm = () => {
                 label="Fim"
                 placeholder="Mês / Ano"
                 className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
-                isRequired={true}
+                isRequired
               />
               <div className="pb-2 col-span-2 text-right">
                 <CardFooter className="justify-end col-start-2 p-0">
@@ -199,7 +198,7 @@ export const EducationForm = () => {
           onClick={() =>
             append({
               educationType: "",
-              isInProgress: "",
+              isInProgress: "Em andamento",
               course: "",
               institution: "",
               acedemicStartDate: "",

@@ -1,4 +1,4 @@
-import { FormProvider} from "react-hook-form";
+import { FormProvider } from "react-hook-form";
 import { useState } from "react";
 import { z } from "zod";
 import { formSchema } from "./SignupFormSchema";
@@ -8,12 +8,11 @@ import {
   ExperienceForm,
 } from "./SignupFormSchema";
 import { Chevron } from "@/shared/components/icons/chevron";
+import { Card, CardHeader, CardContent } from "@/shared/components/shadcn/card";
 import {
-  Card,
-  CardHeader,
-  CardContent,
-} from "@/shared/components/shadcn/card";
-import { postUserSignup, SignupPayload } from "@/unplaced/services/auth.services";
+  postUserSignup,
+  SignupPayload,
+} from "@/unplaced/services/auth.services";
 import { useEffect } from "react";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -24,87 +23,82 @@ type SectionKey = "motive" | "education" | "experience";
 type FormData = z.infer<typeof formSchema>;
 type CardsProps = {
   initialData?: any;
-  onFormStateChange?: (state:{
+  onFormStateChange?: (state: {
     isValid: boolean;
     isSubmitting: boolean;
   }) => void;
 };
 
-export const Cards = ({ initialData, onFormStateChange }: CardsProps) =>  {
+export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
   const [openKey, setOpenKey] = useState<SectionKey | null>("motive");
   const navigate = useNavigate();
-
 
   const toggle = (key: SectionKey) =>
     setOpenKey((k) => (k === key ? null : key)); // only one card open at a time
 
-    const methods = useForm<FormData>({
-      resolver: zodResolver(formSchema),
-      mode: "onChange",
-      defaultValues: {
-        motivation: "",
-        educations: [],
-        jobs: [],
-      },
-      shouldUnregister: false
+  const methods = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    mode: "onChange",
+    defaultValues: {
+      motivation: "",
+      educations: [],
+      jobs: [],
+    },
+    shouldUnregister: false,
   });
-  
-    const {
-      handleSubmit,
-      formState: { isValid, isSubmitting },
-    } = methods;
 
-    useEffect(() => {
-      if (onFormStateChange) {
-        onFormStateChange({ isValid, isSubmitting });
-      }
-    }, [isValid, isSubmitting, onFormStateChange]);
+  const {
+    formState: { isValid, isSubmitting },
+  } = methods;
 
+  useEffect(() => {
+    if (onFormStateChange) {
+      onFormStateChange({ isValid, isSubmitting });
+    }
+  }, [isValid, isSubmitting, onFormStateChange]);
 
-    const onSubmit = async (data: FormData) => {
-        console.log("form data", data);
+  const onSubmit = async (data: FormData) => {
+    console.log("form data", data);
 
+    const jobs = data.jobs.map((job) => ({
+      company: job.organization,
+      title: job.jobTitle,
+      startDate: job.jobStartDate,
+      endDate: job.jobEndDate ?? "Current",
+      description: job.description,
+    }));
 
-        const jobs = data.jobs.map(job => ({
-            company: job.organization,
-            title: job.jobTitle,
-            startDate: job.jobStartDate,
-            endDate: job.jobEndDate ?? "Current",
-            description: job.description,
-        }));
+    const educations = data.educations.map((edu) => ({
+      educationType: edu.educationType,
+      isInProgress: edu.isInProgress,
+      course: edu.course,
+      institution: edu.institution,
+      startDate: edu.acedemicStartDate,
+      endDate: edu.acedemicEndDate,
+    }));
 
-        const educations = data.educations.map(edu => ({
-            educationType: edu.educationType,
-            isInProgress: edu.isInProgress,
-            course: edu.course,
-            institution: edu.institution,
-            startDate: edu.acedemicStartDate,
-            endDate: edu.acedemicEndDate,
-        }));
+    const payload: SignupPayload = {
+      firstName: initialData?.firstName,
+      lastName: initialData?.lastName,
+      email: initialData?.email,
+      password: initialData?.password,
+      motivation: data.motivation,
 
-        const payload: SignupPayload = {
-            firstName: initialData?.firstName,
-            lastName: initialData?.lastName,
-            email: initialData?.email,
-            password: initialData?.password,
-            motivation: data.motivation,
-
-            jobs: jobs,
-            educations: educations,
-        };
-
-        console.log("submit all values", payload);
-
-        try {
-            const response = await postUserSignup(payload);
-            console.log("Signup information submitted successfully:", response);
-          
-            navigate("/login", { replace: true });
-
-        } catch (error) {
-            console.error("Error during signup information submission:", error);
-        }
+      jobs: jobs,
+      educations: educations,
     };
+
+    console.log("submit all values", payload);
+
+    try {
+      const response = await postUserSignup(payload);
+      console.log("Signup information submitted successfully:", response);
+
+      navigate("/login", { replace: true });
+    } catch (error) {
+      console.error("Error during signup information submission:", error);
+    }
+  };
 
   // Prevent form submission on Enter key press
   const handleFormKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
@@ -213,7 +207,7 @@ const EducationCard = ({
     <Card
       className={`p-0 ${open ? "border-2 border-primary-border-default" : ""}`}
     >
-      <CardHeader 
+      <CardHeader
         className={`py-6 ${
           open ? "bg-primary-surface-default rounded-t-lg" : "bg-transparent"
         }`}

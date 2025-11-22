@@ -1,11 +1,21 @@
 import React, { useState, useRef } from "react";
 import { useController } from "react-hook-form";
 import { FormLabel } from "@/shared/components/shadcn/form";
-import { Input } from "@/shared/components/shadcn/input";
+import { FormInput } from "@/shared/components/form/form-input";
 
 const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -61,16 +71,20 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
       value = value.replace(/[^0-9]/g, "").slice(0, 4);
       setYearInput(value);
       setShowDropdown(true);
-      setFilteredOptions(
-        YEARS.filter((y) => y.startsWith(value))
-      );
+      setFilteredOptions(YEARS.filter((y) => y.startsWith(value)));
     }
-      // Save to form if both month and year are filled and valid
-      const validMonth = MONTHS.find(m => m.toLowerCase() === (step === "month" ? value.trim().toLowerCase() : monthInput.trim().toLowerCase()));
-      const yearVal = step === "year" ? value : yearInput;
-      if (validMonth && yearVal.length === 4) {
-        field.onChange(`${validMonth} / ${yearVal}`);
-      }
+    // Save to form if both month and year are filled and valid
+    const validMonth = MONTHS.find(
+      (m) =>
+        m.toLowerCase() ===
+        (step === "month"
+          ? value.trim().toLowerCase()
+          : monthInput.trim().toLowerCase())
+    );
+    const yearVal = step === "year" ? value : yearInput;
+    if (validMonth && yearVal.length === 4) {
+      field.onChange(`${validMonth} / ${yearVal}`);
+    }
   };
 
   // Handle option select
@@ -94,17 +108,21 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
   // Handle input blur
   const handleBlur = () => {
     setTimeout(() => setShowDropdown(false), 100);
-      // Save to form if both month and year are filled and valid
-      const validMonth = MONTHS.find(m => m.toLowerCase() === monthInput.trim().toLowerCase());
-      if (validMonth && yearInput.length === 4) {
-        field.onChange(`${validMonth} / ${yearInput}`);
-      }
+    // Save to form if both month and year are filled and valid
+    const validMonth = MONTHS.find(
+      (m) => m.toLowerCase() === monthInput.trim().toLowerCase()
+    );
+    if (validMonth && yearInput.length === 4) {
+      field.onChange(`${validMonth} / ${yearInput}`);
+    }
   };
 
   // Scroll highlighted item into view when navigating with keyboard or when mouse highlights
   React.useEffect(() => {
     if (highlightedIndex >= 0 && listRef.current) {
-      const el = listRef.current.children[highlightedIndex] as HTMLElement | undefined;
+      const el = listRef.current.children[highlightedIndex] as
+        | HTMLElement
+        | undefined;
       if (el) {
         el.scrollIntoView({ block: "nearest", inline: "nearest" });
       }
@@ -135,10 +153,17 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
     if (step === "year" && inputRef.current) {
       const pos = inputRef.current.selectionStart || 0;
       // If cursor is before or at the slash, or if backspace/delete is pressed at the start
-      if ((e.key === "Backspace" || e.key === "Delete") && pos <= monthInput.length + 3) {
+      if (
+        (e.key === "Backspace" || e.key === "Delete") &&
+        pos <= monthInput.length + 3
+      ) {
         setStep("month");
         setShowDropdown(true);
-        setFilteredOptions(MONTHS.filter((m) => m.toLowerCase().startsWith(monthInput.toLowerCase())));
+        setFilteredOptions(
+          MONTHS.filter((m) =>
+            m.toLowerCase().startsWith(monthInput.toLowerCase())
+          )
+        );
         setHighlightedIndex(-1);
       }
     }
@@ -159,24 +184,23 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
   }, [field.value]);
 
   // Only show valid month from list
-  const validMonth = MONTHS.find(m => m.toLowerCase() === monthInput.trim().toLowerCase());
-  const displayValue = step === "month"
-    ? monthInput
-    : `${validMonth || ""}${validMonth ? " / " : ""}${yearInput}`;
+  const validMonth = MONTHS.find(
+    (m) => m.toLowerCase() === monthInput.trim().toLowerCase()
+  );
+  const displayValue =
+    step === "month"
+      ? monthInput
+      : `${validMonth || ""}${validMonth ? " / " : ""}${yearInput}`;
 
   return (
     <div className={"relative w-full " + (wrapperClassName ?? "")}>
-      {label != null && label !== "" && (
-        <div className="flex items-center">
-          <FormLabel required={isRequired} inputSize="md">
-            {label}
-          </FormLabel>
-          {labelAction}
-        </div>
-      )}
 
-      <Input
+      <FormInput
+        fieldName={name}
+        control={control}
         ref={inputRef}
+        label={label}
+        isRequired
         type="text"
         value={displayValue}
         placeholder={placeholder}
@@ -189,11 +213,14 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
       />
 
       {showDropdown && (
-        <ul ref={listRef} className="absolute left-0 right-0 mt-1 bg-white border border-greyscale-border-lighter rounded-md shadow-lg max-h-40 overflow-y-auto p-0 list-none">
+        <ul
+          ref={listRef}
+          className="absolute left-0 right-0 mt-1 bg-white border border-greyscale-border-lighter rounded-md shadow-lg max-h-40 overflow-y-auto p-0 list-none"
+        >
           {filteredOptions.map((option, idx) => (
             <li
               key={option}
-              className={`px-3 py-2 cursor-pointer font-['Montserrat'] text-greyscale-text-body ${highlightedIndex === idx ? 'bg-accent text-accent-foreground' : ''} hover:bg-accent hover:text-accent-foreground`}
+              className={`px-3 py-2 cursor-pointer font-['Montserrat'] text-greyscale-text-body ${highlightedIndex === idx ? "bg-accent text-accent-foreground" : ""} hover:bg-accent hover:text-accent-foreground`}
               onMouseDown={() => handleOptionSelect(option)}
               onMouseEnter={() => setHighlightedIndex(idx)}
             >

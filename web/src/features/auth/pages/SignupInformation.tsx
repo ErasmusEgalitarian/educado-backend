@@ -4,8 +4,6 @@ import { Button } from "@/shared/components/shadcn/button";
 import { SignupSchema } from "../components/signup/micro-services";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Cards } from "../components/signup/SignupCards";
-import { useForm } from "react-hook-form";
-import { formSchema } from "../components/signup/SignupFormSchema";
 import { useState } from "react";
 
 
@@ -59,7 +57,7 @@ const Footer = ({ isSubmitDisabled }: FooterProps) => {
       </Button>
       <Button
         size="lg"
-        className="justify-end ml-auto disabled:opacity-20 disabled:bg-slate-600"
+        className="justify-end ml-auto disabled:opacity-20 text-greyscale-text-negative"
         type="submit"
         form="signup-info-form"
         disabled={isSubmitDisabled}
