@@ -4,18 +4,16 @@ import {
   type FieldValues,
   type Path,
 } from "react-hook-form";
-import {
-  FileUpload,
-  type UploadType,
-  type FileWithMetadata,
-} from "../../../features/media/components/file-upload";
+
+import { MediaInput } from "@/features/media/components/media-input";
+import type { MediaFileType } from "@/features/media/lib/media-utils";
+import type { UploadFile } from "@/shared/api/types.gen";
 import { cn } from "@/shared/lib/utils";
 
 interface FormFileUploadProps<T extends FieldValues> {
   name: Path<T>;
   control: Control<T>;
-  uploadType?: UploadType;
-  accept?: string;
+  fileTypes?: MediaFileType | MediaFileType[];
   maxFiles?: number;
   disabled?: boolean;
   className?: string;
@@ -24,9 +22,8 @@ interface FormFileUploadProps<T extends FieldValues> {
 export const FormFileUpload = <T extends FieldValues>({
   name,
   control,
-  uploadType,
-  accept,
-  maxFiles,
+  fileTypes,
+  maxFiles = 1,
   disabled = false,
   className,
 }: FormFileUploadProps<T>) => {
@@ -38,15 +35,28 @@ export const FormFileUpload = <T extends FieldValues>({
     control,
   });
 
-  const files = (value as FileWithMetadata[]) || [];
+  // Support both single UploadFile and array of UploadFile
+  const currentValue = value as UploadFile | UploadFile[] | null | undefined;
+  const singleValue = Array.isArray(currentValue)
+    ? (currentValue[0] ?? null)
+    : (currentValue ?? null);
+
+  const handleChange = (file: UploadFile | null) => {
+    // If maxFiles is 1, store as single value, otherwise as array
+    if (maxFiles === 1) {
+      onChange(file);
+    } else {
+      onChange(file ? [file] : []);
+    }
+  };
 
   return (
     <div className={cn("space-y-2", className)}>
-      <FileUpload
-        value={files}
-        onChange={onChange}
-        uploadType={uploadType}
-        accept={accept}
+      <MediaInput
+        variant="select"
+        value={singleValue}
+        onChange={handleChange}
+        fileTypes={fileTypes}
         maxFiles={maxFiles}
         disabled={disabled}
       />

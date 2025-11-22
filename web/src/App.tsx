@@ -14,6 +14,7 @@ import PrivacyPolicy from "./features/auth/components/PrivacyPolicy";
 import Signup from "./features/auth/components/Signup";
 import Welcome from "./features/auth/pages/Welcome";
 import Certificates from "./features/certificates/pages/Certificates";
+import MediaOverviewPage from "./features/media/pages/media-overview-page";
 import Profile from "./features/user/components/Profile";
 import NotFound from "./shared/assets/NotFound";
 import DocsPage from "./shared/docs/pages/docs-page";
@@ -41,10 +42,6 @@ const App = () => {
       element: <TestPage2 />,
     },
     {
-      path: "/test2",
-      element: <TestPage2 />,
-    },
-    {
       path: "/docs",
       element: <DocsPage />,
     },
@@ -52,6 +49,15 @@ const App = () => {
       // Homepage is left unused
       path: "/",
       element: <Navigate to="/welcome" />,
+      errorElement: <NotFound />,
+    },
+    {
+      path: "/media",
+      element: (
+        <ProtectedRoute>
+          <MediaOverviewPage />
+        </ProtectedRoute>
+      ),
       errorElement: <NotFound />,
     },
     {

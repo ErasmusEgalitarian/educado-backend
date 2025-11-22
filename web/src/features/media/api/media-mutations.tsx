@@ -1,0 +1,128 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { uploadDeleteFilesById, uploadPost } from "@/shared/api/sdk.gen";
+import { type UploadFile } from "@/shared/api/types.gen";
+import { fetchHeaders, getBaseApiUrl } from "@/shared/config/api-config";
+
+interface UploadFilesInput {
+  files: File[];
+  fileInfo?: {
+    name?: string;
+    alternativeText?: string;
+    caption?: string;
+  }[];
+}
+
+interface UpdateFileMetadataInput {
+  fileId: number;
+  name?: string;
+  alternativeText?: string;
+  caption?: string;
+}
+
+/**
+ * Mutation for uploading one or more files
+ */
+export const useUploadFilesMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (input: UploadFilesInput) => {
+      const formData = new FormData();
+
+      // Append files
+      for (const file of input.files) {
+        formData.append("files", file);
+      }
+
+      // Append file info if provided
+      if (input.fileInfo) {
+        formData.append("fileInfo", JSON.stringify(input.fileInfo));
+      }
+
+      // Use the SDK's uploadPost function
+      const response = await uploadPost({
+        // @ts-expect-error - FormData is valid but types don't reflect it
+        body: formData,
+      });
+
+      return response;
+    },
+    onSuccess: () => {
+      void queryClient.refetchQueries({
+        queryKey: [["media"]],
+        exact: false,
+        type: "active",
+      });
+    },
+  });
+};
+
+/**
+ * Mutation for updating file metadata (name, alternativeText, caption)
+ * Uses POST /upload?id={id} endpoint with fileInfo in the body
+ */
+export const useUpdateFileMetadataMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (input: UpdateFileMetadataInput) => {
+      const { fileId, ...metadata } = input;
+      const baseUrl = getBaseApiUrl();
+
+      // Use POST /upload?id={id} endpoint as per Strapi documentation
+      const response = await fetch(`${baseUrl}/upload?id=${String(fileId)}`, {
+        method: "POST",
+        headers: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "Content-Type": "application/json",
+          ...fetchHeaders(),
+        },
+        body: JSON.stringify({
+          fileInfo: metadata,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update file metadata");
+      }
+
+      return (await response.json()) as UploadFile;
+    },
+    onSuccess: () => {
+      void queryClient.refetchQueries({
+        queryKey: [["media"]],
+        exact: false,
+        type: "active",
+      });
+    },
+  });
+};
+
+/**
+ * Mutation for deleting a file
+ */
+export const useDeleteFileMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (fileId: number) => {
+      const response = await uploadDeleteFilesById({
+        path: { id: fileId },
+        // @ts-expect-error - The generated SDK has the wrong URL (/files/{id})
+        url: "/upload/files/{id}",
+      });
+
+      return response;
+    },
+    onSuccess: () => {
+      // The actual query key structure is [["media"], "client", ...]
+      // So we need to invalidate [["media"]] to match the prefix
+      void queryClient.refetchQueries({
+        queryKey: [["media"]],
+        exact: false,
+        type: "active",
+      });
+    },
+  });
+};

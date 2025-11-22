@@ -10,6 +10,7 @@ export interface DataGridProps<T extends DataDisplayItem> {
   isLoading?: boolean;
   className?: string;
   selectable?: boolean;
+  itemMinWidth?: string;
 }
 
 /**
@@ -22,6 +23,7 @@ export interface DataGridProps<T extends DataDisplayItem> {
  * @param {(item: T) => React.ReactNode} props.gridItemRender - Function to render each grid item
  * @param {boolean} [props.isLoading] - Whether the grid is in a loading state
  * @param {string} [props.className] - Additional CSS classes to apply to the grid container
+ * @param {string} [props.itemMinWidth] - Minimum width for grid items (default: "320px")
  *
  * @returns {JSX.Element} A responsive grid with 1-4 columns based on screen size
  *
@@ -34,6 +36,7 @@ export interface DataGridProps<T extends DataDisplayItem> {
  *   gridItemRender={(user) => <UserCard user={user} />}
  *   isLoading={false}
  *   className="my-custom-class"
+ *   itemMinWidth="250px"
  * />
  * ```
  */
@@ -43,6 +46,7 @@ const DataGrid = <T extends DataDisplayItem>({
   isLoading,
   className,
   selectable = false,
+  itemMinWidth = "320px",
 }: Readonly<DataGridProps<T>>): React.JSX.Element => {
   if (!gridItemRender) {
     throw new Error(
@@ -55,8 +59,7 @@ const DataGrid = <T extends DataDisplayItem>({
       <div
         className={cn("grid gap-4", className)}
         style={{
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(min(320px, 100%), 1fr))",
+          gridTemplateColumns: `repeat(auto-fill, minmax(min(${itemMinWidth}, 100%), 1fr))`,
         }}
       >
         {Array.from({ length: 12 }, (_, index) => (
@@ -86,7 +89,7 @@ const DataGrid = <T extends DataDisplayItem>({
     <div
       className={cn("grid gap-6", className)}
       style={{
-        gridTemplateColumns: "repeat(auto-fit, minmax(min(320px, 100%), 1fr))",
+        gridTemplateColumns: `repeat(auto-fill, minmax(min(${itemMinWidth}, 100%), 1fr))`,
       }}
     >
       {data.map((item, index) =>

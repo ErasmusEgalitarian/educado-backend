@@ -1,111 +1,120 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import { UploadFile } from "@/shared/api/types.gen";
+import { PageContainer } from "@/shared/components/page-container";
+import { Button } from "@/shared/components/shadcn/button";
 import { Form } from "@/shared/components/shadcn/form";
-import { useFileUpload } from "@/shared/hooks/use-file-upload";
 
-import { FileWithMetadataSchema } from "./shared/components/file-upload";
+import {
+  MediaDropzone,
+  MediaDropzoneVariant,
+} from "./features/media/components/media-dropzone";
+import { MediaInput } from "./features/media/components/media-input";
 import FormActions from "./shared/components/form/form-actions";
-import { FormFileUpload } from "./shared/components/form/form-file-upload";
-import GenericModalComponent from "./shared/components/GenericModalComponent";
-import { SearchBar } from "./shared/components/SearchBar";
 
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({
-  image: z.array(FileWithMetadataSchema).optional(),
+  image: z.custom<UploadFile>((val) => {
+    return typeof val === "object" && val !== null && "url" in val;
+  }, "Image is required"),
 });
 
 const TestPage = () => {
-  const { uploadFile } = useFileUpload();
+  const [dropzoneVariant, setDropzoneVariant] =
+    useState<MediaDropzoneVariant>("upload");
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const totalItems = 123;
-  // Use React Hook Form and Zod to manage the form state and validation.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       image: undefined,
     },
-    mode: "onTouched", // Only validate when the user has interacted
+    mode: "onTouched",
   });
 
-  // Submit handler. Data shape can be inferred from the schema.
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    if (values.image == undefined) {
-      return;
-    }
-    const ids = await uploadFile(values.image);
-    console.log("ids: " + ids);
-
-    // Wait 2 seconds to simulate a network request and to see "submitting..."
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    toast.success("Submitted values: " + JSON.stringify(values));
+    // Simulate submission
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    toast.success(`Submitted: ${values.image.name ?? "file"}`);
   }
 
-  const sortingOptions = [
-    { displayName: "Newest first", htmlValue: "newest" },
-    { displayName: "Oldest first", htmlValue: "oldest" },
-    { displayName: "Name (A–Z)", htmlValue: "az" },
-  ];
-
   return (
-    <div className="w-2xl mx-auto mt-10 flex flex-col gap-4">
-      {/* Search bar */}
-      <SearchBar
-        sortingOptions={sortingOptions}
-        placeholderText="Search for files..."
-        searchFn={(term) => {
-          console.log("Search term:", term);
-          setSearchQuery(term);
-        }}
-      />
-      <Form {...form}>
-        <form
-          onSubmit={(e) => void form.handleSubmit(onSubmit)(e)}
-          className="space-y-8"
-        >
-          <FormFileUpload name="image" control={form.control} />
-          <FormActions
-            formState={form.formState}
-            showReset={true}
-            onReset={() => {
-              form.reset();
-            }}
+    <PageContainer title="Test Page">
+      <div className="grid gap-8">
+        {/* Section 1: Form with MediaInput */}
+        <div className="p-6 border rounded-lg">
+          <h2 className="text-lg font-semibold mb-4">Form Integration</h2>
+          <Form {...form}>
+            <form
+              onSubmit={(e) => void form.handleSubmit(onSubmit)(e)}
+              className="space-y-8"
+            >
+              <div className="space-y-2">
+                <p className="text-sm font-medium">Profile Image (Required)</p>
+                <Controller
+                  control={form.control}
+                  name="image"
+                  render={({
+                    field: { value, onChange },
+                    fieldState: { error },
+                  }) => (
+                    <div>
+                      <MediaInput
+                        variant="select"
+                        value={value}
+                        onChange={onChange}
+                        maxFiles={2}
+                      />
+                      {error && (
+                        <p className="text-sm text-destructive mt-1">
+                          {error.message}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                />
+              </div>
+
+              <FormActions
+                formState={form.formState}
+                showReset={true}
+                onReset={() => {
+                  form.reset();
+                }}
+              />
+            </form>
+          </Form>
+        </div>
+
+        {/* Section 2: Standalone Dropzone with Toggle */}
+        <div className="p-6 border rounded-lg">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold">Standalone Dropzone</h2>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setDropzoneVariant((v) =>
+                  v === "upload" ? "select" : "upload"
+                );
+              }}
+            >
+              Toggle Mode: {dropzoneVariant}
+            </Button>
+          </div>
+
+          <MediaDropzone
+            variant={dropzoneVariant}
+            onFileSelect={(files) =>
+              toast.info(`Files selected: ${String(files.length)}`)
+            }
+            onClick={() => toast.info("Clicked (Select Mode)")}
           />
-        </form>
-      </Form>
-
-      <button
-        onClick={() => {
-          setIsModalOpen(true);
-        }}
-        className="btn btn-primary mt-6"
-      >
-        Open Modal
-      </button>
-
-      <GenericModalComponent
-        isVisible={isModalOpen}
-        title="Modal Test"
-        contentText="Dette er en testmodal – du kan lukke den med (X) eller knappen herunder."
-        cancelBtnText="Luk"
-        confirmBtnText="Bekræft"
-        onClose={() => {
-          setIsModalOpen(false);
-        }}
-        onConfirm={() => {
-          toast.success("Bekræftet!");
-          setIsModalOpen(false);
-        }}
-      />
-    </div>
+        </div>
+      </div>
+    </PageContainer>
   );
 };
 

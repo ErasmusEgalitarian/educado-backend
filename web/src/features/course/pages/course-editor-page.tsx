@@ -11,8 +11,13 @@ import { GlobalLoader } from "@/shared/components/global-loader";
 import { PageContainer } from "@/shared/components/page-container";
 import { Button } from "@/shared/components/shadcn/button";
 import { Separator } from "@/shared/components/shadcn/seperator";
+import { useFileUpload } from "@/features/media/hooks/use-file-upload";
 import { toAppError } from "@/shared/lib/error-utilities";
 
+import {
+  useCreateCourseMutation,
+  useUpdateCourseMutation,
+} from "../api/course-mutations";
 import { CourseQueryFunction } from "../api/course-queries";
 import CourseEditorInformation, {
   type CourseEditorInformationRef,
@@ -26,11 +31,6 @@ import {
   useCourseEditorSteps,
   type CourseEditorStep,
 } from "../hooks/use-course-editor-steps";
-import { useFileUpload } from "@/shared/hooks/use-file-upload";
-import {
-  useCreateCourseMutation,
-  useUpdateCourseMutation,
-} from "../api/course-mutations";
 
 type SaveDraftLoader = "none" | "success" | "error";
 

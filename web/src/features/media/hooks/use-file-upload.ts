@@ -1,20 +1,32 @@
-import { FileWithMetadata } from "../components/file-upload";
-import { fetchHeaders, getBaseApiUrl } from "../config/api-config";
+import { useState } from "react";
 
-import type { UploadPostResponses } from "../api/types.gen";
+import { fetchHeaders, getBaseApiUrl } from "../../../shared/config/api-config";
+
+import type { UploadPostResponses } from "../../../shared/api/types.gen";
+
+export interface FileWithMetadata {
+  file: File;
+  filename: string;
+  alt: string;
+  caption: string;
+}
 
 interface useFileUploadReturn {
-  uploadFile: (files: FileWithMetadata[]) => Promise<string[] | undefined>;
+  uploadFile: (files: FileWithMetadata[]) => Promise<UploadPostResponses[200] | undefined>;
+  isUploading: boolean;
 }
 
 // The upload response can be either a single file object or an array of file objects
 type UploadResponse = UploadPostResponses[200];
 
 export const useFileUpload = (): useFileUploadReturn => {
+  const [isUploading, setIsUploading] = useState(false);
+
   const uploadFile = async (
     files: FileWithMetadata[]
-  ): Promise<number[] | undefined> => {
+  ): Promise<UploadResponse | undefined> => {
     const baseUrl = getBaseApiUrl();
+    setIsUploading(true);
 
     try {
       // Upload each file individually
@@ -48,20 +60,17 @@ export const useFileUpload = (): useFileUploadReturn => {
       // Wait for all uploads to complete
       const uploadedFiles = await Promise.all(uploadPromises);
 
-      // Extract IDs - handle both single object and array responses
-      return uploadedFiles.map((response) => {
-        if (Array.isArray(response)) {
-          // Multiple files uploaded - get first one's ID
-          return response[0]?.id ?? 0;
-        }
-        // Single file uploaded - get its ID
-        return response.id;
-      });
+      // Flatten the results since each upload might return an array
+      const flattenedFiles = uploadedFiles.flat();
+
+      return flattenedFiles;
     } catch (error) {
       console.error("Upload error:", error);
       throw error;
+    } finally {
+      setIsUploading(false);
     }
   };
 
-  return { uploadFile };
+  return { uploadFile, isUploading };
 };
