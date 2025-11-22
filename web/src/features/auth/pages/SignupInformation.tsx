@@ -1,4 +1,3 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import MiniNavbar from "@/shared/components/MiniNavbar";
 import { Button } from "@/shared/components/shadcn/button";
@@ -7,6 +6,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Cards } from "../components/signup/SignupCards";
 import { useForm } from "react-hook-form";
 import { formSchema } from "../components/signup/SignupFormSchema";
+import { useState } from "react";
+
+
 
 const Header = () => {
 
@@ -38,9 +40,13 @@ const Header = () => {
   );
 };
 
-const Footer = ({ disabled }: { disabled: boolean }) => {
-  const navigateBack = useNavigate();
-  return (
+type FooterProps = {
+  isSubmitDisabled: boolean;
+};
+
+const Footer = ({ isSubmitDisabled }: FooterProps) => {
+    const navigateBack = useNavigate();
+    return (
     <div className="flex flex-row">
       <Button
         type="button"
@@ -53,12 +59,15 @@ const Footer = ({ disabled }: { disabled: boolean }) => {
       </Button>
       <Button
         size="lg"
-        className="justify-end ml-auto"
+        className="justify-end ml-auto disabled:opacity-20 disabled:bg-slate-600"
         type="submit"
         form="signup-info-form"
-        disabled={disabled}
+        disabled={isSubmitDisabled}
       >
-        <span className="font-['Montserrat'] font-bold" style={{ fontSize: 20, lineHeight: '26px' }}>
+        <span
+          className="font-['Montserrat'] font-bold"
+          style={{ fontSize: 20, lineHeight: "26px" }}
+        >
           Enviar para análise
         </span>
       </Button>
@@ -67,34 +76,23 @@ const Footer = ({ disabled }: { disabled: boolean }) => {
 };
 
 const SignupInfo = () => {
+   const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const location = useLocation() as {
+    state?: { initial?: z.infer<typeof SignupSchema> };
+  };
 
-    const location = useLocation() as {
-        state?: { initial?: z.infer<typeof SignupSchema> };
-    };
+  //Not working yet
+  /* useEffect(() => {
+    if (!location.state?.initial) {
+      navigate("/signup", { replace: true });
+    }
+  }, [location.state, navigate]); */
 
-    //Not working yet
-    /* useEffect(() => {
-      if (!location.state?.initial) {
-        navigate("/signup", { replace: true });
-      }
-    }, [location.state, navigate]); */
+  const initial = location.state?.initial;
 
-    const initial = location.state?.initial;
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
 
-  // Create form methods here so Footer (submit button) can read formState
-  const methods = useForm({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      motivation: "",
-      educations: [],
-      jobs: [],
-    },
-    mode: "onChange",
-  });
-
-  const { isValid, isSubmitting } = methods.formState;
 
   return (
     <>
@@ -102,8 +100,12 @@ const SignupInfo = () => {
       <div className="bg-primary-surface-subtle">
         <div className="mx-[220px] my-20">
           <Header />
-          <Cards methods={methods} initialData = {initial} />
-          <Footer disabled={!isValid || isSubmitting} />
+          <Cards initialData = {initial}
+           onFormStateChange={({ isValid, isSubmitting }) => {
+              setIsSubmitDisabled(!isValid || isSubmitting);
+            }}
+          />
+          <Footer isSubmitDisabled={isSubmitDisabled}/>
         </div>
       </div>
     </>

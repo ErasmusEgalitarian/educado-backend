@@ -1,4 +1,4 @@
-import { FormProvider, UseFormReturn } from "react-hook-form";
+import { FormProvider} from "react-hook-form";
 import { useState } from "react";
 import { z } from "zod";
 import { formSchema } from "./SignupFormSchema";
@@ -14,18 +14,52 @@ import {
   CardContent,
 } from "@/shared/components/shadcn/card";
 import { postUserSignup, SignupPayload } from "@/unplaced/services/auth.services";
+import { useEffect } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 
 type SectionKey = "motive" | "education" | "experience";
 type FormData = z.infer<typeof formSchema>;
 type CardsProps = {
-    initialData?: any;
+  initialData?: any;
+  onFormStateChange?: (state:{
+    isValid: boolean;
+    isSubmitting: boolean;
+  }) => void;
 };
 
-export const Cards = ({ methods }: { methods: UseFormReturn<FormData> }, { initialData }: CardsProps) => {
+export const Cards = ({ initialData, onFormStateChange }: CardsProps) =>  {
   const [openKey, setOpenKey] = useState<SectionKey | null>("motive");
+  const navigate = useNavigate();
+
 
   const toggle = (key: SectionKey) =>
     setOpenKey((k) => (k === key ? null : key)); // only one card open at a time
+
+    const methods = useForm<FormData>({
+      resolver: zodResolver(formSchema),
+      mode: "onChange",
+      defaultValues: {
+        motivation: "",
+        educations: [],
+        jobs: [],
+      },
+      shouldUnregister: false
+  });
+  
+    const {
+      handleSubmit,
+      formState: { isValid, isSubmitting },
+    } = methods;
+
+    useEffect(() => {
+      if (onFormStateChange) {
+        onFormStateChange({ isValid, isSubmitting });
+      }
+    }, [isValid, isSubmitting, onFormStateChange]);
+
 
     const onSubmit = async (data: FormData) => {
         console.log("form data", data);
@@ -35,7 +69,7 @@ export const Cards = ({ methods }: { methods: UseFormReturn<FormData> }, { initi
             company: job.organization,
             title: job.jobTitle,
             startDate: job.jobStartDate,
-            endDate: job.jobEndDate,
+            endDate: job.jobEndDate ?? "Current",
             description: job.description,
         }));
 
@@ -64,7 +98,8 @@ export const Cards = ({ methods }: { methods: UseFormReturn<FormData> }, { initi
         try {
             const response = await postUserSignup(payload);
             console.log("Signup information submitted successfully:", response);
-            // Handle successful submission (e.g., navigate to a different page)
+          
+            navigate("/login", { replace: true });
 
         } catch (error) {
             console.error("Error during signup information submission:", error);
@@ -178,7 +213,7 @@ const EducationCard = ({
     <Card
       className={`p-0 ${open ? "border-2 border-primary-border-default" : ""}`}
     >
-      <CardHeader
+      <CardHeader 
         className={`py-6 ${
           open ? "bg-primary-surface-default rounded-t-lg" : "bg-transparent"
         }`}

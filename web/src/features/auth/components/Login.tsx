@@ -149,13 +149,13 @@ const Login = () => {
     if (isThereAnError) {
       // Disable button when there's an error
       submitloginButton.setAttribute("disabled", "true");
-      buttonContainer.style.backgroundColor = "#C1CFD7";
-      submitloginButton.style.color = "#809CAD";
+      buttonContainer.style.backgroundColor = "var(--greyscale-surface-disabled)";
+      submitloginButton.style.color = "var(--greyscale-border-default)";
     } else if (inputloginEmail.value.trim() !== "" && inputloginPass.value.trim() !== "") {
       // Enable button when both fields are filled and no errors
       submitloginButton.removeAttribute("disabled");
-      buttonContainer.style.backgroundColor = "#35A1B1";
-      submitloginButton.style.color = "#FDFEFF";
+      buttonContainer.style.backgroundColor = "var(--primary-surface-default)";
+      submitloginButton.style.color = "var(--greyscale-surface-subtle)";
 
       // Clear error messages when user starts typing again
       setEmailError(null);
@@ -164,8 +164,8 @@ const Login = () => {
     } else {
       // Disable button when fields are empty
       submitloginButton.setAttribute("disabled", "true");
-      buttonContainer.style.backgroundColor = "#C1CFD7";
-      submitloginButton.style.color = "#809CAD";
+      buttonContainer.style.backgroundColor = "var(--greyscale-surface-disabled)";
+      submitloginButton.style.color = "var(--greyscale-border-default)";
       
       // Clear error messages when fields are empty
       setEmailError(null);
@@ -197,7 +197,7 @@ const Login = () => {
         </div>
 
         {/*Container for right side of the page - frame 2332*/}
-        <div className="relative right-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#C9E5EC] via-[#FFFFFF] to-[#FFFFFF] w-full">
+        <div className="relative right-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[var(--gradient-start)] via-[var(--gradient-end)] to-[var(--gradient-end)] w-full">
           {/*Error message for when email or password is incorrect*/}
           <div className="fixed right-0 top-16 z-10">
             {error && (
@@ -220,9 +220,9 @@ const Login = () => {
             <div className="">
               <h1 className="mb-10 flex text-lg text-primary-text-title font-normal font-montserrat underline px-10">
                 <Link to="/welcome" className="flex items-center gap-1">
-                  <Icon path={mdiChevronLeft} size={1} color="#4E6879" />
+                  <Icon path={mdiChevronLeft} size={1} color="var(--greyscale-text-subtle)" />
                 </Link>
-                <Link to="/welcome" className="text-lg text-primary-text-title font-normal font-montserrat text-[#4E6879]" > 
+                <Link to="/welcome" className="text-lg text-primary-text-title font-normal font-montserrat text-[var(--greyscale-text-subtle)]" > 
                   <button className="cursor-pointer">
                     {t("login.back-button")}
                   </button>
