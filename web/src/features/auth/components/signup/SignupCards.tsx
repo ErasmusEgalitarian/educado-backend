@@ -98,7 +98,7 @@ export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
 
       navigate("/login", {
         replace: true,
-        state: { signUpSuccess: true },
+        state: { signupSuccess: true },
       });
     } catch (error) {
       console.error("Error during signup information submission:", error);

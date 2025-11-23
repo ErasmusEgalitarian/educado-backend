@@ -68,7 +68,7 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div
         className={[
-          "flex flex-col bg-[#f1f9fb] rounded-3xl text-center",
+          "flex flex-col bg-[#f1f9fb] rounded-3xl",
           sizeClasses,
           extraWidthClasses,
           panelClassName,
@@ -90,8 +90,8 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
           </button>
         </div>
         {header && (
-          <div>
-            <h4 className="text-[20px] font-['Montserrat'] text-[#383838] font-bold mb-4">
+          <div className="mb-1">
+            <h4 className="text-[20px] font-['Montserrat'] text-[#383838] font-bold">
               {header}
             </h4>
           </div>
