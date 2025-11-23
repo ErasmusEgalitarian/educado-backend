@@ -40,9 +40,5 @@ EXPOSE 5174
 ENV VITE_HOST=0.0.0.0
 ENV VITE_PORT=5174
 
-# Health check for dev server
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-    CMD wget --no-verbose --tries=1 --spider http://localhost:5174/ || exit 1
-
 # Run Vite dev server
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5174"]
