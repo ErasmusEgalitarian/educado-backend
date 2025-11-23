@@ -1,16 +1,14 @@
-import { z } from "zod";
+import { set, z } from "zod";
 import MiniNavbar from "@/shared/components/MiniNavbar";
 import { Button } from "@/shared/components/shadcn/button";
 import { SignupSchema } from "../components/signup/micro-services";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSubmit } from "react-router-dom";
 import { Cards } from "../components/signup/SignupCards";
 import { useState } from "react";
-
-
+import GenericModalComponent from "@/shared/components/GenericModalComponent";
+import { ToggleModalContext } from "@/features/auth/components/Login";
 
 const Header = () => {
-
-
   return (
     <div className="flex flex-col items-center gap-7 mx-32">
       <h2
@@ -43,8 +41,27 @@ type FooterProps = {
 };
 
 const Footer = ({ isSubmitDisabled }: FooterProps) => {
-    const navigateBack = useNavigate();
-    return (
+  const navigateBack = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleConfirm = () => {
+    const form = document.getElementById(
+      "signup-info-form"
+    ) as HTMLFormElement | null;
+
+    if (form) {
+      // Prefer requestSubmit if available (triggers normal submit with validation)
+      if (typeof form.requestSubmit === "function") {
+        form.requestSubmit();
+      } else {
+        // Fallback for very old browsers
+        form.submit();
+      }
+    }
+    setShowModal(false);
+  };
+
+  return (
     <div className="flex flex-row">
       <Button
         type="button"
@@ -58,9 +75,9 @@ const Footer = ({ isSubmitDisabled }: FooterProps) => {
       <Button
         size="lg"
         className="justify-end ml-auto disabled:opacity-20 text-greyscale-text-negative"
-        type="submit"
-        form="signup-info-form"
-        disabled={isSubmitDisabled}
+        type="button"
+        disabled={false}
+        onClick={() => setShowModal(true)}
       >
         <span
           className="font-['Montserrat'] font-bold"
@@ -69,12 +86,28 @@ const Footer = ({ isSubmitDisabled }: FooterProps) => {
           Enviar para análise
         </span>
       </Button>
+
+      {/* Account application success modal */}
+      <GenericModalComponent
+        title="Enviar para análise"
+        contentText="Você tem certeza que deseja enviar o formulário de aplicação? Essa ação não pode ser desfeita."
+        cancelBtnText="Cancelar"
+        confirmBtnText="Continuar"
+        onConfirm={handleConfirm}
+        isVisible={showModal}
+        size="sm"
+        onClose={() => {
+          setShowModal(false);
+        }}
+        confirmButtonClassName="bg-primary-surface-default text-greyscale-text-negative hover:bg-primary-surface-lighter hover:text-greyscale-text-caption focus-visible:ring-primary-border-subtle h-11 rounded-lg px-8 cursor-pointer transform transition duration-100 ease-in"
+        cancelButtonClassName="underline bg-transparent h-11 text-error-surface-default font-['Montserrat'] font-bold text-[18px] cursor-pointer"
+      />
     </div>
   );
 };
 
 const SignupInfo = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const location = useLocation() as {
     state?: { initial?: z.infer<typeof SignupSchema> };
@@ -91,19 +124,19 @@ const SignupInfo = () => {
 
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
 
-
   return (
     <>
       <MiniNavbar />
       <div className="bg-primary-surface-subtle">
         <div className="mx-[220px] my-20">
           <Header />
-          <Cards initialData = {initial}
-           onFormStateChange={({ isValid, isSubmitting }) => {
+          <Cards
+            initialData={initial}
+            onFormStateChange={({ isValid, isSubmitting }) => {
               setIsSubmitDisabled(!isValid || isSubmitting);
             }}
           />
-          <Footer isSubmitDisabled={isSubmitDisabled}/>
+          <Footer isSubmitDisabled={isSubmitDisabled} />
         </div>
       </div>
     </>
@@ -111,4 +144,3 @@ const SignupInfo = () => {
 };
 
 export default SignupInfo;
-
