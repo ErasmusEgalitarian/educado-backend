@@ -10,7 +10,7 @@ import {
   type VisibilityState,
   type PaginationState,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { ErrorBoundary } from "../components/error/error-boundary";
@@ -87,6 +87,14 @@ type DataDisplayProps<T extends DataDisplayItem> =
       gridItemRender: (item: T) => React.ReactNode; // Required for grid-only or both mode
     });
 
+export interface DataDisplayRef {
+  readonly columnFilters: ColumnFiltersState;
+  readonly sorting: SortingState;
+  readonly globalFilter: string;
+  resetFilters: () => void;
+  resetSorting: () => void;
+  resetGlobalFilter: () => void;
+}
 /* --------------------------- Exported component --------------------------- */
 
 /**
@@ -140,20 +148,23 @@ type DataDisplayProps<T extends DataDisplayItem> =
  *   initialPageSize={20}
  * />
  */
-export const DataDisplay = <T extends DataDisplayItem>({
-  queryKey,
-  urlPath,
-  columns,
-  gridItemRender,
-  allowedViewModes,
-  emptyState,
-  className,
-  initialPageSize = 20,
-  fields,
-  populate,
-  config,
-  selection,
-}: DataDisplayProps<T>) => {
+const DataDisplayComponent = <T extends DataDisplayItem>(
+  {
+    queryKey,
+    urlPath,
+    columns,
+    gridItemRender,
+    allowedViewModes,
+    emptyState,
+    className,
+    initialPageSize = 20,
+    fields,
+    populate,
+    config,
+    selection,
+  }: DataDisplayProps<T>,
+  ref: React.Ref<DataDisplayRef>
+) => {
   const { t } = useTranslation();
   const hasTable = allowedViewModes === "table" || allowedViewModes === "both";
   const hasGrid = allowedViewModes === "grid" || allowedViewModes === "both";
@@ -178,6 +189,26 @@ export const DataDisplay = <T extends DataDisplayItem>({
     pageIndex: 0,
     pageSize: initialPageSize,
   });
+
+  // Expose ref methods
+  React.useImperativeHandle(
+    ref,
+    () => ({
+      columnFilters,
+      sorting,
+      globalFilter,
+      resetFilters: () => {
+        setColumnFilters([]);
+      },
+      resetSorting: () => {
+        setSorting([]);
+      },
+      resetGlobalFilter: () => {
+        setGlobalFilter("");
+      },
+    }),
+    [columnFilters, sorting, globalFilter]
+  );
 
   // Fetch data with integrated mode
   const { data, isLoading, error, extendedPagination, resolvedMode, refetch } =
@@ -384,3 +415,11 @@ export const DataDisplay = <T extends DataDisplayItem>({
 
   return <ErrorBoundary>{content}</ErrorBoundary>;
 };
+
+DataDisplayComponent.displayName = "DataDisplay";
+
+export const DataDisplay = React.forwardRef(DataDisplayComponent) as <
+  T extends DataDisplayItem,
+>(
+  props: DataDisplayProps<T> & React.RefAttributes<DataDisplayRef>
+) => ReturnType<typeof DataDisplayComponent>;
