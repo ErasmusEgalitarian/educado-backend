@@ -2,11 +2,10 @@ import { set, z } from "zod";
 import MiniNavbar from "@/shared/components/MiniNavbar";
 import { Button } from "@/shared/components/shadcn/button";
 import { SignupSchema } from "../components/signup/micro-services";
-import { useLocation, useNavigate, useSubmit } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Cards } from "../components/signup/SignupCards";
 import { useState } from "react";
 import GenericModalComponent from "@/shared/components/GenericModalComponent";
-import { ToggleModalContext } from "@/features/auth/components/Login";
 
 const Header = () => {
   return (
@@ -76,7 +75,7 @@ const Footer = ({ isSubmitDisabled }: FooterProps) => {
         size="lg"
         className="justify-end ml-auto disabled:opacity-20 text-greyscale-text-negative"
         type="button"
-        disabled={false}
+        disabled={isSubmitDisabled}
         onClick={() => setShowModal(true)}
       >
         <span

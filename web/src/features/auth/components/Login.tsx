@@ -11,7 +11,6 @@ import { postContentCreatorLogin } from "@/shared/api/sdk.gen";
 import background from "@/shared/assets/background.jpg";
 import { updateApiClientToken } from "@/shared/config/api-config";
 
-
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";
@@ -19,10 +18,7 @@ import Carousel from "../../../unplaced/archive/Carousel";
 import { useAuth } from "../hooks/use-auth";
 import { LoginResponseError } from "../types/LoginResponseError";
 
-
-
 import PasswordRecoveryModal from "./password-recovery/PasswordRecoveryModal";
-
 
 export const ToggleModalContext = createContext(() => {});
 
@@ -37,7 +33,7 @@ const Login = () => {
   // Error state
   const [error, setError] = useState<
     LoginResponseError.RootObject | string | null
-  >(null); 
+  >(null);
   const [showModal, setShowModal] = useState(false);
   const { t } = useTranslation();
   // Navigation hook
@@ -53,10 +49,9 @@ const Login = () => {
       setError("");
     }, 5000);
   };
-  
+
   const { call: login, isLoading: submitLoading } = useApi(
-     
-    postContentCreatorLogin,
+    postContentCreatorLogin
   );
   //Variable determining the error message for both fields.
   const [emailError, setEmailError] = useState(null);
@@ -64,7 +59,12 @@ const Login = () => {
   const [notApprovedError, setNotApprovedError] = useState(null);
 
   // Location hook and modal state for account application success modal
-  const location = useLocation();
+  const location = useLocation() as { state?: { signupSuccess?: boolean } };
+
+  // NEW: modal just for "signup completed, account under review"
+  const [showSignupSuccessModal, setShowSignupSuccessModal] = useState(
+    Boolean(location.state?.signupSuccess)
+  );
 
   /**
    * OnSubmit function for Login.
@@ -79,16 +79,15 @@ const Login = () => {
    */
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await login({
-       body: {
+      body: {
         email: data.email,
         password: data.password,
-        },
+      },
     })
       .then(async (res) => {
+        /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
+        const token = res?.accessToken;
 
-         /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
-        const token = res?.accessToken; 
-         
         const user = res?.userInfo;
         /* eslint-disable  @typescript-eslint/no-unsafe-argument */
 
@@ -98,7 +97,6 @@ const Login = () => {
         // Update the API client with the new token
         updateApiClientToken();
 
-         
         await loginSaver(token ?? "", user);
         navigate("/courses");
         // error messages for email and password
@@ -107,14 +105,14 @@ const Login = () => {
         setError(err);
         console.error(err);
         switch (err.error.details.error.code) {
-          case 'E0106': //Invalid Email and password
+          case "E0106": //Invalid Email and password
             setEmailError(err);
             setEmailErrorMessage(t("login.email-error"));
             setError("");
             areFieldsFilled(true);
             break;
 
-          case 'E1001': //User Not Approved
+          case "E1001": //User Not Approved
             setNotApprovedError(err);
             setError("");
             break;
@@ -133,25 +131,29 @@ const Login = () => {
 
   function areFieldsFilled(isThereAnError = false) {
     const inputloginEmail = document.getElementById(
-      "email-field",
+      "email-field"
     ) as HTMLInputElement;
     const inputloginPass = document.getElementById(
-      "password-field",
+      "password-field"
     ) as HTMLInputElement;
 
     const submitloginButton = document.getElementById(
-      "submit-login-button",
+      "submit-login-button"
     ) as HTMLButtonElement;
-    
+
     // Makes sure that the button is only clickable when both fields are filled and there are no email error
     const buttonContainer = submitloginButton.parentElement as HTMLDivElement;
-    
+
     if (isThereAnError) {
       // Disable button when there's an error
       submitloginButton.setAttribute("disabled", "true");
-      buttonContainer.style.backgroundColor = "var(--greyscale-surface-disabled)";
+      buttonContainer.style.backgroundColor =
+        "var(--greyscale-surface-disabled)";
       submitloginButton.style.color = "var(--greyscale-border-default)";
-    } else if (inputloginEmail.value.trim() !== "" && inputloginPass.value.trim() !== "") {
+    } else if (
+      inputloginEmail.value.trim() !== "" &&
+      inputloginPass.value.trim() !== ""
+    ) {
       // Enable button when both fields are filled and no errors
       submitloginButton.removeAttribute("disabled");
       buttonContainer.style.backgroundColor = "var(--primary-surface-default)";
@@ -164,20 +166,18 @@ const Login = () => {
     } else {
       // Disable button when fields are empty
       submitloginButton.setAttribute("disabled", "true");
-      buttonContainer.style.backgroundColor = "var(--greyscale-surface-disabled)";
+      buttonContainer.style.backgroundColor =
+        "var(--greyscale-surface-disabled)";
       submitloginButton.style.color = "var(--greyscale-border-default)";
-      
+
       // Clear error messages when fields are empty
       setEmailError(null);
       setEmailErrorMessage("");
       setNotApprovedError(null);
     }
   }
-  
-  
 
   return (
-    
     <main className="flex bg-linear-to-br from-gradient-start 0% to-gradient-end 100%">
       {/* Mini navbar */}
       <MiniNavbar />
@@ -220,9 +220,16 @@ const Login = () => {
             <div className="">
               <h1 className="mb-10 flex text-lg text-primary-text-title font-normal font-montserrat underline px-10">
                 <Link to="/welcome" className="flex items-center gap-1">
-                  <Icon path={mdiChevronLeft} size={1} color="var(--greyscale-text-subtle)" />
+                  <Icon
+                    path={mdiChevronLeft}
+                    size={1}
+                    color="var(--greyscale-text-subtle)"
+                  />
                 </Link>
-                <Link to="/welcome" className="text-lg text-primary-text-title font-normal font-montserrat text-[var(--greyscale-text-subtle)]" > 
+                <Link
+                  to="/welcome"
+                  className="text-lg text-primary-text-title font-normal font-montserrat text-[var(--greyscale-text-subtle)]"
+                >
                   <button className="cursor-pointer">
                     {t("login.back-button")}
                   </button>
@@ -232,7 +239,8 @@ const Login = () => {
 
             {/*Title*/}
             <h1 className="text-primary-text-title text-3xl font-bold font-montserrat leading-normal self-stretch mb-10 px-10">
-              {t("login.welcome-back")}{/*Welcome back to Educado!*/}
+              {t("login.welcome-back")}
+              {/*Welcome back to Educado!*/}
             </h1>
 
             {/*Submit form, i.e. fields to write email and password*/}
@@ -250,15 +258,15 @@ const Login = () => {
                     {t("login.email")} {/*Email*/}
                   </label>
                   <input
-                    onInput={() => { areFieldsFilled(); }}
+                    onInput={() => {
+                      areFieldsFilled();
+                    }}
                     type="email"
                     id="email-field"
-                    className={`flex w-full py-3 px-4  placeholder-gray-400 text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? 'bg-error-surface-subtle border-error-surface-default focus:ring-error-surface-default' : ' bg-white border-greyscale-border-default focus:ring-sky-200'}`}
+                    className={`flex w-full py-3 px-4  placeholder-gray-400 text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? "bg-error-surface-subtle border-error-surface-default focus:ring-error-surface-default" : " bg-white border-greyscale-border-default focus:ring-sky-200"}`}
                     placeholder="usuario@gmail.com"
                     {...register("email", { required: true })}
                   />
-
-                  
                 </div>
               </div>
               {/* Password field */}
@@ -268,13 +276,16 @@ const Login = () => {
                     className="after:content-['*'] after:ml-0.5 after:text-error-surface-default text-primary-text-title text-[18px] text-sm font-bold font-montserrat mt-6"
                     htmlFor="password-field"
                   >
-                    {t("login.password")}{/*Password*/}
+                    {t("login.password")}
+                    {/*Password*/}
                   </label>
                   <input
-                    onInput={() => { areFieldsFilled(); }}
+                    onInput={() => {
+                      areFieldsFilled();
+                    }}
                     type={passwordVisible ? "text" : "password"}
                     id="password-field"
-                    className={`flex w-full py-3 px-4  placeholder-greyscale-border-default text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? 'bg-error-surface-subtle border-error-surface-default focus:ring-error-surface-default' : ' bg-white border-greyscale-border-default focus:ring-sky-200'}`}
+                    className={`flex w-full py-3 px-4  placeholder-greyscale-border-default text-lg rounded-lg border focus:outline-hidden focus:ring-2 focus:border-transparent ${emailError ? "bg-error-surface-subtle border-error-surface-default focus:ring-error-surface-default" : " bg-white border-greyscale-border-default focus:ring-sky-200"}`}
                     placeholder="**********"
                     {...register("password", { required: true })}
                   />
@@ -316,7 +327,8 @@ const Login = () => {
                   }}
                   className="text--greyscale-text-subtle text-lg font-normal font-montserrat cursor-pointer hover:text-primary-surface-default"
                 >
-                  {t("login.forgot-password")}{/*Forgot your password?*/}
+                  {t("login.forgot-password")}
+                  {/*Forgot your password?*/}
                 </label>
               </div>
               <span className="h-12" /> {/* spacing */}
@@ -334,7 +346,8 @@ const Login = () => {
                     ) : (
                       false
                     )}
-                    {t("login.login-button")}{/*Log In*/}
+                    {t("login.login-button")}
+                    {/*Log In*/}
                   </button>
                 </div>
               </div>
@@ -348,7 +361,8 @@ const Login = () => {
                   to="/signup"
                   className="text-primary-text-title text-lg font-normal font-montserrat underline hover:text-primary-surface-default gap-4"
                 >
-                  {t("login.register-now")}{/*Register now*/}
+                  {t("login.register-now")}
+                  {/*Register now*/}
                 </Link>
               </div>
             </form>
@@ -376,13 +390,26 @@ const Login = () => {
         title="Aguarde aprovação"
         contentText="Seu cadastro está em análise e você receberá um retorno em até x dias. Fique de olho no seu e-mail, avisaremos assim que tudo estiver pronto!"
         cancelBtnText="Fechar" // Close (functions as the 'ok' button in this particular modal)
-        onConfirm={() => {setNotApprovedError(null)}} // Empty function passed in due to confirm button not being present in this particular modal
+        onConfirm={() => {
+          setNotApprovedError(null);
+        }} // Empty function passed in due to confirm button not being present in this particular modal
         isVisible={notApprovedError}
-        onClose={() => { setNotApprovedError(null); }}
+        onClose={() => {
+          setNotApprovedError(null);
+        }}
+      />
+      {/* After successful registration → show this on first visit to login */}
+      <GenericModalComponent
+        title="Aguarde aprovação "
+        header="Solicitação concluída com sucesso!"
+        contentText="Seu cadastro está em análise e você receberá um retorno em até x dias. Fique de olho no seu e-mail, avisaremos assim que tudo estiver pronto!"
+        cancelBtnText="Fechar"
+        isVisible={showSignupSuccessModal}
+        onConfirm={() => setShowSignupSuccessModal(false)}
+        onClose={() => setShowSignupSuccessModal(false)}
       />
     </main>
   );
 };
-
 
 export default Login;

@@ -32,7 +32,7 @@ export interface SignupPayload {
     company: string;
     title: string;
     startDate: string;
-    endDate: string;
+    endDate: string | null;
     description: string;
   }>;
 

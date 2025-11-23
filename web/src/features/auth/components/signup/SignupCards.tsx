@@ -18,7 +18,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
+import type { Resolver } from "react-hook-form";
 type SectionKey = "motive" | "education" | "experience";
 type FormData = z.infer<typeof formSchema>;
 type CardsProps = {
@@ -37,7 +39,7 @@ export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
     setOpenKey((k) => (k === key ? null : key)); // only one card open at a time
 
   const methods = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema) as Resolver<FormData>,
     mode: "onChange",
     defaultValues: {
       motivation: "",
@@ -64,7 +66,7 @@ export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
       company: job.organization,
       title: job.jobTitle,
       startDate: job.jobStartDate,
-      endDate: job.jobEndDate ?? "Current",
+      endDate: job.isCurrentJob ? null : job.jobEndDate,
       description: job.description,
     }));
 
@@ -88,15 +90,24 @@ export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
       educations: educations,
     };
 
-    console.log("submit all values", payload);
+    console.log("jobs payload", payload.jobs);
 
     try {
       const response = await postUserSignup(payload);
       console.log("Signup information submitted successfully:", response);
 
-      navigate("/login", { replace: true });
+      navigate("/login", {
+        replace: true,
+        state: { signUpSuccess: true },
+      });
     } catch (error) {
       console.error("Error during signup information submission:", error);
+
+      if (axios.isAxiosError(error)) {
+        console.log("Status:", error.response?.status);
+        console.log("Response data:", error.response?.data);
+        console.log("Backend error object:", error.response?.data?.error);
+      }
     }
   };
 

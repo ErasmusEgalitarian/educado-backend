@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { MdClose } from "react-icons/md";
 interface GenericModalProps {
   title?: string;
+  header?: string;
   isVisible?: boolean;
   contentText?: string;
   cancelBtnText?: string;
@@ -31,6 +32,7 @@ const SIZE_MAP: Record<NonNullable<GenericModalProps["size"]>, string> = {
 
 const GenericModalComponent: React.FC<GenericModalProps> = ({
   title,
+  header,
   contentText,
   confirmBtnText,
   cancelBtnText = "Cancelar",
@@ -57,7 +59,7 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
 
   const sizeClasses = panelClassName ? "" : (SIZE_MAP[size] ?? SIZE_MAP.md);
 
-    // Backward compat: if `width` is given, we treat it as extra className
+  // Backward compat: if `width` is given, we treat it as extra className
   const extraWidthClasses = width ?? "";
 
   return (
@@ -65,16 +67,14 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
 
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div
-        className={
-          [
-            "flex flex-col bg-[#f1f9fb] rounded-3xl text-center",
-            sizeClasses,
-            extraWidthClasses,
-            panelClassName,
-          ]
-            .filter(Boolean)
-            .join(" ")
-        }
+        className={[
+          "flex flex-col bg-[#f1f9fb] rounded-3xl text-center",
+          sizeClasses,
+          extraWidthClasses,
+          panelClassName,
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
         {/* Top bar */}
         <div className="flex justify-between items-center">
@@ -89,6 +89,13 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
             <MdClose size={25} className="text-slate-400" />
           </button>
         </div>
+        {header && (
+          <div>
+            <h4 className="text-[20px] font-['Montserrat'] text-[#383838] font-bold mb-4">
+              {header}
+            </h4>
+          </div>
+        )}
 
         {/* Content */}
         <div>
