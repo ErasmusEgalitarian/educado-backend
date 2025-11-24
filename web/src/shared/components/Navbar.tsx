@@ -57,7 +57,7 @@ export const Navbar = () => {
   const { preferences, setPreferences } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { notifications, setNotifications } = useNotifications();
-  const [position, setPosition] = useState("portuguese");
+  // const [ position, setPosition ] = useState("portuguese");
   const { t, i18n } = useTranslation();
   // Logout handler
   const handleLogout = () => {
