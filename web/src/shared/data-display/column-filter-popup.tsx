@@ -1,10 +1,9 @@
 import { Column } from "@tanstack/react-table";
 
 import { FilterDropdown } from "./filter-dropdown";
+import { isEmpty } from "./quick-filters";
 
 import type { QuickFilter } from "./types/table";
-
-const isEmpty = (v: unknown) => v === undefined || v === null || v === "";
 
 interface ColumnFilterPopupProps<TData> {
   column: Column<TData>;

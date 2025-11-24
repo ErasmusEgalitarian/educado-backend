@@ -9,7 +9,8 @@ import type { QuickFilter } from "./types/table";
 // Runtime filter with columnId (derived from column metadata + column.id)
 type RuntimeQuickFilter = QuickFilter & { columnId: string; label: string };
 
-const isEmpty = (v: unknown) => v === undefined || v === null || v === "";
+export const isEmpty = (v: unknown) =>
+  v === undefined || v === null || v === "";
 
 function setColumnFilter<TData>(
   table: Table<TData>,
