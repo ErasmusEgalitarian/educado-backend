@@ -1,5 +1,5 @@
-import { Icon } from "@mdi/react";
 import { mdiFilterOutline, mdiFilterCheck } from "@mdi/js";
+import { Icon } from "@mdi/react";
 
 import { Button } from "@/shared/components/shadcn/button";
 import { Input } from "@/shared/components/shadcn/input";

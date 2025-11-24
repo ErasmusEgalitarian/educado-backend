@@ -40,7 +40,9 @@ const QuickFilterButton = <TData,>({
       quickFilter={quickFilter}
       current={current}
       isFiltered={isFiltered}
-      onSetFilter={(value) => setColumnFilter(table, columnId, value)}
+      onSetFilter={(value) => {
+        setColumnFilter(table, columnId, value);
+      }}
       triggerVariant="outline"
       triggerSize="sm"
       contentClassName="min-w-[200px]"
