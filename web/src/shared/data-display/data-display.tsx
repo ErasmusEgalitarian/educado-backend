@@ -106,57 +106,7 @@ export interface DataDisplayRef {
 }
 /* --------------------------- Exported component --------------------------- */
 
-/**
- * A flexible data display component that supports table and/or grid view modes.
- *
- *
- * @template T - The type of data items to display, must extend DataDisplayItem (Strapi entity with at least a documentId field)
- *
- * @param props - The component props
- * @param props.queryKey - Unique key for React Query to cache and manage the data fetching
- * @param props.urlPath - API endpoint path to fetch data from
- * @param props.columns - Column definitions (always required for sorting/filtering)
- * @param props.allowedViewModes - Which view mode(s) to allow: "table", "grid", or "both"
- * @param props.gridItemRender - Render function for grid items (required when allowedViewModes is "grid" or "both")
- * @param props.emptyState - Custom component to display when no data is available
- * @param props.className - Additional CSS classes to apply to the container
- * @param props.initialPageSize - Number of items per page (default: 20)
- * @param props.fields - Strapi fields to select in the query
- * @param props.populate - Strapi population configuration for related data
- * @param props.config - Additional configuration for data fetching (render mode, threshold)
- *
- * @returns A data display component with pagination, search, and view mode switching
- *
- * @example
- * // Table only
- * <DataDisplay
- *   queryKey={['courses']}
- *   urlPath="/courses"
- *   columns={courseColumns}
- *   allowedViewModes="table"
- * />
- *
- * @example
- * // Grid only
- * <DataDisplay
- *   queryKey={['courses']}
- *   urlPath="/courses"
- *   columns={courseColumns}
- *   allowedViewModes="grid"
- *   gridItemRender={(course) => <CourseCard course={course} />}
- * />
- *
- * @example
- * // Both modes with switcher
- * <DataDisplay
- *   queryKey={['courses']}
- *   urlPath="/courses"
- *   columns={courseColumns}
- *   allowedViewModes="both"
- *   gridItemRender={(course) => <CourseCard course={course} />}
- *   initialPageSize={20}
- * />
- */
+
 const DataDisplayComponent = <T extends DataDisplayItem>(
   {
     queryKey,
