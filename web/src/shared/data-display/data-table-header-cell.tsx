@@ -53,7 +53,7 @@ const DataTableHeaderCell = <TData extends DataDisplayItem>({
     <div className="flex items-center gap-1">
       {(meta?.sortable ?? false) ? (
         <Button
-          variant={isSorted === false ? "ghost" : "secondary"}
+          variant={isSorted ? "ghost" : "secondary"}
           onClick={() => {
             column.toggleSorting(isSorted === "asc");
           }}
