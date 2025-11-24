@@ -1,6 +1,4 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { toast } from "sonner";
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 
 // Define the notification type
 interface Notification {
