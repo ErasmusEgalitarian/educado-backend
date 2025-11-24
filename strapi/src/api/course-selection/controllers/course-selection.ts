@@ -2,7 +2,8 @@
  * course-selection controller
  */
 
-import { factories } from '@strapi/strapi'
+// src/api/course-selection/controllers/course-selection.ts
+import { factories } from '@strapi/strapi';
 
 export default factories.createCoreController(
   'api::course-selection.course-selection',
