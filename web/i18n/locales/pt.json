@@ -231,8 +231,5 @@
     "register-button": "Cadastrar",
     "login-text": "Já possui uma conta?",
     "login-button": "Entrar"
-  },
-  "notifications": {
-    "published-course": "Curso publicado"
   }
 }
