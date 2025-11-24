@@ -21,7 +21,7 @@ import {
 } from "../lib/query-params-builder";
 import { PaginatedData } from "../types/paginated-data";
 
-const LOGGING_ENABLED = true;
+const LOGGING_ENABLED = false;
 
 /* ----------------------------- Exported types ----------------------------- */
 
