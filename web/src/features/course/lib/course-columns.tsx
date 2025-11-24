@@ -155,10 +155,7 @@ export const createCourseColumns = ({
       header: t("categories.categories"),
       accessorFn: (row) => {
         const categories = row.course_categories ?? [];
-        // Type assertion: at runtime, populated categories have a name property
-        return categories
-          .map((c) => (c as CourseCategory).name)
-          .filter(Boolean);
+        return categories.map((c) => (c as CourseCategory).name);
       },
       cell: ({ row }) => {
         const course = row.original;
@@ -195,10 +192,7 @@ export const createCourseColumns = ({
       filterFn: (row, _columnId, filterValue) => {
         const categories = (row.original.course_categories ??
           []) as CourseCategory[];
-        const names = categories
-          .map((c) => c.name)
-          .filter(Boolean)
-          .map((n) => n.toLowerCase());
+        const names = categories.map((c) => c.name.toLowerCase());
         if (Array.isArray(filterValue)) {
           const lookup = new Set(
             (filterValue as unknown[]).map((v) => String(v).toLowerCase())
