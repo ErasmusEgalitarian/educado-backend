@@ -8,6 +8,29 @@ import bcrypt from 'bcryptjs';
 import { errorCodes } from '../../../helpers/errorCodes';
 
 export default factories.createCoreController('api::content-creator.content-creator', ({ strapi }) => ({
+    async find(ctx) {
+        const result = await strapi
+            .documents('api::content-creator.content-creator')
+            .findMany({
+                ...ctx.query,
+            });
+
+        return this.transformResponse(result);
+    },
+
+    async findOne(ctx) {
+        const { id } = ctx.params;
+
+        const result = await strapi
+            .documents('api::content-creator.content-creator')
+            .findOne({
+                documentId: id,
+                ...ctx.query,
+            });
+
+        return this.transformResponse(result);
+    },
+
     async login(ctx) {
         try {
         // Access request data via ctx.request.body
