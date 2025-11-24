@@ -669,47 +669,6 @@ export interface ApiCourseSectionCourseSection
   };
 }
 
-export interface ApiCourseSelectionCourseSelection
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'course_selections';
-  info: {
-    displayName: 'Course Section';
-    pluralName: 'course-selections';
-    singularName: 'course-selection';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    course: Schema.Attribute.Relation<'manyToOne', 'api::course.course'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 400;
-      }>;
-    exercises: Schema.Attribute.Relation<'oneToMany', 'api::exercise.exercise'>;
-    lectures: Schema.Attribute.Relation<'oneToMany', 'api::lecture.lecture'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::course-selection.course-selection'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 50;
-        minLength: 1;
-      }>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
   collectionName: 'courses';
   info: {
@@ -731,7 +690,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
     >;
     course_sections: Schema.Attribute.Relation<
       'oneToMany',
-      'api::course-selection.course-selection'
+      'api::course-section.course-section'
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1621,7 +1580,6 @@ declare module '@strapi/strapi' {
       'api::content-creator.content-creator': ApiContentCreatorContentCreator;
       'api::course-category.course-category': ApiCourseCategoryCourseCategory;
       'api::course-section.course-section': ApiCourseSectionCourseSection;
-      'api::course-selection.course-selection': ApiCourseSelectionCourseSelection;
       'api::course.course': ApiCourseCourse;
       'api::exercise-option.exercise-option': ApiExerciseOptionExerciseOption;
       'api::exercise.exercise': ApiExerciseExercise;

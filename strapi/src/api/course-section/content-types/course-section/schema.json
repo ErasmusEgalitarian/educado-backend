@@ -21,16 +21,16 @@
       "type": "text",
       "maxLength": 400
     },
+    "activities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::activity.activity"
+    },
     "course": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::course.course",
       "inversedBy": "course_sections"
-    },
-    "activities": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::activity.activity"
     }
   }
 }
