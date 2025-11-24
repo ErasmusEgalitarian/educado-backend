@@ -82,7 +82,6 @@ interface BaseDataDisplayProps<T extends DataDisplayItem> {
   /** Status: 'published' (default) or 'draft'. Controls which version of documents to fetch. */
   status?: Status;
   selection?: DataDisplaySelectionConfig<T>;
-  /** Optional callback that receives the list of documentId strings for the currently filtered (pre-paginated) items. */
   onFilteredDocumentIds?: (ids: string[]) => void;
 }
 
