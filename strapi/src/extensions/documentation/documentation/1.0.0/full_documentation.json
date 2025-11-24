@@ -10404,6 +10404,7 @@
           "data": {
             "required": [
               "firstName",
+              "lastName",
               "email",
               "password",
               "education",
@@ -10581,6 +10582,7 @@
         "type": "object",
         "required": [
           "firstName",
+          "lastName",
           "email",
           "password",
           "education",
