@@ -30,9 +30,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // If there are no documentIds yet, skip the API call — parent will provide them later
     if (!documentIds || documentIds.length === 0) {
-      // Clear statistics while waiting for IDs (optional behaviour)
       setStatistics(undefined);
       setLoading(false);
       return;
@@ -55,7 +53,6 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
     };
       
     fetchStatistics();
-  // Re-run when the list of document IDs changes or when the selected period changes
   }, [documentIds, period]);
 
   const getProgress = (entity: keyof CourseStatisticsResponse): number => {
