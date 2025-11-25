@@ -3,7 +3,8 @@ import {
   type Row,
   type Table as ReactTableType,
 } from "@tanstack/react-table";
-import { Check } from "lucide-react";
+import Icon from "@mdi/react";
+import { mdiCheck } from "@mdi/js";
 
 import { useItemSelector } from "@/shared/components/item-selector";
 import { TableRow, TableCell } from "@/shared/components/shadcn/table";
@@ -158,7 +159,7 @@ const SelectableTableRows = <TData extends DataDisplayItem>({
                     : "border-[#c1cfd7] bg-white"
                 )}
               >
-                {selected && <Check className="h-3 w-3" />}
+                {selected && <Icon path={mdiCheck} className="h-3 w-3" />}
               </div>
             </TableCell>
             {row.getVisibleCells().map((cell) => (

@@ -1,12 +1,5 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import {
-  CheckIcon,
-  XCircle,
-  ChevronDown,
-  XIcon,
-  WandSparkles,
-} from "lucide-react";
 
 import { cn } from "@/shared/lib/utils";
 import { Separator } from "@/shared/components/shadcn/seperator";
@@ -27,6 +20,15 @@ import {
   CommandSeparator,
 } from "@/shared/components/shadcn/command";
 import { useTranslation } from "react-i18next";
+import Icon from "@mdi/react";
+import {
+  mdiPlus,
+  mdiCheck,
+  mdiCloseCircleOutline,
+  mdiChevronDown,
+  mdiClose,
+  mdiAutoFix,
+} from "@mdi/js";
 
 /**
  * Animation types and configurations
@@ -69,10 +71,7 @@ const multiSelectVariants = cva("m-1 transition-all duration-300 ease-in-out", {
       none: "",
     },
   },
-  defaultVariants: {
-    variant: "default",
-    badgeAnimation: "bounce",
-  },
+  defaultVariants: { variant: "default", badgeAnimation: "bounce" },
 });
 
 /**
@@ -458,11 +457,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
 
     const getResponsiveSettings = () => {
       if (!responsive) {
-        return {
-          maxCount: maxCount,
-          hideIcons: false,
-          compactMode: false,
-        };
+        return { maxCount: maxCount, hideIcons: false, compactMode: false };
       }
       if (responsive === true) {
         const defaultResponsive = {
@@ -835,13 +830,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                         : "flex-wrap",
                       responsiveSettings.compactMode && "gap-0.5"
                     )}
-                    style={
-                      singleLine
-                        ? {
-                            paddingBottom: "4px",
-                          }
-                        : {}
-                    }
+                    style={singleLine ? { paddingBottom: "4px" } : {}}
                   >
                     {selectedValues
                       .slice(0, responsiveSettings.maxCount)
@@ -925,7 +914,8 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                               aria-label={`Remove ${option.label} from selection`}
                               className="ml-2 h-4 w-4 cursor-pointer hover:bg-greyscale-surface-default/20 rounded-sm p-0.5 -m-0.5 focus:outline-none focus:ring-1 focus:ring-greyscale-border-default/50"
                             >
-                              <XCircle
+                              <Icon
+                                path={mdiCloseCircleOutline}
                                 className={cn(
                                   "h-3 w-3",
                                   responsiveSettings.compactMode &&
@@ -958,7 +948,8 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                         {`+ ${
                           selectedValues.length - responsiveSettings.maxCount
                         } more`}
-                        <XCircle
+                        <Icon
+                          path={mdiCloseCircleOutline}
                           className={cn(
                             "ml-2 h-4 w-4 cursor-pointer",
                             responsiveSettings.compactMode && "ml-1 h-3 w-3"
@@ -989,13 +980,14 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                       aria-label={`Clear all ${selectedValues.length} selected options`}
                       className="flex items-center justify-center h-4 w-4 mx-2 cursor-pointer text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 rounded-sm"
                     >
-                      <XIcon className="h-4 w-4" />
+                      <Icon path={mdiClose} className="h-4 w-4" />
                     </div>
                     <Separator
                       orientation="vertical"
                       className="flex min-h-6 h-full"
                     />
-                    <ChevronDown
+                    <Icon
+                      path={mdiChevronDown}
                       className="h-4 mx-2 cursor-pointer text-muted-foreground"
                       aria-hidden="true"
                     />
@@ -1006,7 +998,10 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                   <span className="text-sm text-muted-foreground mx-3">
                     {placeholder}
                   </span>
-                  <ChevronDown className="h-4 cursor-pointer text-muted-foreground mx-2" />
+                  <Icon
+                    path={mdiChevronDown}
+                    className="h-4 cursor-pointer text-muted-foreground mx-2"
+                  />
                 </div>
               )}
             </Button>
@@ -1086,7 +1081,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                         )}
                         aria-hidden="true"
                       >
-                        <CheckIcon className="h-4 w-4" />
+                        <Icon path={mdiCheck} className="h-4 w-4" />
                       </div>
                       <span>
                         ({t("actions.selectAll")}
@@ -1130,7 +1125,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                               )}
                               aria-hidden="true"
                             >
-                              <CheckIcon className="h-4 w-4" />
+                              <Icon path={mdiCheck} className="h-4 w-4" />
                             </div>
                             {option.icon && (
                               <option.icon
@@ -1173,7 +1168,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                             )}
                             aria-hidden="true"
                           >
-                            <CheckIcon className="h-4 w-4" />
+                            <Icon path={mdiCheck} className="h-4 w-4" />
                           </div>
                           {option.icon && (
                             <option.icon
@@ -1216,7 +1211,8 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
             </Command>
           </PopoverContent>
           {animation > 0 && selectedValues.length > 0 && (
-            <WandSparkles
+            <Icon
+              path={mdiAutoFix}
               className={cn(
                 "cursor-pointer my-2 text-foreground bg-background w-3 h-3",
                 isAnimating ? "" : "text-muted-foreground"

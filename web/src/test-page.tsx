@@ -15,6 +15,8 @@ import { FileWithMetadataSchema } from "./shared/components/file-upload";
 import GenericModalComponent from "./shared/components/GenericModalComponent";
 import { SearchBar } from "./shared/components/SearchBar";
 
+import { PaginationBottomBar } from "./shared/table/PaginationBottomBar";
+
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({
   image: z.array(FileWithMetadataSchema).optional(),
@@ -84,7 +86,16 @@ const TestPage = () => {
         </form>
       </Form>
 
-    
+      <PaginationBottomBar
+        currentPage={currentPage}
+        itemsPerPage={itemsPerPage}
+        unpaginatedItemsAmount={totalItems}
+        onChangePage={(newPage: number) => setCurrentPage(newPage)}
+        onChangeItemsPerPage={(newPerPage: number) => {
+          setItemsPerPage(newPerPage);
+          setCurrentPage(1); // reset page når itemsPerPage ændres
+        }}
+      />
 
       <button
         onClick={() => setIsModalOpen(true)}

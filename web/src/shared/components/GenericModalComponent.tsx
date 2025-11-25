@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
-import { MdClose } from "react-icons/md";
+import { mdiClose } from "@mdi/js";
+import Icon from "@mdi/react";
 
 interface GenericModalProps {
   title?: string;
@@ -33,7 +34,7 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
 
   return (
     // Overlay: fixed + full screen + center content
-    
+
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div
         className={`flex flex-col w-[500px] h-[350px] bg-[#f1f9fb] space-y-8 p-10 rounded-xl text-center ${
@@ -42,23 +43,26 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
       >
         {/* Top bar */}
         <div className="flex justify-between items-center">
-          {title && <span className="text-[24px] font-['Montserrat'] text-[#141B1F] text-xl">{title}</span>}
+          {title && (
+            <span className="text-[24px] font-['Montserrat'] text-[#141B1F] text-xl">
+              {title}
+            </span>
+          )}
 
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="btn btn-sm btn-circle btn-ghost"
-          >
-            <MdClose size={25} className="text-slate-400" />
+          {/* Window close button (X) */}
+          <button onClick={onClose} className="btn btn-sm btn-circle btn-ghost">
+            <Icon path={mdiClose} size={1} className="text-slate-400" />
           </button>
         </div>
 
         {/* Content */}
         <div>
-        {contentText && (
-          <p className="text-[20px] text-[#383838] text-left font-['Montserrat'] whitespace-normal text-wrap">{contentText}</p>
-        )}
-        {children}
+          {contentText && (
+            <p className="text-[20px] text-[#383838] text-left font-['Montserrat'] whitespace-normal text-wrap">
+              {contentText}
+            </p>
+          )}
+          {children}
         </div>
 
         {/* Footer buttons */}
