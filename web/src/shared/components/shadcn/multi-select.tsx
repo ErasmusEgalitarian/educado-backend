@@ -109,7 +109,7 @@ interface MultiSelectGroup {
 /**
  * Props for MultiSelect component
  */
-export interface MultiSelectProps
+interface MultiSelectProps
   extends Omit<
       React.ButtonHTMLAttributes<HTMLButtonElement>,
       "animationConfig"
@@ -934,7 +934,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                           multiSelectVariants({ variant }),
                           responsiveSettings.compactMode &&
                             "text-xs px-1.5 py-0.5",
-                          singleLine && "flex-shrink-0 whitespace-nowrap",
+                          singleLine && "shrink-0 whitespace-nowrap",
                           "[&>svg]:pointer-events-auto"
                         )}
                         style={{
@@ -953,7 +953,9 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                             "ml-2 h-4 w-4 cursor-pointer",
                             responsiveSettings.compactMode && "ml-1 h-3 w-3"
                           )}
-                          onClick={(event) => {
+                          onClick={(
+                            event: React.MouseEvent<HTMLSpanElement>
+                          ) => {
                             event.stopPropagation();
                             clearExtraOptions();
                           }}
