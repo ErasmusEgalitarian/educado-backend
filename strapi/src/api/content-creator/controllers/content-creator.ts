@@ -2,20 +2,20 @@
  * content-creator controller
  */
 
-import { factories } from '@strapi/strapi'
+import { factories } from '@strapi/strapi';
 import  jwt  from "jsonwebtoken";
 import bcrypt from 'bcryptjs';
 import { errorCodes } from '../../../helpers/errorCodes';
 
 export default factories.createCoreController('api::content-creator.content-creator', ({ strapi }) => ({
     async find(ctx) {
-        const result = await strapi
-            .documents('api::content-creator.content-creator')
-            .findMany({
+        const { results, pagination } = await strapi
+            .service('api::content-creator.content-creator')
+            .find({
                 ...ctx.query,
             });
 
-        return this.transformResponse(result);
+        return this.transformResponse(results, { pagination });
     },
 
     async findOne(ctx) {

@@ -9,13 +9,13 @@ export default factories.createCoreController(
   'api::course-selection.course-selection',
   ({ strapi }) => ({
     async find(ctx) {
-      const result = await strapi
-        .documents('api::course-selection.course-selection')
-        .findMany({
+      const { results, pagination } = await strapi
+        .service('api::course-selection.course-selection')
+        .find({
           ...ctx.query,
         });
 
-      return this.transformResponse(result);
+      return this.transformResponse(results, { pagination });
     },
 
     async findOne(ctx) {

@@ -8,13 +8,13 @@ export default factories.createCoreController(
   'api::student.student',
   ({ strapi }) => ({
     async find(ctx) {
-      const result = await strapi
-        .documents('api::student.student')
-        .findMany({
+      const { results, pagination } = await strapi
+        .service('api::student.student')
+        .find({
           ...ctx.query,
         });
 
-      return this.transformResponse(result);
+      return this.transformResponse(results, { pagination });
     },
 
     async findOne(ctx) {

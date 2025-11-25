@@ -2,19 +2,19 @@
  * lecture controller
  */
 
-import { factories } from '@strapi/strapi'
+import { factories } from '@strapi/strapi';
 
 export default factories.createCoreController(
   'api::lecture.lecture',
   ({ strapi }) => ({
     async find(ctx) {
-      const result = await strapi
-        .documents('api::lecture.lecture')
-        .findMany({
+      const { results, pagination } = await strapi
+        .service('api::lecture.lecture')
+        .find({
           ...ctx.query,
         });
 
-      return this.transformResponse(result);
+      return this.transformResponse(results, { pagination });
     },
 
     async findOne(ctx) {

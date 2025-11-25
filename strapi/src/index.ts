@@ -31,30 +31,19 @@ export default {
         .query('plugin::users-permissions.role')
         .findOne({ where: { type: 'public' } });
 
-      const authenticatedRole = await strapi
-        .query('plugin::users-permissions.role')
-        .findOne({ where: { type: 'authenticated' } });
-
       if (!publicRole) {
         console.error('Public role not found');
         return;
       }
 
-      if (!authenticatedRole) {
-        console.error('Authenticated role not found');
-        return;
-      }
-
       const rolesToUpdate = [
         { role: publicRole, name: 'Public' },
-        { role: authenticatedRole, name: 'Authenticated' }
       ];
 
       // Debug: Check the structure of the role object
       console.log('\nPublic role structure:', JSON.stringify(publicRole, null, 2));
-      console.log('\nAuthenticated role structure:', JSON.stringify(authenticatedRole, null, 2));
 
-      console.log('\nSetting permissions for Public and Authenticated roles...');
+      console.log('\nSetting permissions for Public role...');
 
       // List of all API content types
       const apiContentTypes = [
@@ -69,12 +58,10 @@ export default {
         'api::lecture.lecture',
         'api::password-reset-token.password-reset-token',
         'api::student.student',
-        'api::user-log.user-log',
-        'api::verification-token.verification-token',
       ];
 
       // CRUD actions to enable
-      const actionsToEnable = ['find', 'findOne', 'create', 'update', 'delete'];
+      const actionsToEnable = ['find', 'findOne'];
 
       // Process each role
       for (const { role, name } of rolesToUpdate) {

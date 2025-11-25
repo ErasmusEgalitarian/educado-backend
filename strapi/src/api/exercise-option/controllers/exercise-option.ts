@@ -2,19 +2,19 @@
  * exercise-option controller
  */
 
-import { factories } from '@strapi/strapi'
+import { factories } from '@strapi/strapi';
 
 export default factories.createCoreController(
   'api::exercise-option.exercise-option',
   ({ strapi }) => ({
     async find(ctx) {
-      const result = await strapi
-        .documents('api::exercise-option.exercise-option')
-        .findMany({
+      const { results, pagination } = await strapi
+        .service('api::exercise-option.exercise-option')
+        .find({
           ...ctx.query,
         });
 
-      return this.transformResponse(result);
+      return this.transformResponse(results, { pagination });
     },
 
     async findOne(ctx) {
