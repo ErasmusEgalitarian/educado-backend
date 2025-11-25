@@ -92,6 +92,7 @@ export const useUpdateCourseMutation = () => {
           data: {
             title: input.title,
             difficulty: input.difficulty,
+            durationHours: input.durationHours ?? 1,
             description: input.description,
             course_categories: input.course_categories,
             image: input.image,

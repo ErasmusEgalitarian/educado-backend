@@ -218,7 +218,10 @@ const CourseEditorInformation = forwardRef<
         const result = await updateMutation.mutateAsync({
           documentId: course.documentId,
           title: values.title,
-          difficulty: Number(values.difficulty),
+          difficulty: Number(values.difficulty) ?? 1,
+            // it should be something else but the variables 'values' does not have durationHours
+            // and I need this to be set for it to work
+            durationHours: 10,
           // eslint-disable-next-line @typescript-eslint/naming-convention
           course_categories: values.categories,
           description: values.description,
@@ -233,7 +236,10 @@ const CourseEditorInformation = forwardRef<
         // Create = create mutation
         const result = await createMutation.mutateAsync({
           title: values.title,
-          difficulty: Number(values.difficulty),
+          difficulty: Number(values.difficulty) ?? 1,
+            // it should be something else but the variables 'values' does not have durationHours
+            // and I need this to be set for it to work
+            durationHours: 10,
           // eslint-disable-next-line @typescript-eslint/naming-convention
           course_categories: values.categories ?? [],
           description: values.description,

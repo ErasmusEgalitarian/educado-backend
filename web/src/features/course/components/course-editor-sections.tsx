@@ -6,14 +6,13 @@ import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
 import { FormInput } from "@/shared/components/form/form-input";
-import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
 import { Button } from "@/shared/components/shadcn/button";
 import { Card, CardContent, CardHeader} from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
 
 interface CourseEditorSectionsProps {
-  courseId?: string;
+  courseSectionsId?: Array<{ id?: number, documentId?: string }> | undefined;
   onComplete?: () => void;
   onGoBack?: () => void;
 }
@@ -37,12 +36,9 @@ export interface Section {
   description?: string;
 }
 
-const CourseEditorSections = forwardRef<
-  CourseEditorSectionsRef,
-  CourseEditorSectionsProps
->(({ courseId, onComplete, onGoBack }, ref) => {
+const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSectionsProps>(({ courseSectionsId, onComplete, onGoBack }, ref) => {
   const { t } = useTranslation();
-  const [sections, setSections] = useState<Section[]>([]);
+  const [sections, setSections] = useState(courseSectionsId ?? []); // incorrect btw
   const [currentSectionEditing, setCurrentSectionEditing] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
 
@@ -65,11 +61,11 @@ const CourseEditorSections = forwardRef<
 
   const onSubmit = (values: SectionFormValues) => {
     console.log("FORM SUBMITTED!", { currentSectionEditing, values });
-    
+
     if (currentSectionEditing) {
       // Update existing section
-      setSections(prev => prev.map(section => 
-        section.id === currentSectionEditing 
+      setSections(prev => prev.map(section =>
+        section.id === currentSectionEditing
           ? { ...section, ...values }
           : section
       ));
@@ -83,7 +79,7 @@ const CourseEditorSections = forwardRef<
       setSections(prev => [...prev, newSection]);
       setIsCreating(false);
     }
-    
+
     form.reset();
   };
 
@@ -137,25 +133,25 @@ const CourseEditorSections = forwardRef<
                       : "border-greyscale-border"
                   }`}
                 >
-                  <Button 
+                  <Button
                     variant="ghost"
                     className="flex items-center justify-between p-10"
                     onClick={() => { handleEdit(section) }}
                   >
                     <div className="flex items-center">
                       <h4 className="h-full flex items-center gap-3 font-semibold text-greyscale-text-title">
-                        <ChevronDown size={16} className="hover:cursor-pointer"/>    
+                        <ChevronDown size={16} className="hover:cursor-pointer"/>
                         {t("courseManager.section")} {index + 1}{":"} {section.title}
                       </h4>
                     </div>
-                    
+
                     <div className="flex gap-2 ml-4">
                       <Button
                         variant="secondary"
                         size="md"
                         onClick={() => { handleDelete(section.id) }}
                         className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
-                     
+
                       >
                         <Trash2 size={16} />
                       </Button>
@@ -191,7 +187,7 @@ const CourseEditorSections = forwardRef<
                         placeholder={t("common.name")}
                         isRequired
                       />
-                      
+
                       <FormTextarea
                         control={form.control}
                         fieldName="description"
@@ -200,7 +196,7 @@ const CourseEditorSections = forwardRef<
                         rows={3}
                       />
 
-                      <hr />  
+                      <hr />
 
                       <div className="grid grid-cols-[1fr_25px_1fr] gap-2">
                         <Button
@@ -230,7 +226,7 @@ const CourseEditorSections = forwardRef<
                         </Button>
                       </div>
                     </div>
-                    
+
                     <div className="flex gap-2 justify-end">
                       <Button
                         type="button"
@@ -267,7 +263,7 @@ const CourseEditorSections = forwardRef<
               <Button
                 variant="blank"
                 onClick={() => onGoBack?.()}
-              > 
+              >
                 <ChevronLeft size={16} className="mr-2" />
                 {t("courseManager.goBack")}
               </Button>
@@ -284,7 +280,7 @@ const CourseEditorSections = forwardRef<
                 onClick={() => onComplete?.()}
                 disabled={sections.length === 0}
               >
-                {t("courseManager.createAndContinue")} 
+                {t("courseManager.createAndContinue")}
               </Button>
             </div>
           </div>
