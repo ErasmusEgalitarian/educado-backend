@@ -11,6 +11,7 @@ The web application is built with modern React patterns and provides an intuitiv
 ### Technology Stack
 
 #### Core Framework
+
 - **React 18** - Component-based UI library
 - **TypeScript** - Type-safe JavaScript
 - **Vite** - Build tool and dev server with HMR
@@ -32,11 +33,13 @@ The web application is built with modern React patterns and provides an intuitiv
 - **Zustand** - Client state management
 
 #### Routing & Forms
+
 - **React Router v6** - Client-side routing
 - **React Hook Form** - Performant form validation
 - **Zod** - Schema validation
 
 #### Tables & Data Display
+
 - **TanStack Table** - Headless table primitives
   - Sorting, filtering, pagination
   - Virtualization support
@@ -79,6 +82,7 @@ npm run generate-strapi-client
 ```
 
 This ensures:
+
 - ✅ Type safety for all API calls
 - ✅ Auto-completion in IDE
 - ✅ Compile-time error checking
@@ -97,6 +101,7 @@ import { Dialog } from "@/components/ui/dialog"
 ```
 
 Benefits:
+
 - Own the code (no npm package bloat)
 - Full customization
 - Built on Radix UI (accessible by default)
@@ -287,16 +292,19 @@ This will create a ~50MB nginx image serving static files.
 ### Common Issues
 
 **API calls failing**
+
 - Check `VITE_STRAPI_API_TOKEN` is set
 - Verify backend is running on `VITE_STRAPI_URL`
 - Check browser console for CORS errors
 
 **Build fails**
+
 - Clear `.turbo` cache: `rm -rf .turbo`
 - Clear node_modules: `npm ci`
 - Check for TypeScript errors: `npm run type-check`
 
 **Hot reload not working**
+
 - Restart dev server
 - Check Vite config
 - Ensure WSL users have proper file watching setup
