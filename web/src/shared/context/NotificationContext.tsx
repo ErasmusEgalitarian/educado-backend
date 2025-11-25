@@ -1,6 +1,4 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 
 // Define the notification type
 interface Notification {
@@ -46,20 +44,6 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
 
     // Add the notification to the dropdown list
     setNotifications((prev) => [...prev, newNotification]);
-
-    // Trigger a toast message
-    toast(message, {
-      position: "top-right",
-      autoClose: 5000, // Automatically close after 5 seconds
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      progressStyle: {
-        background: "#166276",
-      },
-    });
   };
 
   return (

@@ -526,6 +526,7 @@ export interface ApiContentCreatorContentCreator
         minLength: 1;
       }>;
     lastName: Schema.Attribute.String &
+      Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 50;
         minLength: 1;
