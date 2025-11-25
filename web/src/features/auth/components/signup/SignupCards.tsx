@@ -1,42 +1,56 @@
-import { FormProvider } from "react-hook-form";
-import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useState, useEffect, useMemo } from "react";
+import { FormProvider, useForm} from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
-import { formSchema } from "./SignupFormSchema";
+
+import { Chevron } from "@/shared/components/icons/chevron";
+import { Card, CardHeader, CardContent } from "@/shared/components/shadcn/card";
+import { postUserSignup, SignupPayload } from "@/unplaced/services/auth.services";
+
 import {
   MotivationForm,
   EducationForm,
   ExperienceForm,
+  formSchema
 } from "./SignupFormSchema";
-import { Chevron } from "@/shared/components/icons/chevron";
-import { Card, CardHeader, CardContent } from "@/shared/components/shadcn/card";
-import {
-  postUserSignup,
-  SignupPayload,
-} from "@/unplaced/services/auth.services";
-import { useEffect } from "react";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import type { Resolver } from "react-hook-form";
 type SectionKey = "motive" | "education" | "experience";
 type FormData = z.infer<typeof formSchema>;
-type CardsProps = {
-  initialData?: any;
+type InitialSignupData = Pick<
+  SignupPayload,
+  "firstName" | "lastName" | "email" | "password"
+>;
+interface CardsProps {
+  initialData: InitialSignupData;
   onFormStateChange?: (state: {
     isValid: boolean;
     isSubmitting: boolean;
   }) => void;
+}
+
+const ensureNonEmptyInitialField = (
+  value: string,
+  field: keyof InitialSignupData,
+): string => {
+  const trimmedValue = value.trim();
+
+  if (trimmedValue.length === 0) {
+    throw new Error(`initialData.${field} must be a non-empty string`);
+  }
+
+  return trimmedValue;
 };
 
 export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
   const [openKey, setOpenKey] = useState<SectionKey | null>("motive");
   const navigate = useNavigate();
 
-  const toggle = (key: SectionKey) =>
-    setOpenKey((k) => (k === key ? null : key)); // only one card open at a time
+
+  const toggle = (key: SectionKey) =>{
+    setOpenKey((k) => (k === key ? null : key))}; // only one card open at a time
 
   const methods = useForm<FormData>({
     resolver: zodResolver(formSchema) as Resolver<FormData>,
@@ -59,6 +73,15 @@ export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
     }
   }, [isValid, isSubmitting, onFormStateChange]);
 
+  const validatedInitialData = useMemo(() => {
+    return {
+      firstName: ensureNonEmptyInitialField(initialData.firstName, "firstName"),
+      lastName: ensureNonEmptyInitialField(initialData.lastName, "lastName"),
+      email: ensureNonEmptyInitialField(initialData.email, "email"),
+      password: ensureNonEmptyInitialField(initialData.password, "password"),
+    } satisfies InitialSignupData;
+  }, [initialData]);
+
   const onSubmit = async (data: FormData) => {
     console.log("form data", data);
 
@@ -70,7 +93,7 @@ export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
       description: job.description,
     }));
 
-    const educations = data.educations.map((edu) => ({
+    const educations = data.educations.map(edu => ({
       educationType: edu.educationType,
       isInProgress: edu.isInProgress,
       course: edu.course,
@@ -80,10 +103,10 @@ export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
     }));
 
     const payload: SignupPayload = {
-      firstName: initialData?.firstName,
-      lastName: initialData?.lastName,
-      email: initialData?.email,
-      password: initialData?.password,
+      firstName: validatedInitialData.firstName,
+      lastName: validatedInitialData.lastName,
+      email: validatedInitialData.email,
+      password: validatedInitialData.password,
       motivation: data.motivation,
 
       jobs: jobs,
@@ -93,8 +116,8 @@ export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
     console.log("jobs payload", payload.jobs);
 
     try {
-      const response = await postUserSignup(payload);
-      console.log("Signup information submitted successfully:", response);
+      await postUserSignup(payload);
+      console.log("Signup information submitted successfully");
 
       navigate("/login", {
         replace: true,
@@ -187,7 +210,7 @@ const MotivationCard = ({
         </button>
       </CardHeader>
 
-      {open && (
+      {open ? (
         <>
           <CardHeader className="py-0">
             <h3
@@ -202,7 +225,7 @@ const MotivationCard = ({
             <MotivationForm />
           </CardContent>
         </>
-      )}
+      ) : null}
     </Card>
   );
 };
@@ -244,13 +267,13 @@ const EducationCard = ({
         </button>
       </CardHeader>
 
-      {open && (
+      {open ? (
         <div>
           <CardContent id="edu-content" className="pb-6">
             <EducationForm />
           </CardContent>
         </div>
-      )}
+      ) : null}
     </Card>
   );
 };
@@ -292,13 +315,13 @@ const ExperienceCard = ({
         </button>
       </CardHeader>
 
-      {open && (
+      {open ? (
         <div>
           <CardContent id="exp-content" className="pb-6">
             <ExperienceForm />
           </CardContent>
         </div>
-      )}
+      ) : null}
     </Card>
   );
 };

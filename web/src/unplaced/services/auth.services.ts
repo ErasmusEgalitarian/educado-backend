@@ -28,22 +28,22 @@ export interface SignupPayload {
   password: string;
   motivation: string;
 
-  jobs: Array<{
+  jobs: {
     company: string;
     title: string;
     startDate: string;
     endDate: string | null;
     description: string;
-  }>;
+  }[];
 
-  educations: Array<{
+  educations: {
     educationType: string;
     isInProgress: string;
     course: string;
     institution: string;
     startDate: string;
     endDate: string;
-  }>;
+  }[];
 }
 
 

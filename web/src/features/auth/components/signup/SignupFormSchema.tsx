@@ -1,16 +1,15 @@
 import { useEffect, useRef } from "react";
 import { useFormContext, useFieldArray } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/shared/components/shadcn/button";
+
+import { MonthYearInput } from "@/auth/components/signup/MonthYearInput";
+import { EDUCATION_OPTIONS } from "@/auth/constants/educationOptions";
 import deleteIcon from "@/shared/assets/delete 1.svg";
 import plusIcon from "@/shared/assets/plus 2.svg";
-
-import { EDUCATION_OPTIONS } from "@/auth/constants/educationOptions";
 import { FormInput } from "@/shared/components/form/form-input";
-import { MonthYearInput } from "@/auth/components/signup/MonthYearInput";
 import { FormSelect } from "@/shared/components/form/form-select";
 import { FormTextarea } from "@/shared/components/form/form-textarea";
-import { Checkbox } from "@/shared/components/shadcn/checkbox";
+import { Button } from "@/shared/components/shadcn/button";
 import {
   Card,
   CardHeader,
@@ -18,6 +17,7 @@ import {
   CardTitle,
   CardContent,
 } from "@/shared/components/shadcn/card";
+import { Checkbox } from "@/shared/components/shadcn/checkbox";
 
 const maxChars = 400;
 const STATUS = ["Em andamento", "Concluída"] as const;
@@ -48,7 +48,7 @@ const jobSchema = z.object({
     if (data.isCurrentJob) {
       return data.jobEndDate === null;        // ✔ must be null
     } else {
-      return typeof data.jobEndDate === "string" && data.jobEndDate.length > 0; 
+      return typeof data.jobEndDate === "string" && data.jobEndDate.length > 0;
     }
   },
   {

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useFormContext } from "react-hook-form";
+
 import { FormInput } from "@/shared/components/form/form-input";
 
 const MONTHS = [
@@ -61,7 +62,7 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
     );
 
     // user fully cleared the field
-    if (!trimmedMonth && !trimmedYear) {
+    if (trimmedMonth === "" && trimmedYear === "") {
       setValue(name, "", {
         shouldValidate: true,
         shouldTouch: true,
@@ -70,7 +71,7 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
       return;
     }
 
-    if (validMonth && trimmedYear.length === 4) {
+    if (validMonth !== undefined && trimmedYear.length === 4) {
       setValue(name, `${validMonth} / ${trimmedYear}`, {
         shouldValidate: true,
         shouldTouch: true,
@@ -117,7 +118,9 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
   };
 
   const handleBlur = () => {
-    setTimeout(() => setShowDropdown(false), 100);
+    setTimeout(() => {
+      setShowDropdown(false);
+    }, 100);
     updateFormValue(monthInput, yearInput);
   };
 
@@ -181,9 +184,9 @@ export const MonthYearInput: React.FC<MonthYearInputProps> = ({
 
   // Sync local display state from form value (e.g. reset, prefill)
   React.useEffect(() => {
-    const raw = getValues(name) as string | undefined;
-    if (raw) {
-      const [m, y] = raw.split(" / ");
+    const formValue: unknown = getValues(name);
+    if (typeof formValue === "string" && formValue.trim().length > 0) {
+      const [m, y] = formValue.split(" / ");
       setMonthInput(m || "");
       setYearInput(y || "");
       setStep(y ? "year" : "month");

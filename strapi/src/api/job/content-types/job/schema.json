@@ -12,19 +12,23 @@
   "pluginOptions": {},
   "attributes": {
     "Company": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "Title": {
-      "type": "string"
-    },
-    "StartDate": {
-      "type": "date"
-    },
-    "EndDate": {
-      "type": "date"
+      "type": "string",
+      "required": true
     },
     "Description": {
       "type": "string"
+    },
+    "StartDate": {
+      "type": "string",
+      "required": true
+    },
+    "EndDate": {
+      "type": "string",
+      "required": true
     }
   }
 }

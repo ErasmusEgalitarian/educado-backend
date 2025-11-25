@@ -11,8 +11,25 @@ import { sendVerificationEmail } from '../../../helpers/email';
 export default factories.createCoreController('api::content-creator.content-creator',({strapi}) => ({
     async register(ctx){
         try{
+            console.log("Registration request received:", ctx.request.body);
             const institutionalMails = ["student.aau.dk"];
-            const {firstName, lastName, email, password } = ctx.request.body;
+            
+            const {firstName,
+                lastName, 
+                email, 
+                password, 
+                motivation,
+                jobs = [],
+                educations = []} = ctx.request.body;
+
+
+            if (!Array.isArray(jobs) || jobs.length === 0) {
+                return ctx.badRequest("At least one job is required");
+            }
+
+            if (!Array.isArray(educations) || educations.length === 0) {
+                return ctx.badRequest("At least one education is required");
+            }
 
             const existing = await strapi.db.query('api::content-creator.content-creator').findOne({
             where: { email },
@@ -22,30 +39,83 @@ export default factories.createCoreController('api::content-creator.content-crea
                 return ctx.badRequest('Email already in use')
             }
                 
-            const encryptedPassword = await bcrypt.hash(password,10)
             const domain = email.split('@')[1]?.toLowerCase();
             const isTrusted = institutionalMails.includes(domain)
             
             const confirmationDate = isTrusted ? new Date() : null;
+            
+            // currentcompany = job with null end date
+            // end date = smth crazy to identify no end date 
 
-            const newUser = await strapi.db.query('api::content-creator.content-creator').create({
-                data:{
-                    email: email,
-                    password: encryptedPassword,
-                    firstName: firstName,
-                    lastName: lastName,
-                    verifiedAt: confirmationDate
-                }
-            })
+            /*
+            dddsddssDSD
+            
+            */ 
+           
+            const jobDocs = await Promise.all(
+                jobs.map((job) =>
+                    strapi.documents("api::job.job").create({
+                    data: {
+                        Company: job.company,
+                        Title: job.title,
+                        StartDate: job.startDate,
+                        EndDate: job.endDate,
+                        Description: job.description,
+                    },
+                    status: "published",
+                    })
+                )
+            );
+            
 
-            ctx.send({
-          status: isTrusted ? 'approved' : 'pending',
-          userId: newUser.id,
-          verifiedAt: confirmationDate,
-          message: isTrusted
-            ? `User registered and auto-approved on ${confirmationDate!.toISOString()}.`
-            : 'Registration successful. Waiting for admin approval.',
-        });
+            const educationDocs = await Promise.all(
+              educations.map((edu) =>
+                strapi.documents("api::education.education").create({
+                  data: {
+                    educationType: edu.educationType,
+                    courseExperience: edu.course, 
+                    institution: edu.institution,
+                    startDate: edu.startDate,
+                    endDate: edu.endDate,
+                   
+                  },
+                  status: "published",
+                })
+              )
+            );
+
+              const currentCompany =
+                jobDocs.find((j) => !j.EndDate)?.Company ??
+                jobs[0]?.company ?? // fallback to first job
+                null;
+
+
+                
+             const newUser = await strapi.documents('api::content-creator.content-creator').create({
+                 data:{
+                     email: email,
+                     password: password,
+                     firstName: firstName,
+                     lastName: lastName,
+                     verifiedAt: confirmationDate,
+                     motivation: motivation,
+                     currentCompany: currentCompany,
+                     jobs: jobDocs.map((j) => j.documentId),
+                     educations: educationDocs.map((e) => e.documentId),
+                 }, 
+                 status: "published"
+                
+             })
+
+
+                ctx.send({
+                status: isTrusted ? 'approved' : 'pending',
+                userId: newUser.id,
+                verifiedAt: confirmationDate,
+                message: isTrusted
+                ? `User registered and auto-approved on ${confirmationDate!.toISOString()}.`
+                : 'Registration successful. Waiting for admin approval.',
+                });
 
         // Utility functions
         function generateTokenCode(length) {
@@ -58,11 +128,17 @@ export default factories.createCoreController('api::content-creator.content-crea
             return result;
         }
   
-
+        //temp ctx send for testing
+        ctx.body = {
+            status: "ok",
+            message: "Payload received",
+            data: ctx.request.body,
+        };
         sendVerificationEmail(newUser, generateTokenCode(4));
         
         }
         catch(err){
+           
             ctx.badRequest('Registration failed', {error: err.message});
         }
         

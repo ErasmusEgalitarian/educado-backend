@@ -19804,28 +19804,12 @@
                                 "type": "string",
                                 "format": "date"
                               },
-                              "biography": {
+                              "motivation": {
                                 "type": "string"
                               },
                               "email": {
                                 "type": "string",
                                 "format": "email"
-                              },
-                              "education": {
-                                "type": "string",
-                                "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
-                                ]
-                              },
-                              "statusValue": {
-                                "type": "string",
-                                "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
-                                ]
                               },
                               "currentCompany": {
                                 "type": "string"
@@ -19944,15 +19928,13 @@
                                     "Title": {
                                       "type": "string"
                                     },
+                                    "Description": {
+                                      "type": "string"
+                                    },
                                     "StartDate": {
-                                      "type": "string",
-                                      "format": "date"
+                                      "type": "string"
                                     },
                                     "EndDate": {
-                                      "type": "string",
-                                      "format": "date"
-                                    },
-                                    "Description": {
                                       "type": "string"
                                     },
                                     "createdAt": {
@@ -20030,12 +20012,10 @@
                                       "type": "string"
                                     },
                                     "startDate": {
-                                      "type": "string",
-                                      "format": "date"
+                                      "type": "string"
                                     },
                                     "endDate": {
-                                      "type": "string",
-                                      "format": "date"
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -20686,10 +20666,7 @@
             "required": [
               "firstName",
               "email",
-              "password",
-              "education",
-              "statusValue",
-              "currentCompany"
+              "password"
             ],
             "type": "object",
             "properties": {
@@ -20703,7 +20680,7 @@
                 "type": "string",
                 "format": "date"
               },
-              "biography": {
+              "motivation": {
                 "type": "string"
               },
               "email": {
@@ -20714,22 +20691,6 @@
                 "type": "string",
                 "format": "password",
                 "example": "*******"
-              },
-              "education": {
-                "type": "string",
-                "enum": [
-                  "TODO1",
-                  "TODO2",
-                  "TODO3"
-                ]
-              },
-              "statusValue": {
-                "type": "string",
-                "enum": [
-                  "TODO1",
-                  "TODO2",
-                  "TODO3"
-                ]
               },
               "currentCompany": {
                 "type": "string"
@@ -20851,10 +20812,7 @@
         "required": [
           "firstName",
           "email",
-          "password",
-          "education",
-          "statusValue",
-          "currentCompany"
+          "password"
         ],
         "properties": {
           "id": {
@@ -20873,28 +20831,12 @@
             "type": "string",
             "format": "date"
           },
-          "biography": {
+          "motivation": {
             "type": "string"
           },
           "email": {
             "type": "string",
             "format": "email"
-          },
-          "education": {
-            "type": "string",
-            "enum": [
-              "TODO1",
-              "TODO2",
-              "TODO3"
-            ]
-          },
-          "statusValue": {
-            "type": "string",
-            "enum": [
-              "TODO1",
-              "TODO2",
-              "TODO3"
-            ]
           },
           "currentCompany": {
             "type": "string"
@@ -22339,28 +22281,12 @@
                         "type": "string",
                         "format": "date"
                       },
-                      "biography": {
+                      "motivation": {
                         "type": "string"
                       },
                       "email": {
                         "type": "string",
                         "format": "email"
-                      },
-                      "education": {
-                        "type": "string",
-                        "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
-                        ]
-                      },
-                      "statusValue": {
-                        "type": "string",
-                        "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
-                        ]
                       },
                       "currentCompany": {
                         "type": "string"
@@ -22410,15 +22336,13 @@
                             "Title": {
                               "type": "string"
                             },
+                            "Description": {
+                              "type": "string"
+                            },
                             "StartDate": {
-                              "type": "string",
-                              "format": "date"
+                              "type": "string"
                             },
                             "EndDate": {
-                              "type": "string",
-                              "format": "date"
-                            },
-                            "Description": {
                               "type": "string"
                             },
                             "createdAt": {
@@ -22496,12 +22420,10 @@
                               "type": "string"
                             },
                             "startDate": {
-                              "type": "string",
-                              "format": "date"
+                              "type": "string"
                             },
                             "endDate": {
-                              "type": "string",
-                              "format": "date"
+                              "type": "string"
                             },
                             "createdAt": {
                               "type": "string",
@@ -24477,28 +24399,12 @@
                             "type": "string",
                             "format": "date"
                           },
-                          "biography": {
+                          "motivation": {
                             "type": "string"
                           },
                           "email": {
                             "type": "string",
                             "format": "email"
-                          },
-                          "education": {
-                            "type": "string",
-                            "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
-                            ]
-                          },
-                          "statusValue": {
-                            "type": "string",
-                            "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
-                            ]
                           },
                           "currentCompany": {
                             "type": "string"
@@ -24548,15 +24454,13 @@
                                 "Title": {
                                   "type": "string"
                                 },
+                                "Description": {
+                                  "type": "string"
+                                },
                                 "StartDate": {
-                                  "type": "string",
-                                  "format": "date"
+                                  "type": "string"
                                 },
                                 "EndDate": {
-                                  "type": "string",
-                                  "format": "date"
-                                },
-                                "Description": {
                                   "type": "string"
                                 },
                                 "createdAt": {
@@ -24634,12 +24538,10 @@
                                   "type": "string"
                                 },
                                 "startDate": {
-                                  "type": "string",
-                                  "format": "date"
+                                  "type": "string"
                                 },
                                 "endDate": {
-                                  "type": "string",
-                                  "format": "date"
+                                  "type": "string"
                                 },
                                 "createdAt": {
                                   "type": "string",
@@ -26527,28 +26429,12 @@
                         "type": "string",
                         "format": "date"
                       },
-                      "biography": {
+                      "motivation": {
                         "type": "string"
                       },
                       "email": {
                         "type": "string",
                         "format": "email"
-                      },
-                      "education": {
-                        "type": "string",
-                        "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
-                        ]
-                      },
-                      "statusValue": {
-                        "type": "string",
-                        "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
-                        ]
                       },
                       "currentCompany": {
                         "type": "string"
@@ -26598,15 +26484,13 @@
                             "Title": {
                               "type": "string"
                             },
+                            "Description": {
+                              "type": "string"
+                            },
                             "StartDate": {
-                              "type": "string",
-                              "format": "date"
+                              "type": "string"
                             },
                             "EndDate": {
-                              "type": "string",
-                              "format": "date"
-                            },
-                            "Description": {
                               "type": "string"
                             },
                             "createdAt": {
@@ -26684,12 +26568,10 @@
                               "type": "string"
                             },
                             "startDate": {
-                              "type": "string",
-                              "format": "date"
+                              "type": "string"
                             },
                             "endDate": {
-                              "type": "string",
-                              "format": "date"
+                              "type": "string"
                             },
                             "createdAt": {
                               "type": "string",
@@ -28297,28 +28179,12 @@
                       "type": "string",
                       "format": "date"
                     },
-                    "biography": {
+                    "motivation": {
                       "type": "string"
                     },
                     "email": {
                       "type": "string",
                       "format": "email"
-                    },
-                    "education": {
-                      "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
-                    },
-                    "statusValue": {
-                      "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
                     },
                     "currentCompany": {
                       "type": "string"
@@ -28368,15 +28234,13 @@
                           "Title": {
                             "type": "string"
                           },
+                          "Description": {
+                            "type": "string"
+                          },
                           "StartDate": {
-                            "type": "string",
-                            "format": "date"
+                            "type": "string"
                           },
                           "EndDate": {
-                            "type": "string",
-                            "format": "date"
-                          },
-                          "Description": {
                             "type": "string"
                           },
                           "createdAt": {
@@ -28454,12 +28318,10 @@
                             "type": "string"
                           },
                           "startDate": {
-                            "type": "string",
-                            "format": "date"
+                            "type": "string"
                           },
                           "endDate": {
-                            "type": "string",
-                            "format": "date"
+                            "type": "string"
                           },
                           "createdAt": {
                             "type": "string",
@@ -28693,6 +28555,13 @@
         ],
         "properties": {
           "data": {
+            "required": [
+              "educationType",
+              "courseExperience",
+              "institution",
+              "startDate",
+              "endDate"
+            ],
             "type": "object",
             "properties": {
               "educationType": {
@@ -28705,12 +28574,10 @@
                 "type": "string"
               },
               "startDate": {
-                "type": "string",
-                "format": "date"
+                "type": "string"
               },
               "endDate": {
-                "type": "string",
-                "format": "date"
+                "type": "string"
               },
               "locale": {
                 "type": "string"
@@ -28770,6 +28637,13 @@
       },
       "Education": {
         "type": "object",
+        "required": [
+          "educationType",
+          "courseExperience",
+          "institution",
+          "startDate",
+          "endDate"
+        ],
         "properties": {
           "id": {
             "type": "number"
@@ -28787,12 +28661,10 @@
             "type": "string"
           },
           "startDate": {
-            "type": "string",
-            "format": "date"
+            "type": "string"
           },
           "endDate": {
-            "type": "string",
-            "format": "date"
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -29104,12 +28976,10 @@
                   "type": "string"
                 },
                 "startDate": {
-                  "type": "string",
-                  "format": "date"
+                  "type": "string"
                 },
                 "endDate": {
-                  "type": "string",
-                  "format": "date"
+                  "type": "string"
                 },
                 "createdAt": {
                   "type": "string",
@@ -31902,28 +31772,12 @@
                       "type": "string",
                       "format": "date"
                     },
-                    "biography": {
+                    "motivation": {
                       "type": "string"
                     },
                     "email": {
                       "type": "string",
                       "format": "email"
-                    },
-                    "education": {
-                      "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
-                    },
-                    "statusValue": {
-                      "type": "string",
-                      "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
-                      ]
                     },
                     "currentCompany": {
                       "type": "string"
@@ -31973,15 +31827,13 @@
                           "Title": {
                             "type": "string"
                           },
+                          "Description": {
+                            "type": "string"
+                          },
                           "StartDate": {
-                            "type": "string",
-                            "format": "date"
+                            "type": "string"
                           },
                           "EndDate": {
-                            "type": "string",
-                            "format": "date"
-                          },
-                          "Description": {
                             "type": "string"
                           },
                           "createdAt": {
@@ -32059,12 +31911,10 @@
                             "type": "string"
                           },
                           "startDate": {
-                            "type": "string",
-                            "format": "date"
+                            "type": "string"
                           },
                           "endDate": {
-                            "type": "string",
-                            "format": "date"
+                            "type": "string"
                           },
                           "createdAt": {
                             "type": "string",
@@ -32309,6 +32159,12 @@
         ],
         "properties": {
           "data": {
+            "required": [
+              "Company",
+              "Title",
+              "StartDate",
+              "EndDate"
+            ],
             "type": "object",
             "properties": {
               "Company": {
@@ -32317,15 +32173,13 @@
               "Title": {
                 "type": "string"
               },
+              "Description": {
+                "type": "string"
+              },
               "StartDate": {
-                "type": "string",
-                "format": "date"
+                "type": "string"
               },
               "EndDate": {
-                "type": "string",
-                "format": "date"
-              },
-              "Description": {
                 "type": "string"
               },
               "locale": {
@@ -32386,6 +32240,12 @@
       },
       "Job": {
         "type": "object",
+        "required": [
+          "Company",
+          "Title",
+          "StartDate",
+          "EndDate"
+        ],
         "properties": {
           "id": {
             "type": "number"
@@ -32399,15 +32259,13 @@
           "Title": {
             "type": "string"
           },
+          "Description": {
+            "type": "string"
+          },
           "StartDate": {
-            "type": "string",
-            "format": "date"
+            "type": "string"
           },
           "EndDate": {
-            "type": "string",
-            "format": "date"
-          },
-          "Description": {
             "type": "string"
           },
           "createdAt": {
@@ -32716,15 +32574,13 @@
                 "Title": {
                   "type": "string"
                 },
+                "Description": {
+                  "type": "string"
+                },
                 "StartDate": {
-                  "type": "string",
-                  "format": "date"
+                  "type": "string"
                 },
                 "EndDate": {
-                  "type": "string",
-                  "format": "date"
-                },
-                "Description": {
                   "type": "string"
                 },
                 "createdAt": {
@@ -35100,28 +34956,12 @@
                             "type": "string",
                             "format": "date"
                           },
-                          "biography": {
+                          "motivation": {
                             "type": "string"
                           },
                           "email": {
                             "type": "string",
                             "format": "email"
-                          },
-                          "education": {
-                            "type": "string",
-                            "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
-                            ]
-                          },
-                          "statusValue": {
-                            "type": "string",
-                            "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
-                            ]
                           },
                           "currentCompany": {
                             "type": "string"
@@ -35171,15 +35011,13 @@
                                 "Title": {
                                   "type": "string"
                                 },
+                                "Description": {
+                                  "type": "string"
+                                },
                                 "StartDate": {
-                                  "type": "string",
-                                  "format": "date"
+                                  "type": "string"
                                 },
                                 "EndDate": {
-                                  "type": "string",
-                                  "format": "date"
-                                },
-                                "Description": {
                                   "type": "string"
                                 },
                                 "createdAt": {
@@ -35257,12 +35095,10 @@
                                   "type": "string"
                                 },
                                 "startDate": {
-                                  "type": "string",
-                                  "format": "date"
+                                  "type": "string"
                                 },
                                 "endDate": {
-                                  "type": "string",
-                                  "format": "date"
+                                  "type": "string"
                                 },
                                 "createdAt": {
                                   "type": "string",
@@ -36832,28 +36668,12 @@
                                 "type": "string",
                                 "format": "date"
                               },
-                              "biography": {
+                              "motivation": {
                                 "type": "string"
                               },
                               "email": {
                                 "type": "string",
                                 "format": "email"
-                              },
-                              "education": {
-                                "type": "string",
-                                "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
-                                ]
-                              },
-                              "statusValue": {
-                                "type": "string",
-                                "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
-                                ]
                               },
                               "currentCompany": {
                                 "type": "string"
@@ -36972,15 +36792,13 @@
                                     "Title": {
                                       "type": "string"
                                     },
+                                    "Description": {
+                                      "type": "string"
+                                    },
                                     "StartDate": {
-                                      "type": "string",
-                                      "format": "date"
+                                      "type": "string"
                                     },
                                     "EndDate": {
-                                      "type": "string",
-                                      "format": "date"
-                                    },
-                                    "Description": {
                                       "type": "string"
                                     },
                                     "createdAt": {
@@ -37058,12 +36876,10 @@
                                       "type": "string"
                                     },
                                     "startDate": {
-                                      "type": "string",
-                                      "format": "date"
+                                      "type": "string"
                                     },
                                     "endDate": {
-                                      "type": "string",
-                                      "format": "date"
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",

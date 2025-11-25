@@ -12,19 +12,24 @@
   "pluginOptions": {},
   "attributes": {
     "educationType": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "courseExperience": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "institution": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "startDate": {
-      "type": "date"
+      "type": "string",
+      "required": true
     },
     "endDate": {
-      "type": "date"
+      "type": "string",
+      "required": true
     }
   }
 }

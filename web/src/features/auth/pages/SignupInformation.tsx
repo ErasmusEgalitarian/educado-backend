@@ -1,11 +1,14 @@
-import { set, z } from "zod";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { z } from "zod";
+
+import GenericModalComponent from "@/shared/components/GenericModalComponent";
 import MiniNavbar from "@/shared/components/MiniNavbar";
 import { Button } from "@/shared/components/shadcn/button";
+
 import { SignupSchema } from "../components/signup/micro-services";
-import { useLocation, useNavigate } from "react-router-dom";
 import { Cards } from "../components/signup/SignupCards";
-import { useState } from "react";
-import GenericModalComponent from "@/shared/components/GenericModalComponent";
+
 
 const Header = () => {
   return (
@@ -35,9 +38,9 @@ const Header = () => {
   );
 };
 
-type FooterProps = {
+interface FooterProps {
   isSubmitDisabled: boolean;
-};
+}
 
 const Footer = ({ isSubmitDisabled }: FooterProps) => {
   const navigateBack = useNavigate();
@@ -67,7 +70,7 @@ const Footer = ({ isSubmitDisabled }: FooterProps) => {
         variant="link"
         className="text-error-surface-default font-bold font-['Montserrat'] underline"
         style={{ fontSize: "18px", lineHeight: "23.4px" }}
-        onClick={() => navigateBack(-1)}
+        onClick={() => { navigateBack(-1); }}
       >
         Voltar para o cadastro
       </Button>
@@ -76,7 +79,7 @@ const Footer = ({ isSubmitDisabled }: FooterProps) => {
         className="justify-end ml-auto disabled:opacity-20 text-greyscale-text-negative"
         type="button"
         disabled={isSubmitDisabled}
-        onClick={() => setShowModal(true)}
+        onClick={() => {setShowModal(true)}}
       >
         <span
           className="font-['Montserrat'] font-bold"
@@ -112,12 +115,11 @@ const SignupInfo = () => {
     state?: { initial?: z.infer<typeof SignupSchema> };
   };
 
-  //Not working yet
-  /* useEffect(() => {
+  useEffect(() => {
     if (!location.state?.initial) {
       navigate("/signup", { replace: true });
     }
-  }, [location.state, navigate]); */
+  }, [location.state, navigate]);
 
   const initial = location.state?.initial;
 

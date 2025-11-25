@@ -49,7 +49,6 @@ const Login = () => {
       setError("");
     }, 5000);
   };
-
   const { call: login, isLoading: submitLoading } = useApi(
     postContentCreatorLogin
   );
@@ -131,19 +130,18 @@ const Login = () => {
 
   function areFieldsFilled(isThereAnError = false) {
     const inputloginEmail = document.getElementById(
-      "email-field"
+      "email-field",
     ) as HTMLInputElement;
     const inputloginPass = document.getElementById(
-      "password-field"
+      "password-field",
     ) as HTMLInputElement;
 
     const submitloginButton = document.getElementById(
-      "submit-login-button"
+      "submit-login-button",
     ) as HTMLButtonElement;
-
     // Makes sure that the button is only clickable when both fields are filled and there are no email error
     const buttonContainer = submitloginButton.parentElement as HTMLDivElement;
-
+    
     if (isThereAnError) {
       // Disable button when there's an error
       submitloginButton.setAttribute("disabled", "true");
@@ -166,10 +164,9 @@ const Login = () => {
     } else {
       // Disable button when fields are empty
       submitloginButton.setAttribute("disabled", "true");
-      buttonContainer.style.backgroundColor =
-        "var(--greyscale-surface-disabled)";
+      buttonContainer.style.backgroundColor = "var(--greyscale-surface-disabled)";
       submitloginButton.style.color = "var(--greyscale-border-default)";
-
+      
       // Clear error messages when fields are empty
       setEmailError(null);
       setEmailErrorMessage("");
@@ -239,8 +236,7 @@ const Login = () => {
 
             {/*Title*/}
             <h1 className="text-primary-text-title text-3xl font-bold font-montserrat leading-normal self-stretch mb-10 px-10">
-              {t("login.welcome-back")}
-              {/*Welcome back to Educado!*/}
+              {t("login.welcome-back")}{/*Welcome back to Educado!*/}
             </h1>
 
             {/*Submit form, i.e. fields to write email and password*/}
@@ -276,8 +272,7 @@ const Login = () => {
                     className="after:content-['*'] after:ml-0.5 after:text-error-surface-default text-primary-text-title text-[18px] text-sm font-bold font-montserrat mt-6"
                     htmlFor="password-field"
                   >
-                    {t("login.password")}
-                    {/*Password*/}
+                    {t("login.password")}{/*Password*/}
                   </label>
                   <input
                     onInput={() => {
@@ -327,8 +322,7 @@ const Login = () => {
                   }}
                   className="text--greyscale-text-subtle text-lg font-normal font-montserrat cursor-pointer hover:text-primary-surface-default"
                 >
-                  {t("login.forgot-password")}
-                  {/*Forgot your password?*/}
+                  {t("login.forgot-password")}{/*Forgot your password?*/}
                 </label>
               </div>
               <span className="h-12" /> {/* spacing */}
@@ -346,8 +340,7 @@ const Login = () => {
                     ) : (
                       false
                     )}
-                    {t("login.login-button")}
-                    {/*Log In*/}
+                    {t("login.login-button")}{/*Log In*/}
                   </button>
                 </div>
               </div>
@@ -361,8 +354,7 @@ const Login = () => {
                   to="/signup"
                   className="text-primary-text-title text-lg font-normal font-montserrat underline hover:text-primary-surface-default gap-4"
                 >
-                  {t("login.register-now")}
-                  {/*Register now*/}
+                  {t("login.register-now")}{/*Register now*/}
                 </Link>
               </div>
             </form>
@@ -411,5 +403,6 @@ const Login = () => {
     </main>
   );
 };
+
 
 export default Login;
