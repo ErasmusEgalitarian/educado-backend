@@ -1,19 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { UploadFile } from "@/shared/api/types.gen";
+import { MediaPickerTrigger } from "@/features/media/components/media-picker-trigger";
+import { MediaUploadZone } from "@/features/media/components/media-upload-zone";
+import type { UploadFile } from "@/shared/api/types.gen";
 import { PageContainer } from "@/shared/components/page-container";
-import { Button } from "@/shared/components/shadcn/button";
 import { Form } from "@/shared/components/shadcn/form";
 
-import {
-  MediaDropzone,
-  MediaDropzoneVariant,
-} from "./features/media/components/media-dropzone";
-import { MediaInput } from "./features/media/components/media-input";
 import FormActions from "./shared/components/form/form-actions";
 
 // The zod schema defines both validation and the form's data shape.
@@ -24,9 +19,6 @@ const formSchema = z.object({
 });
 
 const TestPage = () => {
-  const [dropzoneVariant, setDropzoneVariant] =
-    useState<MediaDropzoneVariant>("upload");
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,38 +36,34 @@ const TestPage = () => {
   return (
     <PageContainer title="Test Page">
       <div className="grid gap-8">
-        {/* Section 1: Form with MediaInput */}
+        {/* Section 1: Form with MediaPickerTrigger (select from library or upload) */}
         <div className="p-6 border rounded-lg">
-          <h2 className="text-lg font-semibold mb-4">Form Integration</h2>
+          <h2 className="text-lg font-semibold mb-4">
+            MediaPickerTrigger - Form Integration (Select/Upload)
+          </h2>
           <Form {...form}>
             <form
               onSubmit={(e) => void form.handleSubmit(onSubmit)(e)}
               className="space-y-8"
             >
               <div className="space-y-2">
-                <p className="text-sm font-medium">Profile Image (Required)</p>
-                <Controller
-                  control={form.control}
-                  name="image"
-                  render={({
-                    field: { value, onChange },
-                    fieldState: { error },
-                  }) => (
-                    <div>
-                      <MediaInput
-                        variant="select"
-                        value={value}
-                        onChange={onChange}
-                        maxFiles={2}
-                      />
-                      {error && (
-                        <p className="text-sm text-destructive mt-1">
-                          {error.message}
-                        </p>
-                      )}
-                    </div>
-                  )}
+                <p className="text-sm font-medium">Cover Image (Required)</p>
+                <MediaPickerTrigger
+                  value={form.watch("image")}
+                  onChange={(file) => {
+                    form.setValue("image", file ?? undefined, {
+                      shouldDirty: true,
+                      shouldValidate: true,
+                    });
+                  }}
+                  fileTypes="image"
+                  maxFiles={1}
                 />
+                {form.formState.errors.image && (
+                  <p className="text-sm text-destructive mt-1">
+                    {form.formState.errors.image.message}
+                  </p>
+                )}
               </div>
 
               <FormActions
@@ -89,28 +77,17 @@ const TestPage = () => {
           </Form>
         </div>
 
-        {/* Section 2: Standalone Dropzone with Toggle */}
+        {/* Section 2: MediaUploadZone - Direct upload with previews */}
         <div className="p-6 border rounded-lg">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold">Standalone Dropzone</h2>
-            <Button
-              variant="outline"
-              onClick={() => {
-                setDropzoneVariant((v) =>
-                  v === "upload" ? "select" : "upload"
-                );
-              }}
-            >
-              Toggle Mode: {dropzoneVariant}
-            </Button>
-          </div>
-
-          <MediaDropzone
-            variant={dropzoneVariant}
-            onFileSelect={(files) =>
-              toast.info(`Files selected: ${String(files.length)}`)
-            }
-            onClick={() => toast.info("Clicked (Select Mode)")}
+          <h2 className="text-lg font-semibold mb-4">
+            MediaUploadZone - Direct Upload with Metadata
+          </h2>
+          <MediaUploadZone
+            fileTypes={["image", "video"]}
+            maxFiles={5}
+            onUploadComplete={(files) => {
+              toast.success(`Uploaded ${String(files.length)} file(s)`);
+            }}
           />
         </div>
       </div>

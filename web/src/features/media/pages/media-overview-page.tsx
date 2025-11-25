@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { toast } from "sonner";
 
-import { MediaInput } from "@/features/media/components/media-input";
+import { MediaUploadZone } from "@/features/media/components/media-upload-zone";
 import { PageContainer } from "@/shared/components/page-container";
 import { Button } from "@/shared/components/shadcn/button";
 import {
@@ -27,12 +25,9 @@ const MediaOverviewPage = () => {
   };
 
   const handleUploadComplete = async () => {
-    toast.success(
-      t("media.uploadSuccess", { defaultValue: "Upload completed" })
-    );
     setShowUploader(false);
     // Invalidate media list so DataDisplay refetches
-    await queryClient.invalidateQueries({ queryKey: ["media"] });
+    await queryClient.invalidateQueries({ queryKey: [["media"]] });
   };
 
   return (
@@ -61,8 +56,7 @@ const MediaOverviewPage = () => {
           <CardContent>
             {showUploader && (
               <div className="mb-6 space-y-4">
-                <MediaInput
-                  variant="upload"
+                <MediaUploadZone
                   onUploadComplete={() => {
                     void handleUploadComplete();
                   }}

@@ -1,10 +1,16 @@
-import { Download, RotateCw, X, ZoomIn, ZoomOut } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import {
+  mdiClose,
+  mdiDownload,
+  mdiMagnifyMinusOutline,
+  mdiMagnifyPlusOutline,
+  mdiRotateRight,
+} from "@mdi/js";
+import Icon from "@mdi/react";
+import React, { useEffect, useState } from "react";
 
 import { Button } from "@/shared/components/shadcn/button";
 
 import { downloadFile } from "../lib/media-utils";
-import React from "react";
 
 interface ImageFullscreenPreviewProps {
   src: string;
@@ -210,7 +216,7 @@ export const ImageFullscreenPreview = ({
           }}
           className="bg-background/80 backdrop-blur-sm hover:bg-background"
         >
-          <ZoomIn className="h-4 w-4" />
+          <Icon path={mdiMagnifyPlusOutline} size={0.65} />
         </Button>
         <Button
           variant="secondary"
@@ -221,7 +227,7 @@ export const ImageFullscreenPreview = ({
           }}
           className="bg-background/80 backdrop-blur-sm hover:bg-background"
         >
-          <ZoomOut className="h-4 w-4" />
+          <Icon path={mdiMagnifyMinusOutline} size={0.65} />
         </Button>
         <Button
           variant="secondary"
@@ -232,7 +238,7 @@ export const ImageFullscreenPreview = ({
           }}
           className="bg-background/80 backdrop-blur-sm hover:bg-background"
         >
-          <RotateCw className="h-4 w-4" />
+          <Icon path={mdiRotateRight} size={0.65} />
         </Button>
         <Button
           variant="secondary"
@@ -240,7 +246,7 @@ export const ImageFullscreenPreview = ({
           onClick={handleDownload}
           className="bg-background/80 backdrop-blur-sm hover:bg-background"
         >
-          <Download className="h-4 w-4" />
+          <Icon path={mdiDownload} size={0.65} />
         </Button>
         <Button
           variant="secondary"
@@ -251,7 +257,7 @@ export const ImageFullscreenPreview = ({
           }}
           className="bg-background/80 backdrop-blur-sm hover:bg-background"
         >
-          <X className="h-4 w-4" />
+          <Icon path={mdiClose} size={0.65} />
         </Button>
       </div>
 

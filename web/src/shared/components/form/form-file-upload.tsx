@@ -5,7 +5,7 @@ import {
   type Path,
 } from "react-hook-form";
 
-import { MediaInput } from "@/features/media/components/media-input";
+import { MediaPickerTrigger } from "@/features/media/components/media-picker-trigger";
 import type { MediaFileType } from "@/features/media/lib/media-utils";
 import type { UploadFile } from "@/shared/api/types.gen";
 import { cn } from "@/shared/lib/utils";
@@ -19,6 +19,10 @@ interface FormFileUploadProps<T extends FieldValues> {
   className?: string;
 }
 
+/**
+ * React Hook Form integration for media file selection.
+ * Uses MediaPickerTrigger to allow browsing library or uploading new files.
+ */
 export const FormFileUpload = <T extends FieldValues>({
   name,
   control,
@@ -52,8 +56,7 @@ export const FormFileUpload = <T extends FieldValues>({
 
   return (
     <div className={cn("space-y-2", className)}>
-      <MediaInput
-        variant="select"
+      <MediaPickerTrigger
         value={singleValue}
         onChange={handleChange}
         fileTypes={fileTypes}

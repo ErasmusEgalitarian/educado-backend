@@ -35,7 +35,7 @@ const MediaDisplayEditor = ({
 
   const mediaColumns = useMemo(() => createMediaColumns(t), [t]);
   const mediaCard = useCallback(
-    (asset: UploadFile) => <MediaCard asset={asset} variant="classic" />,
+    (asset: UploadFile) => <MediaCard asset={asset} variant="compact" />,
     []
   );
 

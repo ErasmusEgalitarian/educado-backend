@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
-import { UploadFile } from "@/shared/api/types.gen";
+import type { UploadFile } from "@/shared/api/types.gen";
 import { Button } from "@/shared/components/shadcn/button";
 import {
   Dialog,
@@ -16,26 +17,41 @@ import {
 } from "@/shared/components/shadcn/tabs";
 
 import MediaDisplayEditor from "./media-display-editor";
-import { MediaInput } from "./media-input";
+import { MediaUploadZone } from "./media-upload-zone";
+
+import type { MediaFileType } from "../lib/media-utils";
 
 interface MediaPickerModalProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   onSelect: (asset: UploadFile) => void;
+  /** Types of files allowed (image, video, file). */
+  fileTypes?: MediaFileType | MediaFileType[];
+  /** Maximum number of files for upload. Defaults to 1. */
+  maxFiles?: number;
 }
 
 const MediaPickerModal = ({
   isOpen,
   onOpenChange,
   onSelect,
+  fileTypes,
+  maxFiles = 1,
 }: MediaPickerModalProps) => {
+  const { t } = useTranslation();
   const [selectedAsset, setSelectedAsset] = useState<UploadFile | null>(null);
 
   const handleUploadComplete = (files: UploadFile[]) => {
     if (files.length > 0) {
+      toast.success(t("media.uploadSuccess", "File uploaded successfully!"));
+    }
+  };
+
+  const handleUploadAndSelect = (files: UploadFile[]) => {
+    if (files.length > 0) {
       onSelect(files[0]);
       onOpenChange(false);
-      toast.success("Arquivo enviado com sucesso!");
+      toast.success(t("media.uploadSuccess", "File uploaded successfully!"));
     }
   };
 
@@ -58,13 +74,13 @@ const MediaPickerModal = ({
               value="enviar"
               className="data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none border-0 border-b-3 border-greyscale-border-lighter data-[state=active]:border-primary-surface-default data-[state=active]:text-primary-surface-default text-greyscale-text-subtle hover:text-greyscale-text-body h-12 px-4"
             >
-              Enviar arquivo
+              {t("media.uploadTab", "Upload file")}
             </TabsTrigger>
             <TabsTrigger
               value="banco"
               className="data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none border-0 border-b-3 border-greyscale-border-lighter data-[state=active]:border-primary-surface-default data-[state=active]:text-primary-surface-default text-greyscale-text-subtle hover:text-greyscale-text-body h-12 px-4"
             >
-              Banco de imagens
+              {t("media.browseTab", "Media library")}
             </TabsTrigger>
           </TabsList>
           <TabsContent
@@ -73,9 +89,15 @@ const MediaPickerModal = ({
           >
             <div className="p-6 h-full flex flex-col items-center justify-center">
               <div className="w-full max-w-2xl">
-                <MediaInput
-                  variant="upload"
+                <MediaUploadZone
+                  fileTypes={fileTypes}
+                  maxFiles={maxFiles}
                   onUploadComplete={handleUploadComplete}
+                  uploadButtonLabel={t("media.uploadOnly", "Upload")}
+                  secondaryAction={{
+                    label: t("media.uploadAndSelect", "Upload & Select"),
+                    onClick: handleUploadAndSelect,
+                  }}
                 />
               </div>
             </div>
@@ -98,12 +120,12 @@ const MediaPickerModal = ({
               variant="ghost"
               className="text-destructive hover:text-destructive/90 hover:bg-destructive/10"
             >
-              Cancelar
+              {t("common.cancel", "Cancel")}
             </Button>
           </DialogClose>
           <div className="flex gap-2">
             <Button disabled={!selectedAsset} onClick={handleConfirmSelection}>
-              Selecionar Imagem
+              {t("media.selectImage", "Select Image")}
             </Button>
           </div>
         </div>

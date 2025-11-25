@@ -10,13 +10,10 @@ import {
 import Icon from "@mdi/react";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
 import { type UploadFile } from "@/shared/api/types.gen";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
-import { FormInput } from "@/shared/components/form/form-input";
-import { FormTextarea } from "@/shared/components/form/form-textarea";
 import ReusableAlertDialog from "@/shared/components/modals/reusable-alert-dialog";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
 import {
@@ -42,6 +39,7 @@ import {
   useDeleteFileMutation,
   useUpdateFileMetadataMutation,
 } from "../api/media-mutations";
+import { filenameSchema, MEDIA_METADATA_LIMITS } from "../lib/media-schemas";
 import {
   formatBytes,
   formatDate,
@@ -56,12 +54,25 @@ import {
 } from "../lib/media-utils";
 
 import { MediaAssetPreview } from "./media-asset-preview";
+import { MediaMetadataForm } from "./media-metadata-form";
 
-// Schema for the editable fields only
+// Schema for the editable fields only - aligned with MediaMetadataForm
 const mediaAssetFormSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  alternativeText: z.string().optional(),
-  caption: z.string().optional(),
+  filename: filenameSchema,
+  alt: z
+    .string()
+    .max(
+      MEDIA_METADATA_LIMITS.alt,
+      `Alt text must be less than ${String(MEDIA_METADATA_LIMITS.alt)} characters`
+    )
+    .optional(),
+  caption: z
+    .string()
+    .max(
+      MEDIA_METADATA_LIMITS.caption,
+      `Caption must be less than ${String(MEDIA_METADATA_LIMITS.caption)} characters`
+    )
+    .optional(),
 });
 
 type MediaFormValues = z.infer<typeof mediaAssetFormSchema>;
@@ -69,15 +80,15 @@ type MediaFormValues = z.infer<typeof mediaAssetFormSchema>;
 const assetToFormValues = (asset: UploadFile | null): MediaFormValues => {
   const { name: nameWithoutExt } = splitFilename(asset?.name ?? "");
   return {
-    name: nameWithoutExt,
-    alternativeText: asset?.alternativeText ?? "",
+    filename: nameWithoutExt,
+    alt: asset?.alternativeText ?? "",
     caption: asset?.caption ?? "",
   };
 };
 
 interface MediaCardProps {
   asset: UploadFile;
-  variant?: "classic" | "compact" | "extended";
+  variant?: "compact" | "extended";
   onUpdate?: (updatedAsset: UploadFile) => void;
   onDelete?: () => void;
   className?: string;
@@ -134,7 +145,6 @@ const MediaCardExtended = ({
   onDelete?: () => void;
   className?: string;
 }) => {
-  const { t } = useTranslation();
   const contentRef = useRef<HTMLDivElement>(null);
   const updateMutation = useUpdateFileMetadataMutation();
   const deleteMutation = useDeleteFileMutation();
@@ -143,7 +153,7 @@ const MediaCardExtended = ({
   const form = useForm<MediaFormValues>({
     resolver: zodResolver(mediaAssetFormSchema),
     defaultValues: assetToFormValues(asset),
-    mode: "onTouched",
+    mode: "onChange", // Validate on every change to clear errors immediately
   });
 
   // Reset form when selected asset changes
@@ -183,13 +193,13 @@ const MediaCardExtended = ({
 
     // Reconstruct the full filename with the original extension
     const { extension } = splitFilename(asset.name);
-    const fullFilename = data.name + extension;
+    const fullFilename = data.filename + extension;
 
     updateMutation.mutate(
       {
         fileId: asset.id,
         name: fullFilename,
-        alternativeText: data.alternativeText,
+        alternativeText: data.alt,
         caption: data.caption,
       },
       {
@@ -393,45 +403,16 @@ const MediaCardExtended = ({
                       updateMutation.reset();
                     }}
                   >
-                    <div className="flex flex-col gap-y-5">
-                      <div className="space-y-2">
-                        <FormInput
-                          control={form.control}
-                          fieldName="name"
-                          inputSize="md"
-                          label={t("media.fileName")}
-                          placeholder={t("media.fileNamePlaceholder")}
-                          type="text"
-                          isRequired
-                        />
-                        {asset.name && (
-                          <p className="text-xs text-muted-foreground">
-                            Extensão:{" "}
-                            <span className="font-medium">
-                              {splitFilename(asset.name).extension || "Nenhuma"}
-                            </span>
-                          </p>
-                        )}
-                      </div>
-                      <FormTextarea
-                        control={form.control}
-                        fieldName="alternativeText"
-                        inputSize="md"
-                        label={t("media.alternativeText")}
-                        placeholder={t("media.alternativeTextPlaceholder")}
-                        maxLength={125}
-                        rows={3}
-                      />
-                      <FormTextarea
-                        control={form.control}
-                        fieldName="caption"
-                        inputSize="md"
-                        label={t("media.caption")}
-                        placeholder={t("media.captionPlaceholder")}
-                        maxLength={200}
-                        rows={6}
-                      />
-                    </div>
+                    <MediaMetadataForm
+                      control={form.control}
+                      disabled={updateMutation.isPending}
+                      fileExtension={
+                        asset.name
+                          ? splitFilename(asset.name).extension
+                          : undefined
+                      }
+                      inputSize="md"
+                    />
                   </OverlayStatusWrapper>
                   {updateMutation.error && (
                     <ErrorDisplay
@@ -478,9 +459,6 @@ export const MediaCard = ({
       />
     );
   }
-  if (variant === "classic") {
-    return <MediaCardClassic asset={asset} className={className} />;
-  }
-  // Default to compact
-  //return <MediaCardCompact asset={asset} className={className} />;
+
+  return <MediaCardClassic asset={asset} className={className} />;
 };

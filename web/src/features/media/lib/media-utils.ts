@@ -160,18 +160,23 @@ export const getAcceptString = (fileTypes?: MediaFileType | MediaFileType[]): st
  * Creates a temporary blob URL that should be revoked when no longer needed.
  * 
  * @param {File} file - The file to convert.
- * @param {string} [alt] - Optional alternative text.
+ * @param {Object} [options] - Optional configuration.
+ * @param {string} [options.alt] - Optional alternative text.
+ * @param {string} [options.url] - Optional pre-created blob URL (useful when managing URL lifecycle externally).
  * @returns {object} An UploadFile-like object with a blob URL.
  */
-export const fileToUploadFilePreview = (file: File, alt?: string) => {
-    const url = URL.createObjectURL(file);
+export const fileToUploadFilePreview = (
+    file: File,
+    options?: { alt?: string; url?: string }
+) => {
+    const url = options?.url ?? URL.createObjectURL(file);
     return {
         id: 0,
         name: file.name,
         mime: file.type,
         url,
         size: file.size / 1024, // Convert to KB
-        alternativeText: alt ?? "",
+        alternativeText: options?.alt ?? "",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
     };

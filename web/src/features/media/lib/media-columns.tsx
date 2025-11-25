@@ -1,11 +1,12 @@
-import { mdiFile, mdiImage, mdiVideo } from "@mdi/js";
-import { type ColumnDef } from "@tanstack/react-table";
 import {
-  Image as ImageIcon,
-  File as FileIcon,
-  Video as VideoIcon,
-  MoreHorizontal,
-} from "lucide-react";
+  mdiDotsHorizontal,
+  mdiFile,
+  mdiFileDocument,
+  mdiImage,
+  mdiVideo,
+} from "@mdi/js";
+import Icon from "@mdi/react";
+import { type ColumnDef } from "@tanstack/react-table";
 
 import { type UploadFile } from "@/shared/api/types.gen";
 import { AspectRatio } from "@/shared/components/shadcn/aspect-ratio";
@@ -42,11 +43,11 @@ export const createMediaColumns = (
       }
       return (
         <div className="flex h-10 w-10 items-center justify-center rounded-md border bg-muted">
-          {isVideo(asset.mime) ? (
-            <VideoIcon className="h-5 w-5 text-muted-foreground" />
-          ) : (
-            <FileIcon className="h-5 w-5 text-muted-foreground" />
-          )}
+          <Icon
+            path={isVideo(asset.mime) ? mdiVideo : mdiFileDocument}
+            size={0.85}
+            className="text-muted-foreground"
+          />
         </div>
       );
     },
@@ -60,13 +61,13 @@ export const createMediaColumns = (
     header: "Type",
     cell: ({ row }) => {
       const mime = row.original.mime;
-      let IconEl = FileIcon;
-      if (isImage(mime)) IconEl = ImageIcon;
-      else if (isVideo(mime)) IconEl = VideoIcon;
+      let iconPath = mdiFileDocument;
+      if (isImage(mime)) iconPath = mdiImage;
+      else if (isVideo(mime)) iconPath = mdiVideo;
 
       return (
         <Badge variant="outline" className="gap-1.5">
-          <IconEl className="h-3.5 w-3.5" />
+          <Icon path={iconPath} size={0.6} />
           <span>{getFileTypeLabel(mime)}</span>
         </Badge>
       );
@@ -158,7 +159,7 @@ export const createMediaColumns = (
     header: "",
     cell: () => (
       <Button variant="ghost" size="icon">
-        <MoreHorizontal className="h-4 w-4" />
+        <Icon path={mdiDotsHorizontal} size={0.65} />
       </Button>
     ),
     enableSorting: false,

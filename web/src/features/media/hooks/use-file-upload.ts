@@ -30,12 +30,14 @@ export const useFileUpload = (): useFileUploadReturn => {
 
     try {
       // Upload each file individually
-      const uploadPromises = files.map(async ({ file, alt, caption }) => {
+      const uploadPromises = files.map(async ({ file, filename, alt, caption }) => {
         const formData = new FormData();
         formData.append("files", file);
 
         // Add fileInfo for this specific file
+        // Strapi uses `name` to override the uploaded filename
         const fileInfo = {
+          name: filename,
           alternativeText: alt,
           caption: caption,
         };
@@ -49,7 +51,7 @@ export const useFileUpload = (): useFileUploadReturn => {
         });
 
         if (!response.ok) {
-          throw new Error(`Upload failed for file: ${file.name}`);
+          throw new Error(`Upload failed for file: ${filename}`);
         }
 
         // Response can be either a single object or an array
