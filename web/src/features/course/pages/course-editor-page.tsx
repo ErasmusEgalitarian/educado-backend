@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { mdiFloppy, mdiAlertCircle, mdiCheckCircle } from "@mdi/js";
+import { mdiFloppy, mdiCheckCircle } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useRef } from "react";
@@ -36,8 +36,6 @@ import {
   type CourseEditorStep,
 } from "../hooks/use-course-editor-steps";
 
-type SaveDraftLoader = "none" | "success" | "error";
-
 const CourseEditorPage = () => {
   const { t } = useTranslation();
 
@@ -50,9 +48,6 @@ const CourseEditorPage = () => {
   const unPublishMutation = useUnpublishCourseMutation();
 
   const navigate = useNavigate();
-
-  const [saveDraftLoader, setSaveDraftLoader] =
-    useState<SaveDraftLoader>("none");
 
   // Determine if we are editing an existing course or creating a new one
   const { courseId: urlCourseId } = useParams<{ courseId?: string }>();
