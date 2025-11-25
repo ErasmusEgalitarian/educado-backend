@@ -1,5 +1,12 @@
 import { type CellContext, type ColumnDef } from "@tanstack/react-table";
-import { BookOpen, MoreHorizontal, Star, Edit, Eye } from "lucide-react";
+import Icon from "@mdi/react";
+import {
+  mdiBookOpenBlankVariantOutline,
+  mdiDotsHorizontal,
+  mdiStar,
+  mdiSquareEditOutline,
+  mdiEyeOutline,
+} from "@mdi/js";
 import { toast } from "sonner";
 
 import { Course } from "@/shared/api/types.gen";
@@ -44,7 +51,11 @@ export const createCourseColumns = ({
         const course = row.original;
         return (
           <div className="flex items-center gap-2">
-            <BookOpen className="h-4 w-4 text-primary" />
+            <Icon
+              path={mdiBookOpenBlankVariantOutline}
+              size={1}
+              className="h-4 w-4 text-primary"
+            />
             <span className="font-medium">{course.title}</span>
           </div>
         );
@@ -103,7 +114,11 @@ export const createCourseColumns = ({
         const rating = 4.2;
         return (
           <div className="flex items-center gap-1">
-            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+            <Icon
+              path={mdiStar}
+              size={1}
+              className="h-4 w-4 fill-yellow-400 text-yellow-400"
+            />
             <span className="text-sm font-medium">{rating}</span>
           </div>
         );
@@ -138,18 +153,26 @@ export const createCourseColumns = ({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-8 w-8 p-0">
-                <MoreHorizontal className="h-4 w-4" />
+                <Icon path={mdiDotsHorizontal} size={1} className="h-4 w-4" />
                 <span className="sr-only">{t("common.openMenu")}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>{t("common.actions")}</DropdownMenuLabel>
               <DropdownMenuItem onClick={handleView}>
-                <Eye className="mr-2 h-4 w-4" />
+                <Icon
+                  path={mdiEyeOutline}
+                  size={0.8}
+                  className="mr-2 h-4 w-4"
+                />
                 {t("common.view")} {t("courseManager.course").toLowerCase()}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleEdit}>
-                <Edit className="mr-2 h-4 w-4" />
+                <Icon
+                  path={mdiSquareEditOutline}
+                  size={0.8}
+                  className="mr-2 h-4 w-4"
+                />
                 {t("common.edit")} {t("courseManager.course").toLowerCase()}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
