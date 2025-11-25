@@ -12,7 +12,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { z } from "zod";
-import { SignupSchema } from "../components/signup/micro-services";
 
 import background from "@/shared/assets/background.jpg";
 
@@ -20,9 +19,9 @@ import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";
 import Carousel from "../../../unplaced/archive/Carousel";
 import AuthServices from "../../../unplaced/services/auth.services";
-import { LoginResponseError } from "../types/LoginResponseError";
-
 import EmailVerificationModal from "../components/email-verification/EmailVerificationModal";
+import { SignupSchema } from "../components/signup/micro-services";
+import { LoginResponseError } from "../types/LoginResponseError";
 
 export const ToggleModalContext = createContext<() => void>(() => {});
 export const FormDataContext = createContext<any>(null);
@@ -31,8 +30,6 @@ export const FormDataContext = createContext<any>(null);
 type ApplicationInputs = z.infer<typeof SignupSchema>;
 
 const Signup = () => {
-
-  
   const [error, setError] = useState<LoginResponseError.RootObject | null>(
     null
   );
@@ -95,7 +92,7 @@ const Signup = () => {
   const handlePasswordChange = (e: React.FocusEvent<HTMLInputElement>) => {
     const password = e.target.value;
     setPasswordCheck1(password.length >= 8);
-    setPasswordCheck2(/.*\p{L}.*$/u.test(password)); // At least one letter
+    setPasswordCheck2(/\p{L}/u.test(password)); // At least one letter
   };
 
   return (
