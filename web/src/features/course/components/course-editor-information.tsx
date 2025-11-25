@@ -84,10 +84,6 @@ type CourseBasicInfoFormValues = z.infer<typeof courseBasicInfoSchema>;
 /* -------------------------------------------------------------------------- */
 
 const CourseEditorInformation = forwardRef(({ course, onComplete }, ref) => {
-  // const CourseEditorInformation = forwardRef<
-  //   CourseEditorInformationRef,
-  //   CourseEditorInformationProps
-  // >(({ course, onComplete }, ref) => {
   const { t } = useTranslation();
   const isEditMode = course !== undefined;
   const { alertProps, openAlert } = useAlertDialog();
