@@ -640,7 +640,7 @@ export type ContentDescriptionComponent = {
 export type ContentCreatorRequest = {
     data: {
         firstName: string;
-        lastName?: string;
+        lastName: string;
         verifiedAt?: string;
         biography?: string;
         email: string;
@@ -679,7 +679,7 @@ export type ContentCreator = {
     id?: number;
     documentId?: string;
     firstName: string;
-    lastName?: string;
+    lastName: string;
     verifiedAt?: string;
     biography?: string;
     email: string;

@@ -657,7 +657,7 @@ export const zCertificateResponse = z.object({
 export const zContentCreatorRequest = z.object({
     data: z.object({
         firstName: z.string(),
-        lastName: z.string().optional(),
+        lastName: z.string(),
         verifiedAt: z.string().date().optional(),
         biography: z.string().optional(),
         email: z.string().email(),
@@ -701,7 +701,7 @@ export const zContentCreator = z.object({
     id: z.number().optional(),
     documentId: z.string().optional(),
     firstName: z.string(),
-    lastName: z.string().optional(),
+    lastName: z.string(),
     verifiedAt: z.string().date().optional(),
     biography: z.string().optional(),
     email: z.string().email(),
