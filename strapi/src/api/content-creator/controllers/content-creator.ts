@@ -41,7 +41,7 @@ export default factories.createCoreController('api::content-creator.content-crea
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            verifiedAt: new Date(user.verifiedAt)
+            verifiedAt: user.verifiedAt ? new Date(user.verifiedAt) : null,
         }
         // 3. Generate token
         const token = jwt.sign(
@@ -52,12 +52,13 @@ export default factories.createCoreController('api::content-creator.content-crea
 
         // 4. Respond with token and user info
         return ctx.send({
-            jwt: token,
-            user: {
-            id: user.documentId,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
+            accessToken: token,
+            userInfo: {
+                documentId: user.documentId,
+                email: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                verifiedAt: user.verifiedAt ? new Date(user.verifiedAt).toISOString() : null,
             },
         });
         } catch (err) {

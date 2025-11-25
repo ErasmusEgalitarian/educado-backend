@@ -124,7 +124,7 @@ const CourseEditorPage = () => {
           documentId: docId,
           title: values.title,
           difficulty: Number(values.difficulty),
-          categories: values.categories,
+          course_categories: values.categories,
           description: values.description,
           image: imageId,
         });
@@ -134,7 +134,7 @@ const CourseEditorPage = () => {
         const result = await createMutation.mutateAsync({
           title: values.title,
           difficulty: Number(values.difficulty),
-          categories: values.categories ?? [],
+          course_categories: values.categories ?? [],
           description: values.description,
           image: imageId,
         });

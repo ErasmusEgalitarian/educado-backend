@@ -526,6 +526,7 @@ export interface ApiContentCreatorContentCreator
         minLength: 1;
       }>;
     lastName: Schema.Attribute.String &
+      Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 50;
         minLength: 1;
@@ -664,6 +665,14 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMax<
         {
           max: 3;
+          min: 1;
+        },
+        number
+      >;
+    durationHours: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
           min: 1;
         },
         number

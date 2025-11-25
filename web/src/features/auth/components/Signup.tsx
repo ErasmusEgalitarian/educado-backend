@@ -17,7 +17,7 @@ import background from "@/shared/assets/background.jpg";
 
 import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";
-import Carousel from "../../../unplaced/archive/carousel";
+import Carousel from "../../../unplaced/archive/Carousel";
 import AuthServices from "../../../unplaced/services/auth.services";
 import { LoginResponseError } from "../types/LoginResponseError";
 
