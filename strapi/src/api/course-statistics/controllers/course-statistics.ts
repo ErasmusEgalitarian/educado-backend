@@ -246,21 +246,17 @@ export function getContentCreatorFeedback(filteredCourses : PopulatedCourse[]) {
 }
 
 
-//Uses generic, as it avoids parsing to helper type, and the filter function should be able to filter any type of array as long as it has courseIds
-function filterCoursesBasedOnCid <T extends { documentId: string }> (courses : T[], courseIds : string[]){
+// Uses generic, as it avoids parsing to helper type, and the filter function should be able to filter any type of array as long as it has courseIds
+export function filterCoursesBasedOnCid <T extends { documentId: string }> (courses : T[], courseIds : string[]): T[] {
   if (courseIds.length == 0){
     return [];
   }
-  let filteredCourses : T[] = [];
+
   //Filter courses
-  for (const course of courses){
-    for (const cId of courseIds){
-      if(cId == course.documentId){
-        filteredCourses.push(course);
-        break;
-      }
-    }
-  }
+  let filteredCourses = courses.filter((course) => {
+    return courseIds.some((cId) => cId === course.documentId)
+  });
+  
   return filteredCourses;
 }
 
