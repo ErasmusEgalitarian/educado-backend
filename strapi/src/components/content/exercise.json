@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_content_exercises",
+  "info": {
+    "displayName": "Exercise"
+  },
+  "options": {},
+  "attributes": {
+    "exercise": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::exercise.exercise"
+    }
+  },
+  "config": {}
+}
