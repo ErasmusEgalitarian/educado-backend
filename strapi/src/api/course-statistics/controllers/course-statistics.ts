@@ -82,9 +82,9 @@ export function getCoursesStats(filteredCourses : PopulatedCourse[]) {
   return {
     total: countTotal,
     progress: {
-      lastThirtyDays: Math.round((count30/(countTotal-count30))*100), 
-      lastSevenDays:  Math.round((count7/(countTotal-count7))*100), 
-      thisMonth:      Math.round((countMonth/(countTotal-countMonth))*100)
+      lastThirtyDays: numberSafetyCheck(Math.round((count30/(countTotal-count30))*100)), 
+      lastSevenDays:  numberSafetyCheck(Math.round((count7/(countTotal-count7))*100)), 
+      thisMonth:      numberSafetyCheck(Math.round((countMonth/(countTotal-countMonth))*100))
     },
   };
 }
@@ -126,9 +126,9 @@ export function getStudentStats(filteredCourses : PopulatedCourse[]) {
   return { 
     total: countTotal, 
     progress: {
-      lastThirtyDays: Math.round((count30/(countTotal-count30))*100), 
-      lastSevenDays:  Math.round((count7/(countTotal-count7))*100), 
-      thisMonth:      Math.round((countMonth/(countTotal-countMonth))*100)
+      lastThirtyDays: numberSafetyCheck(Math.round((count30/(countTotal-count30))*100)), 
+      lastSevenDays:  numberSafetyCheck(Math.round((count7/(countTotal-count7))*100)), 
+      thisMonth:      numberSafetyCheck(Math.round((countMonth/(countTotal-countMonth))*100))
     } 
   }
 }
@@ -177,9 +177,9 @@ export async function getCertificatesStats(filteredCourses : PopulatedCourse[]) 
     return {
       total: countTotal,
       progress: {
-        lastThirtyDays: Math.round((count30/(countTotal-count30))*100), 
-        lastSevenDays: Math.round((count7/(countTotal-count7))*100), 
-        thisMonth: Math.round((countMonth/(countTotal-countMonth))*100)
+        lastThirtyDays: numberSafetyCheck(Math.round((count30/(countTotal-count30))*100)), 
+        lastSevenDays: numberSafetyCheck(Math.round((count7/(countTotal-count7))*100)), 
+        thisMonth: numberSafetyCheck(Math.round((countMonth/(countTotal-countMonth))*100))
       }
     };
   } catch (err) {
@@ -234,9 +234,9 @@ export function getContentCreatorFeedback(filteredCourses : PopulatedCourse[]) {
     return {
       total: Number(Totalaverage.toFixed(1)),
       progress: {
-        thisMonth: Number(TotalaverageCurrentMonthProgress.toFixed(1)),
-        lastSevenDays: Number(Totalaverage7dProgress.toFixed(1)),
-        lastThirtyDays: Number(Totalaverage30dProgress.toFixed(1))
+        thisMonth: Number(numberSafetyCheck(TotalaverageCurrentMonthProgress).toFixed(1)),
+        lastSevenDays: Number(numberSafetyCheck(Totalaverage7dProgress).toFixed(1)),
+        lastThirtyDays: Number(numberSafetyCheck(Totalaverage30dProgress).toFixed(1))
       }
     };
 
@@ -271,4 +271,12 @@ function jsonWebTokenVerify (jwtInput : string) {
     throw error;
   }
   return user;
+}
+
+function numberSafetyCheck(n : number) : number {
+  //Returns 0 if the number fails the check
+  if (n == null || Number.isNaN(n) || n == undefined){
+    return 0;
+  }
+  return n;
 }
