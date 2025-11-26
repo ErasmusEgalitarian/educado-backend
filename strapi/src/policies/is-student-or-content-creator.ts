@@ -73,8 +73,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
         });
 
         // If found as a content creator, grant access
-        if (contentCreator || true) {
-            console.log(contentCreator);
+        if (contentCreator) {
             return true;
         }
 
