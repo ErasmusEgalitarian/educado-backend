@@ -50,6 +50,12 @@ const Carousel: React.FC = () => {
     }
   };
 
+  const pre = () => {
+    setCurrentIndex((prevIndex) =>
+      (prevIndex - 1 + texts.length) % texts.length
+    );
+  };
+
   //Timer that decides when the text automatically changes
   useEffect(() => {
     const intervalId = setInterval(next, 8000);
