@@ -18,7 +18,7 @@ import { useApi } from "../../../shared/hooks/useAPI";
 import dynamicForms from "../../../unplaced/dynamicForms";
 import AccountServices from "../../../unplaced/services/account.services";
 import ProfileServices from "../../../unplaced/services/profile.services";
-import staticForm from "../../../unplaced/staticForm";
+import staticForm from "../../../shared/components/form/staticForm";
 
 import AcademicExperienceForm from "./academic-experience-form";
 import PersonalInformationForm from "./PersonalInformation";

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { getUserInfo } from "@/auth/lib/userInfo";
 import { useFormData } from "@/shared/lib/formStates";
 
-import ProfileServices from "./services/profile.services";
+import ProfileServices from "../../../unplaced/services/profile.services";
 
 export default () => {
   //Form States & localstorage
