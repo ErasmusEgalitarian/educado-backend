@@ -1,7 +1,6 @@
-
 /* Tests for controllers */
-import { getCertificatesStats, getStudentStats, getContentCreatorFeedback, getCoursesStats } from "../../../src/api/course-statistics/controllers/course-statistics";
-import feedback from "../../../src/api/feedback/controllers/feedback";
+import { getCertificatesStats, getStudentStats, getContentCreatorFeedback, getCoursesStats, filterCoursesBasedOnCid } from "../../../src/api/course-statistics/controllers/course-statistics";
+
 describe('Test statistics', () => {
     let strapiMock;
     const contentCreatorId = "creator";
@@ -104,5 +103,24 @@ describe('Test statistics', () => {
             thisMonth: 0
         });
     });
+
+    it('Filter courses', () => {
+        let courses = [
+            {documentId: "1"},
+            {documentId: "2"},
+            {documentId: "3"}
+        ];
+        let courseIds = [
+            "1",
+            "2",
+            "4"
+        ];
+        let filteredCourses = filterCoursesBasedOnCid(courses, courseIds);
+        expect(filteredCourses.length).toBe(2);
+        expect(filteredCourses).toEqual([
+            {documentId: "1"},
+            {documentId: "2"}
+        ])
+    })
     
 });
