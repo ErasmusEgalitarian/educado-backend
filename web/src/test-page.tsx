@@ -15,7 +15,7 @@ import { FileWithMetadataSchema } from "./shared/components/file-upload";
 import GenericModalComponent from "./shared/components/GenericModalComponent";
 import { SearchBar } from "./shared/components/SearchBar";
 
-import { PaginationBottomBar } from "./shared/table/PaginationBottomBar";
+import { PaginationBottomBar } from "./shared/Table/PaginationBottomBar";
 
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({
