@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Icon from "@mdi/react";
 import {
   GoArrowLeft,
   GoArrowRight,
@@ -64,7 +65,7 @@ export const InstitutionsTableAdmin = () => {
 
   const paginatedData = filteredData.slice(
     (currentPage - 1) * rowsPerPage,
-    currentPage * rowsPerPage,
+    currentPage * rowsPerPage
   );
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
@@ -78,7 +79,7 @@ export const InstitutionsTableAdmin = () => {
   };
 
   const handleRowsPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setRowsPerPage(Number(event.target.value));
     setCurrentPage(1);
@@ -114,7 +115,7 @@ export const InstitutionsTableAdmin = () => {
             }}
           />
           <div className="flex flex-col justify-center">
-            <MdSearch className="-ml-6" />
+            <Icon path={mdiMagnify} size={0.9} color="currentColor" />
           </div>
         </div>
         <AddInstitutionButton />
@@ -155,13 +156,13 @@ export const InstitutionsTableAdmin = () => {
                       <div>
                         <UpdateInstitutionButton
                           institution={institution}
-                          refreshFn={refetch}
+                          refreshFn={mutate}
                         />
                       </div>
                       <div>
                         <DeleteInstitutionButton
                           institutionId={institution._id!}
-                          refreshFn={refetch}
+                          refreshFn={mutate}
                         />
                       </div>
                     </IconContext.Provider>
@@ -193,57 +194,55 @@ export const InstitutionsTableAdmin = () => {
           </span>
         </div>
         <div className="flex items-center space-x-4">
-          <IconContext.Provider value={{ size: "20" }}>
-            <button
-              type="button"
-              disabled={currentPage === 1}
-              className={
-                currentPage === 1
-                  ? "text-gray-300 cursor-not-allowed"
-                  : "text-gray-600 hover:bg-gray-100 cursor-pointer"
-              }
-              onClick={handleFirstPage}
-            >
-              <GoArrowLeft />
-            </button>
-            <button
-              type="button"
-              className={
-                currentPage === 1
-                  ? "text-gray-300 cursor-not-allowed"
-                  : "text-gray-600 hover:bg-gray-100 cursor-pointer"
-              }
-              onClick={() => {
-                handlePageChange(currentPage - 1);
-              }}
-            >
-              <GoChevronLeft />
-            </button>
-            <button
-              type="button"
-              className={
-                currentPage === totalPages
-                  ? "text-gray-300 cursor-not-allowed"
-                  : "text-gray-600 hover:bg-gray-100 cursor-pointer"
-              }
-              onClick={() => {
-                handlePageChange(currentPage + 1);
-              }}
-            >
-              <GoChevronRight />
-            </button>
-            <button
-              type="button"
-              className={
-                currentPage === totalPages
-                  ? "text-gray-300 cursor-not-allowed"
-                  : "text-gray-600 hover:bg-gray-100 cursor-pointer"
-              }
-              onClick={handleLastPage}
-            >
-              <GoArrowRight />
-            </button>
-          </IconContext.Provider>
+          <button
+            type="button"
+            disabled={currentPage === 1}
+            className={
+              currentPage === 1
+                ? "text-gray-300 cursor-not-allowed"
+                : "text-gray-600 hover:bg-gray-100 cursor-pointer"
+            }
+            onClick={handleFirstPage}
+          >
+            <Icon path={mdiArrowLeft} size={0.9} />
+          </button>
+          <button
+            type="button"
+            className={
+              currentPage === 1
+                ? "text-gray-300 cursor-not-allowed"
+                : "text-gray-600 hover:bg-gray-100 cursor-pointer"
+            }
+            onClick={() => {
+              handlePageChange(currentPage - 1);
+            }}
+          >
+            <Icon path={mdiChevronLeft} size={0.9} />
+          </button>
+          <button
+            type="button"
+            className={
+              currentPage === totalPages
+                ? "text-gray-300 cursor-not-allowed"
+                : "text-gray-600 hover:bg-gray-100 cursor-pointer"
+            }
+            onClick={() => {
+              handlePageChange(currentPage + 1);
+            }}
+          >
+            <Icon path={mdiChevronRight} size={0.9} />
+          </button>
+          <button
+            type="button"
+            className={
+              currentPage === totalPages
+                ? "text-gray-300 cursor-not-allowed"
+                : "text-gray-600 hover:bg-gray-100 cursor-pointer"
+            }
+            onClick={handleLastPage}
+          >
+            <Icon path={mdiArrowRight} size={0.9} />
+          </button>
         </div>
       </div>
     </div>

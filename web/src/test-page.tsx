@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -11,6 +12,11 @@ import { Form } from "@/shared/components/shadcn/form";
 import FormActions from "./shared/components/form/form-actions";
 import { FileWithMetadataSchema } from "./shared/components/file-upload";
 
+import GenericModalComponent from "./shared/components/GenericModalComponent";
+import { SearchBar } from "./shared/components/SearchBar";
+
+import { PaginationBottomBar } from "./shared/table/PaginationBottomBar";
+
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({
   image: z.array(FileWithMetadataSchema).optional(),
@@ -18,6 +24,12 @@ const formSchema = z.object({
 
 const TestPage = () => {
   const { uploadFile } = useFileUpload();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const totalItems = 123;
   // Use React Hook Form and Zod to manage the form state and validation.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,8 +53,23 @@ const TestPage = () => {
     toast.success("Submitted values: " + JSON.stringify(values));
   }
 
+  const sortingOptions = [
+    { displayName: "Newest first", htmlValue: "newest" },
+    { displayName: "Oldest first", htmlValue: "oldest" },
+    { displayName: "Name (A–Z)", htmlValue: "az" },
+  ];
+
   return (
     <div className="w-2xl mx-auto mt-10 flex flex-col gap-4">
+      {/* Search bar */}
+      <SearchBar
+        sortingOptions={sortingOptions}
+        placeholderText="Search for files..."
+        searchFn={(term) => {
+          console.log("Search term:", term);
+          setSearchQuery(term);
+        }}
+      />
       <Form {...form}>
         <form
           onSubmit={(e) => void form.handleSubmit(onSubmit)(e)}
@@ -58,6 +85,37 @@ const TestPage = () => {
           />
         </form>
       </Form>
+
+      <PaginationBottomBar
+        currentPage={currentPage}
+        itemsPerPage={itemsPerPage}
+        unpaginatedItemsAmount={totalItems}
+        onChangePage={(newPage: number) => setCurrentPage(newPage)}
+        onChangeItemsPerPage={(newPerPage: number) => {
+          setItemsPerPage(newPerPage);
+          setCurrentPage(1); // reset page når itemsPerPage ændres
+        }}
+      />
+
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="btn btn-primary mt-6"
+      >
+        Open Modal
+      </button>
+
+      <GenericModalComponent
+        isVisible={isModalOpen}
+        title="Modal Test"
+        contentText="Dette er en testmodal – du kan lukke den med (X) eller knappen herunder."
+        cancelBtnText="Luk"
+        confirmBtnText="Bekræft"
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={() => {
+          toast.success("Bekræftet!");
+          setIsModalOpen(false);
+        }}
+      />
     </div>
   );
 };

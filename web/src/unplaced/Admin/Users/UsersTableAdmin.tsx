@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Icon from "@mdi/react";
 import {
   GoArrowLeft,
   GoArrowRight,
@@ -81,7 +82,7 @@ export const UsersTableAdmin = () => {
   };
 
   const handleRowsPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setRowsPerPage(Number(event.target.value));
     setCurrentPage(1);
@@ -108,7 +109,7 @@ export const UsersTableAdmin = () => {
 
   const paginatedData = filteredData.slice(
     (currentPage - 1) * rowsPerPage,
-    currentPage * rowsPerPage,
+    currentPage * rowsPerPage
   );
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
@@ -292,7 +293,7 @@ export const UsersTableAdmin = () => {
             }`}
             onClick={handleFirstPage}
           >
-            <GoArrowLeft />
+            <Icon path={mdiArrowLeft} size={0.9} color="currentColor" />
           </button>
           <button
             type="button"
@@ -305,7 +306,7 @@ export const UsersTableAdmin = () => {
               handlePageChange(currentPage - 1);
             }}
           >
-            <GoChevronLeft />
+            <Icon path={mdiChevronLeft} size={0.9} color="currentColor" />
           </button>
           <button
             type="button"
@@ -318,7 +319,7 @@ export const UsersTableAdmin = () => {
               handlePageChange(currentPage + 1);
             }}
           >
-            <GoChevronRight />
+            <Icon path={mdiChevronRight} size={0.9} color="currentColor" />
           </button>
           <button
             type="button"
@@ -329,7 +330,7 @@ export const UsersTableAdmin = () => {
             }`}
             onClick={handleLastPage}
           >
-            <GoArrowRight />
+            <Icon path={mdiArrowRight} size={0.9} color="currentColor" />
           </button>
         </div>
       </div>

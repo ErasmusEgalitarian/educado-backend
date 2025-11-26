@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { MdDelete } from "react-icons/md";
+import Icon from "@mdi/react";
+import { mdiDelete } from "@mdi/js";
 import { toast } from "react-toastify";
 
 import { getUserToken } from "@/features/auth/lib/userInfo";
@@ -18,7 +19,7 @@ export const DeleteInstitutionButton = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   const { call: deleteInstitution, isLoading } = useApi(
-    institutionService.deleteInstitution,
+    institutionService.deleteInstitution
   );
 
   const { addNotification } = useNotifications();
@@ -42,7 +43,7 @@ export const DeleteInstitutionButton = ({
           setShowModal(true);
         }}
       >
-        <MdDelete />
+        <Icon path={mdiDelete} size={0.9} color="currentColor" />
       </button>
       {showModal && (
         <GenericModalComponent
