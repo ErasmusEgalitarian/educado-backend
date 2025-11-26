@@ -1,5 +1,5 @@
-import Icon from "@mdi/react";
 import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import Icon from "@mdi/react";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
