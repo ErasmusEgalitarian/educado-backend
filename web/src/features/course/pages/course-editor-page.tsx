@@ -199,7 +199,7 @@ const CourseEditorPage = () => {
         return (
           <CourseEditorSections
             ref={sectionsFormRef}
-            courseId={queryCourse?.documentId}
+            courseSectionsId={queryCourse?.course_sections}
             onComplete={() => {
               handleStepComplete("sections");
             }}
