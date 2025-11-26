@@ -9,12 +9,7 @@ interface Dashboard_activity {
 export default {
   dashboardUserAction: async (ctx, next) => {
     try{
-      // Extract the authenticated user from the policy context
-      const secretKey = process.env.JWT_SECRET;
-      const user = jwt.verify(ctx.headers.authorization.split("Bearer ")[1], secretKey) as ContentCreator;
-      if(!user){
-        throw "User is undefined";
-      }
+      const user = getContentCreatorFromJWT(ctx.headers.authorization as string);
       //Finds the content creator on the backend
       const contentCreator = await strapi.documents('api::content-creator.content-creator').findFirst(
         {
@@ -43,4 +38,14 @@ export default {
         ctx.response.body = { error: errorCodes["E0019"] };
     }
   }
+}
+
+function getContentCreatorFromJWT(userJWT : string){
+  // Extract the authenticated user from the policy context
+  const secretKey = process.env.JWT_SECRET;
+  const user = jwt.verify(userJWT.split("Bearer ")[1], secretKey) as ContentCreator;
+  if(!user){
+    throw "User is undefined";
+  }
+  return user;
 }
