@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { FC, useState } from "react";
-import { MdRemoveRedEye } from "react-icons/md";
+import Icon from "@mdi/react";
+import { mdiEye } from "@mdi/js";
 import { toast } from "react-toastify";
 
 import { getUserToken } from "@/auth/lib/userInfo";
@@ -29,14 +30,14 @@ const ViewUserButton: FC<ViewUserButtonProps> = ({
     application: Application;
   } | null>(null);
   const [contentCreator, setContentCreator] = useState<ContentCreator | null>(
-    null,
+    null
   );
 
   const { call: fetchUserDetails, isLoading } = useApi(
     async (applicationId: string, token: string) => {
       const userDetails = await AdminServices.getSingleUserDetails(
         applicationId,
-        token,
+        token
       );
 
       const userApplication =
@@ -44,14 +45,14 @@ const ViewUserButton: FC<ViewUserButtonProps> = ({
 
       const contentCreator = await AdminServices.getContentCreator(
         applicationId,
-        token,
+        token
       );
       return {
         userDetails,
         userApplication: userApplication.data,
         contentCreator,
       };
-    },
+    }
   );
 
   const handleClick = async () => {
@@ -96,7 +97,7 @@ const ViewUserButton: FC<ViewUserButtonProps> = ({
         className="flex items-center justify-center p-4 bg-[#166276] rounded-full font-semibold text-base text-white hover:bg-[#164E63]"
         onClick={handleClick}
       >
-        <MdRemoveRedEye />
+        <Icon path={mdiEye} size={0.9} color="currentColor" />
       </button>
       <UserDetailsModal
         isOpen={isModalOpen}
