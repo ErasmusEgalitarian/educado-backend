@@ -33,9 +33,10 @@ export default factories.createCoreController('api::content-creator.content-crea
 
     async update(ctx) {
         // Remove password from the request if it's empty or not provided
-        if (ctx.request.body.data) {
+        if (ctx.request.body?.data) {
             const password = ctx.request.body.data.password;
-            if (!password || password === '') {
+            // Trim and check for undefined, null, empty string, and whitespace
+            if (typeof password !== 'string' || password.trim() === '') {
                 delete ctx.request.body.data.password;
             }
         }

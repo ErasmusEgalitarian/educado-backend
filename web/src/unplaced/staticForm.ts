@@ -52,10 +52,10 @@ export default () => {
     >,
   ): void => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
+    }));
   };
 
   //Count characters written in bio

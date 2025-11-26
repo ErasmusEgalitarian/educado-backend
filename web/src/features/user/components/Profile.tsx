@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { z } from "zod";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import { tempObjects } from "@/shared/lib/formStates";
@@ -23,10 +24,30 @@ import AcademicExperienceForm from "./academic-experience-form";
 import PersonalInformationForm from "./PersonalInformation";
 import ProfessionalExperienceForm from "./ProfessionalExperience";
 
+// TypeScript Interfaces
+interface ContentCreator {
+  documentId: string;
+  firstName: string;
+  lastName?: string;
+  email: string;
+  biography?: string;
+  education: "TODO1" | "TODO2" | "TODO3";
+  statusValue: "TODO1" | "TODO2" | "TODO3";
+  courseExperience: string;
+  institution: string;
+  eduStart: string;
+  eduEnd: string;
+  currentCompany: string;
+  currentJobTitle: string;
+  companyStart: string;
+  verifiedAt?: string;
+}
+
 // Zod Schema
 const profileSchema = z.object({
   UserName: z.string().optional(),
   UserEmail: z.string().email("You need a suitable email to submit").optional(),
+  bio: z.string().optional(),
   linkedin: z
     .string()
     .regex(
@@ -66,7 +87,6 @@ const Profile = () => {
     addNewExperienceForm,
     handleEducationDelete,
     addNewEducationForm,
-    SubmitValidation: _SubmitValidation,
     submitError,
     handleEducationInputChange,
     experienceFormData,
@@ -86,6 +106,7 @@ const Profile = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
   });
@@ -98,10 +119,10 @@ const Profile = () => {
     useState(false);
   const [isProfessionalExperienceOpen, setIsProfessionalExperienceOpen] =
     useState(false);
-  const [_hasSubmitted, setHasSubmitted] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const [isAccountDeletionModalVisible, setIsAccountDeletionModalVisible] =
     useState(false);
-  const [_areAllFormsFilledCorrect, setAreAllFormsFilledCorrect] =
+  const [areAllFormsFilledCorrect, setAreAllFormsFilledCorrect] =
     useState(false);
   const { clearToken } = useAuthStore((state) => state);
 
@@ -111,10 +132,10 @@ const Profile = () => {
   } = useApi(ProfileServices.putFormOne);
 
   // State for storing content creator data
-  const [contentCreatorData, setContentCreatorData] = useState<any>(null);
+  const [contentCreatorData, setContentCreatorData] = useState<ContentCreator | null>(null);
 
   // Form submit, sends data to backend upon user interaction
-  const handleUpdateSubmit = async (_index: any, _data: any) => {
+  const handleUpdateSubmit = async () => {
     try {
       const documentId = localStorage.getItem("id");
       if (!documentId) {
@@ -123,7 +144,7 @@ const Profile = () => {
       }
 
       // Split the name into firstName and lastName
-      const nameParts = (formData as any).UserName.trim().split(" ");
+      const nameParts = formData.UserName.trim().split(" ");
       const firstName = nameParts[0] || "";
       const lastName = nameParts.slice(1).join(" ");
 
@@ -134,12 +155,12 @@ const Profile = () => {
           data: {
             firstName: firstName,
             ...(lastName && { lastName: lastName }), // Only include lastName if it's not empty
-            biography: (formData as any).bio || "",
+            biography: formData.bio || "",
             // Note: Keep existing required fields from the current data
-            email: contentCreatorData?.email || (formData as any).UserEmail,
+            email: contentCreatorData?.email || formData.UserEmail,
             password: "", // Send empty string - controller will remove it before processing
-            education: contentCreatorData?.education || "TODO1",
-            statusValue: contentCreatorData?.statusValue || "TODO1",
+            education: (contentCreatorData?.education || "TODO1") as "TODO1" | "TODO2" | "TODO3",
+            statusValue: (contentCreatorData?.statusValue || "TODO1") as "TODO1" | "TODO2" | "TODO3",
             courseExperience: contentCreatorData?.courseExperience || "",
             institution: contentCreatorData?.institution || "",
             eduStart: contentCreatorData?.eduStart || new Date().toISOString().split('T')[0],
@@ -153,13 +174,21 @@ const Profile = () => {
 
       if (response) {
         // Update local storage with new name
-        const userInfo = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
-        userInfo.firstName = firstName;
-        userInfo.lastName = lastName;
-        localStorage.setItem("loggedInUser", JSON.stringify(userInfo));
+        try {
+          const userInfo = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+          userInfo.firstName = firstName;
+          userInfo.lastName = lastName;
+          localStorage.setItem("loggedInUser", JSON.stringify(userInfo));
+        } catch (storageError) {
+          console.error("Failed to update localStorage:", storageError);
+          // Don't fail the whole operation if localStorage fails
+        }
 
         // Show success message
         toast.success("Perfil atualizado com sucesso!");
+        
+        // Invalidate and refetch the content creator query to get fresh data
+        queryClient.invalidateQueries({ queryKey: ['contentCreator', documentId] });
         
         // Disable submit button after successful submission
         setAreAllFormsFilledCorrect(false);
@@ -177,49 +206,51 @@ const Profile = () => {
     setHasSubmitted(false);
   }, [educationFormData, experienceFormData, formData]);
 
-  // Fetch content creator data from Strapi
-  useEffect(() => {
-    const fetchContentCreatorData = async () => {
-      try {
-        const documentId = localStorage.getItem("id");
-        if (!documentId) {
-          console.error("No documentId found in localStorage");
-          return;
-        }
+  // Get query client for cache invalidation
+  const queryClient = useQueryClient();
+  const documentId = localStorage.getItem("id");
 
-        const response = await contentCreatorGetContentCreatorsById({
-          path: { id: documentId },
-        });
-
-        if (response?.data) {
-          setContentCreatorData(response.data);
-          // Update formData with fetched data
-          setFormData((prevData) => ({
-            ...prevData,
-            UserName: `${response.data?.firstName || ""} ${response.data?.lastName || ""}`.trim(),
-            UserEmail: response.data?.email || "",
-            bio: response.data?.biography || "",
-            linkedin: "", // LinkedIn not in content creator model
-          }));
-        }
-      } catch (error) {
-        console.error("Error fetching content creator data:", error);
-        toast.error("Erro ao carregar dados do perfil");
+  // Fetch content creator data from Strapi using useQuery
+  const { data: fetchedCreatorData, error: creatorError } = useQuery({
+    queryKey: ['contentCreator', documentId],
+    queryFn: async () => {
+      if (!documentId) {
+        throw new Error("No documentId found in localStorage");
       }
-    };
+      const response = await contentCreatorGetContentCreatorsById({
+        path: { id: documentId },
+      });
+      return response?.data || null;
+    },
+    enabled: !!documentId,
+    staleTime: 5 * 60 * 1000, // Cache for 5 minutes
+  });
 
-    fetchContentCreatorData();
-  }, []);
-
-  // Render and fetch signup user details
+  // Update local state when query data changes
   useEffect(() => {
-    fetchuser();
-  }, [userID]);
+    if (fetchedCreatorData) {
+      setContentCreatorData(fetchedCreatorData as ContentCreator);
+      setFormData((prevData) => ({
+        ...prevData,
+        UserName: `${fetchedCreatorData.firstName || ""} ${fetchedCreatorData.lastName || ""}`.trim(),
+        UserEmail: fetchedCreatorData.email || "",
+        bio: fetchedCreatorData.biography || "",
+        linkedin: "",
+      }));
+    }
+  }, [fetchedCreatorData, setFormData]);
+
+  // Handle query errors
+  useEffect(() => {
+    if (creatorError) {
+      console.error("Error fetching content creator data:", creatorError);
+      toast.error("Erro ao carregar dados do perfil");
+    }
+  }, [creatorError]);
 
   // Render and fetch userData
   useEffect(() => {
     if (userID) {
-      fetchStaticData();
       fetchDynamicData();
     }
   }, [userID]);
@@ -229,10 +260,10 @@ const Profile = () => {
   useEffect(() => {
     setAreAllFormsFilledCorrect(
       !submitError &&
-        !educationErrorState &&
-        !experienceErrorState &&
-        dynamicInputsFilled("education") &&
-        dynamicInputsFilled("experience")
+      !educationErrorState &&
+      !experienceErrorState &&
+      dynamicInputsFilled("education") &&
+      dynamicInputsFilled("experience")
     );
   }, [
     submitError,
@@ -488,7 +519,7 @@ const Profile = () => {
               <button
                 type="button"
                 onClick={() => {
-                  handleSubmit(handleUpdateSubmit)();
+                  handleUpdateSubmit();
                 }}
                 className="px-10 py-4 rounded-lg justify-center items-center gap-2.5 flex text-center text-lg font-bold bg-primary hover:bg-cyan-900 text-white"
                 disabled={submitLoading}
