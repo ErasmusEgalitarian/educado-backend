@@ -42,6 +42,8 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
   const [currentSectionEditing, setCurrentSectionEditing] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [isAddingLesson, setIsAddingLesson] = useState(false);
+  const [isAddingText, setIsAddingText] = useState(false);
+  const [isAddingVideo, setIsAddingVideo] = useState(false);
 
   const form = useForm<SectionFormValues>({
     resolver: zodResolver(sectionSchema),
@@ -130,7 +132,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
               <h2 className="text-xl font-semibold text-gray-800">{t("courseManager.addLesson")}</h2>
               {/* Close Button */}
               <button className="text-gray-400 hover:text-gray-600 transition-colors hover:cursor-pointer" 
-                      onClick={() => { setIsAddingLesson(false) }}
+                      onClick={() => { setIsAddingLesson(false); setIsAddingText(false); setIsAddingVideo(false); }}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -156,48 +158,60 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
               </label>
               <div className="flex gap-5">
                 <label className="flex items-center">
-                  <input type="radio" name="fileinput" value="video" className="text-blue-600 focus:ring-blue-500" />
+                  <input type="radio" name="fileinput" value="video" className="text-blue-600 focus:ring-blue-500"
+                    onChange={() => { setIsAddingVideo(true); setIsAddingText(false) }}
+                  />
                   <span className="ml-2 text-gray-700">{t("files.video")}</span>
                 </label>
                 <label className="flex items-center">
-                  <input type="radio" name="fileinput" value="text" className="text-blue-600 focus:ring-blue-500" />
+                  <input type="radio" name="fileinput" value="text" className="text-blue-600 focus:ring-blue-500"
+                    onChange={() => { setIsAddingVideo(false); setIsAddingText(true) }}
+                  />
                   <span className="ml-2 text-gray-700">{t("files.text")}</span>
                 </label>
               </div>
 
               <hr />
-
-              {/* Textarea 1 */}
-              <div>
-                <label className="block text-m font-medium text-gray-700 mb-2">
-                  {t("courseManager.firstTextBlock")}
-                </label>
-                <textarea 
-                  placeholder="Enter description"
-                  maxLength={270}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none h-24"
-                />
-                <div className="text-right text-sm text-gray-500 mt-1">
-                  <span>0</span>/270 characters
+    
+              {isAddingText ? (
+                <>
+                {/* Textarea 1 */}
+                <div>
+                  <label className="block text-m font-medium text-gray-700 mb-2">
+                    Description
+                  </label>
+                  <textarea 
+                    placeholder="Enter description"
+                    maxLength={270}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none h-24"
+                  />
+                  <div className="text-right text-sm text-gray-500 mt-1">
+                    <span>0</span>/270 characters
+                  </div>
                 </div>
-              </div>
 
-              {/* Textarea 2 */}
-              <div>
-                <label className="block text-m font-medium text-gray-700 mb-2">
-                  {t("courseManager.secondTextBlock")}
-                </label>
-                <textarea 
-                  placeholder="Enter notes"
-                  maxLength={270}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none h-24"
-                />
-                <div className="text-right text-sm text-gray-500 mt-1">
-                  <span>0</span>/270 characters
+                {/* Textarea 2 */}
+                <div>
+                  <label className="block text-m font-medium text-gray-700 mb-2">
+                    Notes
+                  </label>
+                  <textarea 
+                    placeholder="Enter notes"
+                    maxLength={270}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none h-24"
+                  />
+                  <div className="text-right text-sm text-gray-500 mt-1">
+                    <span>0</span>/270 characters
+                  </div>
                 </div>
-              </div>
-              <div className="grid grid-cols-4 gap-4 pt-6 border-t border-greyscale-border">
-                <div className="col-start-1 gap-4 justify-start">
+                </>
+              ) : null}
+
+              {isAddingVideo ? (
+                <h1>TODO</h1>
+              ) : null}
+            
+              <div className="flex gap-2 justify-end">
                       <Button
                         type="button"
                         variant="blank"
@@ -249,7 +263,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                     <div className="flex gap-2 ml-4">
                       <Button
                         variant="secondary"
-                        size="md"
+                        size="default"
                         onClick={() => { handleDelete(section.id) }}
                         className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
 
@@ -258,7 +272,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                       </Button>
                        <Button
                         variant="secondary"
-                        size="md"
+                        size="default"
                         onClick={() => { console.log("TODO: make draggable")}}
                         className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
                       >
