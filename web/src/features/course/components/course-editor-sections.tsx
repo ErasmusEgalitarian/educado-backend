@@ -132,7 +132,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
               <h2 className="text-xl font-semibold text-gray-800">User Profile</h2>
               {/* Close Button */}
               <button className="text-gray-400 hover:text-gray-600 transition-colors hover:cursor-pointer" 
-                      onClick={() => { setIsAddingLesson(false) }}
+                      onClick={() => { setIsAddingLesson(false); setIsAddingText(false); setIsAddingVideo(false); }}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
