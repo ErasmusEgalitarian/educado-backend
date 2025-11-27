@@ -124,7 +124,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
       {isAddingLesson ? (
         <div className="flex items-center justify-center w-screen h-screen bg-black/50 absolute fixed inset-0 z-[99]">
           {/* Card Container */}
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-h-[90vh] overflow-y-auto max-w-[800px]">
             {/* Header */}
             <div className="flex items-center justify-between p-6">
               <h2 className="text-xl font-semibold text-gray-800">User Profile</h2>
@@ -167,6 +167,35 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
 
               <hr />
 
+              {/* Textarea 1 */}
+              <div>
+                <label className="block text-m font-medium text-gray-700 mb-2">
+                  Description
+                </label>
+                <textarea 
+                  placeholder="Enter description"
+                  maxLength={270}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none h-24"
+                />
+                <div className="text-right text-sm text-gray-500 mt-1">
+                  <span>0</span>/270 characters
+                </div>
+              </div>
+
+              {/* Textarea 2 */}
+              <div>
+                <label className="block text-m font-medium text-gray-700 mb-2">
+                  Notes
+                </label>
+                <textarea 
+                  placeholder="Enter notes"
+                  maxLength={270}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none h-24"
+                />
+                <div className="text-right text-sm text-gray-500 mt-1">
+                  <span>0</span>/270 characters
+                </div>
+              </div>
 
             </div>
           </div>
