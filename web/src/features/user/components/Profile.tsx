@@ -1,24 +1,24 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { mdiChevronDown, mdiChevronUp } from "@mdi/js";
 import { Icon } from "@mdi/react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { z } from "zod";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
-import { tempObjects } from "@/shared/lib/formStates";
 import { contentCreatorGetContentCreatorsById, contentCreatorPutContentCreatorsById } from "@/shared/api/sdk.gen";
+import { tempObjects } from "@/shared/lib/formStates";
 
+import staticForm from "../../../shared/components/form/staticForm";
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import Layout from "../../../shared/components/Layout";
 import { useApi } from "../../../shared/hooks/useAPI";
 import dynamicForms from "../../../unplaced/dynamicForms";
 import AccountServices from "../../../unplaced/services/account.services";
 import ProfileServices from "../../../unplaced/services/profile.services";
-import staticForm from "../../../shared/components/form/staticForm";
 
 import AcademicExperienceForm from "./academic-experience-form";
 import PersonalInformationForm from "./PersonalInformation";
@@ -159,8 +159,8 @@ const Profile = () => {
             // Note: Keep existing required fields from the current data
             email: contentCreatorData?.email || formData.UserEmail,
             password: "", // Send empty string - controller will remove it before processing
-            education: (contentCreatorData?.education || "TODO1") as "TODO1" | "TODO2" | "TODO3",
-            statusValue: (contentCreatorData?.statusValue || "TODO1") as "TODO1" | "TODO2" | "TODO3",
+            education: (contentCreatorData?.education || "TODO1"),
+            statusValue: (contentCreatorData?.statusValue || "TODO1"),
             courseExperience: contentCreatorData?.courseExperience || "",
             institution: contentCreatorData?.institution || "",
             eduStart: contentCreatorData?.eduStart || new Date().toISOString().split('T')[0],
