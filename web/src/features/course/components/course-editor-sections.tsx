@@ -180,7 +180,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                 {/* Textarea 1 */}
                 <div>
                   <label className="block text-m font-medium text-gray-700 mb-2">
-                    Description
+                    {t("courseManager.firstTextBlock")}
                   </label>
                   <textarea 
                     placeholder="Enter description"
@@ -197,7 +197,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                 {/* Textarea 2 */}
                 <div>
                   <label className="block text-m font-medium text-gray-700 mb-2">
-                    Notes
+                    {t("courseManager.secondTextBlock")}
                   </label>
                   <textarea 
                     placeholder="Enter notes"
