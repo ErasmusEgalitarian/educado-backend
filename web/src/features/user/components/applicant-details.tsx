@@ -1,4 +1,4 @@
-const ApplicantDetails = ({ data }: { data: any }) => {
+const ApplicantDetails = ({ data }: { data: unknown }) => {
   //Convert the data into something more readable
   const date = new Date(data.data.applicator.joinedAt);
   return (
@@ -23,7 +23,7 @@ const ApplicantDetails = ({ data }: { data: any }) => {
           id="email"
           className="mt-1 text-lg font-['Montserrat'] text-gray-900 sm:mt-0 sm:col-span-2"
         >
-          Mail {/* {data.data.applicator.email} */}
+          Mail
         </dd>
       </div>
       <div className="bg-secondary px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 space-x-8">
