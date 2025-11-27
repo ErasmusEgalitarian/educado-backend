@@ -127,7 +127,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
           <div className="bg-white rounded-lg shadow-xl w-full max-h-[90vh] overflow-y-auto max-w-[800px]">
             {/* Header */}
             <div className="flex items-center justify-between p-6">
-              <h2 className="text-xl font-semibold text-gray-800">User Profile</h2>
+              <h2 className="text-xl font-semibold text-gray-800">{t("courseManager.addLesson")}</h2>
               {/* Close Button */}
               <button className="text-gray-400 hover:text-gray-600 transition-colors hover:cursor-pointer" 
                       onClick={() => { setIsAddingLesson(false) }}
@@ -170,7 +170,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
               {/* Textarea 1 */}
               <div>
                 <label className="block text-m font-medium text-gray-700 mb-2">
-                  Description
+                  {t("courseManager.firstTextBlock")}
                 </label>
                 <textarea 
                   placeholder="Enter description"
@@ -185,7 +185,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
               {/* Textarea 2 */}
               <div>
                 <label className="block text-m font-medium text-gray-700 mb-2">
-                  Notes
+                  {t("courseManager.secondTextBlock")}
                 </label>
                 <textarea 
                   placeholder="Enter notes"
@@ -196,15 +196,25 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                   <span>0</span>/270 characters
                 </div>
               </div>
-              <div className="flex gap-2 justify-end">
+              <div className="grid grid-cols-4 gap-4 pt-6 border-t border-greyscale-border">
+                <div className="col-start-1 gap-4 justify-start">
                       <Button
                         type="button"
-                        variant="outline"
+                        variant="blank"
                         onClick={() => { setIsAddingLesson(false) }}
+                        className="text-destructive font-bold underline"
                       >
                         {t("common.cancel")}
                       </Button>
-                    </div>
+                </div>
+                <div className="col-start-4 flex gap-4 justify-end">
+                      <Button
+                        onClick={() => console.log("submitted text block")}
+                      >
+                        {t("courseManager.addLesson")}
+                      </Button>
+                </div>
+              </div> 
             </div>
           </div>
         </div>
