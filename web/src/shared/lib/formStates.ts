@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { EducationFormData, ExperienceFormData, FormData as ProfileFormData } from "@/user/types/Profile";
+import { EducationFormData, ExperienceFormData, FormData as ProfileFormData } from "@/user/types/profile.ts";
 
 // static form states
 export const useFormData = () => {
