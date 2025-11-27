@@ -3,7 +3,7 @@ import { useState } from "react";
 import { getUserInfo } from "@/auth/lib/userInfo";
 import { useFormData } from "@/shared/lib/formStates";
 
-import ProfileServices from "./services/profile.services";
+import ProfileServices from "../../../unplaced/services/profile.services";
 
 export default () => {
   //Form States & localstorage
@@ -52,10 +52,10 @@ export default () => {
     >,
   ): void => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
+    }));
   };
 
   //Count characters written in bio
@@ -93,6 +93,7 @@ export default () => {
     handleInputChange,
     handleFileChange,
     formData,
+    setFormData,
     handleCharCountBio,
   };
 };
