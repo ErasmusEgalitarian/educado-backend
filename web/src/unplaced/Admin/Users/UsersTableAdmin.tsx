@@ -95,7 +95,8 @@ export const UsersTableAdmin = () => {
     setCurrentPage(totalPages);
   };
 
-  const filteredData = data.filter((userRecord: UserRecord) => {
+  const filteredBySearch = data.filter((userRecord) => {
+    // this will be typed in a better way when a hook is made
     const fieldsToCheck = ["firstName", "lastName", "email"] as const;
 
     return fieldsToCheck.some((field) => {
@@ -105,6 +106,20 @@ export const UsersTableAdmin = () => {
       return valueToCheck.toLowerCase().includes(searchTerm.toLowerCase());
     });
   });
+
+    const filteredData = filteredBySearch.filter((userRecord) => {
+        switch (statusFilter) {
+            case "approved":
+                return userRecord.approved === true;
+            case "rejected":
+                return userRecord.rejected === true;
+            case "pending":
+                return !userRecord.approved && !userRecord.rejected;
+            case "all":
+            default:
+                return true;
+        }
+    });
 
   const paginatedData = filteredData.slice(
     (currentPage - 1) * rowsPerPage,
