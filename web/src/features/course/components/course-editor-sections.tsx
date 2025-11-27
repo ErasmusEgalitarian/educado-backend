@@ -209,6 +209,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
             </div>
           </div>
         </div>
+        </div>
       ) : null}
 
       <Card className="p-0 shadow-none">
