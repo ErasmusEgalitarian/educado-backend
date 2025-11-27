@@ -154,7 +154,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
               <label className="block text-sm font-medium text-gray-700 mb-3">
                 {t("courseManager.typeOfContent")}
               </label>
-              <div className="space-y-2">
+              <div className="flex gap-5">
                 <label className="flex items-center">
                   <input type="radio" name="fileinput" value="video" className="text-blue-600 focus:ring-blue-500" />
                   <span className="ml-2 text-gray-700">{t("files.video")}</span>
