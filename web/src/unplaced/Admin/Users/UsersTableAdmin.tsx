@@ -13,7 +13,7 @@ import Loading from "@/shared/components/Loading";
 import AdminServices from "@/unplaced/services/admin.services";
 import ViewUserButton from "@/unplaced/ViewUserButton";
 import { ContentCreator } from "@/user/types/content-creator.ts";
-import { User } from "@/user/types/User";
+import { User } from "@/user/types/user.ts";
 
 import AdminToggleButton from "../AdminToggle";
 import DeleteUserButton from "../DeleteUserButton";

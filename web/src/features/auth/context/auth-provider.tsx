@@ -10,7 +10,7 @@ import type {
 } from "@/auth/types/auth-context";
 import { updateApiClientToken } from "@/shared/config/api-config";
 import { useLocalStorage } from "@/shared/hooks/use-local-storage";
-import type { User } from "@/user/types/User";
+import type { User } from "@/user/types/user.ts";
 
 // https://www.shadcn.io/hooks/use-local-storage
 
