@@ -151,19 +151,18 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                 />
               </div>
               {/* Radio Buttons */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  {t("courseManager.typeOfContent")}
+              <label className="block text-sm font-medium text-gray-700 mb-3">
+                {t("courseManager.typeOfContent")}
+              </label>
+              <div className="space-y-2">
+                <label className="flex items-center">
+                  <input type="radio" name="fileinput" value="video" className="text-blue-600 focus:ring-blue-500" />
+                  <span className="ml-2 text-gray-700">{t("files.video")}</span>
                 </label>
-                <div className="space-y-2">
-                  <label className="flex items-center">
-                    <input type="radio" name="fileinput" value="video" className="text-blue-600 focus:ring-blue-500" />
-                    <span className="ml-2 text-gray-700">{t("files.video")}</span>
-                  </label>
-                  <label className="flex items-center">
-                    <input type="radio" name="fileinput" value="text" className="text-blue-600 focus:ring-blue-500" />
-                    <span className="ml-2 text-gray-700">{t("files.text")}</span>
-                  </label>
+                <label className="flex items-center">
+                  <input type="radio" name="fileinput" value="text" className="text-blue-600 focus:ring-blue-500" />
+                  <span className="ml-2 text-gray-700">{t("files.text")}</span>
+                </label>
               </div>
 
               <hr />
@@ -208,7 +207,6 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                     </div>
             </div>
           </div>
-        </div>
         </div>
       ) : null}
 
