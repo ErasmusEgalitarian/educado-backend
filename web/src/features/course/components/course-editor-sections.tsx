@@ -127,7 +127,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
           <div className="bg-white rounded-lg shadow-xl w-full max-h-[90vh] overflow-y-auto max-w-[800px]">
             {/* Header */}
             <div className="flex items-center justify-between p-6">
-              <h2 className="text-xl font-semibold text-gray-800">{t("courseManager.addLesson")}</h2>
+              <h2 className="text-xl font-semibold text-gray-800">User Profile</h2>
               {/* Close Button */}
               <button className="text-gray-400 hover:text-gray-600 transition-colors hover:cursor-pointer" 
                       onClick={() => { setIsAddingLesson(false) }}
