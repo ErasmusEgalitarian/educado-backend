@@ -79,11 +79,12 @@ export const Navbar = () => {
           </Link>
         </div>
 
-          {/* CENTER: Courses / Admin switch (only show for admins) */}
 
+          {userInfo.role === "admin" && (
               <div className="flex flex-1 justify-center">
                   <AdminNavToggle />
               </div>
+          )}
 
         {/* Notification Bell and User Info */}
         <div className="relative flex items-center gap-6 pr-10 z-50">
