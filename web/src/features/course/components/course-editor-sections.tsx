@@ -126,10 +126,10 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
           {/* Card Container */}
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b">
+            <div className="flex items-center justify-between p-6">
               <h2 className="text-xl font-semibold text-gray-800">User Profile</h2>
               {/* Close Button */}
-              <button className="text-gray-400 hover:text-gray-600 transition-colors" 
+              <button className="text-gray-400 hover:text-gray-600 transition-colors hover:cursor-pointer" 
                       onClick={() => { setIsAddingLesson(false) }}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,13 +137,11 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                 </svg>
               </button>
             </div>
-
             {/* Content */}
-            <div className="p-6 space-y-6">
-              
+            <div className="p-6 space-y-6">             
               {/* Name Input */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-m font-medium text-gray-700 mb-2">
                   Full Name
                 </label>
                 <input 
@@ -152,27 +150,23 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
-
               {/* Radio Buttons */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Subscription Plan
+              <label className="block text-m font-medium text-gray-700 mb-3">
+                Subscription Plan
+              </label>
+              <div className="flex gap-6">
+                <label className="flex items-center">
+                  <input type="radio" name="plan" value="basic" className="text-blue-600 focus:ring-blue-500" />
+                  <span className="ml-2 text-gray-700">Basic Plan</span>
                 </label>
-                <div className="space-y-2">
-                  <label className="flex items-center">
-                    <input type="radio" name="plan" value="basic" className="text-blue-600 focus:ring-blue-500" />
-                    <span className="ml-2 text-gray-700">Basic Plan</span>
-                  </label>
-                  <label className="flex items-center">
-                    <input type="radio" name="plan" value="pro" className="text-blue-600 focus:ring-blue-500" />
-                    <span className="ml-2 text-gray-700">Pro Plan</span>
-                  </label>
-                  <label className="flex items-center">
-                    <input type="radio" name="plan" value="enterprise" className="text-blue-600 focus:ring-blue-500" />
-                    <span className="ml-2 text-gray-700">Enterprise Plan</span>
-                  </label>
-                </div>
+                <label className="flex items-center">
+                  <input type="radio" name="plan" value="pro" className="text-blue-600 focus:ring-blue-500" />
+                  <span className="ml-2 text-gray-700">Pro Plan</span>
+                </label>
               </div>
+
+              <hr />
+
 
             </div>
           </div>
