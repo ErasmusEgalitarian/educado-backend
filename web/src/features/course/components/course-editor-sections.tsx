@@ -124,12 +124,12 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
       {isAddingLesson ? (
         <div className="flex items-center justify-center w-screen h-screen bg-black/50 absolute fixed inset-0 z-[99]">
           {/* Card Container */}
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-h-[90vh] overflow-y-auto max-w-[800px]">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b">
-              <h2 className="text-xl font-semibold text-gray-800">User Profile</h2>
+            <div className="flex items-center justify-between p-6">
+              <h2 className="text-xl font-semibold text-gray-800">{t("courseManager.addLesson")}</h2>
               {/* Close Button */}
-              <button className="text-gray-400 hover:text-gray-600 transition-colors" 
+              <button className="text-gray-400 hover:text-gray-600 transition-colors hover:cursor-pointer" 
                       onClick={() => { setIsAddingLesson(false) }}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,43 +137,75 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                 </svg>
               </button>
             </div>
-
             {/* Content */}
-            <div className="p-6 space-y-6">
-              
+            <div className="p-6 space-y-6">             
               {/* Name Input */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Full Name
+                  {t("common.name")}
                 </label>
                 <input 
                   type="text" 
-                  placeholder="Enter your name"
+                  placeholder={t("courseManager.nameOfLesson")}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
-
               {/* Radio Buttons */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Subscription Plan
+                  {t("courseManager.typeOfContent")}
                 </label>
                 <div className="space-y-2">
                   <label className="flex items-center">
-                    <input type="radio" name="plan" value="basic" className="text-blue-600 focus:ring-blue-500" />
-                    <span className="ml-2 text-gray-700">Basic Plan</span>
+                    <input type="radio" name="fileinput" value="video" className="text-blue-600 focus:ring-blue-500" />
+                    <span className="ml-2 text-gray-700">{t("files.video")}</span>
                   </label>
                   <label className="flex items-center">
-                    <input type="radio" name="plan" value="pro" className="text-blue-600 focus:ring-blue-500" />
-                    <span className="ml-2 text-gray-700">Pro Plan</span>
+                    <input type="radio" name="fileinput" value="text" className="text-blue-600 focus:ring-blue-500" />
+                    <span className="ml-2 text-gray-700">{t("files.text")}</span>
                   </label>
-                  <label className="flex items-center">
-                    <input type="radio" name="plan" value="enterprise" className="text-blue-600 focus:ring-blue-500" />
-                    <span className="ml-2 text-gray-700">Enterprise Plan</span>
-                  </label>
+              </div>
+
+              <hr />
+
+              {/* Textarea 1 */}
+              <div>
+                <label className="block text-m font-medium text-gray-700 mb-2">
+                  Description
+                </label>
+                <textarea 
+                  placeholder="Enter description"
+                  maxLength={270}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none h-24"
+                />
+                <div className="text-right text-sm text-gray-500 mt-1">
+                  <span>0</span>/270 characters
                 </div>
               </div>
 
+              {/* Textarea 2 */}
+              <div>
+                <label className="block text-m font-medium text-gray-700 mb-2">
+                  Notes
+                </label>
+                <textarea 
+                  placeholder="Enter notes"
+                  maxLength={270}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none h-24"
+                />
+                <div className="text-right text-sm text-gray-500 mt-1">
+                  <span>0</span>/270 characters
+                </div>
+              </div>
+              <div className="flex gap-2 justify-end">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => { setIsAddingLesson(false) }}
+                      >
+                        {t("common.cancel")}
+                      </Button>
+                    </div>
             </div>
           </div>
         </div>

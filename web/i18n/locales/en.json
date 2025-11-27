@@ -135,7 +135,11 @@
     "addNewSection": "Add new section",
     "editSection": "Edit section",
     "updateOrAdd": "Sections to be updated or added",
-    "section": "Section"
+    "section": "Section",
+    "typeOfContent": "Type of content",
+    "nameOfLesson": "Lesson name",
+    "firstTextBlock": "Insert first text block",
+    "secondTextBlock": "Insert second text block"
   },
   "courses": {
     "pageTitle": "Courses list",
@@ -177,7 +181,9 @@
     "upload": "Upload",
     "images": "Images",
     "videos": "Videos",
+    "video": "Video",
     "files": "Files",
+    "text": "Text",
     "dragAndDrop": "Drag and drop",
     "hereOrClick": " here, or click to browse",
     "choose": "Choose",

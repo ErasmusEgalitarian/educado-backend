@@ -135,7 +135,11 @@
     "addNewSection": "Nova seção",
     "editSection": "editar seção",
     "updateOrAdd": "Seções a serem atualizadas ou adicionadas",
-    "section": "Seção"
+    "section": "Seção",
+    "typeOfContent": "Tipo de conteúdo",
+    "nameOfLesson": "Nome de Aula",
+    "firstTextBlock": "Insira o primeiro bloco de texto",
+    "secondTextBlock": "Insira o segundo bloco de texto"
   },
   "courses": {
     "pageTitle": "Confira seus cursos",
@@ -177,7 +181,9 @@
     "upload": "Enviar",
     "images": "Imagens",
     "videos": "Vídeos",
+    "video": "Vídeo",
     "files": "Arquivos",
+    "text": "Texto",
     "dragAndDrop": "Arraste e solte",
     "hereOrClick": " aqui, ou clique para procurar",
     "choose": "Escolher",
