@@ -11,6 +11,7 @@ import { Icon } from "@mdi/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
+import AdminNavToggle from "./AdminNavToggle";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import {
@@ -77,6 +78,12 @@ export const Navbar = () => {
             <img src="/educado.svg" alt="educado" className="h-6" />
           </Link>
         </div>
+
+          {/* CENTER: Courses / Admin switch (only show for admins) */}
+
+              <div className="flex flex-1 justify-center">
+                  <AdminNavToggle />
+              </div>
 
         {/* Notification Bell and User Info */}
         <div className="relative flex items-center gap-6 pr-10 z-50">

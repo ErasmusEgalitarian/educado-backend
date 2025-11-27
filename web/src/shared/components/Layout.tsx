@@ -26,12 +26,6 @@ const Layout = ({
           {/** Top Nav bar */}
           <Navbar />
 
-            {/* Courses/Admin toggle just under the navbar */}
-            <div className="flex justify-end bg-primary-surface-subtle px-6 py-3">
-                <AdminNavToggle />
-            </div>
-
-
             {/** Content */}
           <main className="bg-primary-surface-subtle">{children}</main>
         </div>
