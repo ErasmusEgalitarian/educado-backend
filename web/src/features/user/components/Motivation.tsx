@@ -22,7 +22,7 @@ const Motivation: React.FC<MotivationProps> = ({
   //Variable for keeping track of the length of the motivation
   const [motivation, setMotivation] = useState("");
   const maxLength = 800;
-  const minLength = 2; // TODO: ask Iara about this value
+  const minLength = 2;
 
   // Function to make sure motivation is not above 800 characters
   const handleMotivationChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -38,7 +38,7 @@ const Motivation: React.FC<MotivationProps> = ({
     else setIsMotivationFilled(false);
 
     // Skip applying the effect if the state of the motivation form hasn't changed
-  }, [motivation]);
+  }, [motivation, setIsMotivationFilled]);
 
   return (
     <div className="justify-center items-center font-['Montserrat']">
