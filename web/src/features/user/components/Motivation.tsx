@@ -3,7 +3,7 @@ import { Icon } from "@mdi/react";
 import React, { useEffect, useState, ChangeEvent } from "react";
 import { UseFormRegister } from "react-hook-form";
 
-import { NewApplication } from "../types/Application";
+import { NewApplication } from "../types/application.ts";
 
 interface MotivationProps {
   // Type definitions for props
