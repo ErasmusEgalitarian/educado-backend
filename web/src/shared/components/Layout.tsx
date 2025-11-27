@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 
 // Components
 import { Navbar } from "./Navbar";
+import AdminNavToggle from "./AdminNavToggle";
 
 // TODO: Deprecate in favour of PageContainer
 /**
@@ -25,7 +26,13 @@ const Layout = ({
           {/** Top Nav bar */}
           <Navbar />
 
-          {/** Content */}
+            {/* Courses/Admin toggle just under the navbar */}
+            <div className="flex justify-end bg-primary-surface-subtle px-6 py-3">
+                <AdminNavToggle />
+            </div>
+
+
+            {/** Content */}
           <main className="bg-primary-surface-subtle">{children}</main>
         </div>
       </div>
