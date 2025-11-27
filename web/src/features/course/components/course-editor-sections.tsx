@@ -42,6 +42,8 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
   const [currentSectionEditing, setCurrentSectionEditing] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [isAddingLesson, setIsAddingLesson] = useState(false);
+  const [isAddingText, setIsAddingText] = useState(false);
+  const [isAddingVideo, setIsAddingVideo] = useState(false);
 
   const form = useForm<SectionFormValues>({
     resolver: zodResolver(sectionSchema),
@@ -239,7 +241,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                     <div className="flex gap-2 ml-4">
                       <Button
                         variant="secondary"
-                        size="md"
+                        size="default"
                         onClick={() => { handleDelete(section.id) }}
                         className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
 
@@ -248,7 +250,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                       </Button>
                        <Button
                         variant="secondary"
-                        size="md"
+                        size="default"
                         onClick={() => { console.log("TODO: make draggable")}}
                         className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
                       >
