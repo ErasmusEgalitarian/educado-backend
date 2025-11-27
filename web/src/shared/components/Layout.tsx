@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 
 // Components
 import { Navbar } from "./Navbar";
-import AdminNavToggle from "./AdminNavToggle";
 
 // TODO: Deprecate in favour of PageContainer
 /**
