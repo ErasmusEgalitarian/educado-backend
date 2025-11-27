@@ -163,6 +163,62 @@ export const UsersTableAdmin = () => {
         </div>
       </form>
 
+        <div className="flex flex-wrap items-center justify-between pb-4">
+            <div className="inline-flex rounded-full bg-slate-100 p-1 text-xs md:text-sm font-semibold">
+                <button
+                    type="button"
+                    className={
+                        "px-3 md:px-4 py-1 rounded-full transition " +
+                        (statusFilter === "all"
+                            ? "bg-teal-600 text-white"
+                            : "text-slate-600 hover:text-slate-800")
+                    }
+                    onClick={() => setStatusFilter("all")}
+                >
+                    Todos
+                </button>
+
+                <button
+                    type="button"
+                    className={
+                        "px-3 md:px-4 py-1 rounded-full transition " +
+                        (statusFilter === "pending"
+                            ? "bg-teal-600 text-white"
+                            : "text-slate-600 hover:text-slate-800")
+                    }
+                    onClick={() => setStatusFilter("pending")}
+                >
+                    Pendentes
+                </button>
+
+                <button
+                    type="button"
+                    className={
+                        "px-3 md:px-4 py-1 rounded-full transition " +
+                        (statusFilter === "approved"
+                            ? "bg-teal-600 text-white"
+                            : "text-slate-600 hover:text-slate-800")
+                    }
+                    onClick={() => setStatusFilter("approved")}
+                >
+                    Aprovados
+                </button>
+
+                <button
+                    type="button"
+                    className={
+                        "px-3 md:px-4 py-1 rounded-full transition " +
+                        (statusFilter === "rejected"
+                            ? "bg-teal-600 text-white"
+                            : "text-slate-600 hover:text-slate-800")
+                    }
+                    onClick={() => setStatusFilter("rejected")}
+                >
+                    Recusados
+                </button>
+            </div>
+        </div>
+
       <table className="w-full leading-normal mx-auto">
         <thead>
           <tr className="bg-white border-b-4 border-[#166276] text-[#166276] text-left text-base font-base font-['Lato']]">
