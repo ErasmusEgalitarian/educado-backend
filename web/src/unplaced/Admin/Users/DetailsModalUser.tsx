@@ -4,8 +4,8 @@ import GenericModalComponentUser from "@components/Admin/Users/UserGenericContai
 import React, { useState } from "react";
 
 import GenericModalComponent from "@/shared/components/GenericModalComponent";
-import { Application } from "@/user/types/Application";
-import { ContentCreator } from "@/user/types/ContentCreator";
+import { Application } from "@/user/types/application.ts";
+import { ContentCreator } from "@/user/types/content-creator.ts";
 import { User } from "@/user/types/User";
 /*
 
