@@ -44,6 +44,8 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
   const [isAddingLesson, setIsAddingLesson] = useState(false);
   const [isAddingText, setIsAddingText] = useState(false);
   const [isAddingVideo, setIsAddingVideo] = useState(false);
+  const [description, setDescription] = useState('');
+  const [notes, setNotes] = useState('');
 
   const form = useForm<SectionFormValues>({
     resolver: zodResolver(sectionSchema),
@@ -182,11 +184,13 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                   </label>
                   <textarea 
                     placeholder="Enter description"
+                    value={description}
+                    onChange={(e) => { setDescription(e.target.value) }}
                     maxLength={270}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none h-24"
                   />
                   <div className="text-right text-sm text-gray-500 mt-1">
-                    <span>0</span>/270 characters
+                    <span>{description.length}</span>/270 characters
                   </div>
                 </div>
 
@@ -198,10 +202,12 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                   <textarea 
                     placeholder="Enter notes"
                     maxLength={270}
+                    value={notes}
+                    onChange={(e) => { setNotes(e.target.value) }}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none h-24"
                   />
                   <div className="text-right text-sm text-gray-500 mt-1">
-                    <span>0</span>/270 characters
+                    <span>{notes.length}</span>/270 characters
                   </div>
                 </div>
                 </>
