@@ -210,28 +210,28 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
               {isAddingVideo ? (
                 <h1>TODO</h1>
               ) : null}
-            
-              <div className="flex gap-2 justify-end">
-                      <Button
-                        type="button"
-                        variant="blank"
-                        onClick={() => { setIsAddingLesson(false) }}
-                        className="text-destructive font-bold underline"
-                      >
-                        {t("common.cancel")}
-                      </Button>
-                </div>
-                <div className="col-start-4 flex gap-4 justify-end">
-                      <Button
-                        onClick={() => console.log("submitted text block")}
-                      >
-                        {t("courseManager.addLesson")}
-                      </Button>
+              <div className="grid grid-cols-4 gap-4 pt-6 border-t border-greyscale-border">
+                <div className="flex gap-2 justify-end">
+                        <Button
+                          type="button"
+                          variant="blank"
+                          onClick={() => { setIsAddingLesson(false) }}
+                          className="text-destructive font-bold underline"
+                        >
+                          {t("common.cancel")}
+                        </Button>
+                  </div>
+                  <div className="col-start-4 flex gap-4 justify-end">
+                        <Button
+                          onClick={() => console.log("submitted text block")}
+                        >
+                          {t("courseManager.addLesson")}
+                        </Button>
+                  </div>
                 </div>
               </div> 
             </div>
           </div>
-        </div>
       ) : null}
 
       <Card className="p-0 shadow-none">
