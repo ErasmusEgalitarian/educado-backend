@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Icon from "@mdi/react";
 import {
   mdiArrowLeft,
@@ -22,6 +22,10 @@ export const UsersTableAdmin = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  type StatusFilter = "all" | "pending" | "approved" | "rejected";
+
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("pending");
 
   const userToken = getUserToken();
   const { data, isLoading, isError, refetch } = useQuery({
