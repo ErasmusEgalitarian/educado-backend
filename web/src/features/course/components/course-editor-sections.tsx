@@ -41,6 +41,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
   const [sections, setSections] = useState(courseSectionsId ?? []); // incorrect btw
   const [currentSectionEditing, setCurrentSectionEditing] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
+  const [isAddingLesson, setIsAddingLesson] = useState(false);
 
   const form = useForm<SectionFormValues>({
     resolver: zodResolver(sectionSchema),
@@ -119,10 +120,69 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
 
   return (
     <div className="flex flex-col gap-y-6">
+      {/* MODALS */}
+      {isAddingLesson ? (
+        <div className="flex items-center justify-center w-screen h-screen bg-black/50 absolute fixed inset-0 z-[99]">
+          {/* Card Container */}
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b">
+              <h2 className="text-xl font-semibold text-gray-800">User Profile</h2>
+              {/* Close Button */}
+              <button className="text-gray-400 hover:text-gray-600 transition-colors" 
+                      onClick={() => { setIsAddingLesson(false) }}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 space-y-6">
+              
+              {/* Name Input */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Full Name
+                </label>
+                <input 
+                  type="text" 
+                  placeholder="Enter your name"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              {/* Radio Buttons */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Subscription Plan
+                </label>
+                <div className="space-y-2">
+                  <label className="flex items-center">
+                    <input type="radio" name="plan" value="basic" className="text-blue-600 focus:ring-blue-500" />
+                    <span className="ml-2 text-gray-700">Basic Plan</span>
+                  </label>
+                  <label className="flex items-center">
+                    <input type="radio" name="plan" value="pro" className="text-blue-600 focus:ring-blue-500" />
+                    <span className="ml-2 text-gray-700">Pro Plan</span>
+                  </label>
+                  <label className="flex items-center">
+                    <input type="radio" name="plan" value="enterprise" className="text-blue-600 focus:ring-blue-500" />
+                    <span className="ml-2 text-gray-700">Enterprise Plan</span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       <Card className="p-0 shadow-none">
         <CardContent className="space-y-6 p-0">
           {/* Sections List */}
-          {sections.length > 0 && (
+          {sections.length > 0 ? (
             <div className="space-y-4">
               {sections.map((section, index) => (
                 <Card
@@ -168,10 +228,10 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                 </Card>
               ))}
             </div>
-          )}
+          ): null}
 
           {/* Add/Edit Section Form */}
-          {showForm && (
+          {showForm ? (
             <Card className="rounded-sm border border-primary-surface-default pt-0 overflow-hidden">
               <CardHeader className="bg-primary-surface-default p-6 text-white font-bold">
                 {isEditing ? t("courseManager.editSection") : t("courseManager.createNewSection")}
@@ -201,7 +261,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                       <div className="grid grid-cols-[1fr_25px_1fr] gap-2">
                         <Button
                           type="button"
-                          onClick={() => { console.log("Add lesson") }}
+                          onClick={() => { setIsAddingLesson(true)}}
                           className="w-full border-dashed"
                           variant="outline"
                         >
@@ -243,10 +303,10 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                 </Form>
               </CardContent>
             </Card>
-          )}
+          ): null}
 
           {/* Add Section Button */}
-          {!showForm && (
+          {!showForm ? (
             <Button
               onClick={startCreating}
               className="w-full border-dashed"
@@ -255,7 +315,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
               <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
               {t("courseManager.addNewSection")}
             </Button>
-          )}
+          ) : null}
 
           {/* Continue/Skip Actions */}
           <div className="grid grid-cols-4 gap-4 pt-6 border-t border-greyscale-border">
