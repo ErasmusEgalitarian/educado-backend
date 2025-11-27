@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 // Services
 
 // Components
-import AcademicExperience from "../features/user/components/AcademicExperience";
+import AcademicExperience from "@/user/components/academic-experience.tsx";
 import ApplicantDetails from "../features/user/components/ApplicantDetails";
 import WorkExperience from "../features/user/components/WorkExperience";
 import Layout from "../shared/components/Layout";
