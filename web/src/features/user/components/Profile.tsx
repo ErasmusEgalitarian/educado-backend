@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { z } from "zod";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import {
@@ -14,6 +15,10 @@ import {
   contentCreatorPutContentCreatorsById,
 } from "@/shared/api/sdk.gen";
 import { tempObjects } from "@/shared/lib/formStates";
+import {
+  contentCreatorGetContentCreatorsById,
+  contentCreatorPutContentCreatorsById,
+} from "@/shared/api/sdk.gen";
 
 import staticForm from "../../../shared/components/form/staticForm";
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
@@ -136,6 +141,10 @@ const Profile = () => {
   const [contentCreatorData, setContentCreatorData] =
     useState<ContentCreator | null>(null);
 
+  // State for storing content creator data
+  const [contentCreatorData, setContentCreatorData] =
+    useState<ContentCreator | null>(null);
+
   // Form submit, sends data to backend upon user interaction
   const handleUpdateSubmit = async () => {
     try {
@@ -193,6 +202,14 @@ const Profile = () => {
           console.error("Failed to update localStorage:", storageError);
           // Don't fail the whole operation if localStorage fails
         }
+
+        // Show success message
+        toast.success("Perfil atualizado com sucesso!");
+
+        // Invalidate and refetch the content creator query to get fresh data
+        queryClient.invalidateQueries({
+          queryKey: ["contentCreator", documentId],
+        });
 
         // Show success message
         toast.success("Perfil atualizado com sucesso!");
