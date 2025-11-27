@@ -6,9 +6,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { z } from "zod";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import { tempObjects } from "@/shared/lib/formStates";
+import { contentCreatorGetContentCreatorsById, contentCreatorPutContentCreatorsById } from "@/shared/api/sdk.gen";
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import Layout from "../../../shared/components/Layout";
@@ -16,16 +18,36 @@ import { useApi } from "../../../shared/hooks/useAPI";
 import dynamicForms from "../../../unplaced/dynamicForms";
 import AccountServices from "../../../unplaced/services/account.services";
 import ProfileServices from "../../../unplaced/services/profile.services";
-import staticForm from "../../../unplaced/staticForm";
+import staticForm from "../../../shared/components/form/staticForm";
 
 import AcademicExperienceForm from "./academic-experience-form";
 import PersonalInformationForm from "./PersonalInformation";
 import ProfessionalExperienceForm from "./ProfessionalExperience";
 
+// TypeScript Interfaces
+interface ContentCreator {
+  documentId: string;
+  firstName: string;
+  lastName?: string;
+  email: string;
+  biography?: string;
+  education: "TODO1" | "TODO2" | "TODO3";
+  statusValue: "TODO1" | "TODO2" | "TODO3";
+  courseExperience: string;
+  institution: string;
+  eduStart: string;
+  eduEnd: string;
+  currentCompany: string;
+  currentJobTitle: string;
+  companyStart: string;
+  verifiedAt?: string;
+}
+
 // Zod Schema
 const profileSchema = z.object({
   UserName: z.string().optional(),
   UserEmail: z.string().email("You need a suitable email to submit").optional(),
+  bio: z.string().optional(),
   linkedin: z
     .string()
     .regex(
@@ -44,6 +66,7 @@ const Profile = () => {
     handleFileChange,
     handleCharCountBio,
     formData,
+    setFormData,
     handleInputChange,
     fetchuser,
     fetchStaticData,
@@ -64,7 +87,6 @@ const Profile = () => {
     addNewExperienceForm,
     handleEducationDelete,
     addNewEducationForm,
-    SubmitValidation,
     submitError,
     handleEducationInputChange,
     experienceFormData,
@@ -84,6 +106,7 @@ const Profile = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
   });
@@ -103,72 +126,70 @@ const Profile = () => {
     useState(false);
   const { clearToken } = useAuthStore((state) => state);
 
-  //callback
+  //callback (kept for legacy compatibility but not used)
   const {
-    call: saveEdits,
     isLoading: submitLoading,
-    error,
   } = useApi(ProfileServices.putFormOne);
 
+  // State for storing content creator data
+  const [contentCreatorData, setContentCreatorData] = useState<ContentCreator | null>(null);
+
   // Form submit, sends data to backend upon user interaction
-  const handleUpdateSubmit = async (index: any, data: any) => {
-    const personalData = {
-      userID: userID,
-      userName: formData.UserName,
-      userBio: formData.bio,
-      userLinkedInLink: formData.linkedin,
-      userEmail: formData.UserEmail,
-      userPhoto: formData.photo,
-    };
-
-    const educationData = {
-      userID: userID,
-      educationLevel: educationFormData
-        .map((data) => data.educationLevel)
-        .flat(),
-      status: educationFormData.map((data) => data.status).flat(),
-      course: educationFormData.map((data) => data.course).flat(),
-      institution: educationFormData.map((data) => data.institution).flat(),
-      startDate: educationFormData
-        .map((data) => data.educationStartDate)
-        .flat(),
-      endDate: educationFormData.map((data) => data.educationEndDate).flat(),
-    };
-
-    const workData = {
-      userID: userID,
-      company: experienceFormData.map((data) => data.company).flat(),
-      jobTitle: experienceFormData.map((data) => data.jobTitle).flat(),
-      startDate: experienceFormData.map((data) => data.workStartDate).flat(),
-      endDate: experienceFormData.map((data) => data.workEndDate).flat(),
-      isCurrentJob: experienceFormData.map((data) => data.isCurrentJob).flat(),
-      description: experienceFormData.map((data) => data.description).flat(),
-    };
-
+  const handleUpdateSubmit = async () => {
     try {
-      const response = await saveEdits(personalData);
+      const documentId = localStorage.getItem("id");
+      if (!documentId) {
+        toast.error("Erro: ID do usuário não encontrado");
+        return;
+      }
 
-      if (response.status === 200) {
-        // Delete existing education data on the backend before sending new updated data
-        await Promise.all(
-          educationFormData.map(async (item, index) => {
-            if (item._id) await ProfileServices.deleteEducationForm(item._id);
-          })
-        );
+      // Split the name into firstName and lastName
+      const nameParts = formData.UserName.trim().split(" ");
+      const firstName = nameParts[0] || "";
+      const lastName = nameParts.slice(1).join(" ");
 
-        // Send the updated educationData to the backend
-        await ProfileServices.putFormTwo(educationData);
+      // Update content creator profile in Strapi
+      const response = await contentCreatorPutContentCreatorsById({
+        path: { id: documentId },
+        body: {
+          data: {
+            firstName: firstName,
+            ...(lastName && { lastName: lastName }), // Only include lastName if it's not empty
+            biography: formData.bio || "",
+            // Note: Keep existing required fields from the current data
+            email: contentCreatorData?.email || formData.UserEmail,
+            password: "", // Send empty string - controller will remove it before processing
+            education: (contentCreatorData?.education || "TODO1") as "TODO1" | "TODO2" | "TODO3",
+            statusValue: (contentCreatorData?.statusValue || "TODO1") as "TODO1" | "TODO2" | "TODO3",
+            courseExperience: contentCreatorData?.courseExperience || "",
+            institution: contentCreatorData?.institution || "",
+            eduStart: contentCreatorData?.eduStart || new Date().toISOString().split('T')[0],
+            eduEnd: contentCreatorData?.eduEnd || new Date().toISOString().split('T')[0],
+            currentCompany: contentCreatorData?.currentCompany || "",
+            currentJobTitle: contentCreatorData?.currentJobTitle || "",
+            companyStart: contentCreatorData?.companyStart || new Date().toISOString().split('T')[0],
+          },
+        },
+      });
 
-        // Delete existing work data on the backend before sending new updated data
-        await Promise.all(
-          experienceFormData.map(async (item, index) => {
-            if (item._id) await ProfileServices.deleteExperienceForm(item._id);
-          })
-        );
+      if (response) {
+        // Update local storage with new name
+        try {
+          const userInfo = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+          userInfo.firstName = firstName;
+          userInfo.lastName = lastName;
+          localStorage.setItem("loggedInUser", JSON.stringify(userInfo));
+        } catch (storageError) {
+          console.error("Failed to update localStorage:", storageError);
+          // Don't fail the whole operation if localStorage fails
+        }
 
-        // Send the updated workData to the backend
-        await ProfileServices.putFormThree(workData);
-
+        // Show success message
+        toast.success("Perfil atualizado com sucesso!");
+        
+        // Invalidate and refetch the content creator query to get fresh data
+        queryClient.invalidateQueries({ queryKey: ['contentCreator', documentId] });
+        
         // Disable submit button after successful submission
         setAreAllFormsFilledCorrect(false);
         setHasSubmitted(true);
@@ -185,15 +206,51 @@ const Profile = () => {
     setHasSubmitted(false);
   }, [educationFormData, experienceFormData, formData]);
 
-  // Render and fetch signup user details
+  // Get query client for cache invalidation
+  const queryClient = useQueryClient();
+  const documentId = localStorage.getItem("id");
+
+  // Fetch content creator data from Strapi using useQuery
+  const { data: fetchedCreatorData, error: creatorError } = useQuery({
+    queryKey: ['contentCreator', documentId],
+    queryFn: async () => {
+      if (!documentId) {
+        throw new Error("No documentId found in localStorage");
+      }
+      const response = await contentCreatorGetContentCreatorsById({
+        path: { id: documentId },
+      });
+      return response?.data || null;
+    },
+    enabled: !!documentId,
+    staleTime: 5 * 60 * 1000, // Cache for 5 minutes
+  });
+
+  // Update local state when query data changes
   useEffect(() => {
-    fetchuser();
-  }, [userID]);
+    if (fetchedCreatorData) {
+      setContentCreatorData(fetchedCreatorData as ContentCreator);
+      setFormData((prevData) => ({
+        ...prevData,
+        UserName: `${fetchedCreatorData.firstName || ""} ${fetchedCreatorData.lastName || ""}`.trim(),
+        UserEmail: fetchedCreatorData.email || "",
+        bio: fetchedCreatorData.biography || "",
+        linkedin: "",
+      }));
+    }
+  }, [fetchedCreatorData, setFormData]);
+
+  // Handle query errors
+  useEffect(() => {
+    if (creatorError) {
+      console.error("Error fetching content creator data:", creatorError);
+      toast.error("Erro ao carregar dados do perfil");
+    }
+  }, [creatorError]);
 
   // Render and fetch userData
   useEffect(() => {
     if (userID) {
-      fetchStaticData();
       fetchDynamicData();
     }
   }, [userID]);
@@ -203,10 +260,10 @@ const Profile = () => {
   useEffect(() => {
     setAreAllFormsFilledCorrect(
       !submitError &&
-        !educationErrorState &&
-        !experienceErrorState &&
-        dynamicInputsFilled("education") &&
-        dynamicInputsFilled("experience")
+      !educationErrorState &&
+      !experienceErrorState &&
+      dynamicInputsFilled("education") &&
+      dynamicInputsFilled("experience")
     );
   }, [
     submitError,
@@ -355,7 +412,7 @@ const Profile = () => {
                   errors={errors}
                 />
               ) : (
-                educationFormData.map((form, index) => (
+                educationFormData.map((_form, index) => (
                   <AcademicExperienceForm
                     key={index}
                     index={index}
@@ -421,7 +478,7 @@ const Profile = () => {
                   errors={errors}
                 />
               ) : (
-                experienceFormData.map((form, index) => (
+                experienceFormData.map((_form, index) => (
                   <ProfessionalExperienceForm
                     key={index}
                     index={index}
@@ -436,18 +493,6 @@ const Profile = () => {
                   />
                 ))
               ))}
-
-            {/* Warning text for empty/incorrect forms */}
-            <div>
-              {submitError && (
-                <p
-                  className="flex items-center mt-1 ml-4 text-warning text-sm text-right"
-                  role="alert"
-                >
-                  Alguns campos não estão preenchidos corretamente!
-                </p>
-              )}
-            </div>
 
             {/* Bottom page buttons */}
             <div className="w-[1000px] h-[52px] justify-between items-center inline-flex gap-4 mt-16">
@@ -474,19 +519,9 @@ const Profile = () => {
               <button
                 type="button"
                 onClick={() => {
-                  SubmitValidation();
-
-                  if (areAllFormsFilledCorrect) {
-                    handleSubmit(handleUpdateSubmit)();
-                  }
+                  handleUpdateSubmit();
                 }}
-                className={`px-10 py-4 rounded-lg justify-center items-center gap-2.5 flex text-center text-lg font-bold ${
-                  // Opacity dimmed when button is disabled
-                  areAllFormsFilledCorrect
-                    ? "bg-primary hover:bg-cyan-900 text-white"
-                    : "bg-primary text-gray-200 cursor-not-allowed opacity-60"
-                }`}
-                // Button is disabled if form fields are not filled out correctly
+                className="px-10 py-4 rounded-lg justify-center items-center gap-2.5 flex text-center text-lg font-bold bg-primary hover:bg-cyan-900 text-white"
                 disabled={submitLoading}
               >
                 {" "}

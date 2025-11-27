@@ -31,6 +31,20 @@ export default factories.createCoreController('api::content-creator.content-crea
         return this.transformResponse(result);
     },
 
+    async update(ctx) {
+        // Remove password from the request if it's empty or not provided
+        if (ctx.request.body?.data) {
+            const password = ctx.request.body.data.password;
+            // Trim and check for undefined, null, empty string, and whitespace
+            if (typeof password !== 'string' || password.trim() === '') {
+                delete ctx.request.body.data.password;
+            }
+        }
+        
+        // Call the default update controller
+        return await super.update(ctx);
+    },
+    
     async login(ctx) {
         try {
         // Access request data via ctx.request.body
