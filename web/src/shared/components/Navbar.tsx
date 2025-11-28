@@ -11,7 +11,6 @@ import { Icon } from "@mdi/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import AdminNavToggle from "./AdminNavToggle";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import {
@@ -82,12 +81,47 @@ export const Navbar = () => {
           </Link>
         </div>
 
+          <div className="flex-1 flex justify-center">
+                  <div className="flex flex-col items-center">
+                      {/* Thin top line like in Figma */}
+                      <div className="h-px w-64 bg-[#166276]/30 mb-1" />
 
-          {userInfo.role === "admin" && (
-              <div className="flex flex-1 justify-center">
-                  <AdminNavToggle />
-              </div>
-          )}
+                      <div className="flex space-x-16 text-sm font-semibold font-['Montserrat']">
+                          {/* Cursos tab */}
+                          <button
+                              type="button"
+                              onClick={() => {
+                                  navigate("/courses");
+                              }}
+                              className={
+                                  "pb-1 border-b-2 transition-colors " +
+                                  (isOnCourses
+                                      ? "border-[#166276] text-[#166276]"
+                                      : "border-transparent text-gray-500 hover:text-[#166276]")
+                              }
+                          >
+                              Cursos
+                          </button>
+
+                          {/* Admin tab */}
+                          <button
+                              type="button"
+                              onClick={() => {
+                                  navigate("/educado-admin");
+                              }}
+                              className={
+                                  "pb-1 border-b-2 transition-colors " +
+                                  (isOnAdmin
+                                      ? "border-[#166276] text-[#166276]"
+                                      : "border-transparent text-gray-500 hover:text-[#166276]")
+                              }
+                          >
+                              Admin
+                          </button>
+                      </div>
+                  </div>
+
+          </div>
 
         {/* Notification Bell and User Info */}
         <div className="relative flex items-center gap-6 pr-10 z-50">
