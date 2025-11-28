@@ -10,7 +10,7 @@ import {
 import { Icon } from "@mdi/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import AdminNavToggle from "./AdminNavToggle";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
@@ -39,6 +39,9 @@ import { useNotifications } from "../context/NotificationContext";
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isOnAdmin = location.pathname.startsWith("/educado-admin");
+  const isOnCourses = location.pathname.startsWith("/courses");
   const { clearToken } = useAuthStore((state) => state);
   const [ open, setOpen ] = useState(false)
   const { notifications, setNotifications } = useNotifications();
