@@ -86,15 +86,13 @@ export const Navbar = () => {
                       <div className="flex space-x-16 text-sm font-semibold font-['Montserrat']">
                           {/* Cursos tab */}
                           <button
-                              type="button"
                               onClick={() => {
                                   navigate("/courses");
                               }}
                               className={
-                                  "pb-1 border-b-2 transition-colors " +
-                                  (isOnCourses
-                                      ? "border-[#166276] text-[#166276]"
-                                      : "border-transparent text-gray-500 hover:text-[#166276]")
+                                  "pb-1 transition-colors " +
+                                  (isOnCourses ? "text-[#166276]" : "text-gray-500 hover:text-[#166276]") +
+                                  " transition-colors"
                               }
                           >
                               Cursos
@@ -102,22 +100,33 @@ export const Navbar = () => {
 
                           {/* Admin tab */}
                           <button
-                              type="button"
                               onClick={() => {
                                   navigate("/educado-admin");
                               }}
                               className={
-                                  "pb-1 border-b-2 transition-colors " +
-                                  (isOnAdmin
-                                      ? "border-[#166276] text-[#166276]"
-                                      : "border-transparent text-gray-500 hover:text-[#166276]")
+                                  (isOnAdmin ? "text-[#166276]" : "text-gray-500 hover:text-[#166276]") +
+                                  " transition-colors"
                               }
                           >
                               Admin
                           </button>
                       </div>
 
-                      <div className="h-px w-64 bg-[#166276]/30 mt-1" />
+                      <div className="relative w-64 h-px bg-[#166276]/30">
+                          {/* LEFT active segment */}
+                          <div
+                              className={`absolute left-0 top-0 h-px transition-all duration-300 ${
+                                  isOnCourses ? "bg-[#166276] w-1/2" : "w-0"
+                              }`}
+                          ></div>
+
+                          {/* RIGHT active segment */}
+                          <div
+                              className={`absolute right-0 top-0 h-px transition-all duration-300 ${
+                                  isOnAdmin ? "bg-[#166276] w-1/2" : "w-0"
+                              }`}
+                          ></div>
+                      </div>
                   </div>
 
           </div>
