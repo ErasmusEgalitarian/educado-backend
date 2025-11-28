@@ -83,9 +83,6 @@ export const Navbar = () => {
 
           <div className="flex-1 flex justify-center">
                   <div className="flex flex-col items-center">
-                      {/* Thin top line like in Figma */}
-                      <div className="h-px w-64 bg-[#166276]/30 mb-1" />
-
                       <div className="flex space-x-16 text-sm font-semibold font-['Montserrat']">
                           {/* Cursos tab */}
                           <button
@@ -119,6 +116,8 @@ export const Navbar = () => {
                               Admin
                           </button>
                       </div>
+
+                      <div className="h-px w-64 bg-[#166276]/30 mt-1" />
                   </div>
 
           </div>
