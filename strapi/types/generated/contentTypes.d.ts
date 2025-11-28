@@ -738,6 +738,39 @@ export interface ApiDashboardActivityDashboardActivity
   };
 }
 
+export interface ApiDashboardActivityDashboardActivity
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'dashboard_activities';
+  info: {
+    displayName: 'Dashboard Activity';
+    pluralName: 'dashboard-activities';
+    singularName: 'dashboard-activity';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    activityDesc: Schema.Attribute.String;
+    content_creator: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::content-creator.content-creator'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dashboard-activity.dashboard-activity'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiExerciseOptionExerciseOption
   extends Struct.CollectionTypeSchema {
   collectionName: 'exercise_options';
