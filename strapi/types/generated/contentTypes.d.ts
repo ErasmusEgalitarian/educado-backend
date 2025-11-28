@@ -501,6 +501,10 @@ export interface ApiContentCreatorContentCreator
         maxLength: 40;
         minLength: 1;
       }>;
+    dashboard_activities: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dashboard-activity.dashboard-activity'
+    >;
     education: Schema.Attribute.Enumeration<['TODO1', 'TODO2', 'TODO3']> &
       Schema.Attribute.Required;
     eduEnd: Schema.Attribute.Date & Schema.Attribute.Required;
@@ -695,6 +699,39 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
         maxLength: 50;
         minLength: 1;
       }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDashboardActivityDashboardActivity
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'dashboard_activities';
+  info: {
+    displayName: 'Dashboard Activity';
+    pluralName: 'dashboard-activities';
+    singularName: 'dashboard-activity';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    activityDesc: Schema.Attribute.String;
+    content_creator: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::content-creator.content-creator'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dashboard-activity.dashboard-activity'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1540,6 +1577,7 @@ declare module '@strapi/strapi' {
       'api::course-category.course-category': ApiCourseCategoryCourseCategory;
       'api::course-selection.course-selection': ApiCourseSelectionCourseSelection;
       'api::course.course': ApiCourseCourse;
+      'api::dashboard-activity.dashboard-activity': ApiDashboardActivityDashboardActivity;
       'api::exercise-option.exercise-option': ApiExerciseOptionExerciseOption;
       'api::exercise.exercise': ApiExerciseExercise;
       'api::feedback.feedback': ApiFeedbackFeedback;

@@ -444,6 +444,31 @@ export type Certificate = {
                             documentId?: string;
                         }>;
                     }>;
+                    dashboard_activities?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        content_creator?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        activityDesc?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
                     createdAt?: string;
                     updatedAt?: string;
                     publishedAt?: string;
@@ -658,6 +683,7 @@ export type ContentCreatorRequest = {
         jobDescription?: string;
         courses?: Array<number | string>;
         user_logs?: Array<number | string>;
+        dashboard_activities?: Array<number | string>;
         locale?: string;
         localizations?: Array<number | string>;
     };
@@ -1166,6 +1192,31 @@ export type ContentCreator = {
                 id?: number;
                 documentId?: string;
             }>;
+            dashboard_activities?: Array<{
+                id?: number;
+                documentId?: string;
+                content_creator?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                activityDesc?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -1201,6 +1252,10 @@ export type ContentCreator = {
         }>;
     }>;
     user_logs?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+    dashboard_activities?: Array<{
         id?: number;
         documentId?: string;
     }>;
@@ -1762,6 +1817,31 @@ export type Course = {
                 user_logs?: Array<{
                     id?: number;
                     documentId?: string;
+                }>;
+                dashboard_activities?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    content_creator?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    activityDesc?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
                 }>;
                 createdAt?: string;
                 updatedAt?: string;
@@ -2356,6 +2436,31 @@ export type CourseCategory = {
                 id?: number;
                 documentId?: string;
             }>;
+            dashboard_activities?: Array<{
+                id?: number;
+                documentId?: string;
+                content_creator?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                activityDesc?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -2854,6 +2959,31 @@ export type CourseSelection = {
                 id?: number;
                 documentId?: string;
             }>;
+            dashboard_activities?: Array<{
+                id?: number;
+                documentId?: string;
+                content_creator?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                activityDesc?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -2908,6 +3038,39 @@ export type CourseSelection = {
 
 export type CourseSelectionResponse = {
     data?: CourseSelection;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type DashboardActivityRequest = {
+    data: {
+        content_creator?: number | string;
+        activityDesc?: string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type DashboardActivityListResponse = {
+    data?: Array<DashboardActivity>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type DashboardActivity = {
+    description?: string;
+    date?: string;
+};
+
+export type DashboardActivityResponse = {
+    data?: DashboardActivity;
     meta?: {
         [key: string]: unknown;
     };
@@ -3781,6 +3944,31 @@ export type Feedback = {
                 id?: number;
                 documentId?: string;
             }>;
+            dashboard_activities?: Array<{
+                id?: number;
+                documentId?: string;
+                content_creator?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                activityDesc?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -4555,6 +4743,31 @@ export type Student = {
                     id?: number;
                     documentId?: string;
                 }>;
+                dashboard_activities?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    content_creator?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    activityDesc?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
                 createdAt?: string;
                 updatedAt?: string;
                 publishedAt?: string;
@@ -5053,6 +5266,31 @@ export type UserLog = {
                             id?: number;
                             documentId?: string;
                         };
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    dashboard_activities?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        content_creator?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        activityDesc?: string;
                         createdAt?: string;
                         updatedAt?: string;
                         publishedAt?: string;
@@ -10755,3 +10993,19 @@ export type UsersPermissionsGetPermissionsResponses = {
 };
 
 export type UsersPermissionsGetPermissionsResponse = UsersPermissionsGetPermissionsResponses[keyof UsersPermissionsGetPermissionsResponses];
+
+export type GetCcDashboardActivityRequest = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/CC-dashboard-activity';
+};
+
+export type GetCcDashboardActivityResponses = {
+    /**
+     * OK - Array of dashboard activities
+     */
+    200: Array<DashboardActivity>;
+};
+
+export type GetCcDashboardActivityResponse = GetCcDashboardActivityResponses[keyof GetCcDashboardActivityResponses];

@@ -505,6 +505,31 @@ export const zCertificate = z.object({
                             documentId: z.string().optional()
                         })).optional()
                     })).optional(),
+                    dashboard_activities: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional(),
+                        content_creator: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        activityDesc: z.string().optional(),
+                        createdAt: z.string().datetime().optional(),
+                        updatedAt: z.string().datetime().optional(),
+                        publishedAt: z.string().datetime().optional(),
+                        createdBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        updatedBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        locale: z.string().optional(),
+                        localizations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional()
+                    })).optional(),
                     createdAt: z.string().datetime().optional(),
                     updatedAt: z.string().datetime().optional(),
                     publishedAt: z.string().datetime().optional(),
@@ -686,6 +711,10 @@ export const zContentCreatorRequest = z.object({
             z.string()
         ])).optional(),
         user_logs: z.array(z.union([
+            z.number().int(),
+            z.string()
+        ])).optional(),
+        dashboard_activities: z.array(z.union([
             z.number().int(),
             z.string()
         ])).optional(),
@@ -1207,6 +1236,31 @@ export const zContentCreator = z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional()
             })).optional(),
+            dashboard_activities: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                content_creator: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                activityDesc: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -1242,6 +1296,10 @@ export const zContentCreator = z.object({
         })).optional()
     })).optional(),
     user_logs: z.array(z.object({
+        id: z.number().optional(),
+        documentId: z.string().optional()
+    })).optional(),
+    dashboard_activities: z.array(z.object({
         id: z.number().optional(),
         documentId: z.string().optional()
     })).optional(),
@@ -1833,6 +1891,31 @@ export const zCourse = z.object({
                 user_logs: z.array(z.object({
                     id: z.number().optional(),
                     documentId: z.string().optional()
+                })).optional(),
+                dashboard_activities: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    content_creator: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    activityDesc: z.string().optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
                 })).optional(),
                 createdAt: z.string().datetime().optional(),
                 updatedAt: z.string().datetime().optional(),
@@ -2442,6 +2525,31 @@ export const zCourseCategory = z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional()
             })).optional(),
+            dashboard_activities: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                content_creator: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                activityDesc: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -2961,6 +3069,31 @@ export const zCourseSelection = z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional()
             })).optional(),
+            dashboard_activities: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                content_creator: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                activityDesc: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -3027,6 +3160,43 @@ export const zCourseSelectionListResponse = z.object({
 
 export const zCourseSelectionResponse = z.object({
     data: zCourseSelection.optional(),
+    meta: z.record(z.unknown()).optional()
+});
+
+export const zDashboardActivityRequest = z.object({
+    data: z.object({
+        content_creator: z.union([
+            z.number().int(),
+            z.string()
+        ]).optional(),
+        activityDesc: z.string().optional(),
+        locale: z.string().optional(),
+        localizations: z.array(z.union([
+            z.number().int(),
+            z.string()
+        ])).optional()
+    })
+});
+
+export const zDashboardActivity = z.object({
+    description: z.string().optional(),
+    date: z.string().datetime().optional()
+});
+
+export const zDashboardActivityListResponse = z.object({
+    data: z.array(zDashboardActivity).optional(),
+    meta: z.object({
+        pagination: z.object({
+            page: z.number().int().optional(),
+            pageSize: z.number().int().gte(25).optional(),
+            pageCount: z.number().int().lte(1).optional(),
+            total: z.number().int().optional()
+        }).optional()
+    }).optional()
+});
+
+export const zDashboardActivityResponse = z.object({
+    data: zDashboardActivity.optional(),
     meta: z.record(z.unknown()).optional()
 });
 
@@ -3914,6 +4084,31 @@ export const zFeedback = z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional()
             })).optional(),
+            dashboard_activities: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                content_creator: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                activityDesc: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -4723,6 +4918,31 @@ export const zStudent = z.object({
                     id: z.number().optional(),
                     documentId: z.string().optional()
                 })).optional(),
+                dashboard_activities: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    content_creator: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    activityDesc: z.string().optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
+                })).optional(),
                 createdAt: z.string().datetime().optional(),
                 updatedAt: z.string().datetime().optional(),
                 publishedAt: z.string().datetime().optional(),
@@ -5236,6 +5456,31 @@ export const zUserLog = z.object({
                             id: z.number().optional(),
                             documentId: z.string().optional()
                         }).optional(),
+                        createdAt: z.string().datetime().optional(),
+                        updatedAt: z.string().datetime().optional(),
+                        publishedAt: z.string().datetime().optional(),
+                        createdBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        updatedBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        locale: z.string().optional(),
+                        localizations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional()
+                    })).optional(),
+                    dashboard_activities: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional(),
+                        content_creator: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        activityDesc: z.string().optional(),
                         createdAt: z.string().datetime().optional(),
                         updatedAt: z.string().datetime().optional(),
                         publishedAt: z.string().datetime().optional(),
@@ -10161,3 +10406,14 @@ export const zUsersPermissionsGetPermissionsResponse = z.object({
         })))
     }))
 });
+
+export const zGetCcDashboardActivityRequest = z.object({
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional()
+});
+
+/**
+ * OK - Array of dashboard activities
+ */
+export const zGetCcDashboardActivityResponse = z.array(zDashboardActivity);
