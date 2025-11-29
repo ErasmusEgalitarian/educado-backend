@@ -160,6 +160,9 @@ npm run dev:backend
 # Start web only
 npm run dev:web
 
+# Start backend with initial data seeding. This creates some sample data in Strapi.
+cd strapi && npm run dev:seed
+
 # Stop all Docker containers
 npm run stop
 ```

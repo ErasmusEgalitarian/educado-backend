@@ -296,6 +296,7 @@ Start dev servers and work on code locally.
 | `npm run dev:web` | Start Web dev server only | ❌ | ❌ | ❌ | ✅ |
 | `npm run dev:backend` | Start DB + Strapi dev server | ❌ | ✅ | ✅ | ❌ |
 | `npm run dev:fullstack` | Start DB + both dev servers | ✅ | ✅ | ✅ | ✅ |
+| `cd strapi && npm run dev:seed` | Start Strapi with sample data seeding | ❌ | ❌ | ✅ | ❌ |
 | `npm run stop` | Stop all Docker containers | ❌ | 🛑 Stops | ❌ | ❌ |
 
 **Examples**:
@@ -308,6 +309,10 @@ npm run dev:web
 
 # Just work on backend
 npm run dev:backend
+
+# Seed initial data (categories, courses, sections)
+# Only needed once or after database reset
+cd strapi && npm run dev:seed
 
 # Already have DB running? Use this
 npm run dev

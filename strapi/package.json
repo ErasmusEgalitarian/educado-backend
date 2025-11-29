@@ -6,6 +6,7 @@
   "packageManager": "npm@10.2.0",
   "scripts": {
     "dev": "npm run copy-spec && cross-env ENV_PATH=../.env strapi develop",
+    "dev:seed": "npm run copy-spec && cross-env ENV_PATH=../.env SEED_DATA=true strapi develop",
     "build": "npm run copy-spec && strapi build",
     "copy-spec": "node -e \"require('fs').cpSync('../openapi/strapi-spec.json', 'public/openapi/strapi-spec.json', {recursive: true})\"",
     "docker:build": "docker build -t educado-strapi:latest -f Dockerfile ..",
