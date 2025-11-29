@@ -91,6 +91,7 @@ Already set up? Here are the most common commands:
 npm run dev:fullstack    # Start database + backend + frontend
 npm run dev:backend      # Start database + backend only
 npm run dev:web          # Start frontend only
+cd strapi && npm run dev:seed  # Start backend with sample data seeding
 npm run stop             # Stop all Docker containers
 
 # Code Quality
