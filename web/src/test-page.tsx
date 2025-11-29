@@ -1,21 +1,17 @@
-import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import { useFileUpload } from "@/shared/hooks/use-file-upload";
-
-import { FormFileUpload } from "./shared/components/form/form-file-upload";
 
 import { Form } from "@/shared/components/shadcn/form";
+import { useFileUpload } from "@/shared/hooks/use-file-upload";
 
-import FormActions from "./shared/components/form/form-actions";
 import { FileWithMetadataSchema } from "./shared/components/file-upload";
-
+import FormActions from "./shared/components/form/form-actions";
+import { FormFileUpload } from "./shared/components/form/form-file-upload";
 import GenericModalComponent from "./shared/components/GenericModalComponent";
 import { SearchBar } from "./shared/components/SearchBar";
-
-import { PaginationBottomBar } from "./shared/table/PaginationBottomBar";
 
 // The zod schema defines both validation and the form's data shape.
 const formSchema = z.object({
@@ -86,19 +82,10 @@ const TestPage = () => {
         </form>
       </Form>
 
-      <PaginationBottomBar
-        currentPage={currentPage}
-        itemsPerPage={itemsPerPage}
-        unpaginatedItemsAmount={totalItems}
-        onChangePage={(newPage: number) => setCurrentPage(newPage)}
-        onChangeItemsPerPage={(newPerPage: number) => {
-          setItemsPerPage(newPerPage);
-          setCurrentPage(1); // reset page når itemsPerPage ændres
-        }}
-      />
-
       <button
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => {
+          setIsModalOpen(true);
+        }}
         className="btn btn-primary mt-6"
       >
         Open Modal
@@ -110,7 +97,9 @@ const TestPage = () => {
         contentText="Dette er en testmodal – du kan lukke den med (X) eller knappen herunder."
         cancelBtnText="Luk"
         confirmBtnText="Bekræft"
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false);
+        }}
         onConfirm={() => {
           toast.success("Bekræftet!");
           setIsModalOpen(false);
