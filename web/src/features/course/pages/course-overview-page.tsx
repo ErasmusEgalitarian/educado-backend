@@ -1,9 +1,8 @@
 import { mdiPlus } from "@mdi/js";
 import Icon from "@mdi/react";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
 
 import { Course } from "@/shared/api/types.gen";
 import { PageContainer } from "@/shared/components/page-container";
@@ -27,7 +26,6 @@ const PlusIcon = () => <Icon path={mdiPlus} size={1} />;
 const CourseOverviewPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [selectedCourses, setSelectedCourses] = useState<Course[]>([]);
 
   const courseColumns = useMemo(
     () => createCourseColumns({ t, navigate }),
@@ -38,12 +36,6 @@ const CourseOverviewPage = () => {
     (course: Course) => <CourseCard course={course} />,
     []
   );
-
-  const handleSelectionChange = useCallback((courses: Course[]) => {
-    setSelectedCourses(courses);
-    // Do something with selected courses (e.g., enable batch operations)
-    toast.info(`${String(courses.length)} course(s) selected.`);
-  }, []);
 
   return (
     <PageContainer title={t("courses.pageTitle")}>
@@ -89,21 +81,7 @@ const CourseOverviewPage = () => {
                   renderMode: "client",
                   clientModeThreshold: 50,
                 }}
-                selection={{
-                  enabled: true,
-                  limit: 2,
-                  onChange: handleSelectionChange,
-                }}
               />
-              {/* Display selected courses count for demo */}
-              {selectedCourses.length > 0 && (
-                <div className="mt-4 p-4 bg-primary-surface-lighter rounded-lg">
-                  <p className="text-sm font-medium">
-                    {selectedCourses.length} course(s) selected:{" "}
-                    {selectedCourses.map((c) => c.title).join(", ")}
-                  </p>
-                </div>
-              )}
             </CardContent>
           </Card>
         </div>
