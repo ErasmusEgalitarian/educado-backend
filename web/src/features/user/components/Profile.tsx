@@ -150,7 +150,7 @@ const Profile = () => {
         body: {
           data: {
             firstName: firstName,
-            ...(lastName && { lastName: lastName }), // Only include lastName if it's not empty
+            lastName: lastName || "",
             biography: formData.bio || "",
             // Note: Keep existing required fields from the current data
             email: contentCreatorData?.email ?? formData.userEmail,
