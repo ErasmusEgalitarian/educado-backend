@@ -22,7 +22,7 @@ import ProfileServices from "../../../unplaced/services/profile.services";
 
 import AcademicExperienceForm from "./academic-experience-form";
 import PersonalInformationForm from "./personal-information.tsx";
-import ProfessionalExperienceForm from "./ProfessionalExperience";
+import ProfessionalExperienceForm from "./professional-experience.tsx";
 
 // TypeScript Interfaces
 interface ContentCreator {
