@@ -12,10 +12,13 @@ import {
 } from "@tanstack/react-table";
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 
-import { useAuth } from "@/auth/hooks/use-auth";
 import { fetchHeaders, getBaseApiUrl } from "@/shared/config/api-config";
 
-import { buildApiQueryParams } from "../lib/query-params-builder";
+import {
+  buildApiQueryParams,
+  Status,
+  StaticFilters,
+} from "../lib/query-params-builder";
 import { PaginatedData } from "../types/paginated-data";
 
 const LOGGING_ENABLED = false;
@@ -48,6 +51,10 @@ interface BaseUsePaginatedDataProps {
   fields?: string[];
   /** Strapi populate configuration for relations */
   populate?: string | string[];
+  /** Static filters that are always applied to every request (e.g., author: "me") */
+  staticFilters?: StaticFilters;
+  /** Status: 'published' (default) or 'draft'. Controls which version of documents to fetch. */
+  status?: Status;
 }
 
 // Mode configuration
@@ -153,14 +160,14 @@ interface UsePaginatedDataReturn<T> {
 export default function usePaginatedData<T>(
   props: UsePaginatedDataProps,
 ): UsePaginatedDataReturn<T> {
-  const { queryKey, urlPath, fields, populate, config } = props;
+  const { queryKey, urlPath, fields, populate, config, staticFilters, status } = props;
 
   // Extract mode-specific props
   const isIntegratedMode = props.mode === "integrated";
   const tableState = isIntegratedMode ? props.tableState : undefined;
-  const initialPageSize = !isIntegratedMode
-    ? (props.initialPageSize ?? 10)
-    : 10;
+  const initialPageSize = isIntegratedMode
+    ? 10
+    : (props.initialPageSize ?? 10);
 
   // Construct the full base URL for API requests
   const baseUrl = getBaseApiUrl() + urlPath;
@@ -184,6 +191,31 @@ export default function usePaginatedData<T>(
   const columnFilters = isIntegratedMode ? tableState?.columnFilters : [];
   const globalFilter = isIntegratedMode ? tableState?.globalFilter : "";
 
+  // Extract publishedAt filter and convert to Strapi status parameter
+  // This is needed because Strapi returns different documents for draft vs published
+  const publishedAtFilter = useMemo(() => {
+    return columnFilters?.find((f) => f.id === "publishedAt");
+  }, [columnFilters]);
+
+  // Derive the effective status from either the prop or the publishedAt filter
+  const effectiveStatus = useMemo<Status | undefined>(() => {
+    // Priority 1: Explicit status prop (if provided)
+    if (status !== undefined) return status;
+
+    // Priority 2: publishedAt column filter (e.g., from QuickFilter dropdown)
+    if (publishedAtFilter?.value === "draft") return "draft";
+    if (publishedAtFilter?.value === "published") return "published";
+
+    // Default: undefined (Strapi will return published by default)
+    return undefined;
+  }, [status, publishedAtFilter]);
+
+  // Debug logging
+  if (LOGGING_ENABLED) {
+    console.debug("usePaginatedData: publishedAtFilter", publishedAtFilter);
+    console.debug("usePaginatedData: effectiveStatus", effectiveStatus);
+  }
+
   // --- Mode Resolution ---
   const effectiveMode = renderMode ?? "auto";
   console.debug("usePaginatedData: Effective mode:", effectiveMode);
@@ -191,16 +223,28 @@ export default function usePaginatedData<T>(
 
   // 1. DETECTION QUERY: Runs only in "auto" mode to determine the total number of items.
   const detectionQuery = useQuery({
-    queryKey: [queryKey ?? baseUrl, "detect", fields, populate],
+    // Include effectiveStatus/staticFilters in key - changing these means different documents, need re-detection
+    // Only include defined values to ensure changes from undefined → value trigger refetch
+    queryKey: [
+      queryKey ?? baseUrl,
+      "detect",
+      fields,
+      populate,
+      ...(staticFilters === undefined ? [] : [{ staticFilters }]),
+      ...(effectiveStatus === undefined ? [] : [{ status: effectiveStatus }]),
+    ],
     queryFn: async ({ signal }) => {
       console.debug("usePaginatedData: Auto-detecting mode...");
 
       // Fetch just one item to get the total count from Strapi's pagination meta
       // NOTE: Detection ignores globalFilter - we want total item count, not filtered count
+      // BUT respects status and staticFilters as they change which documents Strapi returns
       const params = buildApiQueryParams(
         { pageIndex: 0, pageSize: 1, globalFilter: undefined },
         fields,
         populate,
+        staticFilters,
+        effectiveStatus,
       );
       const response = await fetch(`${baseUrl}?${params.toString()}`, {
         signal,
@@ -257,13 +301,17 @@ export default function usePaginatedData<T>(
   // 2. MAIN DATA QUERY: Fetches the actual data based on the resolvedMode.
   const mainQuery = useQuery({
     // The query key is crucial for caching. It changes based on the mode.
+    // Only include defined values so changes from undefined → value trigger refetch
     queryKey: [
       queryKey ?? baseUrl, // Default to URL if no key provided. Makes it more difficult to invalidate cache without.
       resolvedMode, // 'client' or 'server'
-      fields, // What to fetch from Strapi
-      populate, // What relations to populate
+      ...(fields === undefined ? [] : [{ fields }]),
+      ...(populate === undefined ? [] : [{ populate }]),
+      ...(staticFilters === undefined ? [] : [{ staticFilters }]),
+      ...(effectiveStatus === undefined ? [] : [{ status: effectiveStatus }]),
       // For server mode, include pagination, sorting, and filtering in the key
-      // For client mode, pageSize doesn't matter (we fetch all), so exclude it
+      // For client mode, only the above params matter (sorting/filtering handled client-side)
+      // Note: Changing effectiveStatus/staticFilters/fields/populate will refetch in BOTH modes
       ...(resolvedMode === "server"
         ? [
           {
@@ -274,7 +322,7 @@ export default function usePaginatedData<T>(
           columnFilters,
           globalFilter,
         ]
-        : []), // Client mode fetches all data once, no need for pagination in key
+        : []), // Client mode: pagination/sorting/filters don't trigger refetch (handled in-memory)
     ],
     // The query function fetches data based on the current mode and state
     queryFn: async ({ signal }) => {
@@ -290,11 +338,18 @@ export default function usePaginatedData<T>(
 
       // Handle client vs server mode fetching
       if (resolvedMode === "client") {
-        // In client mode, fetch ALL data. The total is known from the detection query.
-        // Exclude sorting/filtering as they are client-side only.
-        const sizeToFetch =
-          detectionQuery.data?.meta.pagination.total ??
-          effectiveClientModeThreshold;
+        // In client mode, fetch ALL data.
+        // Always use threshold to ensure we get all data (total might be from different status)
+        const sizeToFetch = effectiveClientModeThreshold;
+
+        if (LOGGING_ENABLED) {
+          console.debug("usePaginatedData: Client mode - fetching all", {
+            sizeToFetch,
+            effectiveStatus,
+            threshold: effectiveClientModeThreshold,
+          });
+        }
+
         params = buildApiQueryParams(
           {
             pageIndex: 0,
@@ -303,19 +358,24 @@ export default function usePaginatedData<T>(
           },
           fields,
           populate,
+          staticFilters,
+          effectiveStatus,
         );
       } else {
         // In server mode, fetch only the current page with sorting/filtering.
+        // Use otherColumnFilters (excludes publishedAt, which is handled by effectiveStatus)
         params = buildApiQueryParams(
           {
             pageIndex: pagination?.pageIndex,
             pageSize: pagination?.pageSize,
             sorting,
             columnFilters,
-            globalFilter: globalFilter !== "" ? globalFilter : undefined,
+            globalFilter: globalFilter === "" ? undefined : globalFilter,
           },
           fields,
           populate,
+          staticFilters,
+          effectiveStatus,
         );
       }
       const response = await fetch(`${baseUrl}?${params.toString()}`, {

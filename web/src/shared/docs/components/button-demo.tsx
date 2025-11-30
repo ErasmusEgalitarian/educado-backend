@@ -84,11 +84,11 @@ const examples: Example[] = [
   {
     title: "Sizes",
     description: "Size variants including icon size.",
-    code: `<Button size="sm">Small</Button>\n<Button size="default">Default</Button>\n<Button size="lg">Large</Button>\n<Button size="icon"><Icon path={mdiHome} size={1} /></Button>`,
+    code: `<Button size="sm">Small</Button>\n<Button size="md">Medium</Button>\n<Button size="lg">Large</Button>\n<Button size="icon"><Icon path={mdiHome} size={1} /></Button>`,
     preview: (
       <div className="flex flex-wrap items-center gap-3">
         <Button size="sm">Small</Button>
-        <Button size="default">Default</Button>
+        <Button size="md">Medium</Button>
         <Button size="lg">Large</Button>
         <Button size="icon" aria-label="Home">
           <Icon path={mdiHome} size={1} />

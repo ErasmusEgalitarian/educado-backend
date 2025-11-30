@@ -150,7 +150,7 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
               value={String(pageSize)}
               onValueChange={handlePageSizeChange}
             >
-              <SelectTrigger className="h-8 w-20">
+              <SelectTrigger size="sm" className="w-20">
                 <SelectValue>{pageSize}</SelectValue>
               </SelectTrigger>
               <SelectContent>
@@ -174,8 +174,8 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
               <PaginationItem>
                 <Button
                   variant="outline"
-                  size="icon"
-                  className="h-8 w-8"
+                  size="sm"
+                  className="w-8 px-0"
                   onClick={() => {
                     handlePageChange(pageIndex - 1);
                   }}
@@ -196,7 +196,7 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
                         handlePageChange(page);
                       }}
                       isActive={pageIndex === page}
-                      className={`h-8 w-8 ${pageIndex === page ? activeClass : ""}`}
+                      className={pageIndex === page ? activeClass : ""}
                     >
                       {page + 1}
                     </PaginationLink>
@@ -208,8 +208,8 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
               <PaginationItem>
                 <Button
                   variant="outline"
-                  size="icon"
-                  className="h-8 w-8"
+                  size="sm"
+                  className="w-8 px-0"
                   onClick={() => {
                     handlePageChange(pageIndex + 1);
                   }}
@@ -222,7 +222,7 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
           </Pagination>
 
           {/* Scroll to Top Button (conditionally rendered) */}
-          {showScrollToTop && (
+          {showScrollToTop ? (
             <Button
               variant="outline"
               size="sm"
@@ -232,7 +232,7 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
               Scroll to top{" "}
               <Icon path={mdiChevronUp} className="ml-2 h-4 w-4" />
             </Button>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
