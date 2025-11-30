@@ -35,6 +35,9 @@ WORKDIR /app
 COPY --from=installer /app/ .
 COPY --from=pruner /app/out/full/ .
 
+# Copy openapi spec (needed for build script)
+COPY --from=pruner /app/openapi/ ./openapi/
+
 # Build the application using turbo
 RUN npm install -g turbo
 RUN turbo run build --filter=strapi
