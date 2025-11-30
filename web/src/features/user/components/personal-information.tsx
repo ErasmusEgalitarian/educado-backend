@@ -1,12 +1,11 @@
 //Imports
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 
 import Modals from "@/auth/components/Modals";
-
-import { BACKEND_URL } from "../../../shared/config/environment";
+import { BACKEND_URL } from "@/shared/config/environment.ts";
 
 //Exporting UI content&structure of
-export default function PersonalInformationForm({
+const PersonalInformationForm= ({
   formData,
   errors,
   handleCharCountBio,
@@ -16,7 +15,7 @@ export default function PersonalInformationForm({
   myRef,
   register,
   handleInputChange,
-}: {
+}: Readonly<{
   formData: any;
   errors: any;
   handleCharCountBio: any;
@@ -26,7 +25,7 @@ export default function PersonalInformationForm({
   myRef: any;
   register: any;
   handleInputChange: any;
-}) {
+}>) => {
   //State for pop up modals
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
@@ -35,20 +34,21 @@ export default function PersonalInformationForm({
   const [intError, setIntError] = useState(false);
 
   //Inputfield validation
-  const handleInputNumbersOnly = (e: any) => {
+  const handleInputNumbersOnly = (e: ChangeEvent<HTMLInputElement>): void => {
     // Disable non-numeric characters
-    const numericInput = e.target.value.replace(/[^0-9]/g, "");
+    const numericInput = e.target.value.replace(/\D/g, "");
 
     setModalInputValue(numericInput);
-    setIntError(!/^[0-9]*$/.test(e.target.value));
+    setIntError(!/^\d*$/.test(e.target.value));
   };
   const getUserImage = async () => {
-    const response = await fetch(
-      `http://localhost:8888/api/bucket/${formData.photo}`,
-    );
+      await fetch(`http://localhost:8888/api/bucket/${formData.photo}`,);
   };
   useEffect(() => {
-    getUserImage();
+      const load = async () => {
+          await getUserImage();
+      };
+      void load();
   }, []);
   return (
     <>
@@ -59,7 +59,7 @@ export default function PersonalInformationForm({
           {/* Display selected image if uploaded, otherwise display icon with initials*/}
           {formData.photo ? (
             <img
-              src={`${BACKEND_URL}/api/bucket/${formData.photo}`}
+              src={`${String(BACKEND_URL ?? "")}/api/bucket/${formData.photo}`}
               className="w-[120px] h-[120px] p-[0px] bg-cyan-800 rounded-[60px] border-2 border-white inline-flex"
               alt=""
             />
@@ -181,7 +181,7 @@ export default function PersonalInformationForm({
                   required: "digite seu nome completo.",
                 })}
                 name="linkedin"
-                value={formData.linkedin || ""}
+                value={formData.linkedin ?? ""}
                 onChange={handleInputChange}
               />
               {errors.linkedin && (
@@ -204,7 +204,7 @@ export default function PersonalInformationForm({
               placeholder="Contente mais sobre você"
               maxLength={400}
               name="bio"
-              value={formData.bio || ""}
+              value={formData.bio ?? ""}
               onChange={handleInputChange}
             />
             <div className="text-right text-sm text-gray-400">
@@ -232,3 +232,4 @@ export default function PersonalInformationForm({
     </>
   );
 }
+export default PersonalInformationForm;

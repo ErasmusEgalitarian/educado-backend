@@ -4,7 +4,7 @@ import { Icon } from "@mdi/react";
 import React, { Fragment } from "react";
 
 // Export UI content and structure
-export default function ProfessionalExperienceForm({
+const ProfessionalExperienceForm= ({
   index,
   experienceFormData,
   handleExperienceInputChange,
@@ -37,7 +37,7 @@ export default function ProfessionalExperienceForm({
   handleCountExperience: (index: number) => number;
   handleCheckboxChange: (index: number) => void;
   errors: unknown;
-}>) {
+}>) => {
   function displayInvalidDateFormatErrMsg(strValue: string, errorMsg: string) {
     if (strValue !== "") {
       return (
@@ -288,3 +288,5 @@ export default function ProfessionalExperienceForm({
     </Fragment>
   );
 }
+
+export default ProfessionalExperienceForm;
