@@ -247,9 +247,11 @@ const Profile = () => {
   // Render and fetch userData
      
   useEffect(() => {
-    if (userID) {
-      void fetchDynamicData();
-    }
+      if (!userID) return;
+      const load = async () => {
+          await fetchDynamicData();
+    };
+      void load();
   }, [userID]);
 
   // Check if forms are filled correctly
@@ -517,7 +519,7 @@ const Profile = () => {
               <button
                 type="button"
                 onClick={() => {
-                  void handleUpdateSubmit();
+                    handleUpdateSubmit();
                 }}
                 className="px-10 py-4 rounded-lg justify-center items-center gap-2.5 flex text-center text-lg font-bold bg-primary hover:bg-cyan-900 text-white"
                 disabled={submitLoading}
