@@ -25,8 +25,15 @@ WORKDIR /app
 COPY --from=pruner /app/out/json/ .
 COPY --from=pruner /app/out/package-lock.json ./package-lock.json
 
-# Install dependencies
-RUN npm ci
+# Install dependencies with correct platform binaries for Alpine/musl
+# Using --ignore-scripts to prevent running postinstall before we fix the platform binaries
+RUN npm ci --ignore-scripts
+
+# Explicitly install the correct platform-specific native binaries for Alpine (musl)
+RUN cd /app/web && npm install \
+    lightningcss-linux-x64-musl \
+    @tailwindcss/oxide-linux-x64-musl \
+    --save-optional --ignore-scripts
 
 # Copy source code from pruned output
 COPY --from=pruner /app/out/full/ .
