@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-const WorkExperience = ({ data }: { data: unknown }) => {
+const WorkExperience = ({ data }: { data: any }) => {
   const { t } = useTranslation();
   return (
     <div className="bg-white px-4 py-3 grid sm:grid-cols-2 sm:gap-4 sm:px-6 space-x-8">
