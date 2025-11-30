@@ -21,7 +21,7 @@ import AccountServices from "../../../unplaced/services/account.services";
 import ProfileServices from "../../../unplaced/services/profile.services";
 
 import AcademicExperienceForm from "./academic-experience-form";
-import PersonalInformationForm from "./PersonalInformation";
+import PersonalInformationForm from "./personal-information.tsx";
 import ProfessionalExperienceForm from "./ProfessionalExperience";
 
 // TypeScript Interfaces

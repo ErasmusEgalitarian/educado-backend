@@ -1,4 +1,4 @@
-const ApplicantDetails = ({ data }: { data: unknown }) => {
+const ApplicantDetails = ({ data }: { data: any }) => {
   //Convert the data into something more readable
   const date = new Date(data.data.applicator.joinedAt);
   return (
