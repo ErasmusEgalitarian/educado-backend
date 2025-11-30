@@ -38,6 +38,10 @@ COPY --from=pruner /app/out/full/ .
 # Copy openapi spec (needed for build script)
 COPY --from=pruner /app/openapi/ ./openapi/
 
+# Ensure the target directory exists and copy the spec file before build
+RUN mkdir -p ./strapi/public/openapi && \
+    cp ./openapi/strapi-spec.json ./strapi/public/openapi/strapi-spec.json
+
 # Build the application using turbo
 RUN npm install -g turbo
 RUN turbo run build --filter=strapi
