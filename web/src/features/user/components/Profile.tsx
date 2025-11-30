@@ -45,8 +45,8 @@ interface ContentCreator {
 
 // Zod Schema
 const profileSchema = z.object({
-  UserName: z.string().optional(),
-  UserEmail: z.string().email("You need a suitable email to submit").optional(),
+  userName: z.string().optional(),
+  userEmail: z.string().email("You need a suitable email to submit").optional(),
   bio: z.string().optional(),
   linkedin: z
     .string()
@@ -68,8 +68,6 @@ const Profile = () => {
     formData,
     setFormData,
     handleInputChange,
-    fetchuser,
-    fetchStaticData,
   } = staticForm();
 
   const { emptyAcademicObject, emptyProfessionalObject } = tempObjects();
@@ -104,9 +102,7 @@ const Profile = () => {
   // Zod setup for static form
   const {
     register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
+      formState: { errors },
   } = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
   });
@@ -119,10 +115,10 @@ const Profile = () => {
     useState(false);
   const [isProfessionalExperienceOpen, setIsProfessionalExperienceOpen] =
     useState(false);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [, setHasSubmitted] = useState(false);
   const [isAccountDeletionModalVisible, setIsAccountDeletionModalVisible] =
     useState(false);
-  const [areAllFormsFilledCorrect, setAreAllFormsFilledCorrect] =
+  const [, setAreAllFormsFilledCorrect] =
     useState(false);
   const { clearToken } = useAuthStore((state) => state);
 
@@ -144,7 +140,7 @@ const Profile = () => {
       }
 
       // Split the name into firstName and lastName
-      const nameParts = formData.UserName.trim().split(" ");
+      const nameParts = formData.userName.trim().split(" ");
       const firstName = nameParts[0] || "";
       const lastName = nameParts.slice(1).join(" ");
 
@@ -157,17 +153,17 @@ const Profile = () => {
             ...(lastName && { lastName: lastName }), // Only include lastName if it's not empty
             biography: formData.bio || "",
             // Note: Keep existing required fields from the current data
-            email: contentCreatorData?.email || formData.UserEmail,
+            email: contentCreatorData?.email ?? formData.userEmail,
             password: "", // Send empty string - controller will remove it before processing
-            education: (contentCreatorData?.education || "TODO1"),
-            statusValue: (contentCreatorData?.statusValue || "TODO1"),
-            courseExperience: contentCreatorData?.courseExperience || "",
-            institution: contentCreatorData?.institution || "",
-            eduStart: contentCreatorData?.eduStart || new Date().toISOString().split('T')[0],
-            eduEnd: contentCreatorData?.eduEnd || new Date().toISOString().split('T')[0],
-            currentCompany: contentCreatorData?.currentCompany || "",
-            currentJobTitle: contentCreatorData?.currentJobTitle || "",
-            companyStart: contentCreatorData?.companyStart || new Date().toISOString().split('T')[0],
+            education: (contentCreatorData?.education ?? "TODO1"),
+            statusValue: (contentCreatorData?.statusValue ?? "TODO1"),
+            courseExperience: contentCreatorData?.courseExperience ?? "",
+            institution: contentCreatorData?.institution ?? "",
+            eduStart: contentCreatorData?.eduStart ?? new Date().toISOString().split('T')[0],
+            eduEnd: contentCreatorData?.eduEnd ?? new Date().toISOString().split('T')[0],
+            currentCompany: contentCreatorData?.currentCompany ?? "",
+            currentJobTitle: contentCreatorData?.currentJobTitle ?? "",
+            companyStart: contentCreatorData?.companyStart ?? new Date().toISOString().split('T')[0],
           },
         },
       });
@@ -175,7 +171,7 @@ const Profile = () => {
       if (response) {
         // Update local storage with new name
         try {
-          const userInfo = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+          const userInfo = JSON.parse(localStorage.getItem("loggedInUser") ?? "{}");
           userInfo.firstName = firstName;
           userInfo.lastName = lastName;
           localStorage.setItem("loggedInUser", JSON.stringify(userInfo));
@@ -188,7 +184,7 @@ const Profile = () => {
         toast.success("Perfil atualizado com sucesso!");
         
         // Invalidate and refetch the content creator query to get fresh data
-        queryClient.invalidateQueries({ queryKey: ['contentCreator', documentId] });
+        await queryClient.invalidateQueries({ queryKey: ['contentCreator', documentId] });
         
         // Disable submit button after successful submission
         setAreAllFormsFilledCorrect(false);
@@ -220,7 +216,7 @@ const Profile = () => {
       const response = await contentCreatorGetContentCreatorsById({
         path: { id: documentId },
       });
-      return response?.data || null;
+      return response?.data ?? null;
     },
     enabled: !!documentId,
     staleTime: 5 * 60 * 1000, // Cache for 5 minutes
@@ -232,9 +228,9 @@ const Profile = () => {
       setContentCreatorData(fetchedCreatorData as ContentCreator);
       setFormData((prevData) => ({
         ...prevData,
-        UserName: `${fetchedCreatorData.firstName || ""} ${fetchedCreatorData.lastName || ""}`.trim(),
-        UserEmail: fetchedCreatorData.email || "",
-        bio: fetchedCreatorData.biography || "",
+        userName: `${fetchedCreatorData.firstName || ""} ${fetchedCreatorData.lastName || ""}`.trim(),
+        userEmail: fetchedCreatorData.email || "",
+        bio: fetchedCreatorData.biography ?? "",
         linkedin: "",
       }));
     }
@@ -249,14 +245,16 @@ const Profile = () => {
   }, [creatorError]);
 
   // Render and fetch userData
+     
   useEffect(() => {
     if (userID) {
-      fetchDynamicData();
+      void fetchDynamicData();
     }
   }, [userID]);
 
   // Check if forms are filled correctly
-  // TODO: perhaps a check of the personal info form is also needed here?
+  // perhaps a check of the personal info form is also needed here?
+     
   useEffect(() => {
     setAreAllFormsFilledCorrect(
       !submitError &&
@@ -303,7 +301,7 @@ const Profile = () => {
         draggable: false,
       });
     } catch (error) {
-      console.error("Error deleting account: " + error);
+        console.error("Error deleting account:", error);
       closeAccountDeletionModal();
 
       // Toastify notification: 'Failed to delete account!'
@@ -519,7 +517,7 @@ const Profile = () => {
               <button
                 type="button"
                 onClick={() => {
-                  handleUpdateSubmit();
+                  void handleUpdateSubmit();
                 }}
                 className="px-10 py-4 rounded-lg justify-center items-center gap-2.5 flex text-center text-lg font-bold bg-primary hover:bg-cyan-900 text-white"
                 disabled={submitLoading}
