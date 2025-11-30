@@ -18,6 +18,17 @@ export default defineConfig(({ mode }) => {
   const frontendPortRaw = viteClientVars.VITE_FRONTEND_PORT || process.env.VITE_FRONTEND_PORT;
   const frontendPort = Number(frontendPortRaw) || 5174;
 
+  // TEMP. Because the current dockerfile is serving via vites dev server for deployment,
+  // we need to pass allowedHosts and corsOrigins even in production mode.
+  // In a proper deployment, the web app is compiled to static files and served via a static file server (e.g. nginx).
+
+  // Parse allowed hosts from environment variable (for DNS rebinding protection)
+  const allowedHosts = parentEnv.VITE_ALLOWED_HOSTS
+    ? parentEnv.VITE_ALLOWED_HOSTS.split(',').map(host => host.trim())
+    : true; // true allows all in dev
+
+  // end TEMP
+
   // Build define map: inject as literal replacements import.meta.env.X
   const defineEnvEntries = Object.fromEntries(
     Object.entries(viteClientVars).map(([k, v]) => [
@@ -30,6 +41,7 @@ export default defineConfig(({ mode }) => {
     server: {
       port: frontendPort,
       host: true,
+      allowedHosts: allowedHosts,
     },
     plugins: [react(), tailwindcss()],
     define: {
