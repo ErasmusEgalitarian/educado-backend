@@ -260,7 +260,7 @@ export const createCourseColumns = ({
         const handleDelete = (e: React.MouseEvent) => {
           e.stopPropagation();
           toast.info(
-            "Delete functionality is not implemented yet: " + documentId
+            "Delete functionality is not implemented yet: " + String(documentId)
           );
         };
 
