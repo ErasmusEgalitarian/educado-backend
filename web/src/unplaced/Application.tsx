@@ -9,7 +9,7 @@ import { tempObjects } from "@/shared/lib/formStates";
 import Motivation from "@/user/components/motivation.tsx";
 
 import AcademicExperienceForm from "../features/user/components/academic-experience-form";
-import ProfessionalExperienceForm from "../features/user/components/ProfessionalExperience";
+import ProfessionalExperienceForm from "@/user/components/professional-experience.tsx";
 import { NewApplication } from "@/user/types/application.ts";
 import GenericModalComponent from "../shared/components/GenericModalComponent";
 import { useApi } from "../shared/hooks/useAPI";
