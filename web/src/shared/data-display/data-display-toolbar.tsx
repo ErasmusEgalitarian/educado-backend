@@ -13,7 +13,6 @@ import { Table } from "@tanstack/react-table";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/shared/components/shadcn/button";
-import { ButtonGroup } from "@/shared/components/shadcn/button-group";
 import { Input } from "@/shared/components/shadcn/input";
 import { SelectionSummary } from "@/shared/data-display/item-selector";
 
