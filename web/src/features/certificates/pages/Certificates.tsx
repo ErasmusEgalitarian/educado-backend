@@ -1,7 +1,7 @@
 import Layout from "../../../shared/components/Layout";
 import CertificateList from "../components/CertificateList";
 
-export default function Certificates() {
+const Certificates = () => {
   return (
     <Layout meta="Certificates">
       <div className="h-[93%] align-self-center lg:px-20 xl:px-40">
@@ -12,3 +12,5 @@ export default function Certificates() {
     </Layout>
   );
 }
+
+export default Certificates;

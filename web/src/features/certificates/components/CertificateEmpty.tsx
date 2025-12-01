@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import noCertificatesImage from "@/shared/assets/no-certificates.png";
 
-const emptyState = () => {
+const EmptyState = () => {
   const navigate = useNavigate();
 
   const CourseManager = () => {
@@ -40,4 +40,4 @@ const emptyState = () => {
     </div>
   );
 };
-export default emptyState;
+export default EmptyState;

@@ -59,7 +59,7 @@ export default function CertificateCard(props: {
             {/* Course title */}
             <h3
               className="text-xl font-semibold"
-              id={"card-" + props.num + "-title"}
+              id={`card--${String(props.num)}-title`}
             >
               {course.title?.length <= maxTitleLength
                 ? course.title
@@ -86,7 +86,7 @@ export default function CertificateCard(props: {
               </p>
             </CertificateField>
           </div>
-          <button id={"dropdown-" + props.num} onClick={toggleDropdown}>
+          <button id={`dropdown--${String(props.num)}`} onClick={toggleDropdown}>
             <Icon
               path={mdiChevronDown}
               className="w-8 h-8 text-grayMedium hover:text-primary mr-5 float-right cursor-pointer"
@@ -101,14 +101,14 @@ export default function CertificateCard(props: {
               </p>
               <div className="gap-20 flex flex-row-reverse ">
                 <ActionButton
-                  id={"download-button-" + props.num}
+                  id={`download--${String(props.num)}`}
                   icon={mdiDownload}
                   onClick={download}
                 >
                   <p>Baixar</p> {/** Download */}
                 </ActionButton>
                 <ActionButton
-                  id={"preview-button-" + props.num}
+                id={`preview--${String(props.num)}`}
                   icon={mdiFileEye}
                   onClick={toggleModal}
                 >
@@ -117,13 +117,15 @@ export default function CertificateCard(props: {
               </div>
               {previewVisible && (
                 <object
-                  id={"preview-window-" + props.num}
+                  id={`preview-window-${String(props.num)}`}
                   className="rounded-xl justify-self-center col-span-2 mt-4"
                   data={CERT_URL + pdfPath}
                   type="application/pdf"
                   width="600"
                   height="482"
-                />
+                >
+                  <p>Preview not available.</p>
+                </object>
               )}
             </div>
           )}

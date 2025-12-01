@@ -1,6 +1,6 @@
 import { Icon } from "@mdi/react";
 
-interface propTypes {
+interface PropTypes {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
@@ -8,7 +8,7 @@ interface propTypes {
   id?: string;
 }
 
-export default function ActionButton(props: propTypes) {
+const ActionButton = (props: Readonly<PropTypes>) => {
   return (
     <button
       id={props.id}
@@ -16,9 +16,11 @@ export default function ActionButton(props: propTypes) {
       onClick={props.onClick}
     >
       {props.children}
-      {props.icon ? (
-        <Icon path={props.icon} className="w-6 h-6 text-white float-right" />
-      ) : null}
+      {props.icon != null ? (
+  <Icon path={props.icon} className="w-6 h-6 text-white float-right" />
+) : null}
     </button>
   );
-}
+};
+
+export default ActionButton;

@@ -1,12 +1,12 @@
 import { Icon } from "@mdi/react";
 
-interface propTypes {
+interface PropTypes {
   children: React.ReactNode;
   icon?: string;
   className?: string;
 }
 
-export default function CertificateField(props: propTypes) {
+const CertificateField = (props: Readonly<PropTypes>) => {
   return (
     <div className={props.className ?? ""}>
       <div className="flex flex-row">
@@ -17,4 +17,6 @@ export default function CertificateField(props: propTypes) {
       </div>
     </div>
   );
-}
+};
+
+export default CertificateField;
