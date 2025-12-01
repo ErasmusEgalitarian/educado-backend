@@ -114,11 +114,10 @@ const Profile = () => {
     useState(false);
   const [isProfessionalExperienceOpen, setIsProfessionalExperienceOpen] =
     useState(false);
-  const [, setHasSubmitted] = useState(false);
   const [isAccountDeletionModalVisible, setIsAccountDeletionModalVisible] =
     useState(false);
-  const [, setAreAllFormsFilledCorrect] =
-    useState(false);
+  const hasSubmittedRef = useRef(false);
+  const areAllFormsFilledCorrectRef = useRef(false);
   const { clearToken } = useAuthStore((state) => state);
 
   //callback (kept for legacy compatibility but not used)
@@ -186,8 +185,8 @@ const Profile = () => {
         await queryClient.invalidateQueries({ queryKey: ['contentCreator', documentId] });
         
         // Disable submit button after successful submission
-        setAreAllFormsFilledCorrect(false);
-        setHasSubmitted(true);
+          areAllFormsFilledCorrectRef.current = false;
+          hasSubmittedRef.current = true;
       }
     } catch (error) {
       if (error instanceof Error) toast.error(error.message);
@@ -198,7 +197,7 @@ const Profile = () => {
 
   // Reset the submission state whenever the form data changes
   useEffect(() => {
-    setHasSubmitted(false);
+      hasSubmittedRef.current = false;
   }, [educationFormData, experienceFormData, formData]);
 
   // Get query client for cache invalidation
@@ -257,13 +256,12 @@ const Profile = () => {
   // perhaps a check of the personal info form is also needed here?
      
   useEffect(() => {
-    setAreAllFormsFilledCorrect(
+    areAllFormsFilledCorrectRef.current =
       !submitError &&
       !educationErrorState &&
       !experienceErrorState &&
       dynamicInputsFilled("education") &&
-      dynamicInputsFilled("experience")
-    );
+      dynamicInputsFilled("experience");
   }, [
     submitError,
     educationErrorState,
