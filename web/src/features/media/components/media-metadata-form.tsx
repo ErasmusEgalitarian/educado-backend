@@ -76,8 +76,8 @@ export const MediaMetadataForm = <TFieldValues extends FieldValues>({
           control={control}
           fieldName={getFieldPath("filename")}
           inputSize={inputSize}
-          label={t("media.fileName", "Filename")}
-          placeholder={t("media.fileNamePlaceholder", "Enter filename")}
+          label={t("media.fileName")}
+          placeholder={t("media.fileNamePlaceholder")}
           type="text"
           isRequired
           disabled={disabled}
@@ -86,7 +86,7 @@ export const MediaMetadataForm = <TFieldValues extends FieldValues>({
         <div className="flex justify-between text-xs text-muted-foreground">
           {fileExtension ? (
             <span>
-              {t("media.extension", "Extension")}:{" "}
+              {t("media.extension")}:{" "}
               <span className="font-medium">{fileExtension}</span>
             </span>
           ) : (
@@ -103,11 +103,8 @@ export const MediaMetadataForm = <TFieldValues extends FieldValues>({
           control={control}
           fieldName={getFieldPath("alt")}
           inputSize={inputSize}
-          label={t("media.alternativeText", "Alternative Text")}
-          placeholder={t(
-            "media.alternativeTextPlaceholder",
-            "Describe the image for accessibility"
-          )}
+          label={t("media.alternativeText")}
+          placeholder={t("media.alternativeTextPlaceholder")}
           rows={2}
           maxLength={MEDIA_METADATA_LIMITS.alt}
           disabled={disabled}
@@ -122,8 +119,8 @@ export const MediaMetadataForm = <TFieldValues extends FieldValues>({
           control={control}
           fieldName={getFieldPath("caption")}
           inputSize={inputSize}
-          label={t("media.caption", "Caption")}
-          placeholder={t("media.captionPlaceholder", "Add a caption")}
+          label={t("media.caption")}
+          placeholder={t("media.captionPlaceholder")}
           rows={2}
           maxLength={MEDIA_METADATA_LIMITS.caption}
           disabled={disabled}

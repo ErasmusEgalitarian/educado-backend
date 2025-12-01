@@ -131,17 +131,12 @@ export const MediaPickerTrigger = ({
         <div className="mb-4 text-muted-foreground">
           <Icon path={mdiImageSearch} size={2} />
         </div>
-        <h3 className="mb-2 text-lg font-semibold">
-          {t("media.selectFile", "Select File")}
-        </h3>
+        <h3 className="mb-2 text-lg font-semibold">{t("media.selectFile")}</h3>
         <p className="text-sm text-muted-foreground text-center max-w-xs mb-4">
-          {t(
-            "media.clickToSelect",
-            "Click to select from library or upload new"
-          )}
+          {t("media.clickToSelect")}
         </p>
         <Button type="button" variant="secondary" disabled={disabled}>
-          {t("media.browseLibrary", "Browse Library")}
+          {t("media.browseLibrary")}
         </Button>
       </div>
 

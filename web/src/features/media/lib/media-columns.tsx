@@ -22,7 +22,7 @@ export const createMediaColumns = (
 ): ColumnDef<UploadFile>[] => [
   {
     id: "preview",
-    header: "Preview",
+    header: t("common.preview"),
     cell: ({ row }) => {
       const asset = row.original;
       if (isImage(asset.mime)) {
@@ -58,7 +58,7 @@ export const createMediaColumns = (
   },
   {
     accessorKey: "mime",
-    header: "Type",
+    header: t("common.type"),
     cell: ({ row }) => {
       const mime = row.original.mime;
       let iconPath = mdiFileDocument;
@@ -68,7 +68,7 @@ export const createMediaColumns = (
       return (
         <Badge variant="outline" className="gap-1.5">
           <Icon path={iconPath} size={0.6} />
-          <span>{getFileTypeLabel(mime)}</span>
+          <span>{getFileTypeLabel(mime, t)}</span>
         </Badge>
       );
     },
@@ -81,17 +81,17 @@ export const createMediaColumns = (
         label: t("media.fileType"),
         options: [
           {
-            label: t("media.fileType.images"),
+            label: t("media.fileTypes.images"),
             value: "image",
             mdiIcon: mdiImage,
           },
           {
-            label: t("media.fileType.videos"),
+            label: t("media.fileTypes.videos"),
             value: "video",
             mdiIcon: mdiVideo,
           },
           {
-            label: t("media.fileType.files"),
+            label: t("media.fileTypes.files"),
             value: "application",
             mdiIcon: mdiFile,
           },
@@ -101,7 +101,7 @@ export const createMediaColumns = (
   },
   {
     accessorKey: "name",
-    header: "Name",
+    header: t("common.name"),
     cell: ({ row }) => {
       const asset = row.original;
       return (
@@ -114,7 +114,7 @@ export const createMediaColumns = (
   },
   {
     accessorKey: "alternativeText",
-    header: "Alt text",
+    header: t("media.alternativeText"),
     cell: ({ row }) => (
       <span className="text-sm text-muted-foreground">
         {row.original.alternativeText ?? "-"}
@@ -124,7 +124,7 @@ export const createMediaColumns = (
   },
   {
     accessorKey: "caption",
-    header: "Caption",
+    header: t("media.caption"),
     cell: ({ row }) => (
       <div className="max-w-[24rem] truncate text-sm text-muted-foreground">
         {row.original.caption ?? "-"}
@@ -134,7 +134,7 @@ export const createMediaColumns = (
   },
   {
     id: "size",
-    header: "Size",
+    header: t("common.size"),
     cell: ({ row }) => (
       <span>{formatBytes((row.original.size ?? 0) * 1024)}</span>
     ),
@@ -143,7 +143,7 @@ export const createMediaColumns = (
   },
   {
     accessorKey: "createdAt",
-    header: "Uploaded",
+    header: t("common.uploaded"),
     cell: ({ row }) => {
       const val = row.original.createdAt;
       return (

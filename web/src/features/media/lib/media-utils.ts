@@ -39,11 +39,19 @@ export const getFileTypeIcon = (mime?: string) => {
     return mdiFile;
 };
 
-// TODO: Move to i18n
-export const getFileTypeLabel = (mime?: string) => {
-    if (isImage(mime)) return "Imagem";
-    if (isVideo(mime)) return "Vídeo";
-    return "Arquivo";
+/**
+ * Returns a translated file type label based on MIME type.
+ * @param mime - The MIME type of the file
+ * @param t - The translation function from useTranslation()
+ * @returns Translated label for the file type
+ */
+export const getFileTypeLabel = (
+    mime: string | undefined,
+    t: (key: string) => string
+): string => {
+    if (isImage(mime)) return t("media.fileTypes.image");
+    if (isVideo(mime)) return t("media.fileTypes.video");
+    return t("media.fileTypes.file");
 };
 
 export const formatBytes = (bytes?: number) => {

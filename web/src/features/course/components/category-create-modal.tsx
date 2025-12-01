@@ -32,7 +32,7 @@ interface CategoryCreateModalProps {
 }
 
 const formSchema = z.object({
-  categoryName: z.string().min(2, t("multiSelect.minNameLength", { count: 2 })),
+  categoryName: z.string().min(2, t("categories.minNameLength", { count: 2 })),
 });
 
 const CategoryCreateModal = ({
@@ -95,9 +95,7 @@ const CategoryCreateModal = ({
         >
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>
-                {t("multiSelect.createCategory")}
-              </AlertDialogTitle>
+              <AlertDialogTitle>{t("categories.create")}</AlertDialogTitle>
               <AlertDialogDescription>
                 <OverlayStatusWrapper
                   isLoading={mutationLoading}
@@ -116,8 +114,8 @@ const CategoryCreateModal = ({
                   <FormInput
                     control={form.control}
                     fieldName="categoryName"
-                    label={t("multiSelect.EnterCategoryTitle")}
-                    placeholder={t("multiSelect.newCategory")}
+                    label={t("categories.createTitle")}
+                    placeholder={t("categories.newCategory")}
                     startIcon={<Icon path={mdiFormatLetterCase} size={1} />}
                   />
                 </OverlayStatusWrapper>

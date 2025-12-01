@@ -117,14 +117,12 @@ export const MediaUploadCard = ({
       <div className="mb-4 text-muted-foreground">
         <Icon path={mdiCloudUpload} size={2} />
       </div>
-      <h3 className="mb-2 text-lg font-semibold">
-        {t("media.uploadFile", "Upload File")}
-      </h3>
+      <h3 className="mb-2 text-lg font-semibold">{t("media.uploadFile")}</h3>
       <p className="text-sm text-muted-foreground text-center max-w-xs mb-4">
-        {t("media.dragAndDrop", "Drag and drop files here, or click to select")}
+        {t("media.dragAndDrop")}
       </p>
       <Button type="button" variant="secondary" disabled={disabled}>
-        {t("media.browseFiles", "Browse Files")}
+        {t("media.browseFiles")}
       </Button>
 
       <input

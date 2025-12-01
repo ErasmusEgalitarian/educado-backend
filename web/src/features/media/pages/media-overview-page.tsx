@@ -31,25 +31,19 @@ const MediaOverviewPage = () => {
   };
 
   return (
-    <PageContainer
-      title={t("media.pageTitle", { defaultValue: "Media Library" })}
-    >
+    <PageContainer title={t("media.pageTitle")}>
       <div className="w-full">
         <Card>
           <CardHeader>
             <CardTitle>
-              <h1 className="text-2xl font-bold">
-                {t("media.pageTitle", { defaultValue: "Media Library" })}
-              </h1>
+              <h1 className="text-2xl font-bold">{t("media.pageTitle")}</h1>
             </CardTitle>
             <CardAction>
               <Button
                 onClick={handleStartUpload}
                 variant={showUploader ? "secondary" : "primary"}
               >
-                {showUploader
-                  ? t("media.hideUpload", { defaultValue: "Hide upload" })
-                  : t("media.upload", { defaultValue: "Upload" })}
+                {showUploader ? t("media.hideUpload") : t("media.upload")}
               </Button>
             </CardAction>
           </CardHeader>

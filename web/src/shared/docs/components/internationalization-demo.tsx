@@ -76,7 +76,7 @@ const MyComponent = () => {
 <p>{t("language.portuguese")}</p>
 <p>{t("language.english")}</p>
 <p>{t("common.saveChanges")}</p>
-<p>{t("courseManager.generalInfo")}</p>`,
+<p>{t("courseEditor.generalInfo")}</p>`,
     preview: (
       <Card className="p-6">
         <NestedKeysExample />
@@ -91,8 +91,8 @@ const isEditMode = true;
 const courseName = "React Basics";
 
 const title = isEditMode 
-  ? \`\${t("common.edit")} \${t("courseManager.course")} '\${courseName}'\`
-  : \`\${t("common.create")} \${t("courseManager.course")}\`;
+  ? \`\${t("common.edit")} \${t("courses.course")} '\${courseName}'\`
+  : \`\${t("common.create")} \${t("courses.course")}\`;
 
 return <h1>{title}</h1>;
 // Edit mode: "Edit Course 'React Basics'" (en)
@@ -181,9 +181,9 @@ function DynamicContentExample() {
 
   const getTitle = () => {
     if (isEditMode) {
-      return `${t("common.edit")} ${t("courseManager.course")} '${courseName}'`;
+      return `${t("common.edit")} ${t("courses.course")} '${courseName}'`;
     }
-    return `${t("common.create")} ${t("courseManager.course")}`;
+    return `${t("common.create")} ${t("courses.course")}`;
   };
 
   return (

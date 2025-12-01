@@ -43,7 +43,6 @@ const MediaDisplayEditor = ({
   const handleSelectionChange = useCallback(
     (selectedItems: UploadFile[]) => {
       const newAsset = selectedItems.length > 0 ? selectedItems[0] : null;
-      console.log("🎯 Selection changed:", newAsset); // eslint-disable-line no-console
       setSelectedAsset(newAsset);
       onSelectionChange?.(newAsset);
     },
@@ -89,14 +88,11 @@ const MediaDisplayEditor = ({
           <div className="h-full flex flex-col">
             <Card className="h-full flex flex-col overflow-hidden">
               <CardHeader className="shrink-0">
-                <CardTitle>{t("media.details", "Detalhes do anexo")}</CardTitle>
+                <CardTitle>{t("media.details")}</CardTitle>
               </CardHeader>
               <CardContent className="flex-1 flex flex-col items-center justify-center text-muted-foreground p-6 text-center bg-muted/5">
                 <p className="text-sm font-medium">
-                  {t(
-                    "media.selectAssetPlaceholder",
-                    "Selecione um arquivo para ver os detalhes"
-                  )}
+                  {t("media.selectAssetPlaceholder")}
                 </p>
               </CardContent>
             </Card>
@@ -114,14 +110,24 @@ const MediaDisplayEditor = ({
         urlPath="/upload/files"
         columns={mediaColumns}
         queryKey={["media"]}
+        fields={[
+          "documentId",
+          "name",
+          "alternativeText",
+          "caption",
+          "ext",
+          "mime",
+          "url",
+          "formats",
+          "width",
+          "height",
+          "size",
+          "createdAt",
+        ]}
         allowedViewModes="both"
         gridItemRender={mediaCard}
         gridItemMinWidth="200px"
         initialPageSize={20}
-        config={{
-          renderMode: "client",
-          clientModeThreshold: 50,
-        }}
         selection={{
           enabled: mode === "select" || mode === "edit",
           limit: 1,

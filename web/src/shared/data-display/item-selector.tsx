@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 
 import { cn } from "@/shared/lib/utils";
 
@@ -279,8 +280,8 @@ interface SelectionSummaryProps {
   className?: string;
 }
 
-// TODO: Internationalization
 export const SelectionSummary = ({ className }: SelectionSummaryProps) => {
+  const { t } = useTranslation();
   const { selectionCount, selectionLimit, isLimitReached } = useItemSelector();
 
   if (selectionCount === 0) return null;
@@ -288,19 +289,23 @@ export const SelectionSummary = ({ className }: SelectionSummaryProps) => {
   return (
     <div
       className={cn(
-        "flex items-center gap-2 rounded-lg border border-[#c1cfd7] bg-white px-4 py-2 text-sm",
+        "flex h-8 items-center gap-2 rounded-md border border-greyscale-border-default bg-white px-3 text-sm",
         className
       )}
     >
       <span className="font-medium text-[#28363e]">
-        {selectionCount} {selectionCount === 1 ? "item" : "items"} selected
+        {selectionCount === 1
+          ? t("selection.itemSelected", { count: selectionCount })
+          : t("selection.itemsSelected", { count: selectionCount })}
       </span>
       {selectionLimit !== null && (
-        <span className="text-[#628397]">(max {selectionLimit})</span>
+        <span className="text-[#628397]">
+          ({t("selection.max", { limit: selectionLimit })})
+        </span>
       )}
       {isLimitReached && (
-        <span className="ml-2 rounded-full bg-[#f1cc4f] px-2 py-0.5 text-xs font-medium text-[#28363e]">
-          Limit reached
+        <span className="ml-2 rounded-full bg-[#f1cc4f] px-2 text-xs font-medium text-[#28363e]">
+          {t("selection.limitReached")}
         </span>
       )}
     </div>

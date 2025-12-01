@@ -10,6 +10,7 @@ import {
 import Icon from "@mdi/react";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
 import { type UploadFile } from "@/shared/api/types.gen";
@@ -101,6 +102,8 @@ const MediaCardClassic = ({
   asset: UploadFile;
   className?: string;
 }) => {
+  const { t } = useTranslation();
+
   return (
     <Card className={cn("w-full overflow-hidden relative", className)}>
       {/* Asset Preview */}
@@ -117,7 +120,7 @@ const MediaCardClassic = ({
               {asset.name}
             </p>
             <Badge variant="secondary" className="shrink-0">
-              {getFileTypeLabel(asset.mime)}
+              {getFileTypeLabel(asset.mime, t)}
             </Badge>
           </div>
           {asset.createdAt && (
@@ -145,6 +148,7 @@ const MediaCardExtended = ({
   onDelete?: () => void;
   className?: string;
 }) => {
+  const { t } = useTranslation();
   const contentRef = useRef<HTMLDivElement>(null);
   const updateMutation = useUpdateFileMetadataMutation();
   const deleteMutation = useDeleteFileMutation();
@@ -216,15 +220,15 @@ const MediaCardExtended = ({
       <ReusableAlertDialog
         isOpen={isDeleteDialogOpen}
         onOpenChange={setIsDeleteDialogOpen}
-        title="Excluir arquivo?"
-        description="Esta ação não pode ser desfeita. O arquivo será excluído permanentemente."
+        title={t("media.deleteFileTitle")}
+        description={t("media.deleteFileDescription")}
         confirmAction={{
-          label: "Excluir",
+          label: t("common.delete"),
           onClick: handleConfirmDelete,
           variant: "destructive",
         }}
         cancelAction={{
-          label: "Cancelar",
+          label: t("common.cancel"),
           onClick: () => {
             setIsDeleteDialogOpen(false);
           },
@@ -239,12 +243,12 @@ const MediaCardExtended = ({
         >
           <Card className="h-full flex flex-col overflow-hidden">
             <CardHeader className="shrink-0 flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle>Detalhes do anexo</CardTitle>
+              <CardTitle>{t("media.details")}</CardTitle>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={handleDownload}
-                title="Download"
+                title={t("common.download")}
                 type="button"
               >
                 <Icon path={mdiDownload} size={1} />
@@ -276,12 +280,12 @@ const MediaCardExtended = ({
                     className="text-[14px] leading-[18.2px] tracking-[0] font-normal text-error-surface-default underline cursor-pointer align-middle hover:bg-transparent hover:text-error-surface-default p-0 h-auto"
                     onClick={handleDeleteClick}
                   >
-                    Excluir permanentemente
+                    {t("media.deletePermanently")}
                   </Button>
 
                   <Accordion type="single" collapsible>
                     <AccordionItem value="metadata">
-                      <AccordionTrigger>Metadata</AccordionTrigger>
+                      <AccordionTrigger>{t("media.metadata")}</AccordionTrigger>
                       <AccordionContent>
                         <div className="space-y-3 text-sm">
                           {/* File Type */}
@@ -292,11 +296,11 @@ const MediaCardExtended = ({
                               className="text-muted-foreground"
                             />
                             <span className="text-muted-foreground">
-                              Tipo de arquivo:
+                              {t("media.fileType")}:
                             </span>
                             <span className="font-medium">
                               {getFileExtension(asset.name)} (
-                              {asset.mime ?? "Unknown"})
+                              {asset.mime ?? t("common.unknown")})
                             </span>
                           </div>
 
@@ -310,7 +314,7 @@ const MediaCardExtended = ({
                               className="text-muted-foreground"
                             />
                             <span className="text-muted-foreground">
-                              Tamanho:
+                              {t("media.size")}:
                             </span>
                             <span className="font-medium">
                               {formatBytes((asset.size ?? 0) * 1024)}
@@ -331,7 +335,7 @@ const MediaCardExtended = ({
                                     className="text-muted-foreground"
                                   />
                                   <span className="text-muted-foreground">
-                                    Resolução:
+                                    {t("media.resolution")}:
                                   </span>
                                   <span className="font-medium">
                                     {asset.width} × {asset.height}
@@ -349,7 +353,7 @@ const MediaCardExtended = ({
                               className="text-muted-foreground"
                             />
                             <span className="text-muted-foreground">
-                              Nome do arquivo:
+                              {t("media.fileName")}:
                             </span>
                             <span className="font-medium break-all">
                               {asset.name}
@@ -366,7 +370,7 @@ const MediaCardExtended = ({
                               className="text-muted-foreground"
                             />
                             <span className="text-muted-foreground">
-                              Data de criação:
+                              {t("media.createdAt")}:
                             </span>
                             <span className="font-medium">
                               {formatDate(asset.createdAt)}
@@ -383,7 +387,7 @@ const MediaCardExtended = ({
                               className="text-muted-foreground"
                             />
                             <span className="text-muted-foreground">
-                              Data de atualização:
+                              {t("media.updatedAt")}:
                             </span>
                             <span className="font-medium">
                               {formatDate(asset.updatedAt)}
@@ -397,8 +401,8 @@ const MediaCardExtended = ({
                   <OverlayStatusWrapper
                     isLoading={updateMutation.isPending}
                     isSuccess={updateMutation.isSuccess}
-                    loadingMessage="Salvando alterações..."
-                    successMessage="Alterações salvas com sucesso!"
+                    loadingMessage={`${t("media.savingChanges")}...`}
+                    successMessage={`${t("media.changesSaved")}!`}
                     onSuccessComplete={() => {
                       updateMutation.reset();
                     }}
@@ -429,8 +433,8 @@ const MediaCardExtended = ({
                     className="w-full"
                   >
                     {updateMutation.isPending
-                      ? "Salvando..."
-                      : "Salvar alterações"}
+                      ? `${t("common.saving")}...`
+                      : t("common.saveChanges")}
                   </Button>
                 </div>
               </div>

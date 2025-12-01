@@ -212,12 +212,7 @@ export const MediaUploadZone = ({
     const newTotal = currentCount + filesToAdd.length;
 
     if (maxFiles && newTotal > maxFiles) {
-      addNotification(
-        t(
-          "files.errorMaxFilesExceeded",
-          `Maximum file limit exceeded. You can only upload up to ${String(maxFiles)} files.`
-        )
-      );
+      addNotification(t("files.maxFilesExceeded", { count: maxFiles }));
       // Only add files up to the limit
       const availableSlots = maxFiles - currentCount;
       for (const fileItem of filesToAdd.slice(0, availableSlots)) {
@@ -264,10 +259,7 @@ export const MediaUploadZone = ({
         // Show success notification for each uploaded file
         for (const file of uploadedFiles) {
           addNotification(
-            t("media.uploadFileSuccess", {
-              defaultValue: "Uploaded: {{filename}}",
-              filename: file.name,
-            })
+            t("media.uploadFileSuccess", { filename: file.name })
           );
         }
 
@@ -344,8 +336,8 @@ export const MediaUploadZone = ({
                 className="flex-1"
               >
                 {isUploading
-                  ? t("common.uploading", "Uploading...")
-                  : (uploadButtonLabel ?? t("common.upload", "Upload"))}
+                  ? `${t("common.uploading")}...`
+                  : (uploadButtonLabel ?? t("common.upload"))}
               </Button>
 
               {secondaryAction && (

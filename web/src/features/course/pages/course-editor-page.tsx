@@ -90,9 +90,9 @@ const CourseEditorPage = () => {
     id: CourseEditorStep;
     label: string;
   }[] = [
-    { id: "information", label: t("courseManager.generalInfo") },
-    { id: "sections", label: t("courseManager.createSections") },
-    { id: "review", label: t("courseManager.reviewCourse") },
+    { id: "information", label: t("courseEditor.generalInfo") },
+    { id: "sections", label: t("courseEditor.createSections") },
+    { id: "review", label: t("courseEditor.reviewCourse") },
   ];
   const { uploadFile } = useFileUpload();
 
@@ -178,7 +178,7 @@ const CourseEditorPage = () => {
       return (
         <GlobalLoader
           variant="container"
-          message={`${t("common.loading")} ${t("courseManager.course").toLowerCase()}...`}
+          message={`${t("common.loading")} ${t("courses.course").toLowerCase()}...`}
         />
       );
     }
@@ -222,10 +222,10 @@ const CourseEditorPage = () => {
     if (isEditMode) {
       const hasTitle =
         queryCourse?.title != null && queryCourse.title.trim() !== "";
-      return `${t("common.edit")} ${t("courseManager.course")} ${hasTitle ? "'" + queryCourse.title + "'" : ""}`;
+      return `${t("common.edit")} ${t("courses.course")} ${hasTitle ? "'" + queryCourse.title + "'" : ""}`;
     }
 
-    return `${t("common.create")} ${t("courseManager.course")}`;
+    return `${t("common.create")} ${t("courses.course")}`;
   };
 
   return (

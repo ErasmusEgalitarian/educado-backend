@@ -52,13 +52,15 @@ export const createCourseColumns = ({
     },
     {
       accessorKey: "publishedAt",
-      header: t("common.publicationStatus"),
+      header: t("publication.status"),
       cell: ({ row }) => {
         const publishedAt = row.getValue<string | null>("publishedAt");
         const isDraft = publishedAt === null;
         return (
           <Badge variant={isDraft ? "outline" : "default"}>
-            {isDraft ? t("common.unpublished") : t("common.published")}
+            {isDraft
+              ? t("publication.unpublished")
+              : t("publication.published")}
           </Badge>
         );
       },
@@ -71,15 +73,15 @@ export const createCourseColumns = ({
         quickFilter: {
           type: "select",
           displayType: { where: "both", when: "both" },
-          label: t("common.publicationStatus"),
+          label: t("publication.status"),
           options: [
             {
-              label: t("common.draft"),
+              label: t("publication.draft"),
               value: "draft",
               mdiIcon: mdiPublishOff,
             },
             {
-              label: t("common.published"),
+              label: t("publication.published"),
               value: "published",
               mdiIcon: mdiPublish,
             },
@@ -89,7 +91,7 @@ export const createCourseColumns = ({
     },
     {
       accessorKey: "title",
-      header: t("courseManager.courseName"),
+      header: t("courseEditor.courseName"),
       cell: ({ row }) => {
         const course = row.original;
         return (
@@ -131,17 +133,17 @@ export const createCourseColumns = ({
           label: t("difficulty.difficulty"),
           options: [
             {
-              label: t("courseManager.beginner"),
+              label: t("difficulty.beginner"),
               value: "1",
               mdiIcon: mdiNumeric1BoxOutline,
             },
             {
-              label: t("courseManager.intermediate"),
+              label: t("difficulty.intermediate"),
               value: "2",
               mdiIcon: mdiNumeric2BoxOutline,
             },
             {
-              label: t("courseManager.advanced"),
+              label: t("difficulty.advanced"),
               value: "3",
               mdiIcon: mdiNumeric3BoxOutline,
             },
@@ -164,7 +166,7 @@ export const createCourseColumns = ({
         if (categories.length === 0) {
           return (
             <span className="text-muted-foreground">
-              {t("categories.categoryNotFound")}
+              {t("categories.notFound")}
             </span>
           );
         }
@@ -289,7 +291,7 @@ export const createCourseColumns = ({
                   size={0.8}
                   className="mr-2 h-4 w-4"
                 />
-                {t("common.view")} {t("courseManager.course").toLowerCase()}
+                {t("common.view")} {t("courses.course").toLowerCase()}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleEdit}>
                 <Icon
@@ -297,14 +299,14 @@ export const createCourseColumns = ({
                   size={0.8}
                   className="mr-2 h-4 w-4"
                 />
-                {t("common.edit")} {t("courseManager.course").toLowerCase()}
+                {t("common.edit")} {t("courses.course").toLowerCase()}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={handleDelete}
                 className="text-destructive"
               >
-                {t("common.delete")} {t("courseManager.course").toLowerCase()}
+                {t("common.delete")} {t("courses.course").toLowerCase()}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

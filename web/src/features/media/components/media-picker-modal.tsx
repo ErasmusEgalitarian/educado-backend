@@ -43,7 +43,7 @@ const MediaPickerModal = ({
 
   const handleUploadComplete = (files: UploadFile[]) => {
     if (files.length > 0) {
-      toast.success(t("media.uploadSuccess", "File uploaded successfully!"));
+      toast.success(t("media.uploadSuccess"));
     }
   };
 
@@ -51,7 +51,7 @@ const MediaPickerModal = ({
     if (files.length > 0) {
       onSelect(files[0]);
       onOpenChange(false);
-      toast.success(t("media.uploadSuccess", "File uploaded successfully!"));
+      toast.success(t("media.uploadSuccess"));
     }
   };
 
@@ -74,13 +74,13 @@ const MediaPickerModal = ({
               value="enviar"
               className="data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none border-0 border-b-3 border-greyscale-border-lighter data-[state=active]:border-primary-surface-default data-[state=active]:text-primary-surface-default text-greyscale-text-subtle hover:text-greyscale-text-body h-12 px-4"
             >
-              {t("media.uploadTab", "Upload file")}
+              {t("media.uploadTab")}
             </TabsTrigger>
             <TabsTrigger
               value="banco"
               className="data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none border-0 border-b-3 border-greyscale-border-lighter data-[state=active]:border-primary-surface-default data-[state=active]:text-primary-surface-default text-greyscale-text-subtle hover:text-greyscale-text-body h-12 px-4"
             >
-              {t("media.browseTab", "Media library")}
+              {t("media.browseTab")}
             </TabsTrigger>
           </TabsList>
           <TabsContent
@@ -93,9 +93,9 @@ const MediaPickerModal = ({
                   fileTypes={fileTypes}
                   maxFiles={maxFiles}
                   onUploadComplete={handleUploadComplete}
-                  uploadButtonLabel={t("media.uploadOnly", "Upload")}
+                  uploadButtonLabel={t("media.uploadOnly")}
                   secondaryAction={{
-                    label: t("media.uploadAndSelect", "Upload & Select"),
+                    label: t("media.uploadAndSelect"),
                     onClick: handleUploadAndSelect,
                   }}
                 />
@@ -120,12 +120,12 @@ const MediaPickerModal = ({
               variant="ghost"
               className="text-destructive hover:text-destructive/90 hover:bg-destructive/10"
             >
-              {t("common.cancel", "Cancel")}
+              {t("common.cancel")}
             </Button>
           </DialogClose>
           <div className="flex gap-2">
             <Button disabled={!selectedAsset} onClick={handleConfirmSelection}>
-              {t("media.selectImage", "Select Image")}
+              {t("media.selectImage")}
             </Button>
           </div>
         </div>
