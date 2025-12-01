@@ -11,6 +11,7 @@ export interface FileWithMetadata {
   caption: string;
 }
 
+// eslint-disable-next-line sonarjs/class-name, @typescript-eslint/naming-convention
 interface useFileUploadReturn {
   uploadFile: (files: FileWithMetadata[]) => Promise<UploadPostResponses[200] | undefined>;
   isUploading: boolean;

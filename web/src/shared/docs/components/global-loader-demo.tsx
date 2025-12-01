@@ -1,5 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 import { GlobalLoader } from "@/shared/components/global-loader";
 import { Button } from "@/shared/components/shadcn/button";
@@ -11,7 +11,6 @@ import {
 } from "@/shared/components/shadcn/card";
 
 const GlobalLoaderDemo = () => {
-  const { t } = useTranslation();
   const [showFullHeight, setShowFullHeight] = useState(false);
 
   return (
@@ -205,7 +204,9 @@ const GlobalLoaderDemo = () => {
                   variant="outline"
                   size="sm"
                   className="mt-3"
-                  onClick={() => setShowFullHeight(true)}
+                  onClick={() => {
+                    setShowFullHeight(true);
+                  }}
                 >
                   See Full Height Example
                 </Button>
@@ -659,7 +660,9 @@ const {
           <Button
             variant="outline"
             className="fixed top-4 right-4"
-            onClick={() => setShowFullHeight(false)}
+            onClick={() => {
+              setShowFullHeight(false);
+            }}
           >
             Close
           </Button>

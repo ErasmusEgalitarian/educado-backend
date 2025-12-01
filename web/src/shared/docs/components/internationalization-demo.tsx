@@ -13,130 +13,8 @@ import {
 
 import { ComponentDemo } from "./component-demo";
 
-/* ----------------------- Documentation Props ----------------------- */
-const translationProps = [
-  {
-    name: "t",
-    type: "(key: string) => string",
-    description:
-      "Translation function that retrieves the translated string for a given key.",
-  },
-  {
-    name: "i18n",
-    type: "i18n",
-    description:
-      "The i18n instance with methods like changeLanguage(), language, etc.",
-  },
-];
-
-const setupSteps = [
-  {
-    name: "1. Import useTranslation",
-    type: "import",
-    description: "Import the hook from react-i18next at the top of your file.",
-  },
-  {
-    name: "2. Initialize in component",
-    type: "hook",
-    description: "Call useTranslation() to get the translation function.",
-  },
-  {
-    name: "3. Use translation keys",
-    type: "usage",
-    description:
-      "Use t() function with dot notation to access nested translation keys.",
-  },
-];
-
-/* ----------------------- Examples ----------------------- */
-const examples = [
-  {
-    title: "Basic Usage",
-    description: "Simple translation of a static key.",
-    code: `import { useTranslation } from "react-i18next";
-
-const MyComponent = () => {
-  const { t } = useTranslation();
-  
-  return <h1>{t("common.edit")}</h1>;
-  // Renders: "Edit" (en) or "Editar" (pt)
-};`,
-    preview: (
-      <Card className="p-6">
-        <BasicTranslationExample />
-      </Card>
-    ),
-  },
-  {
-    title: "Nested Keys",
-    description: "Access deeply nested translation keys using dot notation.",
-    code: `const { t } = useTranslation();
-
-// Access nested keys
-<p>{t("language.portuguese")}</p>
-<p>{t("language.english")}</p>
-<p>{t("common.saveChanges")}</p>
-<p>{t("courseEditor.generalInfo")}</p>`,
-    preview: (
-      <Card className="p-6">
-        <NestedKeysExample />
-      </Card>
-    ),
-  },
-  {
-    title: "Dynamic Content",
-    description: "Build dynamic content using multiple translations.",
-    code: `const { t } = useTranslation();
-const isEditMode = true;
-const courseName = "React Basics";
-
-const title = isEditMode 
-  ? \`\${t("common.edit")} \${t("courses.course")} '\${courseName}'\`
-  : \`\${t("common.create")} \${t("courses.course")}\`;
-
-return <h1>{title}</h1>;
-// Edit mode: "Edit Course 'React Basics'" (en)
-// Create mode: "Create Course" (en)`,
-    preview: (
-      <Card className="p-6">
-        <DynamicContentExample />
-      </Card>
-    ),
-  },
-  {
-    title: "Language Switcher",
-    description: "Change the application language programmatically.",
-    code: `import { useTranslation } from "react-i18next";
-
-const LanguageSwitcher = () => {
-  const { i18n } = useTranslation();
-  
-  const changeLanguage = (lng: string) => {
-    void i18n.changeLanguage(lng);
-  };
-
-  return (
-    <div>
-      <button onClick={() => changeLanguage("en")}>
-        English
-      </button>
-      <button onClick={() => changeLanguage("pt")}>
-        Português
-      </button>
-      <p>Current: {i18n.language}</p>
-    </div>
-  );
-};`,
-    preview: (
-      <Card className="p-6">
-        <LanguageSwitcherExample />
-      </Card>
-    ),
-  },
-];
-
 /* ----------------------- Example Components ----------------------- */
-function BasicTranslationExample() {
+const BasicTranslationExample = () => {
   const { t } = useTranslation();
 
   return (
@@ -147,9 +25,9 @@ function BasicTranslationExample() {
       <h2 className="text-2xl font-bold">{t("common.edit")}</h2>
     </div>
   );
-}
+};
 
-function NestedKeysExample() {
+const NestedKeysExample = () => {
   const { t } = useTranslation();
 
   return (
@@ -172,9 +50,9 @@ function NestedKeysExample() {
       </div>
     </div>
   );
-}
+};
 
-function DynamicContentExample() {
+const DynamicContentExample = () => {
   const { t } = useTranslation();
   const [isEditMode, setIsEditMode] = useState(true);
   const courseName = "React Basics";
@@ -192,14 +70,18 @@ function DynamicContentExample() {
         <Button
           size="sm"
           variant={isEditMode ? "primary" : "outline"}
-          onClick={() => setIsEditMode(true)}
+          onClick={() => {
+            setIsEditMode(true);
+          }}
         >
           Edit Mode
         </Button>
         <Button
           size="sm"
           variant={!isEditMode ? "primary" : "outline"}
-          onClick={() => setIsEditMode(false)}
+          onClick={() => {
+            setIsEditMode(false);
+          }}
         >
           Create Mode
         </Button>
@@ -209,9 +91,9 @@ function DynamicContentExample() {
       </div>
     </div>
   );
-}
+};
 
-function LanguageSwitcherExample() {
+const LanguageSwitcherExample = () => {
   const { i18n, t } = useTranslation();
 
   const changeLanguage = (lng: string) => {
@@ -247,7 +129,7 @@ function LanguageSwitcherExample() {
       </div>
     </div>
   );
-}
+};
 
 /* ----------------------- Translation File Structure ----------------------- */
 const TranslationStructure = () => {
@@ -340,7 +222,7 @@ const BestPractices = () => {
         </Card>
 
         <Card className="p-4">
-          <h4 className="font-semibold text-red-600 mb-2">✗ Don't</h4>
+          <h4 className="font-semibold text-red-600 mb-2">✗ Don&apos;t</h4>
           <ul className="list-disc list-inside space-y-2 text-sm">
             <li>Hardcode strings directly in JSX (use t() instead)</li>
             <li>Create deeply nested keys (max 3 levels recommended)</li>
@@ -465,5 +347,127 @@ export const InternationalizationDemo = () => {
     </div>
   );
 };
+
+/* ----------------------- Documentation Props ----------------------- */
+const translationProps = [
+  {
+    name: "t",
+    type: "(key: string) => string",
+    description:
+      "Translation function that retrieves the translated string for a given key.",
+  },
+  {
+    name: "i18n",
+    type: "i18n",
+    description:
+      "The i18n instance with methods like changeLanguage(), language, etc.",
+  },
+];
+
+const setupSteps = [
+  {
+    name: "1. Import useTranslation",
+    type: "import",
+    description: "Import the hook from react-i18next at the top of your file.",
+  },
+  {
+    name: "2. Initialize in component",
+    type: "hook",
+    description: "Call useTranslation() to get the translation function.",
+  },
+  {
+    name: "3. Use translation keys",
+    type: "usage",
+    description:
+      "Use t() function with dot notation to access nested translation keys.",
+  },
+];
+
+/* ----------------------- Examples ----------------------- */
+const examples = [
+  {
+    title: "Basic Usage",
+    description: "Simple translation of a static key.",
+    code: `import { useTranslation } from "react-i18next";
+
+const MyComponent = () => {
+  const { t } = useTranslation();
+  
+  return <h1>{t("common.edit")}</h1>;
+  // Renders: "Edit" (en) or "Editar" (pt)
+};`,
+    preview: (
+      <Card className="p-6">
+        <BasicTranslationExample />
+      </Card>
+    ),
+  },
+  {
+    title: "Nested Keys",
+    description: "Access deeply nested translation keys using dot notation.",
+    code: `const { t } = useTranslation();
+
+// Access nested keys
+<p>{t("language.portuguese")}</p>
+<p>{t("language.english")}</p>
+<p>{t("common.saveChanges")}</p>
+<p>{t("courseEditor.generalInfo")}</p>`,
+    preview: (
+      <Card className="p-6">
+        <NestedKeysExample />
+      </Card>
+    ),
+  },
+  {
+    title: "Dynamic Content",
+    description: "Build dynamic content using multiple translations.",
+    code: `const { t } = useTranslation();
+const isEditMode = true;
+const courseName = "React Basics";
+
+const title = isEditMode 
+  ? \`\${t("common.edit")} \${t("courses.course")} '\${courseName}'\`
+  : \`\${t("common.create")} \${t("courses.course")}\`;
+
+return <h1>{title}</h1>;
+// Edit mode: "Edit Course 'React Basics'" (en)
+// Create mode: "Create Course" (en)`,
+    preview: (
+      <Card className="p-6">
+        <DynamicContentExample />
+      </Card>
+    ),
+  },
+  {
+    title: "Language Switcher",
+    description: "Change the application language programmatically.",
+    code: `import { useTranslation } from "react-i18next";
+
+const LanguageSwitcher = () => {
+  const { i18n } = useTranslation();
+  
+  const changeLanguage = (lng: string) => {
+    void i18n.changeLanguage(lng);
+  };
+
+  return (
+    <div>
+      <button onClick={() => changeLanguage("en")}>
+        English
+      </button>
+      <button onClick={() => changeLanguage("pt")}>
+        Português
+      </button>
+      <p>Current: {i18n.language}</p>
+    </div>
+  );
+};`,
+    preview: (
+      <Card className="p-6">
+        <LanguageSwitcherExample />
+      </Card>
+    ),
+  },
+];
 
 export default InternationalizationDemo;

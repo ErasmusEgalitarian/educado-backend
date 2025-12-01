@@ -28,7 +28,7 @@ export const createMediaColumns = (
       if (isImage(asset.mime)) {
         return (
           <AspectRatio
-            ratio={1 / 1}
+            ratio={1}
             className="h25 overflow-hidden rounded-md border bg-muted"
           >
             <MediaAssetPreview
