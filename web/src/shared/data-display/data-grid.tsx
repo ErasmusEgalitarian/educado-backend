@@ -100,7 +100,10 @@ const DataGrid = <T extends DataDisplayItem>({
             {gridItemRender(item)}
           </SelectableCard>
         ) : (
-          <div key={item.documentId ?? `item-${String(index)}`}>
+          <div
+            key={item.documentId ?? `item-${String(index)}`}
+            className="h-full"
+          >
             {gridItemRender(item)}
           </div>
         )

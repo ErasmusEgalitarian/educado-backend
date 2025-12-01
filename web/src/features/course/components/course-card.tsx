@@ -36,8 +36,8 @@ export const CourseCard = ({ course }: { course: Course }) => {
   };
 
   return (
-    <Card className="w-80 overflow-hidden">
-      <CardHeader className="w-full max-w-sm flex flex-col justify-between h-full">
+    <Card className="w-full h-full flex flex-col overflow-hidden">
+      <CardHeader className="w-full flex flex-col shrink-0">
         <div className="flex items-center gap-2 text-[#28363E] min-w-0">
           <svg width="20" height="18" viewBox="0 0 20 18" fill="none">
             <path
@@ -51,7 +51,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
         </div>
         <div className="w-full border-t border-[#C1CFD7] my-2 mx-auto" />
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-1">
         <div className="flex items-center justify-between">
           <div className="flex flex-wrap gap-2">
             {(course.course_categories ?? []).map((category) => (
@@ -70,7 +70,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
 
         <StarRating rating={4.2} size="sm" className="mt-2" />
       </CardContent>
-      <CardFooter className="flex justify-end items-center">
+      <CardFooter className="flex justify-end items-center mt-auto shrink-0">
         <Button
           variant="link"
           onClick={handleEdit}
