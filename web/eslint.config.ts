@@ -31,6 +31,7 @@ export default [
       "babel.config.cjs",
       "src/shared/components/shadcn",
       "src/shared/api",
+      "src/legacy"
     ],
   },
 
