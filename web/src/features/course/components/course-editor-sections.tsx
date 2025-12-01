@@ -140,22 +140,22 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
         <div className="flex gap-2 ml-4">
           <Button
             variant="secondary"
-            size="md"
-            onClick={(e) => {
-              e.stopPropagation();
-              handleDelete(section.id);
-            }}
+            size="default"
+            onClick={(e) => { 
+              e.stopPropagation; 
+              handleDelete(section.id) }}
             className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
+
           >
             <Trash2 size={16} />
           </Button>
+
           <Button
             variant="secondary"
-            size="md"
-            onClick={(e) => {
-              e.stopPropagation();
-              console.log("TODO: make draggable");
-            }}
+            size="default"
+            onClick={(e) => { 
+              e.stopPropagation;
+              console.log("TODO: make draggable")}}
             className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
           >
             <Menu size={16} />
