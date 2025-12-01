@@ -82,7 +82,7 @@ export const Navbar = () => {
         </div>
 
           <div className="flex-1 flex justify-center">
-
+              {userInfo.role === "admin" && (
                   <div className="flex flex-col items-center">
                       <div className="flex space-x-16 text-sm font-semibold font-['Montserrat']">
                           {/* Cursos tab */}
@@ -92,8 +92,8 @@ export const Navbar = () => {
                               }}
                               className={
                                   "pb-1 transition-colors " +
-                                  (isOnCourses ? "text-[#166276]" : "text-gray-500 hover:text-[#166276]") +
-                                  " transition-colors"
+                                  (isOnCourses ? "text-primary-text-label"
+                                      : "text-greyscale-text-subtle hover:text-primary-text-label")
                               }
                           >
                               {t("navbar.courses")}
@@ -105,8 +105,8 @@ export const Navbar = () => {
                                   navigate("/educado-admin");
                               }}
                               className={
-                                  (isOnAdmin ? "text-[#166276]" : "text-gray-500 hover:text-[#166276]") +
-                                  " transition-colors"
+                                  (isOnAdmin ? "text-primary-text-label"
+                                      : "text-greyscale-text-subtle hover:text-primary-text-label")
                               }
                           >
                               {t("navbar.admin")}
@@ -117,19 +117,19 @@ export const Navbar = () => {
                           {/* LEFT active segment */}
                           <div
                               className={`absolute left-0 top-0 h-px transition-all duration-300 ${
-                                  isOnCourses ? "bg-[#166276] w-1/2" : "w-0"
+                                  isOnCourses ? "bg-primary-border-default w-1/2" : "w-0"
                               }`}
                           ></div>
 
                           {/* RIGHT active segment */}
                           <div
                               className={`absolute right-0 top-0 h-px transition-all duration-300 ${
-                                  isOnAdmin ? "bg-[#166276] w-1/2" : "w-0"
+                                  isOnAdmin ? "bg-primary-border-default w-1/2" : "w-0"
                               }`}
                           ></div>
                       </div>
                   </div>
-
+              )}
           </div>
 
         {/* Notification Bell and User Info */}
