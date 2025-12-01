@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   mdiCalendar,
@@ -255,10 +254,7 @@ const MediaCardExtended = ({
               </Button>
             </CardHeader>
             <CardContent className="flex-1 overflow-y-auto">
-              <div
-                ref={contentRef}
-                className={`transition-opacity duration-300 ${asset ? "opacity-100" : "opacity-0"}`}
-              >
+              <div ref={contentRef} className="transition-opacity duration-300">
                 <div className="space-y-4">
                   {/* Asset Preview */}
                   <MediaAssetPreview

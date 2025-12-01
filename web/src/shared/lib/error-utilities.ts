@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { AppError } from "@/shared/types/app-error";
 
 import { _Error } from "../api/types.gen";

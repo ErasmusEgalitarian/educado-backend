@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { mdiSort, mdiSortAscending, mdiSortDescending } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import {

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { useEffect, useRef } from "react"
 
 import { useIsomorphicLayoutEffect } from "./use-isomorphic-layout-effect"
