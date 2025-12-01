@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { UploadFile } from "@/shared/api/types.gen";
@@ -15,6 +15,7 @@ import {
 
 import { createMediaColumns } from "../lib/media-columns";
 
+import { MediaBulkActions } from "./media-bulk-actions";
 import { MediaCard } from "./media-card";
 
 export type MediaEditorMode = "view" | "edit" | "select";
@@ -22,16 +23,31 @@ export type MediaEditorMode = "view" | "edit" | "select";
 interface MediaDisplayEditorProps {
   defaultMode?: MediaEditorMode;
   onSelectionChange?: (asset: UploadFile | null) => void;
+  /** Enable multi-selection mode for bulk operations (only works in edit mode) */
+  enableBulkActions?: boolean;
+  /** Maximum number of items that can be selected (null = unlimited, default: null when bulk actions enabled, 1 otherwise) */
+  selectionLimit?: number | null;
 }
 
 const MediaDisplayEditor = ({
   defaultMode = "view",
   onSelectionChange,
+  enableBulkActions = true,
+  selectionLimit,
 }: MediaDisplayEditorProps) => {
   const { t } = useTranslation();
   const [mode] = useState<MediaEditorMode>(defaultMode);
-  const [selectedAsset, setSelectedAsset] = useState<UploadFile | null>(null);
+  const [selectedAssets, setSelectedAssets] = useState<UploadFile[]>([]);
   const dataDisplayRef = useRef<DataDisplayRef>(null);
+
+  // Determine selection limit based on props and bulk actions setting
+  const effectiveSelectionLimit = useMemo(() => {
+    if (selectionLimit !== undefined) return selectionLimit;
+    // If bulk actions are enabled in edit mode, allow unlimited selection
+    if (enableBulkActions && mode === "edit") return null;
+    // Otherwise, limit to 1 for single selection
+    return 1;
+  }, [selectionLimit, enableBulkActions, mode]);
 
   const mediaColumns = useMemo(() => createMediaColumns(t), [t]);
   const mediaCard = useCallback(
@@ -39,41 +55,49 @@ const MediaDisplayEditor = ({
     []
   );
 
-  // Handle selection change - convert array to single item
+  // Handle selection change - supports both single and multi-select
   const handleSelectionChange = useCallback(
     (selectedItems: UploadFile[]) => {
-      const newAsset = selectedItems.length > 0 ? selectedItems[0] : null;
-      setSelectedAsset(newAsset);
-      onSelectionChange?.(newAsset);
+      setSelectedAssets(selectedItems);
+      // For backward compatibility, call onSelectionChange with first item or null
+      const firstItem = selectedItems.length > 0 ? selectedItems[0] : null;
+      onSelectionChange?.(firstItem);
     },
     [onSelectionChange]
   );
 
-  // Handle asset update from sidebar
+  // Handle asset update from sidebar (single selection mode)
   const handleAssetUpdate = useCallback((updatedAsset: UploadFile) => {
-    setSelectedAsset(updatedAsset);
+    setSelectedAssets([updatedAsset]);
   }, []);
 
-  // Handle asset deletion
+  // Handle asset deletion (single or bulk)
   const handleAssetDelete = useCallback(() => {
-    setSelectedAsset(null);
+    setSelectedAssets([]);
     dataDisplayRef.current?.resetSelection();
   }, []);
 
-  // Sync selected asset with updated data after refetch
-  // This ensures that when data refetches, if we have a selected asset, we update it with the latest version
-  useEffect(() => {
-    if (selectedAsset && dataDisplayRef.current) {
-      // After a refetch, we need to find the updated version of the selected asset
-      // We'll do this by storing the ID and looking it up after data changes
-      // But we don't have access to data through the ref...
-      // So we'll rely on handleSelectionChange being called with fresh data
-    }
-  }, [selectedAsset]);
+  // Get single selected asset for the MediaCard (when only 1 item selected)
+  const selectedAsset = selectedAssets.length === 1 ? selectedAssets[0] : null;
+  const hasMultipleSelection = selectedAssets.length > 1;
 
   const sideBarComponent = useMemo(() => {
     if (mode !== "select" && mode !== "edit") return null;
 
+    // Show bulk actions when multiple items are selected
+    if (hasMultipleSelection && enableBulkActions) {
+      return (
+        <div className="w-96 h-full flex flex-col shrink-0 transition-all duration-300 ease-in-out pb-3">
+          <MediaBulkActions
+            selectedAssets={selectedAssets}
+            onBulkDelete={handleAssetDelete}
+            className="h-full"
+          />
+        </div>
+      );
+    }
+
+    // Show single asset details or placeholder
     return (
       <div className="w-96 h-full flex flex-col shrink-0 transition-all duration-300 ease-in-out pb-3">
         {selectedAsset ? (
@@ -100,7 +124,16 @@ const MediaDisplayEditor = ({
         )}
       </div>
     );
-  }, [mode, selectedAsset, handleAssetUpdate, handleAssetDelete, t]);
+  }, [
+    mode,
+    selectedAsset,
+    selectedAssets,
+    hasMultipleSelection,
+    enableBulkActions,
+    handleAssetUpdate,
+    handleAssetDelete,
+    t,
+  ]);
 
   return (
     <div className="w-full h-full flex flex-row gap-4 overflow-hidden">
@@ -130,7 +163,7 @@ const MediaDisplayEditor = ({
         initialPageSize={20}
         selection={{
           enabled: mode === "select" || mode === "edit",
-          limit: 1,
+          limit: effectiveSelectionLimit,
           onChange: handleSelectionChange,
         }}
       />

@@ -126,3 +126,50 @@ export const useDeleteFileMutation = () => {
     },
   });
 };
+
+export interface BulkDeleteResult {
+  succeeded: number[];
+  failed: { id: number; error: string }[];
+}
+
+/**
+ * Mutation for deleting multiple files at once
+ */
+export const useBulkDeleteFilesMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (fileIds: number[]): Promise<BulkDeleteResult> => {
+      const results: BulkDeleteResult = {
+        succeeded: [],
+        failed: [],
+      };
+
+      // Delete files sequentially to avoid overwhelming the server
+      for (const fileId of fileIds) {
+        try {
+          await uploadDeleteFilesById({
+            path: { id: fileId },
+            // @ts-expect-error - The generated SDK has the wrong URL (/files/{id})
+            url: "/upload/files/{id}",
+          });
+          results.succeeded.push(fileId);
+        } catch (error) {
+          results.failed.push({
+            id: fileId,
+            error: error instanceof Error ? error.message : "Unknown error",
+          });
+        }
+      }
+
+      return results;
+    },
+    onSuccess: () => {
+      void queryClient.refetchQueries({
+        queryKey: [["media"]],
+        exact: false,
+        type: "active",
+      });
+    },
+  });
+};

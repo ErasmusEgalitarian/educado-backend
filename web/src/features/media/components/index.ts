@@ -92,6 +92,9 @@ export { default as MediaPickerModal } from "./media-picker-modal";
 export { default as MediaDisplayEditor } from "./media-display-editor";
 export type { MediaEditorMode } from "./media-display-editor";
 
+// Bulk Actions (for multi-select operations)
+export { MediaBulkActions } from "./media-bulk-actions";
+
 // Card variants (for grid display)
 export { MediaCard } from "./media-card";
 
