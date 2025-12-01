@@ -1,6 +1,6 @@
 import { mdiPlus } from "@mdi/js";
 import Icon from "@mdi/react";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -37,11 +37,6 @@ const CourseOverviewPage = () => {
     []
   );
 
-  const handleSelectionChange = useCallback((courses: Course[]) => {
-    setSelectedCourses(courses);
-    // Do something with selected courses (e.g., enable batch operations)
-    toast.info(`${String(courses.length)} course(s) selected.`);
-  }, []);
   const [documentIds, setDocumentIds] = useState<string[]>([]);
 
   return (
@@ -87,11 +82,6 @@ const CourseOverviewPage = () => {
                 config={{
                   renderMode: "client",
                   clientModeThreshold: 50,
-                }}
-                selection={{
-                  enabled: true,
-                  limit: 2,
-                  onChange: handleSelectionChange,
                 }}
                 onFilteredDocumentIds={setDocumentIds}
               />
