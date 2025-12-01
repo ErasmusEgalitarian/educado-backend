@@ -10,19 +10,18 @@ import { z } from "zod";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import { contentCreatorGetContentCreatorsById, contentCreatorPutContentCreatorsById } from "@/shared/api/sdk.gen";
+import staticForm from "@/shared/components/form/staticForm";
+import GenericModalComponent from "@/shared/components/GenericModalComponent";
+import Layout from "@/shared/components/Layout";
+import { useApi } from "@/shared/hooks/useAPI";
 import { tempObjects } from "@/shared/lib/formStates";
-
-import staticForm from "../../../shared/components/form/staticForm";
-import GenericModalComponent from "../../../shared/components/GenericModalComponent";
-import Layout from "../../../shared/components/Layout";
-import { useApi } from "../../../shared/hooks/useAPI";
-import dynamicForms from "../../../unplaced/dynamicForms";
-import AccountServices from "../../../unplaced/services/account.services";
-import ProfileServices from "../../../unplaced/services/profile.services";
+import dynamicForms from "@/unplaced/dynamicForms";
+import AccountServices from "@/unplaced/services/account.services";
+import ProfileServices from "@/unplaced/services/profile.services";
 
 import AcademicExperienceForm from "./academic-experience-form";
-import PersonalInformationForm from "./personal-information.tsx";
-import ProfessionalExperienceForm from "./professional-experience.tsx";
+import PersonalInformationForm from "./personal-information";
+import ProfessionalExperienceForm from "./professional-experience";
 
 // TypeScript Interfaces
 interface ContentCreator {
