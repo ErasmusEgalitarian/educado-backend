@@ -5,8 +5,8 @@ import { EducationFormData, ExperienceFormData, FormData as ProfileFormData } fr
 // static form states
 export const useFormData = () => {
   const [formData, setFormData] = useState<ProfileFormData>({
-    UserName: "",
-    UserEmail: "",
+    userName: "",
+    userEmail: "",
     bio: "",
     linkedin: "",
     photo: "",

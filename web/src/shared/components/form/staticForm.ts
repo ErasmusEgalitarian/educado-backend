@@ -21,8 +21,8 @@ export default () => {
     const data = response.data;
     setFormData((prevData) => ({
       ...prevData,
-      UserName: data.userName,
-      UserEmail: data.userEmail,
+      userName: data.userName,
+      userEmail: data.userEmail,
       bio: data.userBio,
       linkedin: data.userLinkedInLink,
       photo: data.userPhoto,
@@ -81,8 +81,8 @@ export default () => {
     if (userInfo) {
       setFormData((prevData) => ({
         ...prevData,
-        UserName: userInfo.firstName,
-        UserEmail: userInfo.email,
+        userName: userInfo.firstName,
+        userEmail: userInfo.email,
       }));
     }
   };
