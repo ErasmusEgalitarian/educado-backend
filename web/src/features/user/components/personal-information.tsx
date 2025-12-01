@@ -1,8 +1,8 @@
 //Imports
-import { useEffect, useState, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 
 import Modals from "@/auth/components/Modals";
-import { BACKEND_URL } from "@/shared/config/environment.ts";
+import { BACKEND_URL } from "@/shared/config/environment";
 
 //Exporting UI content&structure of
 const PersonalInformationForm= ({
@@ -41,15 +41,7 @@ const PersonalInformationForm= ({
     setModalInputValue(numericInput);
     setIntError(!/^\d*$/.test(e.target.value));
   };
-  const getUserImage = async () => {
-      await fetch(`http://localhost:8888/api/bucket/${formData.photo}`,);
-  };
-  useEffect(() => {
-      const load = async () => {
-          await getUserImage();
-      };
-      void load();
-  }, []);
+
   return (
     <>
       {/* content of personal information when drop down button is clicked */}
