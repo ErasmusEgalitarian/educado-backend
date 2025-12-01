@@ -117,135 +117,177 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
   const isEditing = currentSectionEditing !== null;
   const showForm = isCreating || isEditing;
 
+  const SectionCard = ({ section, index }: { section: Section; index: number }) => (
+    <Card
+      className={`p-0 rounded-sm ${
+        currentSectionEditing === section.id 
+          ? "border-primary border-2" 
+          : "border-greyscale-border"
+      }`}
+    >
+      <Button
+        variant="ghost"
+        className="flex items-center justify-between p-10"
+        onClick={() => { handleEdit(section) }}
+      >
+        <div className="flex items-center">
+          <h4 className="h-full flex items-center gap-3 font-semibold text-greyscale-text-title">
+            <ChevronDown size={16} className="hover:cursor-pointer"/>
+            {t("courseManager.section")} {index + 1}{":"} {section.title}
+          </h4>
+        </div>
+
+        <div className="flex gap-2 ml-4">
+          <Button
+            variant="secondary"
+            size="md"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDelete(section.id);
+            }}
+            className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
+          >
+            <Trash2 size={16} />
+          </Button>
+          <Button
+            variant="secondary"
+            size="md"
+            onClick={(e) => {
+              e.stopPropagation();
+              console.log("TODO: make draggable");
+            }}
+            className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
+          >
+            <Menu size={16} />
+          </Button>
+        </div>
+      </Button>
+    </Card>
+  );
+
+  interface EditSectionFormProps {
+    sectionIndex?: number;
+    sectionTitle?: string;
+    isCreatingNew?: boolean;
+  }
+
+  const EditSectionForm = ({ sectionIndex, sectionTitle, isCreatingNew = false }: EditSectionFormProps) => {
+    // Get the section number display text
+    const getSectionNumberText = () => {
+      if (isCreatingNew) {
+        return t("courseManager.createNewSection");
+      }
+      return `${t("courseManager.section")} ${sectionIndex! + 1}: ${sectionTitle}`;
+    };
+
+    return (
+      <Card className="rounded-sm border border-primary-surface-default pt-0 overflow-hidden">
+        <CardHeader className="bg-primary-surface-default p-6 text-white font-bold">
+          {isCreatingNew ? t("courseManager.createNewSection") : t("courseManager.editSection")+` ${sectionIndex! + 1}: ${sectionTitle}`}
+        </CardHeader>
+        <CardContent className="pt-6">
+          {/* Section number and title display */}
+
+          
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <div className="grid grid-cols-1 gap-4">
+                <FormInput
+                  control={form.control}
+                  fieldName="title"
+                  label={t("common.name")}
+                  placeholder={t("common.name")}
+                  isRequired
+                />
+
+                <FormTextarea
+                  control={form.control}
+                  fieldName="description"
+                  label={t("courseManager.description")}
+                  placeholder={t("courseManager.descriptionPlaceholder")}
+                  rows={3}
+                />
+
+                <hr />
+
+                <div className="grid grid-cols-[1fr_25px_1fr] gap-2">
+                  <Button
+                    type="button"
+                    onClick={() => { console.log("Add lesson") }}
+                    className="w-full border-dashed"
+                    variant="outline"
+                  >
+                    <div className="w-full flex flex-row items-center justify-center">
+                      <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
+                      {t("courseManager.addLesson")}
+                    </div>
+                  </Button>
+                  <span className="flex items-center justify-center text-greyscale-text-disabled">
+                    {t("common.or")}
+                  </span>
+                  <Button
+                    type="button"
+                    onClick={() => { console.log("Add exercise")}}
+                    className="w-full border-dashed flex"
+                    variant="outline"
+                  >
+                    <div className="w-full flex flex-row items-center justify-center">
+                      <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
+                      {t("courseManager.addExercise")}
+                    </div>
+                  </Button>
+                </div>
+              </div>
+
+              <div className="flex gap-2 justify-end">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={handleCancel}
+                >
+                  {t("common.cancel")}
+                </Button>
+                <Button type="submit">
+                  {isEditing ? t("common.update") : t("common.create")}
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+    );
+  };
+
   return (
-    <div className="flex flex-col gap-y-6">
+   <div className="flex flex-col gap-y-6">
       <Card className="p-0 shadow-none">
         <CardContent className="space-y-6 p-0">
           {/* Sections List */}
           {sections.length > 0 && (
             <div className="space-y-4">
               {sections.map((section, index) => (
-                <Card
-                  key={section.id}
-                  className={`p-0 rounded-sm ${
-                    currentSectionEditing === section.id 
-                      ? "border-primary border-2" 
-                      : "border-greyscale-border"
-                  }`}
-                >
-                  <Button
-                    variant="ghost"
-                    className="flex items-center justify-between p-10"
-                    onClick={() => { handleEdit(section) }}
-                  >
-                    <div className="flex items-center">
-                      <h4 className="h-full flex items-center gap-3 font-semibold text-greyscale-text-title">
-                        <ChevronDown size={16} className="hover:cursor-pointer"/>
-                        {t("courseManager.section")} {index + 1}{":"} {section.title}
-                      </h4>
-                    </div>
-
-                    <div className="flex gap-2 ml-4">
-                      <Button
-                        variant="secondary"
-                        size="md"
-                        onClick={() => { handleDelete(section.id) }}
-                        className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
-
-                      >
-                        <Trash2 size={16} />
-                      </Button>
-                       <Button
-                        variant="secondary"
-                        size="md"
-                        onClick={() => { console.log("TODO: make draggable")}}
-                        className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
-                      >
-                        <Menu size={16} />
-                      </Button>
-                    </div>
-                  </Button>
-                </Card>
+                <div key={section.id}>
+                  {currentSectionEditing === section.id ? (
+                    <EditSectionForm 
+                      sectionIndex={index}
+                      sectionTitle={section.title}
+                    />
+                  ) : (
+                    <SectionCard section={section} index={index} />
+                  )}
+                </div>
               ))}
             </div>
           )}
 
-          {/* Add/Edit Section Form */}
-          {showForm && (
-            <Card className="rounded-sm border border-primary-surface-default pt-0 overflow-hidden">
-              <CardHeader className="bg-primary-surface-default p-6 text-white font-bold">
-                {isEditing ? t("courseManager.editSection") : t("courseManager.createNewSection")}
-              </CardHeader>
-              <CardContent className="pt-6">
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                    <div className="grid grid-cols-1 gap-4">
-                      <FormInput
-                        control={form.control}
-                        fieldName="title"
-                        label={t("common.name")}
-                        placeholder={t("common.name")}
-                        isRequired
-                      />
-
-                      <FormTextarea
-                        control={form.control}
-                        fieldName="description"
-                        label={t("courseManager.description")}
-                        placeholder={t("courseManager.descriptionPlaceholder")}
-                        rows={3}
-                      />
-
-                      <hr />
-
-                      <div className="grid grid-cols-[1fr_25px_1fr] gap-2">
-                        <Button
-                          type="button"
-                          onClick={() => { console.log("Add lesson") }}
-                          className="w-full border-dashed"
-                          variant="outline"
-                        >
-                          <div className="w-full flex flex-row items-center justify-center">
-                            <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
-                            {t("courseManager.addLesson")}
-                          </div>
-                        </Button>
-                        <span className="flex items-center justify-center text-greyscale-text-disabled">
-                          {t("common.or")}
-                        </span>
-                        <Button
-                          type="button"
-                          onClick={() => { console.log("Add exercise")}}
-                          className="w-full border-dashed flex"
-                          variant="outline"
-                        >
-                          <div className="w-full flex flex-row items-center justify-center">
-                            <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
-                            {t("courseManager.addExercise")}
-                          </div>
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-2 justify-end">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={handleCancel}
-                      >
-                        {t("common.cancel")}
-                      </Button>
-                      <Button type="submit">
-                        {isEditing ? t("common.update") : t("common.create")}
-                      </Button>
-                    </div>
-                  </form>
-                </Form>
-              </CardContent>
-            </Card>
+          {/* Add Section Form (for creating new sections) */}
+          {isCreating && (
+            <div className="space-y-4">
+              <EditSectionForm isCreatingNew={true} />
+            </div>
           )}
 
-          {/* Add Section Button */}
+          {/* Add Section Button (only show when not editing or creating) */}
           {!showForm && (
             <Button
               onClick={startCreating}
