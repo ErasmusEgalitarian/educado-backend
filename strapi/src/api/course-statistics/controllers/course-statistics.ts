@@ -55,6 +55,7 @@ export default {
         certificates: await getCertificatesStats(filteredCourses),
         evaluation: getContentCreatorFeedback(filteredCourses) 
       };
+      console.log(ctx.response.body);
     } catch (err) {
       ctx.status = 500;
       ctx.body = err;
@@ -232,7 +233,7 @@ export function getContentCreatorFeedback(filteredCourses : PopulatedCourse[]) {
     const TotalaverageCurrentMonthProgress = Totalaverage - (totalRating - countCurrentMonthRating) / (totalFeedbacks - countCurrentMonthFeedbacks);
     
     return {
-      total: Number(Totalaverage.toFixed(1)),
+      total: Number(numberSafetyCheck(Totalaverage).toFixed(1)),
       progress: {
         thisMonth: Number(numberSafetyCheck(TotalaverageCurrentMonthProgress).toFixed(1)),
         lastSevenDays: Number(numberSafetyCheck(Totalaverage7dProgress).toFixed(1)),
