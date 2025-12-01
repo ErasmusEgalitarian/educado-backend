@@ -22,11 +22,12 @@ describe('Test statistics', () => {
             course_enrollment_relations: [{enrollmentDate: new Date("2025-9-3")}, {enrollmentDate: new Date("2025-9-3")}, {enrollmentDate: new Date("2025-10-18")}, {enrollmentDate: new Date("2025-11-2")}],
             feedbacks: [{createdAt: new Date("2025-10-20"), rating: 3}, {createdAt: new Date("2025-9-4"), rating: 2}, {createdAt: new Date("2025-11-15"), rating: 3}, {createdAt: new Date("2025-11-15"), rating: 3}],
         }
-    ]
+    ];
 
     beforeAll(() => {
-        jest.spyOn(Date, "now").mockImplementation(() => new Date(currentDate).valueOf())
-    })
+        jest.useFakeTimers();
+        jest.setSystemTime(new Date(currentDate));
+    });
 
     beforeEach(() => {
         strapiMock = {
@@ -50,7 +51,7 @@ describe('Test statistics', () => {
                     {completionDate: new Date("2025-11-15"), course: {documentId: "course3"}},
                 ]),
                 count: jest.fn().mockResolvedValue(2)
-            }
+            };
         });
 
         const result = await getCertificatesStats(mockFilteredCourses);
@@ -120,7 +121,7 @@ describe('Test statistics', () => {
         expect(filteredCourses).toEqual([
             {documentId: "1"},
             {documentId: "2"}
-        ])
-    })
+        ]);
+    });
     
 });
