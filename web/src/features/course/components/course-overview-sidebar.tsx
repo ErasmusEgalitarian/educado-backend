@@ -13,21 +13,29 @@ import { SidebarActivity } from "../components/course-overview-sidebar-activity"
 import { useEffect, useState } from "react";
 import { getCcDashboardActivity } from "@/shared/api/sdk.gen";
 import { DashboardActivity } from "@/shared/api/types.gen";
-import { useTranslation } from "react-i18next";
-
-import { postCourseStatisticsStatisticsAction } from "@/shared/api/sdk.gen";
 import { postCourseStatistics } from "@/shared/api/sdk.gen";
 import { CourseStatisticsResponse } from "@/shared/api/types.gen";
 
 type PeriodKey = "thisMonth" | "lastSevenDays" | "lastThirtyDays";
 
 const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
+
   const { t, i18n } = useTranslation();
   const userInfo: userInfo = getUserInfo();
 
   const [period, setPeriod] = useState<PeriodKey>("thisMonth");
   const [statistics, setStatistics] = useState<CourseStatisticsResponse>();
   const [loading, setLoading] = useState(false);
+
+  const [dashboardActivities, setDashboardActivities] = useState<DashboardActivity[]>([]);
+
+  useEffect(() => {
+    const fetchActivities = async () => {
+      const data = await getCcDashboardActivity();
+      setDashboardActivities(data ?? []);
+    };
+    fetchActivities();
+  }, []);
 
   useEffect(() => {
     if (!documentIds || documentIds.length === 0) {
