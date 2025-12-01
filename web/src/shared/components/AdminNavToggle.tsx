@@ -1,8 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
+
 
 const AdminNavToggle = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const isOnAdmin = location.pathname.startsWith("/educado-admin");
     const isOnCourses = location.pathname.startsWith("/courses");
@@ -19,7 +23,7 @@ const AdminNavToggle = () => {
                         : "text-slate-600 hover:text-slate-800")
                 }
             >
-                Cursos
+                {t("navbar.courses")}
             </button>
 
             <button
@@ -32,7 +36,7 @@ const AdminNavToggle = () => {
                         : "text-slate-600 hover:text-slate-800")
                 }
             >
-                Admin
+                {t("navbar.admin")}
             </button>
         </div>
     );

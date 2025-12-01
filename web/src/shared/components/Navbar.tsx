@@ -82,7 +82,7 @@ export const Navbar = () => {
         </div>
 
           <div className="flex-1 flex justify-center">
-              {userInfo.role === "admin" && (
+
                   <div className="flex flex-col items-center">
                       <div className="flex space-x-16 text-sm font-semibold font-['Montserrat']">
                           {/* Cursos tab */}
@@ -96,7 +96,7 @@ export const Navbar = () => {
                                   " transition-colors"
                               }
                           >
-                              Cursos
+                              {t("navbar.courses")}
                           </button>
 
                           {/* Admin tab */}
@@ -109,7 +109,7 @@ export const Navbar = () => {
                                   " transition-colors"
                               }
                           >
-                              Admin
+                              {t("navbar.admin")}
                           </button>
                       </div>
 
@@ -129,7 +129,7 @@ export const Navbar = () => {
                           ></div>
                       </div>
                   </div>
-                  )}
+
           </div>
 
         {/* Notification Bell and User Info */}
