@@ -12,6 +12,9 @@ import { SidebarActivity } from "../components/course-overview-sidebar-activity"
 import { useEffect, useState } from "react";
 import { getCcDashboardActivity } from "@/shared/api/sdk.gen";
 import { DashboardActivity } from "@/shared/api/types.gen";
+import { getUserInfo, userInfo } from "@/features/auth/lib/userInfo";
+
+
 
 const OverviewSidebar = () => {
 
@@ -25,13 +28,14 @@ const OverviewSidebar = () => {
     fetchActivities();
   }, []);
 
+  const userInfo: userInfo = getUserInfo();
+  
 
   return (
     <div className="w-2/7 hidden xl:block">
       <div className="text-greyscale-text-body">
         {/* Greeting */}
-        <h2 className="text-3xl font-semibold">Olá, User Name</h2>
-        <p>Mocked for now</p>
+        <h2 className="text-3xl font-semibold">Olá,  {`${userInfo.firstName}`}</h2>
         <div className="h-px bg-greyscale-surface-default my-6" />
 
         {/* Progress header with period selector */}
