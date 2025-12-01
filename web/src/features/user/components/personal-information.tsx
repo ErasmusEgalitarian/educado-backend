@@ -69,7 +69,7 @@ const PersonalInformationForm= ({
               className="w-[120px] h-[120px] p-[30px] bg-cyan-800 rounded-[60px] border-2 border-white justify-center items-center gap-[30px] inline-flex"
             >
               <div className="text-white text-4xl font-bold font-['Montserrat']">
-                {formData.UserName.charAt(0).toUpperCase()}
+                {formData.userName.charAt(0).toUpperCase()}
               </div>
             </div>
           )}
@@ -102,16 +102,16 @@ const PersonalInformationForm= ({
                 className="bg-[#E4F2F5] rounded-lg border-none"
                 placeholder="User name"
                 type="text"
-                {...register("UserName", {
+                {...register("userName", {
                   required: "digite seu nome completo.",
                 })}
                 name="UserName"
-                value={formData.UserName}
+                value={formData.userName}
                 onChange={handleInputChange}
               />
-              {errors.UserName && (
+              {errors.userName && (
                 <span className="user_name_error">
-                  {errors.UserName?.message}
+                  {errors.userName?.message}
                 </span>
               )}
             </div>
@@ -127,16 +127,16 @@ const PersonalInformationForm= ({
                 className="bg-[#E4F2F5] rounded-lg border-none"
                 placeholder="user@email.com"
                 type="email"
-                {...register("UserEmail", {
+                {...register("userEmail", {
                   required: "digite seu nome completo.",
                 })}
                 name="UserEmail"
-                value={formData.UserEmail}
+                value={formData.userEmail}
                 onChange={handleInputChange}
               />
-              {errors.UserEmail && (
+              {errors.userEmail && (
                 <span className="user_email_error">
-                  {errors.UserEmail?.message}
+                  {errors.userEmail?.message}
                 </span>
               )}
             </div>
