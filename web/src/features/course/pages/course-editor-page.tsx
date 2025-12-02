@@ -34,6 +34,12 @@ import {
 
 type SaveDraftLoader = "none" | "success" | "error";
 
+export interface Section {
+  id: string;
+  title: string;
+  description?: string;
+}
+
 const CourseEditorPage = () => {
   const { t } = useTranslation();
 
@@ -69,6 +75,11 @@ const CourseEditorPage = () => {
     ...CourseQueryFunction(actualCourseId ?? ""),
     enabled: isEditMode, // Only run query in edit mode
   });
+
+  /* ----------------------------- Create Sections ---------------------------- */
+  const createSections = (sections: Section[]) => {
+    console.log(sections)
+  }
 
   /* ----------------------------- Step management ---------------------------- */
 
@@ -200,7 +211,8 @@ const CourseEditorPage = () => {
           <CourseEditorSections
             ref={sectionsFormRef}
             courseSectionsId={queryCourse?.course_sections}
-            onComplete={() => {
+            onComplete={(sections: Section[]) => {
+              createSections(sections);
               handleStepComplete("sections");
             }}
             onGoBack={goToPreviousStep}
