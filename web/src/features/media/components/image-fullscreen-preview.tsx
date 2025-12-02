@@ -7,8 +7,14 @@ import {
 } from "@mdi/js";
 import Icon from "@mdi/react";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/shared/components/shadcn/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/shared/components/shadcn/tooltip";
 
 import { downloadFile } from "../lib/media-utils";
 
@@ -57,6 +63,8 @@ export const ImageFullscreenPreview = ({
   isOpen,
   onClose,
 }: ImageFullscreenPreviewProps): React.JSX.Element | null => {
+  const { t } = useTranslation();
+
   // State for zoom, position, dragging, and rotation
   // Only used for CSS transforms
   const [scale, setScale] = useState(1);
@@ -207,58 +215,97 @@ export const ImageFullscreenPreview = ({
       />
       {/* Controls */}
       <div className="absolute top-4 right-4 z-10 flex gap-2">
-        <Button
-          variant="secondary"
-          size="icon"
-          onClick={(e) => {
-            e.stopPropagation();
-            handleZoomIn();
-          }}
-          className="bg-background/80 backdrop-blur-sm hover:bg-background"
-        >
-          <Icon path={mdiMagnifyPlusOutline} size={0.65} />
-        </Button>
-        <Button
-          variant="secondary"
-          size="icon"
-          onClick={(e) => {
-            e.stopPropagation();
-            handleZoomOut();
-          }}
-          className="bg-background/80 backdrop-blur-sm hover:bg-background"
-        >
-          <Icon path={mdiMagnifyMinusOutline} size={0.65} />
-        </Button>
-        <Button
-          variant="secondary"
-          size="icon"
-          onClick={(e) => {
-            e.stopPropagation();
-            handleRotate();
-          }}
-          className="bg-background/80 backdrop-blur-sm hover:bg-background"
-        >
-          <Icon path={mdiRotateRight} size={0.65} />
-        </Button>
-        <Button
-          variant="secondary"
-          size="icon"
-          onClick={handleDownload}
-          className="bg-background/80 backdrop-blur-sm hover:bg-background"
-        >
-          <Icon path={mdiDownload} size={0.65} />
-        </Button>
-        <Button
-          variant="secondary"
-          size="icon"
-          onClick={(e) => {
-            e.stopPropagation();
-            onClose();
-          }}
-          className="bg-background/80 backdrop-blur-sm hover:bg-background"
-        >
-          <Icon path={mdiClose} size={0.65} />
-        </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="secondary"
+              size="icon"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleZoomIn();
+              }}
+              className="bg-background/80 backdrop-blur-sm hover:bg-background"
+            >
+              <Icon path={mdiMagnifyPlusOutline} size={0.65} />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="bottom">
+            {t("media.preview.zoomIn")}
+          </TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="secondary"
+              size="icon"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleZoomOut();
+              }}
+              className="bg-background/80 backdrop-blur-sm hover:bg-background"
+            >
+              <Icon path={mdiMagnifyMinusOutline} size={0.65} />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="bottom">
+            {t("media.preview.zoomOut")}
+          </TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="secondary"
+              size="icon"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleRotate();
+              }}
+              className="bg-background/80 backdrop-blur-sm hover:bg-background"
+            >
+              <Icon path={mdiRotateRight} size={0.65} />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="bottom">
+            {t("media.preview.rotate")}
+          </TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="secondary"
+              size="icon"
+              onClick={handleDownload}
+              className="bg-background/80 backdrop-blur-sm hover:bg-background"
+            >
+              <Icon path={mdiDownload} size={0.65} />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="bottom">
+            {t("common.download")}
+          </TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="secondary"
+              size="icon"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
+              className="bg-background/80 backdrop-blur-sm hover:bg-background"
+            >
+              <Icon path={mdiClose} size={0.65} />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="bottom">
+            {t("actions.close")}
+          </TooltipContent>
+        </Tooltip>
       </div>
 
       {/* Zoom indicator */}

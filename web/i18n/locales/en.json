@@ -231,6 +231,11 @@
       "filenameNoPeriods": "Filename cannot start or end with a period",
       "altMaxLength": "Alt text must be less than {{count}} characters",
       "captionMaxLength": "Caption must be less than {{count}} characters"
+    },
+    "preview": {
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "rotate": "Rotate"
     }
   },
   "multiSelect": {

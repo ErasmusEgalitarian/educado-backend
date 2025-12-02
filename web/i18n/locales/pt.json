@@ -234,6 +234,11 @@
       "filenameNoPeriods": "O nome do arquivo não pode começar ou terminar com ponto",
       "altMaxLength": "O texto alternativo deve ter menos de {{count}} caracteres",
       "captionMaxLength": "A legenda deve ter menos de {{count}} caracteres"
+    },
+    "preview": {
+      "zoomIn": "Ampliar",
+      "zoomOut": "Reduzir",
+      "rotate": "Girar"
     }
   },
   "auth": {
