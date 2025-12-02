@@ -9,7 +9,6 @@ import { ToastContainer } from "react-toastify";
 
 import { postContentCreatorLogin } from "@/shared/api/sdk.gen";
 import background from "@/shared/assets/background.jpg";
-
 import Carousel from "@/unplaced/archive/carousel";
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
@@ -80,10 +79,10 @@ const Login = () => {
       },
     })
       .then(async (res) => {
-        /* eslint-disable  @typescript-eslint/no-unsafe-assignment */ /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
-        const token = res.jwt;
-        /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
-        const user = res.user;
+        /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
+        const token = res?.accessToken;
+
+        const user = res?.userInfo;
         /* eslint-disable  @typescript-eslint/no-unsafe-argument */
 
         await loginSaver(token, user);
@@ -137,10 +136,7 @@ const Login = () => {
       buttonContainer.style.backgroundColor =
         "var(--greyscale-surface-disabled)";
       submitloginButton.style.color = "var(--greyscale-border-default)";
-    } else if (
-      inputloginEmail.value.trim() &&
-      inputloginPass.value.trim() !== ""
-    ) {
+    } else if (inputloginPass.value.trim() !== "") {
       submitloginButton.removeAttribute("disabled");
       buttonContainer.style.backgroundColor = "var(--primary-surface-default)";
       submitloginButton.style.color = "var(--greyscale-surface-subtle)";
