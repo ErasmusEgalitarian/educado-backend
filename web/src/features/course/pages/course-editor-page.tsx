@@ -11,8 +11,13 @@ import { GlobalLoader } from "@/shared/components/global-loader";
 import { PageContainer } from "@/shared/components/page-container";
 import { Button } from "@/shared/components/shadcn/button";
 import { Separator } from "@/shared/components/shadcn/seperator";
+import { useFileUpload } from "@/shared/hooks/use-file-upload";
 import { toAppError } from "@/shared/lib/error-utilities";
 
+import {
+  useCreateCourseMutation,
+  useUpdateCourseMutation,
+} from "../api/course-mutations";
 import { CourseQueryFunction } from "../api/course-queries";
 import CourseEditorInformation, {
   type CourseEditorInformationRef,
@@ -26,11 +31,6 @@ import {
   useCourseEditorSteps,
   type CourseEditorStep,
 } from "../hooks/use-course-editor-steps";
-import { useFileUpload } from "@/shared/hooks/use-file-upload";
-import {
-  useCreateCourseMutation,
-  useUpdateCourseMutation,
-} from "../api/course-mutations";
 
 type SaveDraftLoader = "none" | "success" | "error";
 
@@ -278,18 +278,18 @@ const CourseEditorPage = () => {
           {/* ---- Loading save as draft ----- */}
 
           <div className="flex flex-col gap-y-3 mt-6">
-            {saveDraftLoader === "success" && (
+            {saveDraftLoader === "success" ? (
               <p className="flex text-sm justify-center text-success-surface-default gap-x-2">
                 <Icon path={mdiCheckCircle} size={0.7} />
                 Saved to draft succeeded
               </p>
-            )}
-            {saveDraftLoader === "error" && (
+            ) : null}
+            {saveDraftLoader === "error" ? (
               <p className="flex items-center justify-center  text-sm text-destructive gap-x-2">
                 <Icon path={mdiAlertCircle} size={0.7} />
                 Failed to save as draft
               </p>
-            )}
+            ) : null}
           </div>
         </div>
 

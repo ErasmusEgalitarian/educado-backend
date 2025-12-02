@@ -13,7 +13,7 @@ import { Form } from "@/shared/components/shadcn/form";
 
 interface CourseEditorSectionsProps {
   courseSectionsId?: { id: string, title: string, documentId: string }[];
-  onComplete?: () => void;
+  onComplete?: (sections: Section[]) => void;
   onGoBack?: () => void;
 }
 
@@ -315,7 +315,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                 {t("common.cancel")}
               </Button>
               <Button
-                onClick={() => onComplete?.()}
+                onClick={() => onComplete?.(sections)}
                 disabled={sections.length === 0}
               >
                 {t("courseManager.createAndContinue")}
