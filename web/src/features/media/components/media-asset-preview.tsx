@@ -66,6 +66,10 @@ export const MediaAssetPreview = ({
 }: MediaAssetPreviewProps) => {
   const [isFullScreenOpen, setIsFullScreenOpen] = useState(false);
 
+  if (asset.url === undefined || asset.mime === undefined) {
+    return null;
+  }
+
   const getUrlForSize = (s: MediaPreviewSize) => {
     if (s === "original") return asset.url;
 
