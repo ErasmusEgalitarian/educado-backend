@@ -62,7 +62,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
   const onSubmit = (values: SectionFormValues) => {
     console.log("FORM SUBMITTED!", { currentSectionEditing, values });
 
-    if (currentSectionEditing) {
+    if (currentSectionEditing != null) {
       // Update existing section
       setSections(prev => prev.map(section =>
         section.id === currentSectionEditing
@@ -142,7 +142,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
             variant="secondary"
             size="default"
             onClick={(e) => { 
-              e.stopPropagation; 
+              e.stopPropagation(); 
               handleDelete(section.id) }}
             className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
 
@@ -154,7 +154,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
             variant="secondary"
             size="default"
             onClick={(e) => { 
-              e.stopPropagation;
+              e.stopPropagation();
               console.log("TODO: make draggable")}}
             className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
           >
