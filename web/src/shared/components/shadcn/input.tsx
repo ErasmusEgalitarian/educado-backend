@@ -55,11 +55,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       lg: "h-10 px-4 py-2.5 text-base",
     };
 
-    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-      onChange?.(e);                    
-      onValueChange?.(e.target.value);   
-    };
-
     const element = (
       <input
         ref={ref}
