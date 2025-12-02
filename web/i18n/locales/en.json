@@ -175,6 +175,7 @@
     "uploadAndSelect": "Upload & Select",
     "uploadSuccess": "File uploaded successfully",
     "uploadFileSuccess": "Uploaded: {{filename}}",
+    "filesRejectedType": "{{count}} file(s) rejected: unsupported file type",
     "dragAndDrop": "Drag and drop files here, or click to select",
     "browseFiles": "Browse Files",
     "browseLibrary": "Browse Library",

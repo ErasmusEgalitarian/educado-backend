@@ -178,6 +178,7 @@
     "uploadAndSelect": "Enviar e Selecionar",
     "uploadSuccess": "Arquivo enviado com sucesso",
     "uploadFileSuccess": "Enviado: {{filename}}",
+    "filesRejectedType": "{{count}} arquivo(s) rejeitado(s): tipo de arquivo não suportado",
     "dragAndDrop": "Arraste e solte arquivos aqui, ou clique para selecionar",
     "browseFiles": "Procurar Arquivos",
     "browseLibrary": "Procurar Biblioteca",

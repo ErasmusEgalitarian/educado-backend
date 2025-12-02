@@ -4,9 +4,14 @@ import { useCallback, useId, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/shared/components/shadcn/button";
+import { useNotifications } from "@/shared/context/NotificationContext";
 import { cn } from "@/shared/lib/utils";
 
-import { getAcceptString, type MediaFileType } from "../lib/media-utils";
+import {
+  getAcceptString,
+  isFileTypeAllowed,
+  type MediaFileType,
+} from "../lib/media-utils";
 
 interface MediaUploadCardProps {
   /** Types of files allowed (image, video, file). Defaults to image and video. */
@@ -39,6 +44,7 @@ export const MediaUploadCard = ({
   className,
 }: MediaUploadCardProps) => {
   const { t } = useTranslation();
+  const { addNotification } = useNotifications();
   const inputId = useId();
   const [isDragging, setIsDragging] = useState(false);
 
@@ -67,12 +73,21 @@ export const MediaUploadCard = ({
 
       if (disabled) return;
 
-      const files = Array.from(e.dataTransfer.files);
-      if (files.length > 0) {
-        onFilesSelected(files);
+      const allFiles = Array.from(e.dataTransfer.files);
+      const validFiles = allFiles.filter((file) =>
+        isFileTypeAllowed(file, fileTypes)
+      );
+      const rejectedCount = allFiles.length - validFiles.length;
+
+      if (rejectedCount > 0) {
+        addNotification(t("media.filesRejectedType", { count: rejectedCount }));
+      }
+
+      if (validFiles.length > 0) {
+        onFilesSelected(validFiles);
       }
     },
-    [disabled, onFilesSelected]
+    [disabled, onFilesSelected, fileTypes, addNotification, t]
   );
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {

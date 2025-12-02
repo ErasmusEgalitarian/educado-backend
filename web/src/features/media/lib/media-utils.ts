@@ -126,6 +126,61 @@ export const downloadFile = async (url: string, filename: string) => {
 };
 
 /**
+ * File extensions considered as "file" type (documents, archives, etc.)
+ * Used for both drag-and-drop validation and file picker accept string.
+ */
+const FILE_TYPE_EXTENSIONS = [
+    ".pdf", ".doc", ".docx", ".xls", ".xlsx",
+    ".ppt", ".pptx", ".txt", ".zip", ".rar", ".7z"
+] as const;
+
+/**
+ * Accept string for the "file" type in file input elements.
+ * Includes application/pdf MIME type plus all document extensions.
+ */
+const FILE_TYPE_ACCEPT_STRING = `application/pdf,${FILE_TYPE_EXTENSIONS.join(",")}`;
+
+/**
+ * Checks if a file matches the allowed media file types.
+ * 
+ * @param {File} file - The file to validate.
+ * @param {MediaFileType | MediaFileType[]} [fileTypes] - The allowed media file types.
+ * @returns {boolean} True if the file matches the allowed types, false otherwise.
+ */
+export const isFileTypeAllowed = (
+    file: File,
+    fileTypes?: MediaFileType | MediaFileType[]
+): boolean => {
+    if (!fileTypes) {
+        // Default: allow images and videos
+        return file.type.startsWith("image/") || file.type.startsWith("video/");
+    }
+
+    const types = Array.isArray(fileTypes) ? fileTypes : [fileTypes];
+
+    for (const type of types) {
+        switch (type) {
+            case "image":
+                if (file.type.startsWith("image/")) return true;
+                break;
+            case "video":
+                if (file.type.startsWith("video/")) return true;
+                break;
+            case "file": {
+                // Check MIME type for PDFs
+                if (file.type === "application/pdf") return true;
+                // Check by extension for other document types
+                const extension = "." + (file.name.split(".").pop()?.toLowerCase() ?? "");
+                if (FILE_TYPE_EXTENSIONS.includes(extension)) return true;
+                break;
+            }
+        }
+    }
+
+    return false;
+};
+
+/**
  * Generates an accept string for file input based on specified media file types.
  * 
  * Example: ["image", "file"] => "image/*,application/pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar,.7z"
@@ -153,9 +208,7 @@ export const getAcceptString = (fileTypes?: MediaFileType | MediaFileType[]): st
                 acceptParts.push("video/*");
                 break;
             case "file":
-                acceptParts.push(
-                    "application/pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar,.7z"
-                );
+                acceptParts.push(FILE_TYPE_ACCEPT_STRING);
                 break;
         }
     }
