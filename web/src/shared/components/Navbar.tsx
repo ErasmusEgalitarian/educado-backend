@@ -12,7 +12,6 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useAuth } from "@/auth/hooks/use-auth";
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import {
   DropdownMenu,
@@ -28,16 +27,22 @@ import {
   DropdownMenuRadioItem,
 } from "@/shared/components/shadcn/dropdown-menu";
 
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/shared/components/shadcn/popover"
+
 import { getUserInfo, userInfo } from "../../features/auth/lib/userInfo";
 import { useNotifications } from "../context/NotificationContext";
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const { clearToken } = useAuthStore((state) => state);
-  const { preferences, setPreferences } = useAuth();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [ open, setOpen ] = useState(false)
   const { notifications, setNotifications } = useNotifications();
-  const { t } = useTranslation();
+  // const [ position, setPosition ] = useState("portuguese");
+  const { t, i18n } = useTranslation();
   // Logout handler
   const handleLogout = () => {
     clearToken();
@@ -49,10 +54,6 @@ export const Navbar = () => {
   const userInfo: userInfo = getUserInfo();
 
   // Notification handlers
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prev) => !prev);
-  };
-
   const handleDeleteNotification = (id: number) => {
     setNotifications((prev) =>
       prev.filter((notification) => notification.id !== id)
@@ -80,31 +81,27 @@ export const Navbar = () => {
         {/* Notification Bell and User Info */}
         <div className="relative flex items-center gap-6 pr-10 z-50">
           {/* Notification Bell */}
-          <div className="relative flex items-center gap-6">
-            <button
-              onClick={toggleDropdown}
-              className="relative flex items-center"
-            >
-              <Icon path={mdiBellOutline} size={1} color="grayMedium" />
-              {notifications.length > 0 && (
-                <span className="absolute top-0 right-0 inline-block w-4 h-4 bg-red-500 text-white text-xs leading-tight text-center rounded-full">
-                  {notifications.length}
-                </span>
-              )}
-            </button>
-
-            {/* Notifications Dropdown */}
-            {isDropdownOpen && (
-              <div className="dropdown dropdown-end bg-white absolute w-[245px] top-12 right-0 rounded-lg shadow-md z-50">
+          <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+              <button className="relative flex items-center cursor-pointer">
+                <Icon path={mdiBellOutline} size={1} color="grayMedium" />
+                {notifications.length > 0 && (
+                  <span className="absolute top-0 right-0 inline-block w-4 h-4 bg-red-500 text-white text-xs leading-tight text-center rounded-full">
+                    {notifications.length}
+                  </span>
+                )}
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-[200px] p-0">
                 <div className="p-2 max-h-[250px] overflow-y-auto">
                   <ul className="menu flex flex-col items-start w-full">
                     {notifications.length > 0 ? (
                       notifications.map((notification) => (
                         <li
                           key={notification.id}
-                          className="relative p-2 hover:bg-gray-100 w-full flex items-start"
+                          className="relative p-2 cursor-default w-full flex justify-between"
                         >
-                          {notification.link ? (
+                          {(notification.link != null) ? (
                             <a
                               href={notification.link}
                               className="text-sm text-blue-600 hover:underline"
@@ -120,7 +117,7 @@ export const Navbar = () => {
                             onClick={() => {
                               handleDeleteNotification(notification.id);
                             }}
-                            className="absolute top-0 right-0 text-red-500 text-sm"
+                            className="top-0 right-0 text-red-500 text-sm cursor-pointer"
                           >
                             ✕
                           </button>
@@ -144,9 +141,8 @@ export const Navbar = () => {
                     </button>
                   </div>
                 )}
-              </div>
-            )}
-          </div>
+            </PopoverContent>
+          </Popover>
 
           {/* User Info */}
 
@@ -210,11 +206,10 @@ export const Navbar = () => {
                     <DropdownMenuPortal>
                       <DropdownMenuSubContent>
                         <DropdownMenuRadioGroup
-                          value={preferences.language}
+                          value={i18n.language}
                           onValueChange={(value) => {
-                            if (value === "en" || value === "pt") {
-                              setPreferences({ language: value });
-                            }
+                            void i18n.changeLanguage(value);
+                            setPosition(value);
                           }}
                         >
                           <DropdownMenuRadioItem value="pt">

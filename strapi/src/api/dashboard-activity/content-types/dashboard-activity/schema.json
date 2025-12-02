@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dashboard_activities",
+  "info": {
+    "singularName": "dashboard-activity",
+    "pluralName": "dashboard-activities",
+    "displayName": "Dashboard Activity"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content_creator": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::content-creator.content-creator",
+      "inversedBy": "dashboard_activities"
+    },
+    "activityDesc": {
+      "type": "string"
+    }
+  }
+}

@@ -5,8 +5,7 @@ import { z } from 'zod';
 export const zError = z.object({
     data: z.union([
         z.record(z.unknown()),
-        z.array(z.record(z.unknown())),
-        z.null()
+        z.array(z.record(z.unknown()))
     ]).optional(),
     error: z.object({
         status: z.number().int().optional(),
@@ -118,6 +117,7 @@ export const zCertificate = z.object({
                 title: z.string().optional(),
                 description: z.string().optional(),
                 difficulty: z.number().int().optional(),
+                durationHours: z.number().int().optional(),
                 numOfRatings: z.number().int().optional(),
                 numOfSubscriptions: z.number().int().optional(),
                 image: z.object({
@@ -505,6 +505,31 @@ export const zCertificate = z.object({
                             documentId: z.string().optional()
                         })).optional()
                     })).optional(),
+                    dashboard_activities: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional(),
+                        content_creator: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        activityDesc: z.string().optional(),
+                        createdAt: z.string().datetime().optional(),
+                        updatedAt: z.string().datetime().optional(),
+                        publishedAt: z.string().datetime().optional(),
+                        createdBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        updatedBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        locale: z.string().optional(),
+                        localizations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional()
+                    })).optional(),
                     createdAt: z.string().datetime().optional(),
                     updatedAt: z.string().datetime().optional(),
                     publishedAt: z.string().datetime().optional(),
@@ -657,7 +682,7 @@ export const zCertificateResponse = z.object({
 export const zContentCreatorRequest = z.object({
     data: z.object({
         firstName: z.string(),
-        lastName: z.string().optional(),
+        lastName: z.string(),
         verifiedAt: z.string().date().optional(),
         biography: z.string().optional(),
         email: z.string().email(),
@@ -689,6 +714,10 @@ export const zContentCreatorRequest = z.object({
             z.number().int(),
             z.string()
         ])).optional(),
+        dashboard_activities: z.array(z.union([
+            z.number().int(),
+            z.string()
+        ])).optional(),
         locale: z.string().optional(),
         localizations: z.array(z.union([
             z.number().int(),
@@ -701,7 +730,7 @@ export const zContentCreator = z.object({
     id: z.number().optional(),
     documentId: z.string().optional(),
     firstName: z.string(),
-    lastName: z.string().optional(),
+    lastName: z.string(),
     verifiedAt: z.string().date().optional(),
     biography: z.string().optional(),
     email: z.string().email(),
@@ -730,6 +759,7 @@ export const zContentCreator = z.object({
         title: z.string().optional(),
         description: z.string().optional(),
         difficulty: z.number().int().optional(),
+        durationHours: z.number().int().optional(),
         numOfRatings: z.number().int().optional(),
         numOfSubscriptions: z.number().int().optional(),
         image: z.object({
@@ -1206,6 +1236,31 @@ export const zContentCreator = z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional()
             })).optional(),
+            dashboard_activities: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                content_creator: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                activityDesc: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -1241,6 +1296,10 @@ export const zContentCreator = z.object({
         })).optional()
     })).optional(),
     user_logs: z.array(z.object({
+        id: z.number().optional(),
+        documentId: z.string().optional()
+    })).optional(),
+    dashboard_activities: z.array(z.object({
         id: z.number().optional(),
         documentId: z.string().optional()
     })).optional(),
@@ -1284,6 +1343,7 @@ export const zCourseRequest = z.object({
         title: z.string(),
         description: z.string().optional(),
         difficulty: z.number().int(),
+        durationHours: z.number().int(),
         numOfRatings: z.number().int().optional(),
         numOfSubscriptions: z.number().int().optional(),
         image: z.union([
@@ -1324,6 +1384,7 @@ export const zCourse = z.object({
     title: z.string(),
     description: z.string().optional(),
     difficulty: z.number().int(),
+    durationHours: z.number().int(),
     numOfRatings: z.number().int().optional(),
     numOfSubscriptions: z.number().int().optional(),
     image: z.object({
@@ -1532,6 +1593,7 @@ export const zCourse = z.object({
             title: z.string().optional(),
             description: z.string().optional(),
             difficulty: z.number().int().optional(),
+            durationHours: z.number().int().optional(),
             numOfRatings: z.number().int().optional(),
             numOfSubscriptions: z.number().int().optional(),
             image: z.object({
@@ -1830,6 +1892,31 @@ export const zCourse = z.object({
                     id: z.number().optional(),
                     documentId: z.string().optional()
                 })).optional(),
+                dashboard_activities: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    content_creator: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    activityDesc: z.string().optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
+                })).optional(),
                 createdAt: z.string().datetime().optional(),
                 updatedAt: z.string().datetime().optional(),
                 publishedAt: z.string().datetime().optional(),
@@ -1961,6 +2048,7 @@ export const zCourseCategory = z.object({
         title: z.string().optional(),
         description: z.string().optional(),
         difficulty: z.number().int().optional(),
+        durationHours: z.number().int().optional(),
         numOfRatings: z.number().int().optional(),
         numOfSubscriptions: z.number().int().optional(),
         image: z.object({
@@ -2437,6 +2525,31 @@ export const zCourseCategory = z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional()
             })).optional(),
+            dashboard_activities: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                content_creator: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                activityDesc: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -2697,6 +2810,7 @@ export const zCourseSelection = z.object({
         title: z.string().optional(),
         description: z.string().optional(),
         difficulty: z.number().int().optional(),
+        durationHours: z.number().int().optional(),
         numOfRatings: z.number().int().optional(),
         numOfSubscriptions: z.number().int().optional(),
         image: z.object({
@@ -2955,6 +3069,31 @@ export const zCourseSelection = z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional()
             })).optional(),
+            dashboard_activities: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                content_creator: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                activityDesc: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -3021,6 +3160,43 @@ export const zCourseSelectionListResponse = z.object({
 
 export const zCourseSelectionResponse = z.object({
     data: zCourseSelection.optional(),
+    meta: z.record(z.unknown()).optional()
+});
+
+export const zDashboardActivityRequest = z.object({
+    data: z.object({
+        content_creator: z.union([
+            z.number().int(),
+            z.string()
+        ]).optional(),
+        activityDesc: z.string().optional(),
+        locale: z.string().optional(),
+        localizations: z.array(z.union([
+            z.number().int(),
+            z.string()
+        ])).optional()
+    })
+});
+
+export const zDashboardActivity = z.object({
+    description: z.string().optional(),
+    date: z.string().datetime().optional()
+});
+
+export const zDashboardActivityListResponse = z.object({
+    data: z.array(zDashboardActivity).optional(),
+    meta: z.object({
+        pagination: z.object({
+            page: z.number().int().optional(),
+            pageSize: z.number().int().gte(25).optional(),
+            pageCount: z.number().int().lte(1).optional(),
+            total: z.number().int().optional()
+        }).optional()
+    }).optional()
+});
+
+export const zDashboardActivityResponse = z.object({
+    data: zDashboardActivity.optional(),
     meta: z.record(z.unknown()).optional()
 });
 
@@ -3431,6 +3607,7 @@ export const zFeedback = z.object({
         title: z.string().optional(),
         description: z.string().optional(),
         difficulty: z.number().int().optional(),
+        durationHours: z.number().int().optional(),
         numOfRatings: z.number().int().optional(),
         numOfSubscriptions: z.number().int().optional(),
         image: z.object({
@@ -3907,6 +4084,31 @@ export const zFeedback = z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional()
             })).optional(),
+            dashboard_activities: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                content_creator: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                activityDesc: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -4266,6 +4468,7 @@ export const zStudent = z.object({
             title: z.string().optional(),
             description: z.string().optional(),
             difficulty: z.number().int().optional(),
+            durationHours: z.number().int().optional(),
             numOfRatings: z.number().int().optional(),
             numOfSubscriptions: z.number().int().optional(),
             image: z.object({
@@ -4715,6 +4918,31 @@ export const zStudent = z.object({
                     id: z.number().optional(),
                     documentId: z.string().optional()
                 })).optional(),
+                dashboard_activities: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    content_creator: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    activityDesc: z.string().optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
+                })).optional(),
                 createdAt: z.string().datetime().optional(),
                 updatedAt: z.string().datetime().optional(),
                 publishedAt: z.string().datetime().optional(),
@@ -4857,6 +5085,7 @@ export const zUserLog = z.object({
                 title: z.string().optional(),
                 description: z.string().optional(),
                 difficulty: z.number().int().optional(),
+                durationHours: z.number().int().optional(),
                 numOfRatings: z.number().int().optional(),
                 numOfSubscriptions: z.number().int().optional(),
                 image: z.object({
@@ -5244,6 +5473,31 @@ export const zUserLog = z.object({
                             documentId: z.string().optional()
                         })).optional()
                     })).optional(),
+                    dashboard_activities: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional(),
+                        content_creator: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        activityDesc: z.string().optional(),
+                        createdAt: z.string().datetime().optional(),
+                        updatedAt: z.string().datetime().optional(),
+                        publishedAt: z.string().datetime().optional(),
+                        createdBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        updatedBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        locale: z.string().optional(),
+                        localizations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional()
+                    })).optional(),
                     createdAt: z.string().datetime().optional(),
                     updatedAt: z.string().datetime().optional(),
                     publishedAt: z.string().datetime().optional(),
@@ -5600,7 +5854,26 @@ export const zLoginRequest = z.object({
     password: z.string()
 });
 
-export const zJwtResponse = z.string();
+export const zJwtContentCreatorResponse = z.object({
+    accessToken: z.string().optional(),
+    userInfo: z.object({
+        documentId: z.string().optional(),
+        firstName: z.string().optional(),
+        lastName: z.string().optional(),
+        email: z.string().optional(),
+        verifiedAt: z.string().date().optional()
+    }).optional()
+});
+
+export const zJwtResponse = z.object({
+    accessToken: z.string().optional(),
+    userInfo: z.object({
+        documentId: z.string().optional(),
+        name: z.string().optional(),
+        email: z.string().optional(),
+        verifiedAt: z.string().date().optional()
+    }).optional()
+});
 
 export const zResetPasswordRequestRequest = z.object({
     email: z.string().optional()
@@ -6253,6 +6526,17 @@ export const zContentCreatorPutContentCreatorsByIdRequest = z.object({
  */
 export const zContentCreatorPutContentCreatorsByIdResponse = zContentCreatorResponse;
 
+export const zPostContentCreatorLoginRequest = z.object({
+    body: zLoginRequest,
+    path: z.never().optional(),
+    query: z.never().optional()
+});
+
+/**
+ * OK
+ */
+export const zPostContentCreatorLoginResponse = zJwtResponse;
+
 export const zCourseGetCoursesRequest = z.object({
     body: z.never().optional(),
     path: z.never().optional(),
@@ -6261,6 +6545,7 @@ export const zCourseGetCoursesRequest = z.object({
             'title',
             'description',
             'difficulty',
+            'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
             'createdAt',
@@ -6286,6 +6571,7 @@ export const zCourseGetCoursesRequest = z.object({
                 'title',
                 'description',
                 'difficulty',
+                'durationHours',
                 'numOfRatings',
                 'numOfSubscriptions',
                 'createdAt',
@@ -6296,6 +6582,7 @@ export const zCourseGetCoursesRequest = z.object({
                 'title',
                 'description',
                 'difficulty',
+                'durationHours',
                 'numOfRatings',
                 'numOfSubscriptions',
                 'createdAt',
@@ -6350,6 +6637,7 @@ export const zCoursePostCoursesRequest = z.object({
             'title',
             'description',
             'difficulty',
+            'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
             'createdAt',
@@ -6397,6 +6685,7 @@ export const zCourseDeleteCoursesByIdRequest = z.object({
             'title',
             'description',
             'difficulty',
+            'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
             'createdAt',
@@ -6445,6 +6734,7 @@ export const zCourseGetCoursesByIdRequest = z.object({
             'title',
             'description',
             'difficulty',
+            'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
             'createdAt',
@@ -6476,6 +6766,7 @@ export const zCourseGetCoursesByIdRequest = z.object({
                 'title',
                 'description',
                 'difficulty',
+                'durationHours',
                 'numOfRatings',
                 'numOfSubscriptions',
                 'createdAt',
@@ -6486,6 +6777,7 @@ export const zCourseGetCoursesByIdRequest = z.object({
                 'title',
                 'description',
                 'difficulty',
+                'durationHours',
                 'numOfRatings',
                 'numOfSubscriptions',
                 'createdAt',
@@ -6523,6 +6815,7 @@ export const zCoursePutCoursesByIdRequest = z.object({
             'title',
             'description',
             'difficulty',
+            'durationHours',
             'numOfRatings',
             'numOfSubscriptions',
             'createdAt',
@@ -10113,3 +10406,14 @@ export const zUsersPermissionsGetPermissionsResponse = z.object({
         })))
     }))
 });
+
+export const zGetCcDashboardActivityRequest = z.object({
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional()
+});
+
+/**
+ * OK - Array of dashboard activities
+ */
+export const zGetCcDashboardActivityResponse = z.array(zDashboardActivity);

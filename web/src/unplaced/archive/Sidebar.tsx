@@ -1,4 +1,5 @@
-import { BookOpenIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import Icon from "@mdi/react";
+import { mdiBookOpenBlankVariantOutline, mdiShieldCheckOutline } from "@mdi/js";
 import { Link, useLocation } from "react-router-dom";
 
 import {
@@ -23,12 +24,20 @@ export const Sidebar = () => {
       {/** Sidebar elements */}
       <SidebarElement
         path="/courses"
-        icon={<BookOpenIcon />}
+        icon={
+          <Icon
+            path={mdiBookOpenBlankVariantOutline}
+            size={1}
+            color="currentColor"
+          />
+        }
         tooltip="Courses"
       />
       <SidebarElement
         path="/educado_admin/applications"
-        icon={<ShieldCheckIcon />}
+        icon={
+          <Icon path={mdiShieldCheckOutline} size={1} color="currentColor" />
+        }
         tooltip="Admin"
       />
     </div>

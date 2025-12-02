@@ -10,7 +10,7 @@ import {
   type VisibilityState,
   type PaginationState,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { ErrorBoundary } from "../components/error/error-boundary";
@@ -19,14 +19,17 @@ import { ItemSelectorProvider } from "../components/item-selector";
 import { toAppError } from "../lib/error-utilities";
 
 import DataDisplayEmptyState from "./data-display-empty-state";
-import DataDisplayToolbar from "./data-display-toolbar";
+import DataDisplayToolbar, {
+  ToolbarVisibilityProps,
+} from "./data-display-toolbar";
 import DataGrid from "./data-grid";
 import DataTable from "./data-table";
-import usePaginatedData from "./hooks/used-paginated-data";
+import usePaginatedData, {
+  type UsePaginatedDataConfig,
+} from "./hooks/used-paginated-data";
+import { type Status, type StaticFilters } from "./lib/query-params-builder";
 import { getDefaultColumnVisibility } from "./lib/visibility-utility";
 import PaginationBar from "./pagination-bar";
-
-import type { UsePaginatedDataConfig } from "./hooks/used-paginated-data";
 
 /* ----------------------------- Exported types ----------------------------- */
 
@@ -73,6 +76,11 @@ interface BaseDataDisplayProps<T extends DataDisplayItem> {
   config?: UsePaginatedDataConfig;
   emptyState?: React.ReactNode;
   className?: string;
+  toolbarVisibility?: ToolbarVisibilityProps;
+  /** Static filters that are always applied to every request (e.g., { author: "me" }) */
+  staticFilters?: StaticFilters;
+  /** Status: 'published' (default) or 'draft'. Controls which version of documents to fetch. */
+  status?: Status;
   selection?: DataDisplaySelectionConfig<T>;
 }
 
@@ -87,6 +95,14 @@ type DataDisplayProps<T extends DataDisplayItem> =
       gridItemRender: (item: T) => React.ReactNode; // Required for grid-only or both mode
     });
 
+export interface DataDisplayRef {
+  readonly columnFilters: ColumnFiltersState;
+  readonly sorting: SortingState;
+  readonly globalFilter: string;
+  resetFilters: () => void;
+  resetSorting: () => void;
+  resetGlobalFilter: () => void;
+}
 /* --------------------------- Exported component --------------------------- */
 
 /**
@@ -140,20 +156,26 @@ type DataDisplayProps<T extends DataDisplayItem> =
  *   initialPageSize={20}
  * />
  */
-export const DataDisplay = <T extends DataDisplayItem>({
-  queryKey,
-  urlPath,
-  columns,
-  gridItemRender,
-  allowedViewModes,
-  emptyState,
-  className,
-  initialPageSize = 20,
-  fields,
-  populate,
-  config,
-  selection,
-}: DataDisplayProps<T>) => {
+const DataDisplayComponent = <T extends DataDisplayItem>(
+  {
+    queryKey,
+    urlPath,
+    columns,
+    gridItemRender,
+    allowedViewModes,
+    emptyState,
+    className,
+    initialPageSize = 20,
+    fields,
+    populate,
+    config,
+    toolbarVisibility,
+    staticFilters,
+    status,
+    selection,
+  }: DataDisplayProps<T>,
+  ref: React.Ref<DataDisplayRef>
+) => {
   const { t } = useTranslation();
   const hasTable = allowedViewModes === "table" || allowedViewModes === "both";
   const hasGrid = allowedViewModes === "grid" || allowedViewModes === "both";
@@ -179,6 +201,26 @@ export const DataDisplay = <T extends DataDisplayItem>({
     pageSize: initialPageSize,
   });
 
+  // Expose ref methods
+  React.useImperativeHandle(
+    ref,
+    () => ({
+      columnFilters,
+      sorting,
+      globalFilter,
+      resetFilters: () => {
+        setColumnFilters([]);
+      },
+      resetSorting: () => {
+        setSorting([]);
+      },
+      resetGlobalFilter: () => {
+        setGlobalFilter("");
+      },
+    }),
+    [columnFilters, sorting, globalFilter]
+  );
+
   // Fetch data with integrated mode
   const { data, isLoading, error, extendedPagination, resolvedMode, refetch } =
     usePaginatedData<T>({
@@ -188,6 +230,8 @@ export const DataDisplay = <T extends DataDisplayItem>({
       fields,
       populate,
       config,
+      staticFilters,
+      status,
       tableState: {
         pagination,
         sorting,
@@ -217,6 +261,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
   const table = useReactTable({
     data,
     columns,
+    getRowId: (row, index) => row.documentId ?? `row-${String(index)}`,
     state: {
       sorting,
       columnFilters,
@@ -313,7 +358,10 @@ export const DataDisplay = <T extends DataDisplayItem>({
     : processedRows.length;
 
   // Determine if we should show empty state
-  const showEmptyState = displayedItemCount === 0 && !isLoading;
+  // Only show empty state when there's no data AND no filters are applied
+  // If filters are active but yield no results, we still show the table/grid structure
+  const hasActiveFilters = columnFilters.length > 0 || globalFilter !== "";
+  const showEmptyState = data.length === 0 && !isLoading && !hasActiveFilters;
 
   /* --------------------------- Rendered component --------------------------- */
   function getDataComponent(): React.ReactElement {
@@ -323,6 +371,10 @@ export const DataDisplay = <T extends DataDisplayItem>({
 
     if (viewMode === "grid") {
       // Grid uses TanStack's processed data (sorted/filtered in client mode)
+      // Show empty state within grid if filtered results are empty
+      if (displayedItemCount === 0 && !isLoading) {
+        return <DataDisplayEmptyState customEmptyState={emptyState} />;
+      }
       return (
         <DataGrid
           data={processedData}
@@ -333,10 +385,12 @@ export const DataDisplay = <T extends DataDisplayItem>({
       );
     }
     // Table uses the TanStack Table instance directly
+    // Table component will handle showing "no results" within the table structure
     return (
       <DataTable
         table={table}
         isLoading={isLoading}
+        emptyState={<DataDisplayEmptyState customEmptyState={emptyState} />}
         selectable={selection?.enabled === true}
       />
     );
@@ -354,6 +408,7 @@ export const DataDisplay = <T extends DataDisplayItem>({
         searchValue={globalFilter}
         onSearchChange={handleSearchChange}
         selectable={selection?.enabled === true}
+        visibility={toolbarVisibility}
       />
       {/* Data display */}
       {getDataComponent()}
@@ -384,3 +439,11 @@ export const DataDisplay = <T extends DataDisplayItem>({
 
   return <ErrorBoundary>{content}</ErrorBoundary>;
 };
+
+DataDisplayComponent.displayName = "DataDisplay";
+
+export const DataDisplay = React.forwardRef(DataDisplayComponent) as <
+  T extends DataDisplayItem,
+>(
+  props: DataDisplayProps<T> & React.RefAttributes<DataDisplayRef>
+) => ReturnType<typeof DataDisplayComponent>;

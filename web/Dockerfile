@@ -25,8 +25,15 @@ WORKDIR /app
 COPY --from=pruner /app/out/json/ .
 COPY --from=pruner /app/out/package-lock.json ./package-lock.json
 
-# Install dependencies
-RUN npm ci
+# Install dependencies with correct platform binaries for Alpine/musl
+# Using --ignore-scripts to prevent running postinstall before we fix the platform binaries
+RUN npm ci --ignore-scripts
+
+# Explicitly install the correct platform-specific native binaries for Alpine (musl)
+RUN cd /app/web && npm install \
+    lightningcss-linux-x64-musl \
+    @tailwindcss/oxide-linux-x64-musl \
+    --save-optional --ignore-scripts
 
 # Copy source code from pruned output
 COPY --from=pruner /app/out/full/ .
@@ -39,10 +46,6 @@ EXPOSE 5174
 # Set environment variables for Vite to listen on all interfaces
 ENV VITE_HOST=0.0.0.0
 ENV VITE_PORT=5174
-
-# Health check for dev server
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-    CMD wget --no-verbose --tries=1 --spider http://localhost:5174/ || exit 1
 
 # Run Vite dev server
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5174"]

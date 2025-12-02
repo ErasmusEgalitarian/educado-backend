@@ -1,4 +1,5 @@
-import { ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
+import { mdiChevronLeft, mdiChevronRight, mdiChevronUp } from "@mdi/js";
+import Icon from "@mdi/react";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -149,7 +150,7 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
               value={String(pageSize)}
               onValueChange={handlePageSizeChange}
             >
-              <SelectTrigger className="h-8 w-20">
+              <SelectTrigger size="sm" className="w-20">
                 <SelectValue>{pageSize}</SelectValue>
               </SelectTrigger>
               <SelectContent>
@@ -173,14 +174,14 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
               <PaginationItem>
                 <Button
                   variant="outline"
-                  size="icon"
-                  className="h-8 w-8"
+                  size="sm"
+                  className="w-8 px-0"
                   onClick={() => {
                     handlePageChange(pageIndex - 1);
                   }}
                   disabled={!canGoBack}
                 >
-                  <ChevronLeft className="h-4 w-4" />
+                  <Icon path={mdiChevronLeft} className="h-4 w-4" />
                 </Button>
               </PaginationItem>
 
@@ -195,42 +196,43 @@ export const PaginationBar: React.FC<PaginationBarProperties> = ({
                         handlePageChange(page);
                       }}
                       isActive={pageIndex === page}
-                      className={`h-8 w-8 ${pageIndex === page ? activeClass : ""}`}
+                      className={pageIndex === page ? activeClass : ""}
                     >
                       {page + 1}
                     </PaginationLink>
                   </PaginationItem>
-                ),
+                )
               )}
 
               {/* Next Button */}
               <PaginationItem>
                 <Button
                   variant="outline"
-                  size="icon"
-                  className="h-8 w-8"
+                  size="sm"
+                  className="w-8 px-0"
                   onClick={() => {
                     handlePageChange(pageIndex + 1);
                   }}
                   disabled={!canGoForward}
                 >
-                  <ChevronRight className="h-4 w-4" />
+                  <Icon path={mdiChevronRight} className="h-4 w-4" />
                 </Button>
               </PaginationItem>
             </PaginationContent>
           </Pagination>
 
           {/* Scroll to Top Button (conditionally rendered) */}
-          {showScrollToTop && (
+          {showScrollToTop ? (
             <Button
               variant="outline"
               size="sm"
               onClick={scrollToTop}
               className="hidden lg:flex"
             >
-              Scroll to top <ChevronUp className="ml-2 h-4 w-4" />
+              Scroll to top{" "}
+              <Icon path={mdiChevronUp} className="ml-2 h-4 w-4" />
             </Button>
-          )}
+          ) : null}
         </div>
       </div>
     </div>

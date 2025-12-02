@@ -1,0 +1,42 @@
+{
+  "paths": {
+    "/CC-dashboard-activity": {
+      "get": {
+        "tags": ["Content Creator - Dashboard"],
+        "responses": {
+          "200": {
+            "description": "OK - Array of dashboard activities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DashboardActivity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DashboardActivity": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "example": "200 students has signed up to the course"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-01-15T10:24:00.000Z"
+          }
+        }
+      }
+    }
+  }
+}

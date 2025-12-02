@@ -35,8 +35,7 @@ const App = () => {
     {
       path: "/test",
       element: <TestPage />,
-    },
-    {
+    },{
       path: "/test2",
       element: <TestPage2 />,
     },

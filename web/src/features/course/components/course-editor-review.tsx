@@ -1,6 +1,9 @@
-import { CheckCircle, AlertCircle } from "lucide-react";
+import Icon from "@mdi/react";
+import { mdiCheckCircleOutline, mdiAlertCircleOutline } from "@mdi/js";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useNotifications } from "@/shared/context/NotificationContext"
+
 
 import type { Course } from "@/shared/api/types.gen";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
@@ -18,6 +21,7 @@ const CourseEditorReview = ({
 }: CourseEditorReviewProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { addNotification } = useNotifications();
 
   const publishMutation = usePublishCourseMutation();
   const isLoading = publishMutation.isPending;
@@ -55,6 +59,7 @@ const CourseEditorReview = ({
       });
 
       onComplete?.();
+      addNotification(t("notifications.published-course") + ` '${course.title}'.`);
       navigate("/courses");
     } catch (error) {
       console.error("Error publishing course:", error);
@@ -65,7 +70,11 @@ const CourseEditorReview = ({
     return (
       <div className="flex items-center justify-center p-12">
         <div className="text-center">
-          <AlertCircle className="w-12 h-12 mx-auto mb-4 text-error-surface-default" />
+          <Icon
+            path={mdiAlertCircleOutline}
+            size={1}
+            className="w-12 h-12 mx-auto mb-4 text-error-surface-default"
+          />
           <p className="text-greyscale-text-body">
             {t("courseManager.noCourse")}
           </p>
@@ -85,13 +94,16 @@ const CourseEditorReview = ({
         {/* Course Status Banner */}
         {isPublished && (
           <div className="flex items-center gap-3 p-4 bg-success-surface-lighter rounded-lg border border-success-border-default">
-            <CheckCircle className="w-5 h-5 text-success-surface-default" />
+            <Icon
+              path={mdiCheckCircleOutline}
+              size={1}
+              className="w-5 h-5 text-success-surface-default"
+            />
             <div>
               <p className="font-semibold text-success-text-title">
                 {t("common.published")}
               </p>
               <p className="text-sm text-success-text-body">
-                {t("courseEditorReview.thisCourseIsCurrentlyVisibleToStudents")}
                 This course is currently visible to students
               </p>
             </div>
@@ -128,7 +140,7 @@ const CourseEditorReview = ({
             {/* Categories */}
             <div>
               <label className="text-sm font-medium text-greyscale-text-caption">
-                {t("categories.categories")}
+                {t("courseManager.categories")}
               </label>
               <div className="flex flex-wrap gap-2 mt-2">
                 {course.course_categories &&
@@ -200,7 +212,11 @@ const CourseEditorReview = ({
         {/* Warning if no sections */}
         {!hasSections && !isPublished && (
           <div className="flex items-start gap-3 p-4 bg-warning-surface-lighter rounded-lg border border-warning-border-default">
-            <AlertCircle className="w-5 h-5 text-warning-surface-default mt-0.5" />
+            <Icon
+              path={mdiAlertCircleOutline}
+              size={1}
+              className="w-5 h-5 text-warning-surface-default mt-0.5"
+            />
             <div>
               <p className="font-semibold text-warning-text-title">
                 No sections yet

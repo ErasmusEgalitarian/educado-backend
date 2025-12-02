@@ -1,4 +1,5 @@
-import { CheckCircle, Loader2 } from "lucide-react";
+import { mdiCheckCircleOutline, mdiLoading } from "@mdi/js";
+import Icon from "@mdi/react";
 import { useEffect, useRef, useState, ReactNode } from "react";
 
 import { cn } from "@/shared/lib/utils";
@@ -72,7 +73,7 @@ export const OverlayStatusWrapper = ({
     showOverlay = true;
     activeOverlay = customOverlay ?? (
       <div className="flex items-center gap-2">
-        <Loader2 className="w-5 h-5 animate-spin" />
+        <Icon path={mdiLoading} className="w-5 h-5 animate-spin" />
         <span className="text-sm">{loadingMessage}</span>
       </div>
     );
@@ -81,7 +82,7 @@ export const OverlayStatusWrapper = ({
     showOverlay = true;
     activeOverlay = customOverlay ?? (
       <div className="flex items-center gap-2 text-green-600">
-        <CheckCircle className="w-5 h-5 text-green-600" />
+        <Icon path={mdiCheckCircleOutline} className="w-5 h-5 text-green-600" />
         <span className="text-sm font-medium">{successMessage}</span>
       </div>
     );

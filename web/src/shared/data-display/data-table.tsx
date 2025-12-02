@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { type Table as ReactTableType } from "@tanstack/react-table";
-import { Check, Minus } from "lucide-react";
+import Icon from "@mdi/react";
+import { mdiCheck, mdiMinus } from "@mdi/js";
 
 import { useItemSelector } from "@/shared/components/item-selector";
 import {
@@ -20,6 +22,7 @@ interface DataTableProps<TData extends DataDisplayItem> {
   table: ReactTableType<TData>;
   isLoading: boolean;
   className?: string;
+  emptyState?: React.ReactNode;
   selectable?: boolean;
 }
 
@@ -78,8 +81,8 @@ const SelectAllCheckbox = <TData extends DataDisplayItem>({
       )}
       aria-label={allSelected || someSelected ? "Deselect all" : "Select all"}
     >
-      {allSelected && <Check className="h-3 w-3" />}
-      {someSelected && <Minus className="h-3 w-3" />}
+      {allSelected && <Icon path={mdiCheck} className="h-3 w-3" />}
+      {someSelected && <Icon path={mdiMinus} className="h-3 w-3" />}
     </button>
   );
 };
@@ -89,9 +92,10 @@ const DataTable = <TData extends DataDisplayItem>({
   isLoading,
   className,
   selectable = false,
+  emptyState,
 }: Readonly<DataTableProps<TData>>) => {
   return (
-    <div className={`rounded-md border ${className ?? ""}`}>
+    <div className={className ?? ""}>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -115,6 +119,7 @@ const DataTable = <TData extends DataDisplayItem>({
             table={table}
             isLoading={isLoading}
             selectable={selectable}
+            emptyState={emptyState}
           />
         </TableBody>
       </Table>

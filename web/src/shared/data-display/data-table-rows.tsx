@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+import { mdiCheck } from "@mdi/js";
+import Icon from "@mdi/react";
 import {
   flexRender,
   type Row,
   type Table as ReactTableType,
 } from "@tanstack/react-table";
-import { Check } from "lucide-react";
 
 import { useItemSelector } from "@/shared/components/item-selector";
 import { TableRow, TableCell } from "@/shared/components/shadcn/table";
@@ -15,12 +17,14 @@ interface DataTableRowsProps<TData extends DataDisplayItem> {
   table: ReactTableType<TData>;
   isLoading: boolean;
   selectable?: boolean;
+  emptyState?: React.ReactNode;
 }
 
 const DataTableRows = <TData extends DataDisplayItem>({
   table,
   isLoading,
   selectable = false,
+  emptyState,
 }: Readonly<DataTableRowsProps<TData>>) => {
   const rows = table.getRowModel().rows;
   const columnsLength = table.getAllLeafColumns().length;
@@ -33,6 +37,10 @@ const DataTableRows = <TData extends DataDisplayItem>({
         selectable={selectable}
       />
     );
+  }
+
+  if (rows.length === 0) {
+    return <EmptyRow columnsLength={columnsLength} emptyState={emptyState} />;
   }
 
   return <TableRowsBase rows={rows} selectable={selectable} />;
@@ -158,7 +166,7 @@ const SelectableTableRows = <TData extends DataDisplayItem>({
                     : "border-[#c1cfd7] bg-white"
                 )}
               >
-                {selected && <Check className="h-3 w-3" />}
+                {selected && <Icon path={mdiCheck} className="h-3 w-3" />}
               </div>
             </TableCell>
             {row.getVisibleCells().map((cell) => (
@@ -172,5 +180,19 @@ const SelectableTableRows = <TData extends DataDisplayItem>({
     </>
   );
 };
+
+const EmptyRow = ({
+  columnsLength,
+  emptyState,
+}: {
+  columnsLength: number;
+  emptyState?: React.ReactNode;
+}) => (
+  <TableRow>
+    <TableCell colSpan={columnsLength} className="h-24 text-center">
+      {emptyState ?? "No results."}
+    </TableCell>
+  </TableRow>
+);
 
 export default DataTableRows;

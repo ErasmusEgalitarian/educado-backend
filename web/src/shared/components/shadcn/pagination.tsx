@@ -1,9 +1,6 @@
 import * as React from "react";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  MoreHorizontalIcon,
-} from "lucide-react";
+import Icon from "@mdi/react";
+import { mdiChevronLeft, mdiChevronRight, mdiDotsHorizontal } from "@mdi/js";
 
 import { cn } from "@/shared/lib/utils";
 import { Button, buttonVariants } from "@/shared/components/shadcn/button";
@@ -45,7 +42,8 @@ type PaginationLinkProps = {
 function PaginationLink({
   className,
   isActive,
-  size = "icon",
+  size = "sm",
+  children,
   ...props
 }: PaginationLinkProps) {
   return (
@@ -61,7 +59,13 @@ function PaginationLink({
         className
       )}
       {...props}
-    />
+    >
+      {children ?? (
+        <span className="sr-only">
+          {props["aria-label"] ?? (isActive ? "Current page" : "Page")}
+        </span>
+      )}
+    </a>
   );
 }
 
@@ -72,11 +76,11 @@ function PaginationPrevious({
   return (
     <PaginationLink
       aria-label="Go to previous page"
-      size="default"
+      size="md"
       className={cn("gap-1 px-2.5 sm:pl-2.5", className)}
       {...props}
     >
-      <ChevronLeftIcon />
+      <Icon path={mdiChevronLeft} />
       <span className="hidden sm:block">Previous</span>
     </PaginationLink>
   );
@@ -89,12 +93,12 @@ function PaginationNext({
   return (
     <PaginationLink
       aria-label="Go to next page"
-      size="default"
+      size="md"
       className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
       {...props}
     >
       <span className="hidden sm:block">Next</span>
-      <ChevronRightIcon />
+      <Icon path={mdiChevronRight} />
     </PaginationLink>
   );
 }
@@ -110,7 +114,7 @@ function PaginationEllipsis({
       className={cn("flex size-9 items-center justify-center", className)}
       {...props}
     >
-      <MoreHorizontalIcon className="size-4" />
+      <Icon path={mdiDotsHorizontal} className="size-4" />
       <span className="sr-only">More pages</span>
     </span>
   );

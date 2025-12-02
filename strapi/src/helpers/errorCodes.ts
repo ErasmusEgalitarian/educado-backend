@@ -336,7 +336,7 @@ export const errorCodes: Record<string, errorDetail> = {
   // E10 - Content Creator Approval Errors
   E1001: {
     code: "E1001",
-    message: "This Content Creator has not been approved",
+    message: "Admin approval is required",
   },
 
   E1002: {

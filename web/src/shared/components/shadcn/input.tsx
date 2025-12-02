@@ -30,16 +30,16 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const variantStyles = {
       default:
-        "border-greyscale-border-lighter focus-visible:border-primary-surface-default focus-visible:ring-primary-surface-default/20",
+        "border-greyscale-border-default focus-visible:border-primary-surface-default focus-visible:ring-primary-surface-default/20",
       error:
         "border-error-border-default bg-error-surface-subtle focus-visible:border-error-surface-default focus-visible:ring-error-surface-default/20",
     };
 
     const inputSizes = {
-      xs: "h-6 p-2 text-sm",
-      sm: "h-8 p-3 text-sm",
-      md: "h-10 p-4 text-base",
-      lg: "h-12 p-5 text-lg",
+      xs: "h-7 px-2 py-1 text-xs",
+      sm: "h-8 px-3 py-1.5 text-sm",
+      md: "h-9 px-3 py-2 text-sm",
+      lg: "h-10 px-4 py-2.5 text-base",
     };
 
     const element = (
@@ -47,7 +47,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         type={type}
         data-slot="input"
         className={cn(
-          "file:text-foreground placeholder:text-greyscale-text-caption selection:bg-primary selection:text-primary-foreground flex h-11 w-full min-w-0 rounded-md border bg-white px-3 py-2 text-base text-greyscale-text-title shadow-xs transition-[color,box-shadow,border-color] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-greyscale-surface-disabled/20",
+          "file:text-foreground placeholder:text-greyscale-text-caption selection:bg-primary selection:text-primary-foreground flex w-full min-w-0 rounded-md border bg-white text-greyscale-text-title shadow-xs transition-[color,box-shadow,border-color] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-greyscale-surface-disabled/20",
           "focus-visible:ring-[3px]",
           variantStyles[variant],
           inputSizes[inputSize],

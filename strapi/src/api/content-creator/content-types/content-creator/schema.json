@@ -20,7 +20,8 @@
     "lastName": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 50
+      "maxLength": 50,
+      "required": true
     },
     "verifiedAt": {
       "type": "date"
@@ -37,7 +38,7 @@
     },
     "password": {
       "type": "password",
-      "required": true,
+      "required": false,
       "minLength": 8
     },
     "education": {
@@ -112,6 +113,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::user-log.user-log"
+    },
+    "dashboard_activities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::dashboard-activity.dashboard-activity",
+      "mappedBy": "content_creator"
     }
   }
 }
