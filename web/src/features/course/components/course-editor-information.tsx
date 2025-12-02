@@ -82,10 +82,8 @@ type CourseBasicInfoFormValues = z.infer<typeof courseBasicInfoSchema>;
 /* -------------------------------------------------------------------------- */
 /*                                  Component                                 */
 /* -------------------------------------------------------------------------- */
-const CourseEditorInformation = forwardRef<
-  CourseEditorInformationRef,
-  CourseEditorInformationProps
->(({ course, onComplete }, ref) => {
+
+const CourseEditorInformation = forwardRef(({ course, onComplete }, ref) => {
   const { t } = useTranslation();
   const isEditMode = course !== undefined;
   const { alertProps, openAlert } = useAlertDialog();
@@ -165,7 +163,7 @@ const CourseEditorInformation = forwardRef<
       form.reset({
         title: course.title,
         difficulty: String(course.difficulty) as "1" | "2" | "3",
-        categories: course.course_categories
+        course_categories: course.course_categories
           ?.map((cat) => cat.documentId)
           .filter((id): id is string => id !== undefined),
         description: course.description,
@@ -217,7 +215,7 @@ const CourseEditorInformation = forwardRef<
           title: values.title,
           difficulty: Number(values.difficulty),
           // eslint-disable-next-line @typescript-eslint/naming-convention
-          course_categories: values.categories,
+          categories: values.course_categories ?? [],
           description: values.description,
           image: imageId,
         });
@@ -232,9 +230,10 @@ const CourseEditorInformation = forwardRef<
           title: values.title,
           difficulty: Number(values.difficulty),
           // eslint-disable-next-line @typescript-eslint/naming-convention
-          course_categories: values.categories ?? [],
+          categories: values.categories ?? [],
           description: values.description,
           image: imageId,
+          creator_published_at: new Date().toISOString(),
         });
 
         // Wait a moment to show success state, then complete step
@@ -370,7 +369,7 @@ const CourseEditorInformation = forwardRef<
                         return (
                           <FormMultiSelect
                             ref={multiInputRef}
-                            fieldName="categories"
+                            fieldName="course_categories"
                             control={form.control}
                             label={t("categories.categories")}
                             placeholder={placeholder}

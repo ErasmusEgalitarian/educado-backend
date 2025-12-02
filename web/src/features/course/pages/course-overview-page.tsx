@@ -71,6 +71,7 @@ const CourseOverviewPage = () => {
                     "title",
                     "difficulty",
                     "description",
+                    "creator_published_at",
                     "updatedAt",
                     "publishedAt",
                     "durationHours",

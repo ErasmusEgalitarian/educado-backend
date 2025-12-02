@@ -1,4 +1,7 @@
-import { mdiFloppy, mdiAlertCircle, mdiCheckCircle } from "@mdi/js";
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { mdiFloppy, mdiCheckCircle } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useRef } from "react";
@@ -11,8 +14,14 @@ import { GlobalLoader } from "@/shared/components/global-loader";
 import { PageContainer } from "@/shared/components/page-container";
 import { Button } from "@/shared/components/shadcn/button";
 import { Separator } from "@/shared/components/shadcn/seperator";
+import { useFileUpload } from "@/shared/hooks/use-file-upload";
 import { toAppError } from "@/shared/lib/error-utilities";
 
+import {
+  useCreateCourseMutation,
+  useUpdateCourseMutation,
+  useUnpublishCourseMutation,
+} from "../api/course-mutations";
 import { CourseQueryFunction } from "../api/course-queries";
 import CourseEditorInformation, {
   type CourseEditorInformationRef,
@@ -26,13 +35,6 @@ import {
   useCourseEditorSteps,
   type CourseEditorStep,
 } from "../hooks/use-course-editor-steps";
-import { useFileUpload } from "@/shared/hooks/use-file-upload";
-import {
-  useCreateCourseMutation,
-  useUpdateCourseMutation,
-} from "../api/course-mutations";
-
-type SaveDraftLoader = "none" | "success" | "error";
 
 const CourseEditorPage = () => {
   const { t } = useTranslation();
@@ -43,11 +45,9 @@ const CourseEditorPage = () => {
 
   const createMutation = useCreateCourseMutation();
   const updateMutation = useUpdateCourseMutation();
+  const unPublishMutation = useUnpublishCourseMutation();
 
   const navigate = useNavigate();
-
-  const [saveDraftLoader, setSaveDraftLoader] =
-    useState<SaveDraftLoader>("none");
 
   // Determine if we are editing an existing course or creating a new one
   const { courseId: urlCourseId } = useParams<{ courseId?: string }>();
@@ -120,7 +120,7 @@ const CourseEditorPage = () => {
       // Edit = update mutation
       if (isEditMode && docId) {
         // Update existing course
-        const result = await updateMutation.mutateAsync({
+        const result = await unPublishMutation.mutateAsync({
           documentId: docId,
           title: values.title,
           difficulty: Number(values.difficulty),
@@ -128,26 +128,25 @@ const CourseEditorPage = () => {
           description: values.description,
           image: imageId,
         });
-        console.log("Updated draft course:", result);
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
       } else {
         // Create = create mutation
         const result = await createMutation.mutateAsync({
           title: values.title,
           difficulty: Number(values.difficulty),
-          course_categories: values.categories ?? [],
+          course_categories: values.categories,
           description: values.description,
           image: imageId,
+          creator_published_at: "",
         });
-
-        setSaveDraftLoader("success");
-
         setTimeout(() => {
           navigate("/");
         }, 1500);
       }
     } catch (error) {
       console.error("Error saving course:", error);
-      setSaveDraftLoader("error");
 
       // Error handling is managed by react-query
     }
@@ -257,7 +256,7 @@ const CourseEditorPage = () => {
           <Button
             disabled={createMutation.isPending || updateMutation.isPending}
             onClick={saveAsDraft}
-            className="w-full w-60"
+            className="w-full"
             variant="secondary"
           >
             {createMutation.isPending || updateMutation.isPending ? (
@@ -275,18 +274,25 @@ const CourseEditorPage = () => {
 
           {/* ---- Loading save as draft ----- */}
 
-          <div className="flex flex-col gap-y-3 mt-6">
-            {saveDraftLoader === "success" && (
+          <div className="flex flex-col gap-y-3 mt-6 w-full">
+            {updateMutation.isSuccess && (
               <p className="flex text-sm justify-center text-success-surface-default gap-x-2">
                 <Icon path={mdiCheckCircle} size={0.7} />
                 Saved to draft succeeded
               </p>
             )}
-            {saveDraftLoader === "error" && (
-              <p className="flex items-center justify-center  text-sm text-destructive gap-x-2">
-                <Icon path={mdiAlertCircle} size={0.7} />
-                Failed to save as draft
-              </p>
+            {updateMutation.isError && (
+              <ErrorDisplay
+                error={toAppError(updateMutation.error)}
+                variant="bar"
+                actions={[
+                  {
+                    label: t("common.retry"),
+                    onClick: () => void refetch(),
+                    variant: "primary",
+                  },
+                ]}
+              />
             )}
           </div>
         </div>

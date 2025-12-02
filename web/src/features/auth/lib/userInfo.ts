@@ -1,3 +1,5 @@
+// TODO: DEPRECATE THIS FILE
+
 export interface userInfo {
   firstName: string;
   lastName: string;
@@ -6,7 +8,7 @@ export interface userInfo {
   role: string;
 }
 
-export const getUserInfo = (): userInfo =>
+export const getUserInfo = (): Partial<userInfo> =>
   JSON.parse(localStorage.getItem("loggedInUser") ?? "{}");
 
 export const setUserInfo = (userInfo: userInfo): void => {

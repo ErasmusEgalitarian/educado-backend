@@ -318,6 +318,11 @@
         },
         "tags": [
           "certificate"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -467,7 +472,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/certificates/{id}": {
@@ -715,6 +725,11 @@
         },
         "tags": [
           "certificate"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -873,7 +888,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "certificate/delete/certificates_by_id",
@@ -1043,6 +1063,11 @@
         },
         "tags": [
           "certificate"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -1446,6 +1471,11 @@
         },
         "tags": [
           "content-creator"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -1610,7 +1640,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/content-creators/{id}": {
@@ -1948,6 +1983,11 @@
         },
         "tags": [
           "content-creator"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -2121,7 +2161,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "content-creator/delete/content_creators_by_id",
@@ -2321,6 +2366,11 @@
         },
         "tags": [
           "content-creator"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -2374,6 +2424,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2398,6 +2450,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2497,6 +2551,8 @@
                     "durationHours",
                     "numOfRatings",
                     "numOfSubscriptions",
+                    "creator_published_at",
+                    "admin_control_at",
                     "createdAt",
                     "updatedAt",
                     "publishedAt"
@@ -2513,6 +2569,8 @@
                       "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
+                      "creator_published_at",
+                      "admin_control_at",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -2530,6 +2588,8 @@
                       "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
+                      "creator_published_at",
+                      "admin_control_at",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -2556,6 +2616,8 @@
                         "durationHours",
                         "numOfRatings",
                         "numOfSubscriptions",
+                        "creator_published_at",
+                        "admin_control_at",
                         "createdAt",
                         "updatedAt",
                         "publishedAt"
@@ -2612,20 +2674,6 @@
                     ]
                   }
                 }
-              ]
-            },
-            "x-strapi-serialize": "querystring"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string",
-              "enum": [
-                "draft",
-                "published"
               ]
             },
             "x-strapi-serialize": "querystring"
@@ -2695,6 +2743,11 @@
         },
         "tags": [
           "course"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -2717,6 +2770,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2763,20 +2818,6 @@
                     ]
                   }
                 }
-              ]
-            },
-            "x-strapi-serialize": "querystring"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string",
-              "enum": [
-                "draft",
-                "published"
               ]
             },
             "x-strapi-serialize": "querystring"
@@ -2856,7 +2897,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/courses/{id}": {
@@ -2889,6 +2935,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2955,6 +3003,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2980,6 +3030,8 @@
                     "durationHours",
                     "numOfRatings",
                     "numOfSubscriptions",
+                    "creator_published_at",
+                    "admin_control_at",
                     "createdAt",
                     "updatedAt",
                     "publishedAt"
@@ -2996,6 +3048,8 @@
                       "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
+                      "creator_published_at",
+                      "admin_control_at",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -3013,6 +3067,8 @@
                       "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
+                      "creator_published_at",
+                      "admin_control_at",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -3039,6 +3095,8 @@
                         "durationHours",
                         "numOfRatings",
                         "numOfSubscriptions",
+                        "creator_published_at",
+                        "admin_control_at",
                         "createdAt",
                         "updatedAt",
                         "publishedAt"
@@ -3053,20 +3111,6 @@
                     }
                   }
                 }
-              ]
-            },
-            "x-strapi-serialize": "querystring"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string",
-              "enum": [
-                "draft",
-                "published"
               ]
             },
             "x-strapi-serialize": "querystring"
@@ -3136,6 +3180,11 @@
         },
         "tags": [
           "course"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -3167,6 +3216,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -3213,20 +3264,6 @@
                     ]
                   }
                 }
-              ]
-            },
-            "x-strapi-serialize": "querystring"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string",
-              "enum": [
-                "draft",
-                "published"
               ]
             },
             "x-strapi-serialize": "querystring"
@@ -3306,7 +3343,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "course/delete/courses_by_id",
@@ -3337,6 +3379,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -3403,26 +3447,14 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
+                  "creator_published_at",
+                  "admin_control_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
                 ]
               },
               "additionalProperties": {}
-            },
-            "x-strapi-serialize": "querystring"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string",
-              "enum": [
-                "draft",
-                "published"
-              ]
             },
             "x-strapi-serialize": "querystring"
           }
@@ -3492,6 +3524,11 @@
         },
         "tags": [
           "course"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -3797,6 +3834,11 @@
         },
         "tags": [
           "course-category"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -3943,7 +3985,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/course-categories/{id}": {
@@ -4183,6 +4230,11 @@
         },
         "tags": [
           "course-category"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -4338,7 +4390,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "course-category/delete/course_categories_by_id",
@@ -4504,6 +4561,11 @@
         },
         "tags": [
           "course-category"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -4819,6 +4881,11 @@
         },
         "tags": [
           "course-selection"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -4970,7 +5037,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/course-selections/{id}": {
@@ -5220,6 +5292,11 @@
         },
         "tags": [
           "course-selection"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -5380,7 +5457,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "course-selection/delete/course_selections_by_id",
@@ -5552,6 +5634,11 @@
         },
         "tags": [
           "course-selection"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -5863,6 +5950,11 @@
         },
         "tags": [
           "exercise"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -6010,7 +6102,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/exercises/{id}": {
@@ -6256,6 +6353,11 @@
         },
         "tags": [
           "exercise"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -6412,7 +6514,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "exercise/delete/exercises_by_id",
@@ -6580,6 +6687,11 @@
         },
         "tags": [
           "exercise"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -6897,6 +7009,11 @@
         },
         "tags": [
           "exercise-option"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -7045,7 +7162,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/exercise-options/{id}": {
@@ -7297,6 +7419,11 @@
         },
         "tags": [
           "exercise-option"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -7454,7 +7581,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "exercise-option/delete/exercise_options_by_id",
@@ -7624,6 +7756,11 @@
         },
         "tags": [
           "exercise-option"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -7943,6 +8080,11 @@
         },
         "tags": [
           "feedback"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -8093,7 +8235,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/feedbacks/{id}": {
@@ -8347,6 +8494,11 @@
         },
         "tags": [
           "feedback"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -8506,7 +8658,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "feedback/delete/feedbacks_by_id",
@@ -8678,6 +8835,11 @@
         },
         "tags": [
           "feedback"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -8989,6 +9151,11 @@
         },
         "tags": [
           "lecture"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -9136,7 +9303,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/lectures/{id}": {
@@ -9382,6 +9554,11 @@
         },
         "tags": [
           "lecture"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -9538,7 +9715,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "lecture/delete/lectures_by_id",
@@ -9706,6 +9888,11 @@
         },
         "tags": [
           "lecture"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -10005,6 +10192,11 @@
         },
         "tags": [
           "password-reset-token"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -10135,7 +10327,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/password-reset-tokens/{id}": {
@@ -10369,6 +10566,11 @@
         },
         "tags": [
           "password-reset-token"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -10508,7 +10710,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "password-reset-token/delete/password_reset_tokens_by_id",
@@ -10660,6 +10867,11 @@
         },
         "tags": [
           "password-reset-token"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -10995,6 +11207,11 @@
         },
         "tags": [
           "student"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -11151,7 +11368,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/students/{id}": {
@@ -11421,6 +11643,11 @@
         },
         "tags": [
           "student"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -11586,7 +11813,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "student/delete/students_by_id",
@@ -11766,6 +11998,11 @@
         },
         "tags": [
           "student"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -12266,6 +12503,11 @@
         },
         "tags": [
           "user-log"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -12399,7 +12641,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/user-logs/{id}": {
@@ -12631,6 +12878,11 @@
         },
         "tags": [
           "user-log"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -12773,7 +13025,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "user-log/delete/user_logs_by_id",
@@ -12927,6 +13184,11 @@
         },
         "tags": [
           "user-log"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -13226,6 +13488,11 @@
         },
         "tags": [
           "verification-token"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -13356,7 +13623,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/verification-tokens/{id}": {
@@ -13590,6 +13862,11 @@
         },
         "tags": [
           "verification-token"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -13729,7 +14006,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "verification-token/delete/verification_tokens_by_id",
@@ -13881,6 +14163,11 @@
         },
         "tags": [
           "verification-token"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -14338,6 +14625,11 @@
         },
         "tags": [
           "content-type-builder"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -14788,6 +15080,11 @@
         },
         "tags": [
           "content-type-builder"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -15180,6 +15477,11 @@
         },
         "tags": [
           "content-type-builder"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -15580,6 +15882,11 @@
         },
         "tags": [
           "content-type-builder"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -15892,6 +16199,11 @@
         },
         "tags": [
           "upload"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -16237,6 +16549,11 @@
         },
         "tags": [
           "upload"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -16463,6 +16780,11 @@
         },
         "tags": [
           "upload"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "delete": {
@@ -16636,6 +16958,11 @@
         },
         "tags": [
           "upload"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -16726,6 +17053,11 @@
         },
         "tags": [
           "i18n"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -16752,6 +17084,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -16805,7 +17142,12 @@
             }
           },
           "required": true
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/auth/local/register": {
@@ -16862,7 +17204,12 @@
             }
           },
           "required": true
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/auth/{provider}/callback": {
@@ -16903,6 +17250,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -16960,7 +17312,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/auth/reset-password": {
@@ -17017,7 +17374,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/auth/email-confirmation": {
@@ -17041,6 +17403,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -17098,7 +17465,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/auth/change-password": {
@@ -17155,7 +17527,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/auth/refresh": {
@@ -17181,6 +17558,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -17207,6 +17589,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -17254,6 +17641,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -17479,6 +17871,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -17569,7 +17966,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/users/me": {
@@ -17662,6 +18064,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -17764,6 +18171,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "put": {
@@ -17864,7 +18276,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "users-permissions/delete/users_by_id",
@@ -17917,6 +18334,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -18067,6 +18489,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -18210,6 +18637,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       },
       "post": {
@@ -18287,7 +18719,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/roles/{role}": {
@@ -18372,7 +18809,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "operationId": "users-permissions/delete/roles_by_role",
@@ -18426,6 +18868,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -18512,6 +18959,11 @@
         },
         "tags": [
           "users-permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     },
@@ -20110,13 +20562,24 @@
                             }
                           }
                         },
+                        "admin_control_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "creator_published_at": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
                         },
-                        "updatedAt": {
-                          "type": "string",
+                        "creator_published_at": {
+                          "type": "string"
+                        },
+                        "createdAt": {
                           "format": "date-time"
+                        },
+                        "updatedAt": {
                         },
                         "publishedAt": {
                           "type": "string",
@@ -22573,13 +23036,24 @@
                     }
                   }
                 },
+                "admin_control_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "creator_published_at": {
+                  "type": "string"
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
                 },
-                "updatedAt": {
-                  "type": "string",
+                "creator_published_at": {
+                  "type": "string"
+                },
+                "createdAt": {
                   "format": "date-time"
+                },
+                "updatedAt": {
                 },
                 "publishedAt": {
                   "type": "string",
@@ -22832,15 +23306,15 @@
                   "example": "string or id"
                 }
               },
-              "locale": {
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
                 "type": "string"
               },
-              "localizations": {
-                "type": "array",
-                "items": {
-                  "oneOf": [
-                    {
-                      "type": "integer"
+              },
+                    {        "type": "integer"
                     },
                     {
                       "type": "string"
@@ -24640,13 +25114,24 @@
                         }
                       }
                     },
+                    "admin_control_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "creator_published_at": {
+                      "type": "string"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
                     },
-                    "updatedAt": {
-                      "type": "string",
+                    "creator_published_at": {
+                      "type": "string"
+                    },
+                    "createdAt": {
                       "format": "date-time"
+                    },
+                    "updatedAt": {
                     },
                     "publishedAt": {
                       "type": "string",
@@ -24814,13 +25299,17 @@
               }
             }
           },
-          "createdAt": {
+          "admin_control_at": {
             "type": "string",
             "format": "date-time"
           },
-          "updatedAt": {
-            "type": "string",
+          "creator_published_at": {
+            "type": "string"
+          },
+          "createdAt": {
             "format": "date-time"
+          },
+          "updatedAt": {
           },
           "publishedAt": {
             "type": "string",
@@ -26633,13 +27122,24 @@
                     }
                   }
                 },
+                "admin_control_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "creator_published_at": {
+                  "type": "string"
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
                 },
-                "updatedAt": {
-                  "type": "string",
+                "creator_published_at": {
+                  "type": "string"
+                },
+                "createdAt": {
                   "format": "date-time"
+                },
+                "updatedAt": {
                 },
                 "publishedAt": {
                   "type": "string",
@@ -28346,13 +28846,17 @@
                   }
                 }
               },
-              "createdAt": {
+              "admin_control_at": {
                 "type": "string",
                 "format": "date-time"
               },
-              "updatedAt": {
-                "type": "string",
+              "creator_published_at": {
+                "type": "string"
+              },
+              "createdAt": {
                 "format": "date-time"
+              },
+              "updatedAt": {
               },
               "publishedAt": {
                 "type": "string",
@@ -31506,13 +32010,24 @@
                   }
                 }
               },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
+              },
               "createdAt": {
                 "type": "string",
                 "format": "date-time"
               },
-              "updatedAt": {
-                "type": "string",
+              "creator_published_at": {
+                "type": "string"
+              },
+              "createdAt": {
                 "format": "date-time"
+              },
+              "updatedAt": {
               },
               "publishedAt": {
                 "type": "string",
@@ -34155,13 +34670,24 @@
                         }
                       }
                     },
+                    "admin_control_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "creator_published_at": {
+                      "type": "string"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
                     },
-                    "updatedAt": {
-                      "type": "string",
+                    "creator_published_at": {
+                      "type": "string"
+                    },
+                    "createdAt": {
                       "format": "date-time"
+                    },
+                    "updatedAt": {
                     },
                     "publishedAt": {
                       "type": "string",
@@ -35899,13 +36425,24 @@
                             }
                           }
                         },
+                        "admin_control_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "creator_published_at": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
                         },
-                        "updatedAt": {
-                          "type": "string",
+                        "creator_published_at": {
+                          "type": "string"
+                        },
+                        "createdAt": {
                           "format": "date-time"
+                        },
+                        "updatedAt": {
                         },
                         "publishedAt": {
                           "type": "string",
@@ -37051,6 +37588,24 @@
           }
         }
       }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "JWT or API token bearer authentication"
+      }
     }
-  }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:1337/api",
+      "description": "Local development server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
 }

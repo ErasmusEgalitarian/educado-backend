@@ -18,7 +18,6 @@ export const CourseQueryFunction = (courseId: string) => ({
       path: { id: courseId },
       query: {
         // Ensure drafts are retrievable during editing
-        status: "draft",
         fields: [
           "title",
           "description",
@@ -28,6 +27,8 @@ export const CourseQueryFunction = (courseId: string) => ({
           "createdAt",
           "updatedAt",
           "publishedAt",
+          "creator_published_at",
+          "admin_control_at",
         ],
         // Use "*" to populate all relations with their full data including nested fields
         populate: "course_categories",

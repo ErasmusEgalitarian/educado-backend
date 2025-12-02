@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-18T11:50:25.699Z"
+    "x-generation-date": "2025-11-28T11:34:12.575Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -2565,7 +2565,178 @@
             }
           }
         ],
-        "operationId": "delete/course-selections/{id}"
+        "operationId": "get/dashboard-activities/{id}"
+      },
+      "put": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardActivityResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Dashboard-activity"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "operationId": "put/dashboard-activities/{id}",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DashboardActivityRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Dashboard-activity"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "operationId": "delete/dashboard-activities/{id}"
       }
     },
     "/dashboard-activities": {
@@ -10105,13 +10276,17 @@
                             }
                           }
                         },
-                        "createdAt": {
+                        "admin_control_at": {
                           "type": "string",
                           "format": "date-time"
                         },
-                        "updatedAt": {
-                          "type": "string",
+                        "creator_published_at": {
+                          "type": "string"
+                        },
+                        "createdAt": {
                           "format": "date-time"
+                        },
+                        "updatedAt": {
                         },
                         "publishedAt": {
                           "type": "string",
@@ -12568,13 +12743,17 @@
                     }
                   }
                 },
-                "createdAt": {
+                "admin_control_at": {
                   "type": "string",
                   "format": "date-time"
                 },
-                "updatedAt": {
-                  "type": "string",
+                "creator_published_at": {
+                  "type": "string"
+                },
+                "createdAt": {
                   "format": "date-time"
+                },
+                "updatedAt": {
                 },
                 "publishedAt": {
                   "type": "string",
@@ -12723,8 +12902,7 @@
           "data": {
             "required": [
               "title",
-              "difficulty",
-              "durationHours"
+              "difficulty"
             ],
             "type": "object",
             "properties": {
@@ -12827,14 +13005,14 @@
                   "example": "string or id"
                 }
               },
-              "locale": {
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
                 "type": "string"
               },
-              "localizations": {
-                "type": "array",
-                "items": {
-                  "oneOf": [
-                    {
+              },
                       "type": "integer"
                     },
                     {
@@ -12887,8 +13065,7 @@
         "type": "object",
         "required": [
           "title",
-          "difficulty",
-          "durationHours"
+          "difficulty"
         ],
         "properties": {
           "id": {
@@ -14635,13 +14812,24 @@
                         }
                       }
                     },
+                    "admin_control_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "creator_published_at": {
+                      "type": "string"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
                     },
-                    "updatedAt": {
-                      "type": "string",
+                    "creator_published_at": {
+                      "type": "string"
+                    },
+                    "createdAt": {
                       "format": "date-time"
+                    },
+                    "updatedAt": {
                     },
                     "publishedAt": {
                       "type": "string",
@@ -14809,13 +14997,24 @@
               }
             }
           },
+          "admin_control_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creator_published_at": {
+            "type": "string"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
           },
-          "updatedAt": {
-            "type": "string",
+          "creator_published_at": {
+            "type": "string"
+          },
+          "createdAt": {
             "format": "date-time"
+          },
+          "updatedAt": {
           },
           "publishedAt": {
             "type": "string",
@@ -16628,13 +16827,24 @@
                     }
                   }
                 },
+                "admin_control_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "creator_published_at": {
+                  "type": "string"
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
                 },
-                "updatedAt": {
-                  "type": "string",
+                "creator_published_at": {
+                  "type": "string"
+                },
+                "createdAt": {
                   "format": "date-time"
+                },
+                "updatedAt": {
                 },
                 "publishedAt": {
                   "type": "string",
@@ -18341,13 +18551,17 @@
                   }
                 }
               },
-              "createdAt": {
+              "admin_control_at": {
                 "type": "string",
                 "format": "date-time"
               },
-              "updatedAt": {
-                "type": "string",
+              "creator_published_at": {
+                "type": "string"
+              },
+              "createdAt": {
                 "format": "date-time"
+              },
+              "updatedAt": {
               },
               "publishedAt": {
                 "type": "string",
@@ -18451,7 +18665,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/CourseSelection"
+            "$ref": "#/components/schemas/DashboardActivity"
           },
           "meta": {
             "type": "object"
@@ -20198,6 +20412,13 @@
                     }
                   }
                 }
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -23258,13 +23479,24 @@
                   }
                 }
               },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
+              },
               "createdAt": {
                 "type": "string",
                 "format": "date-time"
               },
-              "updatedAt": {
-                "type": "string",
+              "creator_published_at": {
+                "type": "string"
+              },
+              "createdAt": {
                 "format": "date-time"
+              },
+              "updatedAt": {
               },
               "publishedAt": {
                 "type": "string",
@@ -25907,13 +26139,24 @@
                         }
                       }
                     },
+                    "admin_control_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "creator_published_at": {
+                      "type": "string"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
                     },
-                    "updatedAt": {
-                      "type": "string",
+                    "creator_published_at": {
+                      "type": "string"
+                    },
+                    "createdAt": {
                       "format": "date-time"
+                    },
+                    "updatedAt": {
                     },
                     "publishedAt": {
                       "type": "string",
@@ -27651,13 +27894,24 @@
                             }
                           }
                         },
+                        "admin_control_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "creator_published_at": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
                         },
-                        "updatedAt": {
-                          "type": "string",
+                        "creator_published_at": {
+                          "type": "string"
+                        },
+                        "createdAt": {
                           "format": "date-time"
+                        },
+                        "updatedAt": {
                         },
                         "publishedAt": {
                           "type": "string",

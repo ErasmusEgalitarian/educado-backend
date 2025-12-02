@@ -51,8 +51,8 @@ const Carousel: React.FC = () => {
   };
 
   const pre = () => {
-    setCurrentIndex((prevIndex) =>
-      (prevIndex - 1 + texts.length) % texts.length
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + texts.length) % texts.length
     );
   };
 
