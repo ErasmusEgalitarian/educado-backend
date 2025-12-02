@@ -60,7 +60,6 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
   const generateSectionId = () => Date.now().toString();
 
   const onSubmit = (values: SectionFormValues) => {
-    console.log("FORM SUBMITTED!", { currentSectionEditing, values });
 
     if (currentSectionEditing != null) {
       // Update existing section
@@ -84,7 +83,6 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
   };
 
   const handleEdit = (section: Section) => {
-    console.log("Editing section:", section.id);
     form.reset({
       title: section.title,
       description: section.description ?? "",
@@ -155,7 +153,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
             size="default"
             onClick={(e) => { 
               e.stopPropagation();
-              console.log("TODO: make draggable")}}
+            }}
             className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
           >
             <Menu size={16} />
@@ -173,12 +171,12 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
 
   const EditSectionForm = ({ sectionIndex, sectionTitle, isCreatingNew = false }: EditSectionFormProps) => {
     // Get the section number display text
-    const getSectionNumberText = () => {
-      if (isCreatingNew) {
-        return t("courseManager.createNewSection");
-      }
-      return `${t("courseManager.section")} ${sectionIndex?.toString() ?? "0"}: ${sectionTitle ?? ""}`;
-    };
+    // const getSectionNumberText = () => {
+    //   if (isCreatingNew) {
+    //     return t("courseManager.createNewSection");
+    //   }
+    //   return `${t("courseManager.section")} ${sectionIndex?.toString() ?? "0"}: ${sectionTitle ?? ""}`;
+    // };
 
     return (
       <Card className="rounded-sm border border-primary-surface-default pt-0 overflow-hidden">
