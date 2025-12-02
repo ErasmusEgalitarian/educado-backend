@@ -44,7 +44,6 @@ export const Navbar = () => {
   const { clearToken } = useAuthStore((state) => state);
   const [ open, setOpen ] = useState(false)
   const { notifications, setNotifications } = useNotifications();
-  // const [ position, setPosition ] = useState("portuguese");
   const { t, i18n } = useTranslation();
   // Logout handler
   const handleLogout = () => {
@@ -263,7 +262,6 @@ export const Navbar = () => {
                           value={i18n.language}
                           onValueChange={(value) => {
                             void i18n.changeLanguage(value);
-                            setPosition(value);
                           }}
                         >
                           <DropdownMenuRadioItem value="pt">
