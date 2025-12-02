@@ -263,7 +263,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
       <Card className="p-0 shadow-none">
         <CardContent className="space-y-6 p-0">
           {/* Sections List */}
-          {sections.length > 0 && (
+          {sections.length > 0 ? (
             <div className="space-y-4">
               {sections.map((section, index) => (
                 <div key={section.id}>
@@ -278,17 +278,17 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                 </div>
               ))}
             </div>
-          )}
+          ) : null}
 
           {/* Add Section Form (for creating new sections) */}
-          {isCreating && (
+          {isCreating ? (
             <div className="space-y-4">
               <EditSectionForm isCreatingNew={true} />
             </div>
-          )}
+          ) : null}
 
           {/* Add Section Button (only show when not editing or creating) */}
-          {!showForm && (
+          {!showForm ? (
             <Button
               onClick={startCreating}
               className="w-full border-dashed"
@@ -297,7 +297,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
               <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
               {t("courseManager.addNewSection")}
             </Button>
-          )}
+          ) : null}
 
           {/* Continue/Skip Actions */}
           <div className="grid grid-cols-4 gap-4 pt-6 border-t border-greyscale-border">
