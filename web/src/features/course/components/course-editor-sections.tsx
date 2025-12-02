@@ -177,20 +177,20 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
       if (isCreatingNew) {
         return t("courseManager.createNewSection");
       }
-      return `${t("courseManager.section")} ${sectionIndex! + 1}: ${sectionTitle}`;
+      return `${t("courseManager.section")} ${sectionIndex?.toString() ?? "0"}: ${sectionTitle ?? ""}`;
     };
 
     return (
       <Card className="rounded-sm border border-primary-surface-default pt-0 overflow-hidden">
         <CardHeader className="bg-primary-surface-default p-6 text-white font-bold">
-          {isCreatingNew ? t("courseManager.createNewSection") : t("courseManager.editSection")+` ${sectionIndex! + 1}: ${sectionTitle}`}
+          {isCreatingNew ? t("courseManager.createNewSection") : t("courseManager.editSection")+` ${sectionIndex?.toString() ?? "0"}: ${sectionTitle ?? ""}`}
         </CardHeader>
         <CardContent className="pt-6">
           {/* Section number and title display */}
 
           
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={(e) => { void form.handleSubmit(onSubmit)(e); }} className="space-y-4">
               <div className="grid grid-cols-1 gap-4">
                 <FormInput
                   control={form.control}
@@ -213,7 +213,6 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                 <div className="grid grid-cols-[1fr_25px_1fr] gap-2">
                   <Button
                     type="button"
-                    onClick={() => { console.log("Add lesson") }}
                     className="w-full border-dashed"
                     variant="outline"
                   >
@@ -227,7 +226,6 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                   </span>
                   <Button
                     type="button"
-                    onClick={() => { console.log("Add exercise")}}
                     className="w-full border-dashed flex"
                     variant="outline"
                   >
