@@ -55,6 +55,7 @@ const MediaOverviewPage = () => {
                     void handleUploadComplete();
                   }}
                   maxFiles={15}
+                  fileTypes={["file", "video", "image"]}
                 />
               </div>
             )}
