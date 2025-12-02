@@ -13,19 +13,7 @@ export const getBaseApiUrl = (): string => {
 export const configureApiClient = () => {
   const baseUrl = getBaseApiUrl();
 
-  // Set the API token if available
-  const apiToken = import.meta.env.VITE_STRAPI_API_TOKEN as string | undefined;
-
-  if (apiToken == undefined) {
-    globalThis.alert(
-      "Warning: VITE_STRAPI_API_TOKEN is not set in environment variables. API requests may fail.",
-    );
-    throw new Error(
-      "VITE_STRAPI_API_TOKEN is not set in environment variables",
-    );
-  }
-
-  // Configure the client with base URL and authorization header
+  // Configure the client with base URL, authorization header, and error handling
   client.setConfig({
     baseUrl,
     throwOnError: true,

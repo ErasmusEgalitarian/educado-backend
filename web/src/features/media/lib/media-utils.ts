@@ -171,7 +171,7 @@ export const isFileTypeAllowed = (
                 if (file.type === "application/pdf") return true;
                 // Check by extension for other document types
                 const extension = "." + (file.name.split(".").pop()?.toLowerCase() ?? "");
-                if (FILE_TYPE_EXTENSIONS.includes(extension)) return true;
+                if ((FILE_TYPE_EXTENSIONS as readonly string[]).includes(extension)) return true;
                 break;
             }
         }

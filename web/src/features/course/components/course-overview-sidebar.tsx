@@ -1,7 +1,3 @@
-import { useEffect, useState } from "react";
-
-import { getCcDashboardActivity } from "@/shared/api/sdk.gen";
-import { DashboardActivity } from "@/shared/api/types.gen";
 import {
   Select,
   SelectContent,
@@ -12,21 +8,7 @@ import {
 import { Separator } from "@/shared/components/shadcn/seperator";
 import StarRating from "@/shared/components/star-rating";
 
-import { SidebarActivity } from "../components/course-overview-sidebar-activity";
-
 const OverviewSidebar = () => {
-  const [dashboardActivities, setDashboardActivities] = useState<
-    DashboardActivity[]
-  >([]);
-
-  useEffect(() => {
-    const fetchActivities = async () => {
-      const data = await getCcDashboardActivity();
-      setDashboardActivities(data ?? []);
-    };
-    void fetchActivities();
-  }, []);
-
   return (
     <div className="w-2/7 hidden xl:block">
       <div className="text-greyscale-text-body">
@@ -112,9 +94,17 @@ const OverviewSidebar = () => {
             Atividades
           </h3>
           <div className="space-y-6">
-            {dashboardActivities.map((activity) => (
-              <SidebarActivity key={activity.date} activity={activity} />
-            ))}
+            <div className="pl-4 border-l-4 border-primary-border-default">
+              <p>
+                Parabéns! Seu curso &quot;Nome do curso&quot; atingiu 100
+                inscritos
+              </p>
+            </div>
+            <div className="pl-4 border-l-4 border-primary-border-default">
+              <p>
+                Um aluno do curso &quot;Nome do curso&quot; deixou uma dúvida
+              </p>
+            </div>
           </div>
         </div>
       </div>

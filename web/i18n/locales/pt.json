@@ -241,22 +241,6 @@
       "rotate": "Girar"
     }
   },
-  "auth": {
-    "backButton": "Voltar",
-    "welcomeBack": "Bem-vindo(a) de volta!",
-    "email": "Email",
-    "password": "Senha",
-    "logIn": "Entrar",
-    "forgotPassword": "Esqueceu sua senha?",
-    "noAccount": "Ainda não tem conta?",
-    "registerNow": "Cadastre-se agora",
-    "emailError": "Email ou senha incorretos. Por favor, tente novamente.",
-    "welcomeTitle": "Boas vindas ao EDUCADO!",
-    "welcomeSubtitle": "Cadastre-se agora e ajude a promover seu trabalho e atingir um público mais amplo por meio da criação de conteúdo.",
-    "register": "Cadastrar",
-    "alreadyHaveAccount": "Já possui uma conta?",
-    "signIn": "Entrar"
-  },
   "carousel": {
     "title1": "Junte-se a nós para transformar vidas a partir do seu conhecimento",
     "section1": "Oferecemos acesso a conteúdo personalizado para pessoas que precisam, melhorando condições de vida e oportunidades de emprego",
