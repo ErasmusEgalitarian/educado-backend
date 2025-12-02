@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader} from "@/shared/components/shadcn/card";
 import { Form } from "@/shared/components/shadcn/form";
 
 interface CourseEditorSectionsProps {
-  courseSectionsId?: Array<{ id?: number, documentId?: string }> | undefined;
+  courseSectionsId?: { id: string, title: string, documentId: string }[];
   onComplete?: () => void;
   onGoBack?: () => void;
 }
