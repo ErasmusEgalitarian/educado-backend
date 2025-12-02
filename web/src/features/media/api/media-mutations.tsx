@@ -1,4 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  QueryClient,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 
 import { uploadDeleteFilesById, uploadPost } from "@/shared/api/sdk.gen";
 import { type UploadFile } from "@/shared/api/types.gen";
@@ -49,11 +53,7 @@ export const useUploadFilesMutation = () => {
       return response;
     },
     onSuccess: () => {
-      void queryClient.refetchQueries({
-        queryKey: [["media"]],
-        exact: false,
-        type: "active",
-      });
+      refetchMedia(queryClient);
     },
   });
 };
@@ -90,11 +90,7 @@ export const useUpdateFileMetadataMutation = () => {
       return (await response.json()) as UploadFile;
     },
     onSuccess: () => {
-      void queryClient.refetchQueries({
-        queryKey: [["media"]],
-        exact: false,
-        type: "active",
-      });
+      refetchMedia(queryClient);
     },
   });
 };
@@ -116,13 +112,7 @@ export const useDeleteFileMutation = () => {
       return response;
     },
     onSuccess: () => {
-      // The actual query key structure is [["media"], "client", ...]
-      // So we need to invalidate [["media"]] to match the prefix
-      void queryClient.refetchQueries({
-        queryKey: [["media"]],
-        exact: false,
-        type: "active",
-      });
+      refetchMedia(queryClient);
     },
   });
 };
@@ -165,11 +155,15 @@ export const useBulkDeleteFilesMutation = () => {
       return results;
     },
     onSuccess: () => {
-      void queryClient.refetchQueries({
-        queryKey: [["media"]],
-        exact: false,
-        type: "active",
-      });
+      refetchMedia(queryClient);
     },
   });
 };
+
+// Helper to refetch media queries
+const refetchMedia = (queryClient: QueryClient) =>
+  void queryClient.refetchQueries({
+    queryKey: [["media"]],
+    exact: false,
+    type: "active",
+  });
