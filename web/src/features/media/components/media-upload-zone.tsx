@@ -8,10 +8,13 @@ import { useTranslation } from "react-i18next";
 
 import { useFileUpload } from "@/features/media/hooks/use-file-upload";
 import type { UploadFile } from "@/shared/api/types.gen";
+import { ErrorDisplayWithRetry } from "@/shared/components/error/error-display";
 import { Button } from "@/shared/components/shadcn/button";
 import { Form } from "@/shared/components/shadcn/form";
 import { useNotifications } from "@/shared/context/NotificationContext";
+import { toAppError } from "@/shared/lib/error-utilities";
 import { cn } from "@/shared/lib/utils";
+import type { AppError } from "@/shared/types/app-error";
 
 import {
   uploadFormSchema,
@@ -175,6 +178,9 @@ export const MediaUploadZone = ({
   const { t } = useTranslation();
   const { uploadFile, isUploading } = useFileUpload();
   const { addNotification } = useNotifications();
+  const [uploadError, setUploadError] = useState<AppError | undefined>(
+    undefined
+  );
 
   const form = useForm<UploadFormValues>({
     resolver: zodResolver(uploadFormSchema),
@@ -238,6 +244,9 @@ export const MediaUploadZone = ({
       return undefined;
     }
 
+    // Clear any previous error before attempting upload
+    setUploadError(undefined);
+
     try {
       // Reconstruct full filenames before upload
       const filesWithFullNames = formValues.files.map((item) => ({
@@ -268,7 +277,7 @@ export const MediaUploadZone = ({
         return uploadedFiles;
       }
     } catch (error) {
-      console.error("Upload failed:", error);
+      setUploadError(toAppError(error));
     }
     return undefined;
   };
@@ -301,9 +310,22 @@ export const MediaUploadZone = ({
     await handleSecondaryAction();
   };
 
+  const handleRetry = () => {
+    setUploadError(undefined);
+    void handleUploadWithValidation();
+  };
+
   return (
     <Form {...form}>
       <div className={cn("space-y-4", className)}>
+        {uploadError && (
+          <ErrorDisplayWithRetry
+            error={uploadError}
+            variant="bar"
+            onRetry={handleRetry}
+          />
+        )}
+
         <MediaUploadCard
           fileTypes={fileTypes}
           maxFiles={maxFiles}

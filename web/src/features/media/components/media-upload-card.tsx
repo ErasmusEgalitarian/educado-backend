@@ -74,7 +74,7 @@ export const MediaUploadCard = ({
       if (disabled) return;
 
       const allFiles = Array.from(e.dataTransfer.files);
-      const validFiles = allFiles.filter((file) =>
+      let validFiles = allFiles.filter((file) =>
         isFileTypeAllowed(file, fileTypes)
       );
       const rejectedCount = allFiles.length - validFiles.length;
@@ -83,16 +83,30 @@ export const MediaUploadCard = ({
         addNotification(t("media.filesRejectedType", { count: rejectedCount }));
       }
 
+      // Enforce maxFiles limit
+      if (maxFiles && validFiles.length > maxFiles) {
+        addNotification(t("files.maxFilesExceeded", { count: maxFiles }));
+        validFiles = validFiles.slice(0, maxFiles);
+      }
+
       if (validFiles.length > 0) {
         onFilesSelected(validFiles);
       }
     },
-    [disabled, onFilesSelected, fileTypes, addNotification, t]
+    [disabled, onFilesSelected, fileTypes, maxFiles, addNotification, t]
   );
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      onFilesSelected(Array.from(e.target.files));
+      let files = Array.from(e.target.files);
+
+      // Enforce maxFiles limit
+      if (maxFiles && files.length > maxFiles) {
+        addNotification(t("files.maxFilesExceeded", { count: maxFiles }));
+        files = files.slice(0, maxFiles);
+      }
+
+      onFilesSelected(files);
       // Reset input so same file can be selected again
       e.target.value = "";
     }
