@@ -1,8 +1,20 @@
+import {
+  mdiBookOpenBlankVariantOutline,
+  mdiDotsHorizontal,
+  mdiStar,
+  mdiSquareEditOutline,
+  mdiEyeOutline,
+  mdiNumeric1BoxOutline,
+  mdiNumeric2BoxOutline,
+  mdiNumeric3BoxOutline,
+  mdiPublish,
+  mdiPublishOff,
+} from "@mdi/js";
+import Icon from "@mdi/react";
 import { type CellContext, type ColumnDef } from "@tanstack/react-table";
-import { BookOpen, MoreHorizontal, Star, Edit, Eye } from "lucide-react";
 import { toast } from "sonner";
 
-import { Course } from "@/shared/api/types.gen";
+import { Course, CourseCategory } from "@/shared/api/types.gen";
 import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
 import {
@@ -13,6 +25,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/shared/components/shadcn/dropdown-menu";
+
+import { difficultyToTranslation } from "./difficulty-to-translation";
 
 interface CoursesColumnsProps {
   t: (key: string) => string;
@@ -33,8 +47,44 @@ export const createCourseColumns = ({
       },
       meta: {
         sortable: true,
-        filterable: true,
         visibleByDefault: false,
+      },
+    },
+    {
+      accessorKey: "publishedAt",
+      header: t("common.publicationStatus"),
+      cell: ({ row }) => {
+        const publishedAt = row.getValue<string | null>("publishedAt");
+        const isDraft = publishedAt === null;
+        return (
+          <Badge variant={isDraft ? "outline" : "default"}>
+            {isDraft ? t("common.unpublished") : t("common.published")}
+          </Badge>
+        );
+      },
+      // Pass-through filter: always returns true because actual filtering
+      // is done server-side via Strapi's status parameter (handled in usePaginatedData)
+      filterFn: () => true,
+      meta: {
+        sortable: true,
+        visibleByDefault: true,
+        quickFilter: {
+          type: "select",
+          displayType: { where: "both", when: "both" },
+          label: t("common.publicationStatus"),
+          options: [
+            {
+              label: t("common.draft"),
+              value: "draft",
+              mdiIcon: mdiPublishOff,
+            },
+            {
+              label: t("common.published"),
+              value: "published",
+              mdiIcon: mdiPublish,
+            },
+          ],
+        },
       },
     },
     {
@@ -44,28 +94,77 @@ export const createCourseColumns = ({
         const course = row.original;
         return (
           <div className="flex items-center gap-2">
-            <BookOpen className="h-4 w-4 text-primary" />
+            <Icon
+              path={mdiBookOpenBlankVariantOutline}
+              size={1}
+              className="h-4 w-4 text-primary"
+            />
             <span className="font-medium">{course.title}</span>
           </div>
         );
       },
       meta: {
         sortable: true,
-        filterable: true,
         visibleByDefault: true,
       },
     },
     {
-      accessorKey: "course_categories",
-      header: t("courseManager.categories"),
+      accessorKey: "difficulty",
+      header: t("difficulty.difficulty"),
+      cell: ({ row }) => {
+        const value = row.getValue<string | undefined>("difficulty");
+        return value != null && value !== "" ? (
+          <Badge variant="outline">{difficultyToTranslation(t, value)}</Badge>
+        ) : (
+          <span className="text-muted-foreground">—</span>
+        );
+      },
+      // Built-in filter: exact string equality for client-side filtering
+      // This matches quick filter values ("1" | "2" | "3") exactly
+      filterFn: "equalsString",
+      meta: {
+        sortable: true,
+        visibleByDefault: true,
+        quickFilter: {
+          type: "select",
+          displayType: { where: "both", when: "both" },
+          label: t("difficulty.difficulty"),
+          options: [
+            {
+              label: t("courseManager.beginner"),
+              value: "1",
+              mdiIcon: mdiNumeric1BoxOutline,
+            },
+            {
+              label: t("courseManager.intermediate"),
+              value: "2",
+              mdiIcon: mdiNumeric2BoxOutline,
+            },
+            {
+              label: t("courseManager.advanced"),
+              value: "3",
+              mdiIcon: mdiNumeric3BoxOutline,
+            },
+          ],
+        },
+      },
+    },
+    // Categories column: visible, renders badges, and filterable by names
+    {
+      id: "course_categories.name",
+      header: t("categories.categories"),
+      accessorFn: (row) => {
+        const categories = row.course_categories ?? [];
+        return categories.map((c) => (c as CourseCategory).name);
+      },
       cell: ({ row }) => {
         const course = row.original;
-        const categories = course.course_categories ?? [];
+        const categories = (course.course_categories ?? []) as CourseCategory[];
 
         if (categories.length === 0) {
           return (
             <span className="text-muted-foreground">
-              {t("courseManager.categoryNotFound")}
+              {t("categories.categoryNotFound")}
             </span>
           );
         }
@@ -81,18 +180,41 @@ export const createCourseColumns = ({
                 {category.name}
               </Badge>
             ))}
-            {categories.length > 2 && (
+            {categories.length > 2 ? (
               <Badge variant="outline">
                 +{categories.length - 2} {t("common.more").toLowerCase()}
               </Badge>
-            )}
+            ) : null}
           </div>
         );
       },
+      // Client-mode filtering: match if ANY category matches the value(s)
+      filterFn: (row, _columnId, filterValue) => {
+        const categories = (row.original.course_categories ??
+          []) as CourseCategory[];
+        const names = categories.map((c) => c.name.toLowerCase());
+        if (Array.isArray(filterValue)) {
+          const lookup = new Set(
+            (filterValue as unknown[]).map((v) => String(v).toLowerCase())
+          );
+          return names.some((n) => lookup.has(n));
+        }
+        if (typeof filterValue === "string") {
+          const needle = filterValue.trim().toLowerCase();
+          if (needle === "") return true;
+          return names.some((n) => n.includes(needle));
+        }
+        return true;
+      },
       meta: {
         sortable: false,
-        filterable: true,
         visibleByDefault: true,
+        quickFilter: {
+          type: "text",
+          displayType: { where: "toolbar", when: "both" },
+          label: t("categories.categories"),
+          placeholder: t("actions.search"),
+        },
       },
     },
     {
@@ -103,14 +225,17 @@ export const createCourseColumns = ({
         const rating = 4.2;
         return (
           <div className="flex items-center gap-1">
-            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+            <Icon
+              path={mdiStar}
+              size={1}
+              className="h-4 w-4 fill-yellow-400 text-yellow-400"
+            />
             <span className="text-sm font-medium">{rating}</span>
           </div>
         );
       },
       meta: {
         sortable: true,
-        filterable: false,
         visibleByDefault: true,
       },
     },
@@ -120,36 +245,55 @@ export const createCourseColumns = ({
       cell: ({ row }: CellContext<Course, unknown>) => {
         const documentId = row.original.documentId;
 
-        const handleView = () => {
+        const handleView = (e: React.MouseEvent) => {
+          e.stopPropagation();
           toast.info("View course feature coming soon!");
         };
 
-        const handleEdit = () => {
-          navigate(`/courses/${documentId}/edit`);
+        const handleEdit = (e: React.MouseEvent) => {
+          e.stopPropagation();
+          if (documentId != null) {
+            navigate(`/courses/${documentId}/edit`);
+          }
         };
 
-        const handleDelete = () => {
+        const handleDelete = (e: React.MouseEvent) => {
+          e.stopPropagation();
           toast.info(
-            "Delete functionality is not implemented yet: " + documentId,
+            `Delete functionality is not implemented yet: ${documentId ?? "unknown"}`
           );
         };
 
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <MoreHorizontal className="h-4 w-4" />
+              <Button
+                variant="ghost"
+                className="h-8 w-8 p-0"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                <Icon path={mdiDotsHorizontal} size={1} className="h-4 w-4" />
                 <span className="sr-only">{t("common.openMenu")}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>{t("common.actions")}</DropdownMenuLabel>
               <DropdownMenuItem onClick={handleView}>
-                <Eye className="mr-2 h-4 w-4" />
+                <Icon
+                  path={mdiEyeOutline}
+                  size={0.8}
+                  className="mr-2 h-4 w-4"
+                />
                 {t("common.view")} {t("courseManager.course").toLowerCase()}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleEdit}>
-                <Edit className="mr-2 h-4 w-4" />
+                <Icon
+                  path={mdiSquareEditOutline}
+                  size={0.8}
+                  className="mr-2 h-4 w-4"
+                />
                 {t("common.edit")} {t("courseManager.course").toLowerCase()}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
@@ -165,7 +309,6 @@ export const createCourseColumns = ({
       },
       meta: {
         sortable: false,
-        filterable: false,
         visibleByDefault: true,
       },
     },

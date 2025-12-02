@@ -18514,6 +18514,28 @@
           "users-permissions"
         ]
       }
+    },
+    "/CC-dashboard-activity": {
+      "get": {
+        "tags": [
+          "Content Creator - Dashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK - Array of dashboard activities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DashboardActivity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -19911,7 +19933,7 @@
                                   }
                                 }
                               },
-                              "jobs": {
+                              "dashboard_activities": {
                                 "type": "array",
                                 "items": {
                                   "type": "object",
@@ -19922,34 +19944,7 @@
                                     "documentId": {
                                       "type": "string"
                                     },
-                                    "Company": {
-                                      "type": "string"
-                                    },
-                                    "Title": {
-                                      "type": "string"
-                                    },
-                                    "Description": {
-                                      "type": "string"
-                                    },
-                                    "StartDate": {
-                                      "type": "string"
-                                    },
-                                    "EndDate": {
-                                      "type": "string"
-                                    },
-                                    "createdAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "updatedAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "publishedAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "createdBy": {
+                                    "content_creator": {
                                       "type": "object",
                                       "properties": {
                                         "id": {
@@ -19960,61 +19955,7 @@
                                         }
                                       }
                                     },
-                                    "updatedBy": {
-                                      "type": "object",
-                                      "properties": {
-                                        "id": {
-                                          "type": "number"
-                                        },
-                                        "documentId": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "locale": {
-                                      "type": "string"
-                                    },
-                                    "localizations": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "properties": {
-                                          "id": {
-                                            "type": "number"
-                                          },
-                                          "documentId": {
-                                            "type": "string"
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              },
-                              "educations": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    },
-                                    "educationType": {
-                                      "type": "string"
-                                    },
-                                    "courseExperience": {
-                                      "type": "string"
-                                    },
-                                    "institution": {
-                                      "type": "string"
-                                    },
-                                    "startDate": {
-                                      "type": "string"
-                                    },
-                                    "endDate": {
+                                    "activityDesc": {
                                       "type": "string"
                                     },
                                     "createdAt": {
@@ -20667,7 +20608,15 @@
               "firstName",
               "lastName",
               "email",
-              "password"
+              "education",
+              "statusValue",
+              "courseExperience",
+              "institution",
+              "eduStart",
+              "eduEnd",
+              "currentCompany",
+              "currentJobTitle",
+              "companyStart"
             ],
             "type": "object",
             "properties": {
@@ -20724,21 +20673,7 @@
                   "example": "string or id"
                 }
               },
-              "jobs": {
-                "type": "array",
-                "items": {
-                  "oneOf": [
-                    {
-                      "type": "integer"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ],
-                  "example": "string or id"
-                }
-              },
-              "educations": {
+              "dashboard_activities": {
                 "type": "array",
                 "items": {
                   "oneOf": [
@@ -20814,7 +20749,15 @@
           "firstName",
           "lastName",
           "email",
-          "password"
+          "education",
+          "statusValue",
+          "courseExperience",
+          "institution",
+          "eduStart",
+          "eduEnd",
+          "currentCompany",
+          "currentJobTitle",
+          "companyStart"
         ],
         "properties": {
           "id": {
@@ -22321,7 +22264,7 @@
                           }
                         }
                       },
-                      "jobs": {
+                      "dashboard_activities": {
                         "type": "array",
                         "items": {
                           "type": "object",
@@ -22332,34 +22275,7 @@
                             "documentId": {
                               "type": "string"
                             },
-                            "Company": {
-                              "type": "string"
-                            },
-                            "Title": {
-                              "type": "string"
-                            },
-                            "Description": {
-                              "type": "string"
-                            },
-                            "StartDate": {
-                              "type": "string"
-                            },
-                            "EndDate": {
-                              "type": "string"
-                            },
-                            "createdAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "createdBy": {
+                            "content_creator": {
                               "type": "object",
                               "properties": {
                                 "id": {
@@ -22370,61 +22286,7 @@
                                 }
                               }
                             },
-                            "updatedBy": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "locale": {
-                              "type": "string"
-                            },
-                            "localizations": {
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
-                                  "documentId": {
-                                    "type": "string"
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
-                      "educations": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "number"
-                            },
-                            "documentId": {
-                              "type": "string"
-                            },
-                            "educationType": {
-                              "type": "string"
-                            },
-                            "courseExperience": {
-                              "type": "string"
-                            },
-                            "institution": {
-                              "type": "string"
-                            },
-                            "startDate": {
-                              "type": "string"
-                            },
-                            "endDate": {
+                            "activityDesc": {
                               "type": "string"
                             },
                             "createdAt": {
@@ -22603,21 +22465,7 @@
               }
             }
           },
-          "jobs": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number"
-                },
-                "documentId": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "educations": {
+          "dashboard_activities": {
             "type": "array",
             "items": {
               "type": "object",
@@ -24439,7 +24287,7 @@
                               }
                             }
                           },
-                          "jobs": {
+                          "dashboard_activities": {
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -24450,34 +24298,7 @@
                                 "documentId": {
                                   "type": "string"
                                 },
-                                "Company": {
-                                  "type": "string"
-                                },
-                                "Title": {
-                                  "type": "string"
-                                },
-                                "Description": {
-                                  "type": "string"
-                                },
-                                "StartDate": {
-                                  "type": "string"
-                                },
-                                "EndDate": {
-                                  "type": "string"
-                                },
-                                "createdAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "updatedAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "publishedAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "createdBy": {
+                                "content_creator": {
                                   "type": "object",
                                   "properties": {
                                     "id": {
@@ -24488,61 +24309,7 @@
                                     }
                                   }
                                 },
-                                "updatedBy": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "locale": {
-                                  "type": "string"
-                                },
-                                "localizations": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "id": {
-                                        "type": "number"
-                                      },
-                                      "documentId": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "educations": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                },
-                                "educationType": {
-                                  "type": "string"
-                                },
-                                "courseExperience": {
-                                  "type": "string"
-                                },
-                                "institution": {
-                                  "type": "string"
-                                },
-                                "startDate": {
-                                  "type": "string"
-                                },
-                                "endDate": {
+                                "activityDesc": {
                                   "type": "string"
                                 },
                                 "createdAt": {
@@ -26469,7 +26236,7 @@
                           }
                         }
                       },
-                      "jobs": {
+                      "dashboard_activities": {
                         "type": "array",
                         "items": {
                           "type": "object",
@@ -26480,34 +26247,7 @@
                             "documentId": {
                               "type": "string"
                             },
-                            "Company": {
-                              "type": "string"
-                            },
-                            "Title": {
-                              "type": "string"
-                            },
-                            "Description": {
-                              "type": "string"
-                            },
-                            "StartDate": {
-                              "type": "string"
-                            },
-                            "EndDate": {
-                              "type": "string"
-                            },
-                            "createdAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "createdBy": {
+                            "content_creator": {
                               "type": "object",
                               "properties": {
                                 "id": {
@@ -26518,61 +26258,7 @@
                                 }
                               }
                             },
-                            "updatedBy": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "locale": {
-                              "type": "string"
-                            },
-                            "localizations": {
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
-                                  "documentId": {
-                                    "type": "string"
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
-                      "educations": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "number"
-                            },
-                            "documentId": {
-                              "type": "string"
-                            },
-                            "educationType": {
-                              "type": "string"
-                            },
-                            "courseExperience": {
-                              "type": "string"
-                            },
-                            "institution": {
-                              "type": "string"
-                            },
-                            "startDate": {
-                              "type": "string"
-                            },
-                            "endDate": {
+                            "activityDesc": {
                               "type": "string"
                             },
                             "createdAt": {
@@ -28219,7 +27905,123 @@
                         }
                       }
                     },
-                    "jobs": {
+                    "dashboard_activities": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          },
+                          "content_creator": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "activityDesc": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "publishedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "createdBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "updatedBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "locale": {
+                            "type": "string"
+                          },
+                          "localizations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "publishedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "createdBy": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "documentId": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "updatedBy": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "documentId": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "locale": {
+                      "type": "string"
+                    },
+                    "localizations": {
                       "type": "array",
                       "items": {
                         "type": "object",
@@ -28298,6 +28100,373 @@
                           }
                         }
                       }
+                    }
+                  }
+                }
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "publishedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "createdBy": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "documentId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "updatedBy": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "documentId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "locale": {
+                "type": "string"
+              },
+              "localizations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "updatedBy": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "locale": {
+            "type": "string"
+          },
+          "localizations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CourseSelectionResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CourseSelection"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      },
+      "DashboardActivityRequest": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "content_creator": {
+                "oneOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ],
+                "example": "string or id"
+              },
+              "activityDesc": {
+                "type": "string"
+              },
+              "locale": {
+                "type": "string"
+              },
+              "localizations": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
+              }
+            }
+          }
+        }
+      },
+      "DashboardActivityListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DashboardActivity"
+            }
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "integer"
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "minimum": 25
+                  },
+                  "pageCount": {
+                    "type": "integer",
+                    "maximum": 1
+                  },
+                  "total": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "DashboardActivity": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "example": "200 students has signed up to the course"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-01-15T10:24:00.000Z"
+          }
+        }
+      },
+      "DashboardActivityResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DashboardActivity"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      },
+      "ExerciseRequest": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "properties": {
+          "data": {
+            "required": [
+              "title",
+              "question"
+            ],
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "question": {
+                "type": "string"
+              },
+              "exercise_options": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
+              },
+              "locale": {
+                "type": "string"
+              },
+              "localizations": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ExerciseListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Exercise"
+            }
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "integer"
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "minimum": 25
+                  },
+                  "pageCount": {
+                    "type": "integer",
+                    "maximum": 1
+                  },
+                  "total": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Exercise": {
+        "type": "object",
+        "required": [
+          "title",
+          "question"
+        ],
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "documentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "exercise_options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": "string"
+                },
+                "isCorrect": {
+                  "type": "boolean"
+                },
+                "exercise": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "question": {
+                      "type": "string"
                     },
                     "educations": {
                       "type": "array",
@@ -32432,6 +32601,85 @@
                         }
                       }
                     },
+                    "dashboard_activities": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          },
+                          "content_creator": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "activityDesc": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "publishedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "createdBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "updatedBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "locale": {
+                            "type": "string"
+                          },
+                          "localizations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -34996,7 +35244,7 @@
                               }
                             }
                           },
-                          "jobs": {
+                          "dashboard_activities": {
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -35007,34 +35255,7 @@
                                 "documentId": {
                                   "type": "string"
                                 },
-                                "Company": {
-                                  "type": "string"
-                                },
-                                "Title": {
-                                  "type": "string"
-                                },
-                                "Description": {
-                                  "type": "string"
-                                },
-                                "StartDate": {
-                                  "type": "string"
-                                },
-                                "EndDate": {
-                                  "type": "string"
-                                },
-                                "createdAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "updatedAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "publishedAt": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "createdBy": {
+                                "content_creator": {
                                   "type": "object",
                                   "properties": {
                                     "id": {
@@ -35045,61 +35266,7 @@
                                     }
                                   }
                                 },
-                                "updatedBy": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "locale": {
-                                  "type": "string"
-                                },
-                                "localizations": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "id": {
-                                        "type": "number"
-                                      },
-                                      "documentId": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "educations": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                },
-                                "educationType": {
-                                  "type": "string"
-                                },
-                                "courseExperience": {
-                                  "type": "string"
-                                },
-                                "institution": {
-                                  "type": "string"
-                                },
-                                "startDate": {
-                                  "type": "string"
-                                },
-                                "endDate": {
+                                "activityDesc": {
                                   "type": "string"
                                 },
                                 "createdAt": {
@@ -36881,6 +37048,85 @@
                                       "type": "string"
                                     },
                                     "endDate": {
+                                      "type": "string"
+                                    },
+                                    "createdAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "publishedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "createdBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "documentId": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "updatedBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "documentId": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "locale": {
+                                      "type": "string"
+                                    },
+                                    "localizations": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "number"
+                                          },
+                                          "documentId": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "dashboard_activities": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "documentId": {
+                                      "type": "string"
+                                    },
+                                    "content_creator": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "documentId": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "activityDesc": {
                                       "type": "string"
                                     },
                                     "createdAt": {

@@ -20,46 +20,8 @@ interface UserCredentials {
   isContentCreator: boolean;
 }
 
-
-export interface SignupPayload {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  motivation: string;
-
-  jobs: {
-    company: string;
-    title: string;
-    startDate: string;
-    endDate: string | null;
-    description: string;
-  }[];
-
-  educations: {
-    educationType: string;
-    isInProgress: string;
-    course: string;
-    institution: string;
-    startDate: string;
-    endDate: string;
-  }[];
-}
-
-
-
-const api = axios.create({
-  baseURL: BACKEND_URL,
-  headers: {"Content-Type": "application/json",},
-});
-
-const postUserLogin = async (credentials: UserCredentials) => {
-  return api.post(`/api/auth/login`, credentials);
-};
-
-export const postUserSignup = async (payload: SignupPayload) => {
-  return await api.post(`/api/content-creator/register`, payload)
-  .then(r => r.data);
+const postUserSignup = async (formData: ContentCreatorApplication) => {
+  return await axios.post(`${BACKEND_URL}/api/auth/signup`, formData);
 };
 
 const postUserVerification = async (formData: ContentCreatorApplication) => {

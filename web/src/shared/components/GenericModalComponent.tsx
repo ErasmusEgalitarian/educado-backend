@@ -1,5 +1,7 @@
 import React, { ReactNode } from "react";
 import { MdClose } from "react-icons/md";
+import Icon from "@mdi/react";
+
 interface GenericModalProps {
   title?: string;
   header?: string;

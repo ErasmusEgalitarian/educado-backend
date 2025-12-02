@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "i18next";
@@ -40,6 +41,7 @@ import {
   useCreateCourseMutation,
   useUpdateCourseMutation,
 } from "../api/course-mutations";
+import { difficultyToTranslation } from "../lib/difficulty-to-translation";
 
 
 import CategoryCreateModal from "./category-create-modal";
@@ -209,11 +211,7 @@ const CourseEditorInformation = forwardRef<
       const imageId = imageIds?.[0];
 
       // Edit = update mutation
-      if (
-        isEditMode &&
-        course?.documentId != null &&
-        course.documentId !== ""
-      ) {
+      if (isEditMode && course.documentId != null && course.documentId !== "") {
         // Update existing course
         const result = await updateMutation.mutateAsync({
           documentId: course.documentId,
@@ -350,11 +348,14 @@ const CourseEditorInformation = forwardRef<
                         fieldName="difficulty"
                         label={t("courseManager.level")}
                         placeholder={t("courseManager.selectLevel")}
-                        options={[
-                          { label: "Iniciante", value: "1" },
-                          { label: "Intermediário", value: "2" },
-                          { label: "Avançado", value: "3" },
-                        ]}
+                        options={Array.from({ length: 3 }, (_, i) => i + 1).map(
+                          (num) => {
+                            return {
+                              label: difficultyToTranslation(t, num),
+                              value: String(num),
+                            };
+                          }
+                        )}
                       />
                     </div>
 

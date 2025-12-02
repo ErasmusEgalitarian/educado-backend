@@ -1,4 +1,5 @@
-import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import Icon from "@mdi/react";
+import { mdiPencilBoxOutline } from "@mdi/js";
 import { useNavigate } from "react-router-dom";
 
 import noCertificatesImage from "@/shared/assets/no-certificates.png";
@@ -30,7 +31,7 @@ const emptyState = () => {
             onClick={CourseManager}
             className="std-button justify-center text-center items-center flex-1 flex modal-button  space-x-"
           >
-            <PencilSquareIcon className="w-5 h-5" />
+            <Icon path={mdiPencilBoxOutline} size={0.9} color="currentColor" />
             <p className="font-normal">Criar novo curso</p>{" "}
             {/** Create new course */}
           </label>

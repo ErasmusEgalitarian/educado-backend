@@ -38,7 +38,7 @@
     },
     "password": {
       "type": "password",
-      "required": true,
+      "required": false,
       "minLength": 8
     },
     "currentCompany": {
@@ -58,15 +58,11 @@
       "relation": "oneToMany",
       "target": "api::user-log.user-log"
     },
-    "jobs": {
+    "dashboard_activities": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::job.job"
-    },
-    "educations": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::education.education"
+      "target": "api::dashboard-activity.dashboard-activity",
+      "mappedBy": "content_creator"
     }
   }
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { mdiChevronLeft, mdiEyeOffOutline, mdiEyeOutline } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { createContext, useState } from "react";
@@ -141,7 +140,7 @@ const Login = () => {
     ) as HTMLButtonElement;
     // Makes sure that the button is only clickable when both fields are filled and there are no email error
     const buttonContainer = submitloginButton.parentElement as HTMLDivElement;
-    
+
     if (isThereAnError) {
       // Disable button when there's an error
       submitloginButton.setAttribute("disabled", "true");
@@ -166,7 +165,7 @@ const Login = () => {
       submitloginButton.setAttribute("disabled", "true");
       buttonContainer.style.backgroundColor = "var(--greyscale-surface-disabled)";
       submitloginButton.style.color = "var(--greyscale-border-default)";
-      
+
       // Clear error messages when fields are empty
       setEmailError(null);
       setEmailErrorMessage("");
@@ -397,8 +396,12 @@ const Login = () => {
         contentText="Seu cadastro está em análise e você receberá um retorno em até x dias. Fique de olho no seu e-mail, avisaremos assim que tudo estiver pronto!"
         cancelBtnText="Fechar"
         isVisible={showSignupSuccessModal}
-        onConfirm={() => setShowSignupSuccessModal(false)}
-        onClose={() => setShowSignupSuccessModal(false)}
+        onConfirm={() => {
+            setShowSignupSuccessModal(false)
+        }}
+        onClose={() => {
+            setShowSignupSuccessModal(false)
+        }}
       />
     </main>
   );

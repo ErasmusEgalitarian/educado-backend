@@ -482,10 +482,20 @@ export interface ApiContentCreatorContentCreator
         maxLength: 40;
         minLength: 1;
       }>;
-    educations: Schema.Attribute.Relation<
+    currentJobTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 40;
+        minLength: 1;
+      }>;
+    dashboard_activities: Schema.Attribute.Relation<
       'oneToMany',
-      'api::education.education'
+      'api::dashboard-activity.dashboard-activity'
     >;
+    education: Schema.Attribute.Enumeration<['TODO1', 'TODO2', 'TODO3']> &
+      Schema.Attribute.Required;
+    eduEnd: Schema.Attribute.Date & Schema.Attribute.Required;
+    eduStart: Schema.Attribute.Date & Schema.Attribute.Required;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
@@ -513,7 +523,6 @@ export interface ApiContentCreatorContentCreator
         maxLength: 400;
       }>;
     password: Schema.Attribute.Password &
-      Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 8;
       }>;
@@ -675,32 +684,33 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiEducationEducation extends Struct.CollectionTypeSchema {
-  collectionName: 'educations';
+export interface ApiDashboardActivityDashboardActivity
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'dashboard_activities';
   info: {
-    displayName: 'Education';
-    pluralName: 'educations';
-    singularName: 'education';
+    displayName: 'Dashboard Activity';
+    pluralName: 'dashboard-activities';
+    singularName: 'dashboard-activity';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    courseExperience: Schema.Attribute.String & Schema.Attribute.Required;
+    activityDesc: Schema.Attribute.String;
+    content_creator: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::content-creator.content-creator'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    educationType: Schema.Attribute.String & Schema.Attribute.Required;
-    endDate: Schema.Attribute.String & Schema.Attribute.Required;
-    institution: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::education.education'
+      'api::dashboard-activity.dashboard-activity'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    startDate: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1575,7 +1585,7 @@ declare module '@strapi/strapi' {
       'api::course-category.course-category': ApiCourseCategoryCourseCategory;
       'api::course-selection.course-selection': ApiCourseSelectionCourseSelection;
       'api::course.course': ApiCourseCourse;
-      'api::education.education': ApiEducationEducation;
+      'api::dashboard-activity.dashboard-activity': ApiDashboardActivityDashboardActivity;
       'api::exercise-option.exercise-option': ApiExerciseOptionExerciseOption;
       'api::exercise.exercise': ApiExerciseExercise;
       'api::feedback.feedback': ApiFeedbackFeedback;
