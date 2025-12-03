@@ -25,9 +25,10 @@ export default async (
         });
     }
 
-    let user: any;
+    let payload: any;
     try {
-        user = jwt.verify(authHeader.split("Bearer ")[1], secretKey);
+        const token = authHeader.slice("Bearer ".length);
+        payload = jwt.verify(token, secretKey);
     } catch (error) {
         strapi.log.error("JWT verification failed:", error);
         throw new PolicyError("JWT verification failed", {
@@ -35,51 +36,17 @@ export default async (
         });
     }
 
-    if (!user) {
+    if (!payload) {
         throw new PolicyError("No authenticated user", {
             policy: "is-admin",
         });
     }
 
-    if (user.verifiedAt == null) {
-        throw new PolicyError("User not verified", {
-            policy: "is-admin",
-        });
+    if (payload.isAdmin === true) {
+        return true;
     }
 
-    try {
-        // Same query pattern as is-content-creator
-        const contentCreator = await strapi
-            .documents("api::content-creator.content-creator")
-            .findFirst({
-                filters: {
-                    email: user.email,
-                    documentId: user.documentId,
-                },
-            });
-
-        if (!contentCreator) {
-            throw new PolicyError("Content Creator not found", {
-                policy: "is-admin",
-            });
-        }
-
-        if (contentCreator.isAdmin === true) {
-            return true;
-        }
-
-        throw new PolicyError("User is not an admin", {
-            policy: "is-admin",
-        });
-    } catch (error: any) {
-        strapi.log.error("Error in is-admin policy:", error);
-
-        if (error instanceof PolicyError) {
-            throw error;
-        }
-
-        throw new PolicyError("Admin check failed", {
-            policy: "is-admin",
-        });
-    }
+    throw new PolicyError("User is not an admin", {
+        policy: "is-admin",
+    });
 };
