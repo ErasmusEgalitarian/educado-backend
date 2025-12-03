@@ -159,26 +159,27 @@ export const isFileTypeAllowed = (
     const types = Array.isArray(fileTypes) ? fileTypes : [fileTypes];
 
     for (const type of types) {
-        switch (type) {
-            case "image":
-                if (file.type.startsWith("image/")) return true;
-                break;
-            case "video":
-                if (file.type.startsWith("video/")) return true;
-                break;
-            case "file": {
-                // Check MIME type for PDFs
-                if (file.type === "application/pdf") return true;
-                // Check by extension for other document types
-                const extension = "." + (file.name.split(".").pop()?.toLowerCase() ?? "");
-                if ((FILE_TYPE_EXTENSIONS as readonly string[]).includes(extension)) return true;
-                break;
-            }
-        }
+        if (matchesFileType(file, type)) return true;
     }
 
     return false;
 };
+
+// Helper function to check if a file matches a specific MediaFileType
+export const matchesFileType = (file: File, type: MediaFileType): boolean => {
+
+    const TYPE_CHECKERS: Record<MediaFileType, (file: File) => boolean> = {
+        image: (f) => f.type.startsWith("image/"),
+        video: (f) => f.type.startsWith("video/"),
+        file: (f) => {
+            const extension: string = "." + (f.name.split(".").pop()?.toLowerCase() ?? "");
+            return f.type === "application/pdf" || (FILE_TYPE_EXTENSIONS as readonly string[]).includes(extension);
+        },
+    };
+
+    return TYPE_CHECKERS[type]?.(file) ?? false;
+};
+
 
 /**
  * Generates an accept string for file input based on specified media file types.
