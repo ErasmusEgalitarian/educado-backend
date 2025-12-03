@@ -182,6 +182,9 @@ export const MediaUploadZone = ({
     undefined
   );
 
+  // Memoize schema to avoid recreation on every render
+  const uploadFormSchema = useMemo(() => createUploadFormSchema(t), [t]);
+
   const form = useForm<UploadFormValues>({
     resolver: zodResolver(uploadFormSchema),
     defaultValues: {
