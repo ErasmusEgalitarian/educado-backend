@@ -80,8 +80,7 @@
                   "type": "string"
                 },
                 "endDate": {
-                  "type": "string",
-                  "nullable": true
+                  "type": "string"
                 },
                 "description": {
                   "type": "string"

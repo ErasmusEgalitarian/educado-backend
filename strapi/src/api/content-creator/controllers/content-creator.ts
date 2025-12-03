@@ -14,15 +14,21 @@ export default factories.createCoreController('api::content-creator.content-crea
             console.log("Registration request received:", ctx.request.body);
             const institutionalMails = ["student.aau.dk"];
             
-            const {firstName,
-                lastName, 
-                email, 
-                password, 
-                motivation,
-                jobs = [],
-                educations = []} = ctx.request.body;
+                const {
+                 firstName,
+                 lastName,
+                 email,
+                 password,
+                 motivation,
+                 jobs = [],
+                 educations = [],
+                } = ctx.request.body;
 
-
+            
+            if (!firstName || !lastName || !email || !password) {
+                return ctx.badRequest("Missing required fields.");
+            }
+            
             if (!Array.isArray(jobs) || jobs.length === 0) {
                 return ctx.badRequest("At least one job is required");
             }
@@ -38,19 +44,14 @@ export default factories.createCoreController('api::content-creator.content-crea
             if (existing){
                 return ctx.badRequest('Email already in use')
             }
-                
+               
+            
+
             const domain = email.split('@')[1]?.toLowerCase();
             const isTrusted = institutionalMails.includes(domain)
-            
             const confirmationDate = isTrusted ? new Date() : null;
             
-            // currentcompany = job with null end date
-            // end date = smth crazy to identify no end date 
-
-            /*
-            dddsddssDSD
-            
-            */ 
+        
            
             const jobDocs = await Promise.all(
                 jobs.map((job) =>
@@ -85,7 +86,7 @@ export default factories.createCoreController('api::content-creator.content-crea
             );
 
               const currentCompany =
-                jobDocs.find((j) => !j.EndDate)?.Company ??
+                jobDocs.find((j) => !j.EndDate || j.EndDate.trim() === "")?.Company ??
                 jobs[0]?.company ?? // fallback to first job
                 null;
 
@@ -108,37 +109,36 @@ export default factories.createCoreController('api::content-creator.content-crea
              })
 
 
-                ctx.send({
-                status: isTrusted ? 'approved' : 'pending',
-                userId: newUser.id,
-                verifiedAt: confirmationDate,
-                message: isTrusted
-                ? `User registered and auto-approved on ${confirmationDate!.toISOString()}.`
-                : 'Registration successful. Waiting for admin approval.',
-                });
-
-        // Utility functions
-        function generateTokenCode(length) {
-            let result = '';
-            const characters = '0123456789'; // Only numbers
-            const charactersLength = characters.length;
-            for (let i = 0; i < length; i++) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+               // Utility functions
+            function generateTokenCode(length) {
+                let result = '';
+                const characters = '0123456789'; // Only numbers
+                const charactersLength = characters.length;
+                for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+             return result;
             }
-            return result;
-        }
+
+            const code = generateTokenCode(4);
+            sendVerificationEmail(newUser, code);
+
+            ctx.send({
+            status: isTrusted ? 'approved' : 'pending',
+            userId: newUser.id,
+            verifiedAt: confirmationDate,
+            message: isTrusted
+            ? `User registered and auto-approved on ${confirmationDate!.toISOString()}.`
+            : 'Registration successful. Waiting for admin approval.',
+            });
+
+      
   
-        //temp ctx send for testing
-        ctx.body = {
-            status: "ok",
-            message: "Payload received",
-            data: ctx.request.body,
-        };
-        sendVerificationEmail(newUser, generateTokenCode(4));
+        
         
         }
         catch(err){
-           
+            console.error("Registration error:", err);
             ctx.badRequest('Registration failed', {error: err.message});
         }
         

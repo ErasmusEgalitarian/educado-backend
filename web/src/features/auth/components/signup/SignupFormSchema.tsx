@@ -39,14 +39,14 @@ const jobSchema = z.object({
   organization: z.string().min(1, "Campo obrigatório").max(50),
   jobTitle: z.string().min(1, "Campo obrigatório").max(50),
   jobStartDate: z.string().min(1, "Campo obrigatório"),
-  jobEndDate: z.string().nullable(),
+  jobEndDate: z.string(),
   description: z.string().max(maxChars),
   isCurrentJob: z.boolean().default(false),
 })
 .refine(
   (data) => {
     if (data.isCurrentJob) {
-      return data.jobEndDate === null;        // ✔ must be null
+         return data.jobEndDate.length === 0;   
     } else {
       return typeof data.jobEndDate === "string" && data.jobEndDate.length > 0;
     }
@@ -234,6 +234,7 @@ export const ExperienceForm = () => {
         jobStartDate: "",
         jobEndDate: "",
         description: "",
+        isCurrentJob: false,
       });
     }
   }, [fields.length, append]);
@@ -243,8 +244,8 @@ export const ExperienceForm = () => {
   return (
     <>
       {fields.map((field, index) => {
-        const isCurrent =
-          (jobs && jobs[index] && jobs[index].jobEndDate === null) || false;
+        const isCurrent = Boolean(jobs?.[index]?.isCurrentJob);
+          
 
         return (
           <Card key={field.id} className="mb-4">
@@ -298,7 +299,7 @@ export const ExperienceForm = () => {
                       setValue(`jobs.${index}.isCurrentJob`, checked, { shouldValidate: true });
                       if (checked) {
                         // current job: end date = null
-                        setValue(`jobs.${index}.jobEndDate`, null, {
+                        setValue(`jobs.${index}.jobEndDate`, "", {
                           shouldValidate: true,
                         });
                       } else {

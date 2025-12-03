@@ -5,20 +5,32 @@ import { Application } from "@/user/types/Application";
 import { Institution } from "@/user/types/Institution";
 import { User } from "@/user/types/User";
 
-export interface ContentCreatorApplication {
+export interface SignupPayload {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  role: string;
-  token: string | null;
+  motivation: string;
+
+  jobs: Array<{
+    company: string;
+    title: string;
+    startDate: string;
+    endDate: string;
+    description: string;
+  }>;
+
+  educations: Array<{
+    educationType: string;
+    isInProgress: string;
+    course: string;
+    institution: string;
+    startDate: string;
+    endDate: string;
+  }>;
 }
 
-interface UserCredentials {
-  email: string;
-  password: string;
-  isContentCreator: boolean;
-}
+
 
 const postUserSignup = async (formData: ContentCreatorApplication) => {
   return await axios.post(`${BACKEND_URL}/api/auth/signup`, formData);

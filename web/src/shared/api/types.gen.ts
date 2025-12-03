@@ -401,19 +401,9 @@ export type Certificate = {
                     firstName?: string;
                     lastName?: string;
                     verifiedAt?: string;
-                    biography?: string;
+                    motivation?: string;
                     email?: string;
-                    education?: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience?: string;
-                    institution?: string;
-                    eduStart?: string;
-                    eduEnd?: string;
                     currentCompany?: string;
-                    currentJobTitle?: string;
-                    companyStart?: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
                     courses?: Array<{
                         id?: number;
                         documentId?: string;
@@ -667,20 +657,10 @@ export type ContentCreatorRequest = {
         firstName: string;
         lastName: string;
         verifiedAt?: string;
-        biography?: string;
+        motivation?: string;
         email: string;
-        password: string;
-        education: 'TODO1' | 'TODO2' | 'TODO3';
-        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-        courseExperience: string;
-        institution: string;
-        eduStart: string;
-        eduEnd: string;
-        currentCompany: string;
-        currentJobTitle: string;
-        companyStart: string;
-        companyEnd?: string;
-        jobDescription?: string;
+        password?: string;
+        currentCompany?: string;
         courses?: Array<number | string>;
         user_logs?: Array<number | string>;
         dashboard_activities?: Array<number | string>;
@@ -707,19 +687,9 @@ export type ContentCreator = {
     firstName: string;
     lastName: string;
     verifiedAt?: string;
-    biography?: string;
+    motivation?: string;
     email: string;
-    education: 'TODO1' | 'TODO2' | 'TODO3';
-    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-    courseExperience: string;
-    institution: string;
-    eduStart: string;
-    eduEnd: string;
-    currentCompany: string;
-    currentJobTitle: string;
-    companyStart: string;
-    companyEnd?: string;
-    jobDescription?: string;
+    currentCompany?: string;
     courses?: Array<{
         id?: number;
         documentId?: string;
@@ -1171,19 +1141,9 @@ export type ContentCreator = {
             firstName?: string;
             lastName?: string;
             verifiedAt?: string;
-            biography?: string;
+            motivation?: string;
             email?: string;
-            education?: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience?: string;
-            institution?: string;
-            eduStart?: string;
-            eduEnd?: string;
             currentCompany?: string;
-            currentJobTitle?: string;
-            companyStart?: string;
-            companyEnd?: string;
-            jobDescription?: string;
             courses?: Array<{
                 id?: number;
                 documentId?: string;
@@ -1797,19 +1757,9 @@ export type Course = {
                 firstName?: string;
                 lastName?: string;
                 verifiedAt?: string;
-                biography?: string;
+                motivation?: string;
                 email?: string;
-                education?: 'TODO1' | 'TODO2' | 'TODO3';
-                statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-                courseExperience?: string;
-                institution?: string;
-                eduStart?: string;
-                eduEnd?: string;
                 currentCompany?: string;
-                currentJobTitle?: string;
-                companyStart?: string;
-                companyEnd?: string;
-                jobDescription?: string;
                 courses?: Array<{
                     id?: number;
                     documentId?: string;
@@ -2415,19 +2365,9 @@ export type CourseCategory = {
             firstName?: string;
             lastName?: string;
             verifiedAt?: string;
-            biography?: string;
+            motivation?: string;
             email?: string;
-            education?: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience?: string;
-            institution?: string;
-            eduStart?: string;
-            eduEnd?: string;
             currentCompany?: string;
-            currentJobTitle?: string;
-            companyStart?: string;
-            companyEnd?: string;
-            jobDescription?: string;
             courses?: Array<{
                 id?: number;
                 documentId?: string;
@@ -2938,19 +2878,9 @@ export type CourseSelection = {
             firstName?: string;
             lastName?: string;
             verifiedAt?: string;
-            biography?: string;
+            motivation?: string;
             email?: string;
-            education?: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience?: string;
-            institution?: string;
-            eduStart?: string;
-            eduEnd?: string;
             currentCompany?: string;
-            currentJobTitle?: string;
-            companyStart?: string;
-            companyEnd?: string;
-            jobDescription?: string;
             courses?: Array<{
                 id?: number;
                 documentId?: string;
@@ -3071,6 +3001,165 @@ export type DashboardActivity = {
 
 export type DashboardActivityResponse = {
     data?: DashboardActivity;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type EducationRequest = {
+    data: {
+        educationType: string;
+        courseExperience: string;
+        institution: string;
+        startDate: string;
+        endDate: string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type EducationListResponse = {
+    data?: Array<Education>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type Education = {
+    id?: number;
+    documentId?: string;
+    educationType: string;
+    courseExperience: string;
+    institution: string;
+    startDate: string;
+    endDate: string;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+        firstname?: string;
+        lastname?: string;
+        username?: string;
+        email?: string;
+        resetPasswordToken?: string;
+        registrationToken?: string;
+        isActive?: boolean;
+        roles?: Array<{
+            id?: number;
+            documentId?: string;
+            name?: string;
+            code?: string;
+            description?: string;
+            users?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            permissions?: Array<{
+                id?: number;
+                documentId?: string;
+                action?: string;
+                actionParameters?: unknown;
+                subject?: string;
+                properties?: unknown;
+                conditions?: unknown;
+                role?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        blocked?: boolean;
+        preferedLanguage?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+        educationType?: string;
+        courseExperience?: string;
+        institution?: string;
+        startDate?: string;
+        endDate?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+};
+
+export type EducationResponse = {
+    data?: Education;
     meta?: {
         [key: string]: unknown;
     };
@@ -3923,19 +4012,9 @@ export type Feedback = {
             firstName?: string;
             lastName?: string;
             verifiedAt?: string;
-            biography?: string;
+            motivation?: string;
             email?: string;
-            education?: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience?: string;
-            institution?: string;
-            eduStart?: string;
-            eduEnd?: string;
             currentCompany?: string;
-            currentJobTitle?: string;
-            companyStart?: string;
-            companyEnd?: string;
-            jobDescription?: string;
             courses?: Array<{
                 id?: number;
                 documentId?: string;
@@ -4027,6 +4106,165 @@ export type Feedback = {
 
 export type FeedbackResponse = {
     data?: Feedback;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type JobRequest = {
+    data: {
+        Company: string;
+        Title: string;
+        Description?: string;
+        StartDate: string;
+        EndDate: string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type JobListResponse = {
+    data?: Array<Job>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type Job = {
+    id?: number;
+    documentId?: string;
+    Company: string;
+    Title: string;
+    Description?: string;
+    StartDate: string;
+    EndDate: string;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+        firstname?: string;
+        lastname?: string;
+        username?: string;
+        email?: string;
+        resetPasswordToken?: string;
+        registrationToken?: string;
+        isActive?: boolean;
+        roles?: Array<{
+            id?: number;
+            documentId?: string;
+            name?: string;
+            code?: string;
+            description?: string;
+            users?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            permissions?: Array<{
+                id?: number;
+                documentId?: string;
+                action?: string;
+                actionParameters?: unknown;
+                subject?: string;
+                properties?: unknown;
+                conditions?: unknown;
+                role?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        blocked?: boolean;
+        preferedLanguage?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+        Company?: string;
+        Title?: string;
+        Description?: string;
+        StartDate?: string;
+        EndDate?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+};
+
+export type JobResponse = {
+    data?: Job;
     meta?: {
         [key: string]: unknown;
     };
@@ -4722,19 +4960,9 @@ export type Student = {
                 firstName?: string;
                 lastName?: string;
                 verifiedAt?: string;
-                biography?: string;
+                motivation?: string;
                 email?: string;
-                education?: 'TODO1' | 'TODO2' | 'TODO3';
-                statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-                courseExperience?: string;
-                institution?: string;
-                eduStart?: string;
-                eduEnd?: string;
                 currentCompany?: string;
-                currentJobTitle?: string;
-                companyStart?: string;
-                companyEnd?: string;
-                jobDescription?: string;
                 courses?: Array<{
                     id?: number;
                     documentId?: string;
@@ -5240,19 +5468,9 @@ export type UserLog = {
                     firstName?: string;
                     lastName?: string;
                     verifiedAt?: string;
-                    biography?: string;
+                    motivation?: string;
                     email?: string;
-                    education?: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience?: string;
-                    institution?: string;
-                    eduStart?: string;
-                    eduEnd?: string;
                     currentCompany?: string;
-                    currentJobTitle?: string;
-                    companyStart?: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
                     courses?: Array<{
                         id?: number;
                         documentId?: string;
@@ -5675,6 +5893,29 @@ export type JwtContentCreatorResponse = {
     };
 };
 
+export type SignupRequest = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    motivation: string;
+    jobs: Array<{
+        company: string;
+        title: string;
+        startDate: string;
+        endDate: string;
+        description: string;
+    }>;
+    educations: Array<{
+        educationType: string;
+        isInProgress: string;
+        course: string;
+        institution: string;
+        startDate: string;
+        endDate: string;
+    }>;
+};
+
 export type JwtResponse = {
     accessToken?: string;
     userInfo?: {
@@ -5702,23 +5943,6 @@ export type ResetPasswordRequest = {
     email?: string;
     token?: string;
     newPassword?: string;
-};
-
-export type SignupRequest = {
-    name?: string;
-    email?: string;
-    password?: string;
-};
-
-export type OkResponse = string;
-
-export type StudentVerificationTokenRequest = {
-    email?: string;
-};
-
-export type VerifyEmailRequest = {
-    email?: string;
-    tokenCode?: string;
 };
 
 export type CertificateGetCertificatesRequest = {
@@ -5985,7 +6209,7 @@ export type ContentCreatorGetContentCreatorsRequest = {
     body?: never;
     path?: never;
     query?: {
-        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'email' | 'password' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -5999,12 +6223,12 @@ export type ContentCreatorGetContentCreatorsRequest = {
             start: number;
             limit: number;
         });
-        sort?: 'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+        sort?: 'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'email' | 'password' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'email' | 'password' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
             [key: string]: 'asc' | 'desc';
         } | Array<{
             [key: string]: 'asc' | 'desc';
         }>;
-        populate?: '*' | 'courses' | 'user_logs' | Array<'courses' | 'user_logs'>;
+        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | Array<'courses' | 'user_logs' | 'dashboard_activities'>;
         status?: 'draft' | 'published';
     };
     url: '/content-creators';
@@ -6048,8 +6272,8 @@ export type ContentCreatorPostContentCreatorsRequest = {
     body: ContentCreatorRequest;
     path?: never;
     query?: {
-        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'courses' | 'user_logs' | Array<'courses' | 'user_logs'>;
+        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'email' | 'password' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | Array<'courses' | 'user_logs' | 'dashboard_activities'>;
         status?: 'draft' | 'published';
     };
     url: '/content-creators';
@@ -6095,8 +6319,8 @@ export type ContentCreatorDeleteContentCreatorsByIdRequest = {
         id: string;
     };
     query?: {
-        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'courses' | 'user_logs' | Array<'courses' | 'user_logs'>;
+        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'email' | 'password' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | Array<'courses' | 'user_logs' | 'dashboard_activities'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -6145,12 +6369,12 @@ export type ContentCreatorGetContentCreatorsByIdRequest = {
         id: string;
     };
     query?: {
-        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'courses' | 'user_logs' | Array<'courses' | 'user_logs'>;
+        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'email' | 'password' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | Array<'courses' | 'user_logs' | 'dashboard_activities'>;
         filters?: {
             [key: string]: unknown;
         };
-        sort?: 'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+        sort?: 'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'email' | 'password' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'email' | 'password' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
             [key: string]: 'asc' | 'desc';
         } | Array<{
             [key: string]: 'asc' | 'desc';
@@ -6200,8 +6424,8 @@ export type ContentCreatorPutContentCreatorsByIdRequest = {
         id: string;
     };
     query?: {
-        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'courses' | 'user_logs' | Array<'courses' | 'user_logs'>;
+        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'email' | 'password' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | Array<'courses' | 'user_logs' | 'dashboard_activities'>;
         status?: 'draft' | 'published';
     };
     url: '/content-creators/{id}';
@@ -6240,6 +6464,22 @@ export type ContentCreatorPutContentCreatorsByIdResponses = {
 };
 
 export type ContentCreatorPutContentCreatorsByIdResponse = ContentCreatorPutContentCreatorsByIdResponses[keyof ContentCreatorPutContentCreatorsByIdResponses];
+
+export type PostContentCreatorRegisterRequest = {
+    body: SignupRequest;
+    path?: never;
+    query?: never;
+    url: '/content-creator/register';
+};
+
+export type PostContentCreatorRegisterResponses = {
+    /**
+     * Created
+     */
+    201: JwtContentCreatorResponse;
+};
+
+export type PostContentCreatorRegisterResponse = PostContentCreatorRegisterResponses[keyof PostContentCreatorRegisterResponses];
 
 export type PostContentCreatorLoginRequest = {
     body: LoginRequest;
@@ -7037,6 +7277,537 @@ export type CourseSelectionPutCourseSelectionsByIdResponses = {
 
 export type CourseSelectionPutCourseSelectionsByIdResponse = CourseSelectionPutCourseSelectionsByIdResponses[keyof CourseSelectionPutCourseSelectionsByIdResponses];
 
+export type GetCcDashboardActivityRequest = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/CC-dashboard-activity';
+};
+
+export type GetCcDashboardActivityResponses = {
+    /**
+     * OK - Array of dashboard activities
+     */
+    200: Array<DashboardActivity>;
+};
+
+export type GetCcDashboardActivityResponse = GetCcDashboardActivityResponses[keyof GetCcDashboardActivityResponses];
+
+export type DashboardActivityGetDashboardActivitiesRequest = {
+    body?: never;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        _q?: string;
+        pagination?: {
+            withCount?: boolean;
+        } & ({
+            page: number;
+            pageSize: number;
+        } | {
+            start: number;
+            limit: number;
+        });
+        sort?: 'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        populate?: '*' | 'content_creator' | Array<'content_creator'>;
+    };
+    url: '/dashboard-activities';
+};
+
+export type DashboardActivityGetDashboardActivitiesErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type DashboardActivityGetDashboardActivitiesError = DashboardActivityGetDashboardActivitiesErrors[keyof DashboardActivityGetDashboardActivitiesErrors];
+
+export type DashboardActivityGetDashboardActivitiesResponses = {
+    /**
+     * OK
+     */
+    200: DashboardActivityListResponse;
+};
+
+export type DashboardActivityGetDashboardActivitiesResponse = DashboardActivityGetDashboardActivitiesResponses[keyof DashboardActivityGetDashboardActivitiesResponses];
+
+export type DashboardActivityPostDashboardActivitiesRequest = {
+    body: DashboardActivityRequest;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'content_creator' | Array<'content_creator'>;
+    };
+    url: '/dashboard-activities';
+};
+
+export type DashboardActivityPostDashboardActivitiesErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type DashboardActivityPostDashboardActivitiesError = DashboardActivityPostDashboardActivitiesErrors[keyof DashboardActivityPostDashboardActivitiesErrors];
+
+export type DashboardActivityPostDashboardActivitiesResponses = {
+    /**
+     * OK
+     */
+    200: DashboardActivityResponse;
+};
+
+export type DashboardActivityPostDashboardActivitiesResponse = DashboardActivityPostDashboardActivitiesResponses[keyof DashboardActivityPostDashboardActivitiesResponses];
+
+export type DashboardActivityDeleteDashboardActivitiesByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'content_creator' | Array<'content_creator'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+    };
+    url: '/dashboard-activities/{id}';
+};
+
+export type DashboardActivityDeleteDashboardActivitiesByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type DashboardActivityDeleteDashboardActivitiesByIdError = DashboardActivityDeleteDashboardActivitiesByIdErrors[keyof DashboardActivityDeleteDashboardActivitiesByIdErrors];
+
+export type DashboardActivityDeleteDashboardActivitiesByIdResponses = {
+    /**
+     * OK
+     */
+    200: number;
+};
+
+export type DashboardActivityDeleteDashboardActivitiesByIdResponse = DashboardActivityDeleteDashboardActivitiesByIdResponses[keyof DashboardActivityDeleteDashboardActivitiesByIdResponses];
+
+export type DashboardActivityGetDashboardActivitiesByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'content_creator' | Array<'content_creator'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        sort?: 'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+    };
+    url: '/dashboard-activities/{id}';
+};
+
+export type DashboardActivityGetDashboardActivitiesByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type DashboardActivityGetDashboardActivitiesByIdError = DashboardActivityGetDashboardActivitiesByIdErrors[keyof DashboardActivityGetDashboardActivitiesByIdErrors];
+
+export type DashboardActivityGetDashboardActivitiesByIdResponses = {
+    /**
+     * OK
+     */
+    200: DashboardActivityResponse;
+};
+
+export type DashboardActivityGetDashboardActivitiesByIdResponse = DashboardActivityGetDashboardActivitiesByIdResponses[keyof DashboardActivityGetDashboardActivitiesByIdResponses];
+
+export type DashboardActivityPutDashboardActivitiesByIdRequest = {
+    body: DashboardActivityRequest;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'content_creator' | Array<'content_creator'>;
+    };
+    url: '/dashboard-activities/{id}';
+};
+
+export type DashboardActivityPutDashboardActivitiesByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type DashboardActivityPutDashboardActivitiesByIdError = DashboardActivityPutDashboardActivitiesByIdErrors[keyof DashboardActivityPutDashboardActivitiesByIdErrors];
+
+export type DashboardActivityPutDashboardActivitiesByIdResponses = {
+    /**
+     * OK
+     */
+    200: DashboardActivityResponse;
+};
+
+export type DashboardActivityPutDashboardActivitiesByIdResponse = DashboardActivityPutDashboardActivitiesByIdResponses[keyof DashboardActivityPutDashboardActivitiesByIdResponses];
+
+export type EducationGetEducationsRequest = {
+    body?: never;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'educationType' | 'courseExperience' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        _q?: string;
+        pagination?: {
+            withCount?: boolean;
+        } & ({
+            page: number;
+            pageSize: number;
+        } | {
+            start: number;
+            limit: number;
+        });
+        sort?: 'educationType' | 'courseExperience' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'educationType' | 'courseExperience' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        populate?: '*' | unknown | Array<unknown>;
+        status?: 'draft' | 'published';
+    };
+    url: '/educations';
+};
+
+export type EducationGetEducationsErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type EducationGetEducationsError = EducationGetEducationsErrors[keyof EducationGetEducationsErrors];
+
+export type EducationGetEducationsResponses = {
+    /**
+     * OK
+     */
+    200: EducationListResponse;
+};
+
+export type EducationGetEducationsResponse = EducationGetEducationsResponses[keyof EducationGetEducationsResponses];
+
+export type EducationPostEducationsRequest = {
+    body: EducationRequest;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'educationType' | 'courseExperience' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        status?: 'draft' | 'published';
+    };
+    url: '/educations';
+};
+
+export type EducationPostEducationsErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type EducationPostEducationsError = EducationPostEducationsErrors[keyof EducationPostEducationsErrors];
+
+export type EducationPostEducationsResponses = {
+    /**
+     * OK
+     */
+    200: EducationResponse;
+};
+
+export type EducationPostEducationsResponse = EducationPostEducationsResponses[keyof EducationPostEducationsResponses];
+
+export type EducationDeleteEducationsByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'educationType' | 'courseExperience' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        status?: 'draft' | 'published';
+    };
+    url: '/educations/{id}';
+};
+
+export type EducationDeleteEducationsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type EducationDeleteEducationsByIdError = EducationDeleteEducationsByIdErrors[keyof EducationDeleteEducationsByIdErrors];
+
+export type EducationDeleteEducationsByIdResponses = {
+    /**
+     * OK
+     */
+    200: number;
+};
+
+export type EducationDeleteEducationsByIdResponse = EducationDeleteEducationsByIdResponses[keyof EducationDeleteEducationsByIdResponses];
+
+export type EducationGetEducationsByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'educationType' | 'courseExperience' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        sort?: 'educationType' | 'courseExperience' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'educationType' | 'courseExperience' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        status?: 'draft' | 'published';
+    };
+    url: '/educations/{id}';
+};
+
+export type EducationGetEducationsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type EducationGetEducationsByIdError = EducationGetEducationsByIdErrors[keyof EducationGetEducationsByIdErrors];
+
+export type EducationGetEducationsByIdResponses = {
+    /**
+     * OK
+     */
+    200: EducationResponse;
+};
+
+export type EducationGetEducationsByIdResponse = EducationGetEducationsByIdResponses[keyof EducationGetEducationsByIdResponses];
+
+export type EducationPutEducationsByIdRequest = {
+    body: EducationRequest;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'educationType' | 'courseExperience' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        status?: 'draft' | 'published';
+    };
+    url: '/educations/{id}';
+};
+
+export type EducationPutEducationsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type EducationPutEducationsByIdError = EducationPutEducationsByIdErrors[keyof EducationPutEducationsByIdErrors];
+
+export type EducationPutEducationsByIdResponses = {
+    /**
+     * OK
+     */
+    200: EducationResponse;
+};
+
+export type EducationPutEducationsByIdResponse = EducationPutEducationsByIdResponses[keyof EducationPutEducationsByIdResponses];
+
 export type ExerciseGetExercisesRequest = {
     body?: never;
     path?: never;
@@ -7816,6 +8587,266 @@ export type FeedbackPutFeedbacksByIdResponses = {
 };
 
 export type FeedbackPutFeedbacksByIdResponse = FeedbackPutFeedbacksByIdResponses[keyof FeedbackPutFeedbacksByIdResponses];
+
+export type JobGetJobsRequest = {
+    body?: never;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'Company' | 'Title' | 'Description' | 'StartDate' | 'EndDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        _q?: string;
+        pagination?: {
+            withCount?: boolean;
+        } & ({
+            page: number;
+            pageSize: number;
+        } | {
+            start: number;
+            limit: number;
+        });
+        sort?: 'Company' | 'Title' | 'Description' | 'StartDate' | 'EndDate' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'Company' | 'Title' | 'Description' | 'StartDate' | 'EndDate' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        populate?: '*' | unknown | Array<unknown>;
+        status?: 'draft' | 'published';
+    };
+    url: '/jobs';
+};
+
+export type JobGetJobsErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type JobGetJobsError = JobGetJobsErrors[keyof JobGetJobsErrors];
+
+export type JobGetJobsResponses = {
+    /**
+     * OK
+     */
+    200: JobListResponse;
+};
+
+export type JobGetJobsResponse = JobGetJobsResponses[keyof JobGetJobsResponses];
+
+export type JobPostJobsRequest = {
+    body: JobRequest;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'Company' | 'Title' | 'Description' | 'StartDate' | 'EndDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        status?: 'draft' | 'published';
+    };
+    url: '/jobs';
+};
+
+export type JobPostJobsErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type JobPostJobsError = JobPostJobsErrors[keyof JobPostJobsErrors];
+
+export type JobPostJobsResponses = {
+    /**
+     * OK
+     */
+    200: JobResponse;
+};
+
+export type JobPostJobsResponse = JobPostJobsResponses[keyof JobPostJobsResponses];
+
+export type JobDeleteJobsByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'Company' | 'Title' | 'Description' | 'StartDate' | 'EndDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        status?: 'draft' | 'published';
+    };
+    url: '/jobs/{id}';
+};
+
+export type JobDeleteJobsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type JobDeleteJobsByIdError = JobDeleteJobsByIdErrors[keyof JobDeleteJobsByIdErrors];
+
+export type JobDeleteJobsByIdResponses = {
+    /**
+     * OK
+     */
+    200: number;
+};
+
+export type JobDeleteJobsByIdResponse = JobDeleteJobsByIdResponses[keyof JobDeleteJobsByIdResponses];
+
+export type JobGetJobsByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'Company' | 'Title' | 'Description' | 'StartDate' | 'EndDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        sort?: 'Company' | 'Title' | 'Description' | 'StartDate' | 'EndDate' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'Company' | 'Title' | 'Description' | 'StartDate' | 'EndDate' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        status?: 'draft' | 'published';
+    };
+    url: '/jobs/{id}';
+};
+
+export type JobGetJobsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type JobGetJobsByIdError = JobGetJobsByIdErrors[keyof JobGetJobsByIdErrors];
+
+export type JobGetJobsByIdResponses = {
+    /**
+     * OK
+     */
+    200: JobResponse;
+};
+
+export type JobGetJobsByIdResponse = JobGetJobsByIdResponses[keyof JobGetJobsByIdResponses];
+
+export type JobPutJobsByIdRequest = {
+    body: JobRequest;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'Company' | 'Title' | 'Description' | 'StartDate' | 'EndDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        status?: 'draft' | 'published';
+    };
+    url: '/jobs/{id}';
+};
+
+export type JobPutJobsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type JobPutJobsByIdError = JobPutJobsByIdErrors[keyof JobPutJobsByIdErrors];
+
+export type JobPutJobsByIdResponses = {
+    /**
+     * OK
+     */
+    200: JobResponse;
+};
+
+export type JobPutJobsByIdResponse = JobPutJobsByIdResponses[keyof JobPutJobsByIdResponses];
 
 export type LectureGetLecturesRequest = {
     body?: never;
@@ -8656,53 +9687,95 @@ export type PatchStudentResetPasswordUpdateResponses = {
 
 export type PatchStudentResetPasswordUpdateResponse = PatchStudentResetPasswordUpdateResponses[keyof PatchStudentResetPasswordUpdateResponses];
 
-export type PostStudentSignupRequest = {
-    body: SignupRequest;
+export type StudentAuthPostStudentSignupRequest = {
+    body?: never;
     path?: never;
     query?: never;
     url: '/student/signup';
 };
 
-export type PostStudentSignupResponses = {
+export type StudentAuthPostStudentSignupErrors = {
     /**
-     * OK
+     * Bad request
      */
-    200: JwtResponse;
+    400: unknown;
+    /**
+     * Unauthorized
+     */
+    401: unknown;
+    /**
+     * Forbidden
+     */
+    403: unknown;
+    /**
+     * Not found
+     */
+    404: unknown;
+    /**
+     * Internal server error
+     */
+    500: unknown;
 };
 
-export type PostStudentSignupResponse = PostStudentSignupResponses[keyof PostStudentSignupResponses];
-
-export type PostStudentSendVerificationTokenRequest = {
-    body: StudentVerificationTokenRequest;
+export type StudentAuthPostStudentSendVerificationTokenRequest = {
+    body?: never;
     path?: never;
     query?: never;
     url: '/student/send-verification-token';
 };
 
-export type PostStudentSendVerificationTokenResponses = {
+export type StudentAuthPostStudentSendVerificationTokenErrors = {
     /**
-     * OK
+     * Bad request
      */
-    200: OkResponse;
+    400: unknown;
+    /**
+     * Unauthorized
+     */
+    401: unknown;
+    /**
+     * Forbidden
+     */
+    403: unknown;
+    /**
+     * Not found
+     */
+    404: unknown;
+    /**
+     * Internal server error
+     */
+    500: unknown;
 };
 
-export type PostStudentSendVerificationTokenResponse = PostStudentSendVerificationTokenResponses[keyof PostStudentSendVerificationTokenResponses];
-
-export type PostStudentVerifyEmailRequest = {
-    body: VerifyEmailRequest;
+export type StudentAuthPostStudentVerifyEmailRequest = {
+    body?: never;
     path?: never;
     query?: never;
     url: '/student/verify-email';
 };
 
-export type PostStudentVerifyEmailResponses = {
+export type StudentAuthPostStudentVerifyEmailErrors = {
     /**
-     * OK
+     * Bad request
      */
-    200: JwtResponse;
+    400: unknown;
+    /**
+     * Unauthorized
+     */
+    401: unknown;
+    /**
+     * Forbidden
+     */
+    403: unknown;
+    /**
+     * Not found
+     */
+    404: unknown;
+    /**
+     * Internal server error
+     */
+    500: unknown;
 };
-
-export type PostStudentVerifyEmailResponse = PostStudentVerifyEmailResponses[keyof PostStudentVerifyEmailResponses];
 
 export type UserLogGetUserLogsRequest = {
     body?: never;
@@ -10993,19 +12066,3 @@ export type UsersPermissionsGetPermissionsResponses = {
 };
 
 export type UsersPermissionsGetPermissionsResponse = UsersPermissionsGetPermissionsResponses[keyof UsersPermissionsGetPermissionsResponses];
-
-export type GetCcDashboardActivityRequest = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/CC-dashboard-activity';
-};
-
-export type GetCcDashboardActivityResponses = {
-    /**
-     * OK - Array of dashboard activities
-     */
-    200: Array<DashboardActivity>;
-};
-
-export type GetCcDashboardActivityResponse = GetCcDashboardActivityResponses[keyof GetCcDashboardActivityResponses];

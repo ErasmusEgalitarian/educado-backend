@@ -4,10 +4,9 @@ import { useState, useEffect, useMemo } from "react";
 import { FormProvider, useForm} from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
-
 import { Chevron } from "@/shared/components/icons/chevron";
 import { Card, CardHeader, CardContent } from "@/shared/components/shadcn/card";
-import { postUserSignup, SignupPayload } from "@/unplaced/services/auth.services";
+import { postContentCreatorRegister } from "@/shared/api/sdk.gen";
 
 import {
   MotivationForm,
@@ -19,6 +18,13 @@ import {
 import type { Resolver } from "react-hook-form";
 type SectionKey = "motive" | "education" | "experience";
 type FormData = z.infer<typeof formSchema>;
+
+
+type SignupPayload =
+  Parameters<typeof postContentCreatorRegister>[0] extends { body: infer B }
+    ? B
+    : never;
+
 type InitialSignupData = Pick<
   SignupPayload,
   "firstName" | "lastName" | "email" | "password"
@@ -89,7 +95,7 @@ export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
       company: job.organization,
       title: job.jobTitle,
       startDate: job.jobStartDate,
-      endDate: job.isCurrentJob ? null : job.jobEndDate,
+      endDate: job.isCurrentJob ? "" : job.jobEndDate,
       description: job.description,
     }));
 
@@ -113,10 +119,12 @@ export const Cards = ({ initialData, onFormStateChange }: CardsProps) => {
       educations: educations,
     };
 
-    console.log("jobs payload", payload.jobs);
+    console.log("payload", payload);
 
     try {
-      await postUserSignup(payload);
+      await postContentCreatorRegister({
+          body: payload,
+      });
       console.log("Signup information submitted successfully");
 
       navigate("/login", {

@@ -3,9 +3,10 @@ export default {
         {
             method: 'POST',
             path:'/content-creator/register' ,
-            handler: 'content-creator.register',
+            handler: 'api::content-creator.content-creator.register',
             config: {
                 auth:false,
+                policies: ['global::rate-limit'],
             },
         },
 

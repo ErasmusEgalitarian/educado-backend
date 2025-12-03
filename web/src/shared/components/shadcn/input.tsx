@@ -41,6 +41,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
+
+      const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      onValueChange?.(e.target.value); // call mapped callback if given
+      onChange?.(e); // forward event to RHF or any parent handler
+      };
     const variantStyles = {
       default:
         "border-greyscale-border-default focus-visible:border-primary-surface-default focus-visible:ring-primary-surface-default/20",
