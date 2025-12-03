@@ -31,32 +31,33 @@ export default factories.createCoreController(
 
       return this.transformResponse(result);
     },
+
+    async getAverageCourseFeedback(courseId) {
+      try {
+        const course = await strapi.documents("api::course.course").findFirst({
+          documentId: courseId,
+          populate: ["feedbacks"],
+        });
+        if (!courseId) {
+          throw { error: errorCodes["E0004"] };
+        }
+
+        const feedbacksArray = (course.feedbacks ?? []) as { rating?: number }[];
+
+        const averageCourseRating =
+          feedbacksArray.length > 0
+            ? feedbacksArray.reduce((accumulator, currentValue) => accumulator + (currentValue.rating ?? 0), 0) / feedbacksArray.length
+            : 0;
+
+        return {
+          total: Number(averageCourseRating.toFixed(1)),
+        };
+
+      } catch (err) {
+        throw { error: errorCodes['E0001'] }
+      }
+    }
   })
 );
 
 
-export async function getAverageCourseFeedback(courseId) {
-  try {
-    const course = await strapi.documents ("api::course.course").findFirst({
-      documentId: courseId,
-      populate:  ["feedbacks"],
-      });
-  if (!courseId) {
-    throw { error: errorCodes["E0004"] };
-  }
-
-  const feedbacksArray = (course.feedbacks ?? []) as {rating?: number } [];
-
-  const averageCourseRating =
-    feedbacksArray.length > 0
-      ? feedbacksArray.reduce((accumulator, currentValue) => accumulator + (currentValue.rating ?? 0), 0) / feedbacksArray.length
-      : 0; 
-    
-    return {
-      total: Number(averageCourseRating.toFixed(1)), 
-    };
-
-  } catch (err) {
-    throw { error: errorCodes['E0001'] }
-  }
-}
