@@ -32,12 +32,14 @@ export default factories.createCoreController(
       return this.transformResponse(result);
     },
 
-    async getAverageCourseFeedback(courseId) {
+    async getAverageCourseFeedback(ctx) {
+      const courseId = ctx.params.courseId;
       try {
-        const course = await strapi.documents("api::course.course").findFirst({
+        const course = await strapi.documents("api::course.course").findOne({
           documentId: courseId,
           populate: ["feedbacks"],
         });
+
         if (!courseId) {
           throw { error: errorCodes["E0004"] };
         }
