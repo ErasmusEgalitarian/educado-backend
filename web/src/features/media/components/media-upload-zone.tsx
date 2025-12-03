@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { mdiChevronDown, mdiClose } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -17,7 +17,7 @@ import { cn } from "@/shared/lib/utils";
 import type { AppError } from "@/shared/types/app-error";
 
 import {
-  uploadFormSchema,
+  createUploadFormSchema,
   type UploadFormValues,
   type UploadFileItem,
 } from "../lib/media-schemas";

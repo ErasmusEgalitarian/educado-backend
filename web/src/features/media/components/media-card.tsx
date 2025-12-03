@@ -7,10 +7,9 @@ import {
   mdiWeight,
 } from "@mdi/js";
 import Icon from "@mdi/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { z } from "zod";
 
 import { type UploadFile } from "@/shared/api/types.gen";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
@@ -39,7 +38,10 @@ import {
   useDeleteFileMutation,
   useUpdateFileMetadataMutation,
 } from "../api/media-mutations";
-import { filenameSchema, MEDIA_METADATA_LIMITS } from "../lib/media-schemas";
+import {
+  createMediaAssetFormSchema,
+  type MediaAssetFormValues,
+} from "../lib/media-schemas";
 import {
   formatBytes,
   formatDate,
@@ -56,28 +58,7 @@ import {
 import { MediaAssetPreview } from "./media-asset-preview";
 import { MediaMetadataForm } from "./media-metadata-form";
 
-// Schema for the editable fields only - aligned with MediaMetadataForm
-const mediaAssetFormSchema = z.object({
-  filename: filenameSchema,
-  alt: z
-    .string()
-    .max(
-      MEDIA_METADATA_LIMITS.alt,
-      `Alt text must be less than ${String(MEDIA_METADATA_LIMITS.alt)} characters`
-    )
-    .optional(),
-  caption: z
-    .string()
-    .max(
-      MEDIA_METADATA_LIMITS.caption,
-      `Caption must be less than ${String(MEDIA_METADATA_LIMITS.caption)} characters`
-    )
-    .optional(),
-});
-
-type MediaFormValues = z.infer<typeof mediaAssetFormSchema>;
-
-const assetToFormValues = (asset: UploadFile | null): MediaFormValues => {
+const assetToFormValues = (asset: UploadFile | null): MediaAssetFormValues => {
   const { name: nameWithoutExt } = splitFilename(asset?.name ?? "");
   return {
     filename: nameWithoutExt,
@@ -153,7 +134,12 @@ const MediaCardExtended = ({
   const deleteMutation = useDeleteFileMutation();
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
-  const form = useForm<MediaFormValues>({
+  const mediaAssetFormSchema = useMemo(
+    () => createMediaAssetFormSchema(t),
+    [t]
+  );
+
+  const form = useForm<MediaAssetFormValues>({
     resolver: zodResolver(mediaAssetFormSchema),
     defaultValues: assetToFormValues(asset),
     mode: "onChange", // Validate on every change to clear errors immediately
@@ -191,7 +177,7 @@ const MediaCardExtended = ({
     }
   };
 
-  const onSubmit = (data: MediaFormValues) => {
+  const onSubmit = (data: MediaAssetFormValues) => {
     if (!asset.id || !asset.name) return;
 
     // Reconstruct the full filename with the original extension
