@@ -55,7 +55,6 @@ export default {
         certificates: await getCertificatesStats(filteredCourses),
         evaluation: getContentCreatorFeedback(filteredCourses) 
       };
-      console.log(ctx.response.body);
     } catch (err) {
       ctx.status = 500;
       ctx.body = err;
