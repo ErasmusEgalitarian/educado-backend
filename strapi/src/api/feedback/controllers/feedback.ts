@@ -3,6 +3,8 @@
  */
 
 import { factories } from '@strapi/strapi';
+import { errorCodes } from "../../../helpers/errorCodes";
+
 
 export default factories.createCoreController(
   'api::feedback.feedback',
@@ -31,3 +33,30 @@ export default factories.createCoreController(
     },
   })
 );
+
+
+export async function getAverageCourseFeedback(courseId) {
+  try {
+    const course = await strapi.documents ("api::course.course").findFirst({
+      documentId: courseId,
+      populate:  ["feedbacks"],
+      });
+  if (!courseId) {
+    throw { error: errorCodes["E0004"] };
+  }
+
+  const feedbacksArray = (course.feedbacks ?? []) as {rating?: number } [];
+
+  const averageCourseRating =
+    feedbacksArray.length > 0
+      ? feedbacksArray.reduce((accumulator, currentValue) => accumulator + (currentValue.rating ?? 0), 0) / feedbacksArray.length
+      : 0; 
+    
+    return {
+      total: Number(averageCourseRating.toFixed(1)), 
+    };
+
+  } catch (err) {
+    throw { error: errorCodes['E0001'] }
+  }
+}
