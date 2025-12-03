@@ -10327,9 +10327,9 @@
                               "statusValue": {
                                 "type": "string",
                                 "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
+                                  "PENDING",
+                                  "APPROVED",
+                                  "REJECTED"
                                 ]
                               },
                               "courseExperience": {
@@ -11274,9 +11274,9 @@
               "statusValue": {
                 "type": "string",
                 "enum": [
-                  "TODO1",
-                  "TODO2",
-                  "TODO3"
+                  "PENDING",
+                  "APPROVED",
+                  "REJECTED"
                 ]
               },
               "courseExperience": {
@@ -11462,9 +11462,9 @@
           "statusValue": {
             "type": "string",
             "enum": [
-              "TODO1",
-              "TODO2",
-              "TODO3"
+              "PENDING",
+              "APPROVED",
+              "REJECTED"
             ]
           },
           "courseExperience": {
@@ -19176,9 +19176,9 @@
                       "statusValue": {
                         "type": "string",
                         "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
+                          "PENDING",
+                          "APPROVED",
+                          "REJECTED"
                         ]
                       },
                       "courseExperience": {
@@ -20955,9 +20955,9 @@
                     "statusValue": {
                       "type": "string",
                       "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
+                        "PENDING",
+                        "APPROVED",
+                        "REJECTED"
                       ]
                     },
                     "courseExperience": {
@@ -21411,9 +21411,9 @@
               "statusValue": {
                 "type": "string",
                 "enum": [
-                  "TODO1",
-                  "TODO2",
-                  "TODO3"
+                  "PENDING",
+                  "APPROVED",
+                  "REJECTED"
                 ]
               },
               "courseExperience": {
@@ -26014,9 +26014,9 @@
                     "statusValue": {
                       "type": "string",
                       "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
+                        "PENDING",
+                        "APPROVED",
+                        "REJECTED"
                       ]
                     },
                     "courseExperience": {
@@ -30413,9 +30413,9 @@
                               "statusValue": {
                                 "type": "string",
                                 "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
+                                  "PENDING",
+                                  "APPROVED",
+                                  "REJECTED"
                                 ]
                               },
                               "courseExperience": {
