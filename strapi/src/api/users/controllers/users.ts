@@ -56,7 +56,9 @@ const usersController = {
         try {
             await strapi
                 .documents("api::content-creator.content-creator")
-                .delete(id);
+                .delete({
+                    documentId: id,
+                });
 
             ctx.body = { ok: true };
         } catch (err) {
@@ -79,7 +81,8 @@ const usersController = {
         try {
             const updated = (await strapi
                 .documents("api::content-creator.content-creator")
-                .update(id, {
+                .update({
+                    documentId: id,
                     data: { isAdmin },
                 })) as ContentCreatorDoc;
 

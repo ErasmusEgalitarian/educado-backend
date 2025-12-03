@@ -53,10 +53,11 @@
     "statusValue": {
       "type": "enumeration",
       "required": true,
+      "default": "PENDING",
       "enum": [
-        "TODO1",
-        "TODO2",
-        "TODO3"
+        "PENDING",
+        "APPROVED",
+        "REJECTED"
       ]
     },
     "courseExperience": {
