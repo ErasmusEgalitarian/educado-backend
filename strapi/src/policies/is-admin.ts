@@ -40,7 +40,7 @@ export default async (
             policy: "is-admin",
         });
     }
-    
+
     if (user.verifiedAt == null) {
         throw new PolicyError("User not verified", {
             policy: "is-admin",
