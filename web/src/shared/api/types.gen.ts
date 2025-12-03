@@ -469,6 +469,49 @@ export type Certificate = {
                             documentId?: string;
                         }>;
                     }>;
+                    profilePicture?: {
+                        id?: number;
+                        documentId?: string;
+                        name?: string;
+                        alternativeText?: string;
+                        caption?: string;
+                        width?: number;
+                        height?: number;
+                        formats?: unknown;
+                        hash?: string;
+                        ext?: string;
+                        mime?: string;
+                        size?: number;
+                        url?: string;
+                        previewUrl?: string;
+                        provider?: string;
+                        provider_metadata?: unknown;
+                        related?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                        folder?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        folderPath?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    };
                     createdAt?: string;
                     updatedAt?: string;
                     publishedAt?: string;
@@ -669,7 +712,7 @@ export type ContentCreatorRequest = {
         verifiedAt?: string;
         biography?: string;
         email: string;
-        password: string;
+        password?: string;
         education: 'TODO1' | 'TODO2' | 'TODO3';
         statusValue: 'TODO1' | 'TODO2' | 'TODO3';
         courseExperience: string;
@@ -684,6 +727,7 @@ export type ContentCreatorRequest = {
         courses?: Array<number | string>;
         user_logs?: Array<number | string>;
         dashboard_activities?: Array<number | string>;
+        profilePicture?: number | string;
         locale?: string;
         localizations?: Array<number | string>;
     };
@@ -1217,6 +1261,49 @@ export type ContentCreator = {
                     documentId?: string;
                 }>;
             }>;
+            profilePicture?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                alternativeText?: string;
+                caption?: string;
+                width?: number;
+                height?: number;
+                formats?: unknown;
+                hash?: string;
+                ext?: string;
+                mime?: string;
+                size?: number;
+                url?: string;
+                previewUrl?: string;
+                provider?: string;
+                provider_metadata?: unknown;
+                related?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                folder?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                folderPath?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -1259,6 +1346,49 @@ export type ContentCreator = {
         id?: number;
         documentId?: string;
     }>;
+    profilePicture?: {
+        id?: number;
+        documentId?: string;
+        name?: string;
+        alternativeText?: string;
+        caption?: string;
+        width?: number;
+        height?: number;
+        formats?: unknown;
+        hash?: string;
+        ext?: string;
+        mime?: string;
+        size?: number;
+        url?: string;
+        previewUrl?: string;
+        provider?: string;
+        provider_metadata?: unknown;
+        related?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        folder?: {
+            id?: number;
+            documentId?: string;
+        };
+        folderPath?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
     createdAt?: string;
     updatedAt?: string;
     publishedAt?: string;
@@ -1843,6 +1973,49 @@ export type Course = {
                         documentId?: string;
                     }>;
                 }>;
+                profilePicture?: {
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    alternativeText?: string;
+                    caption?: string;
+                    width?: number;
+                    height?: number;
+                    formats?: unknown;
+                    hash?: string;
+                    ext?: string;
+                    mime?: string;
+                    size?: number;
+                    url?: string;
+                    previewUrl?: string;
+                    provider?: string;
+                    provider_metadata?: unknown;
+                    related?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    folder?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    folderPath?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                };
                 createdAt?: string;
                 updatedAt?: string;
                 publishedAt?: string;
@@ -2461,6 +2634,49 @@ export type CourseCategory = {
                     documentId?: string;
                 }>;
             }>;
+            profilePicture?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                alternativeText?: string;
+                caption?: string;
+                width?: number;
+                height?: number;
+                formats?: unknown;
+                hash?: string;
+                ext?: string;
+                mime?: string;
+                size?: number;
+                url?: string;
+                previewUrl?: string;
+                provider?: string;
+                provider_metadata?: unknown;
+                related?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                folder?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                folderPath?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -2984,6 +3200,49 @@ export type CourseSelection = {
                     documentId?: string;
                 }>;
             }>;
+            profilePicture?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                alternativeText?: string;
+                caption?: string;
+                width?: number;
+                height?: number;
+                formats?: unknown;
+                hash?: string;
+                ext?: string;
+                mime?: string;
+                size?: number;
+                url?: string;
+                previewUrl?: string;
+                provider?: string;
+                provider_metadata?: unknown;
+                related?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                folder?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                folderPath?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -3969,6 +4228,49 @@ export type Feedback = {
                     documentId?: string;
                 }>;
             }>;
+            profilePicture?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                alternativeText?: string;
+                caption?: string;
+                width?: number;
+                height?: number;
+                formats?: unknown;
+                hash?: string;
+                ext?: string;
+                mime?: string;
+                size?: number;
+                url?: string;
+                previewUrl?: string;
+                provider?: string;
+                provider_metadata?: unknown;
+                related?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                folder?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                folderPath?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -4768,6 +5070,49 @@ export type Student = {
                         documentId?: string;
                     }>;
                 }>;
+                profilePicture?: {
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    alternativeText?: string;
+                    caption?: string;
+                    width?: number;
+                    height?: number;
+                    formats?: unknown;
+                    hash?: string;
+                    ext?: string;
+                    mime?: string;
+                    size?: number;
+                    url?: string;
+                    previewUrl?: string;
+                    provider?: string;
+                    provider_metadata?: unknown;
+                    related?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    folder?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    folderPath?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                };
                 createdAt?: string;
                 updatedAt?: string;
                 publishedAt?: string;
@@ -5308,6 +5653,49 @@ export type UserLog = {
                             documentId?: string;
                         }>;
                     }>;
+                    profilePicture?: {
+                        id?: number;
+                        documentId?: string;
+                        name?: string;
+                        alternativeText?: string;
+                        caption?: string;
+                        width?: number;
+                        height?: number;
+                        formats?: unknown;
+                        hash?: string;
+                        ext?: string;
+                        mime?: string;
+                        size?: number;
+                        url?: string;
+                        previewUrl?: string;
+                        provider?: string;
+                        provider_metadata?: unknown;
+                        related?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                        folder?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        folderPath?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    };
                     createdAt?: string;
                     updatedAt?: string;
                     publishedAt?: string;
@@ -6004,7 +6392,7 @@ export type ContentCreatorGetContentCreatorsRequest = {
         } | Array<{
             [key: string]: 'asc' | 'desc';
         }>;
-        populate?: '*' | 'courses' | 'user_logs' | Array<'courses' | 'user_logs'>;
+        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | 'profilePicture' | Array<'courses' | 'user_logs' | 'dashboard_activities' | 'profilePicture'>;
         status?: 'draft' | 'published';
     };
     url: '/content-creators';
@@ -6049,7 +6437,7 @@ export type ContentCreatorPostContentCreatorsRequest = {
     path?: never;
     query?: {
         readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'courses' | 'user_logs' | Array<'courses' | 'user_logs'>;
+        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | 'profilePicture' | Array<'courses' | 'user_logs' | 'dashboard_activities' | 'profilePicture'>;
         status?: 'draft' | 'published';
     };
     url: '/content-creators';
@@ -6096,7 +6484,7 @@ export type ContentCreatorDeleteContentCreatorsByIdRequest = {
     };
     query?: {
         readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'courses' | 'user_logs' | Array<'courses' | 'user_logs'>;
+        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | 'profilePicture' | Array<'courses' | 'user_logs' | 'dashboard_activities' | 'profilePicture'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -6146,7 +6534,7 @@ export type ContentCreatorGetContentCreatorsByIdRequest = {
     };
     query?: {
         readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'courses' | 'user_logs' | Array<'courses' | 'user_logs'>;
+        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | 'profilePicture' | Array<'courses' | 'user_logs' | 'dashboard_activities' | 'profilePicture'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -6201,7 +6589,7 @@ export type ContentCreatorPutContentCreatorsByIdRequest = {
     };
     query?: {
         readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'courses' | 'user_logs' | Array<'courses' | 'user_logs'>;
+        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | 'profilePicture' | Array<'courses' | 'user_logs' | 'dashboard_activities' | 'profilePicture'>;
         status?: 'draft' | 'published';
     };
     url: '/content-creators/{id}';
@@ -7036,6 +7424,277 @@ export type CourseSelectionPutCourseSelectionsByIdResponses = {
 };
 
 export type CourseSelectionPutCourseSelectionsByIdResponse = CourseSelectionPutCourseSelectionsByIdResponses[keyof CourseSelectionPutCourseSelectionsByIdResponses];
+
+export type GetCcDashboardActivityRequest = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/CC-dashboard-activity';
+};
+
+export type GetCcDashboardActivityResponses = {
+    /**
+     * OK - Array of dashboard activities
+     */
+    200: Array<DashboardActivity>;
+};
+
+export type GetCcDashboardActivityResponse = GetCcDashboardActivityResponses[keyof GetCcDashboardActivityResponses];
+
+export type DashboardActivityGetDashboardActivitiesRequest = {
+    body?: never;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        _q?: string;
+        pagination?: {
+            withCount?: boolean;
+        } & ({
+            page: number;
+            pageSize: number;
+        } | {
+            start: number;
+            limit: number;
+        });
+        sort?: 'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        populate?: '*' | 'content_creator' | Array<'content_creator'>;
+    };
+    url: '/dashboard-activities';
+};
+
+export type DashboardActivityGetDashboardActivitiesErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type DashboardActivityGetDashboardActivitiesError = DashboardActivityGetDashboardActivitiesErrors[keyof DashboardActivityGetDashboardActivitiesErrors];
+
+export type DashboardActivityGetDashboardActivitiesResponses = {
+    /**
+     * OK
+     */
+    200: DashboardActivityListResponse;
+};
+
+export type DashboardActivityGetDashboardActivitiesResponse = DashboardActivityGetDashboardActivitiesResponses[keyof DashboardActivityGetDashboardActivitiesResponses];
+
+export type DashboardActivityPostDashboardActivitiesRequest = {
+    body: DashboardActivityRequest;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'content_creator' | Array<'content_creator'>;
+    };
+    url: '/dashboard-activities';
+};
+
+export type DashboardActivityPostDashboardActivitiesErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type DashboardActivityPostDashboardActivitiesError = DashboardActivityPostDashboardActivitiesErrors[keyof DashboardActivityPostDashboardActivitiesErrors];
+
+export type DashboardActivityPostDashboardActivitiesResponses = {
+    /**
+     * OK
+     */
+    200: DashboardActivityResponse;
+};
+
+export type DashboardActivityPostDashboardActivitiesResponse = DashboardActivityPostDashboardActivitiesResponses[keyof DashboardActivityPostDashboardActivitiesResponses];
+
+export type DashboardActivityDeleteDashboardActivitiesByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'content_creator' | Array<'content_creator'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+    };
+    url: '/dashboard-activities/{id}';
+};
+
+export type DashboardActivityDeleteDashboardActivitiesByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type DashboardActivityDeleteDashboardActivitiesByIdError = DashboardActivityDeleteDashboardActivitiesByIdErrors[keyof DashboardActivityDeleteDashboardActivitiesByIdErrors];
+
+export type DashboardActivityDeleteDashboardActivitiesByIdResponses = {
+    /**
+     * OK
+     */
+    200: number;
+};
+
+export type DashboardActivityDeleteDashboardActivitiesByIdResponse = DashboardActivityDeleteDashboardActivitiesByIdResponses[keyof DashboardActivityDeleteDashboardActivitiesByIdResponses];
+
+export type DashboardActivityGetDashboardActivitiesByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'content_creator' | Array<'content_creator'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        sort?: 'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+    };
+    url: '/dashboard-activities/{id}';
+};
+
+export type DashboardActivityGetDashboardActivitiesByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type DashboardActivityGetDashboardActivitiesByIdError = DashboardActivityGetDashboardActivitiesByIdErrors[keyof DashboardActivityGetDashboardActivitiesByIdErrors];
+
+export type DashboardActivityGetDashboardActivitiesByIdResponses = {
+    /**
+     * OK
+     */
+    200: DashboardActivityResponse;
+};
+
+export type DashboardActivityGetDashboardActivitiesByIdResponse = DashboardActivityGetDashboardActivitiesByIdResponses[keyof DashboardActivityGetDashboardActivitiesByIdResponses];
+
+export type DashboardActivityPutDashboardActivitiesByIdRequest = {
+    body: DashboardActivityRequest;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'content_creator' | Array<'content_creator'>;
+    };
+    url: '/dashboard-activities/{id}';
+};
+
+export type DashboardActivityPutDashboardActivitiesByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type DashboardActivityPutDashboardActivitiesByIdError = DashboardActivityPutDashboardActivitiesByIdErrors[keyof DashboardActivityPutDashboardActivitiesByIdErrors];
+
+export type DashboardActivityPutDashboardActivitiesByIdResponses = {
+    /**
+     * OK
+     */
+    200: DashboardActivityResponse;
+};
+
+export type DashboardActivityPutDashboardActivitiesByIdResponse = DashboardActivityPutDashboardActivitiesByIdResponses[keyof DashboardActivityPutDashboardActivitiesByIdResponses];
 
 export type ExerciseGetExercisesRequest = {
     body?: never;
@@ -10993,19 +11652,3 @@ export type UsersPermissionsGetPermissionsResponses = {
 };
 
 export type UsersPermissionsGetPermissionsResponse = UsersPermissionsGetPermissionsResponses[keyof UsersPermissionsGetPermissionsResponses];
-
-export type GetCcDashboardActivityRequest = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/CC-dashboard-activity';
-};
-
-export type GetCcDashboardActivityResponses = {
-    /**
-     * OK - Array of dashboard activities
-     */
-    200: Array<DashboardActivity>;
-};
-
-export type GetCcDashboardActivityResponse = GetCcDashboardActivityResponses[keyof GetCcDashboardActivityResponses];

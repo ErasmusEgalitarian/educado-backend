@@ -530,6 +530,49 @@ export const zCertificate = z.object({
                             documentId: z.string().optional()
                         })).optional()
                     })).optional(),
+                    profilePicture: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional(),
+                        name: z.string().optional(),
+                        alternativeText: z.string().optional(),
+                        caption: z.string().optional(),
+                        width: z.number().int().optional(),
+                        height: z.number().int().optional(),
+                        formats: z.unknown().optional(),
+                        hash: z.string().optional(),
+                        ext: z.string().optional(),
+                        mime: z.string().optional(),
+                        size: z.number().optional(),
+                        url: z.string().optional(),
+                        previewUrl: z.string().optional(),
+                        provider: z.string().optional(),
+                        provider_metadata: z.unknown().optional(),
+                        related: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional(),
+                        folder: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        folderPath: z.string().optional(),
+                        createdAt: z.string().datetime().optional(),
+                        updatedAt: z.string().datetime().optional(),
+                        publishedAt: z.string().datetime().optional(),
+                        createdBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        updatedBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        locale: z.string().optional(),
+                        localizations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional()
+                    }).optional(),
                     createdAt: z.string().datetime().optional(),
                     updatedAt: z.string().datetime().optional(),
                     publishedAt: z.string().datetime().optional(),
@@ -686,7 +729,7 @@ export const zContentCreatorRequest = z.object({
         verifiedAt: z.string().date().optional(),
         biography: z.string().optional(),
         email: z.string().email(),
-        password: z.string(),
+        password: z.string().optional(),
         education: z.enum([
             'TODO1',
             'TODO2',
@@ -718,6 +761,10 @@ export const zContentCreatorRequest = z.object({
             z.number().int(),
             z.string()
         ])).optional(),
+        profilePicture: z.union([
+            z.number().int(),
+            z.string()
+        ]).optional(),
         locale: z.string().optional(),
         localizations: z.array(z.union([
             z.number().int(),
@@ -1261,6 +1308,49 @@ export const zContentCreator = z.object({
                     documentId: z.string().optional()
                 })).optional()
             })).optional(),
+            profilePicture: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                name: z.string().optional(),
+                alternativeText: z.string().optional(),
+                caption: z.string().optional(),
+                width: z.number().int().optional(),
+                height: z.number().int().optional(),
+                formats: z.unknown().optional(),
+                hash: z.string().optional(),
+                ext: z.string().optional(),
+                mime: z.string().optional(),
+                size: z.number().optional(),
+                url: z.string().optional(),
+                previewUrl: z.string().optional(),
+                provider: z.string().optional(),
+                provider_metadata: z.unknown().optional(),
+                related: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional(),
+                folder: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                folderPath: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            }).optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -1303,6 +1393,49 @@ export const zContentCreator = z.object({
         id: z.number().optional(),
         documentId: z.string().optional()
     })).optional(),
+    profilePicture: z.object({
+        id: z.number().optional(),
+        documentId: z.string().optional(),
+        name: z.string().optional(),
+        alternativeText: z.string().optional(),
+        caption: z.string().optional(),
+        width: z.number().int().optional(),
+        height: z.number().int().optional(),
+        formats: z.unknown().optional(),
+        hash: z.string().optional(),
+        ext: z.string().optional(),
+        mime: z.string().optional(),
+        size: z.number().optional(),
+        url: z.string().optional(),
+        previewUrl: z.string().optional(),
+        provider: z.string().optional(),
+        provider_metadata: z.unknown().optional(),
+        related: z.array(z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        })).optional(),
+        folder: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        folderPath: z.string().optional(),
+        createdAt: z.string().datetime().optional(),
+        updatedAt: z.string().datetime().optional(),
+        publishedAt: z.string().datetime().optional(),
+        createdBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        updatedBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        locale: z.string().optional(),
+        localizations: z.array(z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        })).optional()
+    }).optional(),
     createdAt: z.string().datetime().optional(),
     updatedAt: z.string().datetime().optional(),
     publishedAt: z.string().datetime().optional(),
@@ -1917,6 +2050,49 @@ export const zCourse = z.object({
                         documentId: z.string().optional()
                     })).optional()
                 })).optional(),
+                profilePicture: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    name: z.string().optional(),
+                    alternativeText: z.string().optional(),
+                    caption: z.string().optional(),
+                    width: z.number().int().optional(),
+                    height: z.number().int().optional(),
+                    formats: z.unknown().optional(),
+                    hash: z.string().optional(),
+                    ext: z.string().optional(),
+                    mime: z.string().optional(),
+                    size: z.number().optional(),
+                    url: z.string().optional(),
+                    previewUrl: z.string().optional(),
+                    provider: z.string().optional(),
+                    provider_metadata: z.unknown().optional(),
+                    related: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional(),
+                    folder: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    folderPath: z.string().optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
+                }).optional(),
                 createdAt: z.string().datetime().optional(),
                 updatedAt: z.string().datetime().optional(),
                 publishedAt: z.string().datetime().optional(),
@@ -2550,6 +2726,49 @@ export const zCourseCategory = z.object({
                     documentId: z.string().optional()
                 })).optional()
             })).optional(),
+            profilePicture: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                name: z.string().optional(),
+                alternativeText: z.string().optional(),
+                caption: z.string().optional(),
+                width: z.number().int().optional(),
+                height: z.number().int().optional(),
+                formats: z.unknown().optional(),
+                hash: z.string().optional(),
+                ext: z.string().optional(),
+                mime: z.string().optional(),
+                size: z.number().optional(),
+                url: z.string().optional(),
+                previewUrl: z.string().optional(),
+                provider: z.string().optional(),
+                provider_metadata: z.unknown().optional(),
+                related: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional(),
+                folder: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                folderPath: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            }).optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -3094,6 +3313,49 @@ export const zCourseSelection = z.object({
                     documentId: z.string().optional()
                 })).optional()
             })).optional(),
+            profilePicture: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                name: z.string().optional(),
+                alternativeText: z.string().optional(),
+                caption: z.string().optional(),
+                width: z.number().int().optional(),
+                height: z.number().int().optional(),
+                formats: z.unknown().optional(),
+                hash: z.string().optional(),
+                ext: z.string().optional(),
+                mime: z.string().optional(),
+                size: z.number().optional(),
+                url: z.string().optional(),
+                previewUrl: z.string().optional(),
+                provider: z.string().optional(),
+                provider_metadata: z.unknown().optional(),
+                related: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional(),
+                folder: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                folderPath: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            }).optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -4109,6 +4371,49 @@ export const zFeedback = z.object({
                     documentId: z.string().optional()
                 })).optional()
             })).optional(),
+            profilePicture: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                name: z.string().optional(),
+                alternativeText: z.string().optional(),
+                caption: z.string().optional(),
+                width: z.number().int().optional(),
+                height: z.number().int().optional(),
+                formats: z.unknown().optional(),
+                hash: z.string().optional(),
+                ext: z.string().optional(),
+                mime: z.string().optional(),
+                size: z.number().optional(),
+                url: z.string().optional(),
+                previewUrl: z.string().optional(),
+                provider: z.string().optional(),
+                provider_metadata: z.unknown().optional(),
+                related: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional(),
+                folder: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                folderPath: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            }).optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -4943,6 +5248,49 @@ export const zStudent = z.object({
                         documentId: z.string().optional()
                     })).optional()
                 })).optional(),
+                profilePicture: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    name: z.string().optional(),
+                    alternativeText: z.string().optional(),
+                    caption: z.string().optional(),
+                    width: z.number().int().optional(),
+                    height: z.number().int().optional(),
+                    formats: z.unknown().optional(),
+                    hash: z.string().optional(),
+                    ext: z.string().optional(),
+                    mime: z.string().optional(),
+                    size: z.number().optional(),
+                    url: z.string().optional(),
+                    previewUrl: z.string().optional(),
+                    provider: z.string().optional(),
+                    provider_metadata: z.unknown().optional(),
+                    related: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional(),
+                    folder: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    folderPath: z.string().optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
+                }).optional(),
                 createdAt: z.string().datetime().optional(),
                 updatedAt: z.string().datetime().optional(),
                 publishedAt: z.string().datetime().optional(),
@@ -5498,6 +5846,49 @@ export const zUserLog = z.object({
                             documentId: z.string().optional()
                         })).optional()
                     })).optional(),
+                    profilePicture: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional(),
+                        name: z.string().optional(),
+                        alternativeText: z.string().optional(),
+                        caption: z.string().optional(),
+                        width: z.number().int().optional(),
+                        height: z.number().int().optional(),
+                        formats: z.unknown().optional(),
+                        hash: z.string().optional(),
+                        ext: z.string().optional(),
+                        mime: z.string().optional(),
+                        size: z.number().optional(),
+                        url: z.string().optional(),
+                        previewUrl: z.string().optional(),
+                        provider: z.string().optional(),
+                        provider_metadata: z.unknown().optional(),
+                        related: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional(),
+                        folder: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        folderPath: z.string().optional(),
+                        createdAt: z.string().datetime().optional(),
+                        updatedAt: z.string().datetime().optional(),
+                        publishedAt: z.string().datetime().optional(),
+                        createdBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        updatedBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        locale: z.string().optional(),
+                        localizations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional()
+                    }).optional(),
                     createdAt: z.string().datetime().optional(),
                     updatedAt: z.string().datetime().optional(),
                     publishedAt: z.string().datetime().optional(),
@@ -6249,11 +6640,15 @@ export const zContentCreatorGetContentCreatorsRequest = z.object({
             z.literal('*').readonly(),
             z.enum([
                 'courses',
-                'user_logs'
+                'user_logs',
+                'dashboard_activities',
+                'profilePicture'
             ]),
             z.array(z.enum([
                 'courses',
-                'user_logs'
+                'user_logs',
+                'dashboard_activities',
+                'profilePicture'
             ]))
         ]).optional(),
         status: z.enum([
@@ -6298,11 +6693,15 @@ export const zContentCreatorPostContentCreatorsRequest = z.object({
             z.literal('*').readonly(),
             z.enum([
                 'courses',
-                'user_logs'
+                'user_logs',
+                'dashboard_activities',
+                'profilePicture'
             ]),
             z.array(z.enum([
                 'courses',
-                'user_logs'
+                'user_logs',
+                'dashboard_activities',
+                'profilePicture'
             ]))
         ]).optional(),
         status: z.enum([
@@ -6349,11 +6748,15 @@ export const zContentCreatorDeleteContentCreatorsByIdRequest = z.object({
             z.literal('*').readonly(),
             z.enum([
                 'courses',
-                'user_logs'
+                'user_logs',
+                'dashboard_activities',
+                'profilePicture'
             ]),
             z.array(z.enum([
                 'courses',
-                'user_logs'
+                'user_logs',
+                'dashboard_activities',
+                'profilePicture'
             ]))
         ]).optional(),
         filters: z.record(z.unknown()).optional(),
@@ -6401,11 +6804,15 @@ export const zContentCreatorGetContentCreatorsByIdRequest = z.object({
             z.literal('*').readonly(),
             z.enum([
                 'courses',
-                'user_logs'
+                'user_logs',
+                'dashboard_activities',
+                'profilePicture'
             ]),
             z.array(z.enum([
                 'courses',
-                'user_logs'
+                'user_logs',
+                'dashboard_activities',
+                'profilePicture'
             ]))
         ]).optional(),
         filters: z.record(z.unknown()).optional(),
@@ -6507,11 +6914,15 @@ export const zContentCreatorPutContentCreatorsByIdRequest = z.object({
             z.literal('*').readonly(),
             z.enum([
                 'courses',
-                'user_logs'
+                'user_logs',
+                'dashboard_activities',
+                'profilePicture'
             ]),
             z.array(z.enum([
                 'courses',
-                'user_logs'
+                'user_logs',
+                'dashboard_activities',
+                'profilePicture'
             ]))
         ]).optional(),
         status: z.enum([
@@ -7323,6 +7734,218 @@ export const zCourseSelectionPutCourseSelectionsByIdRequest = z.object({
  * OK
  */
 export const zCourseSelectionPutCourseSelectionsByIdResponse = zCourseSelectionResponse;
+
+export const zGetCcDashboardActivityRequest = z.object({
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional()
+});
+
+/**
+ * OK - Array of dashboard activities
+ */
+export const zGetCcDashboardActivityResponse = z.array(zDashboardActivity);
+
+export const zDashboardActivityGetDashboardActivitiesRequest = z.object({
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.object({
+        fields: z.array(z.enum([
+            'activityDesc',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        filters: z.record(z.unknown()).optional(),
+        _q: z.string().optional(),
+        pagination: z.object({
+            withCount: z.boolean().optional()
+        }).and(z.union([
+            z.object({
+                page: z.number().int().gt(0).lte(9007199254740991),
+                pageSize: z.number().int().gt(0).lte(9007199254740991)
+            }),
+            z.object({
+                start: z.number().int().gte(0).lte(9007199254740991),
+                limit: z.number().int().gt(0).lte(9007199254740991)
+            })
+        ])).optional(),
+        sort: z.union([
+            z.enum([
+                'activityDesc',
+                'createdAt',
+                'updatedAt',
+                'publishedAt'
+            ]),
+            z.array(z.enum([
+                'activityDesc',
+                'createdAt',
+                'updatedAt',
+                'publishedAt'
+            ])),
+            z.record(z.enum([
+                'asc',
+                'desc'
+            ])),
+            z.array(z.record(z.enum([
+                'asc',
+                'desc'
+            ])))
+        ]).optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.enum([
+                'content_creator'
+            ]),
+            z.array(z.enum([
+                'content_creator'
+            ]))
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zDashboardActivityGetDashboardActivitiesResponse = zDashboardActivityListResponse;
+
+export const zDashboardActivityPostDashboardActivitiesRequest = z.object({
+    body: zDashboardActivityRequest,
+    path: z.never().optional(),
+    query: z.object({
+        fields: z.array(z.enum([
+            'activityDesc',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.enum([
+                'content_creator'
+            ]),
+            z.array(z.enum([
+                'content_creator'
+            ]))
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zDashboardActivityPostDashboardActivitiesResponse = zDashboardActivityResponse;
+
+export const zDashboardActivityDeleteDashboardActivitiesByIdRequest = z.object({
+    body: z.never().optional(),
+    path: z.object({
+        id: z.string()
+    }),
+    query: z.object({
+        fields: z.array(z.enum([
+            'activityDesc',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.enum([
+                'content_creator'
+            ]),
+            z.array(z.enum([
+                'content_creator'
+            ]))
+        ]).optional(),
+        filters: z.record(z.unknown()).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zDashboardActivityDeleteDashboardActivitiesByIdResponse = z.coerce.bigint();
+
+export const zDashboardActivityGetDashboardActivitiesByIdRequest = z.object({
+    body: z.never().optional(),
+    path: z.object({
+        id: z.string()
+    }),
+    query: z.object({
+        fields: z.array(z.enum([
+            'activityDesc',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.enum([
+                'content_creator'
+            ]),
+            z.array(z.enum([
+                'content_creator'
+            ]))
+        ]).optional(),
+        filters: z.record(z.unknown()).optional(),
+        sort: z.union([
+            z.enum([
+                'activityDesc',
+                'createdAt',
+                'updatedAt',
+                'publishedAt'
+            ]),
+            z.array(z.enum([
+                'activityDesc',
+                'createdAt',
+                'updatedAt',
+                'publishedAt'
+            ])),
+            z.record(z.enum([
+                'asc',
+                'desc'
+            ])),
+            z.array(z.record(z.enum([
+                'asc',
+                'desc'
+            ])))
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zDashboardActivityGetDashboardActivitiesByIdResponse = zDashboardActivityResponse;
+
+export const zDashboardActivityPutDashboardActivitiesByIdRequest = z.object({
+    body: zDashboardActivityRequest,
+    path: z.object({
+        id: z.string()
+    }),
+    query: z.object({
+        fields: z.array(z.enum([
+            'activityDesc',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.enum([
+                'content_creator'
+            ]),
+            z.array(z.enum([
+                'content_creator'
+            ]))
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zDashboardActivityPutDashboardActivitiesByIdResponse = zDashboardActivityResponse;
 
 export const zExerciseGetExercisesRequest = z.object({
     body: z.never().optional(),
@@ -10406,14 +11029,3 @@ export const zUsersPermissionsGetPermissionsResponse = z.object({
         })))
     }))
 });
-
-export const zGetCcDashboardActivityRequest = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.never().optional()
-});
-
-/**
- * OK - Array of dashboard activities
- */
-export const zGetCcDashboardActivityResponse = z.array(zDashboardActivity);
