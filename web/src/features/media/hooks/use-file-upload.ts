@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { fetchHeaders, getBaseApiUrl } from "../../../shared/config/api-config";
+import { createApiError } from "../../../shared/lib/error-utilities";
 
 import type { UploadPostResponses } from "../../../shared/api/types.gen";
 
@@ -52,7 +53,7 @@ export const useFileUpload = (): useFileUploadReturn => {
         });
 
         if (!response.ok) {
-          throw new Error(`Upload failed for file: ${filename}`);
+          throw await createApiError(response);
         }
 
         // Response can be either a single object or an array
