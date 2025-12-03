@@ -75,32 +75,42 @@ export default factories.createCoreController('api::content-creator.content-crea
             }
 
 
+            interface JwtContentCreatorPayload {
+                documentId: string;
+                firstName: string;
+                lastName: string;
+                email: string;
+                verifiedAt: Date | null;
+                isAdmin: boolean;
+            }
+        const jwtContentCreator : JwtContentCreatorPayload  = {
+            documentId: user.documentId,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            verifiedAt: user.verifiedAt ? new Date(user.verifiedAt) : null,
+            isAdmin: user.isAdmin,
+        }
+        // 3. Generate token
+        const token = jwt.sign(
+            jwtContentCreator,
+            process.env.JWT_SECRET,
+            { expiresIn: '7d' }
+        );
 
-            const jwtContentCreator: ContentCreator = {
+        // 4. Respond with token and user info
+        return ctx.send({
+            accessToken: token,
+            userInfo: {
                 documentId: user.documentId,
+                email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                email: user.email,
-                verifiedAt: user.verifiedAt ? new Date(user.verifiedAt) : null,
-            }
-            // 3. Generate token
-            const token = jwt.sign(
-                jwtContentCreator,
-                process.env.JWT_SECRET,
-                { expiresIn: '7d' }
-            );
-
-            // 4. Respond with token and user info
-            return ctx.send({
-                accessToken: token,
-                userInfo: {
-                    documentId: user.documentId,
-                    email: user.email,
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    verifiedAt: user.verifiedAt ? new Date(user.verifiedAt).toISOString() : null,
-                },
-            });
+                verifiedAt: user.verifiedAt ? new Date(user.verifiedAt).toISOString() : null,
+                isAdmin: !!user.isAdmin,
+                role: user.isAdmin ? "admin" : "creator",
+            },
+        });
         } catch (err) {
             console.error(err);
             return ctx.internalServerError('Something went wrong');
