@@ -4,9 +4,6 @@ export default {
             method: "GET",
             path: "/user-info",
             handler: "user-info.find",
-            config: {
-                policies: ["global::is-admin"],
-            },
         },
         {
             method: "GET",
