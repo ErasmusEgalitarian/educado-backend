@@ -119,6 +119,10 @@
       "relation": "oneToMany",
       "target": "api::dashboard-activity.dashboard-activity",
       "mappedBy": "content_creator"
+    },
+    "isAdmin": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
