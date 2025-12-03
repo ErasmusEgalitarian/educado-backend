@@ -524,6 +524,7 @@ export interface ApiContentCreatorContentCreator
         maxLength: 40;
         minLength: 1;
       }>;
+    isAdmin: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     jobDescription: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 400;
