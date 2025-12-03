@@ -6,6 +6,12 @@ Welcome to the Educado monorepo! This repository houses both the backend CMS (St
 
 ![Educado Web - Courses Overview](/docs/assets/educado-web-courses-overview.png)
 
+## 🚀 Quick Start
+
+New to the project? Get up and running in minutes:
+
+**[→ Getting Started Guide](docs/monorepo/getting-started.md)**
+
 ## 🎯 What's Inside
 
 ### Content Creator Web App
@@ -17,12 +23,6 @@ A fast, editor-friendly interface for creating and managing educational content.
 A flexible headless CMS powered by Strapi v5, managing content models, permissions, and RESTful APIs.
 
 **[→ Explore Backend Documentation](docs/strapi/index.md)**
-
-## 🚀 Quick Start
-
-New to the project? Get up and running in minutes:
-
-**[→ Getting Started Guide](docs/monorepo/getting-started.md)**
 
 ## 📖 Documentation
 

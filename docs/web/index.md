@@ -63,7 +63,8 @@ web/
 │   │   ├── hooks/           # Custom React hooks
 │   │   ├── lib/             # Utility functions
 │   │   └── types/           # TypeScript types
-│   └── unplaced/            # Components pending organization
+│   ├── unplaced/            # Components pending organization
+│   └── legacy/              # Unused components that are preserved for potential future reuse
 ├── public/                   # Static assets
 ├── __tests__/               # Jest tests
 ├── cypress/                 # E2E tests
