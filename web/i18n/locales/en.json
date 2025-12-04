@@ -255,16 +255,19 @@
     "title3": "Sign up now and help make a difference!",
     "section3": "Be part of a community that makes it easier to access relevant content and encourages knowledge sharing in a simple and practical way."
   },
-  "login": {
-    "back-button": "Back",
-    "welcome-back": "Welcome back!",
+  "auth": {
+    "backButton": "Back",
+    "welcomeBack": "Welcome back!",
     "email": "Email",
     "password": "Password",
-    "login-button": "Log In",
-    "forgot-password": "Forgot your password?",
-    "no-account": "Don't have an account yet?",
-    "register-now": "Register now",
-    "email-error": "INCORRECT EMAIL OR PASSWORD. PLEASE TRY AGAIN."
+    "logIn": "Log In",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don't have an account yet?",
+    "registerNow": "Register now",
+    "emailError": "INCORRECT EMAIL OR PASSWORD. PLEASE TRY AGAIN.",
+    "pendingApprovalTitle": "Awaiting approval",
+    "pendingApprovalText": "Your registration is under review and you will receive a response within a few days. Keep an eye on your email, we will notify you as soon as everything is ready!",
+    "close": "Close"
   },
   "welcome": {
     "title": "Welcome to EDUCADO!",
@@ -274,6 +277,6 @@
     "login-button": "Sign in"
   },
   "notifications": {
-    "published-course": "Published course"
+    "publishedCourse": "Published course"
   }
 }

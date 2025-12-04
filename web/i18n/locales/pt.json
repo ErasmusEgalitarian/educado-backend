@@ -90,9 +90,6 @@
     "noNotifications": "Nenhuma notificação",
     "mediaLibrary": "Biblioteca de Mídia"
   },
-  "notifications": {
-    "publishedCourse": "Curso publicado"
-  },
   "difficulty": {
     "difficulty": "Dificuldade",
     "beginner": "Iniciante",
@@ -258,16 +255,19 @@
     "creatingCategory": "Criando Categoria",
     "minNameLength": "O nome da categoria deve ter pelo menos {{count}} caracteres"
   },
-  "login": {
-    "back-button": "Voltar",
-    "welcome-back": "Bem-vindo(a) de volta!",
+  "auth": {
+    "backButton": "Voltar",
+    "welcomeBack": "Bem-vindo(a) de volta!",
     "email": "Email",
     "password": "Senha",
-    "login-button": "Entrar",
-    "forgot-password": "Esqueceu sua senha?",
-    "no-account": "Ainda não tem conta?",
-    "register-now": "Cadastre-se agora",
-    "email-error": "EMAIL OU SENHA INCORRETOS. POR FAVOR, TENTE NOVAMENTE."
+    "logIn": "Entrar",
+    "forgotPassword": "Esqueceu sua senha?",
+    "noAccount": "Ainda não tem conta?",
+    "registerNow": "Cadastre-se agora",
+    "emailError": "EMAIL OU SENHA INCORRETOS. POR FAVOR, TENTE NOVAMENTE.",
+    "pendingApprovalTitle": "Aguarde aprovação",
+    "pendingApprovalText": "Seu cadastro está em análise e você receberá um retorno em até x dias. Fique de olho no seu e-mail, avisaremos assim que tudo estiver pronto!",
+    "close": "Fechar"
   },
   "welcome": {
     "title": "Boas vindas ao EDUCADO!",
@@ -275,5 +275,8 @@
     "register-button": "Cadastrar",
     "login-text": "Já possui uma conta?",
     "login-button": "Entrar"
+  },
+  "notifications": {
+    "publishedCourse": "Curso publicado"
   }
 }

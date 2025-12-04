@@ -47,7 +47,7 @@ const Welcome = () => {
 
           {/*Container for right side of the page*/}
           <div className="relative right-0 h-screen flex flex-col justify-center items-center  bg-linear-to-b from-(--gradient-start) via-(--gradient-end) to-(--gradient-end) w-full">
-            <img src="/logo.svg" alt="Image" />
+            <img src="/logo.svg" alt="Educado" />
             <h1 className="relative text-4xl font-['Lato'] text-(--primary-text-title) text-[34px] text-center mb-6 mt-4 font-black px-10">
               {texts[0]}
               {/*Warm welcome to the learning platform*/}
@@ -61,7 +61,7 @@ const Welcome = () => {
                 className="flex-auto  h-[3.3rem] w-[300px] items-center justify-center rounded-[15px] text-lg font-bold font-['Montserrat'] bg-primary-surface-default inline-flex text-(--gradient-end) transform transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50"
                 to="/signup"
               >
-                <button type="submit">Cadastrar</button>
+                {t("welcome.register-button")}
               </Link>
             </div>
             <div className="relative flex flex-row items-center justify-center  mt-2 text-greyscale-text-subtle font-['Montserrat']">
@@ -70,7 +70,7 @@ const Welcome = () => {
                 className="h-[3.3rem] w-20 flex items-center justify-center rounded-[15px] text-lg underline font-bold text-greyscale-text-subtle transition duration-100 ease-in hover:text-blue-900"
                 to="/login"
               >
-                Entrar
+                {t("welcome.login-button")}
               </Link>
             </div>
           </div>

@@ -382,9 +382,9 @@ const Login = () => {
 
       {/* Account application success modal */}
       <GenericModalComponent
-        title="Aguarde aprovação"
-        contentText="Seu cadastro está em análise e você receberá um retorno em até x dias. Fique de olho no seu e-mail, avisaremos assim que tudo estiver pronto!"
-        cancelBtnText="Fechar" // Close (functions as the 'ok' button in this particular modal)
+        title={t("auth.pendingApprovalTitle")}
+        contentText={t("auth.pendingApprovalText")}
+        cancelBtnText={t("auth.close")} // Close (functions as the 'ok' button in this particular modal)
         onConfirm={() => {
           setNotApprovedError(null);
         }} // Empty function passed in due to confirm button not being present in this particular modal
