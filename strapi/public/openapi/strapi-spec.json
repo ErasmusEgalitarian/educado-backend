@@ -37940,6 +37940,9 @@
       },
       "AverageCourseFeedback": {
         "type": "object",
+        "required": [
+          "total"
+        ],
         "properties": {
           "total": {
             "type": "number",

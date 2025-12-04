@@ -5679,7 +5679,7 @@ export type AverageCourseFeedback = {
     /**
      * Average rating rounded to 1 decimal place
      */
-    total?: number;
+    total: number;
 };
 
 export type JwtResponse = {

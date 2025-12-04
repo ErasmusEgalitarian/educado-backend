@@ -5866,7 +5866,7 @@ export const zJwtContentCreatorResponse = z.object({
 });
 
 export const zAverageCourseFeedback = z.object({
-    total: z.number().optional()
+    total: z.number()
 });
 
 export const zJwtResponse = z.object({

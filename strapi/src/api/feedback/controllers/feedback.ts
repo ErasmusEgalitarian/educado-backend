@@ -45,7 +45,7 @@ export default factories.createCoreController(
           ctx.response.body = { error: errorCodes["E0006"] };
         }
 
-        const feedbacksArray = (course.feedbacks ?? []) as { rating?: number }[];
+        const feedbacksArray = (course.feedbacks ?? []) as { rating: number }[];
 
         const averageCourseRating =
           feedbacksArray.length > 0
