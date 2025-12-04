@@ -10,7 +10,7 @@ import {
 import { Icon } from "@mdi/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import {
@@ -37,6 +37,9 @@ import { useNotifications } from "../context/NotificationContext";
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isOnAdmin = location.pathname.startsWith("/educado-admin");
+  const isOnCourses = location.pathname.startsWith("/courses");
   const { clearToken } = useAuthStore((state) => state);
   const [open, setOpen] = useState(false);
   const { notifications, setNotifications } = useNotifications();
@@ -76,25 +79,57 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        <div className="flex items-center gap-4">
-          <Link
-            to="/courses"
-            className="text-sm font-medium text-grayMedium hover:text-primary transition-colors"
-          >
-            Courses
-          </Link>
-          <Link
-            to="/media"
-            className="text-sm font-medium text-grayMedium hover:text-primary transition-colors"
-          >
-            Media
-          </Link>
-          <Link
-            to="/test"
-            className="text-sm font-medium text-grayMedium hover:text-primary transition-colors"
-          >
-            Test
-          </Link>
+        <div className="flex-1 flex justify-center">
+          {userInfo.role === "admin" && (
+            <div className="flex flex-col items-center">
+              <div className="flex space-x-16 text-sm font-semibold font-['Montserrat']">
+                {/* Cursos tab */}
+                <button
+                  onClick={() => {
+                    navigate("/courses");
+                  }}
+                  className={
+                    "pb-1 transition-colors " +
+                    (isOnCourses
+                      ? "text-primary-text-label"
+                      : "text-greyscale-text-subtle hover:text-primary-text-label")
+                  }
+                >
+                  {t("navbar.courses")}
+                </button>
+
+                {/* Admin tab */}
+                <button
+                  onClick={() => {
+                    navigate("/educado-admin");
+                  }}
+                  className={
+                    isOnAdmin
+                      ? "text-primary-text-label"
+                      : "text-greyscale-text-subtle hover:text-primary-text-label"
+                  }
+                >
+                  {t("navbar.admin")}
+                </button>
+              </div>
+
+              <div className="relative w-64 h-px bg-[#166276]/30">
+                {/* LEFT active segment */}
+                <div
+                  className={`absolute left-0 top-0 h-px transition-all duration-300 ${
+                    isOnCourses ? "bg-primary-border-default w-1/2" : "w-0"
+                  }`}
+                ></div>
+
+                {/* RIGHT active segment */}
+                <div
+                  className={`absolute right-0 top-0 h-px transition-all duration-300 ${
+                    isOnAdmin ? "bg-primary-border-default w-1/2" : "w-0"
+                  }`}
+                ></div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Notification Bell and User Info */}

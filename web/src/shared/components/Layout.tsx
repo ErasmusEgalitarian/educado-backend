@@ -25,7 +25,7 @@ const Layout = ({
           {/** Top Nav bar */}
           <Navbar />
 
-          {/** Content */}
+            {/** Content */}
           <main className="bg-primary-surface-subtle">{children}</main>
         </div>
       </div>
