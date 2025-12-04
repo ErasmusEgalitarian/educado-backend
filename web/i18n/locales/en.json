@@ -126,6 +126,7 @@
     "minNameLength": "Category name must be at least {{count}} characters"
   },
   "courses": {
+    "hello": "Hello",
     "thisMonth": "This month",
     "lastSevenDays": "Last 7 days",
     "lastThirtyDays": "Last 30 days",
