@@ -27,7 +27,7 @@ export default {
   statisticsAction: async (ctx, next) => {
     try {
       // Extract the authenticated user from the policy context
-      const user_type = jsonWebTokenVerify(ctx.headers.authorization as string) as ContentCreator;
+      const user_type = jsonWebTokenVerify(ctx.headers.authorization as string);
       const courseIds : string[] = ctx.request.body.documentIds as string[];
 
       // Find Content Creator
@@ -44,7 +44,8 @@ export default {
           },
         });
       if (!user) {
-        throw { error: errorCodes["E0004"] };
+        ctx.response.status = 500;
+        ctx.response.body = { error: errorCodes["E0013"] };
       }
       //Filter courses
       const filteredCourses = filterCoursesBasedOnCid(user.courses, courseIds) as PopulatedCourse[];  
@@ -56,8 +57,8 @@ export default {
         evaluation: getContentCreatorFeedback(filteredCourses) 
       };
     } catch (err) {
-      ctx.status = 500;
-      ctx.body = err;
+      ctx.response.status = 500;
+      ctx.response.body = err;
     }
   },
 };
@@ -146,6 +147,10 @@ export async function getCertificatesStats(filteredCourses : PopulatedCourse[]) 
         fields: ["completionDate"], // Only fetch the createdAt field
       });
 
+      if(!certificates) {
+        throw { error: errorCodes['E0021'] }
+      }
+
     let countTotal = certificates.length;
     let countMonth = 0;
     let count7 = 0;
@@ -183,7 +188,7 @@ export async function getCertificatesStats(filteredCourses : PopulatedCourse[]) 
       }
     };
   } catch (err) {
-    throw err;
+    throw { error: errorCodes['E0019'] }
   }
 }
 
@@ -241,7 +246,7 @@ export function getContentCreatorFeedback(filteredCourses : PopulatedCourse[]) {
     };
 
   } catch (err) {
-    throw { error: errorCodes['E0001'] }
+    throw { error: errorCodes['E0019'] }
   }
 }
 
@@ -254,7 +259,7 @@ export function filterCoursesBasedOnCid <T extends { documentId: string }> (cour
 
   //Filter courses
   let filteredCourses = courses.filter((course) => {
-    return courseIds.some((cId) => cId === course.documentId)
+    return courseIds.includes(course.documentId)
   });
   
   return filteredCourses;
@@ -268,7 +273,7 @@ function jsonWebTokenVerify (jwtInput : string) {
     // Extract the authenticated user from the policy context
     user = jwt.verify(jwtInput.split("Bearer ")[1], secretKey) as ContentCreator;
   } catch (error) {
-    throw error;
+    throw { error: errorCodes['E0001'] }
   }
   return user;
 }
