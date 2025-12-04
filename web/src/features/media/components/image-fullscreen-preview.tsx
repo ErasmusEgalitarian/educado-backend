@@ -315,7 +315,7 @@ export const ImageFullscreenPreview = ({
       </div>
 
       {/* Image container */}
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- This is an interactive image viewer that requires mouse/wheel events for pan and zoom functionality */}
+      {/* eslint-disable-next-line -- This is an interactive image viewer that requires mouse/wheel events for pan and zoom functionality */}
       <div
         className={`relative h-full w-full overflow-hidden ${cursorClass}`}
         onMouseDown={handleMouseDown}
