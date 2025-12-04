@@ -54,9 +54,10 @@ web/
 │   ├── main.tsx               # Application entry point
 │   ├── features/              # Feature-based modules
 │   │   ├── auth/             # Authentication
-│   │   ├── courses/          # Course management
-│   │   ├── lectures/         # Lecture management
-│   │   └── exercises/        # Exercise management
+│   │   ├── course/           # Course management
+│   │   ├── lecture/          # Lecture management
+│   │   ├── exercise/         # Exercise management
+│   │   └── media/            # Media library (see features/media-library.md)
 │   ├── shared/               # Shared utilities
 │   │   ├── api/             # Generated API client
 │   │   ├── components/      # Reusable components

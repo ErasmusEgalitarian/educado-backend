@@ -35,7 +35,10 @@ if (rootElement && rootElement.innerHTML === "") {
             </TooltipProvider>
           </NotificationProvider>
         </AuthProvider>
-        <ReactQueryDevtools buttonPosition={"bottom-right"} initialIsOpen={false} />
+        <ReactQueryDevtools
+          buttonPosition="bottom-right"
+          initialIsOpen={false}
+        />
       </QueryClientProvider>
     </StrictMode>
   );

@@ -12,6 +12,12 @@ interface OverlayStatusWrapperProps {
   successMessage?: string;
   customOverlay?: ReactNode;
   className?: string;
+  /** Minimum time (ms) to show loading state. Default: 400ms */
+  minLoadingDuration?: number;
+  /** Minimum time (ms) to show success state. Default: 1200ms */
+  minSuccessDuration?: number;
+  /** Callback fired after success display duration completes */
+  onSuccessComplete?: () => void;
 }
 
 /**
@@ -20,7 +26,8 @@ interface OverlayStatusWrapperProps {
  * @remarks
  * This component maintains the height of the content during state transitions to prevent layout shifts.
  * It automatically measures the content height and transitions between showing the actual content
- * and status overlays using opacity animations.
+ * and status overlays using opacity animations. Enforces minimum display durations to ensure
+ * users can perceive the state changes even with fast operations.
  *
  * @param props - The component props
  * @param props.isLoading - Whether to display the loading overlay
@@ -30,6 +37,9 @@ interface OverlayStatusWrapperProps {
  * @param props.successMessage - Custom message to display during success state. Defaults to "Success!"
  * @param props.customOverlay - Optional custom overlay element to display instead of default loading/success overlays
  * @param props.className - Additional CSS classes to apply to the content wrapper
+ * @param props.minLoadingDuration - Minimum time (ms) to show loading state. Defaults to 400ms
+ * @param props.minSuccessDuration - Minimum time (ms) to show success state. Defaults to 1200ms
+ * @param props.onSuccessComplete - Callback fired after success display duration completes
  *
  * @example
  * ```tsx
@@ -38,6 +48,9 @@ interface OverlayStatusWrapperProps {
  *   isSuccess={submitSuccess}
  *   loadingMessage="Saving changes..."
  *   successMessage="Changes saved!"
+ *   minLoadingDuration={500}
+ *   minSuccessDuration={1500}
+ *   onSuccessComplete={() => mutation.reset()}
  * >
  *   <YourContent />
  * </OverlayStatusWrapper>
@@ -51,25 +64,70 @@ export const OverlayStatusWrapper = ({
   successMessage = "Success!",
   customOverlay,
   className = "",
+  minLoadingDuration = 400,
+  minSuccessDuration = 1200,
+  onSuccessComplete,
 }: Readonly<OverlayStatusWrapperProps>) => {
   const [lockedHeight, setLockedHeight] = useState<number | null>(null);
+  const [displayLoading, setDisplayLoading] = useState(false);
+  const [displaySuccess, setDisplaySuccess] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+  const loadingStartTimeRef = useRef<number | null>(null);
+
+  // Handle loading state with minimum duration
+  useEffect(() => {
+    if (isLoading) {
+      loadingStartTimeRef.current = Date.now();
+      setDisplayLoading(true);
+    } else if (loadingStartTimeRef.current !== null) {
+      // Calculate remaining time to show loading
+      const elapsed = Date.now() - loadingStartTimeRef.current;
+      const remaining = Math.max(0, minLoadingDuration - elapsed);
+
+      if (remaining > 0) {
+        const timer = setTimeout(() => {
+          setDisplayLoading(false);
+          loadingStartTimeRef.current = null;
+        }, remaining);
+        return () => {
+          clearTimeout(timer);
+        };
+      } else {
+        setDisplayLoading(false);
+        loadingStartTimeRef.current = null;
+      }
+    }
+  }, [isLoading, minLoadingDuration]);
+
+  // Handle success state with minimum duration
+  useEffect(() => {
+    if (isSuccess) {
+      setDisplaySuccess(true);
+      const timer = setTimeout(() => {
+        setDisplaySuccess(false);
+        onSuccessComplete?.();
+      }, minSuccessDuration);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [isSuccess, minSuccessDuration, onSuccessComplete]);
 
   // Lock height when entering loading/success state, unlock when leaving
   useEffect(() => {
-    if ((isLoading || isSuccess) && contentRef.current) {
+    if ((displayLoading || displaySuccess) && contentRef.current) {
       // Capture current height before showing overlay
       setLockedHeight(contentRef.current.offsetHeight);
     } else {
       // Allow natural height when not showing overlay
       setLockedHeight(null);
     }
-  }, [isLoading, isSuccess]);
+  }, [displayLoading, displaySuccess]);
 
   let activeOverlay = null;
   let showOverlay = false;
 
-  if (isLoading) {
+  if (displayLoading) {
     showOverlay = true;
     activeOverlay = customOverlay ?? (
       <div className="flex items-center gap-2">
@@ -77,8 +135,8 @@ export const OverlayStatusWrapper = ({
         <span className="text-sm">{loadingMessage}</span>
       </div>
     );
-  } else if (isSuccess) {
-    // Show success for a brief moment, then hide the overlay
+  } else if (displaySuccess) {
+    // Show success for the configured duration
     showOverlay = true;
     activeOverlay = customOverlay ?? (
       <div className="flex items-center gap-2 text-green-600">

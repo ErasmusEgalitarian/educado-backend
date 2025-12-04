@@ -197,7 +197,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
           <div className="space-y-6">
             {dashboardActivities.map((activity) => (
               <SidebarActivity activity={activity} />
-            ))}          
+            ))}
           </div>
         </div>
       </div>

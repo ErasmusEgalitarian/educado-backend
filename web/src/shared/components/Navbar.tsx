@@ -10,7 +10,7 @@ import {
 import { Icon } from "@mdi/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import {
@@ -26,22 +26,35 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "@/shared/components/shadcn/dropdown-menu";
-
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/shared/components/shadcn/popover"
+} from "@/shared/components/shadcn/popover";
 
 import { getUserInfo, userInfo } from "../../features/auth/lib/userInfo";
 import { useNotifications } from "../context/NotificationContext";
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isOnAdmin = location.pathname.startsWith("/educado-admin");
+  const isOnCourses = location.pathname.startsWith("/courses");
+  const isOnMedia = location.pathname.startsWith("/media");
+
+  // Determine active tab index for the underline indicator (-1 = none active)
+  const getActiveTabIndex = () => {
+    if (isOnCourses) return 0;
+    if (isOnMedia) return 1;
+    if (isOnAdmin) return 2;
+    return -1;
+  };
+  const activeTabIndex = getActiveTabIndex();
+  const tabPositions = ["left-0", "left-1/3", "left-2/3"];
+
   const { clearToken } = useAuthStore((state) => state);
-  const [ open, setOpen ] = useState(false)
+  const [open, setOpen] = useState(false);
   const { notifications, setNotifications } = useNotifications();
-  // const [ position, setPosition ] = useState("portuguese");
   const { t, i18n } = useTranslation();
   // Logout handler
   const handleLogout = () => {
@@ -71,11 +84,72 @@ export const Navbar = () => {
         <div className="w-[165.25px] h-6 justify-start items-center gap-[7.52px] flex py-6 px-8">
           <Link
             to="/"
-            className="w-[165.25px] h-6 flex items-center gap-[6px] text-xl"
+            className="w-[165.25px] h-6 flex items-center gap-1.5 text-xl"
           >
             <img src="/logo.svg" alt="logo" className="w-[24.43px] h-6" />
             <img src="/educado.svg" alt="educado" className="h-6" />
           </Link>
+        </div>
+
+        <div className="flex-1 flex justify-center">
+          {userInfo.role === "admin" ? (
+            <div className="flex flex-col items-center">
+              <div className="flex space-x-16 text-sm font-semibold font-['Montserrat']">
+                {/* Cursos tab */}
+                <button
+                  onClick={() => {
+                    navigate("/courses");
+                  }}
+                  className={
+                    "pb-1 transition-colors " +
+                    (isOnCourses
+                      ? "text-primary-text-label"
+                      : "text-greyscale-text-subtle hover:text-primary-text-label")
+                  }
+                >
+                  {t("navbar.courses")}
+                </button>
+                {/* Media tab */}
+                <button
+                  onClick={() => {
+                    navigate("/media");
+                  }}
+                  className={
+                    "pb-1 transition-colors " +
+                    (isOnMedia
+                      ? "text-primary-text-label"
+                      : "text-greyscale-text-subtle hover:text-primary-text-label")
+                  }
+                >
+                  {t("navbar.mediaLibrary")}
+                </button>
+
+                {/* Admin tab */}
+                <button
+                  onClick={() => {
+                    navigate("/educado-admin");
+                  }}
+                  className={
+                    "pb-1 transition-colors " +
+                    (isOnAdmin
+                      ? "text-primary-text-label"
+                      : "text-greyscale-text-subtle hover:text-primary-text-label")
+                  }
+                >
+                  {t("navbar.admin")}
+                </button>
+              </div>
+
+              <div className="relative w-96 h-px bg-[#166276]/30">
+                {/* Active indicator that slides to the active tab */}
+                <div
+                  className={`absolute top-0 h-px bg-primary-border-default w-1/3 transition-all duration-300 ${
+                    activeTabIndex >= 0 ? tabPositions[activeTabIndex] : "opacity-0"
+                  }`}
+                />
+              </div>
+            </div>
+          ) : null}
         </div>
 
         {/* Notification Bell and User Info */}
@@ -93,54 +167,54 @@ export const Navbar = () => {
               </button>
             </PopoverTrigger>
             <PopoverContent className="w-[200px] p-0">
-                <div className="p-2 max-h-[250px] overflow-y-auto">
-                  <ul className="menu flex flex-col items-start w-full">
-                    {notifications.length > 0 ? (
-                      notifications.map((notification) => (
-                        <li
-                          key={notification.id}
-                          className="relative p-2 cursor-default w-full flex justify-between"
-                        >
-                          {(notification.link != null) ? (
-                            <a
-                              href={notification.link}
-                              className="text-sm text-blue-600 hover:underline"
-                            >
-                              {notification.message}
-                            </a>
-                          ) : (
-                            <span className="text-sm">
-                              {notification.message}
-                            </span>
-                          )}
-                          <button
-                            onClick={() => {
-                              handleDeleteNotification(notification.id);
-                            }}
-                            className="top-0 right-0 text-red-500 text-sm cursor-pointer"
+              <div className="p-2 max-h-[250px] overflow-y-auto">
+                <ul className="menu flex flex-col items-start w-full">
+                  {notifications.length > 0 ? (
+                    notifications.map((notification) => (
+                      <li
+                        key={notification.id}
+                        className="relative p-2 cursor-default w-full flex justify-between"
+                      >
+                        {notification.link ? (
+                          <a
+                            href={notification.link}
+                            className="text-sm text-blue-600 hover:underline"
                           >
-                            ✕
-                          </button>
-                        </li>
-                      ))
-                    ) : (
-                      <li className="p-2 text-gray-500 text-sm">
-                        {t("navbar.noNotifications")}
+                            {notification.message}
+                          </a>
+                        ) : (
+                          <span className="text-sm">
+                            {notification.message}
+                          </span>
+                        )}
+                        <button
+                          onClick={() => {
+                            handleDeleteNotification(notification.id);
+                          }}
+                          className="top-0 right-0 text-red-500 text-sm cursor-pointer"
+                        >
+                          ✕
+                        </button>
                       </li>
-                    )}
-                  </ul>
-                </div>
+                    ))
+                  ) : (
+                    <li className="p-2 text-gray-500 text-sm">
+                      {t("navbar.noNotifications")}
+                    </li>
+                  )}
+                </ul>
+              </div>
 
-                {notifications.length > 0 && (
-                  <div className="w-full text-right border-t mt-2 p-2">
-                    <button
-                      onClick={handleClearAll}
-                      className="text-sm text-red-600 hover:underline"
-                    >
-                      {t("actions.clearAll")}
-                    </button>
-                  </div>
-                )}
+              {notifications.length > 0 && (
+                <div className="w-full text-right border-t mt-2 p-2">
+                  <button
+                    onClick={handleClearAll}
+                    className="text-sm text-red-600 hover:underline"
+                  >
+                    {t("actions.clearAll")}
+                  </button>
+                </div>
+              )}
             </PopoverContent>
           </Popover>
 
@@ -162,7 +236,7 @@ export const Navbar = () => {
                 <div
                   className="
                   bg-primary-surface-lighter text-primary-border-lighter 
-                  border-1 border-primary-border-lighter rounded-full w-10 h-10 
+                  border border-primary-border-lighter rounded-full w-10 h-10 
                   flex items-center justify-center "
                 >
                   <span className="text-md text-center font-bold select-none">{`${userInfo.firstName.charAt(0)}${userInfo.lastName.charAt(0)}`}</span>
@@ -194,34 +268,32 @@ export const Navbar = () => {
               >
                 {t("navbar.feedback")}
               </DropdownMenuIconItem>
-
+              <DropdownMenuSub>
+                <DropdownMenuIconSubTrigger
+                  icon={() => <Icon path={mdiTranslate} size={1} />}
+                >
+                  {t("language.switchLanguage")}
+                </DropdownMenuIconSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuRadioGroup
+                      value={i18n.language}
+                      onValueChange={(value) => {
+                        void i18n.changeLanguage(value);
+                      }}
+                    >
+                      <DropdownMenuRadioItem value="pt">
+                        Português 🇧🇷
+                      </DropdownMenuRadioItem>
+                      <DropdownMenuRadioItem value="en">
+                        English 🇺🇸
+                      </DropdownMenuRadioItem>
+                    </DropdownMenuRadioGroup>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
               {userInfo.role === "admin" && (
                 <>
-                  <DropdownMenuSub>
-                    <DropdownMenuIconSubTrigger
-                      icon={() => <Icon path={mdiTranslate} size={1} />}
-                    >
-                      {t("language.switchLanguage")}
-                    </DropdownMenuIconSubTrigger>
-                    <DropdownMenuPortal>
-                      <DropdownMenuSubContent>
-                        <DropdownMenuRadioGroup
-                          value={i18n.language}
-                          onValueChange={(value) => {
-                            void i18n.changeLanguage(value);
-                            setPosition(value);
-                          }}
-                        >
-                          <DropdownMenuRadioItem value="pt">
-                            Português 🇧🇷
-                          </DropdownMenuRadioItem>
-                          <DropdownMenuRadioItem value="en">
-                            English 🇺🇸
-                          </DropdownMenuRadioItem>
-                        </DropdownMenuRadioGroup>
-                      </DropdownMenuSubContent>
-                    </DropdownMenuPortal>
-                  </DropdownMenuSub>
                   <DropdownMenuSeparator />
                   <DropdownMenuIconItem
                     onClick={() => {

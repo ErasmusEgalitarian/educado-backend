@@ -33,6 +33,7 @@
     "@strapi/plugin-users-permissions": "5.31.2",
     "@strapi/strapi": "5.31.2",
     "bcrypt": "^6.0.0",
+    "yup": "^1.6.1",
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^7.0.9",
     "pg": "^8.8.0",

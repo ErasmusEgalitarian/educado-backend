@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { mdiCheck } from "@mdi/js";
 import Icon from "@mdi/react";
 import {
@@ -7,8 +6,8 @@ import {
   type Table as ReactTableType,
 } from "@tanstack/react-table";
 
-import { useItemSelector } from "@/shared/components/item-selector";
 import { TableRow, TableCell } from "@/shared/components/shadcn/table";
+import { useItemSelector } from "@/shared/data-display/item-selector";
 import { cn } from "@/shared/lib/utils";
 
 import { DataDisplayItem } from "./data-display";

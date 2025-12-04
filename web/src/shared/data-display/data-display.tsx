@@ -10,12 +10,11 @@ import {
   type VisibilityState,
   type PaginationState,
 } from "@tanstack/react-table";
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { ErrorBoundary } from "../components/error/error-boundary";
 import { ErrorDisplay } from "../components/error/error-display";
-import { ItemSelectorProvider } from "../components/item-selector";
 import { toAppError } from "../lib/error-utilities";
 
 import DataDisplayEmptyState from "./data-display-empty-state";
@@ -27,6 +26,10 @@ import DataTable from "./data-table";
 import usePaginatedData, {
   type UsePaginatedDataConfig,
 } from "./hooks/used-paginated-data";
+import {
+  ItemSelectorProvider,
+  type ItemSelectorController,
+} from "./item-selector";
 import { type Status, type StaticFilters } from "./lib/query-params-builder";
 import { getDefaultColumnVisibility } from "./lib/visibility-utility";
 import PaginationBar from "./pagination-bar";
@@ -83,6 +86,8 @@ interface BaseDataDisplayProps<T extends DataDisplayItem> {
   status?: Status;
   selection?: DataDisplaySelectionConfig<T>;
   onFilteredDocumentIds?: (ids: string[]) => void;
+  /** Minimum width for grid items (default: "320px") */
+  gridItemMinWidth?: string;
 }
 
 // Discriminated union based on allowedViewModes
@@ -103,6 +108,7 @@ export interface DataDisplayRef {
   resetFilters: () => void;
   resetSorting: () => void;
   resetGlobalFilter: () => void;
+  resetSelection: () => void;
 }
 /* --------------------------- Exported component --------------------------- */
 
@@ -124,6 +130,7 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
     status,
     selection,
     onFilteredDocumentIds,
+    gridItemMinWidth,
   }: DataDisplayProps<T>,
   ref: React.Ref<DataDisplayRef>
   
@@ -153,24 +160,38 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
     pageSize: initialPageSize,
   });
 
+  const itemSelectorController = React.useRef<ItemSelectorController | null>(
+    null
+  );
+
   // Expose ref methods
-  React.useImperativeHandle(
-    ref,
+  React.useImperativeHandle(ref, () => ({
+    columnFilters,
+    sorting,
+    globalFilter,
+    resetFilters: () => {
+      setColumnFilters([]);
+    },
+    resetSorting: () => {
+      setSorting([]);
+    },
+    resetGlobalFilter: () => {
+      setGlobalFilter("");
+    },
+    resetSelection: () => {
+      itemSelectorController.current?.clearSelection();
+    },
+  }));
+
+  // Memoize tableState to prevent re-renders in usePaginatedData
+  const tableState = useMemo(
     () => ({
-      columnFilters,
+      pagination,
       sorting,
+      columnFilters,
       globalFilter,
-      resetFilters: () => {
-        setColumnFilters([]);
-      },
-      resetSorting: () => {
-        setSorting([]);
-      },
-      resetGlobalFilter: () => {
-        setGlobalFilter("");
-      },
     }),
-    [columnFilters, sorting, globalFilter]
+    [pagination, sorting, columnFilters, globalFilter]
   );
 
   // Fetch data with integrated mode
@@ -184,12 +205,7 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
       config,
       staticFilters,
       status,
-      tableState: {
-        pagination,
-        sorting,
-        columnFilters,
-        globalFilter,
-      },
+      tableState,
     });
 
   const isUsingServerMode = resolvedMode === "server";
@@ -252,17 +268,21 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
   };
 
   // Selection handler - converts IDs to full items
-  const handleSelectionChange = (selectedIds: string[]) => {
-    if (selection?.enabled === true && selection.onChange) {
-      const selectedItems = data.filter(
-        (item) =>
-          item.documentId !== undefined &&
-          item.documentId !== "" &&
-          selectedIds.includes(item.documentId)
-      );
-      selection.onChange(selectedItems);
-    }
-  };
+  // Memoized to prevent re-renders in ItemSelectorProvider
+  const handleSelectionChange = useCallback(
+    (selectedIds: string[]) => {
+      if (selection?.enabled === true && selection.onChange) {
+        const selectedItems = data.filter(
+          (item) =>
+            item.documentId !== undefined &&
+            item.documentId !== "" &&
+            selectedIds.includes(item.documentId)
+        );
+        selection.onChange(selectedItems);
+      }
+    },
+    [selection, data]
+  );
 
   if (error != null) {
     const appError = toAppError(error);
@@ -366,6 +386,7 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
           gridItemRender={gridItemRender}
           isLoading={isLoading}
           selectable={selection?.enabled === true}
+          itemMinWidth={gridItemMinWidth}
         />
       );
     }
@@ -415,6 +436,7 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
           selectionLimit={selection.limit ?? null}
           onSelectionChange={handleSelectionChange}
           defaultSelected={selection.defaultSelected ?? []}
+          controllerRef={itemSelectorController}
         >
           {content}
         </ItemSelectorProvider>

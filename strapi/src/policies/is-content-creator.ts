@@ -42,7 +42,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
         });
     }
 
-    if(user.verifiedAt == null){
+    if (user.verifiedAt == null) {
         throw new PolicyError("User not verified", {
             policy: 'is-content-creator',
         });

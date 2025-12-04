@@ -11,7 +11,7 @@ import jwt from "jsonwebtoken"
 const { PolicyError } = errors;
 
 export default async (policyContext: any, config: any, { strapi }: { strapi: Core.Strapi }) => {
-    
+
     // Gets secret key from .env
     const secretKey = process.env.JWT_SECRET;
     let user : Student;
@@ -43,7 +43,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
         });
     }
 
-    if(user.verifiedAt == null){
+    if (user.verifiedAt == null) {
         throw new PolicyError("User not verified", {
             policy: 'is-student',
         });
