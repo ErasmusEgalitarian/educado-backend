@@ -106,7 +106,6 @@ export interface DataDisplayRef {
 }
 /* --------------------------- Exported component --------------------------- */
 
-
 const DataDisplayComponent = <T extends DataDisplayItem>(
   {
     queryKey,
