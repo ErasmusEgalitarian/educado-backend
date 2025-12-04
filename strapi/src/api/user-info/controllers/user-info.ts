@@ -69,31 +69,34 @@ const userInfoController = {
                 return ctx.notFound("Content creator not found");
             }
 
-            const data = {
-                _id: creator.documentId,
-                firstName: creator.firstName,
-                lastName: creator.lastName,
-                email: creator.email,
-                approved: creator.statusValue === "APPROVED",
-                rejected: creator.statusValue === "REJECTED",
-                isAdmin: !!creator.isAdmin,
-                joinedAt: creator.createdAt,
-
-                biography: creator.biography,
-                education: creator.education,
-                statusValue: creator.statusValue,
-                courseExperience: creator.courseExperience,
-                institution: creator.institution,
-                eduStart: creator.eduStart,
-                eduEnd: creator.eduEnd,
-                currentCompany: creator.currentCompany,
-                currentJobTitle: creator.currentJobTitle,
-                companyStart: creator.companyStart,
-                companyEnd: creator.companyEnd,
-                jobDescription: creator.jobDescription,
+            ctx.body = {
+                data: {
+                    applicator: {
+                        _id: creator.documentId,
+                        firstName: creator.firstName,
+                        lastName: creator.lastName,
+                        email: creator.email,
+                        approved: creator.statusValue === "APPROVED",
+                        rejected: creator.statusValue === "REJECTED",
+                        isAdmin: !!creator.isAdmin,
+                        joinedAt: creator.createdAt,
+                    },
+                    application: {
+                        biography: creator.biography,
+                        education: creator.education,
+                        statusValue: creator.statusValue,
+                        courseExperience: creator.courseExperience,
+                        institution: creator.institution,
+                        eduStart: creator.eduStart,
+                        eduEnd: creator.eduEnd,
+                        currentCompany: creator.currentCompany,
+                        currentJobTitle: creator.currentJobTitle,
+                        companyStart: creator.companyStart,
+                        companyEnd: creator.companyEnd,
+                        jobDescription: creator.jobDescription,
+                    },
+                },
             };
-
-            ctx.body = data;
         } catch (err) {
             strapi.log.error("Error in user-info.findOne", err);
             return ctx.internalServerError("Unable to fetch content creator info");
