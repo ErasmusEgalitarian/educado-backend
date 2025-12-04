@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { AppError } from "@/shared/types/app-error";
 
 import { _Error } from "../api/types.gen";
@@ -71,6 +70,11 @@ const extractStrapiErrorDetails = (strapiError: _Error['error']): {
 
 // Helper for native errors
 const handleNativeError = (error: Error): AppError => {
+  // Unwrap AppErrorWrapper
+  if (error instanceof AppErrorWrapper) {
+    return error.appError;
+  }
+
   // Check if it's a network error (fetch failed)
   if (error.message.includes("fetch") || error.message.includes("network")) {
     return {
@@ -259,4 +263,50 @@ export const createAppError = (
     message,
     ...options,
   };
+};
+
+/**
+ * Error class that wraps an AppError so it can be thrown.
+ * toAppError() automatically unwraps this.
+ */
+export class AppErrorWrapper extends Error {
+  constructor(public readonly appError: AppError) {
+    super(appError.message);
+    this.name = "AppErrorWrapper";
+  }
+}
+
+/**
+ * Creates a throwable error from a fetch Response.
+ * Parses the response body and extracts error details.
+ * 
+ * @example
+ * if (!response.ok) {
+ *   throw await createApiError(response);
+ * }
+ */
+export const createApiError = async (response: Response): Promise<AppErrorWrapper> => {
+  const responseData: unknown = await response.json().catch(() => null);
+
+  // Handle Strapi error format
+  if (isStrapiError(responseData)) {
+    const details = extractStrapiErrorDetails(responseData.error);
+    return new AppErrorWrapper({
+      type: details.status ? getErrorTypeFromStatus(details.status) : "unknown",
+      status: details.status,
+      title: details.title,
+      message: details.message,
+      details: formatErrorDetails(responseData.error.details),
+      originalError: responseData,
+    });
+  }
+
+  // Fallback for non-Strapi responses
+  return new AppErrorWrapper({
+    type: getErrorTypeFromStatus(response.status),
+    status: response.status,
+    title: getErrorTitle(response.status),
+    message: response.statusText || "Request failed",
+    originalError: responseData,
+  });
 };

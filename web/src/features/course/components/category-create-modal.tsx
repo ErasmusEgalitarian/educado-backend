@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { mdiFormatLetterCase } from "@mdi/js";
 import Icon from "@mdi/react";
 import { t } from "i18next";
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -31,7 +32,7 @@ interface CategoryCreateModalProps {
 }
 
 const formSchema = z.object({
-  categoryName: z.string().min(2, t("multiSelect.minNameLength", { count: 2 })),
+  categoryName: z.string().min(2, t("categories.minNameLength", { count: 2 })),
 });
 
 const CategoryCreateModal = ({
@@ -53,17 +54,20 @@ const CategoryCreateModal = ({
   const mutationSuccess = createMutation.isSuccess;
   const mutationError = toAppError(createMutation.error);
 
+  // Store the last successful result for use in onSuccessComplete
+  const lastResultRef = useRef<CourseCategory | null>(null);
+
   // Submit handler
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const result = await createMutation.mutateAsync(values.categoryName);
 
-      // Extract the CourseCategory from the response
+      // Extract the CourseCategory from the response and store it
       if (result?.data) {
-        onCreated(result.data);
-        onClose();
-        form.reset();
-        createMutation.reset();
+        lastResultRef.current = result.data;
+        // Note: onCreated, onClose, form.reset, and createMutation.reset()
+        // are all handled by OverlayStatusWrapper's onSuccessComplete, so they
+        // happen after animated success message display
       } else {
         throw new Error("Category created but no data returned");
       }
@@ -91,19 +95,27 @@ const CategoryCreateModal = ({
         >
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>
-                {t("multiSelect.createCategory")}
-              </AlertDialogTitle>
+              <AlertDialogTitle>{t("categories.create")}</AlertDialogTitle>
               <AlertDialogDescription>
                 <OverlayStatusWrapper
                   isLoading={mutationLoading}
                   isSuccess={mutationSuccess}
+                  onSuccessComplete={() => {
+                    // After success message has been displayed, complete the action
+                    if (lastResultRef.current) {
+                      onCreated(lastResultRef.current);
+                      lastResultRef.current = null;
+                    }
+                    form.reset();
+                    createMutation.reset();
+                    onClose();
+                  }}
                 >
                   <FormInput
                     control={form.control}
                     fieldName="categoryName"
-                    label={t("multiSelect.EnterCategoryTitle")}
-                    placeholder={t("multiSelect.newCategory")}
+                    label={t("categories.createTitle")}
+                    placeholder={t("categories.newCategory")}
                     startIcon={<Icon path={mdiFormatLetterCase} size={1} />}
                   />
                 </OverlayStatusWrapper>

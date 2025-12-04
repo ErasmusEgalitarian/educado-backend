@@ -9,8 +9,7 @@ import type { QuickFilter } from "./types/table";
 // Runtime filter with columnId (derived from column metadata + column.id)
 type RuntimeQuickFilter = QuickFilter & { columnId: string; label: string };
 
-export const isEmpty = (v: unknown) =>
-  v === undefined || v === null || v === "";
+const isEmpty = (v: unknown) => v === undefined || v === null || v === "";
 
 function setColumnFilter<TData>(
   table: Table<TData>,
@@ -40,9 +39,7 @@ const QuickFilterButton = <TData,>({
       quickFilter={quickFilter}
       current={current}
       isFiltered={isFiltered}
-      onSetFilter={(value) => {
-        setColumnFilter(table, columnId, value);
-      }}
+      onSetFilter={(value) => { setColumnFilter(table, columnId, value); }}
       triggerVariant="outline"
       triggerSize="sm"
       contentClassName="min-w-[200px]"

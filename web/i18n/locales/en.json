@@ -1,54 +1,42 @@
 {
-  "formTesting": "Form Testing",
-  "language": {
-    "portuguese": "Portuguese",
-    "english": "English",
-    "switchLanguage": "Language"
-  },
   "actions": {
+    "clear": "Clear",
     "clearAll": "Clear all",
     "selectAll": "Select all",
     "close": "Close",
     "search": "Search"
   },
-  "form": {
-    "submit": "Submit",
-    "submitting": "Submitting",
-    "reset": "Reset"
+  "selection": {
+    "itemSelected": "{{count}} item selected",
+    "itemsSelected": "{{count}} items selected",
+    "max": "max {{limit}}",
+    "limitReached": "Limit reached"
   },
   "common": {
     "edit": "Edit",
     "delete": "Delete",
+    "deleting": "Deleting",
     "create": "Create",
     "creating": "Creating",
-    "created": "Created!",
+    "created": "Created",
     "update": "Update",
     "updating": "Updating",
-    "updated": "Updated!",
+    "updated": "Updated",
     "save": "Save",
     "saving": "Saving",
-    "saved": "Saved!",
+    "saved": "Saved",
     "cancel": "Cancel",
     "loading": "Loading",
     "view": "View",
     "more": "More",
-    "openMenu": "Open Menu",
+    "openMenu": "Open menu",
     "actions": "Actions",
-    "mandatory": "This field is mandatory",
     "columns": "Columns",
     "sort": "Sort",
-    "sortBy": "Sort By",
+    "sortBy": "Sort by",
     "ascending": "Asc",
     "descending": "Desc",
-    "saveChanges": "Save Changes",
-    "publicationStatus": "Publication Status",
-    "publish": "Publish",
-    "publishing": "Publishing",
-    "published": "Published",
-    "draft": "Draft",
-    "unpublish": "Unpublish",
-    "unpublishing": "Unpublishing",
-    "unpublished": "Unpublished",
+    "saveChanges": "Save changes",
     "continue": "Continue",
     "back": "Back",
     "leave": "Leave",
@@ -56,9 +44,34 @@
     "dismiss": "Dismiss",
     "name": "Name",
     "retry": "Retry",
-    "rating": "Rating",
     "error": "Error",
-    "goPrevious": "Go to previous"
+    "goPrevious": "Go to previous",
+    "upload": "Upload",
+    "uploading": "Uploading",
+    "download": "Download",
+    "unknown": "Unknown",
+    "preview": "Preview",
+    "type": "Type",
+    "size": "Size",
+    "uploaded": "Uploaded"
+  },
+  "form": {
+    "submit": "Submit",
+    "submitting": "Submitting",
+    "reset": "Reset"
+  },
+  "validation": {
+    "required": "This field is required",
+    "minLength": "Must be at least {{count}} characters",
+    "maxLength": "Must be at most {{count}} characters",
+    "minCategories": "Select at least {{count}} categories",
+    "maxCategories": "Select at most {{count}} categories",
+    "maxDescription": "Description cannot be longer than {{count}} characters"
+  },
+  "language": {
+    "portuguese": "Portuguese",
+    "english": "English",
+    "switchLanguage": "Language"
   },
   "pagination": {
     "items": "items",
@@ -67,16 +80,6 @@
     "of": "of",
     "filtered": "filtered"
   },
-  "validation": {
-    "required": "This field is required",
-    "title": "Title is required",
-    "minLength": "Must be at least {{count}} characters",
-    "maxLength": "Must be at most {{count}} characters",
-    "minCategories": "Select at least {{count}} categories",
-    "maxCategories": "Select at most {{count}} categories",
-    "invalidLevel": "Invalid level",
-    "maxDescription": "Description cannot be longer than {{count}} characters"
-  },
   "navbar": {
     "editProfile": "Edit Profile",
     "myCertificates": "My Certificates",
@@ -84,8 +87,14 @@
     "admin": "Admin",
     "courses": "Courses",
     "logout": "Logout",
-    "notifications": "Notifications",
-    "noNotifications": "No notifications"
+    "noNotifications": "No notifications",
+    "mediaLibrary": "Media Library"
+  },
+  "difficulty": {
+    "difficulty": "Difficulty",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
   },
   "rating": {
     "rating": "Rating",
@@ -94,23 +103,38 @@
     "averageRating": "Average Rating",
     "yourRating": "Your Rating"
   },
-  "difficulty": {
-    "difficulty": "Difficulty",
-    "beginner": "Beginner",
-    "intermediate": "Intermediate",
-    "advanced": "Advanced"
+  "publication": {
+    "status": "Publication Status",
+    "publish": "Publish",
+    "publishing": "Publishing",
+    "published": "Published",
+    "draft": "Draft",
+    "unpublish": "Unpublish",
+    "unpublishing": "Unpublishing",
+    "unpublished": "Unpublished"
   },
   "categories": {
     "category": "Category",
     "categories": "Categories",
-    "categoryNotFound": "Category not found",
-    "selectCategory": "Select the category",
-    "loadingCategories": "Loading Categories",
-    "loadingCategoriesDescription": "Please wait while we fetch the available course categories...",
-    "categoriesError": "Error loading categories. Please try again."
+    "notFound": "Category not found",
+    "select": "Select the category",
+    "loadingError": "Error loading categories. Please try again.",
+    "create": "Create category",
+    "createTitle": "Enter a short and clear category title",
+    "newCategory": "New Category",
+    "creating": "Creating category",
+    "minNameLength": "Category name must be at least {{count}} characters"
   },
-  "courseManager": {
+  "courses": {
+    "pageTitle": "Courses",
     "course": "Course",
+    "newCourse": "New Course",
+    "noCourses": "No course data",
+    "noCoursesYet": "You haven't created any courses yet. Click the button below and follow the step-by-step instructions to develop your first course.",
+    "searchCourse": "Search course",
+    "hours": "Hours"
+  },
+  "courseEditor": {
     "generalInfo": "General Information",
     "courseName": "Course Name",
     "courseNamePlaceholder": "Enter the course name",
@@ -119,95 +143,111 @@
     "description": "Description",
     "descriptionPlaceholder": "Enter the description",
     "coverImage": "Cover Image",
-    "beginner": "Beginner",
-    "intermediate": "Intermediate",
-    "advanced": "Advanced",
     "characters": "characters",
-    "newCourse": "New Course",
     "createSections": "Create Sections",
-    "cancelAndReturn": "Cancel and Return",
-    "saveAsDraft": "Save as Draft",
-    "reviewCourse": "Review Course",
-    "createAndContinue": "Create and Continue",
-    "publishCourse": "Publish Course",
-    "courseDetails": "Course Details",
-    "noCourse": "No course data",
     "noSections": "No sections yet",
-    "publishConfirm": "Are you sure you want to publish this course? It will be visible to all students.",
-    "unpublishConfirm": "Are you sure you want to unpublish this course? It will no longer be visible to students.",
+    "reviewCourse": "Review Course",
+    "courseDetails": "Course Details",
+    "createAndContinue": "Create and continue",
+    "saveAsDraft": "Save as draft",
     "unsavedChangesTitle": "Unsaved Changes",
-    "unsavedChangesMessage": "You have unsaved changes. Are you sure you want to leave? Your changes will be lost.",
-    "leavePageTitle": "Leave Page?",
-    "leavePageMessage": "Are you sure you want to leave this page?",
-    "createError": "Failed to Create Course",
-    "updateError": "Failed to Update Course",
-    "genericError": "An unexpected error occurred. Please try again.",
-    "rating": "Rating"
+    "unsavedChangesMessage": "You have unsaved changes. Are you sure you want to leave? Your changes will be lost."
   },
-  "courses": {
-    "pageTitle": "Courses list",
-    "checkYourCourses": "Check Your Courses",
-    "newCourse": "New Course",
-    "searchCourse": "Search Course",
-    "lastAdded": "Last Added",
-    "mostOld": "Most Old",
-    "mostPopular": "Most Popular",
+  "dashboard": {
+    "hello": "Hello",
     "progress": "Progress",
     "totalCourses": "Total Courses",
     "totalStudents": "Total Students",
     "totalCertificates": "Total Certificates",
-    "avalation": "Avalation",
-    "activities": "Activities",
-    "hello": "Hello",
-    "hours": "Hours",
-    "workload": "Workload",
-    "enrolled": "Enrolled",
-    "grade": "Grade",
-    "startNow": "Start Now",
-    "noCoursesYet": "You haven't created any courses yet. Click the button below and follow the step-by-step instructions to develop your first course.",
-    "createNewCourse": "Create New Course",
-    "thisMonth": "This month",
-    "totalCertificatesIssued": "Total certificates issued",
     "evaluation": "Evaluation",
-    "lastSevenDays": "Last 7 days",
-    "lastThirtyDays": "Last 30 days"
-  },
-  "courseEditor": {
-    "fetchCourseDataError": "Error loading Course Data: {{message}}",
-    "skipToReview": "Skip to review",
-    "saveAsDraft": "Save as draft"
-  },
-  "courseEditorReview": {
-    "thisCourseIsCurrentlyVisibleToStudents": "This course is currently visible to students"
+    "activities": "Activities"
   },
   "files": {
-    "upload": "Upload",
-    "images": "Images",
-    "videos": "Videos",
-    "files": "Files",
-    "dragAndDrop": "Drag and drop",
-    "hereOrClick": " here, or click to browse",
-    "choose": "Choose",
-    "maximumFilesReached": "Maximum files reached",
-    "youCanUploadUpTo": "You can upload up to",
-    "drop": "drop",
-    "here": "here",
-    "uploaded": "Uploaded",
-    "filename": "Filename",
-    "alternativeText": "Alternative text",
-    "caption": "Caption",
-    "describeTheImage": "Describe the image for accessibility",
-    "addACaption": "Add a caption or description",
-    "previewShortcuts": "Press ESC to close • Arrow keys to navigate • +/- to zoom"
+    "maxFilesExceeded": "Maximum file limit exceeded. You can only upload up to {{count}} files"
   },
-   "multiSelect": {
+  "media": {
+    "pageTitle": "Media Library",
+    "library": "Media library",
+    "upload": "Upload",
+    "hideUpload": "Hide upload",
+    "uploadFile": "Upload File",
+    "uploadTab": "Upload file",
+    "browseTab": "Media library",
+    "uploadOnly": "Upload",
+    "uploadAndSelect": "Upload & Select",
+    "uploadSuccess": "File uploaded successfully",
+    "uploadFileSuccess": "Uploaded: {{filename}}",
+    "filesRejectedType": "{{count}} file(s) rejected: unsupported file type",
+    "dragAndDrop": "Drag and drop files here, or click to select",
+    "browseFiles": "Browse Files",
+    "browseLibrary": "Browse Library",
+    "selectFile": "Select File",
+    "selectImage": "Select Image",
+    "clickToSelect": "Click to select from library or upload new",
+    "details": "Attachment Details",
+    "selectAssetPlaceholder": "Select a file to view details",
+    "fileName": "Filename",
+    "fileNamePlaceholder": "Enter filename",
+    "extension": "Extension",
+    "alternativeText": "Alternative Text",
+    "alternativeTextPlaceholder": "Describe the image for accessibility",
+    "caption": "Caption",
+    "captionPlaceholder": "Add a caption",
+    "fileType": "File Type",
+    "fileTypes": {
+      "image": "Image",
+      "video": "Video",
+      "file": "File",
+      "images": "Images",
+      "videos": "Videos",
+      "files": "Files"
+    },
+    "metadata": "Metadata",
+    "size": "Size",
+    "resolution": "Resolution",
+    "createdAt": "Created at",
+    "updatedAt": "Updated at",
+    "deleteFile": "Delete file",
+    "deleteFileTitle": "Delete file?",
+    "deleteFileDescription": "This action cannot be undone. The file will be permanently deleted.",
+    "deletePermanently": "Delete permanently",
+    "savingChanges": "Saving changes",
+    "changesSaved": "Changes saved successfully",
+    "bulkActionsTitle": "Bulk Actions",
+    "selectedCount": "Selected",
+    "file": "file",
+    "filesPlural": "files",
+    "totalSize": "Total size",
+    "selectedFiles": "Selected files:",
+    "bulkDeleteTitle": "Delete {{count}} files?",
+    "bulkDeleteDescription": "This action cannot be undone. All {{count}} selected files will be permanently deleted.",
+    "deleteSelected": "Delete {{count}} selected",
+    "deletingFiles": "Deleting {{count}} files...",
+    "validation": {
+      "filenameRequired": "Filename is required",
+      "filenameMaxLength": "Filename must be less than {{count}} characters",
+      "filenameEmpty": "Filename cannot be empty or only whitespace",
+      "filenameInvalidChars": "Filename contains invalid characters: \\ / : * ? \" < > |",
+      "filenameReserved": "This filename is reserved and cannot be used",
+      "filenameNoSpaces": "Filename cannot start or end with a space",
+      "filenameNoPeriods": "Filename cannot start or end with a period",
+      "altMaxLength": "Alt text must be less than {{count}} characters",
+      "captionMaxLength": "Caption must be less than {{count}} characters"
+    },
+    "preview": {
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "rotate": "Rotate"
+    }
+  },
+  "multiSelect": {
     "createCategory": "Create category",
     "EnterCategoryTitle": "Enter a short and clear category title.",
     "newCategory": "New Category",
     "creatingCategory": "Creating Category",
     "minNameLength": "Category name must be at least {{count}} characters"
   },
-    "carousel": {
+  "carousel": {
     "title1": "Join us to transform lives through your knowledge",
     "section1": "We offer access to personalized content for people in need, improving living conditions and job opportunities.",
     "title2": "For content creators",
@@ -215,27 +255,28 @@
     "title3": "Sign up now and help make a difference!",
     "section3": "Be part of a community that makes it easier to access relevant content and encourages knowledge sharing in a simple and practical way."
   },
-  "login":{
-    "back-button":"Back",
-    "welcome-back":"Welcome back!",
-    "email":"Email",
-    "password":"Password",
-    "login-button":"Log In",
-    "forgot-password":"Forgot your password?",
-    "no-account":"Don't have an account yet?",
-    "register-now":"Register now",
-    "email-error":"INCORRECT EMAIL OR PASSWORD. PLEASE TRY AGAIN."
+  "auth": {
+    "backButton": "Back",
+    "welcomeBack": "Welcome back!",
+    "email": "Email",
+    "password": "Password",
+    "logIn": "Log In",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don't have an account yet?",
+    "registerNow": "Register now",
+    "emailError": "INCORRECT EMAIL OR PASSWORD. PLEASE TRY AGAIN.",
+    "pendingApprovalTitle": "Awaiting approval",
+    "pendingApprovalText": "Your registration is under review and you will receive a response within a few days. Keep an eye on your email, we will notify you as soon as everything is ready!",
+    "close": "Close"
   },
-  "welcome":
-  {
+  "welcome": {
     "title": "Welcome to EDUCADO!",
     "subtitle": "Sign up now and help promote your work and reach a wider audience through content creation.",
     "register-button": "Register",
     "login-text": "Already have an account?",
     "login-button": "Sign in"
   },
-  "notifications":
-  {
-    "published-course": "Published course"
+  "notifications": {
+    "publishedCourse": "Published course"
   }
 }

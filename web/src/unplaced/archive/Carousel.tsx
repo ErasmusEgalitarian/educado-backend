@@ -1,5 +1,5 @@
-import Icon from "@mdi/react";
 import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import Icon from "@mdi/react";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -51,8 +51,8 @@ const Carousel: React.FC = () => {
   };
 
   const pre = () => {
-    setCurrentIndex((prevIndex) =>
-      (prevIndex - 1 + texts.length) % texts.length
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + texts.length) % texts.length
     );
   };
 

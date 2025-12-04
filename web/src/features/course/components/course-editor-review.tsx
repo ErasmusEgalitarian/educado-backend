@@ -1,13 +1,13 @@
-import Icon from "@mdi/react";
 import { mdiCheckCircleOutline, mdiAlertCircleOutline } from "@mdi/js";
+import Icon from "@mdi/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useNotifications } from "@/shared/context/NotificationContext"
-
 
 import type { Course } from "@/shared/api/types.gen";
 import { OverlayStatusWrapper } from "@/shared/components/overlay-status-wrapper";
 import { Button } from "@/shared/components/shadcn/button";
+import { useNotifications } from "@/shared/context/NotificationContext";
+
 import { usePublishCourseMutation } from "../api/course-mutations";
 
 interface CourseEditorReviewProps {
@@ -33,11 +33,11 @@ const CourseEditorReview = ({
   const getDifficultyLabel = (difficulty?: number) => {
     switch (difficulty) {
       case 1:
-        return t("courseManager.beginner");
+        return t("difficulty.beginner");
       case 2:
-        return t("courseManager.intermediate");
+        return t("difficulty.intermediate");
       case 3:
-        return t("courseManager.advanced");
+        return t("difficulty.advanced");
       default:
         return "-";
     }
@@ -59,7 +59,9 @@ const CourseEditorReview = ({
       });
 
       onComplete?.();
-      addNotification(t("notifications.published-course") + ` '${course.title}'.`);
+      addNotification(
+        t("notifications.publishedCourse") + ` '${course.title}'.`
+      );
       navigate("/courses");
     } catch (error) {
       console.error("Error publishing course:", error);
@@ -75,9 +77,7 @@ const CourseEditorReview = ({
             size={1}
             className="w-12 h-12 mx-auto mb-4 text-error-surface-default"
           />
-          <p className="text-greyscale-text-body">
-            {t("courseManager.noCourse")}
-          </p>
+          <p className="text-greyscale-text-body">{t("courses.noCourses")}</p>
         </div>
       </div>
     );
@@ -87,8 +87,13 @@ const CourseEditorReview = ({
     <OverlayStatusWrapper
       isLoading={isLoading}
       isSuccess={isSuccess}
-      loadingMessage={t("common.publishing")}
-      successMessage={t("common.published")}
+      loadingMessage={t("publication.publishing")}
+      successMessage={t("publication.published")}
+      onSuccessComplete={() => {
+        onComplete?.();
+        publishMutation.reset();
+        navigate("/courses");
+      }}
     >
       <div className="flex flex-col gap-y-6">
         {/* Course Status Banner */}
@@ -101,7 +106,7 @@ const CourseEditorReview = ({
             />
             <div>
               <p className="font-semibold text-success-text-title">
-                {t("common.published")}
+                {t("publication.published")}
               </p>
               <p className="text-sm text-success-text-body">
                 This course is currently visible to students
@@ -113,14 +118,14 @@ const CourseEditorReview = ({
         {/* Course Details */}
         <div className="rounded-xl p-6 shadow-lg border border-greyscale-border">
           <h2 className="text-2xl font-bold text-greyscale-text-title mb-6">
-            {t("courseManager.courseDetails")}
+            {t("courseEditor.courseDetails")}
           </h2>
 
           <div className="space-y-4">
             {/* Title */}
             <div>
               <label className="text-sm font-medium text-greyscale-text-caption">
-                {t("courseManager.courseName")}
+                {t("courseEditor.courseName")}
               </label>
               <p className="text-lg text-greyscale-text-title mt-1">
                 {course.title}
@@ -130,7 +135,7 @@ const CourseEditorReview = ({
             {/* Difficulty */}
             <div>
               <label className="text-sm font-medium text-greyscale-text-caption">
-                {t("courseManager.level")}
+                {t("courseEditor.level")}
               </label>
               <p className="text-lg text-greyscale-text-title mt-1">
                 {getDifficultyLabel(course.difficulty)}
@@ -140,7 +145,7 @@ const CourseEditorReview = ({
             {/* Categories */}
             <div>
               <label className="text-sm font-medium text-greyscale-text-caption">
-                {t("courseManager.categories")}
+                {t("categories.categories")}
               </label>
               <div className="flex flex-wrap gap-2 mt-2">
                 {course.course_categories &&
@@ -171,7 +176,7 @@ const CourseEditorReview = ({
             {course.description != null && (
               <div>
                 <label className="text-sm font-medium text-greyscale-text-caption">
-                  {t("courseManager.description")}
+                  {t("courseEditor.description")}
                 </label>
                 <p className="text-greyscale-text-body mt-1">
                   {course.description}
@@ -183,7 +188,7 @@ const CourseEditorReview = ({
             {course.image && (
               <div>
                 <label className="text-sm font-medium text-greyscale-text-caption">
-                  {t("courseManager.coverImage")}
+                  {t("courseEditor.coverImage")}
                 </label>
                 <div className="mt-2">
                   <img
@@ -198,12 +203,12 @@ const CourseEditorReview = ({
             {/* Sections Count */}
             <div>
               <label className="text-sm font-medium text-greyscale-text-caption">
-                {t("courseManager.createSections")}
+                {t("courseEditor.createSections")}
               </label>
               <p className="text-lg text-greyscale-text-title mt-1">
                 {hasSections
                   ? `${String(course.course_sections?.length ?? 0)} sections`
-                  : t("courseManager.noSections")}
+                  : t("courseEditor.noSections")}
               </p>
             </div>
           </div>
@@ -239,7 +244,9 @@ const CourseEditorReview = ({
               disabled={isLoading}
               variant="primary"
             >
-              {isLoading ? t("common.publishing") : t("common.publish")}
+              {isLoading
+                ? t("publication.publishing")
+                : t("publication.publish")}
             </Button>
             <Button
               onClick={() => {
