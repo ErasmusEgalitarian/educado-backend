@@ -17,6 +17,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
     let user: any;
 
     const authHeader = policyContext.request.ctx.headers.authorization;
+    strapi.log.debug("[is-content-creator] Auth header present:", !!authHeader);
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         throw new PolicyError("Missing or invalid authorization header", {
@@ -28,6 +29,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
         // Extract the authenticated user from the policy context
         // This object is populated by Strapi when the user is logged in
         user = jwt.verify(authHeader.split("Bearer ")[1], secretKey);
+        strapi.log.debug("[is-content-creator] JWT decoded user:", JSON.stringify(user));
     } catch (error) {
         strapi.log.error("JWT verification failed:", error);
         throw new PolicyError("JWT verification failed", {
@@ -43,6 +45,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
     }
 
     if (user.verifiedAt == null) {
+        strapi.log.debug("[is-content-creator] User not verified. verifiedAt:", user.verifiedAt);
         throw new PolicyError("User not verified", {
             policy: 'is-content-creator',
         });
@@ -51,6 +54,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
     try {
         // Query the Content Creator collection to find a record
         // that matches both the user's email and documentId
+        strapi.log.debug("[is-content-creator] Querying for email:", user.email, "documentId:", user.documentId);
         const contentCreator = await strapi.documents('api::content-creator.content-creator').findFirst({
             filters: {
                 email: user.email,
@@ -58,6 +62,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
             },
         });
 
+        strapi.log.debug("[is-content-creator] Content creator found:", !!contentCreator);
         // Return true if a matching Content Creator exists (grant access),
         // or false if not (deny access)
         return !!contentCreator;

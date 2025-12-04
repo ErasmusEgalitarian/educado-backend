@@ -30,5 +30,48 @@ export default factories.createCoreController(
 
       return this.transformResponse(result);
     },
+
+    async create(ctx) {
+      const { data } = ctx.request.body;
+
+      // Extract the course relation if provided
+      const courseDocumentId = data?.course;
+
+      // Create the course section
+      const result = await strapi.documents('api::course-selection.course-selection').create({
+        data: {
+          title: data?.title,
+          description: data?.description,
+        },
+      });
+
+      // If a course was specified, connect it
+      if (courseDocumentId && result.documentId) {
+        // Find the course's internal ID from its documentId
+        const course = await strapi.documents('api::course.course').findFirst({
+          filters: { documentId: courseDocumentId },
+        });
+
+        if (course) {
+          // Use entity service or db query to set the relation
+          await strapi.db.query('api::course-selection.course-selection').update({
+            where: { documentId: result.documentId },
+            data: {
+              course: course.id,
+            },
+          });
+        }
+
+        // Re-fetch with the relation
+        const updated = await strapi.documents('api::course-selection.course-selection').findOne({
+          documentId: result.documentId,
+          populate: ['course'],
+        });
+
+        return this.transformResponse(updated);
+      }
+
+      return this.transformResponse(result);
+    },
   })
 );

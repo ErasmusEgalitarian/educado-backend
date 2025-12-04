@@ -601,7 +601,7 @@ export interface ApiCourseSelectionCourseSelection
     singularName: 'course-selection';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     course: Schema.Attribute.Relation<'manyToOne', 'api::course.course'>;
