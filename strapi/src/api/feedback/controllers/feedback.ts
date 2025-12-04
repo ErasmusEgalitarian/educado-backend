@@ -41,7 +41,8 @@ export default factories.createCoreController(
         });
 
         if (!courseId) {
-          throw { error: errorCodes["E0004"] };
+          ctx.response.status = 500;
+          ctx.response.body = { error: errorCodes["E0006"] };
         }
 
         const feedbacksArray = (course.feedbacks ?? []) as { rating?: number }[];
@@ -56,7 +57,8 @@ export default factories.createCoreController(
         };
 
       } catch (err) {
-        throw { error: errorCodes['E0001'] }
+      ctx.response.status = 500;
+      ctx.body = err;
       }
     }
   })

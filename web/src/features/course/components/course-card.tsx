@@ -45,7 +45,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
         const data = await getFeedbackByCourseIdAverage({path: {courseId: course.documentId!}});
         setFeedbackAverage(data);
       } catch (error) {
-        error
+        console.error("Error fetching course:", error);
       }
     };
     fetchAverageFeedback();
