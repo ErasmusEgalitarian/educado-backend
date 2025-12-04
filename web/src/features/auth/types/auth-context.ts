@@ -1,7 +1,7 @@
 import { RenderMode } from "@/shared/data-display/hooks/used-paginated-data";
 import { User } from "@/user/types/User";
 
-// TODO: Replace User with Strapi user
+// Replace User with Strapi user
 export interface AuthContextType {
     loggedInUser: User | null;
     setLoggedInUser: (user: User | null) => void;

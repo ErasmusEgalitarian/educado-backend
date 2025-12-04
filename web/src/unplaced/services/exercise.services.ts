@@ -22,7 +22,7 @@ const addExercise = async (
     throw "Error: addExercise input id is undefined";
   }
   return await axios.put(`${BACKEND_URL}/api/exercises/${sid}`, props, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { authorization: `Bearer ${token}` },
   });
 };
 
@@ -41,7 +41,7 @@ const updateExercise = async (props: any, token: string, eid: string) => {
   const response = await axios.patch(
     `${BACKEND_URL}/api/exercises/${eid}`,
     props,
-    { headers: { Authorization: `Bearer ${token}` } },
+    { headers: { authorization: `Bearer ${token}` } },
   );
   return response.data;
 };
@@ -55,7 +55,7 @@ const updateExercise = async (props: any, token: string, eid: string) => {
  */
 const getExerciseDetail = (url: string, token: string) => {
   return axios
-    .get(url, { headers: { Authorization: `Bearer ${token}` } })
+    .get(url, { headers: { authorization: `Bearer ${token}` } })
     .then((res) => res.data);
 };
 
@@ -69,7 +69,7 @@ const getExerciseDetail = (url: string, token: string) => {
 const getExercisesBySectionId = (sid: string, token: string) => {
   return axios
     .get(`${BACKEND_URL}/api/exercises/section/${sid}`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     })
     .then((res) => res.data);
 };
@@ -86,7 +86,7 @@ const deleteExercise = async (id: string | undefined, token: string) => {
     throw "Error: deleteExercise input id is undefined";
   }
   return await axios.delete(`${BACKEND_URL}/api/exercises/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { authorization: `Bearer ${token}` },
   });
 };
 

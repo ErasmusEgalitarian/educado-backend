@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import useAuthStore from "@/auth/hooks/useAuthStore";
+import useAuthStore from "@/auth/hooks/use-auth-store";
 
 export const TopNavBar = () => {
   const clearToken = useAuthStore((state) => state.clearToken);

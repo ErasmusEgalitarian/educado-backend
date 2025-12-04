@@ -17,7 +17,7 @@ export const getSectionDetail = (sid: string, token: string) => {
   }
   return axios
     .get(`${BACKEND_URL}/api/sections/${sid}`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     })
     .then((res) => res.data);
 };
@@ -35,7 +35,7 @@ export const saveSection = async (
   }
   // Send the info to caller
   return axios.patch(`${BACKEND_URL}/api/sections/${id}`, data, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { authorization: `Bearer ${token}` },
   });
 };
 
@@ -56,7 +56,7 @@ const createSection = async (
     throw "Error: createSection input id is undefined";
   }
   return await axios.put(`${BACKEND_URL}/api/sections/${id}`, data, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { authorization: `Bearer ${token}` },
   });
 };
 
@@ -72,7 +72,7 @@ const deleteSection = async (id: string | undefined, token: string) => {
     throw "Error: deleteSection input id is undefined";
   }
   return await axios.delete(`${BACKEND_URL}/api/sections/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { authorization: `Bearer ${token}` },
   });
 };
 

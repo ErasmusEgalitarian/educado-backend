@@ -34,7 +34,7 @@ const addLecture = async (
       contentType: contentType,
       content: content,
     },
-    { headers: { Authorization: `Bearer ${token}` } },
+    { headers: { authorization: `Bearer ${token}` } },
   );
 };
 
@@ -54,7 +54,7 @@ const updateLecture = async (props: any, token: string, lid: string) => {
   const response = await axios.patch(
     `${BACKEND_URL}/api/lectures/${lid}`,
     props,
-    { headers: { Authorization: `Bearer ${token}` } },
+    { headers: { authorization: `Bearer ${token}` } },
   );
   return response.data;
 };
@@ -68,7 +68,7 @@ const updateLecture = async (props: any, token: string, lid: string) => {
  */
 const getLectureDetail = (url: string, token: string) => {
   return axios
-    .get(url, { headers: { Authorization: `Bearer ${token}` } })
+    .get(url, { headers: { authorization: `Bearer ${token}` } })
     .then((res) => res.data);
 };
 
@@ -82,7 +82,7 @@ const getLectureDetail = (url: string, token: string) => {
 const getLectureBySectionId = (sid: string, token: string) => {
   return axios
     .get(`${BACKEND_URL}/api/lectures/section/${sid}`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     })
     .then((res) => res.data);
 };
@@ -99,7 +99,7 @@ const deleteLecture = async (lid: string | undefined, token: string) => {
     throw "Error: deleteLecture input id is undefined";
   }
   return await axios.delete(`${BACKEND_URL}/api/lectures/${lid}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { authorization: `Bearer ${token}` },
   });
 };
 

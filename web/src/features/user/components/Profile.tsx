@@ -7,7 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { z } from "zod";
 
-import useAuthStore from "@/auth/hooks/useAuthStore";
+import useAuthStore from "@/auth/hooks/use-auth-store";
 import { tempObjects } from "@/shared/lib/formStates";
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";

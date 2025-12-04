@@ -7,7 +7,7 @@ const getInstitutions = async (token: string) => {
   const res = await axios.get<Institution[]>(
     `${BACKEND_URL}/api/institutions`,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     },
   );
   return res.data;
@@ -15,7 +15,7 @@ const getInstitutions = async (token: string) => {
 
 const getSingleInstitution = async (id: string, token: string) => {
   return await axios.get<Institution>(`${BACKEND_URL}/api/institutions/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { authorization: `Bearer ${token}` },
   });
 };
 
@@ -24,7 +24,7 @@ const createInstitution = async (token: string, data: Institution) => {
     `${BACKEND_URL}/api/institutions/`,
     { ...data },
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     },
   );
 };
@@ -38,7 +38,7 @@ const updateInstitution = async (
     `${BACKEND_URL}/api/institutions/${id}`,
     { ...data },
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     },
   );
   return res.data;
@@ -48,7 +48,7 @@ const deleteInstitution = async (id: string, token: string) => {
   const res = await axios.delete<Institution>(
     `${BACKEND_URL}/api/institutions/${id}`,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     },
   );
   return res.data;

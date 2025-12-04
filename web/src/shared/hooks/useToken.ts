@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import useAuthStore from "@/auth/hooks/useAuthStore";
+import useAuthStore from "@/auth/hooks/use-auth-store";
 
 // Contexts
 

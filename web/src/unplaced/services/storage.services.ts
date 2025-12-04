@@ -66,7 +66,7 @@ const deleteFile = async (id: string | undefined, token: string) => {
   }
   return await axios
     .delete(`${BACKEND_URL}/api/bucket/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     })
     .then((res) => res.data);
 };

@@ -6,7 +6,7 @@ import { BACKEND_URL } from "../../shared/config/environment";
 const getComponentDetail = (cid: string, type: string, token: string) => {
   return axios
     .get(`${BACKEND_URL}/api/components/${type}/${cid}`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     })
     .then((res) => res.data);
 };

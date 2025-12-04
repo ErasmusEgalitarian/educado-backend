@@ -201,7 +201,7 @@ const Login = () => {
           {/*Error message for when email or password is incorrect*/}
           <div className="fixed right-0 top-16 z-10">
             {error && (
-              // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+               
               <div
                 className="bg-white shadow-sm border-t-4 p-4 w-52 rounded-sm text-center animate-bounce-short"
                 role="alert"
@@ -295,7 +295,7 @@ const Login = () => {
                 </div>
 
                 {emailError && (
-                  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+                   
                   <div
                     className="mt-3 flex items-center text-[12px] font-normal font-montserrat"
                     role="alert"
@@ -356,7 +356,7 @@ const Login = () => {
         </div>
       </div>
       {showModal && (
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+         
         <ToggleModalContext.Provider
           value={() => {
             setShowModal(!showModal);

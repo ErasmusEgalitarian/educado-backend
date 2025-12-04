@@ -29,7 +29,7 @@ const createCertificate = async (certificate: CertificateIds) => {
     },
     {
       headers: {
-        Authorization: `Bearer ${getUserToken()}`,
+        authorization: `Bearer ${getUserToken()}`,
         token: getUserToken(),
       },
     },
@@ -56,7 +56,7 @@ const deleteCertificate = async (creatorId: string, courseId: string) => {
       courseId: courseId,
     },
     headers: {
-      Authorization: `Bearer ${getUserToken()}`,
+      authorization: `Bearer ${getUserToken()}`,
       token: getUserToken(),
     },
   });

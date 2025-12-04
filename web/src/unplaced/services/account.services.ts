@@ -12,7 +12,7 @@ const deleteAccount = async () => {
 
   try {
     const res = await axios.delete(`${BACKEND_URL}/api/users/${baseUser}`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     });
 
     return res.status;
@@ -31,7 +31,7 @@ const getPublicProfileInfo = (
 ) => {
   return axios
     .get(`${BACKEND_URL}/api/public/profiles/${profileId}`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     })
     .then((res) => res.data);
 };
@@ -39,7 +39,7 @@ const getPublicProfileInfo = (
 const getProfileInfo = (token: string | null | undefined) => {
   return axios
     .get(`${BACKEND_URL}/api/profile/whoami`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     })
     .then((res) => res.data);
 };
@@ -47,7 +47,7 @@ const getProfileInfo = (token: string | null | undefined) => {
 const updateProfileInfo = (data: any, token: string | null | undefined) => {
   return axios
     .put(`${BACKEND_URL}/api/profile`, data, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     })
     .then((res) => res.data);
 };
@@ -55,7 +55,7 @@ const updateProfileInfo = (data: any, token: string | null | undefined) => {
 const changePassword = (data: any, token: string) => {
   return axios
     .put(`${BACKEND_URL}/api/profile/changePassword`, data, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${token}` },
     })
     .then((res) => res.data);
 };

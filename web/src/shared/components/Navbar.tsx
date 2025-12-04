@@ -12,7 +12,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
-import useAuthStore from "@/auth/hooks/useAuthStore";
+import useAuthStore from "@/auth/hooks/use-auth-store";
 import {
   DropdownMenu,
   DropdownMenuContent,
