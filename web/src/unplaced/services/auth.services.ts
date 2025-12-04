@@ -4,6 +4,7 @@ import { BACKEND_URL } from "@/shared/config/environment";
 import { Application } from "@/user/types/Application";
 import { Institution } from "@/user/types/Institution";
 import { User } from "@/user/types/User";
+import { getUserToken } from "@/auth/lib/userInfo";
 
 export interface ContentCreatorApplication {
   firstName: string;
@@ -29,69 +30,79 @@ const postUserVerification = async (formData: ContentCreatorApplication) => {
 };
 
 const GetCCApplications = async () => {
-  return await axios.get(`${BACKEND_URL}/api/user-info`);
+    const token = getUserToken();
+  return await axios.get(`${BACKEND_URL}/api/user-info`,{
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+    }
+  );
 };
 
 const GetSingleCCApplication = async (id: string | undefined) => {
+    const token = getUserToken();
+
   return await axios.get<{ applicator: User; application: Application }>(
     `${BACKEND_URL}/api/user-info/${id}`,
+      {
+          headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+      },
   );
 };
 
 const AcceptApplication = async (id: string): Promise<unknown> => {
-  return await axios.put(`${BACKEND_URL}/api/applications/${id}approve`);
+    axios.patch(`${BACKEND_URL}/api/content-creators/${id}/status`, {
+        statusValue: "APPROVED",
+    });
 };
 
-const RejectApplication = async (
-  id: string,
-  rejectionReason: string,
-): Promise<unknown> => {
-  return await axios.put(`${BACKEND_URL}/api/applications/${id}reject`, {
-    rejectionReason,
-  });
-};
+    const RejectApplication = (id: string, rejectionReason: string) => {
+        axios.patch(`${BACKEND_URL}/api/content-creators/${id}/status`, {
+            statusValue: "REJECTED",
+            rejectionReason,
+        });
+    };
 
-const postNewApplication = async (data: {
-  baseUser: string | undefined;
-  motivation: string;
 
-  academicLevel: string[];
-  academicStatus: string[];
-  major: string[];
-  institution: string[];
-  educationStartDate: string[];
-  educationEndDate: string[];
+    const postNewApplication = async (data: {
+        baseUser: string | undefined;
+        motivation: string;
 
-  company: string[];
-  position: string[];
-  workStartDate: string[];
-  workEndDate: string[];
-  isCurrentJob: boolean[];
-  workActivities: string[];
-}) => {
-  return await axios.post(
-    `${BACKEND_URL}/api/applications/newapplication`,
-    data,
-  );
-};
+        academicLevel: string[];
+        academicStatus: string[];
+        major: string[];
+        institution: string[];
+        educationStartDate: string[];
+        educationEndDate: string[];
 
-const addInstitution = async (data: Institution) => {
-  const res = await axios.post<Institution>(
-    `${BACKEND_URL}/api/applications/newinstitution`,
-    data,
-  );
-  return res.data;
-};
+        company: string[];
+        position: string[];
+        workStartDate: string[];
+        workEndDate: string[];
+        isCurrentJob: boolean[];
+        workActivities: string[];
+    }) => {
+        return await axios.post(
+            `${BACKEND_URL}/api/applications/newapplication`,
+            data,
+        );
+    };
 
-const AuthServices = Object.freeze({
-  postUserSignup,
-  GetCCApplications,
-  GetSingleCCApplication,
-  AcceptApplication,
-  RejectApplication,
-  postNewApplication,
-  addInstitution,
-  postUserVerification,
-});
+    const addInstitution = async (data: Institution) => {
+        const res = await axios.post<Institution>(
+            `${BACKEND_URL}/api/applications/newinstitution`,
+            data,
+        );
+        return res.data;
+    };
 
-export default AuthServices;
+    const AuthServices = Object.freeze({
+        postUserSignup,
+        GetCCApplications,
+        GetSingleCCApplication,
+        AcceptApplication,
+        RejectApplication,
+        postNewApplication,
+        addInstitution,
+        postUserVerification,
+    });
+
+    export default AuthServices;

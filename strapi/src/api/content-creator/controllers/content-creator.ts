@@ -116,4 +116,33 @@ export default factories.createCoreController('api::content-creator.content-crea
             return ctx.internalServerError('Something went wrong');
         }
     },
+
+    async updateStatus(ctx) {
+        const { id } = ctx.params;
+        const { statusValue, rejectionReason } = ctx.request.body;
+
+        const allowed = ["PENDING", "APPROVED", "REJECTED"];
+        if (!allowed.includes(statusValue)) {
+            return ctx.badRequest("Invalid statusValue");
+        }
+
+        const data: Record<string, unknown> = { statusValue };
+
+        if (statusValue === "APPROVED") {
+            data.verifiedAt = new Date().toISOString();
+        }
+
+        if (statusValue === "REJECTED" && rejectionReason) {
+            data.rejectionReason = rejectionReason;
+        }
+
+        const updated = await strapi
+            .documents("api::content-creator.content-creator")
+            .update({
+                documentId: id,
+                data,
+            });
+
+        return this.transformResponse(updated);
+    }
 }));
