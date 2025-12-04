@@ -161,9 +161,10 @@ export const useBulkDeleteFilesMutation = () => {
 };
 
 // Helper to refetch media queries
-const refetchMedia = (queryClient: QueryClient) =>
-  void queryClient.refetchQueries({
+const refetchMedia = (queryClient: QueryClient) => {
+  queryClient.refetchQueries({
     queryKey: [["media"]],
     exact: false,
     type: "active",
-  });
+  }).catch(() => { /* Intentionally ignoring refetch errors */ });
+};

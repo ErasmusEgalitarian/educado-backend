@@ -84,7 +84,8 @@ export const MediaPickerTrigger = ({
   if (value) {
     return (
       <>
-        <div
+        <button
+          type="button"
           className={cn(
             "relative w-full h-64 rounded-lg border overflow-hidden group cursor-pointer",
             disabled && "opacity-50 cursor-not-allowed",
@@ -92,8 +93,7 @@ export const MediaPickerTrigger = ({
           )}
           onClick={handleClick}
           onKeyDown={handleKeyDown}
-          role="button"
-          tabIndex={disabled ? -1 : 0}
+          disabled={disabled}
         >
           <MediaAssetPreview
             asset={value}
@@ -112,7 +112,7 @@ export const MediaPickerTrigger = ({
               <Icon path={mdiClose} size={0.65} />
             </Button>
           )}
-        </div>
+        </button>
 
         <MediaPickerModal
           isOpen={isModalOpen}
@@ -128,11 +128,11 @@ export const MediaPickerTrigger = ({
   // No value: show the trigger card
   return (
     <>
-      <div
-        role="button"
-        tabIndex={disabled ? -1 : 0}
+      <button
+        type="button"
         onClick={handleClick}
         onKeyDown={handleKeyDown}
+        disabled={disabled}
         className={cn(
           "relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed p-12 transition-all cursor-pointer min-h-48",
           "border-border bg-muted/30 hover:border-primary/50 hover:bg-muted/50",
@@ -150,7 +150,7 @@ export const MediaPickerTrigger = ({
         <Button type="button" variant="secondary" disabled={disabled}>
           {t("media.browseLibrary")}
         </Button>
-      </div>
+      </button>
 
       <MediaPickerModal
         isOpen={isModalOpen}

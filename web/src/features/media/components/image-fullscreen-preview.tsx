@@ -204,13 +204,12 @@ export const ImageFullscreenPreview = ({
           onClose();
         }
       }}
-      role="presentation"
+      aria-modal="true"
     >
-      <div
-        className="absolute inset-0 bg-black/95"
+      <button
+        type="button"
+        className="absolute inset-0 bg-black/95 border-none"
         onClick={onClose}
-        role="button"
-        tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
@@ -316,6 +315,7 @@ export const ImageFullscreenPreview = ({
       </div>
 
       {/* Image container */}
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- This is an interactive image viewer that requires mouse/wheel events for pan and zoom functionality */}
       <div
         className={`relative h-full w-full overflow-hidden ${cursorClass}`}
         onMouseDown={handleMouseDown}
@@ -323,7 +323,6 @@ export const ImageFullscreenPreview = ({
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
         onWheel={handleWheel}
-        role="presentation"
       >
         <div className="flex h-full w-full items-center justify-center">
           <img

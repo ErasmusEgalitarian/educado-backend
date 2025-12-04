@@ -202,6 +202,7 @@ export const SelectableCard = ({
   return (
     <div
       role="button"
+      aria-pressed={selected}
       tabIndex={selectable || selected ? 0 : -1}
       className={cn(
         "relative cursor-pointer transition-all duration-200",

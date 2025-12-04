@@ -43,7 +43,13 @@ export const Navbar = () => {
   const isOnMedia = location.pathname.startsWith("/media");
 
   // Determine active tab index for the underline indicator (-1 = none active)
-  const activeTabIndex = isOnCourses ? 0 : isOnMedia ? 1 : isOnAdmin ? 2 : -1;
+  const getActiveTabIndex = () => {
+    if (isOnCourses) return 0;
+    if (isOnMedia) return 1;
+    if (isOnAdmin) return 2;
+    return -1;
+  };
+  const activeTabIndex = getActiveTabIndex();
   const tabPositions = ["left-0", "left-1/3", "left-2/3"];
 
   const { clearToken } = useAuthStore((state) => state);
@@ -78,7 +84,7 @@ export const Navbar = () => {
         <div className="w-[165.25px] h-6 justify-start items-center gap-[7.52px] flex py-6 px-8">
           <Link
             to="/"
-            className="w-[165.25px] h-6 flex items-center gap-[6px] text-xl"
+            className="w-[165.25px] h-6 flex items-center gap-1.5 text-xl"
           >
             <img src="/logo.svg" alt="logo" className="w-[24.43px] h-6" />
             <img src="/educado.svg" alt="educado" className="h-6" />
@@ -86,7 +92,7 @@ export const Navbar = () => {
         </div>
 
         <div className="flex-1 flex justify-center">
-          {true && (
+          {userInfo.role === "admin" ? (
             <div className="flex flex-col items-center">
               <div className="flex space-x-16 text-sm font-semibold font-['Montserrat']">
                 {/* Cursos tab */}
@@ -143,7 +149,7 @@ export const Navbar = () => {
                 />
               </div>
             </div>
-          )}
+          ) : null}
         </div>
 
         {/* Notification Bell and User Info */}
@@ -169,7 +175,7 @@ export const Navbar = () => {
                         key={notification.id}
                         className="relative p-2 cursor-default w-full flex justify-between"
                       >
-                        {notification.link != null ? (
+                        {notification.link ? (
                           <a
                             href={notification.link}
                             className="text-sm text-blue-600 hover:underline"

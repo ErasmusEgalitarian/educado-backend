@@ -126,14 +126,14 @@ export const MediaUploadCard = ({
   };
 
   return (
-    <div
-      role="button"
-      tabIndex={disabled ? -1 : 0}
+    <button
+      type="button"
       onClick={handleClick}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onKeyDown={handleKeyDown}
+      disabled={disabled}
       className={cn(
         "relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed p-12 transition-all cursor-pointer min-h-48",
         isDragging && !disabled
@@ -163,6 +163,6 @@ export const MediaUploadCard = ({
         disabled={disabled}
         multiple={allowMultiple}
       />
-    </div>
+    </button>
   );
 };

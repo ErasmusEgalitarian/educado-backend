@@ -134,7 +134,9 @@ export const MediaAssetPreview = ({
           src={getAssetUrl(asset.url)}
           className="h-full w-full object-cover"
           controls={showVideoControls}
-        />
+        >
+          <track kind="captions" />
+        </video>
       </div>
     );
   }

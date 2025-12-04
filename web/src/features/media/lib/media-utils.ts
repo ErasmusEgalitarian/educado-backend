@@ -126,7 +126,7 @@ export const formatBytes = (bytes?: number) => {
 };
 // .
 
-// TODO: Move to date utils
+// Date formatting utility
 export const formatDate = (dateString?: string) => {
     if (dateString == null || dateString === "") return "";
     const date = new Date(dateString);

@@ -81,6 +81,7 @@ const MediaFilePreviewItem = ({
             {/* Preview - clickable for fullscreen, stops accordion trigger */}
             <div
               className="shrink-0"
+              role="presentation"
               onClick={(e) => {
                 e.stopPropagation();
               }}
