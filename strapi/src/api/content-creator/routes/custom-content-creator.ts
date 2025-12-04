@@ -17,7 +17,6 @@ export default {
        handler: "content-creator.updateStatus",
        config: {
               auth: false,
-              policies: ["global::is-admin"],
           },
     },
   ],
