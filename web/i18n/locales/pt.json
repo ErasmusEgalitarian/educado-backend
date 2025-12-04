@@ -87,7 +87,8 @@
     "admin": "Admin",
     "courses": "Cursos",
     "logout": "Sair",
-    "noNotifications": "Nenhuma notificação"
+    "noNotifications": "Nenhuma notificação",
+    "mediaLibrary": "Biblioteca de Mídia"
   },
   "notifications": {
     "publishedCourse": "Curso publicado"

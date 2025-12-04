@@ -87,7 +87,8 @@
     "admin": "Admin",
     "courses": "Courses",
     "logout": "Logout",
-    "noNotifications": "No notifications"
+    "noNotifications": "No notifications",
+    "mediaLibrary": "Media Library"
   },
   "difficulty": {
     "difficulty": "Difficulty",

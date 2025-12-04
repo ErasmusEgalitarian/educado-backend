@@ -40,6 +40,12 @@ export const Navbar = () => {
   const location = useLocation();
   const isOnAdmin = location.pathname.startsWith("/educado-admin");
   const isOnCourses = location.pathname.startsWith("/courses");
+  const isOnMedia = location.pathname.startsWith("/media");
+
+  // Determine active tab index for the underline indicator (-1 = none active)
+  const activeTabIndex = isOnCourses ? 0 : isOnMedia ? 1 : isOnAdmin ? 2 : -1;
+  const tabPositions = ["left-0", "left-1/3", "left-2/3"];
+
   const { clearToken } = useAuthStore((state) => state);
   const [open, setOpen] = useState(false);
   const { notifications, setNotifications } = useNotifications();
@@ -80,7 +86,7 @@ export const Navbar = () => {
         </div>
 
         <div className="flex-1 flex justify-center">
-          {userInfo.role === "admin" && (
+          {true && (
             <div className="flex flex-col items-center">
               <div className="flex space-x-16 text-sm font-semibold font-['Montserrat']">
                 {/* Cursos tab */}
@@ -97,6 +103,20 @@ export const Navbar = () => {
                 >
                   {t("navbar.courses")}
                 </button>
+                {/* Media tab */}
+                <button
+                  onClick={() => {
+                    navigate("/media");
+                  }}
+                  className={
+                    "pb-1 transition-colors " +
+                    (isOnMedia
+                      ? "text-primary-text-label"
+                      : "text-greyscale-text-subtle hover:text-primary-text-label")
+                  }
+                >
+                  {t("navbar.mediaLibrary")}
+                </button>
 
                 {/* Admin tab */}
                 <button
@@ -104,29 +124,23 @@ export const Navbar = () => {
                     navigate("/educado-admin");
                   }}
                   className={
-                    isOnAdmin
+                    "pb-1 transition-colors " +
+                    (isOnAdmin
                       ? "text-primary-text-label"
-                      : "text-greyscale-text-subtle hover:text-primary-text-label"
+                      : "text-greyscale-text-subtle hover:text-primary-text-label")
                   }
                 >
                   {t("navbar.admin")}
                 </button>
               </div>
 
-              <div className="relative w-64 h-px bg-[#166276]/30">
-                {/* LEFT active segment */}
+              <div className="relative w-96 h-px bg-[#166276]/30">
+                {/* Active indicator that slides to the active tab */}
                 <div
-                  className={`absolute left-0 top-0 h-px transition-all duration-300 ${
-                    isOnCourses ? "bg-primary-border-default w-1/2" : "w-0"
+                  className={`absolute top-0 h-px bg-primary-border-default w-1/3 transition-all duration-300 ${
+                    activeTabIndex >= 0 ? tabPositions[activeTabIndex] : "opacity-0"
                   }`}
-                ></div>
-
-                {/* RIGHT active segment */}
-                <div
-                  className={`absolute right-0 top-0 h-px transition-all duration-300 ${
-                    isOnAdmin ? "bg-primary-border-default w-1/2" : "w-0"
-                  }`}
-                ></div>
+                />
               </div>
             </div>
           )}
