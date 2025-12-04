@@ -3,7 +3,7 @@
  * A set of functions called "actions" for `course-statistics`
  */
 import { errorCodes } from "../../../helpers/errorCodes";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 //Custom types
 interface CourseRelationType {
