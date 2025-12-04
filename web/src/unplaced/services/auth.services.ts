@@ -29,12 +29,12 @@ const postUserVerification = async (formData: ContentCreatorApplication) => {
 };
 
 const GetCCApplications = async () => {
-  return await axios.get(`${BACKEND_URL}/api/applications`);
+  return await axios.get(`${BACKEND_URL}/api/user-info`);
 };
 
 const GetSingleCCApplication = async (id: string | undefined) => {
   return await axios.get<{ applicator: User; application: Application }>(
-    `${BACKEND_URL}/api/applications/${id}`,
+    `${BACKEND_URL}/api/user-info/${id}`,
   );
 };
 
