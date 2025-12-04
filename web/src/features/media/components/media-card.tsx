@@ -173,7 +173,7 @@ const MediaCardExtended = ({
     e.stopPropagation();
     if (asset.url) {
       const url = getAssetUrl(asset.url);
-      void downloadFile(url, asset.name ?? "download");
+      void downloadFile(url, asset.alternativeText ?? "downloaded-file");
     }
   };
 

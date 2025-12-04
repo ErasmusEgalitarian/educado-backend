@@ -27,12 +27,22 @@ interface MediaPickerTriggerProps {
   className?: string;
 }
 
-/**
+/** [Educado]
  * A picker trigger component that shows:
  * - A dashed card to open the picker modal (when no value selected)
  * - A preview of the selected asset with a clear button (when value is selected)
  *
  * Opens the MediaPickerModal for browsing existing assets or uploading new ones.
+ *
+ * @param {MediaPickerTriggerProps} props - The component props.
+ * @param {UploadFile | null | undefined} props.value - Currently selected file or null/undefined if none.
+ * @param {(file: UploadFile | null) => void} props.onChange - Callback when a file is selected or cleared.
+ * @param {MediaFileType | MediaFileType[]} [props.fileTypes] - Allowed file types (image, video, file).
+ * @param {number} [props.maxFiles=1] - Maximum number of files for upload within the modal.
+ * @param {boolean} [props.disabled=false] - Whether the component is disabled.
+ * @param {string} [props.className] - Additional class names for styling.
+ *
+ * @returns {React.JSX.Element} The MediaPickerTrigger component.
  */
 export const MediaPickerTrigger = ({
   value,
@@ -52,7 +62,9 @@ export const MediaPickerTrigger = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if ((e.key === "Enter" || e.key === " ") && !disabled) {
+    const isTriggerKey = e.key === "Enter" || e.key === " ";
+
+    if (isTriggerKey && !disabled) {
       e.preventDefault();
       handleClick();
     }

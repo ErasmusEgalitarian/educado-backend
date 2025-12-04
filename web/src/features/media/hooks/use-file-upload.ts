@@ -31,7 +31,7 @@ export const useFileUpload = (): useFileUploadReturn => {
     setIsUploading(true);
 
     try {
-      // Upload each file individually
+      // Create promises to run uploads in parallel
       const uploadPromises = files.map(async ({ file, filename, alt, caption }) => {
         const formData = new FormData();
         formData.append("files", file);
@@ -49,7 +49,7 @@ export const useFileUpload = (): useFileUploadReturn => {
         const response = await fetch(`${baseUrl}/upload`, {
           method: "POST",
           body: formData,
-          headers: fetchHeaders(),
+          headers: fetchHeaders(), // Include any auth headers
         });
 
         if (!response.ok) {

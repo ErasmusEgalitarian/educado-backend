@@ -2,12 +2,22 @@
 
 import { client } from "../api/client.gen";
 
+/** [Educado]
+ * Retrieves the base API URL from environment variables or defaults to localhost.
+ * 
+ * Examples:
+ * - VITE_STRAPI_URL set to "https://api.educado.com" returns "https://api.educado.com"
+ * - VITE_STRAPI_URL not set returns "http://localhost:1337"
+ * 
+ * @returns {string} The base URL for the API
+ */
 export const getBaseApiUrl = (): string => {
   const strapiUrl = import.meta.env.VITE_STRAPI_URL as string | undefined;
   return strapiUrl ?? "http://localhost:1337";
 };
 
-/**
+/** [Educado]
+ * Runs only from main.tsx on app startup.
  * Configures the API client with base URL and authentication token from localStorage.
  */
 export const configureApiClient = () => {
@@ -53,7 +63,7 @@ export const configureApiClient = () => {
   });
 };
 
-/**
+/** [Educado]
  * Updates the API client's authorization header with the token from localStorage.
  * Call this after login/logout to ensure the client uses the current token.
  */
@@ -76,7 +86,7 @@ export const updateApiClientToken = () => {
   }
 };
 
-/**
+/** [Educado]
  * Generates headers for API requests, including Authorization if token is set.
  * Used when making fetch calls outside the generated API client.
  * @returns {Record<string, string>} Headers object for fetch requests

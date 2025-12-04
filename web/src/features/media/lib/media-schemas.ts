@@ -5,11 +5,11 @@ import { z } from "zod";
 // Media Metadata Limits
 // ============================================================================
 
-/** Character limits for media metadata fields */
+/** [Educado] Character limits for media metadata fields */
 export const MEDIA_METADATA_LIMITS = {
     filename: 50,
-    alt: 125,
-    caption: 200,
+    alt: 64, // Used by screen readers and if images fail to load
+    caption: 200, // Use to describe the media content. Often displayed below images.
 } as const;
 
 // ============================================================================
@@ -29,7 +29,7 @@ const INVALID_FILENAME_CHARS = /[\\/:*?"<>|]/;
  */
 const WINDOWS_RESERVED_NAMES = /^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])$/i;
 
-/**
+/** [Educado]
  * Validates that a string is a valid filename (without extension).
  * 
  * Rules:
@@ -40,17 +40,21 @@ const WINDOWS_RESERVED_NAMES = /^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])$/i;
  * - Maximum length of 50 characters
  */
 export const isValidFilename = (name: string): boolean => {
-    if (name.length === 0 || name.trim().length === 0) return false;
-    if (name.length > MEDIA_METADATA_LIMITS.filename) return false;
-    if (INVALID_FILENAME_CHARS.test(name)) return false;
-    if (WINDOWS_RESERVED_NAMES.test(name)) return false;
-    if (name.startsWith(" ") || name.endsWith(" ")) return false;
-    if (name.startsWith(".") || name.endsWith(".")) return false;
-    return true;
+    const validations = [
+        name.length > 0,
+        name.trim().length > 0,
+        name.length <= MEDIA_METADATA_LIMITS.filename,
+        !INVALID_FILENAME_CHARS.test(name),
+        !WINDOWS_RESERVED_NAMES.test(name),
+        !name.startsWith(" ") && !name.endsWith(" "),
+        !name.startsWith(".") && !name.endsWith("."),
+    ];
+    return validations.every(Boolean);
 };
 
-/**
+/** [Educado]
  * Creates a translated filename schema.
+ * 
  * @param t - The i18next translation function
  */
 export const createFilenameSchema = (t: TFunction) =>
@@ -78,7 +82,7 @@ export const createFilenameSchema = (t: TFunction) =>
 // Media Metadata Schemas
 // ============================================================================
 
-/**
+/** [Educado]
  * Creates a translated schema for media asset form (used in MediaCard).
  * Alt and caption are optional for existing assets.
  * @param t - The i18next translation function
@@ -96,7 +100,7 @@ export const createMediaAssetFormSchema = (t: TFunction) =>
             .optional(),
     });
 
-/**
+/** [Educado]
  * Creates a translated schema for file metadata in the upload zone field array.
  * @param t - The i18next translation function
  */
@@ -109,8 +113,8 @@ export const createUploadFileItemSchema = (t: TFunction) =>
         caption: z.string().max(MEDIA_METADATA_LIMITS.caption, t("media.validation.captionMaxLength", { count: MEDIA_METADATA_LIMITS.caption })),
     });
 
-/**
- * Creates a translated schema for the upload form with array of files.
+/** [Educado]
+ * Creates a translated schema for the upload form with array of files
  * @param t - The i18next translation function
  */
 export const createUploadFormSchema = (t: TFunction) =>

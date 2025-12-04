@@ -174,6 +174,11 @@ export const ImageFullscreenPreview = ({
 
   const handleDownload = (e: React.MouseEvent) => {
     e.stopPropagation();
+
+    if (alt === "") {
+      alt = "downloaded-image";
+    }
+
     void downloadFile(src, alt);
   };
 
@@ -191,6 +196,7 @@ export const ImageFullscreenPreview = ({
       className="fixed inset-0 z-50 flex items-center justify-center"
       onClick={(e) => {
         e.stopPropagation();
+        e.preventDefault();
       }}
       onKeyDown={(e) => {
         e.stopPropagation();
@@ -283,9 +289,7 @@ export const ImageFullscreenPreview = ({
               <Icon path={mdiDownload} size={0.65} />
             </Button>
           </TooltipTrigger>
-          <TooltipContent side="bottom">
-            {t("common.download")}
-          </TooltipContent>
+          <TooltipContent side="bottom">{t("common.download")}</TooltipContent>
         </Tooltip>
 
         <Tooltip>
@@ -302,9 +306,7 @@ export const ImageFullscreenPreview = ({
               <Icon path={mdiClose} size={0.65} />
             </Button>
           </TooltipTrigger>
-          <TooltipContent side="bottom">
-            {t("actions.close")}
-          </TooltipContent>
+          <TooltipContent side="bottom">{t("actions.close")}</TooltipContent>
         </Tooltip>
       </div>
 

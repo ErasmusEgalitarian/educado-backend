@@ -2,22 +2,43 @@ import { mdiFile, mdiFileImage, mdiFileVideo } from "@mdi/js";
 
 import { getBaseApiUrl } from "@/shared/config/api-config";
 
+/* ----------------------------- I like comments ---------------------------- */
+
 export type MediaFileType = "image" | "video" | "file";
 
+/** [Educado] Returns a fully qualified URL for a media asset, handling relative paths and absolute URLs.
+ * 
+ * Examples:
+ * - Input: "/uploads/image.jpg" => "http://localhost:1337/uploads/image.jpg"
+ * - Input: "https://cdn.example.com/image.jpg" => "https://cdn.example.com/image.jpg"
+ * - Input: "blob:http://localhost:3000/..." => "blob:http://localhost:3000/..."
+ */
 export const getAssetUrl = (url?: string): string => {
     if (url == null || url === "") return "";
-    if (
-        url.startsWith("http://") ||
-        url.startsWith("https://") ||
-        url.startsWith("blob:")
-    )
-        return url;
+
+    // Check for absolute URLs or blob URLs
+    switch (true) {
+        case url.startsWith("http://"):
+        case url.startsWith("https://"):
+        case url.startsWith("blob:"):
+            return url; // needs no modification
+    }
+
     // Normalize base: remove trailing slash and optional /api
     const base = getBaseApiUrl().replace(/\/$/, "");
     const publicBase = base.replace(/\/api$/, "");
     return publicBase + (url.startsWith("/") ? url : "/" + url);
 };
 
+/** [Educado] Extracts the file extension from a filename and returns it in uppercase.
+ * 
+ * Examples:
+ * - "photo.jpg" => "JPG"
+ * - "document.pdf" => "PDF"
+ * - "archive" => ""
+ * @param filename - The name of the file
+ * @returns The file extension in uppercase, or empty string if none
+ */
 export const getFileExtension = (filename?: string) => {
     if (filename == null) return "";
     const parts = filename.split(".");
@@ -27,12 +48,32 @@ export const getFileExtension = (filename?: string) => {
 export const isImage = (mime?: string) => mime?.startsWith("image/") ?? false;
 export const isVideo = (mime?: string) => mime?.startsWith("video/") ?? false;
 
+/** [Educado] Returns the media file type based on MIME type.
+ * 
+ * Examples:
+ * - "image/jpeg" => "image"
+ * - "video/mp4" => "video"
+ * - "application/pdf" => "file"
+ * 
+ *  @param mime - The MIME type of the file
+ *  @returns The media file type: "image", "video", or "file"
+ */
+
 export const getFileType = (mime?: string) => {
     if (isImage(mime)) return "image";
     if (isVideo(mime)) return "video";
     return "file";
 };
 
+/** [Educado] Returns the icon path for a media file based on MIME type.
+ * 
+ * Examples:
+ * - "image/jpeg" => mdiFileImage
+ * - "video/mp4" => mdiFileVideo
+ * - "application/pdf" => mdiFile
+ * @param mime - The MIME type of the file
+ * @returns The icon path string from Material Design Icons
+ */
 export const getFileTypeIcon = (mime?: string) => {
     if (isImage(mime)) return mdiFileImage;
     if (isVideo(mime)) return mdiFileVideo;
@@ -40,7 +81,13 @@ export const getFileTypeIcon = (mime?: string) => {
 };
 
 /**
- * Returns a translated file type label based on MIME type.
+ * [Educado] Returns a translated file type label based on MIME type.
+ * 
+ * Examples:
+ * - "image/jpeg" => "Image"
+ * - "video/mp4" => "Video"
+ * - "application/pdf" => "File"
+ * 
  * @param mime - The MIME type of the file
  * @param t - The translation function from useTranslation()
  * @returns Translated label for the file type
@@ -53,6 +100,18 @@ export const getFileTypeLabel = (
     if (isVideo(mime)) return t("media.fileTypes.video");
     return t("media.fileTypes.file");
 };
+
+/** [Educado] Formats a byte size into a human-readable string.
+ * 
+ * Examples:
+ * - 0 => "0 B"
+ * - 500 => "500 B"
+ * - 2048 => "2 KB"
+ * - 1048576 => "1 MB"
+ * 
+ * @param bytes - The size in bytes
+ * @returns Formatted size string
+ */
 
 export const formatBytes = (bytes?: number) => {
     if (bytes == null || bytes === 0) return "0 B";
@@ -79,7 +138,7 @@ export const formatDate = (dateString?: string) => {
 };
 
 /**
- * Splits a filename into its name and extension parts.
+ * [Educado] Splits a filename into its name and extension parts.
  * 
  * Example: "photo.jpg" => { name: "photo", extension: ".jpg" }
  *
@@ -101,9 +160,12 @@ export const splitFilename = (
 };
 
 /**
- * Downloads a file from the given URL with the specified filename.
+ * [Educado] Downloads a file from the given URL with the specified filename.
  * Triggers a browser download or opens in new tab if download fails.
- *
+ * Examples:
+ * - src="https://example.com/image.jpg"
+ * - filename=alt ??"downloaded-file"
+ * 
  * @param {string} url - The URL of the file to download.
  * @param {string} filename - The desired filename for the downloaded file.
  */
@@ -141,7 +203,12 @@ const FILE_TYPE_EXTENSIONS = [
 const FILE_TYPE_ACCEPT_STRING = `application/pdf,${FILE_TYPE_EXTENSIONS.join(",")}`;
 
 /**
- * Checks if a file matches the allowed media file types.
+ * [Educado] Checks if a file matches the allowed media file types.
+ * 
+ * Examples:
+ * - file: image/jpeg, allowed: "image" => true
+ * - file: video/mp4, allowed: ["image", "video"] => true
+ * - file: application/pdf, allowed: "image" => false
  * 
  * @param {File} file - The file to validate.
  * @param {MediaFileType | MediaFileType[]} [fileTypes] - The allowed media file types.
@@ -169,20 +236,20 @@ export const isFileTypeAllowed = (
 export const matchesFileType = (file: File, type: MediaFileType): boolean => {
 
     const TYPE_CHECKERS: Record<MediaFileType, (file: File) => boolean> = {
-        image: (f) => f.type.startsWith("image/"),
-        video: (f) => f.type.startsWith("video/"),
+        image: (f) => isImage(f.type),
+        video: (f) => isVideo(f.type),
         file: (f) => {
             const extension: string = "." + (f.name.split(".").pop()?.toLowerCase() ?? "");
             return f.type === "application/pdf" || (FILE_TYPE_EXTENSIONS as readonly string[]).includes(extension);
         },
     };
 
-    return TYPE_CHECKERS[type]?.(file) ?? false;
+    return TYPE_CHECKERS[type](file);
 };
 
 
 /**
- * Generates an accept string for file input based on specified media file types.
+ * [Educado] Generates an accept string for file input based on specified media file types.
  * 
  * Example: ["image", "file"] => "image/*,application/pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar,.7z"
  *
@@ -218,7 +285,7 @@ export const getAcceptString = (fileTypes?: MediaFileType | MediaFileType[]): st
 };
 
 /**
- * Converts a File object to an UploadFile-like object for preview purposes.
+ * [Educado] Converts a File object to an UploadFile-like object for preview purposes.
  * Creates a temporary blob URL that should be revoked when no longer needed.
  * 
  * @param {File} file - The file to convert.
