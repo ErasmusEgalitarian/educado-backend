@@ -5,6 +5,7 @@ export default {
             path: "/user-info",
             handler: "user-info.find",
             config: {
+                policies: ["global::is-admin"],
                 auth: false,
             },
         },
@@ -13,6 +14,7 @@ export default {
             path: "/user-info/:id",
             handler: "user-info.findOne",
             config: {
+                policies: ["global::is-admin"],
                 auth: false,
             },
         },

@@ -6,6 +6,7 @@ export default {
             handler: "users.findOne",
             config: {
                 policies: ["global::is-admin"],
+                auth: false,
             },
         },
         {
@@ -14,6 +15,7 @@ export default {
             handler: "users.delete",
             config: {
                 policies: ["global::is-admin"],
+                auth: false,
             },
         },
         {
@@ -22,6 +24,7 @@ export default {
             handler: "users.changeRole",
             config: {
                 policies: ["global::is-admin"],
+                auth: false,
             },
         },
     ],
