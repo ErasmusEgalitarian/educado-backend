@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 import { getFeedbackByCourseIdAverage } from "@/shared/api/sdk.gen";
-import { AverageCourseFeedback } from "@/shared/api/types.gen";
-import { Course } from "@/shared/api/types.gen";
+import { Course, AverageCourseFeedback } from "@/shared/api/types.gen";
 import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
 import {
