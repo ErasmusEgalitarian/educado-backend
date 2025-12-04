@@ -121,6 +121,10 @@ export default factories.createCoreController('api::content-creator.content-crea
         const { id } = ctx.params;
         const { statusValue, rejectionReason } = ctx.request.body;
 
+        if (!statusValue) {
+            return ctx.badRequest("statusValue is required");
+        }
+
         const allowed = ["PENDING", "APPROVED", "REJECTED"];
         if (!allowed.includes(statusValue)) {
             return ctx.badRequest("Invalid statusValue");
@@ -132,17 +136,26 @@ export default factories.createCoreController('api::content-creator.content-crea
             data.verifiedAt = new Date().toISOString();
         }
 
-        if (statusValue === "REJECTED" && rejectionReason) {
-            data.rejectionReason = rejectionReason;
+        if (statusValue === "REJECTED") {
+            (data as any).rejectionReason = rejectionReason ?? null;
         }
 
-        const updated = await strapi
-            .documents("api::content-creator.content-creator")
-            .update({
-                documentId: id,
-                data,
-            });
+       try{
+            await strapi.documents("api::content-creator.content-creator")
+               .update({
+                   documentId: id,
+                   data,
+               });
 
-        return this.transformResponse(updated);
-    }
+           const published = await strapi.documents("api::content-creator.content-creator").publish({
+               documentId: id,
+           });
+
+           return ctx.send(published);
+
+       } catch (err) {
+           strapi.log.error("Error in content-creator.updateStatus", err);
+           return ctx.internalServerError("Could not update status");
+       }
+    },
 }));
