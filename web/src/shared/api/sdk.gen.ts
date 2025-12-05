@@ -19,6 +19,96 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
     meta?: Record<string, unknown>;
 };
 
+export const activityGetActivities = <ThrowOnError extends boolean = false>(options?: Options<ActivityGetActivitiesRequest, ThrowOnError>) => {
+    return (options?.client ?? client).get<ActivityGetActivitiesResponses, ActivityGetActivitiesErrors, ThrowOnError, 'data'>({
+        querySerializer: {
+            parameters: {
+                filters: {
+                    object: {
+                        style: 'form'
+                    }
+                }
+            }
+        },
+        requestValidator: async (data) => {
+            return await zActivityGetActivitiesRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/activities',
+        ...options
+    });
+};
+
+export const activityPostActivities = <ThrowOnError extends boolean = false>(options: Options<ActivityPostActivitiesRequest, ThrowOnError>) => {
+    return (options.client ?? client).post<ActivityPostActivitiesResponses, ActivityPostActivitiesErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zActivityPostActivitiesRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/activities',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
+export const activityDeleteActivitiesById = <ThrowOnError extends boolean = false>(options: Options<ActivityDeleteActivitiesByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).delete<ActivityDeleteActivitiesByIdResponses, ActivityDeleteActivitiesByIdErrors, ThrowOnError, 'data'>({
+        querySerializer: {
+            parameters: {
+                filters: {
+                    object: {
+                        style: 'form'
+                    }
+                }
+            }
+        },
+        requestValidator: async (data) => {
+            return await zActivityDeleteActivitiesByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/activities/{id}',
+        ...options
+    });
+};
+
+export const activityGetActivitiesById = <ThrowOnError extends boolean = false>(options: Options<ActivityGetActivitiesByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).get<ActivityGetActivitiesByIdResponses, ActivityGetActivitiesByIdErrors, ThrowOnError, 'data'>({
+        querySerializer: {
+            parameters: {
+                filters: {
+                    object: {
+                        style: 'form'
+                    }
+                }
+            }
+        },
+        requestValidator: async (data) => {
+            return await zActivityGetActivitiesByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/activities/{id}',
+        ...options
+    });
+};
+
+export const activityPutActivitiesById = <ThrowOnError extends boolean = false>(options: Options<ActivityPutActivitiesByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).put<ActivityPutActivitiesByIdResponses, ActivityPutActivitiesByIdErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zActivityPutActivitiesByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/activities/{id}',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
 export const certificateGetCertificates = <ThrowOnError extends boolean = false>(options?: Options<CertificateGetCertificatesRequest, ThrowOnError>) => {
     return (options?.client ?? client).get<CertificateGetCertificatesResponses, CertificateGetCertificatesErrors, ThrowOnError, 'data'>({
         querySerializer: {
@@ -394,8 +484,8 @@ export const courseCategoryPutCourseCategoriesById = <ThrowOnError extends boole
     });
 };
 
-export const courseEnrollmentRelationGetCourseEnrollmentRelations = <ThrowOnError extends boolean = false>(options?: Options<CourseEnrollmentRelationGetCourseEnrollmentRelationsRequest, ThrowOnError>) => {
-    return (options?.client ?? client).get<CourseEnrollmentRelationGetCourseEnrollmentRelationsResponses, CourseEnrollmentRelationGetCourseEnrollmentRelationsErrors, ThrowOnError, 'data'>({
+export const courseSectionGetCourseSections = <ThrowOnError extends boolean = false>(options?: Options<CourseSectionGetCourseSectionsRequest, ThrowOnError>) => {
+    return (options?.client ?? client).get<CourseSectionGetCourseSectionsResponses, CourseSectionGetCourseSectionsErrors, ThrowOnError, 'data'>({
         querySerializer: {
             parameters: {
                 filters: {
@@ -406,21 +496,21 @@ export const courseEnrollmentRelationGetCourseEnrollmentRelations = <ThrowOnErro
             }
         },
         requestValidator: async (data) => {
-            return await zCourseEnrollmentRelationGetCourseEnrollmentRelationsRequest.parseAsync(data);
+            return await zCourseSectionGetCourseSectionsRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-enrollment-relations',
+        url: '/course-sections',
         ...options
     });
 };
 
-export const courseEnrollmentRelationPostCourseEnrollmentRelations = <ThrowOnError extends boolean = false>(options: Options<CourseEnrollmentRelationPostCourseEnrollmentRelationsRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<CourseEnrollmentRelationPostCourseEnrollmentRelationsResponses, CourseEnrollmentRelationPostCourseEnrollmentRelationsErrors, ThrowOnError, 'data'>({
+export const courseSectionPostCourseSections = <ThrowOnError extends boolean = false>(options: Options<CourseSectionPostCourseSectionsRequest, ThrowOnError>) => {
+    return (options.client ?? client).post<CourseSectionPostCourseSectionsResponses, CourseSectionPostCourseSectionsErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zCourseEnrollmentRelationPostCourseEnrollmentRelationsRequest.parseAsync(data);
+            return await zCourseSectionPostCourseSectionsRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-enrollment-relations',
+        url: '/course-sections',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -429,8 +519,8 @@ export const courseEnrollmentRelationPostCourseEnrollmentRelations = <ThrowOnErr
     });
 };
 
-export const courseEnrollmentRelationDeleteCourseEnrollmentRelationsById = <ThrowOnError extends boolean = false>(options: Options<CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).delete<CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdResponses, CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdErrors, ThrowOnError, 'data'>({
+export const courseSectionDeleteCourseSectionsById = <ThrowOnError extends boolean = false>(options: Options<CourseSectionDeleteCourseSectionsByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).delete<CourseSectionDeleteCourseSectionsByIdResponses, CourseSectionDeleteCourseSectionsByIdErrors, ThrowOnError, 'data'>({
         querySerializer: {
             parameters: {
                 filters: {
@@ -441,16 +531,16 @@ export const courseEnrollmentRelationDeleteCourseEnrollmentRelationsById = <Thro
             }
         },
         requestValidator: async (data) => {
-            return await zCourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdRequest.parseAsync(data);
+            return await zCourseSectionDeleteCourseSectionsByIdRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-enrollment-relations/{id}',
+        url: '/course-sections/{id}',
         ...options
     });
 };
 
-export const courseEnrollmentRelationGetCourseEnrollmentRelationsById = <ThrowOnError extends boolean = false>(options: Options<CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).get<CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdResponses, CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdErrors, ThrowOnError, 'data'>({
+export const courseSectionGetCourseSectionsById = <ThrowOnError extends boolean = false>(options: Options<CourseSectionGetCourseSectionsByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).get<CourseSectionGetCourseSectionsByIdResponses, CourseSectionGetCourseSectionsByIdErrors, ThrowOnError, 'data'>({
         querySerializer: {
             parameters: {
                 filters: {
@@ -461,21 +551,21 @@ export const courseEnrollmentRelationGetCourseEnrollmentRelationsById = <ThrowOn
             }
         },
         requestValidator: async (data) => {
-            return await zCourseEnrollmentRelationGetCourseEnrollmentRelationsByIdRequest.parseAsync(data);
+            return await zCourseSectionGetCourseSectionsByIdRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-enrollment-relations/{id}',
+        url: '/course-sections/{id}',
         ...options
     });
 };
 
-export const courseEnrollmentRelationPutCourseEnrollmentRelationsById = <ThrowOnError extends boolean = false>(options: Options<CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).put<CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdResponses, CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdErrors, ThrowOnError, 'data'>({
+export const courseSectionPutCourseSectionsById = <ThrowOnError extends boolean = false>(options: Options<CourseSectionPutCourseSectionsByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).put<CourseSectionPutCourseSectionsByIdResponses, CourseSectionPutCourseSectionsByIdErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zCourseEnrollmentRelationPutCourseEnrollmentRelationsByIdRequest.parseAsync(data);
+            return await zCourseSectionPutCourseSectionsByIdRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-enrollment-relations/{id}',
+        url: '/course-sections/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -484,8 +574,19 @@ export const courseEnrollmentRelationPutCourseEnrollmentRelationsById = <ThrowOn
     });
 };
 
-export const courseSelectionGetCourseSelections = <ThrowOnError extends boolean = false>(options?: Options<CourseSelectionGetCourseSelectionsRequest, ThrowOnError>) => {
-    return (options?.client ?? client).get<CourseSelectionGetCourseSelectionsResponses, CourseSelectionGetCourseSelectionsErrors, ThrowOnError, 'data'>({
+export const getCcDashboardActivity = <ThrowOnError extends boolean = false>(options?: Options<GetCcDashboardActivityRequest, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetCcDashboardActivityResponses, unknown, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zGetCcDashboardActivityRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/CC-dashboard-activity',
+        ...options
+    });
+};
+
+export const dashboardActivityGetDashboardActivities = <ThrowOnError extends boolean = false>(options?: Options<DashboardActivityGetDashboardActivitiesRequest, ThrowOnError>) => {
+    return (options?.client ?? client).get<DashboardActivityGetDashboardActivitiesResponses, DashboardActivityGetDashboardActivitiesErrors, ThrowOnError, 'data'>({
         querySerializer: {
             parameters: {
                 filters: {
@@ -496,21 +597,21 @@ export const courseSelectionGetCourseSelections = <ThrowOnError extends boolean 
             }
         },
         requestValidator: async (data) => {
-            return await zCourseSelectionGetCourseSelectionsRequest.parseAsync(data);
+            return await zDashboardActivityGetDashboardActivitiesRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-selections',
+        url: '/dashboard-activities',
         ...options
     });
 };
 
-export const courseSelectionPostCourseSelections = <ThrowOnError extends boolean = false>(options: Options<CourseSelectionPostCourseSelectionsRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<CourseSelectionPostCourseSelectionsResponses, CourseSelectionPostCourseSelectionsErrors, ThrowOnError, 'data'>({
+export const dashboardActivityPostDashboardActivities = <ThrowOnError extends boolean = false>(options: Options<DashboardActivityPostDashboardActivitiesRequest, ThrowOnError>) => {
+    return (options.client ?? client).post<DashboardActivityPostDashboardActivitiesResponses, DashboardActivityPostDashboardActivitiesErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zCourseSelectionPostCourseSelectionsRequest.parseAsync(data);
+            return await zDashboardActivityPostDashboardActivitiesRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-selections',
+        url: '/dashboard-activities',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -519,8 +620,8 @@ export const courseSelectionPostCourseSelections = <ThrowOnError extends boolean
     });
 };
 
-export const courseSelectionDeleteCourseSelectionsById = <ThrowOnError extends boolean = false>(options: Options<CourseSelectionDeleteCourseSelectionsByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).delete<CourseSelectionDeleteCourseSelectionsByIdResponses, CourseSelectionDeleteCourseSelectionsByIdErrors, ThrowOnError, 'data'>({
+export const dashboardActivityDeleteDashboardActivitiesById = <ThrowOnError extends boolean = false>(options: Options<DashboardActivityDeleteDashboardActivitiesByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).delete<DashboardActivityDeleteDashboardActivitiesByIdResponses, DashboardActivityDeleteDashboardActivitiesByIdErrors, ThrowOnError, 'data'>({
         querySerializer: {
             parameters: {
                 filters: {
@@ -531,16 +632,16 @@ export const courseSelectionDeleteCourseSelectionsById = <ThrowOnError extends b
             }
         },
         requestValidator: async (data) => {
-            return await zCourseSelectionDeleteCourseSelectionsByIdRequest.parseAsync(data);
+            return await zDashboardActivityDeleteDashboardActivitiesByIdRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-selections/{id}',
+        url: '/dashboard-activities/{id}',
         ...options
     });
 };
 
-export const courseSelectionGetCourseSelectionsById = <ThrowOnError extends boolean = false>(options: Options<CourseSelectionGetCourseSelectionsByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).get<CourseSelectionGetCourseSelectionsByIdResponses, CourseSelectionGetCourseSelectionsByIdErrors, ThrowOnError, 'data'>({
+export const dashboardActivityGetDashboardActivitiesById = <ThrowOnError extends boolean = false>(options: Options<DashboardActivityGetDashboardActivitiesByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).get<DashboardActivityGetDashboardActivitiesByIdResponses, DashboardActivityGetDashboardActivitiesByIdErrors, ThrowOnError, 'data'>({
         querySerializer: {
             parameters: {
                 filters: {
@@ -551,21 +652,21 @@ export const courseSelectionGetCourseSelectionsById = <ThrowOnError extends bool
             }
         },
         requestValidator: async (data) => {
-            return await zCourseSelectionGetCourseSelectionsByIdRequest.parseAsync(data);
+            return await zDashboardActivityGetDashboardActivitiesByIdRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-selections/{id}',
+        url: '/dashboard-activities/{id}',
         ...options
     });
 };
 
-export const courseSelectionPutCourseSelectionsById = <ThrowOnError extends boolean = false>(options: Options<CourseSelectionPutCourseSelectionsByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).put<CourseSelectionPutCourseSelectionsByIdResponses, CourseSelectionPutCourseSelectionsByIdErrors, ThrowOnError, 'data'>({
+export const dashboardActivityPutDashboardActivitiesById = <ThrowOnError extends boolean = false>(options: Options<DashboardActivityPutDashboardActivitiesByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).put<DashboardActivityPutDashboardActivitiesByIdResponses, DashboardActivityPutDashboardActivitiesByIdErrors, ThrowOnError, 'data'>({
         requestValidator: async (data) => {
-            return await zCourseSelectionPutCourseSelectionsByIdRequest.parseAsync(data);
+            return await zDashboardActivityPutDashboardActivitiesByIdRequest.parseAsync(data);
         },
         responseStyle: 'data',
-        url: '/course-selections/{id}',
+        url: '/dashboard-activities/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',

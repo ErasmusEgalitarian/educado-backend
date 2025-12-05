@@ -22,6 +22,186 @@ export type _Error = {
   };
 };
 
+export type ActivityRequest = {
+    data: {
+        title: string;
+        completed?: boolean;
+        content?: Array<ContentVideoComponent | ContentExerciseComponent | ContentDescriptionComponent>;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type ActivityListResponse = {
+    data?: Array<Activity>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type Activity = {
+    id?: number;
+    documentId?: string;
+    title: string;
+    completed?: boolean;
+    content?: Array<ContentVideoComponent | ContentExerciseComponent | ContentDescriptionComponent>;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+        title?: string;
+        completed?: boolean;
+        content?: Array<ContentVideoComponent | ContentExerciseComponent | ContentDescriptionComponent>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+};
+
+export type ActivityResponse = {
+    data?: Activity;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type ContentVideoComponent = {
+    id?: number;
+    __component?: 'content.video';
+    video?: Array<{
+        id?: number;
+        documentId?: string;
+        name?: string;
+        alternativeText?: string;
+        caption?: string;
+        width?: number;
+        height?: number;
+        formats?: unknown;
+        hash?: string;
+        ext?: string;
+        mime?: string;
+        size?: number;
+        url?: string;
+        previewUrl?: string;
+        provider?: string;
+        provider_metadata?: unknown;
+        related?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        folder?: {
+            id?: number;
+            documentId?: string;
+        };
+        folderPath?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+};
+
+export type ContentExerciseComponent = {
+    id?: number;
+    __component?: 'content.exercise';
+    exercise?: {
+        id?: number;
+        documentId?: string;
+        title?: string;
+        question?: string;
+        exercise_options?: Array<{
+            id?: number;
+            documentId?: string;
+            text?: string;
+            explanation?: string;
+            isCorrect?: boolean;
+            exercise?: {
+                id?: number;
+                documentId?: string;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+};
+
+export type ContentDescriptionComponent = {
+    id?: number;
+    __component?: 'content.description';
+    text?: string;
+};
+
 export type CertificateRequest = {
   data: {
     link: string;
@@ -1220,6 +1400,268 @@ export type ContentCreator = {
           id?: number;
           documentId?: string;
         };
+        feedbacks?: Array<{
+            id?: number;
+            documentId?: string;
+            rating?: number;
+            feedbackText?: string;
+            dateCreated?: string;
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            student?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                biography?: string;
+                email?: string;
+                verifiedAt?: string;
+                feedbacks?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                courses?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                certificates?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    link?: string;
+                    completionDate?: string;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                user_logs?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    loginDate?: string;
+                    isSuccessful?: boolean;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        course_categories?: Array<{
+            id?: number;
+            documentId?: string;
+            name?: string;
+            courses?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        students?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        content_creators?: Array<{
+            id?: number;
+            documentId?: string;
+            firstName?: string;
+            lastName?: string;
+            verifiedAt?: string;
+            biography?: string;
+            email?: string;
+            education?: 'TODO1' | 'TODO2' | 'TODO3';
+            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
+            courseExperience?: string;
+            institution?: string;
+            eduStart?: string;
+            eduEnd?: string;
+            currentCompany?: string;
+            currentJobTitle?: string;
+            companyStart?: string;
+            companyEnd?: string;
+            jobDescription?: string;
+            courses?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            user_logs?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            dashboard_activities?: Array<{
+                id?: number;
+                documentId?: string;
+                content_creator?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                activityDesc?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        course_sections?: Array<{
+            id?: number;
+            documentId?: string;
+            title?: string;
+            description?: string;
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            activities?: Array<{
+                id?: number;
+                documentId?: string;
+                title?: string;
+                completed?: boolean;
+                content?: Array<ContentVideoComponent | ContentExerciseComponent | ContentDescriptionComponent>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -6600,6 +7042,266 @@ export type VerifyEmailRequest = {
   email?: string;
   tokenCode?: string;
 };
+
+export type ActivityGetActivitiesRequest = {
+    body?: never;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'title' | 'completed' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        _q?: string;
+        pagination?: {
+            withCount?: boolean;
+        } & ({
+            page: number;
+            pageSize: number;
+        } | {
+            start: number;
+            limit: number;
+        });
+        sort?: 'title' | 'completed' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'title' | 'completed' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        populate?: '*' | 'content' | Array<'content'>;
+        status?: 'draft' | 'published';
+    };
+    url: '/activities';
+};
+
+export type ActivityGetActivitiesErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type ActivityGetActivitiesError = ActivityGetActivitiesErrors[keyof ActivityGetActivitiesErrors];
+
+export type ActivityGetActivitiesResponses = {
+    /**
+     * OK
+     */
+    200: ActivityListResponse;
+};
+
+export type ActivityGetActivitiesResponse = ActivityGetActivitiesResponses[keyof ActivityGetActivitiesResponses];
+
+export type ActivityPostActivitiesRequest = {
+    body: ActivityRequest;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'title' | 'completed' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'content' | Array<'content'>;
+        status?: 'draft' | 'published';
+    };
+    url: '/activities';
+};
+
+export type ActivityPostActivitiesErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type ActivityPostActivitiesError = ActivityPostActivitiesErrors[keyof ActivityPostActivitiesErrors];
+
+export type ActivityPostActivitiesResponses = {
+    /**
+     * OK
+     */
+    200: ActivityResponse;
+};
+
+export type ActivityPostActivitiesResponse = ActivityPostActivitiesResponses[keyof ActivityPostActivitiesResponses];
+
+export type ActivityDeleteActivitiesByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'title' | 'completed' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'content' | Array<'content'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        status?: 'draft' | 'published';
+    };
+    url: '/activities/{id}';
+};
+
+export type ActivityDeleteActivitiesByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type ActivityDeleteActivitiesByIdError = ActivityDeleteActivitiesByIdErrors[keyof ActivityDeleteActivitiesByIdErrors];
+
+export type ActivityDeleteActivitiesByIdResponses = {
+    /**
+     * OK
+     */
+    200: number;
+};
+
+export type ActivityDeleteActivitiesByIdResponse = ActivityDeleteActivitiesByIdResponses[keyof ActivityDeleteActivitiesByIdResponses];
+
+export type ActivityGetActivitiesByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'title' | 'completed' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'content' | Array<'content'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        sort?: 'title' | 'completed' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'title' | 'completed' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        status?: 'draft' | 'published';
+    };
+    url: '/activities/{id}';
+};
+
+export type ActivityGetActivitiesByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type ActivityGetActivitiesByIdError = ActivityGetActivitiesByIdErrors[keyof ActivityGetActivitiesByIdErrors];
+
+export type ActivityGetActivitiesByIdResponses = {
+    /**
+     * OK
+     */
+    200: ActivityResponse;
+};
+
+export type ActivityGetActivitiesByIdResponse = ActivityGetActivitiesByIdResponses[keyof ActivityGetActivitiesByIdResponses];
+
+export type ActivityPutActivitiesByIdRequest = {
+    body: ActivityRequest;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'title' | 'completed' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'content' | Array<'content'>;
+        status?: 'draft' | 'published';
+    };
+    url: '/activities/{id}';
+};
+
+export type ActivityPutActivitiesByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type ActivityPutActivitiesByIdError = ActivityPutActivitiesByIdErrors[keyof ActivityPutActivitiesByIdErrors];
+
+export type ActivityPutActivitiesByIdResponses = {
+    /**
+     * OK
+     */
+    200: ActivityResponse;
+};
+
+export type ActivityPutActivitiesByIdResponse = ActivityPutActivitiesByIdResponses[keyof ActivityPutActivitiesByIdResponses];
 
 export type CertificateGetCertificatesRequest = {
   body?: never;
