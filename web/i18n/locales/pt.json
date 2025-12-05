@@ -164,7 +164,8 @@
     "totalStudents": "Total de Alunos",
     "totalCertificates": "Total de Certificados",
     "evaluation": "Avaliação",
-    "activities": "Atividades"
+    "activities": "Atividades",
+    "totalCertificatesIssued": "Total certificados emitidos"
   },
   "files": {
     "maxFilesExceeded": "Limite máximo de arquivos excedido. Você só pode enviar até {{count}} arquivos"
