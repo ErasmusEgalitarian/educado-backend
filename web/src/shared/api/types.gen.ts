@@ -563,6 +563,35 @@ export type Certificate = {
                         documentId?: string;
                     }>;
                 }>;
+                course_enrollment_relations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    enrollmentDate?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
                 course_sections?: Array<{
                     id?: number;
                     documentId?: string;
@@ -1016,104 +1045,6 @@ export type ContentCreator = {
                         id?: number;
                         documentId?: string;
                     }>;
-                    course_sections?: Array<{
-                        id?: number;
-                        documentId?: string;
-                        title?: string;
-                        description?: string;
-                        exercises?: Array<{
-                            id?: number;
-                            documentId?: string;
-                            title?: string;
-                            question?: string;
-                            exercise_options?: Array<{
-                                id?: number;
-                                documentId?: string;
-                                text?: string;
-                                explanation?: string;
-                                isCorrect?: boolean;
-                                exercise?: {
-                                    id?: number;
-                                    documentId?: string;
-                                };
-                                createdAt?: string;
-                                updatedAt?: string;
-                                publishedAt?: string;
-                                createdBy?: {
-                                    id?: number;
-                                    documentId?: string;
-                                };
-                                updatedBy?: {
-                                    id?: number;
-                                    documentId?: string;
-                                };
-                                locale?: string;
-                                localizations?: Array<{
-                                    id?: number;
-                                    documentId?: string;
-                                }>;
-                            }>;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt?: string;
-                            createdBy?: {
-                                id?: number;
-                                documentId?: string;
-                            };
-                            updatedBy?: {
-                                id?: number;
-                                documentId?: string;
-                            };
-                            locale?: string;
-                            localizations?: Array<{
-                                id?: number;
-                                documentId?: string;
-                            }>;
-                        }>;
-                        lectures?: Array<{
-                            id?: number;
-                            documentId?: string;
-                            title?: string;
-                            completed?: boolean;
-                            content?: Array<ContentVideoComponent | ContentDescriptionComponent>;
-                            createdAt?: string;
-                            updatedAt?: string;
-                            publishedAt?: string;
-                            createdBy?: {
-                                id?: number;
-                                documentId?: string;
-                            };
-                            updatedBy?: {
-                                id?: number;
-                                documentId?: string;
-                            };
-                            locale?: string;
-                            localizations?: Array<{
-                                id?: number;
-                                documentId?: string;
-                            }>;
-                        }>;
-                        course?: {
-                            id?: number;
-                            documentId?: string;
-                        };
-                        createdAt?: string;
-                        updatedAt?: string;
-                        publishedAt?: string;
-                        createdBy?: {
-                            id?: number;
-                            documentId?: string;
-                        };
-                        updatedBy?: {
-                            id?: number;
-                            documentId?: string;
-                        };
-                        locale?: string;
-                        localizations?: Array<{
-                            id?: number;
-                            documentId?: string;
-                        }>;
-                    }>;
                     course_categories?: Array<{
                         id?: number;
                         documentId?: string;
@@ -1237,6 +1168,55 @@ export type ContentCreator = {
                             documentId?: string;
                         }>;
                     }>;
+                    course_sections?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        title?: string;
+                        description?: string;
+                        course?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        activities?: Array<{
+                            id?: number;
+                            documentId?: string;
+                            title?: string;
+                            completed?: boolean;
+                            content?: Array<ContentVideoComponent | ContentExerciseComponent | ContentDescriptionComponent>;
+                            createdAt?: string;
+                            updatedAt?: string;
+                            publishedAt?: string;
+                            createdBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            updatedBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            locale?: string;
+                            localizations?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                        }>;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
                     createdAt?: string;
                     updatedAt?: string;
                     publishedAt?: string;
@@ -1330,268 +1310,6 @@ export type ContentCreator = {
                 documentId?: string;
             }>;
         };
-        feedbacks?: Array<{
-            id?: number;
-            documentId?: string;
-            rating?: number;
-            feedbackText?: string;
-            dateCreated?: string;
-            course?: {
-                id?: number;
-                documentId?: string;
-            };
-            student?: {
-                id?: number;
-                documentId?: string;
-                name?: string;
-                biography?: string;
-                email?: string;
-                verifiedAt?: string;
-                feedbacks?: Array<{
-                    id?: number;
-                    documentId?: string;
-                }>;
-                courses?: Array<{
-                    id?: number;
-                    documentId?: string;
-                }>;
-                certificates?: Array<{
-                    id?: number;
-                    documentId?: string;
-                    link?: string;
-                    completionDate?: string;
-                    student?: {
-                        id?: number;
-                        documentId?: string;
-                    };
-                    course?: {
-                        id?: number;
-                        documentId?: string;
-                    };
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt?: string;
-                    createdBy?: {
-                        id?: number;
-                        documentId?: string;
-                    };
-                    updatedBy?: {
-                        id?: number;
-                        documentId?: string;
-                    };
-                    locale?: string;
-                    localizations?: Array<{
-                        id?: number;
-                        documentId?: string;
-                    }>;
-                }>;
-                user_logs?: Array<{
-                    id?: number;
-                    documentId?: string;
-                    loginDate?: string;
-                    isSuccessful?: boolean;
-                    student?: {
-                        id?: number;
-                        documentId?: string;
-                    };
-                    createdAt?: string;
-                    updatedAt?: string;
-                    publishedAt?: string;
-                    createdBy?: {
-                        id?: number;
-                        documentId?: string;
-                    };
-                    updatedBy?: {
-                        id?: number;
-                        documentId?: string;
-                    };
-                    locale?: string;
-                    localizations?: Array<{
-                        id?: number;
-                        documentId?: string;
-                    }>;
-                }>;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt?: string;
-                createdBy?: {
-                    id?: number;
-                    documentId?: string;
-                };
-                updatedBy?: {
-                    id?: number;
-                    documentId?: string;
-                };
-                locale?: string;
-                localizations?: Array<{
-                    id?: number;
-                    documentId?: string;
-                }>;
-            };
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt?: string;
-            createdBy?: {
-                id?: number;
-                documentId?: string;
-            };
-            updatedBy?: {
-                id?: number;
-                documentId?: string;
-            };
-            locale?: string;
-            localizations?: Array<{
-                id?: number;
-                documentId?: string;
-            }>;
-        }>;
-        course_categories?: Array<{
-            id?: number;
-            documentId?: string;
-            name?: string;
-            courses?: Array<{
-                id?: number;
-                documentId?: string;
-            }>;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt?: string;
-            createdBy?: {
-                id?: number;
-                documentId?: string;
-            };
-            updatedBy?: {
-                id?: number;
-                documentId?: string;
-            };
-            locale?: string;
-            localizations?: Array<{
-                id?: number;
-                documentId?: string;
-            }>;
-        }>;
-        students?: Array<{
-            id?: number;
-            documentId?: string;
-        }>;
-        content_creators?: Array<{
-            id?: number;
-            documentId?: string;
-            firstName?: string;
-            lastName?: string;
-            verifiedAt?: string;
-            biography?: string;
-            email?: string;
-            education?: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience?: string;
-            institution?: string;
-            eduStart?: string;
-            eduEnd?: string;
-            currentCompany?: string;
-            currentJobTitle?: string;
-            companyStart?: string;
-            companyEnd?: string;
-            jobDescription?: string;
-            courses?: Array<{
-                id?: number;
-                documentId?: string;
-            }>;
-            user_logs?: Array<{
-                id?: number;
-                documentId?: string;
-            }>;
-            dashboard_activities?: Array<{
-                id?: number;
-                documentId?: string;
-                content_creator?: {
-                    id?: number;
-                    documentId?: string;
-                };
-                activityDesc?: string;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt?: string;
-                createdBy?: {
-                    id?: number;
-                    documentId?: string;
-                };
-                updatedBy?: {
-                    id?: number;
-                    documentId?: string;
-                };
-                locale?: string;
-                localizations?: Array<{
-                    id?: number;
-                    documentId?: string;
-                }>;
-            }>;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt?: string;
-            createdBy?: {
-                id?: number;
-                documentId?: string;
-            };
-            updatedBy?: {
-                id?: number;
-                documentId?: string;
-            };
-            locale?: string;
-            localizations?: Array<{
-                id?: number;
-                documentId?: string;
-            }>;
-        }>;
-        course_sections?: Array<{
-            id?: number;
-            documentId?: string;
-            title?: string;
-            description?: string;
-            course?: {
-                id?: number;
-                documentId?: string;
-            };
-            activities?: Array<{
-                id?: number;
-                documentId?: string;
-                title?: string;
-                completed?: boolean;
-                content?: Array<ContentVideoComponent | ContentExerciseComponent | ContentDescriptionComponent>;
-                createdAt?: string;
-                updatedAt?: string;
-                publishedAt?: string;
-                createdBy?: {
-                    id?: number;
-                    documentId?: string;
-                };
-                updatedBy?: {
-                    id?: number;
-                    documentId?: string;
-                };
-                locale?: string;
-                localizations?: Array<{
-                    id?: number;
-                    documentId?: string;
-                }>;
-            }>;
-            createdAt?: string;
-            updatedAt?: string;
-            publishedAt?: string;
-            createdBy?: {
-                id?: number;
-                documentId?: string;
-            };
-            updatedBy?: {
-                id?: number;
-                documentId?: string;
-            };
-            locale?: string;
-            localizations?: Array<{
-                id?: number;
-                documentId?: string;
-            }>;
-        }>;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -1654,6 +1372,7 @@ export type CourseRequest = {
         feedbacks?: Array<number | string>;
         course_categories?: Array<number | string>;
         content_creators?: Array<number | string>;
+        course_enrollment_relations?: Array<number | string>;
         course_sections?: Array<number | string>;
         locale?: string;
         localizations?: Array<number | string>;
@@ -2138,6 +1857,10 @@ export type Course = {
                     id?: number;
                     documentId?: string;
                 }>;
+            }>;
+            course_enrollment_relations?: Array<{
+                id?: number;
+                documentId?: string;
             }>;
             course_sections?: Array<{
                 id?: number;
@@ -2728,6 +2451,10 @@ export type CourseCategory = {
                 documentId?: string;
             }>;
         }>;
+        course_enrollment_relations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
         course_sections?: Array<{
             id?: number;
             documentId?: string;
@@ -2814,6 +2541,567 @@ export type CourseCategory = {
 
 export type CourseCategoryResponse = {
     data?: CourseCategory;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type CourseEnrollmentRelationRequest = {
+    data: {
+        course?: number | string;
+        student?: number | string;
+        enrollmentDate: string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type CourseEnrollmentRelationListResponse = {
+    data?: Array<CourseEnrollmentRelation>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type CourseEnrollmentRelation = {
+    id?: number;
+    documentId?: string;
+    course?: {
+        id?: number;
+        documentId?: string;
+        title?: string;
+        description?: string;
+        difficulty?: number;
+        durationHours?: number;
+        numOfRatings?: number;
+        numOfSubscriptions?: number;
+        image?: {
+            id?: number;
+            documentId?: string;
+            name?: string;
+            alternativeText?: string;
+            caption?: string;
+            width?: number;
+            height?: number;
+            formats?: unknown;
+            hash?: string;
+            ext?: string;
+            mime?: string;
+            size?: number;
+            url?: string;
+            previewUrl?: string;
+            provider?: string;
+            provider_metadata?: unknown;
+            related?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            folder?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                pathId?: number;
+                parent?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                children?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                files?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    name?: string;
+                    alternativeText?: string;
+                    caption?: string;
+                    width?: number;
+                    height?: number;
+                    formats?: unknown;
+                    hash?: string;
+                    ext?: string;
+                    mime?: string;
+                    size?: number;
+                    url?: string;
+                    previewUrl?: string;
+                    provider?: string;
+                    provider_metadata?: unknown;
+                    related?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                    folder?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    folderPath?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                        firstname?: string;
+                        lastname?: string;
+                        username?: string;
+                        email?: string;
+                        resetPasswordToken?: string;
+                        registrationToken?: string;
+                        isActive?: boolean;
+                        roles?: Array<{
+                            id?: number;
+                            documentId?: string;
+                            name?: string;
+                            code?: string;
+                            description?: string;
+                            users?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                            permissions?: Array<{
+                                id?: number;
+                                documentId?: string;
+                                action?: string;
+                                actionParameters?: unknown;
+                                subject?: string;
+                                properties?: unknown;
+                                conditions?: unknown;
+                                role?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                createdAt?: string;
+                                updatedAt?: string;
+                                publishedAt?: string;
+                                createdBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                updatedBy?: {
+                                    id?: number;
+                                    documentId?: string;
+                                };
+                                locale?: string;
+                                localizations?: Array<{
+                                    id?: number;
+                                    documentId?: string;
+                                }>;
+                            }>;
+                            createdAt?: string;
+                            updatedAt?: string;
+                            publishedAt?: string;
+                            createdBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            updatedBy?: {
+                                id?: number;
+                                documentId?: string;
+                            };
+                            locale?: string;
+                            localizations?: Array<{
+                                id?: number;
+                                documentId?: string;
+                            }>;
+                        }>;
+                        blocked?: boolean;
+                        preferedLanguage?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                path?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            folderPath?: string;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        };
+        feedbacks?: Array<{
+            id?: number;
+            documentId?: string;
+            rating?: number;
+            feedbackText?: string;
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            student?: {
+                id?: number;
+                documentId?: string;
+                name?: string;
+                biography?: string;
+                email?: string;
+                verifiedAt?: string;
+                feedbacks?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                certificates?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    link?: string;
+                    completionDate?: string;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                user_logs?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    loginDate?: string;
+                    isSuccessful?: boolean;
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                course_enrollment_relations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    enrollmentDate?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            };
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        course_categories?: Array<{
+            id?: number;
+            documentId?: string;
+            name?: string;
+            courses?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        content_creators?: Array<{
+            id?: number;
+            documentId?: string;
+            firstName?: string;
+            lastName?: string;
+            verifiedAt?: string;
+            biography?: string;
+            email?: string;
+            education?: 'TODO1' | 'TODO2' | 'TODO3';
+            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
+            courseExperience?: string;
+            institution?: string;
+            eduStart?: string;
+            eduEnd?: string;
+            currentCompany?: string;
+            currentJobTitle?: string;
+            companyStart?: string;
+            companyEnd?: string;
+            jobDescription?: string;
+            user_logs?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            courses?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            dashboard_activities?: Array<{
+                id?: number;
+                documentId?: string;
+                content_creator?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                activityDesc?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        course_enrollment_relations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+        course_sections?: Array<{
+            id?: number;
+            documentId?: string;
+            title?: string;
+            description?: string;
+            course?: {
+                id?: number;
+                documentId?: string;
+            };
+            activities?: Array<{
+                id?: number;
+                documentId?: string;
+                title?: string;
+                completed?: boolean;
+                content?: Array<ContentVideoComponent | ContentExerciseComponent | ContentDescriptionComponent>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    student?: {
+        id?: number;
+        documentId?: string;
+    };
+    enrollmentDate: string;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+    }>;
+};
+
+export type CourseEnrollmentRelationResponse = {
+    data?: CourseEnrollmentRelation;
     meta?: {
         [key: string]: unknown;
     };
@@ -3282,6 +3570,10 @@ export type CourseSection = {
                 id?: number;
                 documentId?: string;
             }>;
+        }>;
+        course_enrollment_relations?: Array<{
+            id?: number;
+            documentId?: string;
         }>;
         course_sections?: Array<{
             id?: number;
@@ -4241,6 +4533,10 @@ export type Feedback = {
                 documentId?: string;
             }>;
         }>;
+        course_enrollment_relations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
         course_sections?: Array<{
             id?: number;
             documentId?: string;
@@ -5011,6 +5307,10 @@ export type Student = {
                     documentId?: string;
                 }>;
             }>;
+            course_enrollment_relations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
             course_sections?: Array<{
                 id?: number;
                 documentId?: string;
@@ -5480,6 +5780,35 @@ export type UserLog = {
                             documentId?: string;
                         }>;
                     }>;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                course_enrollment_relations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    course?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    student?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    enrollmentDate?: string;
                     createdAt?: string;
                     updatedAt?: string;
                     publishedAt?: string;
@@ -6528,7 +6857,7 @@ export type ContentCreatorGetContentCreatorsRequest = {
         } | Array<{
             [key: string]: 'asc' | 'desc';
         }>;
-        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | Array<'courses' | 'user_logs' | 'dashboard_activities'>;
+        populate?: '*' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'user_logs' | 'courses' | 'dashboard_activities'>;
         status?: 'draft' | 'published';
     };
     url: '/content-creators';
@@ -6573,7 +6902,7 @@ export type ContentCreatorPostContentCreatorsRequest = {
     path?: never;
     query?: {
         readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | Array<'courses' | 'user_logs' | 'dashboard_activities'>;
+        populate?: '*' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'user_logs' | 'courses' | 'dashboard_activities'>;
         status?: 'draft' | 'published';
     };
     url: '/content-creators';
@@ -6620,7 +6949,7 @@ export type ContentCreatorDeleteContentCreatorsByIdRequest = {
     };
     query?: {
         readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | Array<'courses' | 'user_logs' | 'dashboard_activities'>;
+        populate?: '*' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'user_logs' | 'courses' | 'dashboard_activities'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -6670,7 +6999,7 @@ export type ContentCreatorGetContentCreatorsByIdRequest = {
     };
     query?: {
         readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | Array<'courses' | 'user_logs' | 'dashboard_activities'>;
+        populate?: '*' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'user_logs' | 'courses' | 'dashboard_activities'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -6725,7 +7054,7 @@ export type ContentCreatorPutContentCreatorsByIdRequest = {
     };
     query?: {
         readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'courses' | 'user_logs' | 'dashboard_activities' | Array<'courses' | 'user_logs' | 'dashboard_activities'>;
+        populate?: '*' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'user_logs' | 'courses' | 'dashboard_activities'>;
         status?: 'draft' | 'published';
     };
     url: '/content-creators/{id}';
@@ -6804,7 +7133,7 @@ export type CourseGetCoursesRequest = {
         } | Array<{
             [key: string]: 'asc' | 'desc';
         }>;
-        populate?: '*' | 'image' | 'feedbacks' | 'course_categories' | 'students' | 'content_creators' | 'course_sections' | Array<'image' | 'feedbacks' | 'course_categories' | 'students' | 'content_creators' | 'course_sections'>;
+        populate?: '*' | 'image' | 'feedbacks' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | 'course_sections' | Array<'image' | 'feedbacks' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | 'course_sections'>;
         status?: 'draft' | 'published';
     };
     url: '/courses';
@@ -6849,7 +7178,7 @@ export type CoursePostCoursesRequest = {
     path?: never;
     query?: {
         readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'image' | 'feedbacks' | 'course_categories' | 'students' | 'content_creators' | 'course_sections' | Array<'image' | 'feedbacks' | 'course_categories' | 'students' | 'content_creators' | 'course_sections'>;
+        populate?: '*' | 'image' | 'feedbacks' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | 'course_sections' | Array<'image' | 'feedbacks' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | 'course_sections'>;
         status?: 'draft' | 'published';
     };
     url: '/courses';
@@ -6896,7 +7225,7 @@ export type CourseDeleteCoursesByIdRequest = {
     };
     query?: {
         readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'image' | 'feedbacks' | 'course_categories' | 'students' | 'content_creators' | 'course_sections' | Array<'image' | 'feedbacks' | 'course_categories' | 'students' | 'content_creators' | 'course_sections'>;
+        populate?: '*' | 'image' | 'feedbacks' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | 'course_sections' | Array<'image' | 'feedbacks' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | 'course_sections'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -6946,7 +7275,7 @@ export type CourseGetCoursesByIdRequest = {
     };
     query?: {
         readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'image' | 'feedbacks' | 'course_categories' | 'students' | 'content_creators' | 'course_sections' | Array<'image' | 'feedbacks' | 'course_categories' | 'students' | 'content_creators' | 'course_sections'>;
+        populate?: '*' | 'image' | 'feedbacks' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | 'course_sections' | Array<'image' | 'feedbacks' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | 'course_sections'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -7001,7 +7330,7 @@ export type CoursePutCoursesByIdRequest = {
     };
     query?: {
         readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'image' | 'feedbacks' | 'course_categories' | 'students' | 'content_creators' | 'course_sections' | Array<'image' | 'feedbacks' | 'course_categories' | 'students' | 'content_creators' | 'course_sections'>;
+        populate?: '*' | 'image' | 'feedbacks' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | 'course_sections' | Array<'image' | 'feedbacks' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | 'course_sections'>;
         status?: 'draft' | 'published';
     };
     url: '/courses/{id}';
@@ -7301,6 +7630,261 @@ export type CourseCategoryPutCourseCategoriesByIdResponses = {
 
 export type CourseCategoryPutCourseCategoriesByIdResponse = CourseCategoryPutCourseCategoriesByIdResponses[keyof CourseCategoryPutCourseCategoriesByIdResponses];
 
+export type CourseEnrollmentRelationGetCourseEnrollmentRelationsRequest = {
+    body?: never;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'enrollmentDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        _q?: string;
+        pagination?: {
+            withCount?: boolean;
+        } & ({
+            page: number;
+            pageSize: number;
+        } | {
+            start: number;
+            limit: number;
+        });
+        sort?: 'enrollmentDate' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'enrollmentDate' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        populate?: '*' | 'course' | 'student' | Array<'course' | 'student'>;
+    };
+    url: '/course-enrollment-relations';
+};
+
+export type CourseEnrollmentRelationGetCourseEnrollmentRelationsErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type CourseEnrollmentRelationGetCourseEnrollmentRelationsError = CourseEnrollmentRelationGetCourseEnrollmentRelationsErrors[keyof CourseEnrollmentRelationGetCourseEnrollmentRelationsErrors];
+
+export type CourseEnrollmentRelationGetCourseEnrollmentRelationsResponses = {
+    /**
+     * OK
+     */
+    200: CourseEnrollmentRelationListResponse;
+};
+
+export type CourseEnrollmentRelationGetCourseEnrollmentRelationsResponse = CourseEnrollmentRelationGetCourseEnrollmentRelationsResponses[keyof CourseEnrollmentRelationGetCourseEnrollmentRelationsResponses];
+
+export type CourseEnrollmentRelationPostCourseEnrollmentRelationsRequest = {
+    body: CourseEnrollmentRelationRequest;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'enrollmentDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'course' | 'student' | Array<'course' | 'student'>;
+    };
+    url: '/course-enrollment-relations';
+};
+
+export type CourseEnrollmentRelationPostCourseEnrollmentRelationsErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type CourseEnrollmentRelationPostCourseEnrollmentRelationsError = CourseEnrollmentRelationPostCourseEnrollmentRelationsErrors[keyof CourseEnrollmentRelationPostCourseEnrollmentRelationsErrors];
+
+export type CourseEnrollmentRelationPostCourseEnrollmentRelationsResponses = {
+    /**
+     * OK
+     */
+    200: CourseEnrollmentRelationResponse;
+};
+
+export type CourseEnrollmentRelationPostCourseEnrollmentRelationsResponse = CourseEnrollmentRelationPostCourseEnrollmentRelationsResponses[keyof CourseEnrollmentRelationPostCourseEnrollmentRelationsResponses];
+
+export type CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'enrollmentDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'course' | 'student' | Array<'course' | 'student'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+    };
+    url: '/course-enrollment-relations/{id}';
+};
+
+export type CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdError = CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdErrors[keyof CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdErrors];
+
+export type CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdResponses = {
+    /**
+     * OK
+     */
+    200: number;
+};
+
+export type CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdResponse = CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdResponses[keyof CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdResponses];
+
+export type CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'enrollmentDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'course' | 'student' | Array<'course' | 'student'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        sort?: 'enrollmentDate' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'enrollmentDate' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+    };
+    url: '/course-enrollment-relations/{id}';
+};
+
+export type CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdError = CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdErrors[keyof CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdErrors];
+
+export type CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdResponses = {
+    /**
+     * OK
+     */
+    200: CourseEnrollmentRelationResponse;
+};
+
+export type CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdResponse = CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdResponses[keyof CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdResponses];
+
+export type CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdRequest = {
+    body: CourseEnrollmentRelationRequest;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'enrollmentDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'course' | 'student' | Array<'course' | 'student'>;
+    };
+    url: '/course-enrollment-relations/{id}';
+};
+
+export type CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdError = CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdErrors[keyof CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdErrors];
+
+export type CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdResponses = {
+    /**
+     * OK
+     */
+    200: CourseEnrollmentRelationResponse;
+};
+
+export type CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdResponse = CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdResponses[keyof CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdResponses];
+
 export type CourseSectionGetCourseSectionsRequest = {
     body?: never;
     path?: never;
@@ -7560,277 +8144,6 @@ export type CourseSectionPutCourseSectionsByIdResponses = {
 };
 
 export type CourseSectionPutCourseSectionsByIdResponse = CourseSectionPutCourseSectionsByIdResponses[keyof CourseSectionPutCourseSectionsByIdResponses];
-
-export type GetCcDashboardActivityRequest = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/CC-dashboard-activity';
-};
-
-export type GetCcDashboardActivityResponses = {
-    /**
-     * OK - Array of dashboard activities
-     */
-    200: Array<DashboardActivity>;
-};
-
-export type GetCcDashboardActivityResponse = GetCcDashboardActivityResponses[keyof GetCcDashboardActivityResponses];
-
-export type DashboardActivityGetDashboardActivitiesRequest = {
-    body?: never;
-    path?: never;
-    query?: {
-        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        filters?: {
-            [key: string]: unknown;
-        };
-        _q?: string;
-        pagination?: {
-            withCount?: boolean;
-        } & ({
-            page: number;
-            pageSize: number;
-        } | {
-            start: number;
-            limit: number;
-        });
-        sort?: 'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
-            [key: string]: 'asc' | 'desc';
-        } | Array<{
-            [key: string]: 'asc' | 'desc';
-        }>;
-        populate?: '*' | 'content_creator' | Array<'content_creator'>;
-    };
-    url: '/dashboard-activities';
-};
-
-export type DashboardActivityGetDashboardActivitiesErrors = {
-    /**
-     * Bad Request
-     */
-    400: _Error;
-    /**
-     * Unauthorized
-     */
-    401: _Error;
-    /**
-     * Forbidden
-     */
-    403: _Error;
-    /**
-     * Not Found
-     */
-    404: _Error;
-    /**
-     * Internal Server Error
-     */
-    500: _Error;
-};
-
-export type DashboardActivityGetDashboardActivitiesError = DashboardActivityGetDashboardActivitiesErrors[keyof DashboardActivityGetDashboardActivitiesErrors];
-
-export type DashboardActivityGetDashboardActivitiesResponses = {
-    /**
-     * OK
-     */
-    200: DashboardActivityListResponse;
-};
-
-export type DashboardActivityGetDashboardActivitiesResponse = DashboardActivityGetDashboardActivitiesResponses[keyof DashboardActivityGetDashboardActivitiesResponses];
-
-export type DashboardActivityPostDashboardActivitiesRequest = {
-    body: DashboardActivityRequest;
-    path?: never;
-    query?: {
-        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'content_creator' | Array<'content_creator'>;
-    };
-    url: '/dashboard-activities';
-};
-
-export type DashboardActivityPostDashboardActivitiesErrors = {
-    /**
-     * Bad Request
-     */
-    400: _Error;
-    /**
-     * Unauthorized
-     */
-    401: _Error;
-    /**
-     * Forbidden
-     */
-    403: _Error;
-    /**
-     * Not Found
-     */
-    404: _Error;
-    /**
-     * Internal Server Error
-     */
-    500: _Error;
-};
-
-export type DashboardActivityPostDashboardActivitiesError = DashboardActivityPostDashboardActivitiesErrors[keyof DashboardActivityPostDashboardActivitiesErrors];
-
-export type DashboardActivityPostDashboardActivitiesResponses = {
-    /**
-     * OK
-     */
-    200: DashboardActivityResponse;
-};
-
-export type DashboardActivityPostDashboardActivitiesResponse = DashboardActivityPostDashboardActivitiesResponses[keyof DashboardActivityPostDashboardActivitiesResponses];
-
-export type DashboardActivityDeleteDashboardActivitiesByIdRequest = {
-    body?: never;
-    path: {
-        id: string;
-    };
-    query?: {
-        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'content_creator' | Array<'content_creator'>;
-        filters?: {
-            [key: string]: unknown;
-        };
-    };
-    url: '/dashboard-activities/{id}';
-};
-
-export type DashboardActivityDeleteDashboardActivitiesByIdErrors = {
-    /**
-     * Bad Request
-     */
-    400: _Error;
-    /**
-     * Unauthorized
-     */
-    401: _Error;
-    /**
-     * Forbidden
-     */
-    403: _Error;
-    /**
-     * Not Found
-     */
-    404: _Error;
-    /**
-     * Internal Server Error
-     */
-    500: _Error;
-};
-
-export type DashboardActivityDeleteDashboardActivitiesByIdError = DashboardActivityDeleteDashboardActivitiesByIdErrors[keyof DashboardActivityDeleteDashboardActivitiesByIdErrors];
-
-export type DashboardActivityDeleteDashboardActivitiesByIdResponses = {
-    /**
-     * OK
-     */
-    200: number;
-};
-
-export type DashboardActivityDeleteDashboardActivitiesByIdResponse = DashboardActivityDeleteDashboardActivitiesByIdResponses[keyof DashboardActivityDeleteDashboardActivitiesByIdResponses];
-
-export type DashboardActivityGetDashboardActivitiesByIdRequest = {
-    body?: never;
-    path: {
-        id: string;
-    };
-    query?: {
-        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'content_creator' | Array<'content_creator'>;
-        filters?: {
-            [key: string]: unknown;
-        };
-        sort?: 'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
-            [key: string]: 'asc' | 'desc';
-        } | Array<{
-            [key: string]: 'asc' | 'desc';
-        }>;
-    };
-    url: '/dashboard-activities/{id}';
-};
-
-export type DashboardActivityGetDashboardActivitiesByIdErrors = {
-    /**
-     * Bad Request
-     */
-    400: _Error;
-    /**
-     * Unauthorized
-     */
-    401: _Error;
-    /**
-     * Forbidden
-     */
-    403: _Error;
-    /**
-     * Not Found
-     */
-    404: _Error;
-    /**
-     * Internal Server Error
-     */
-    500: _Error;
-};
-
-export type DashboardActivityGetDashboardActivitiesByIdError = DashboardActivityGetDashboardActivitiesByIdErrors[keyof DashboardActivityGetDashboardActivitiesByIdErrors];
-
-export type DashboardActivityGetDashboardActivitiesByIdResponses = {
-    /**
-     * OK
-     */
-    200: DashboardActivityResponse;
-};
-
-export type DashboardActivityGetDashboardActivitiesByIdResponse = DashboardActivityGetDashboardActivitiesByIdResponses[keyof DashboardActivityGetDashboardActivitiesByIdResponses];
-
-export type DashboardActivityPutDashboardActivitiesByIdRequest = {
-    body: DashboardActivityRequest;
-    path: {
-        id: string;
-    };
-    query?: {
-        readonly fields?: Array<'activityDesc' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'content_creator' | Array<'content_creator'>;
-    };
-    url: '/dashboard-activities/{id}';
-};
-
-export type DashboardActivityPutDashboardActivitiesByIdErrors = {
-    /**
-     * Bad Request
-     */
-    400: _Error;
-    /**
-     * Unauthorized
-     */
-    401: _Error;
-    /**
-     * Forbidden
-     */
-    403: _Error;
-    /**
-     * Not Found
-     */
-    404: _Error;
-    /**
-     * Internal Server Error
-     */
-    500: _Error;
-};
-
-export type DashboardActivityPutDashboardActivitiesByIdError = DashboardActivityPutDashboardActivitiesByIdErrors[keyof DashboardActivityPutDashboardActivitiesByIdErrors];
-
-export type DashboardActivityPutDashboardActivitiesByIdResponses = {
-    /**
-     * OK
-     */
-    200: DashboardActivityResponse;
-};
-
-export type DashboardActivityPutDashboardActivitiesByIdResponse = DashboardActivityPutDashboardActivitiesByIdResponses[keyof DashboardActivityPutDashboardActivitiesByIdResponses];
 
 export type PostCourseStatisticsRequest = {
     body: CourseStatisticsRequest;

@@ -69,6 +69,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::course-enrollment-relation.course-enrollment-relation",
+    },
     "course_sections": {
       "type": "relation",
       "relation": "oneToMany",
