@@ -38,6 +38,7 @@
     "tag:strapi": "git tag strapi-v$(node -p \"require('./strapi/package.json').version\") && git push --tags"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.12",
     "pg": "^8.16.3"
   },
   "devDependencies": {

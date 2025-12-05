@@ -70,17 +70,7 @@ const Carousel: React.FC = () => {
     //Containters for the texts
     <div className="flex flex-row h-screen relative">
       <div className="flex flex-row">
-        <div className="flex items-center p-1 sm:px-4">
-          {/*Button for changing the text to the previous index*/}
-          <button onClick={pre}>
-            <Icon
-              path={mdiChevronLeft}
-              size={1.2} // lidt større for at matche w-9 h-9 (~36px)
-              color="currentColor"
-              className="p-1 rounded-full bg-white/80 text-gray-800 hover:bg-white"
-            />
-          </button>
-        </div>
+        
 
         {/*Inclusion of the text itself*/}
         <div className="flex items-center justify-center">
