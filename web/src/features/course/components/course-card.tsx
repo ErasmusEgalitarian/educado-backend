@@ -15,8 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/components/shadcn/card";
-
-import StarRating from "../../../shared/components/star-rating";
+import StarRating from "@/shared/components/star-rating";
 
 /**
  * Displays a course in a card format
