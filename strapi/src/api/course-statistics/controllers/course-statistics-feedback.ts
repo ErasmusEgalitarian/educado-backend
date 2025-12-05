@@ -1,5 +1,9 @@
 import { errorCodes } from "../../../helpers/errorCodes";
 
+interface Feedback {
+  rating: number;
+}
+
 export default {
     async getAverageCourseFeedback(ctx) {
       try {
@@ -14,7 +18,7 @@ export default {
               ctx.response.body = { error: errorCodes["E0006"] };
             }
     
-            const feedbacksArray = (course.feedbacks ?? []) as { rating: number }[];
+            const feedbacksArray = (course.feedbacks ?? []) as Feedback[];
     
             const averageCourseRating =
               feedbacksArray.length > 0
