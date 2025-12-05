@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
 import { getUserInfo } from "@/auth/lib/userInfo";
+import { getCcDashboardActivity, postCourseStatistics } from "@/shared/api/sdk.gen";
+import { DashboardActivity, CourseStatisticsResponse } from "@/shared/api/types.gen";
 import {
   Select,
   SelectContent,
@@ -9,12 +13,10 @@ import {
 } from "@/shared/components/shadcn/select";
 import { Separator } from "@/shared/components/shadcn/seperator";
 import StarRating from "@/shared/components/star-rating";
+
 import { SidebarActivity } from "../components/course-overview-sidebar-activity";
-import { useEffect, useState } from "react";
-import { getCcDashboardActivity } from "@/shared/api/sdk.gen";
-import { DashboardActivity } from "@/shared/api/types.gen";
-import { postCourseStatistics } from "@/shared/api/sdk.gen";
-import { CourseStatisticsResponse } from "@/shared/api/types.gen";
+
+
 
 type PeriodKey = "thisMonth" | "lastSevenDays" | "lastThirtyDays";
 
