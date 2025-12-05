@@ -8,9 +8,9 @@ import { getUserToken } from "@/auth/lib/userInfo";
 import { useApi } from "@/shared/hooks/useAPI";
 import AdminServices from "@/unplaced/services/admin.services";
 import AuthServices from "@/unplaced/services/auth.services";
-import { Application } from "@/user/types/Application";
-import { ContentCreator } from "@/user/types/ContentCreator";
-import { User } from "@/user/types/User";
+import { Application } from "@/user/types/application.ts";
+import { ContentCreator } from "@/user/types/content-creator.ts";
+import { User } from "@/user/types/user.ts";
 
 import UserDetailsModal from "../DetailsModalUser";
 

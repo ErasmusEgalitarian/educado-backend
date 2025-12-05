@@ -1,5 +1,5 @@
 import { RenderMode } from "@/shared/data-display/hooks/used-paginated-data";
-import { User } from "@/user/types/User";
+import { User } from "@/user/types/user.ts";
 
 // TODO: Replace User with Strapi user
 export interface AuthContextType {

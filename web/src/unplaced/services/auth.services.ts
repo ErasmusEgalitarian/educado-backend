@@ -1,9 +1,9 @@
 import axios from "axios";
 
 import { BACKEND_URL } from "@/shared/config/environment";
-import { Application } from "@/user/types/Application";
-import { Institution } from "@/user/types/Institution";
-import { User } from "@/user/types/User";
+import { Application } from "@/user/types/application.ts";
+import { Institution } from "@/user/types/institution.ts";
+import { User } from "@/user/types/user.ts";
 
 export interface ContentCreatorApplication {
   firstName: string;

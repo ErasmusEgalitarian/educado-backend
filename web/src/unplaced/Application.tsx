@@ -6,11 +6,11 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 
 import MiniNavbar from "@/shared/components/MiniNavbar";
 import { tempObjects } from "@/shared/lib/formStates";
-import Motivation from "@/user/components/Motivation";
+import Motivation from "@/user/components/motivation.tsx";
 
 import AcademicExperienceForm from "../features/user/components/academic-experience-form";
-import ProfessionalExperienceForm from "../features/user/components/ProfessionalExperience";
-import { NewApplication } from "../features/user/types/Application";
+import ProfessionalExperienceForm from "@/user/components/professional-experience.tsx";
+import { NewApplication } from "@/user/types/application.ts";
 import GenericModalComponent from "../shared/components/GenericModalComponent";
 import { useApi } from "../shared/hooks/useAPI";
 

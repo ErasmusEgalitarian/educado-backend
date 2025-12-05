@@ -1,7 +1,7 @@
 import axios from "axios";
 
-import { ContentCreator } from "@/user/types/ContentCreator";
-import { User } from "@/user/types/User";
+import { ContentCreator } from "@/user/types/content-creator.ts";
+import { User } from "@/user/types/user.ts";
 
 import { BACKEND_URL } from "../../shared/config/environment";
 

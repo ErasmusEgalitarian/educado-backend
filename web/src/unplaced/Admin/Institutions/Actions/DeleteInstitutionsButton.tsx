@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { KeyedMutator } from "swr";
 
 import { getUserToken } from "@/features/auth/lib/userInfo";
-import { Institution } from "@/features/user/types/Institution";
+import { Institution } from "@/user/types/institution.ts";
 import GenericModalComponent from "@/shared/components/GenericModalComponent";
 import { useNotifications } from "@/shared/context/NotificationContext";
 import { useApi } from "@/shared/hooks/useAPI";
