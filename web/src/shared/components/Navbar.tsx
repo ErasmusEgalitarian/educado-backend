@@ -280,9 +280,11 @@ export const Navbar = () => {
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent>
                     <DropdownMenuRadioGroup
-                      value={i18n.language}
+                      value={preferences.language}
                       onValueChange={(value) => {
-                        void i18n.changeLanguage(value);
+                        if (value === "en" || value === "pt") {
+                              setPreferences({ language: value });
+                            }
                       }}
                     >
                       <DropdownMenuRadioItem value="pt">
