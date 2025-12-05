@@ -26,10 +26,10 @@ COPY --from=pruner /app/out/package-lock.json ./package-lock.json
 RUN npm install -g node-gyp
 
 # Install dependencies, then explicitly install musl-compatible native binaries
-# This fixes the @swc/core and other native module issues on Alpine
+# This fixes the @swc/core native module issues on Alpine
 RUN npm config set fetch-retry-maxtimeout 600000 -g && \
     npm ci && \
-    npm rebuild
+    npm install @swc/core-linux-x64-musl --no-save || true
 
 # Stage 3: Build the application
 FROM node:22-alpine AS builder

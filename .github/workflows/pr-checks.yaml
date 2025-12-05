@@ -69,7 +69,7 @@ jobs:
             ${{ runner.os }}-npm-
 
       - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund && npm rebuild
+        run: npm ci --no-audit --no-fund
 
       - name: Lint
         run: npm run lint:check --workspace=strapi
@@ -99,7 +99,7 @@ jobs:
             ${{ runner.os }}-npm-
 
       - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund && npm rebuild
+        run: npm ci --no-audit --no-fund
 
       - name: Type Check
         run: npm run type-check --workspace=strapi
@@ -126,7 +126,7 @@ jobs:
             ${{ runner.os }}-npm-
 
       - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund && npm rebuild
+        run: npm ci --no-audit --no-fund
 
       - name: Test
         run: npm run test --workspace=strapi
@@ -153,7 +153,10 @@ jobs:
             ${{ runner.os }}-npm-
 
       - name: Install dependencies (from root)
-        run: npm ci --no-audit --no-fund && npm rebuild
+        run: |
+          npm ci --no-audit --no-fund
+          # Install musl-compatible native binaries for Alpine
+          npm install @swc/core-linux-x64-musl --no-save --no-audit --no-fund || true
 
       - name: Build
         run: npm run build --workspace=strapi
