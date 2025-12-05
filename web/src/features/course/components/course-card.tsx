@@ -46,6 +46,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
         setFeedbackAverage(data);
       } catch (error) {
         console.error("Error fetching course:", error);
+        toast.error(t("common.errorLoadingFeedback"));
       }
     };
     fetchAverageFeedback();
