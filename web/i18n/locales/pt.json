@@ -53,7 +53,8 @@
     "preview": "Visualizar",
     "type": "Tipo",
     "size": "Tamanho",
-    "uploaded": "Enviado"
+    "uploaded": "Enviado",
+    "errorLoadingFeedback": "Erro ao carregar feedback"
   },
   "form": {
     "submit": "Submeter",

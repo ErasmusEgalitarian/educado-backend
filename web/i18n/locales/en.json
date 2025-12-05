@@ -53,7 +53,8 @@
     "preview": "Preview",
     "type": "Type",
     "size": "Size",
-    "uploaded": "Uploaded"
+    "uploaded": "Uploaded",
+    "errorLoadingFeedback": "Error loading feedback"
   },
   "form": {
     "submit": "Submit",
