@@ -31,12 +31,21 @@
     "more": "More",
     "openMenu": "Open menu",
     "actions": "Actions",
+    "mandatory": "This field is mandatory",
     "columns": "Columns",
     "sort": "Sort",
     "sortBy": "Sort by",
     "ascending": "Asc",
     "descending": "Desc",
-    "saveChanges": "Save changes",
+    "saveChanges": "Save Changes",
+    "publicationStatus": "Publication Status",
+    "publish": "Publish",
+    "publishing": "Publishing",
+    "published": "Published",
+    "draft": "Draft",
+    "unpublish": "Unpublish",
+    "unpublishing": "Unpublishing",
+    "unpublished": "Unpublished",
     "continue": "Continue",
     "back": "Back",
     "leave": "Leave",
@@ -44,6 +53,7 @@
     "dismiss": "Dismiss",
     "name": "Name",
     "retry": "Retry",
+    "rating": "Rating",
     "error": "Error",
     "goPrevious": "Go to previous",
     "upload": "Upload",
@@ -62,10 +72,12 @@
   },
   "validation": {
     "required": "This field is required",
+    "title": "Title is required",
     "minLength": "Must be at least {{count}} characters",
     "maxLength": "Must be at most {{count}} characters",
     "minCategories": "Select at least {{count}} categories",
     "maxCategories": "Select at most {{count}} categories",
+    "invalidLevel": "Invalid level",
     "maxDescription": "Description cannot be longer than {{count}} characters"
   },
   "language": {
@@ -87,6 +99,7 @@
     "admin": "Admin",
     "courses": "Courses",
     "logout": "Logout",
+    "notifications": "Notifications",
     "noNotifications": "No notifications",
     "mediaLibrary": "Media Library"
   },
@@ -147,7 +160,11 @@
     "description": "Description",
     "descriptionPlaceholder": "Enter the description",
     "coverImage": "Cover Image",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
     "characters": "characters",
+    "newCourse": "New Course",
     "createSections": "Create Sections",
     "noSections": "No sections yet",
     "reviewCourse": "Review Course",
@@ -163,6 +180,18 @@
     "totalCourses": "Total Courses",
     "totalStudents": "Total Students",
     "totalCertificates": "Total Certificates",
+    "avalation": "Avalation",
+    "activities": "Activities",
+    "hello": "Hello",
+    "hours": "Hours",
+    "workload": "Workload",
+    "enrolled": "Enrolled",
+    "grade": "Grade",
+    "startNow": "Start Now",
+    "noCoursesYet": "You haven't created any courses yet. Click the button below and follow the step-by-step instructions to develop your first course.",
+    "createNewCourse": "Create New Course",
+    "thisMonth": "This month",
+    "totalCertificatesIssued": "Total certificates issued",
     "evaluation": "Evaluation",
     "activities": "Activities"
   },
@@ -282,7 +311,21 @@
     "login-text": "Already have an account?",
     "login-button": "Sign in"
   },
-  "notifications": {
-    "publishedCourse": "Published course"
+  "adminUsers": {
+    "mostRecent": "Most recent",
+    "searchUsers": "Search user",
+    "filterAll": "All",
+    "filterPending": "Pending",
+    "filterApproved": "Approved",
+    "filterRejected": "Rejected",
+    "statusPending": "Pending review",
+    "statusApproved": "Approved",
+    "statusRejected": "Rejected",
+    "submittedAt": "Submitted at",
+    "rowsPerPage": "Rows per page"
+  },
+  "notifications":
+  {
+    "published-course": "Published course"
   }
 }

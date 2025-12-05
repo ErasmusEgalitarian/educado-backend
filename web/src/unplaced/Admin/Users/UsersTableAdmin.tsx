@@ -17,8 +17,10 @@ import { User } from "@/user/types/User";
 
 import AdminToggleButton from "../AdminToggle";
 import DeleteUserButton from "../DeleteUserButton";
+import { useTranslation } from "react-i18next";
 
 export const UsersTableAdmin = () => {
+  const { t,i18n } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -58,8 +60,13 @@ export const UsersTableAdmin = () => {
       minute: "2-digit",
       second: "2-digit",
     };
+
+  const localeMap: Record<string, string> = {
+      pt: "pt-BR",
+      en: "en-US",
+  };
     let formattedDate = date
-      .toLocaleString("pt-BR", options)
+      .toLocaleString(localeMap[i18n.language] ?? "en-US", options)
       .replace(" às", "");
     formattedDate =
       formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
@@ -134,14 +141,14 @@ export const UsersTableAdmin = () => {
     <div>
       <form className="flex flex-col md:flex-row w-3/4 md:w-full max-w-full md:space-x-4 space-y-3 md:space-y-0 justify-end py-6 -mt-4">
         <select className="block bg-white min-w-[175px] grow-0 border border-slate-300 rounded-md py-2 pr-3 shadow-xs focus:outline-hidden hover:bg-white focus:border-sky-500 focus:ring-1 sm:text-sm">
-          <option value="option1">Mais recentes</option>
+          <option>{t("adminUsers.mostRecent")}</option>
         </select>
         <div className="relative min-w-[225px] grow-0">
           <input
             className="placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-xs focus:outline-hidden hover:bg-white focus:border-sky-500 focus:ring-1 sm:text-sm"
             type="text"
             id="search-term"
-            placeholder="Buscar usuário"
+            placeholder={t("adminUsers.searchUsers")}
             onChange={(event) => {
               setSearchTerm(event.target.value);
             }}
@@ -175,7 +182,7 @@ export const UsersTableAdmin = () => {
                     }
                     onClick={() => setStatusFilter("all")}
                 >
-                    Todos
+                    {t("adminUsers.filterAll")}
                 </button>
 
                 <button
@@ -188,7 +195,7 @@ export const UsersTableAdmin = () => {
                     }
                     onClick={() => setStatusFilter("pending")}
                 >
-                    Pendentes
+                    {t("adminUsers.filterPending")}
                 </button>
 
                 <button
@@ -201,7 +208,7 @@ export const UsersTableAdmin = () => {
                     }
                     onClick={() => setStatusFilter("approved")}
                 >
-                    Aprovados
+                    {t("adminUsers.filterApproved")}
                 </button>
 
                 <button
@@ -214,7 +221,7 @@ export const UsersTableAdmin = () => {
                     }
                     onClick={() => setStatusFilter("rejected")}
                 >
-                    Recusados
+                    {t("adminUsers.filterRejected")}
                 </button>
             </div>
         </div>
@@ -223,19 +230,19 @@ export const UsersTableAdmin = () => {
         <thead>
           <tr className="bg-white border-b-4 border-[#166276] text-[#166276] text-left text-base font-base font-['Lato']]">
             <th scope="col" className="p-7" style={{ width: "5%" }}>
-              Admin
+              {t("navbar.admin")}
             </th>
             <th scope="col" className="p-5" style={{ width: "20%" }}>
-              Nome
+              {t("common.name")}
             </th>
             <th scope="col" className="p-5" style={{ width: "25%" }}>
-              Email
+              {t("login.email")}
             </th>
             <th scope="col" className="p-5" style={{ width: "20%" }}>
-              Status
+              {t("common.actions")}
             </th>
             <th scope="col" className="p-5" style={{ width: "30%" }}>
-              Enviado em
+              {t("adminUsers.submittedAt")}
             </th>
             <th scope="col" className="p-5" style={{ width: "30%" }} />
           </tr>
@@ -278,10 +285,10 @@ export const UsersTableAdmin = () => {
                     style={{ color: getStatusColor(userRecord) }}
                   >
                     {userRecord.approved
-                      ? "Aprovado"
+                      ? t("adminUsers.statusApproved")
                       : userRecord.rejected
-                        ? "Recusado"
-                        : "Aguardando análise"}
+                        ? t("adminUsers.statusRejected")
+                        : t("adminUsers.statusPending")}
                   </p>
                 </td>
                 <td>
@@ -322,7 +329,7 @@ export const UsersTableAdmin = () => {
 
       <div className="px-5 bg-white py-5 flex flex-row xs:flex-row items-center xs:justify-between justify-end">
         <div className="flex items-center">
-          <span className="text-gray-600">Rows per page:</span>
+          <span className="text-gray-600">{t("adminUsers.rowsPerPage")}</span>
           <div className="relative">
             <select
               className="appearance-none bg-none border-none text-gray-600 focus:ring-0 cursor-pointer"
