@@ -484,6 +484,96 @@ export const courseCategoryPutCourseCategoriesById = <ThrowOnError extends boole
     });
 };
 
+export const courseEnrollmentRelationGetCourseEnrollmentRelations = <ThrowOnError extends boolean = false>(options?: Options<CourseEnrollmentRelationGetCourseEnrollmentRelationsRequest, ThrowOnError>) => {
+    return (options?.client ?? client).get<CourseEnrollmentRelationGetCourseEnrollmentRelationsResponses, CourseEnrollmentRelationGetCourseEnrollmentRelationsErrors, ThrowOnError, 'data'>({
+        querySerializer: {
+            parameters: {
+                filters: {
+                    object: {
+                        style: 'form'
+                    }
+                }
+            }
+        },
+        requestValidator: async (data) => {
+            return await zCourseEnrollmentRelationGetCourseEnrollmentRelationsRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/course-enrollment-relations',
+        ...options
+    });
+};
+
+export const courseEnrollmentRelationPostCourseEnrollmentRelations = <ThrowOnError extends boolean = false>(options: Options<CourseEnrollmentRelationPostCourseEnrollmentRelationsRequest, ThrowOnError>) => {
+    return (options.client ?? client).post<CourseEnrollmentRelationPostCourseEnrollmentRelationsResponses, CourseEnrollmentRelationPostCourseEnrollmentRelationsErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zCourseEnrollmentRelationPostCourseEnrollmentRelationsRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/course-enrollment-relations',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
+export const courseEnrollmentRelationDeleteCourseEnrollmentRelationsById = <ThrowOnError extends boolean = false>(options: Options<CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).delete<CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdResponses, CourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdErrors, ThrowOnError, 'data'>({
+        querySerializer: {
+            parameters: {
+                filters: {
+                    object: {
+                        style: 'form'
+                    }
+                }
+            }
+        },
+        requestValidator: async (data) => {
+            return await zCourseEnrollmentRelationDeleteCourseEnrollmentRelationsByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/course-enrollment-relations/{id}',
+        ...options
+    });
+};
+
+export const courseEnrollmentRelationGetCourseEnrollmentRelationsById = <ThrowOnError extends boolean = false>(options: Options<CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).get<CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdResponses, CourseEnrollmentRelationGetCourseEnrollmentRelationsByIdErrors, ThrowOnError, 'data'>({
+        querySerializer: {
+            parameters: {
+                filters: {
+                    object: {
+                        style: 'form'
+                    }
+                }
+            }
+        },
+        requestValidator: async (data) => {
+            return await zCourseEnrollmentRelationGetCourseEnrollmentRelationsByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/course-enrollment-relations/{id}',
+        ...options
+    });
+};
+
+export const courseEnrollmentRelationPutCourseEnrollmentRelationsById = <ThrowOnError extends boolean = false>(options: Options<CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).put<CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdResponses, CourseEnrollmentRelationPutCourseEnrollmentRelationsByIdErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zCourseEnrollmentRelationPutCourseEnrollmentRelationsByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/course-enrollment-relations/{id}',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
 export const courseSectionGetCourseSections = <ThrowOnError extends boolean = false>(options?: Options<CourseSectionGetCourseSectionsRequest, ThrowOnError>) => {
     return (options?.client ?? client).get<CourseSectionGetCourseSectionsResponses, CourseSectionGetCourseSectionsErrors, ThrowOnError, 'data'>({
         querySerializer: {
@@ -566,107 +656,6 @@ export const courseSectionPutCourseSectionsById = <ThrowOnError extends boolean 
         },
         responseStyle: 'data',
         url: '/course-sections/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
-
-export const getCcDashboardActivity = <ThrowOnError extends boolean = false>(options?: Options<GetCcDashboardActivityRequest, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetCcDashboardActivityResponses, unknown, ThrowOnError, 'data'>({
-        requestValidator: async (data) => {
-            return await zGetCcDashboardActivityRequest.parseAsync(data);
-        },
-        responseStyle: 'data',
-        url: '/CC-dashboard-activity',
-        ...options
-    });
-};
-
-export const dashboardActivityGetDashboardActivities = <ThrowOnError extends boolean = false>(options?: Options<DashboardActivityGetDashboardActivitiesRequest, ThrowOnError>) => {
-    return (options?.client ?? client).get<DashboardActivityGetDashboardActivitiesResponses, DashboardActivityGetDashboardActivitiesErrors, ThrowOnError, 'data'>({
-        querySerializer: {
-            parameters: {
-                filters: {
-                    object: {
-                        style: 'form'
-                    }
-                }
-            }
-        },
-        requestValidator: async (data) => {
-            return await zDashboardActivityGetDashboardActivitiesRequest.parseAsync(data);
-        },
-        responseStyle: 'data',
-        url: '/dashboard-activities',
-        ...options
-    });
-};
-
-export const dashboardActivityPostDashboardActivities = <ThrowOnError extends boolean = false>(options: Options<DashboardActivityPostDashboardActivitiesRequest, ThrowOnError>) => {
-    return (options.client ?? client).post<DashboardActivityPostDashboardActivitiesResponses, DashboardActivityPostDashboardActivitiesErrors, ThrowOnError, 'data'>({
-        requestValidator: async (data) => {
-            return await zDashboardActivityPostDashboardActivitiesRequest.parseAsync(data);
-        },
-        responseStyle: 'data',
-        url: '/dashboard-activities',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
-
-export const dashboardActivityDeleteDashboardActivitiesById = <ThrowOnError extends boolean = false>(options: Options<DashboardActivityDeleteDashboardActivitiesByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).delete<DashboardActivityDeleteDashboardActivitiesByIdResponses, DashboardActivityDeleteDashboardActivitiesByIdErrors, ThrowOnError, 'data'>({
-        querySerializer: {
-            parameters: {
-                filters: {
-                    object: {
-                        style: 'form'
-                    }
-                }
-            }
-        },
-        requestValidator: async (data) => {
-            return await zDashboardActivityDeleteDashboardActivitiesByIdRequest.parseAsync(data);
-        },
-        responseStyle: 'data',
-        url: '/dashboard-activities/{id}',
-        ...options
-    });
-};
-
-export const dashboardActivityGetDashboardActivitiesById = <ThrowOnError extends boolean = false>(options: Options<DashboardActivityGetDashboardActivitiesByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).get<DashboardActivityGetDashboardActivitiesByIdResponses, DashboardActivityGetDashboardActivitiesByIdErrors, ThrowOnError, 'data'>({
-        querySerializer: {
-            parameters: {
-                filters: {
-                    object: {
-                        style: 'form'
-                    }
-                }
-            }
-        },
-        requestValidator: async (data) => {
-            return await zDashboardActivityGetDashboardActivitiesByIdRequest.parseAsync(data);
-        },
-        responseStyle: 'data',
-        url: '/dashboard-activities/{id}',
-        ...options
-    });
-};
-
-export const dashboardActivityPutDashboardActivitiesById = <ThrowOnError extends boolean = false>(options: Options<DashboardActivityPutDashboardActivitiesByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).put<DashboardActivityPutDashboardActivitiesByIdResponses, DashboardActivityPutDashboardActivitiesByIdErrors, ThrowOnError, 'data'>({
-        requestValidator: async (data) => {
-            return await zDashboardActivityPutDashboardActivitiesByIdRequest.parseAsync(data);
-        },
-        responseStyle: 'data',
-        url: '/dashboard-activities/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',

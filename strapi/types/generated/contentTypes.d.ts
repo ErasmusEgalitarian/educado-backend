@@ -636,6 +636,37 @@ export interface ApiCourseCategoryCourseCategory
   };
 }
 
+export interface ApiCourseEnrollmentRelationCourseEnrollmentRelation
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'course_enrollment_relations';
+  info: {
+    displayName: 'Course Enrollment Relation';
+    pluralName: 'course-enrollment-relations';
+    singularName: 'course-enrollment-relation';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    course: Schema.Attribute.Relation<'manyToOne', 'api::course.course'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enrollmentDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::course-enrollment-relation.course-enrollment-relation'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    student: Schema.Attribute.Relation<'manyToOne', 'api::student.student'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCourseSectionCourseSection
   extends Struct.CollectionTypeSchema {
   collectionName: 'course_enrollment_relations';
