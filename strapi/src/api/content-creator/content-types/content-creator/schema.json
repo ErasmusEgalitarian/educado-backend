@@ -103,16 +103,16 @@
       "minLength": 1,
       "maxLength": 400
     },
+    "user_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-log.user-log"
+    },
     "courses": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::course.course",
       "inversedBy": "content_creators"
-    },
-    "user_logs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::user-log.user-log"
     },
     "dashboard_activities": {
       "type": "relation",

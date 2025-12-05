@@ -42,12 +42,6 @@
       "target": "api::feedback.feedback",
       "mappedBy": "student"
     },
-    "courses": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::course.course",
-      "mappedBy": "students"
-    },
     "certificates": {
       "type": "relation",
       "relation": "oneToMany",
@@ -58,6 +52,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::user-log.user-log",
+      "mappedBy": "student"
+    },
+    "course_enrollment_relations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course-enrollment-relation.course-enrollment-relation",
       "mappedBy": "student"
     }
   }

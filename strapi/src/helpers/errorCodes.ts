@@ -90,6 +90,10 @@ export const errorCodes: Record<string, errorDetail> = {
     code: "E0020",
     message: "Server configuration error",
   },
+  E0021: {
+    code: "E0021",
+    message: "Certificate not found",
+  },
 
   // E01 - Login errors
   E0101: {

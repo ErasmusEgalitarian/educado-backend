@@ -126,6 +126,10 @@
     "minNameLength": "O nome da categoria deve ter pelo menos {{count}} caracteres"
   },
   "courses": {
+    "hello": "Olá",
+    "thisMonth": "Esse mês",
+    "lastSevenDays": "Últimos 7 dias",
+    "lastThirtyDays": "Últimos 30 dias",
     "pageTitle": "Cursos",
     "course": "Curso",
     "newCourse": "Novo Curso",

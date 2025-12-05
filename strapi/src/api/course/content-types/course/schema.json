@@ -63,17 +63,17 @@
       "target": "api::course-category.course-category",
       "mappedBy": "courses"
     },
-    "students": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::student.student",
-      "inversedBy": "courses"
-    },
     "content_creators": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::content-creator.content-creator",
       "mappedBy": "courses"
+    },
+    "course_enrollment_relations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course-enrollment-relation.course-enrollment-relation",
+      "mappedBy": "course"
     }
   }
 }

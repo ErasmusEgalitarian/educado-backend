@@ -1,0 +1,145 @@
+{
+  "paths": {
+    "/course-statistics": {
+      "post": {
+        "tags": ["CourseStatistics"],
+        "summary": "Get aggregated statistics for a content creator's selected courses",
+        "description": "Returns aggregated statistics for courses, students, certificates and evaluation (ratings) for the authenticated content creator.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseStatisticsRequest"
+              },
+              "example": {
+                "documentIds": ["course-doc-id-1", "course-doc-id-2"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aggregated statistics object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseStatisticsResponse"
+                },
+                "example": {
+                  "courses": {
+                    "total": 2,
+                    "progress": {
+                      "lastThirtyDays": 25,
+                      "lastSevenDays": 10,
+                      "thisMonth": 15
+                    }
+                  },
+                  "students": {
+                    "total": 120,
+                    "progress": {
+                      "lastThirtyDays": 12,
+                      "lastSevenDays": 3,
+                      "thisMonth": 5
+                    }
+                  },
+                  "certificates": {
+                    "total": 40,
+                    "progress": {
+                      "lastThirtyDays": 20,
+                      "lastSevenDays": 5,
+                      "thisMonth": 8
+                    }
+                  },
+                  "evaluation": {
+                    "total": 4.3,
+                    "progress": {
+                      "thisMonth": 0.2,
+                      "lastSevenDays": 0.1,
+                      "lastThirtyDays": -0.05
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request (invalid input)",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CourseStatisticsRequest": {
+        "type": "object",
+        "required": ["documentIds"],
+        "properties": {
+          "documentIds": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Array of course documentId strings"
+          }
+        },
+        "example": { "documentIds": ["course-doc-id-1", "course-doc-id-2"] }
+      },
+      "ProgressObject": {
+        "type": "object",
+        "required": ["lastThirtyDays", "lastSevenDays", "thisMonth"],
+        "properties": {
+          "lastThirtyDays": { "type": "number", "description": "Progress percentage comparing last 30 days vs previous period" },
+          "lastSevenDays": { "type": "number", "description": "Progress percentage comparing last 7 days vs previous period" },
+          "thisMonth": { "type": "number", "description": "Progress percentage for current month vs previous month" }
+        }
+      },
+      "CourseStatsSection": {
+        "type": "object",
+        "required": ["total", "progress"],
+        "properties": {
+          "total": { "type": "number", "description": "Total count (e.g., total courses / students / certificates)" },
+          "progress": { "$ref": "#/components/schemas/ProgressObject" }
+        }
+      },
+      "CourseStatisticsResponse": {
+        "type": "object",
+        "required": ["courses", "students", "certificates", "evaluation"],
+        "properties": {
+          "courses": { "$ref": "#/components/schemas/CourseStatsSection" },
+          "students": { "$ref": "#/components/schemas/CourseStatsSection" },
+          "certificates": { "$ref": "#/components/schemas/CourseStatsSection" },
+          "evaluation": { "$ref": "#/components/schemas/CourseStatsSection" }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": { "type": "string" },
+          "message": { "type": "string" },
+          "status": { "type": "integer" }
+        }
+      }
+    }
+  }
+}
