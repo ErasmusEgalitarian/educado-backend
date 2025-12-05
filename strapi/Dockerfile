@@ -24,7 +24,12 @@ COPY --from=pruner /app/out/package-lock.json ./package-lock.json
 
 # Install dependencies
 RUN npm install -g node-gyp
-RUN npm config set fetch-retry-maxtimeout 600000 -g && npm ci
+
+# Install dependencies, then explicitly install musl-compatible native binaries
+# This fixes native module issues on Alpine (@swc/core for TS, @rollup for Vite/admin build)
+RUN npm config set fetch-retry-maxtimeout 600000 -g && \
+    npm ci && \
+    npm install @swc/core-linux-x64-musl @rollup/rollup-linux-x64-musl --no-save || true
 
 # Stage 3: Build the application
 FROM node:22-alpine AS builder
