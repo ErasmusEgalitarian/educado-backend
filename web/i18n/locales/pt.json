@@ -298,6 +298,25 @@
     "submittedAt": "Enviado em",
     "rowsPerPage": "Linhas por página"
   },
+  "userProfile": {
+    "title": "Perfil de usuário",
+    "status": "Status",
+    "motivations": "Motivações",
+    "academicExperiences": "Experiências acadêmicas",
+    "professionalExperiences": "Experiências profissionais",
+    "reject": "Recusar",
+    "approve": "Aprovar",
+    "rejectApplication": "Rejeitar aplicação",
+    "approveApplication": "Aprovar aplicação",
+    "justifyRejection": "Justifique a rejeição da aplicação",
+    "noMotivation": "Nenhuma motivação informada",
+    "noAcademicExperience": "Nenhuma experiência acadêmica informada",
+    "noProfessionalExperience": "Nenhuma experiência profissional informada",
+    "justification": "Justificativa",
+    "justificationPlaceholder": "Justificativa da análise",
+    "justificationRequired": "Justificativa é obrigatória.",
+    "actionCannotBeUndone": "Essa ação não pode ser desfeita."
+  },
   "notifications":
   {
     "published-course": "Curso publicado"

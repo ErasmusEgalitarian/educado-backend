@@ -324,6 +324,25 @@
     "submittedAt": "Submitted at",
     "rowsPerPage": "Rows per page"
   },
+  "userProfile": {
+    "title": "User profile",
+    "status": "Status",
+    "motivations": "Motivations",
+    "academicExperiences": "Academic experiences",
+    "professionalExperiences": "Professional experiences",
+    "reject": "Reject",
+    "approve": "Approve",
+    "rejectApplication": "Reject application",
+    "approveApplication": "Approve application",
+    "justifyRejection": "Please justify the rejection",
+    "noMotivation": "No motivation provided",
+    "noAcademicExperience": "No academic experiences provided",
+    "noProfessionalExperience": "No professional experiences provided",
+    "justification": "Justification",
+    "justificationPlaceholder": "Justification for the analysis",
+    "justificationRequired": "Justification is required.",
+    "actionCannotBeUndone": "This action cannot be undone."
+  },
   "notifications":
   {
     "published-course": "Published course"
