@@ -87,7 +87,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
         {/* Progress header with period selector */}
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-2xl font-semibold text-greyscale-text-subtle">
-            {t("courses.progress")}
+            {t("dashboard.progress")}
           </h3>
           <Select value={period} onValueChange={(val: PeriodKey) => {setPeriod(val)}}>
             <SelectTrigger className="w-[180px] rounded-lg border border-greyscale-border-disabled bg-background text-sm text-greyscale-text-body">
@@ -105,7 +105,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
           {/* Total cursos */}
           <div>
             <p className="text-greyscale-text-subtle">
-              {t("courses.totalCourses")}
+              {t("dashboard.totalCourses")}
             </p>
             <div className="flex items-baseline gap-2">
               <span className="text-4xl font-semibold">{getTotal("courses")}</span>
@@ -126,7 +126,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
           {/* Total alunos */}
           <div>
             <p className="text-greyscale-text-subtle">
-              {t("courses.totalStudents")}
+              {t("dashboard.totalStudents")}
             </p>
             <div className="flex items-baseline gap-2">
               <span className="text-4xl font-semibold">{getTotal("students")}</span>
@@ -148,7 +148,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
           {/* Total certificados emitidos */}
           <div>
             <p className="text-greyscale-text-subtle">
-              {t("courses.totalCertificatesIssued")}
+              {t("dashboard.totalCertificates")}
             </p>
             <div className="flex items-baseline gap-2">
               <span className="text-4xl font-semibold">{getTotal("certificates")}</span>
@@ -170,7 +170,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
           {/* Avaliação */}
           <div>
             <p className="text-greyscale-text-subtle">
-              {t("courses.evaluation")}
+              {t("dashboard.evaluation")}
             </p>
             <div className="flex items-baseline gap-2">
                 <StarRating rating={getTotal("evaluation")} size="md" />
@@ -196,7 +196,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
         {/* Atividades */}
         <div>
           <h3 className="text-2xl font-semibold text-greyscale-text-subtle mb-4">
-            {t("courses.activities")}
+            {t("dashboard.activities")}
           </h3>
           <div className="space-y-6">
             {dashboardActivities.map((activity) => (
