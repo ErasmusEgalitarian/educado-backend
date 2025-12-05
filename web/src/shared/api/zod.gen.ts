@@ -446,30 +446,62 @@ export const zCertificate = z.object({
                 content_creators: z.array(z.object({
                     id: z.number().optional(),
                     documentId: z.string().optional(),
+                    email: z.string().email().optional(),
                     firstName: z.string().optional(),
                     lastName: z.string().optional(),
                     verifiedAt: z.string().date().optional(),
-                    biography: z.string().optional(),
-                    email: z.string().email().optional(),
-                    education: z.enum([
-                        'TODO1',
-                        'TODO2',
-                        'TODO3'
-                    ]).optional(),
-                    statusValue: z.enum([
-                        'TODO1',
-                        'TODO2',
-                        'TODO3'
-                    ]).optional(),
-                    courseExperience: z.string().optional(),
-                    institution: z.string().optional(),
-                    eduStart: z.string().date().optional(),
-                    eduEnd: z.string().date().optional(),
+                    motivation: z.string().optional(),
                     currentCompany: z.string().optional(),
-                    currentJobTitle: z.string().optional(),
-                    companyStart: z.string().date().optional(),
-                    companyEnd: z.string().date().optional(),
-                    jobDescription: z.string().optional(),
+                    jobs: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional(),
+                        company: z.string().optional(),
+                        title: z.string().optional(),
+                        startDate: z.string().optional(),
+                        endDate: z.string().optional(),
+                        description: z.string().optional(),
+                        createdAt: z.string().datetime().optional(),
+                        updatedAt: z.string().datetime().optional(),
+                        publishedAt: z.string().datetime().optional(),
+                        createdBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        updatedBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        locale: z.string().optional(),
+                        localizations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional()
+                    })).optional(),
+                    educations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional(),
+                        educationType: z.string().optional(),
+                        course: z.string().optional(),
+                        institution: z.string().optional(),
+                        startDate: z.string().optional(),
+                        endDate: z.string().optional(),
+                        createdAt: z.string().datetime().optional(),
+                        updatedAt: z.string().datetime().optional(),
+                        publishedAt: z.string().datetime().optional(),
+                        createdBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        updatedBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        locale: z.string().optional(),
+                        localizations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional()
+                    })).optional(),
                     user_logs: z.array(z.object({
                         id: z.number().optional(),
                         documentId: z.string().optional(),
@@ -705,31 +737,21 @@ export const zCertificateResponse = z.object({
 
 export const zContentCreatorRequest = z.object({
     data: z.object({
+        email: z.string().email(),
+        password: z.string().optional(),
         firstName: z.string(),
         lastName: z.string(),
         verifiedAt: z.string().date().optional(),
-        biography: z.string().optional(),
-        email: z.string().email(),
-        password: z.string().optional(),
-        education: z.enum([
-            'TODO1',
-            'TODO2',
-            'TODO3'
-        ]),
-        statusValue: z.enum([
-            'TODO1',
-            'TODO2',
-            'TODO3'
-        ]),
-        courseExperience: z.string(),
-        institution: z.string(),
-        eduStart: z.string().date(),
-        eduEnd: z.string().date(),
+        motivation: z.string().optional(),
         currentCompany: z.string(),
-        currentJobTitle: z.string(),
-        companyStart: z.string().date(),
-        companyEnd: z.string().date().optional(),
-        jobDescription: z.string().optional(),
+        jobs: z.array(z.union([
+            z.number().int(),
+            z.string()
+        ])).optional(),
+        educations: z.array(z.union([
+            z.number().int(),
+            z.string()
+        ])).optional(),
         user_logs: z.array(z.union([
             z.number().int(),
             z.string()
@@ -753,30 +775,143 @@ export const zContentCreatorRequest = z.object({
 export const zContentCreator = z.object({
     id: z.number().optional(),
     documentId: z.string().optional(),
+    email: z.string().email(),
     firstName: z.string(),
     lastName: z.string(),
     verifiedAt: z.string().date().optional(),
-    biography: z.string().optional(),
-    email: z.string().email(),
-    education: z.enum([
-        'TODO1',
-        'TODO2',
-        'TODO3'
-    ]),
-    statusValue: z.enum([
-        'TODO1',
-        'TODO2',
-        'TODO3'
-    ]),
-    courseExperience: z.string(),
-    institution: z.string(),
-    eduStart: z.string().date(),
-    eduEnd: z.string().date(),
+    motivation: z.string().optional(),
     currentCompany: z.string(),
-    currentJobTitle: z.string(),
-    companyStart: z.string().date(),
-    companyEnd: z.string().date().optional(),
-    jobDescription: z.string().optional(),
+    jobs: z.array(z.object({
+        id: z.number().optional(),
+        documentId: z.string().optional(),
+        company: z.string().optional(),
+        title: z.string().optional(),
+        startDate: z.string().optional(),
+        endDate: z.string().optional(),
+        description: z.string().optional(),
+        createdAt: z.string().datetime().optional(),
+        updatedAt: z.string().datetime().optional(),
+        publishedAt: z.string().datetime().optional(),
+        createdBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional(),
+            firstname: z.string().optional(),
+            lastname: z.string().optional(),
+            username: z.string().optional(),
+            email: z.string().email().optional(),
+            resetPasswordToken: z.string().optional(),
+            registrationToken: z.string().optional(),
+            isActive: z.boolean().optional(),
+            roles: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                name: z.string().optional(),
+                code: z.string().optional(),
+                description: z.string().optional(),
+                users: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional(),
+                permissions: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    action: z.string().optional(),
+                    actionParameters: z.unknown().optional(),
+                    subject: z.string().optional(),
+                    properties: z.unknown().optional(),
+                    conditions: z.unknown().optional(),
+                    role: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
+                })).optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
+            blocked: z.boolean().optional(),
+            preferedLanguage: z.string().optional(),
+            createdAt: z.string().datetime().optional(),
+            updatedAt: z.string().datetime().optional(),
+            publishedAt: z.string().datetime().optional(),
+            createdBy: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional()
+            }).optional(),
+            updatedBy: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional()
+            }).optional(),
+            locale: z.string().optional(),
+            localizations: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional()
+            })).optional()
+        }).optional(),
+        updatedBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        locale: z.string().optional(),
+        localizations: z.array(z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        })).optional()
+    })).optional(),
+    educations: z.array(z.object({
+        id: z.number().optional(),
+        documentId: z.string().optional(),
+        educationType: z.string().optional(),
+        course: z.string().optional(),
+        institution: z.string().optional(),
+        startDate: z.string().optional(),
+        endDate: z.string().optional(),
+        createdAt: z.string().datetime().optional(),
+        updatedAt: z.string().datetime().optional(),
+        publishedAt: z.string().datetime().optional(),
+        createdBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        updatedBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        locale: z.string().optional(),
+        localizations: z.array(z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        })).optional()
+    })).optional(),
     user_logs: z.array(z.object({
         id: z.number().optional(),
         documentId: z.string().optional(),
@@ -868,88 +1003,7 @@ export const zContentCreator = z.object({
                                 publishedAt: z.string().datetime().optional(),
                                 createdBy: z.object({
                                     id: z.number().optional(),
-                                    documentId: z.string().optional(),
-                                    firstname: z.string().optional(),
-                                    lastname: z.string().optional(),
-                                    username: z.string().optional(),
-                                    email: z.string().email().optional(),
-                                    resetPasswordToken: z.string().optional(),
-                                    registrationToken: z.string().optional(),
-                                    isActive: z.boolean().optional(),
-                                    roles: z.array(z.object({
-                                        id: z.number().optional(),
-                                        documentId: z.string().optional(),
-                                        name: z.string().optional(),
-                                        code: z.string().optional(),
-                                        description: z.string().optional(),
-                                        users: z.array(z.object({
-                                            id: z.number().optional(),
-                                            documentId: z.string().optional()
-                                        })).optional(),
-                                        permissions: z.array(z.object({
-                                            id: z.number().optional(),
-                                            documentId: z.string().optional(),
-                                            action: z.string().optional(),
-                                            actionParameters: z.unknown().optional(),
-                                            subject: z.string().optional(),
-                                            properties: z.unknown().optional(),
-                                            conditions: z.unknown().optional(),
-                                            role: z.object({
-                                                id: z.number().optional(),
-                                                documentId: z.string().optional()
-                                            }).optional(),
-                                            createdAt: z.string().datetime().optional(),
-                                            updatedAt: z.string().datetime().optional(),
-                                            publishedAt: z.string().datetime().optional(),
-                                            createdBy: z.object({
-                                                id: z.number().optional(),
-                                                documentId: z.string().optional()
-                                            }).optional(),
-                                            updatedBy: z.object({
-                                                id: z.number().optional(),
-                                                documentId: z.string().optional()
-                                            }).optional(),
-                                            locale: z.string().optional(),
-                                            localizations: z.array(z.object({
-                                                id: z.number().optional(),
-                                                documentId: z.string().optional()
-                                            })).optional()
-                                        })).optional(),
-                                        createdAt: z.string().datetime().optional(),
-                                        updatedAt: z.string().datetime().optional(),
-                                        publishedAt: z.string().datetime().optional(),
-                                        createdBy: z.object({
-                                            id: z.number().optional(),
-                                            documentId: z.string().optional()
-                                        }).optional(),
-                                        updatedBy: z.object({
-                                            id: z.number().optional(),
-                                            documentId: z.string().optional()
-                                        }).optional(),
-                                        locale: z.string().optional(),
-                                        localizations: z.array(z.object({
-                                            id: z.number().optional(),
-                                            documentId: z.string().optional()
-                                        })).optional()
-                                    })).optional(),
-                                    blocked: z.boolean().optional(),
-                                    preferedLanguage: z.string().optional(),
-                                    createdAt: z.string().datetime().optional(),
-                                    updatedAt: z.string().datetime().optional(),
-                                    publishedAt: z.string().datetime().optional(),
-                                    createdBy: z.object({
-                                        id: z.number().optional(),
-                                        documentId: z.string().optional()
-                                    }).optional(),
-                                    updatedBy: z.object({
-                                        id: z.number().optional(),
-                                        documentId: z.string().optional()
-                                    }).optional(),
-                                    locale: z.string().optional(),
-                                    localizations: z.array(z.object({
-                                        id: z.number().optional(),
-                                        documentId: z.string().optional()
-                                    })).optional()
+                                    documentId: z.string().optional()
                                 }).optional(),
                                 updatedBy: z.object({
                                     id: z.number().optional(),
@@ -1130,30 +1184,20 @@ export const zContentCreator = z.object({
                     content_creators: z.array(z.object({
                         id: z.number().optional(),
                         documentId: z.string().optional(),
+                        email: z.string().email().optional(),
                         firstName: z.string().optional(),
                         lastName: z.string().optional(),
                         verifiedAt: z.string().date().optional(),
-                        biography: z.string().optional(),
-                        email: z.string().email().optional(),
-                        education: z.enum([
-                            'TODO1',
-                            'TODO2',
-                            'TODO3'
-                        ]).optional(),
-                        statusValue: z.enum([
-                            'TODO1',
-                            'TODO2',
-                            'TODO3'
-                        ]).optional(),
-                        courseExperience: z.string().optional(),
-                        institution: z.string().optional(),
-                        eduStart: z.string().date().optional(),
-                        eduEnd: z.string().date().optional(),
+                        motivation: z.string().optional(),
                         currentCompany: z.string().optional(),
-                        currentJobTitle: z.string().optional(),
-                        companyStart: z.string().date().optional(),
-                        companyEnd: z.string().date().optional(),
-                        jobDescription: z.string().optional(),
+                        jobs: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional(),
+                        educations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional(),
                         user_logs: z.array(z.object({
                             id: z.number().optional(),
                             documentId: z.string().optional()
@@ -1819,30 +1863,62 @@ export const zCourse = z.object({
             content_creators: z.array(z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional(),
+                email: z.string().email().optional(),
                 firstName: z.string().optional(),
                 lastName: z.string().optional(),
                 verifiedAt: z.string().date().optional(),
-                biography: z.string().optional(),
-                email: z.string().email().optional(),
-                education: z.enum([
-                    'TODO1',
-                    'TODO2',
-                    'TODO3'
-                ]).optional(),
-                statusValue: z.enum([
-                    'TODO1',
-                    'TODO2',
-                    'TODO3'
-                ]).optional(),
-                courseExperience: z.string().optional(),
-                institution: z.string().optional(),
-                eduStart: z.string().date().optional(),
-                eduEnd: z.string().date().optional(),
+                motivation: z.string().optional(),
                 currentCompany: z.string().optional(),
-                currentJobTitle: z.string().optional(),
-                companyStart: z.string().date().optional(),
-                companyEnd: z.string().date().optional(),
-                jobDescription: z.string().optional(),
+                jobs: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    company: z.string().optional(),
+                    title: z.string().optional(),
+                    startDate: z.string().optional(),
+                    endDate: z.string().optional(),
+                    description: z.string().optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
+                })).optional(),
+                educations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    educationType: z.string().optional(),
+                    course: z.string().optional(),
+                    institution: z.string().optional(),
+                    startDate: z.string().optional(),
+                    endDate: z.string().optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
+                })).optional(),
                 user_logs: z.array(z.object({
                     id: z.number().optional(),
                     documentId: z.string().optional(),
@@ -2585,30 +2661,62 @@ export const zCourseCategory = z.object({
         content_creators: z.array(z.object({
             id: z.number().optional(),
             documentId: z.string().optional(),
+            email: z.string().email().optional(),
             firstName: z.string().optional(),
             lastName: z.string().optional(),
             verifiedAt: z.string().date().optional(),
-            biography: z.string().optional(),
-            email: z.string().email().optional(),
-            education: z.enum([
-                'TODO1',
-                'TODO2',
-                'TODO3'
-            ]).optional(),
-            statusValue: z.enum([
-                'TODO1',
-                'TODO2',
-                'TODO3'
-            ]).optional(),
-            courseExperience: z.string().optional(),
-            institution: z.string().optional(),
-            eduStart: z.string().date().optional(),
-            eduEnd: z.string().date().optional(),
+            motivation: z.string().optional(),
             currentCompany: z.string().optional(),
-            currentJobTitle: z.string().optional(),
-            companyStart: z.string().date().optional(),
-            companyEnd: z.string().date().optional(),
-            jobDescription: z.string().optional(),
+            jobs: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                company: z.string().optional(),
+                title: z.string().optional(),
+                startDate: z.string().optional(),
+                endDate: z.string().optional(),
+                description: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
+            educations: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                educationType: z.string().optional(),
+                course: z.string().optional(),
+                institution: z.string().optional(),
+                startDate: z.string().optional(),
+                endDate: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
             user_logs: z.array(z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional()
@@ -3208,30 +3316,62 @@ export const zCourseEnrollmentRelation = z.object({
         content_creators: z.array(z.object({
             id: z.number().optional(),
             documentId: z.string().optional(),
+            email: z.string().email().optional(),
             firstName: z.string().optional(),
             lastName: z.string().optional(),
             verifiedAt: z.string().date().optional(),
-            biography: z.string().optional(),
-            email: z.string().email().optional(),
-            education: z.enum([
-                'TODO1',
-                'TODO2',
-                'TODO3'
-            ]).optional(),
-            statusValue: z.enum([
-                'TODO1',
-                'TODO2',
-                'TODO3'
-            ]).optional(),
-            courseExperience: z.string().optional(),
-            institution: z.string().optional(),
-            eduStart: z.string().date().optional(),
-            eduEnd: z.string().date().optional(),
+            motivation: z.string().optional(),
             currentCompany: z.string().optional(),
-            currentJobTitle: z.string().optional(),
-            companyStart: z.string().date().optional(),
-            companyEnd: z.string().date().optional(),
-            jobDescription: z.string().optional(),
+            jobs: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                company: z.string().optional(),
+                title: z.string().optional(),
+                startDate: z.string().optional(),
+                endDate: z.string().optional(),
+                description: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
+            educations: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                educationType: z.string().optional(),
+                course: z.string().optional(),
+                institution: z.string().optional(),
+                startDate: z.string().optional(),
+                endDate: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
             user_logs: z.array(z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional()
@@ -3781,30 +3921,62 @@ export const zCourseSelection = z.object({
         content_creators: z.array(z.object({
             id: z.number().optional(),
             documentId: z.string().optional(),
+            email: z.string().email().optional(),
             firstName: z.string().optional(),
             lastName: z.string().optional(),
             verifiedAt: z.string().date().optional(),
-            biography: z.string().optional(),
-            email: z.string().email().optional(),
-            education: z.enum([
-                'TODO1',
-                'TODO2',
-                'TODO3'
-            ]).optional(),
-            statusValue: z.enum([
-                'TODO1',
-                'TODO2',
-                'TODO3'
-            ]).optional(),
-            courseExperience: z.string().optional(),
-            institution: z.string().optional(),
-            eduStart: z.string().date().optional(),
-            eduEnd: z.string().date().optional(),
+            motivation: z.string().optional(),
             currentCompany: z.string().optional(),
-            currentJobTitle: z.string().optional(),
-            companyStart: z.string().date().optional(),
-            companyEnd: z.string().date().optional(),
-            jobDescription: z.string().optional(),
+            jobs: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                company: z.string().optional(),
+                title: z.string().optional(),
+                startDate: z.string().optional(),
+                endDate: z.string().optional(),
+                description: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
+            educations: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                educationType: z.string().optional(),
+                course: z.string().optional(),
+                institution: z.string().optional(),
+                startDate: z.string().optional(),
+                endDate: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
             user_logs: z.array(z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional()
@@ -3945,6 +4117,166 @@ export const zDashboardActivityListResponse = z.object({
 
 export const zDashboardActivityResponse = z.object({
     data: zDashboardActivity.optional(),
+    meta: z.record(z.unknown()).optional()
+});
+
+export const zEducationRequest = z.object({
+    data: z.object({
+        educationType: z.string().optional(),
+        course: z.string().optional(),
+        institution: z.string().optional(),
+        startDate: z.string().optional(),
+        endDate: z.string().optional(),
+        locale: z.string().optional(),
+        localizations: z.array(z.union([
+            z.number().int(),
+            z.string()
+        ])).optional()
+    })
+});
+
+export const zEducation = z.object({
+    id: z.number().optional(),
+    documentId: z.string().optional(),
+    educationType: z.string().optional(),
+    course: z.string().optional(),
+    institution: z.string().optional(),
+    startDate: z.string().optional(),
+    endDate: z.string().optional(),
+    createdAt: z.string().datetime().optional(),
+    updatedAt: z.string().datetime().optional(),
+    publishedAt: z.string().datetime().optional(),
+    createdBy: z.object({
+        id: z.number().optional(),
+        documentId: z.string().optional(),
+        firstname: z.string().optional(),
+        lastname: z.string().optional(),
+        username: z.string().optional(),
+        email: z.string().email().optional(),
+        resetPasswordToken: z.string().optional(),
+        registrationToken: z.string().optional(),
+        isActive: z.boolean().optional(),
+        roles: z.array(z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional(),
+            name: z.string().optional(),
+            code: z.string().optional(),
+            description: z.string().optional(),
+            users: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional()
+            })).optional(),
+            permissions: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                action: z.string().optional(),
+                actionParameters: z.unknown().optional(),
+                subject: z.string().optional(),
+                properties: z.unknown().optional(),
+                conditions: z.unknown().optional(),
+                role: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
+            createdAt: z.string().datetime().optional(),
+            updatedAt: z.string().datetime().optional(),
+            publishedAt: z.string().datetime().optional(),
+            createdBy: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional()
+            }).optional(),
+            updatedBy: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional()
+            }).optional(),
+            locale: z.string().optional(),
+            localizations: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional()
+            })).optional()
+        })).optional(),
+        blocked: z.boolean().optional(),
+        preferedLanguage: z.string().optional(),
+        createdAt: z.string().datetime().optional(),
+        updatedAt: z.string().datetime().optional(),
+        publishedAt: z.string().datetime().optional(),
+        createdBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        updatedBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        locale: z.string().optional(),
+        localizations: z.array(z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        })).optional()
+    }).optional(),
+    updatedBy: z.object({
+        id: z.number().optional(),
+        documentId: z.string().optional()
+    }).optional(),
+    locale: z.string().optional(),
+    localizations: z.array(z.object({
+        id: z.number().optional(),
+        documentId: z.string().optional(),
+        educationType: z.string().optional(),
+        course: z.string().optional(),
+        institution: z.string().optional(),
+        startDate: z.string().optional(),
+        endDate: z.string().optional(),
+        createdAt: z.string().datetime().optional(),
+        updatedAt: z.string().datetime().optional(),
+        publishedAt: z.string().datetime().optional(),
+        createdBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        updatedBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        locale: z.string().optional(),
+        localizations: z.array(z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        })).optional()
+    })).optional()
+});
+
+export const zEducationListResponse = z.object({
+    data: z.array(zEducation).optional(),
+    meta: z.object({
+        pagination: z.object({
+            page: z.number().int().optional(),
+            pageSize: z.number().int().gte(25).optional(),
+            pageCount: z.number().int().lte(1).optional(),
+            total: z.number().int().optional()
+        }).optional()
+    }).optional()
+});
+
+export const zEducationResponse = z.object({
+    data: zEducation.optional(),
     meta: z.record(z.unknown()).optional()
 });
 
@@ -4818,30 +5150,62 @@ export const zFeedback = z.object({
         content_creators: z.array(z.object({
             id: z.number().optional(),
             documentId: z.string().optional(),
+            email: z.string().email().optional(),
             firstName: z.string().optional(),
             lastName: z.string().optional(),
             verifiedAt: z.string().date().optional(),
-            biography: z.string().optional(),
-            email: z.string().email().optional(),
-            education: z.enum([
-                'TODO1',
-                'TODO2',
-                'TODO3'
-            ]).optional(),
-            statusValue: z.enum([
-                'TODO1',
-                'TODO2',
-                'TODO3'
-            ]).optional(),
-            courseExperience: z.string().optional(),
-            institution: z.string().optional(),
-            eduStart: z.string().date().optional(),
-            eduEnd: z.string().date().optional(),
+            motivation: z.string().optional(),
             currentCompany: z.string().optional(),
-            currentJobTitle: z.string().optional(),
-            companyStart: z.string().date().optional(),
-            companyEnd: z.string().date().optional(),
-            jobDescription: z.string().optional(),
+            jobs: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                company: z.string().optional(),
+                title: z.string().optional(),
+                startDate: z.string().optional(),
+                endDate: z.string().optional(),
+                description: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
+            educations: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                educationType: z.string().optional(),
+                course: z.string().optional(),
+                institution: z.string().optional(),
+                startDate: z.string().optional(),
+                endDate: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
             user_logs: z.array(z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional()
@@ -4949,6 +5313,166 @@ export const zFeedbackListResponse = z.object({
 
 export const zFeedbackResponse = z.object({
     data: zFeedback.optional(),
+    meta: z.record(z.unknown()).optional()
+});
+
+export const zJobRequest = z.object({
+    data: z.object({
+        company: z.string().optional(),
+        title: z.string().optional(),
+        startDate: z.string().optional(),
+        endDate: z.string().optional(),
+        description: z.string().optional(),
+        locale: z.string().optional(),
+        localizations: z.array(z.union([
+            z.number().int(),
+            z.string()
+        ])).optional()
+    })
+});
+
+export const zJob = z.object({
+    id: z.number().optional(),
+    documentId: z.string().optional(),
+    company: z.string().optional(),
+    title: z.string().optional(),
+    startDate: z.string().optional(),
+    endDate: z.string().optional(),
+    description: z.string().optional(),
+    createdAt: z.string().datetime().optional(),
+    updatedAt: z.string().datetime().optional(),
+    publishedAt: z.string().datetime().optional(),
+    createdBy: z.object({
+        id: z.number().optional(),
+        documentId: z.string().optional(),
+        firstname: z.string().optional(),
+        lastname: z.string().optional(),
+        username: z.string().optional(),
+        email: z.string().email().optional(),
+        resetPasswordToken: z.string().optional(),
+        registrationToken: z.string().optional(),
+        isActive: z.boolean().optional(),
+        roles: z.array(z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional(),
+            name: z.string().optional(),
+            code: z.string().optional(),
+            description: z.string().optional(),
+            users: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional()
+            })).optional(),
+            permissions: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                action: z.string().optional(),
+                actionParameters: z.unknown().optional(),
+                subject: z.string().optional(),
+                properties: z.unknown().optional(),
+                conditions: z.unknown().optional(),
+                role: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            })).optional(),
+            createdAt: z.string().datetime().optional(),
+            updatedAt: z.string().datetime().optional(),
+            publishedAt: z.string().datetime().optional(),
+            createdBy: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional()
+            }).optional(),
+            updatedBy: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional()
+            }).optional(),
+            locale: z.string().optional(),
+            localizations: z.array(z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional()
+            })).optional()
+        })).optional(),
+        blocked: z.boolean().optional(),
+        preferedLanguage: z.string().optional(),
+        createdAt: z.string().datetime().optional(),
+        updatedAt: z.string().datetime().optional(),
+        publishedAt: z.string().datetime().optional(),
+        createdBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        updatedBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        locale: z.string().optional(),
+        localizations: z.array(z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        })).optional()
+    }).optional(),
+    updatedBy: z.object({
+        id: z.number().optional(),
+        documentId: z.string().optional()
+    }).optional(),
+    locale: z.string().optional(),
+    localizations: z.array(z.object({
+        id: z.number().optional(),
+        documentId: z.string().optional(),
+        company: z.string().optional(),
+        title: z.string().optional(),
+        startDate: z.string().optional(),
+        endDate: z.string().optional(),
+        description: z.string().optional(),
+        createdAt: z.string().datetime().optional(),
+        updatedAt: z.string().datetime().optional(),
+        publishedAt: z.string().datetime().optional(),
+        createdBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        updatedBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        locale: z.string().optional(),
+        localizations: z.array(z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        })).optional()
+    })).optional()
+});
+
+export const zJobListResponse = z.object({
+    data: z.array(zJob).optional(),
+    meta: z.object({
+        pagination: z.object({
+            page: z.number().int().optional(),
+            pageSize: z.number().int().gte(25).optional(),
+            pageCount: z.number().int().lte(1).optional(),
+            total: z.number().int().optional()
+        }).optional()
+    }).optional()
+});
+
+export const zJobResponse = z.object({
+    data: zJob.optional(),
     meta: z.record(z.unknown()).optional()
 });
 
@@ -5567,30 +6091,62 @@ export const zStudent = z.object({
             content_creators: z.array(z.object({
                 id: z.number().optional(),
                 documentId: z.string().optional(),
+                email: z.string().email().optional(),
                 firstName: z.string().optional(),
                 lastName: z.string().optional(),
                 verifiedAt: z.string().date().optional(),
-                biography: z.string().optional(),
-                email: z.string().email().optional(),
-                education: z.enum([
-                    'TODO1',
-                    'TODO2',
-                    'TODO3'
-                ]).optional(),
-                statusValue: z.enum([
-                    'TODO1',
-                    'TODO2',
-                    'TODO3'
-                ]).optional(),
-                courseExperience: z.string().optional(),
-                institution: z.string().optional(),
-                eduStart: z.string().date().optional(),
-                eduEnd: z.string().date().optional(),
+                motivation: z.string().optional(),
                 currentCompany: z.string().optional(),
-                currentJobTitle: z.string().optional(),
-                companyStart: z.string().date().optional(),
-                companyEnd: z.string().date().optional(),
-                jobDescription: z.string().optional(),
+                jobs: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    company: z.string().optional(),
+                    title: z.string().optional(),
+                    startDate: z.string().optional(),
+                    endDate: z.string().optional(),
+                    description: z.string().optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
+                })).optional(),
+                educations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    educationType: z.string().optional(),
+                    course: z.string().optional(),
+                    institution: z.string().optional(),
+                    startDate: z.string().optional(),
+                    endDate: z.string().optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
+                })).optional(),
                 user_logs: z.array(z.object({
                     id: z.number().optional(),
                     documentId: z.string().optional(),
@@ -6208,30 +6764,62 @@ export const zUserLog = z.object({
                 content_creators: z.array(z.object({
                     id: z.number().optional(),
                     documentId: z.string().optional(),
+                    email: z.string().email().optional(),
                     firstName: z.string().optional(),
                     lastName: z.string().optional(),
                     verifiedAt: z.string().date().optional(),
-                    biography: z.string().optional(),
-                    email: z.string().email().optional(),
-                    education: z.enum([
-                        'TODO1',
-                        'TODO2',
-                        'TODO3'
-                    ]).optional(),
-                    statusValue: z.enum([
-                        'TODO1',
-                        'TODO2',
-                        'TODO3'
-                    ]).optional(),
-                    courseExperience: z.string().optional(),
-                    institution: z.string().optional(),
-                    eduStart: z.string().date().optional(),
-                    eduEnd: z.string().date().optional(),
+                    motivation: z.string().optional(),
                     currentCompany: z.string().optional(),
-                    currentJobTitle: z.string().optional(),
-                    companyStart: z.string().date().optional(),
-                    companyEnd: z.string().date().optional(),
-                    jobDescription: z.string().optional(),
+                    jobs: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional(),
+                        company: z.string().optional(),
+                        title: z.string().optional(),
+                        startDate: z.string().optional(),
+                        endDate: z.string().optional(),
+                        description: z.string().optional(),
+                        createdAt: z.string().datetime().optional(),
+                        updatedAt: z.string().datetime().optional(),
+                        publishedAt: z.string().datetime().optional(),
+                        createdBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        updatedBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        locale: z.string().optional(),
+                        localizations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional()
+                    })).optional(),
+                    educations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional(),
+                        educationType: z.string().optional(),
+                        course: z.string().optional(),
+                        institution: z.string().optional(),
+                        startDate: z.string().optional(),
+                        endDate: z.string().optional(),
+                        createdAt: z.string().datetime().optional(),
+                        updatedAt: z.string().datetime().optional(),
+                        publishedAt: z.string().datetime().optional(),
+                        createdBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        updatedBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        locale: z.string().optional(),
+                        localizations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional()
+                    })).optional(),
                     user_logs: z.array(z.object({
                         id: z.number().optional(),
                         documentId: z.string().optional(),
@@ -6683,6 +7271,12 @@ export const zJwtContentCreatorResponse = z.object({
     }).optional()
 });
 
+export const zSignupRequest = z.object({
+    name: z.string().optional(),
+    email: z.string().optional(),
+    password: z.string().optional()
+});
+
 export const zCourseStatisticsRequest = z.object({
     documentIds: z.array(z.string())
 });
@@ -6738,12 +7332,6 @@ export const zResetPasswordRequest = z.object({
     email: z.string().optional(),
     token: z.string().optional(),
     newPassword: z.string().optional()
-});
-
-export const zSignupRequest = z.object({
-    name: z.string().optional(),
-    email: z.string().optional(),
-    password: z.string().optional()
 });
 
 export const zOkResponse = z.string();
@@ -7002,23 +7590,13 @@ export const zContentCreatorGetContentCreatorsRequest = z.object({
     path: z.never().optional(),
     query: z.object({
         fields: z.array(z.enum([
+            'email',
+            'password',
             'firstName',
             'lastName',
             'verifiedAt',
-            'biography',
-            'email',
-            'password',
-            'education',
-            'statusValue',
-            'courseExperience',
-            'institution',
-            'eduStart',
-            'eduEnd',
+            'motivation',
             'currentCompany',
-            'currentJobTitle',
-            'companyStart',
-            'companyEnd',
-            'jobDescription',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -7039,45 +7617,25 @@ export const zContentCreatorGetContentCreatorsRequest = z.object({
         ])).optional(),
         sort: z.union([
             z.enum([
+                'email',
+                'password',
                 'firstName',
                 'lastName',
                 'verifiedAt',
-                'biography',
-                'email',
-                'password',
-                'education',
-                'statusValue',
-                'courseExperience',
-                'institution',
-                'eduStart',
-                'eduEnd',
+                'motivation',
                 'currentCompany',
-                'currentJobTitle',
-                'companyStart',
-                'companyEnd',
-                'jobDescription',
                 'createdAt',
                 'updatedAt',
                 'publishedAt'
             ]),
             z.array(z.enum([
+                'email',
+                'password',
                 'firstName',
                 'lastName',
                 'verifiedAt',
-                'biography',
-                'email',
-                'password',
-                'education',
-                'statusValue',
-                'courseExperience',
-                'institution',
-                'eduStart',
-                'eduEnd',
+                'motivation',
                 'currentCompany',
-                'currentJobTitle',
-                'companyStart',
-                'companyEnd',
-                'jobDescription',
                 'createdAt',
                 'updatedAt',
                 'publishedAt'
@@ -7094,11 +7652,15 @@ export const zContentCreatorGetContentCreatorsRequest = z.object({
         populate: z.union([
             z.literal('*').readonly(),
             z.enum([
+                'jobs',
+                'educations',
                 'user_logs',
                 'courses',
                 'dashboard_activities'
             ]),
             z.array(z.enum([
+                'jobs',
+                'educations',
                 'user_logs',
                 'courses',
                 'dashboard_activities'
@@ -7121,23 +7683,13 @@ export const zContentCreatorPostContentCreatorsRequest = z.object({
     path: z.never().optional(),
     query: z.object({
         fields: z.array(z.enum([
+            'email',
+            'password',
             'firstName',
             'lastName',
             'verifiedAt',
-            'biography',
-            'email',
-            'password',
-            'education',
-            'statusValue',
-            'courseExperience',
-            'institution',
-            'eduStart',
-            'eduEnd',
+            'motivation',
             'currentCompany',
-            'currentJobTitle',
-            'companyStart',
-            'companyEnd',
-            'jobDescription',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -7145,11 +7697,15 @@ export const zContentCreatorPostContentCreatorsRequest = z.object({
         populate: z.union([
             z.literal('*').readonly(),
             z.enum([
+                'jobs',
+                'educations',
                 'user_logs',
                 'courses',
                 'dashboard_activities'
             ]),
             z.array(z.enum([
+                'jobs',
+                'educations',
                 'user_logs',
                 'courses',
                 'dashboard_activities'
@@ -7174,23 +7730,13 @@ export const zContentCreatorDeleteContentCreatorsByIdRequest = z.object({
     }),
     query: z.object({
         fields: z.array(z.enum([
+            'email',
+            'password',
             'firstName',
             'lastName',
             'verifiedAt',
-            'biography',
-            'email',
-            'password',
-            'education',
-            'statusValue',
-            'courseExperience',
-            'institution',
-            'eduStart',
-            'eduEnd',
+            'motivation',
             'currentCompany',
-            'currentJobTitle',
-            'companyStart',
-            'companyEnd',
-            'jobDescription',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -7198,11 +7744,15 @@ export const zContentCreatorDeleteContentCreatorsByIdRequest = z.object({
         populate: z.union([
             z.literal('*').readonly(),
             z.enum([
+                'jobs',
+                'educations',
                 'user_logs',
                 'courses',
                 'dashboard_activities'
             ]),
             z.array(z.enum([
+                'jobs',
+                'educations',
                 'user_logs',
                 'courses',
                 'dashboard_activities'
@@ -7228,23 +7778,13 @@ export const zContentCreatorGetContentCreatorsByIdRequest = z.object({
     }),
     query: z.object({
         fields: z.array(z.enum([
+            'email',
+            'password',
             'firstName',
             'lastName',
             'verifiedAt',
-            'biography',
-            'email',
-            'password',
-            'education',
-            'statusValue',
-            'courseExperience',
-            'institution',
-            'eduStart',
-            'eduEnd',
+            'motivation',
             'currentCompany',
-            'currentJobTitle',
-            'companyStart',
-            'companyEnd',
-            'jobDescription',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -7252,11 +7792,15 @@ export const zContentCreatorGetContentCreatorsByIdRequest = z.object({
         populate: z.union([
             z.literal('*').readonly(),
             z.enum([
+                'jobs',
+                'educations',
                 'user_logs',
                 'courses',
                 'dashboard_activities'
             ]),
             z.array(z.enum([
+                'jobs',
+                'educations',
                 'user_logs',
                 'courses',
                 'dashboard_activities'
@@ -7265,45 +7809,25 @@ export const zContentCreatorGetContentCreatorsByIdRequest = z.object({
         filters: z.record(z.unknown()).optional(),
         sort: z.union([
             z.enum([
+                'email',
+                'password',
                 'firstName',
                 'lastName',
                 'verifiedAt',
-                'biography',
-                'email',
-                'password',
-                'education',
-                'statusValue',
-                'courseExperience',
-                'institution',
-                'eduStart',
-                'eduEnd',
+                'motivation',
                 'currentCompany',
-                'currentJobTitle',
-                'companyStart',
-                'companyEnd',
-                'jobDescription',
                 'createdAt',
                 'updatedAt',
                 'publishedAt'
             ]),
             z.array(z.enum([
+                'email',
+                'password',
                 'firstName',
                 'lastName',
                 'verifiedAt',
-                'biography',
-                'email',
-                'password',
-                'education',
-                'statusValue',
-                'courseExperience',
-                'institution',
-                'eduStart',
-                'eduEnd',
+                'motivation',
                 'currentCompany',
-                'currentJobTitle',
-                'companyStart',
-                'companyEnd',
-                'jobDescription',
                 'createdAt',
                 'updatedAt',
                 'publishedAt'
@@ -7336,23 +7860,13 @@ export const zContentCreatorPutContentCreatorsByIdRequest = z.object({
     }),
     query: z.object({
         fields: z.array(z.enum([
+            'email',
+            'password',
             'firstName',
             'lastName',
             'verifiedAt',
-            'biography',
-            'email',
-            'password',
-            'education',
-            'statusValue',
-            'courseExperience',
-            'institution',
-            'eduStart',
-            'eduEnd',
+            'motivation',
             'currentCompany',
-            'currentJobTitle',
-            'companyStart',
-            'companyEnd',
-            'jobDescription',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -7360,11 +7874,15 @@ export const zContentCreatorPutContentCreatorsByIdRequest = z.object({
         populate: z.union([
             z.literal('*').readonly(),
             z.enum([
+                'jobs',
+                'educations',
                 'user_logs',
                 'courses',
                 'dashboard_activities'
             ]),
             z.array(z.enum([
+                'jobs',
+                'educations',
                 'user_logs',
                 'courses',
                 'dashboard_activities'
@@ -7392,6 +7910,17 @@ export const zPostContentCreatorLoginRequest = z.object({
  * OK
  */
 export const zPostContentCreatorLoginResponse = zJwtResponse;
+
+export const zPostContentCreatorRegisterRequest = z.object({
+    body: zSignupRequest,
+    path: z.never().optional(),
+    query: z.never().optional()
+});
+
+/**
+ * Created
+ */
+export const zPostContentCreatorRegisterResponse = zJwtContentCreatorResponse;
 
 export const zCourseGetCoursesRequest = z.object({
     body: z.never().optional(),
@@ -8614,6 +9143,243 @@ export const zDashboardActivityPutDashboardActivitiesByIdRequest = z.object({
  */
 export const zDashboardActivityPutDashboardActivitiesByIdResponse = zDashboardActivityResponse;
 
+export const zEducationGetEducationsRequest = z.object({
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.object({
+        fields: z.array(z.enum([
+            'educationType',
+            'course',
+            'institution',
+            'startDate',
+            'endDate',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        filters: z.record(z.unknown()).optional(),
+        _q: z.string().optional(),
+        pagination: z.object({
+            withCount: z.boolean().optional()
+        }).and(z.union([
+            z.object({
+                page: z.number().int().gt(0).lte(9007199254740991),
+                pageSize: z.number().int().gt(0).lte(9007199254740991)
+            }),
+            z.object({
+                start: z.number().int().gte(0).lte(9007199254740991),
+                limit: z.number().int().gt(0).lte(9007199254740991)
+            })
+        ])).optional(),
+        sort: z.union([
+            z.enum([
+                'educationType',
+                'course',
+                'institution',
+                'startDate',
+                'endDate',
+                'createdAt',
+                'updatedAt',
+                'publishedAt'
+            ]),
+            z.array(z.enum([
+                'educationType',
+                'course',
+                'institution',
+                'startDate',
+                'endDate',
+                'createdAt',
+                'updatedAt',
+                'publishedAt'
+            ])),
+            z.record(z.enum([
+                'asc',
+                'desc'
+            ])),
+            z.array(z.record(z.enum([
+                'asc',
+                'desc'
+            ])))
+        ]).optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.unknown(),
+            z.array(z.unknown())
+        ]).optional(),
+        status: z.enum([
+            'draft',
+            'published'
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zEducationGetEducationsResponse = zEducationListResponse;
+
+export const zEducationPostEducationsRequest = z.object({
+    body: zEducationRequest,
+    path: z.never().optional(),
+    query: z.object({
+        fields: z.array(z.enum([
+            'educationType',
+            'course',
+            'institution',
+            'startDate',
+            'endDate',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.unknown(),
+            z.array(z.unknown())
+        ]).optional(),
+        status: z.enum([
+            'draft',
+            'published'
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zEducationPostEducationsResponse = zEducationResponse;
+
+export const zEducationDeleteEducationsByIdRequest = z.object({
+    body: z.never().optional(),
+    path: z.object({
+        id: z.string()
+    }),
+    query: z.object({
+        fields: z.array(z.enum([
+            'educationType',
+            'course',
+            'institution',
+            'startDate',
+            'endDate',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.unknown(),
+            z.array(z.unknown())
+        ]).optional(),
+        filters: z.record(z.unknown()).optional(),
+        status: z.enum([
+            'draft',
+            'published'
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zEducationDeleteEducationsByIdResponse = z.coerce.bigint();
+
+export const zEducationGetEducationsByIdRequest = z.object({
+    body: z.never().optional(),
+    path: z.object({
+        id: z.string()
+    }),
+    query: z.object({
+        fields: z.array(z.enum([
+            'educationType',
+            'course',
+            'institution',
+            'startDate',
+            'endDate',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.unknown(),
+            z.array(z.unknown())
+        ]).optional(),
+        filters: z.record(z.unknown()).optional(),
+        sort: z.union([
+            z.enum([
+                'educationType',
+                'course',
+                'institution',
+                'startDate',
+                'endDate',
+                'createdAt',
+                'updatedAt',
+                'publishedAt'
+            ]),
+            z.array(z.enum([
+                'educationType',
+                'course',
+                'institution',
+                'startDate',
+                'endDate',
+                'createdAt',
+                'updatedAt',
+                'publishedAt'
+            ])),
+            z.record(z.enum([
+                'asc',
+                'desc'
+            ])),
+            z.array(z.record(z.enum([
+                'asc',
+                'desc'
+            ])))
+        ]).optional(),
+        status: z.enum([
+            'draft',
+            'published'
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zEducationGetEducationsByIdResponse = zEducationResponse;
+
+export const zEducationPutEducationsByIdRequest = z.object({
+    body: zEducationRequest,
+    path: z.object({
+        id: z.string()
+    }),
+    query: z.object({
+        fields: z.array(z.enum([
+            'educationType',
+            'course',
+            'institution',
+            'startDate',
+            'endDate',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.unknown(),
+            z.array(z.unknown())
+        ]).optional(),
+        status: z.enum([
+            'draft',
+            'published'
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zEducationPutEducationsByIdResponse = zEducationResponse;
+
 export const zExerciseGetExercisesRequest = z.object({
     body: z.never().optional(),
     path: z.never().optional(),
@@ -9322,6 +10088,243 @@ export const zFeedbackPutFeedbacksByIdRequest = z.object({
  * OK
  */
 export const zFeedbackPutFeedbacksByIdResponse = zFeedbackResponse;
+
+export const zJobGetJobsRequest = z.object({
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.object({
+        fields: z.array(z.enum([
+            'company',
+            'title',
+            'startDate',
+            'endDate',
+            'description',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        filters: z.record(z.unknown()).optional(),
+        _q: z.string().optional(),
+        pagination: z.object({
+            withCount: z.boolean().optional()
+        }).and(z.union([
+            z.object({
+                page: z.number().int().gt(0).lte(9007199254740991),
+                pageSize: z.number().int().gt(0).lte(9007199254740991)
+            }),
+            z.object({
+                start: z.number().int().gte(0).lte(9007199254740991),
+                limit: z.number().int().gt(0).lte(9007199254740991)
+            })
+        ])).optional(),
+        sort: z.union([
+            z.enum([
+                'company',
+                'title',
+                'startDate',
+                'endDate',
+                'description',
+                'createdAt',
+                'updatedAt',
+                'publishedAt'
+            ]),
+            z.array(z.enum([
+                'company',
+                'title',
+                'startDate',
+                'endDate',
+                'description',
+                'createdAt',
+                'updatedAt',
+                'publishedAt'
+            ])),
+            z.record(z.enum([
+                'asc',
+                'desc'
+            ])),
+            z.array(z.record(z.enum([
+                'asc',
+                'desc'
+            ])))
+        ]).optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.unknown(),
+            z.array(z.unknown())
+        ]).optional(),
+        status: z.enum([
+            'draft',
+            'published'
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zJobGetJobsResponse = zJobListResponse;
+
+export const zJobPostJobsRequest = z.object({
+    body: zJobRequest,
+    path: z.never().optional(),
+    query: z.object({
+        fields: z.array(z.enum([
+            'company',
+            'title',
+            'startDate',
+            'endDate',
+            'description',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.unknown(),
+            z.array(z.unknown())
+        ]).optional(),
+        status: z.enum([
+            'draft',
+            'published'
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zJobPostJobsResponse = zJobResponse;
+
+export const zJobDeleteJobsByIdRequest = z.object({
+    body: z.never().optional(),
+    path: z.object({
+        id: z.string()
+    }),
+    query: z.object({
+        fields: z.array(z.enum([
+            'company',
+            'title',
+            'startDate',
+            'endDate',
+            'description',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.unknown(),
+            z.array(z.unknown())
+        ]).optional(),
+        filters: z.record(z.unknown()).optional(),
+        status: z.enum([
+            'draft',
+            'published'
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zJobDeleteJobsByIdResponse = z.coerce.bigint();
+
+export const zJobGetJobsByIdRequest = z.object({
+    body: z.never().optional(),
+    path: z.object({
+        id: z.string()
+    }),
+    query: z.object({
+        fields: z.array(z.enum([
+            'company',
+            'title',
+            'startDate',
+            'endDate',
+            'description',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.unknown(),
+            z.array(z.unknown())
+        ]).optional(),
+        filters: z.record(z.unknown()).optional(),
+        sort: z.union([
+            z.enum([
+                'company',
+                'title',
+                'startDate',
+                'endDate',
+                'description',
+                'createdAt',
+                'updatedAt',
+                'publishedAt'
+            ]),
+            z.array(z.enum([
+                'company',
+                'title',
+                'startDate',
+                'endDate',
+                'description',
+                'createdAt',
+                'updatedAt',
+                'publishedAt'
+            ])),
+            z.record(z.enum([
+                'asc',
+                'desc'
+            ])),
+            z.array(z.record(z.enum([
+                'asc',
+                'desc'
+            ])))
+        ]).optional(),
+        status: z.enum([
+            'draft',
+            'published'
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zJobGetJobsByIdResponse = zJobResponse;
+
+export const zJobPutJobsByIdRequest = z.object({
+    body: zJobRequest,
+    path: z.object({
+        id: z.string()
+    }),
+    query: z.object({
+        fields: z.array(z.enum([
+            'company',
+            'title',
+            'startDate',
+            'endDate',
+            'description',
+            'createdAt',
+            'updatedAt',
+            'publishedAt'
+        ])).readonly().optional(),
+        populate: z.union([
+            z.literal('*').readonly(),
+            z.unknown(),
+            z.array(z.unknown())
+        ]).optional(),
+        status: z.enum([
+            'draft',
+            'published'
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * OK
+ */
+export const zJobPutJobsByIdResponse = zJobResponse;
 
 export const zLectureGetLecturesRequest = z.object({
     body: z.never().optional(),
