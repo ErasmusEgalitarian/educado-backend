@@ -2,8 +2,8 @@ import { errorCodes } from "../../../helpers/errorCodes";
 
 export default {
     async getAverageCourseFeedback(ctx) {
-          const courseId = ctx.params.courseId;
-          try {
+      try {
+            const courseId = ctx.params.courseId;
             const course = await strapi.documents("api::course.course").findOne({
               documentId: courseId,
               populate: ["feedbacks"],
