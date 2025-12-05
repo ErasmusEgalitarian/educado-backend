@@ -16,7 +16,7 @@ export const LanguageSwitcher = () => {
   const { preferences, setPreferences } = useAuth();
 
   // eslint-disable-next-line no-console
-  console.log("[LanguageSwitcher] Render - preferences:", preferences, "setPreferences type:", typeof setPreferences);
+  //console.log("[LanguageSwitcher] Render - preferences:", preferences, "setPreferences type:", typeof setPreferences);
 
   const currentLanguage = preferences.language;
   const getCurrentLanguageLabel = () => {
