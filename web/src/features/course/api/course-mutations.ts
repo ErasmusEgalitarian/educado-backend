@@ -47,6 +47,7 @@ export const useCreateCourseMutation = () => {
             difficulty: input.difficulty,
             description: input.description,
             course_categories: input.course_categories,
+            durationHours: 10,
             image: input.image,
             // Default values for Strapi fields
             numOfRatings: 0,
@@ -93,6 +94,7 @@ export const useUpdateCourseMutation = () => {
             title: input.title,
             difficulty: input.difficulty,
             description: input.description,
+            durationHours: 10,
             course_categories: input.course_categories,
             image: input.image,
           },
