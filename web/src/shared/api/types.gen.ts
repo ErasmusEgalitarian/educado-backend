@@ -8175,6 +8175,38 @@ export type PostCourseStatisticsResponses = {
 
 export type PostCourseStatisticsResponse = PostCourseStatisticsResponses[keyof PostCourseStatisticsResponses];
 
+export type GetCourseStatisticsByCourseIdAverageRequest = {
+    body?: never;
+    path: {
+        /**
+         * The `documentId` of the course to calculate the average feedback for
+         */
+        courseId: string;
+    };
+    query?: never;
+    url: '/course-statistics/{courseId}/average';
+};
+
+export type GetCourseStatisticsByCourseIdAverageErrors = {
+    /**
+     * Bad Request - missing or invalid `courseId`
+     */
+    400: unknown;
+    /**
+     * Internal Server Error
+     */
+    500: unknown;
+};
+
+export type GetCourseStatisticsByCourseIdAverageResponses = {
+    /**
+     * OK - Average rating
+     */
+    200: AverageCourseFeedback;
+};
+
+export type GetCourseStatisticsByCourseIdAverageResponse = GetCourseStatisticsByCourseIdAverageResponses[keyof GetCourseStatisticsByCourseIdAverageResponses];
+
 export type GetCcDashboardActivityRequest = {
     body?: never;
     path?: never;
@@ -8965,38 +8997,6 @@ export type ExerciseOptionPutExerciseOptionsByIdResponses = {
 };
 
 export type ExerciseOptionPutExerciseOptionsByIdResponse = ExerciseOptionPutExerciseOptionsByIdResponses[keyof ExerciseOptionPutExerciseOptionsByIdResponses];
-
-export type GetFeedbackByCourseIdAverageRequest = {
-    body?: never;
-    path: {
-        /**
-         * The `documentId` of the course to calculate the average feedback for
-         */
-        courseId: string;
-    };
-    query?: never;
-    url: '/feedback/{courseId}/average';
-};
-
-export type GetFeedbackByCourseIdAverageErrors = {
-    /**
-     * Bad Request - missing or invalid `courseId`
-     */
-    400: unknown;
-    /**
-     * Internal Server Error
-     */
-    500: unknown;
-};
-
-export type GetFeedbackByCourseIdAverageResponses = {
-    /**
-     * OK - Average rating
-     */
-    200: AverageCourseFeedback;
-};
-
-export type GetFeedbackByCourseIdAverageResponse = GetFeedbackByCourseIdAverageResponses[keyof GetFeedbackByCourseIdAverageResponses];
 
 export type FeedbackGetFeedbacksRequest = {
     body?: never;

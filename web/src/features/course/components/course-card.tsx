@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-import { getFeedbackByCourseIdAverage } from "@/shared/api/sdk.gen";
+import { getCourseStatisticsByCourseIdAverage } from "@/shared/api/sdk.gen";
 import { Course, AverageCourseFeedback } from "@/shared/api/types.gen";
 import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
@@ -42,7 +42,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
   useEffect(() => {
     const fetchAverageFeedback = async () => {
       try {
-        const data = await getFeedbackByCourseIdAverage({path: {courseId: course.documentId!}});
+        const data = await getCourseStatisticsByCourseIdAverage({path: {courseId: course.documentId!}});
         setFeedbackAverage(data);
       } catch (error) {
         console.error("Error fetching course:", error);

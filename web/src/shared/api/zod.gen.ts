@@ -8406,6 +8406,19 @@ export const zPostCourseStatisticsRequest = z.object({
  */
 export const zPostCourseStatisticsResponse = zCourseStatisticsResponse;
 
+export const zGetCourseStatisticsByCourseIdAverageRequest = z.object({
+    body: z.never().optional(),
+    path: z.object({
+        courseId: z.string()
+    }),
+    query: z.never().optional()
+});
+
+/**
+ * OK - Average rating
+ */
+export const zGetCourseStatisticsByCourseIdAverageResponse = zAverageCourseFeedback;
+
 export const zGetCcDashboardActivityRequest = z.object({
     body: z.never().optional(),
     path: z.never().optional(),
@@ -9086,19 +9099,6 @@ export const zExerciseOptionPutExerciseOptionsByIdRequest = z.object({
  * OK
  */
 export const zExerciseOptionPutExerciseOptionsByIdResponse = zExerciseOptionResponse;
-
-export const zGetFeedbackByCourseIdAverageRequest = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        courseId: z.string()
-    }),
-    query: z.never().optional()
-});
-
-/**
- * OK - Average rating
- */
-export const zGetFeedbackByCourseIdAverageResponse = zAverageCourseFeedback;
 
 export const zFeedbackGetFeedbacksRequest = z.object({
     body: z.never().optional(),
