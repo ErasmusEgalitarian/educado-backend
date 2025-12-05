@@ -56,38 +56,7 @@ export const configureApiClient = () => {
     return response;
   });
 
-  // Configure the client with base URL and authorization header
-  client.setConfig({
-    baseUrl,
-    throwOnError: true,
-    headers: {
-      ...fetchHeaders(),
-    },
-  });
-
-  // Request interceptor for logging in development
-  client.interceptors.request.use((request) => {
-    if (import.meta.env.DEV) {
-      // eslint-disable-next-line no-console
-      console.log(`Request 📤 ${request.method} ${request.url}`);
-    }
-    return request;
-  });
-
-  // Response interceptor for logging
-  client.interceptors.response.use((response) => {
-    if (import.meta.env.DEV) {
-      // eslint-disable-next-line no-console
-      console.log(`Response 📥 ${response.url}`, { status: response.status });
-    }
-
-    // If token is invalid, try to refresh from localStorage
-    if (response.status === 403 || response.status === 401) {
-      updateApiClientToken();
-    }
-
-    return response;
-  });
+  
 
   // eslint-disable-next-line no-console
   console.log("API Client configured:", {
