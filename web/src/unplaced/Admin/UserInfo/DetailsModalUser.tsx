@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import GenericModalComponent from "@/shared/components/GenericModalComponent";
 
@@ -39,6 +40,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState([true, false, false]);
   const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
   const [isApproveModalOpen, setIsApproveModalOpen] = useState(false);
+  const { t, i18n } = useTranslation();
 
   if (!isOpen) return null;
 
@@ -68,11 +70,11 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
     const modalProps = {
       isOpen: isRejectModalOpen || isApproveModalOpen,
       onClose: closeModal,
-      title: isRejectModalOpen ? "Rejeitar aplicação" : "Aprovar aplicação",
+      title: isRejectModalOpen ? t("userProfile.rejectApplication") : t("userProfile.approveApplication"),
       contentText: isRejectModalOpen
-        ? "Justifique a rejeição da aplicação"
+        ? t("userProfile.justifyRejection")
         : "",
-      confirmBtnText: isRejectModalOpen ? "Rejeitar" : "Aprovar",
+      confirmBtnText: isRejectModalOpen ? t("userProfile.reject") : t("userProfile.approve"),
       onConfirm: closeModal,
       userId: applicationId,
       token: token,
@@ -91,7 +93,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
   return (
     <>
       <GenericModalComponent
-        title="Perfil de usuário"
+        title={t("userProfile.title")}
         contentText=""
         confirmBtnText=""
         cancelBtnText=""
@@ -106,7 +108,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="flex flex-col items-center bg-white p-2 md:p-4 rounded-l-lg mt-4 relative">
               <dt className="text-[#166276] text-base font-bold font-['Lato']">
-                Nome
+                {t("common.name")}
               </dt>
               <dd
                 id="name"
@@ -117,7 +119,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
             </div>
             <div className="flex flex-col items-center bg-white p-2 md:p-4 rounded-r-lg mt-4">
               <dt className="text-[#166276] text-base font-bold font-['Lato']">
-                Email
+                  {t("login.email")}
               </dt>
               <dd
                 id="email"
@@ -128,7 +130,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
             </div>
             <div className="flex flex-col items-center bg-white p-2 md:p-4 rounded-r-lg mt-4">
               <dt className="text-[#166276] text-base font-bold font-['Lato']">
-                Status
+                {t("userProfile.status")}
               </dt>
               <dd
                 id="status"
@@ -136,10 +138,10 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               >
                 {contentCreator
                   ? contentCreator.approved
-                    ? "Aprovado"
+                    ? t("adminUsers.statusApproved")
                     : contentCreator.rejected
-                      ? "Recusado"
-                      : "Aguardando análise"
+                      ? t("adminUsers.statusRejected")
+                      : t("adminUsers.statusPending")
                   : null}
               </dd>
             </div>
@@ -170,7 +172,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                 d="M19 9l-7 7-7-7"
               />
             </svg>
-            <span className="ml-2">Motivações</span>
+            <span className="ml-2">{t("userProfile.motivations")}</span>
           </button>
           <div
             className={`overflow-hidden transition-max-height duration-500 ease-in-out ${
@@ -181,7 +183,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               <p className="text-base font-['Montserrat'] text-gray-900">
                 {userApplication?.application?.motivation !== undefined
                   ? userApplication.application.motivation
-                  : "No motivation provided"}
+                  : t("userProfile.noMotivation")}
               </p>
             </div>
           </div>
@@ -211,7 +213,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                 d="M19 9l-7 7-7-7"
               />
             </svg>
-            <span className="ml-2">Experiências acadêmicas</span>
+            <span className="ml-2">{t("userProfile.academicExperiences")}</span>
           </button>
           <div
             className={`overflow-hidden transition-max-height duration-500 ease-in-out ${
@@ -228,34 +230,34 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                     <p className="text-base font-['Montserrat'] text-gray-900">
                       Academic level:{" "}
                       {userApplication.application.academicLevel[index] ||
-                        "Not provided"}
+                          t("common.notProvided")}
                       <br />
                       Academic status:{" "}
                       {userApplication.application.academicStatus[index] ||
-                        "Not provided"}
+                          t("common.notProvided")}
                       <br />
                       Major:{" "}
                       {userApplication.application.major[index] ||
-                        "Not provided"}
+                          t("common.notProvided")}
                       <br />
                       Institution:{" "}
                       {userApplication.application.institution[index] ||
-                        "Not provided"}
+                          t("common.notProvided")}
                       <br />
                       Education start date:{" "}
                       {userApplication.application.educationStartDate[index] ||
-                        "Not provided"}
+                          t("common.notProvided")}
                       <br />
                       Education end date:{" "}
                       {userApplication.application.educationEndDate[index] ||
-                        "Not provided"}
+                          t("common.notProvided")}
                     </p>
                   </div>
                 ),
               )
             ) : (
               <p className="p-4 bg-white rounded-b-lg shadow-sm break-all mt-2 text-base font-['Montserrat'] text-gray-900">
-                No academic experiences provided
+                  {t("userProfile.noAcademicExperience")}
               </p>
             )}
           </div>
@@ -285,7 +287,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                 d="M19 9l-7 7-7-7"
               />
             </svg>
-            <span className="ml-2">Experiências profissionais</span>
+            <span className="ml-2">{t("userProfile.professionalExperiences")}</span>
           </button>
           <div
             className={`overflow-hidden transition-max-height duration-500 ease-in-out ${
@@ -301,29 +303,29 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
                   <p className="text-base font-['Montserrat'] text-gray-900">
                     Company:{" "}
                     {userApplication.application.company[index] ||
-                      "Not provided"}
+                        t("common.notProvided")}
                     <br />
                     Position:{" "}
                     {userApplication.application.position[index] ||
-                      "Not provided"}
+                        t("common.notProvided")}
                     <br />
                     Work activities:{" "}
                     {userApplication.application.workActivities[index] ||
-                      "Not provided"}
+                        t("common.notProvided")}
                     <br />
                     Work start date:{" "}
                     {userApplication.application.workStartDate[index] ||
-                      "Not provided"}
+                        t("common.notProvided")}
                     <br />
                     Work end date:{" "}
                     {userApplication.application.workEndDate[index] ||
-                      "Not provided"}
+                        t("common.notProvided")}
                   </p>
                 </div>
               ))
             ) : (
               <p className="p-4 bg-white rounded-b-lg shadow-sm break-all mt-2 text-base font-['Montserrat'] text-gray-900">
-                No professional experiences provided
+                  {t("userProfile.noProfessionalExperience")}
               </p>
             )}
           </div>
@@ -333,7 +335,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
             onClick={onClose}
             className="text-[#166276] rounded-sm text-base font-base font-['Lato'] underline underline-offset-4"
           >
-            Fechar
+              {t("actions.close")}
           </button>
           <div className="flex space-x-4">
             <button
@@ -345,7 +347,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               }`}
               disabled={contentCreator?.rejected}
             >
-              Recusar
+                {t("userProfile.reject")}
             </button>
             <button
               onClick={handleApprove}
@@ -356,7 +358,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
               }`}
               disabled={contentCreator?.approved}
             >
-              Aprovar
+                {t("userProfile.approve")}
             </button>
           </div>
         </div>

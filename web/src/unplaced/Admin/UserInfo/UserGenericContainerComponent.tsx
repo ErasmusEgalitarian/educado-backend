@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 import AdminServices from "../../services/admin.services";
 import AuthServices from "../../services/auth.services";
@@ -47,6 +48,7 @@ const UserGenericContainerComponent: React.FC<
   const [reason, setReason] = useState("");
   const [isInputValid, setIsInputValid] = useState(true);
   const [Loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   if (!isOpen) return null;
 
@@ -61,11 +63,11 @@ const UserGenericContainerComponent: React.FC<
     try {
       if (isReject) {
         await AuthServices.RejectApplication(userId, reason);
-        toast.success("Application rejected!");
+        toast.success(t("userProfile.rejectApplication"));
       } else {
         await AuthServices.AcceptApplication(userId);
         await AdminServices.changeUserRole(userId, token, "creator");
-        toast.success("Application approved!");
+        toast.success(t("userProfile.approveApplication"));
       }
       onClose();
       onHandleStatus();
@@ -84,7 +86,7 @@ const UserGenericContainerComponent: React.FC<
       title={title}
       contentText={contentText}
       confirmBtnText={confirmBtnText}
-      cancelBtnText="Voltar"
+      cancelBtnText={t("common.back")}
       onClose={onClose}
       isVisible={isOpen}
       onConfirm={handleAction}
@@ -94,7 +96,7 @@ const UserGenericContainerComponent: React.FC<
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="flex flex-col bg-white p-4 md:p-6 rounded-l-lg mt-4 relative">
-          <dt className="text-[#166276] text-base font-bold font-lato">Nome</dt>
+          <dt className="text-[#166276] text-base font-bold font-lato">{t("common.name")}</dt>
           <dd
             id="name"
             className="text-base font-montserrat text-gray-900 break-all"
@@ -105,7 +107,7 @@ const UserGenericContainerComponent: React.FC<
         </div>
         <div className="flex flex-col bg-white p-4 md:p-6 rounded-r-lg mt-4">
           <dt className="text-[#166276] text-base font-bold font-lato">
-            Email
+              {t("login.email")}
           </dt>
           <dd
             id="email"
@@ -117,11 +119,11 @@ const UserGenericContainerComponent: React.FC<
       </div>
       {isReject && (
         <>
-          <p className="mt-4">Justificativa</p>
+          <p className="mt-4">{t("userProfile.justification")}</p>
           <input
             type="text"
             className={`mt-2 p-2 pl-4 rounded-lg w-full border ${isInputValid ? "border-transparent" : "border-red-500"}`}
-            placeholder="Justificativa da análise"
+            placeholder={t("userProfile.justificationPlaceholder")}
             value={reason}
             onChange={(e) => {
               setReason(e.target.value);
@@ -130,12 +132,12 @@ const UserGenericContainerComponent: React.FC<
           />
           {!isInputValid && (
             <p className="text-red-500 text-sm mt-1">
-              Justificativa é obrigatória.
+                {t("userProfile.justificationRequired")}
             </p>
           )}
         </>
       )}
-      <p className="mt-4">Essa ação não pode ser desfeita.</p>
+      <p className="mt-4">{t("userProfile.actionCannotBeUndone")}</p>
     </GenericModalComponent>
   );
 };
