@@ -53,7 +53,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
         // that matches both the user's email and documentId
         const contentCreator = await strapi.documents('api::content-creator.content-creator').findFirst({
             filters: { 
-                email: user.email as string, 
+                email: user.email as string,
                 documentId: user.documentId as string
             },
         });

@@ -11,7 +11,8 @@ import AccountDeletionRequest from "./features/auth/components/AccountDeletionRe
 import DataDeletionRequest from "./features/auth/components/DataDeletionRequest";
 import Login from "./features/auth/components/Login";
 import PrivacyPolicy from "./features/auth/components/PrivacyPolicy";
-import Signup from "./features/auth/components/Signup";
+import Signup from "./features/auth/pages/Signup";
+import SignupInfo from "./features/auth/pages/SignupInformation";
 import Welcome from "./features/auth/pages/Welcome";
 import Certificates from "./features/certificates/pages/Certificates";
 import MediaOverviewPage from "./features/media/pages/media-overview-page";
@@ -36,8 +37,7 @@ const App = () => {
     {
       path: "/test",
       element: <TestPage />,
-    },
-    {
+    },{
       path: "/test2",
       element: <TestPage2 />,
     },
@@ -129,6 +129,15 @@ const App = () => {
       element: (
         <NonProtectedRoute>
           <Signup />
+        </NonProtectedRoute>
+      ),
+      errorElement: <NotFound />,
+    },
+        {
+      path: "/signup/info",
+      element: (
+        <NonProtectedRoute>
+          <SignupInfo />
         </NonProtectedRoute>
       ),
       errorElement: <NotFound />,

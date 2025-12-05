@@ -19,50 +19,13 @@ import MiniNavbar from "../../../shared/components/MiniNavbar";
 import { useApi } from "../../../shared/hooks/useAPI";
 import Carousel from "../../../unplaced/archive/Carousel";
 import AuthServices from "../../../unplaced/services/auth.services";
+import EmailVerificationModal from "../components/email-verification/EmailVerificationModal";
+import { SignupSchema } from "../components/signup/micro-services";
 import { LoginResponseError } from "../types/LoginResponseError";
-
-import EmailVerificationModal from "./email-verification/EmailVerificationModal";
 
 export const ToggleModalContext = createContext<() => void>(() => {});
 export const FormDataContext = createContext<any>(null);
-
-// Zod schema for fields (new user registration form)
-const SignupSchema = z
-  .object({
-    // Registers user first name and removes leading/trailing whitespaces
-    firstName: z
-      .string()
-      .trim()
-      .min(
-        1,
-        "Seu primeiro nome é obrigatório!"
-      ) /*Your first name is Required*/,
-
-    // Registers user last name and removes leading/trailing whitespaces
-    lastName: z
-      .string()
-      .trim()
-      .min(1, "Seu sobrenome é obrigatório!") /*Your last name is Required*/,
-
-    password: z.string().min(8, "A senha não é longa o suficiente"),
-
-    confirmPassword: z.string(),
-
-    email: z
-      .string()
-      .regex(
-        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-        "Seu email não está correto"
-      )
-      .min(1, "O email é obrigatório"),
-
-    token: z.null().optional(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "As senhas não coincidem",
-    path: ["confirmPassword"],
-  });
-
+  
 // Infer type from Zod schema
 type ApplicationInputs = z.infer<typeof SignupSchema>;
 
@@ -83,20 +46,18 @@ const Signup = () => {
   const navigate = useNavigate();
 
   // Use-form setup
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ApplicationInputs>({
+  const realMethods = useForm<ApplicationInputs>({
     resolver: zodResolver(SignupSchema),
+    mode: "onChange",
   });
 
+  const {register,handleSubmit,formState: { errors, isValid}} = realMethods;
+  
   const [emailExistsError, setEmailExistError] = useState(null);
   const [emailNotValid, setEmailNotValid] = useState(false);
   const [emailExistsErrorMessage, setErrorExistMessage] = useState("");
   const [passwordMismatchError, setPasswordMismatchError] = useState(null);
-  const [passwordMismatchErrorMessage, setPasswordMismatchErrorMessage] =
-    useState("");
+  const [passwordMismatchErrorMessage, setPasswordMismatchErrorMessage] = useState("");
 
   /**
    * OnSubmit function for Signup.
@@ -104,57 +65,14 @@ const Signup = () => {
    *
    * @param {JSON} data Includes firstName, lastName, email, password fields.
    */
-  const onSubmit = async (data: any) => {
+  const onSubmit = (data: any) => {
     setFormData(data); // Store the form data in state
     setEmail(data.email);
-
-    // Show the email verification modal
-    await signup({
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      password: data.password,
-      role: "user",
-      token: null,
-    })
-      .then((res) => {
-        if (
-          res.status === 200 ||
-          res.data.message ===
-            "Verification email sent. Please verify to complete registration."
-        ) {
-          // If the signup is successful, show the modal
-          setIsModalVisible(true);
-        } else if (res.status === 201) {
-          const id = res.data.contentCreatorProfile.baseUser;
-          navigate(`/application/${id}`);
-        }
-      })
-      .catch((err) => {
-        setError(err);
-        if (!err.response?.data) {
-          console.error(err);
-        } else {
-          switch (err.response.data.error.code) {
-            case "E0201": // Email already exists
-              setEmailExistError(err);
-              setErrorExistMessage(
-                "Já existe um usuário com o email fornecido"
-              );
-              setPasswordMismatchError(null);
-              setPasswordMismatchErrorMessage("");
-              break;
-            case "E0105": // Password mismatch
-              setPasswordMismatchError(err);
-              setPasswordMismatchErrorMessage("As senhas não combinam");
-              setEmailExistError(null);
-              setErrorExistMessage("");
-              break;
-            default:
-              console.error(error);
-          }
-        }
-      });
+    // Pass the collected form data to the next page via location.state
+    navigate("info", {
+      state: { initial: data },
+      replace: false,
+    });
   };
 
   // Variables determining whether or not the password is visible
@@ -174,48 +92,8 @@ const Signup = () => {
   const handlePasswordChange = (e: React.FocusEvent<HTMLInputElement>) => {
     const password = e.target.value;
     setPasswordCheck1(password.length >= 8);
-    setPasswordCheck2(/.*\p{L}.*$/u.test(password)); // At least one letter
+    setPasswordCheck2(/\p{L}/u.test(password)); // At least one letter
   };
-
-  // Function for validating that all fields are filled in
-  function areFieldsFilled() {
-    const inputSignupFirstName = document.getElementById(
-      "firstNameField"
-    ) as HTMLInputElement;
-    const inputSignupLastName = document.getElementById(
-      "lastNameField"
-    ) as HTMLInputElement;
-    const inputSignupEmail = document.getElementById(
-      "email-field"
-    ) as HTMLInputElement;
-    const inputSignupPass = document.getElementById(
-      "password-field"
-    ) as HTMLInputElement;
-    const inputSignupRedoPass = document.getElementById(
-      "password-field-repeat"
-    ) as HTMLInputElement;
-    const submitSignupButton = document.getElementById(
-      "submit-signup-button"
-    ) as HTMLButtonElement;
-
-    if (
-      inputSignupFirstName.value.trim() &&
-      inputSignupLastName.value.trim() &&
-      inputSignupEmail.value.trim() &&
-      inputSignupPass.value.trim() &&
-      inputSignupRedoPass.value.trim() !== ""
-    ) {
-      submitSignupButton.removeAttribute("disabled");
-      submitSignupButton.classList.remove("opacity-20");
-    } else {
-      submitSignupButton.setAttribute("disabled", "true");
-      submitSignupButton.classList.add("opacity-20");
-    }
-    setPasswordMismatchError(null);
-    setPasswordMismatchErrorMessage("");
-    setEmailExistError(null);
-    setErrorExistMessage("");
-  }
 
   return (
     <ToggleModalContext.Provider
@@ -278,7 +156,7 @@ const Signup = () => {
                         Nome
                       </label>
                       <input
-                        onInput={areFieldsFilled}
+
                         type="text"
                         id="firstNameField"
                         className="w-[95%] flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg text-[#383838] focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
@@ -297,7 +175,6 @@ const Signup = () => {
                         Sobrenome
                       </label>
                       <input
-                        onInput={areFieldsFilled}
                         type="text"
                         id="lastNameField"
                         className="w-full flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg text-[#383838] focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
@@ -317,7 +194,6 @@ const Signup = () => {
                       Email
                     </label>
                     <input
-                      onInput={areFieldsFilled}
                       type="email"
                       id="email-field"
                       className="w-full flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
@@ -355,7 +231,6 @@ const Signup = () => {
                       Senha
                     </label>
                     <input
-                      onInput={areFieldsFilled}
                       type={passwordVisible ? "text" : "password"}
                       id="password-field"
                       className="w-full flex border-gray-300 py-3 px-4 bg-white placeholder-gray-400 text-lg focus:outline-hidden focus:ring-2 focus:border-transparent focus:ring-sky-200 rounded-lg"
@@ -413,7 +288,6 @@ const Signup = () => {
                       Confirmar Senha
                     </label>
                     <input
-                      onInput={areFieldsFilled}
                       type={passwordVisibleRepeat ? "text" : "password"}
                       id="password-field-repeat"
                       placeholder="**********"
@@ -470,7 +344,7 @@ const Signup = () => {
                     type="submit"
                     id="submit-signup-button"
                     className="disabled:opacity-20 disabled:bg-slate-600 flex-auto w-full h-[3.3rem] rounded-lg bg-[#166276] text-[#FFF] transition duration-100 ease-in hover:bg-cyan-900 hover:text-gray-50 text-lg font-bold font-['Montserrat']"
-                    disabled={submitLoading}
+                    disabled={!isValid || submitLoading}
                   >
                     {submitLoading ? (
                       <span className="spinner-border animate-spin inline-block w-4 h-4 border-2 border-t-transparent rounded-full mr-2" />

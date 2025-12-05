@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import * as React from "react";
 import { FieldValues } from "react-hook-form";
 
@@ -22,6 +23,7 @@ interface FormElementWrapperProps<
   readonly inputSize?: InputSize;
   readonly childProps?: Partial<TChildProps>;
 }
+
 /* The intention of this component, is to wrap form elements (inputs, selects, etc.) with reusable
  * logic for labels, descriptions, error messages, and wiring up react-hook-form.
  * It has however become difficult to type properly. Should probably be rewritten or removed in future.

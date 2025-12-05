@@ -393,22 +393,62 @@ export type Certificate = {
                 content_creators?: Array<{
                     id?: number;
                     documentId?: string;
+                    email?: string;
                     firstName?: string;
                     lastName?: string;
                     verifiedAt?: string;
-                    biography?: string;
-                    email?: string;
-                    education?: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience?: string;
-                    institution?: string;
-                    eduStart?: string;
-                    eduEnd?: string;
+                    motivation?: string;
                     currentCompany?: string;
-                    currentJobTitle?: string;
-                    companyStart?: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
+                    jobs?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        company?: string;
+                        title?: string;
+                        startDate?: string;
+                        endDate?: string;
+                        description?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    educations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        educationType?: string;
+                        course?: string;
+                        institution?: string;
+                        startDate?: string;
+                        endDate?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
                     user_logs?: Array<{
                         id?: number;
                         documentId?: string;
@@ -688,23 +728,15 @@ export type ContentDescriptionComponent = {
 
 export type ContentCreatorRequest = {
     data: {
+        email: string;
+        password?: string;
         firstName: string;
         lastName: string;
         verifiedAt?: string;
-        biography?: string;
-        email: string;
-        password?: string;
-        education: 'TODO1' | 'TODO2' | 'TODO3';
-        statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-        courseExperience: string;
-        institution: string;
-        eduStart: string;
-        eduEnd: string;
+        motivation?: string;
         currentCompany: string;
-        currentJobTitle: string;
-        companyStart: string;
-        companyEnd?: string;
-        jobDescription?: string;
+        jobs?: Array<number | string>;
+        educations?: Array<number | string>;
         user_logs?: Array<number | string>;
         courses?: Array<number | string>;
         dashboard_activities?: Array<number | string>;
@@ -728,22 +760,143 @@ export type ContentCreatorListResponse = {
 export type ContentCreator = {
     id?: number;
     documentId?: string;
+    email: string;
     firstName: string;
     lastName: string;
     verifiedAt?: string;
-    biography?: string;
-    email: string;
-    education: 'TODO1' | 'TODO2' | 'TODO3';
-    statusValue: 'TODO1' | 'TODO2' | 'TODO3';
-    courseExperience: string;
-    institution: string;
-    eduStart: string;
-    eduEnd: string;
+    motivation?: string;
     currentCompany: string;
-    currentJobTitle: string;
-    companyStart: string;
-    companyEnd?: string;
-    jobDescription?: string;
+    jobs?: Array<{
+        id?: number;
+        documentId?: string;
+        company?: string;
+        title?: string;
+        startDate?: string;
+        endDate?: string;
+        description?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+            firstname?: string;
+            lastname?: string;
+            username?: string;
+            email?: string;
+            resetPasswordToken?: string;
+            registrationToken?: string;
+            isActive?: boolean;
+            roles?: Array<{
+                id?: number;
+                documentId?: string;
+                name?: string;
+                code?: string;
+                description?: string;
+                users?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+                permissions?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    action?: string;
+                    actionParameters?: unknown;
+                    subject?: string;
+                    properties?: unknown;
+                    conditions?: unknown;
+                    role?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            blocked?: boolean;
+            preferedLanguage?: string;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+    educations?: Array<{
+        id?: number;
+        documentId?: string;
+        educationType?: string;
+        course?: string;
+        institution?: string;
+        startDate?: string;
+        endDate?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
     user_logs?: Array<{
         id?: number;
         documentId?: string;
@@ -836,87 +989,6 @@ export type ContentCreator = {
                                 createdBy?: {
                                     id?: number;
                                     documentId?: string;
-                                    firstname?: string;
-                                    lastname?: string;
-                                    username?: string;
-                                    email?: string;
-                                    resetPasswordToken?: string;
-                                    registrationToken?: string;
-                                    isActive?: boolean;
-                                    roles?: Array<{
-                                        id?: number;
-                                        documentId?: string;
-                                        name?: string;
-                                        code?: string;
-                                        description?: string;
-                                        users?: Array<{
-                                            id?: number;
-                                            documentId?: string;
-                                        }>;
-                                        permissions?: Array<{
-                                            id?: number;
-                                            documentId?: string;
-                                            action?: string;
-                                            actionParameters?: unknown;
-                                            subject?: string;
-                                            properties?: unknown;
-                                            conditions?: unknown;
-                                            role?: {
-                                                id?: number;
-                                                documentId?: string;
-                                            };
-                                            createdAt?: string;
-                                            updatedAt?: string;
-                                            publishedAt?: string;
-                                            createdBy?: {
-                                                id?: number;
-                                                documentId?: string;
-                                            };
-                                            updatedBy?: {
-                                                id?: number;
-                                                documentId?: string;
-                                            };
-                                            locale?: string;
-                                            localizations?: Array<{
-                                                id?: number;
-                                                documentId?: string;
-                                            }>;
-                                        }>;
-                                        createdAt?: string;
-                                        updatedAt?: string;
-                                        publishedAt?: string;
-                                        createdBy?: {
-                                            id?: number;
-                                            documentId?: string;
-                                        };
-                                        updatedBy?: {
-                                            id?: number;
-                                            documentId?: string;
-                                        };
-                                        locale?: string;
-                                        localizations?: Array<{
-                                            id?: number;
-                                            documentId?: string;
-                                        }>;
-                                    }>;
-                                    blocked?: boolean;
-                                    preferedLanguage?: string;
-                                    createdAt?: string;
-                                    updatedAt?: string;
-                                    publishedAt?: string;
-                                    createdBy?: {
-                                        id?: number;
-                                        documentId?: string;
-                                    };
-                                    updatedBy?: {
-                                        id?: number;
-                                        documentId?: string;
-                                    };
-                                    locale?: string;
-                                    localizations?: Array<{
-                                        id?: number;
-                                        documentId?: string;
-                                    }>;
                                 };
                                 updatedBy?: {
                                     id?: number;
@@ -1094,22 +1166,20 @@ export type ContentCreator = {
                     content_creators?: Array<{
                         id?: number;
                         documentId?: string;
+                        email?: string;
                         firstName?: string;
                         lastName?: string;
                         verifiedAt?: string;
-                        biography?: string;
-                        email?: string;
-                        education?: 'TODO1' | 'TODO2' | 'TODO3';
-                        statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-                        courseExperience?: string;
-                        institution?: string;
-                        eduStart?: string;
-                        eduEnd?: string;
+                        motivation?: string;
                         currentCompany?: string;
-                        currentJobTitle?: string;
-                        companyStart?: string;
-                        companyEnd?: string;
-                        jobDescription?: string;
+                        jobs?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                        educations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
                         user_logs?: Array<{
                             id?: number;
                             documentId?: string;
@@ -1753,22 +1823,62 @@ export type Course = {
             content_creators?: Array<{
                 id?: number;
                 documentId?: string;
+                email?: string;
                 firstName?: string;
                 lastName?: string;
                 verifiedAt?: string;
-                biography?: string;
-                email?: string;
-                education?: 'TODO1' | 'TODO2' | 'TODO3';
-                statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-                courseExperience?: string;
-                institution?: string;
-                eduStart?: string;
-                eduEnd?: string;
+                motivation?: string;
                 currentCompany?: string;
-                currentJobTitle?: string;
-                companyStart?: string;
-                companyEnd?: string;
-                jobDescription?: string;
+                jobs?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    company?: string;
+                    title?: string;
+                    startDate?: string;
+                    endDate?: string;
+                    description?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                educations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    educationType?: string;
+                    course?: string;
+                    institution?: string;
+                    startDate?: string;
+                    endDate?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
                 user_logs?: Array<{
                     id?: number;
                     documentId?: string;
@@ -2504,22 +2614,62 @@ export type CourseCategory = {
         content_creators?: Array<{
             id?: number;
             documentId?: string;
+            email?: string;
             firstName?: string;
             lastName?: string;
             verifiedAt?: string;
-            biography?: string;
-            email?: string;
-            education?: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience?: string;
-            institution?: string;
-            eduStart?: string;
-            eduEnd?: string;
+            motivation?: string;
             currentCompany?: string;
-            currentJobTitle?: string;
-            companyStart?: string;
-            companyEnd?: string;
-            jobDescription?: string;
+            jobs?: Array<{
+                id?: number;
+                documentId?: string;
+                company?: string;
+                title?: string;
+                startDate?: string;
+                endDate?: string;
+                description?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            educations?: Array<{
+                id?: number;
+                documentId?: string;
+                educationType?: string;
+                course?: string;
+                institution?: string;
+                startDate?: string;
+                endDate?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
             user_logs?: Array<{
                 id?: number;
                 documentId?: string;
@@ -3109,22 +3259,62 @@ export type CourseEnrollmentRelation = {
         content_creators?: Array<{
             id?: number;
             documentId?: string;
+            email?: string;
             firstName?: string;
             lastName?: string;
             verifiedAt?: string;
-            biography?: string;
-            email?: string;
-            education?: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience?: string;
-            institution?: string;
-            eduStart?: string;
-            eduEnd?: string;
+            motivation?: string;
             currentCompany?: string;
-            currentJobTitle?: string;
-            companyStart?: string;
-            companyEnd?: string;
-            jobDescription?: string;
+            jobs?: Array<{
+                id?: number;
+                documentId?: string;
+                company?: string;
+                title?: string;
+                startDate?: string;
+                endDate?: string;
+                description?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            educations?: Array<{
+                id?: number;
+                documentId?: string;
+                educationType?: string;
+                course?: string;
+                institution?: string;
+                startDate?: string;
+                endDate?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
             user_logs?: Array<{
                 id?: number;
                 documentId?: string;
@@ -3661,22 +3851,62 @@ export type CourseSelection = {
         content_creators?: Array<{
             id?: number;
             documentId?: string;
+            email?: string;
             firstName?: string;
             lastName?: string;
             verifiedAt?: string;
-            biography?: string;
-            email?: string;
-            education?: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience?: string;
-            institution?: string;
-            eduStart?: string;
-            eduEnd?: string;
+            motivation?: string;
             currentCompany?: string;
-            currentJobTitle?: string;
-            companyStart?: string;
-            companyEnd?: string;
-            jobDescription?: string;
+            jobs?: Array<{
+                id?: number;
+                documentId?: string;
+                company?: string;
+                title?: string;
+                startDate?: string;
+                endDate?: string;
+                description?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            educations?: Array<{
+                id?: number;
+                documentId?: string;
+                educationType?: string;
+                course?: string;
+                institution?: string;
+                startDate?: string;
+                endDate?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
             user_logs?: Array<{
                 id?: number;
                 documentId?: string;
@@ -3801,6 +4031,165 @@ export type DashboardActivity = {
 
 export type DashboardActivityResponse = {
     data?: DashboardActivity;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type EducationRequest = {
+    data: {
+        educationType?: string;
+        course?: string;
+        institution?: string;
+        startDate?: string;
+        endDate?: string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type EducationListResponse = {
+    data?: Array<Education>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type Education = {
+    id?: number;
+    documentId?: string;
+    educationType?: string;
+    course?: string;
+    institution?: string;
+    startDate?: string;
+    endDate?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+        firstname?: string;
+        lastname?: string;
+        username?: string;
+        email?: string;
+        resetPasswordToken?: string;
+        registrationToken?: string;
+        isActive?: boolean;
+        roles?: Array<{
+            id?: number;
+            documentId?: string;
+            name?: string;
+            code?: string;
+            description?: string;
+            users?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            permissions?: Array<{
+                id?: number;
+                documentId?: string;
+                action?: string;
+                actionParameters?: unknown;
+                subject?: string;
+                properties?: unknown;
+                conditions?: unknown;
+                role?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        blocked?: boolean;
+        preferedLanguage?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+        educationType?: string;
+        course?: string;
+        institution?: string;
+        startDate?: string;
+        endDate?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+};
+
+export type EducationResponse = {
+    data?: Education;
     meta?: {
         [key: string]: unknown;
     };
@@ -4668,22 +5057,62 @@ export type Feedback = {
         content_creators?: Array<{
             id?: number;
             documentId?: string;
+            email?: string;
             firstName?: string;
             lastName?: string;
             verifiedAt?: string;
-            biography?: string;
-            email?: string;
-            education?: 'TODO1' | 'TODO2' | 'TODO3';
-            statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-            courseExperience?: string;
-            institution?: string;
-            eduStart?: string;
-            eduEnd?: string;
+            motivation?: string;
             currentCompany?: string;
-            currentJobTitle?: string;
-            companyStart?: string;
-            companyEnd?: string;
-            jobDescription?: string;
+            jobs?: Array<{
+                id?: number;
+                documentId?: string;
+                company?: string;
+                title?: string;
+                startDate?: string;
+                endDate?: string;
+                description?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            educations?: Array<{
+                id?: number;
+                documentId?: string;
+                educationType?: string;
+                course?: string;
+                institution?: string;
+                startDate?: string;
+                endDate?: string;
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
             user_logs?: Array<{
                 id?: number;
                 documentId?: string;
@@ -4779,6 +5208,165 @@ export type Feedback = {
 
 export type FeedbackResponse = {
     data?: Feedback;
+    meta?: {
+        [key: string]: unknown;
+    };
+};
+
+export type JobRequest = {
+    data: {
+        company?: string;
+        title?: string;
+        startDate?: string;
+        endDate?: string;
+        description?: string;
+        locale?: string;
+        localizations?: Array<number | string>;
+    };
+};
+
+export type JobListResponse = {
+    data?: Array<Job>;
+    meta?: {
+        pagination?: {
+            page?: number;
+            pageSize?: number;
+            pageCount?: number;
+            total?: number;
+        };
+    };
+};
+
+export type Job = {
+    id?: number;
+    documentId?: string;
+    company?: string;
+    title?: string;
+    startDate?: string;
+    endDate?: string;
+    description?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    createdBy?: {
+        id?: number;
+        documentId?: string;
+        firstname?: string;
+        lastname?: string;
+        username?: string;
+        email?: string;
+        resetPasswordToken?: string;
+        registrationToken?: string;
+        isActive?: boolean;
+        roles?: Array<{
+            id?: number;
+            documentId?: string;
+            name?: string;
+            code?: string;
+            description?: string;
+            users?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+            permissions?: Array<{
+                id?: number;
+                documentId?: string;
+                action?: string;
+                actionParameters?: unknown;
+                subject?: string;
+                properties?: unknown;
+                conditions?: unknown;
+                role?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                createdAt?: string;
+                updatedAt?: string;
+                publishedAt?: string;
+                createdBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                updatedBy?: {
+                    id?: number;
+                    documentId?: string;
+                };
+                locale?: string;
+                localizations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                }>;
+            }>;
+            createdAt?: string;
+            updatedAt?: string;
+            publishedAt?: string;
+            createdBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            updatedBy?: {
+                id?: number;
+                documentId?: string;
+            };
+            locale?: string;
+            localizations?: Array<{
+                id?: number;
+                documentId?: string;
+            }>;
+        }>;
+        blocked?: boolean;
+        preferedLanguage?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    };
+    updatedBy?: {
+        id?: number;
+        documentId?: string;
+    };
+    locale?: string;
+    localizations?: Array<{
+        id?: number;
+        documentId?: string;
+        company?: string;
+        title?: string;
+        startDate?: string;
+        endDate?: string;
+        description?: string;
+        createdAt?: string;
+        updatedAt?: string;
+        publishedAt?: string;
+        createdBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        updatedBy?: {
+            id?: number;
+            documentId?: string;
+        };
+        locale?: string;
+        localizations?: Array<{
+            id?: number;
+            documentId?: string;
+        }>;
+    }>;
+};
+
+export type JobResponse = {
+    data?: Job;
     meta?: {
         [key: string]: unknown;
     };
@@ -5382,22 +5970,62 @@ export type Student = {
             content_creators?: Array<{
                 id?: number;
                 documentId?: string;
+                email?: string;
                 firstName?: string;
                 lastName?: string;
                 verifiedAt?: string;
-                biography?: string;
-                email?: string;
-                education?: 'TODO1' | 'TODO2' | 'TODO3';
-                statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-                courseExperience?: string;
-                institution?: string;
-                eduStart?: string;
-                eduEnd?: string;
+                motivation?: string;
                 currentCompany?: string;
-                currentJobTitle?: string;
-                companyStart?: string;
-                companyEnd?: string;
-                jobDescription?: string;
+                jobs?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    company?: string;
+                    title?: string;
+                    startDate?: string;
+                    endDate?: string;
+                    description?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
+                educations?: Array<{
+                    id?: number;
+                    documentId?: string;
+                    educationType?: string;
+                    course?: string;
+                    institution?: string;
+                    startDate?: string;
+                    endDate?: string;
+                    createdAt?: string;
+                    updatedAt?: string;
+                    publishedAt?: string;
+                    createdBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    updatedBy?: {
+                        id?: number;
+                        documentId?: string;
+                    };
+                    locale?: string;
+                    localizations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                    }>;
+                }>;
                 user_logs?: Array<{
                     id?: number;
                     documentId?: string;
@@ -6008,22 +6636,62 @@ export type UserLog = {
                 content_creators?: Array<{
                     id?: number;
                     documentId?: string;
+                    email?: string;
                     firstName?: string;
                     lastName?: string;
                     verifiedAt?: string;
-                    biography?: string;
-                    email?: string;
-                    education?: 'TODO1' | 'TODO2' | 'TODO3';
-                    statusValue?: 'TODO1' | 'TODO2' | 'TODO3';
-                    courseExperience?: string;
-                    institution?: string;
-                    eduStart?: string;
-                    eduEnd?: string;
+                    motivation?: string;
                     currentCompany?: string;
-                    currentJobTitle?: string;
-                    companyStart?: string;
-                    companyEnd?: string;
-                    jobDescription?: string;
+                    jobs?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        company?: string;
+                        title?: string;
+                        startDate?: string;
+                        endDate?: string;
+                        description?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
+                    educations?: Array<{
+                        id?: number;
+                        documentId?: string;
+                        educationType?: string;
+                        course?: string;
+                        institution?: string;
+                        startDate?: string;
+                        endDate?: string;
+                        createdAt?: string;
+                        updatedAt?: string;
+                        publishedAt?: string;
+                        createdBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        updatedBy?: {
+                            id?: number;
+                            documentId?: string;
+                        };
+                        locale?: string;
+                        localizations?: Array<{
+                            id?: number;
+                            documentId?: string;
+                        }>;
+                    }>;
                     user_logs?: Array<{
                         id?: number;
                         documentId?: string;
@@ -6475,6 +7143,12 @@ export type JwtContentCreatorResponse = {
     };
 };
 
+export type SignupRequest = {
+    name?: string;
+    email?: string;
+    password?: string;
+};
+
 export type CourseStatisticsRequest = {
     /**
      * Array of course documentId strings
@@ -6545,12 +7219,6 @@ export type ResetPasswordRequest = {
     email?: string;
     token?: string;
     newPassword?: string;
-};
-
-export type SignupRequest = {
-    name?: string;
-    email?: string;
-    password?: string;
 };
 
 export type OkResponse = string;
@@ -6828,7 +7496,7 @@ export type ContentCreatorGetContentCreatorsRequest = {
     body?: never;
     path?: never;
     query?: {
-        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        readonly fields?: Array<'email' | 'password' | 'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -6842,12 +7510,12 @@ export type ContentCreatorGetContentCreatorsRequest = {
             start: number;
             limit: number;
         });
-        sort?: 'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+        sort?: 'email' | 'password' | 'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'email' | 'password' | 'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
             [key: string]: 'asc' | 'desc';
         } | Array<{
             [key: string]: 'asc' | 'desc';
         }>;
-        populate?: '*' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'user_logs' | 'courses' | 'dashboard_activities'>;
+        populate?: '*' | 'jobs' | 'educations' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'jobs' | 'educations' | 'user_logs' | 'courses' | 'dashboard_activities'>;
         status?: 'draft' | 'published';
     };
     url: '/content-creators';
@@ -6891,8 +7559,8 @@ export type ContentCreatorPostContentCreatorsRequest = {
     body: ContentCreatorRequest;
     path?: never;
     query?: {
-        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'user_logs' | 'courses' | 'dashboard_activities'>;
+        readonly fields?: Array<'email' | 'password' | 'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'jobs' | 'educations' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'jobs' | 'educations' | 'user_logs' | 'courses' | 'dashboard_activities'>;
         status?: 'draft' | 'published';
     };
     url: '/content-creators';
@@ -6938,8 +7606,8 @@ export type ContentCreatorDeleteContentCreatorsByIdRequest = {
         id: string;
     };
     query?: {
-        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'user_logs' | 'courses' | 'dashboard_activities'>;
+        readonly fields?: Array<'email' | 'password' | 'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'jobs' | 'educations' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'jobs' | 'educations' | 'user_logs' | 'courses' | 'dashboard_activities'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -6988,12 +7656,12 @@ export type ContentCreatorGetContentCreatorsByIdRequest = {
         id: string;
     };
     query?: {
-        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'user_logs' | 'courses' | 'dashboard_activities'>;
+        readonly fields?: Array<'email' | 'password' | 'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'jobs' | 'educations' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'jobs' | 'educations' | 'user_logs' | 'courses' | 'dashboard_activities'>;
         filters?: {
             [key: string]: unknown;
         };
-        sort?: 'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+        sort?: 'email' | 'password' | 'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'email' | 'password' | 'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
             [key: string]: 'asc' | 'desc';
         } | Array<{
             [key: string]: 'asc' | 'desc';
@@ -7043,8 +7711,8 @@ export type ContentCreatorPutContentCreatorsByIdRequest = {
         id: string;
     };
     query?: {
-        readonly fields?: Array<'firstName' | 'lastName' | 'verifiedAt' | 'biography' | 'email' | 'password' | 'education' | 'statusValue' | 'courseExperience' | 'institution' | 'eduStart' | 'eduEnd' | 'currentCompany' | 'currentJobTitle' | 'companyStart' | 'companyEnd' | 'jobDescription' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
-        populate?: '*' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'user_logs' | 'courses' | 'dashboard_activities'>;
+        readonly fields?: Array<'email' | 'password' | 'firstName' | 'lastName' | 'verifiedAt' | 'motivation' | 'currentCompany' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | 'jobs' | 'educations' | 'user_logs' | 'courses' | 'dashboard_activities' | Array<'jobs' | 'educations' | 'user_logs' | 'courses' | 'dashboard_activities'>;
         status?: 'draft' | 'published';
     };
     url: '/content-creators/{id}';
@@ -7099,6 +7767,22 @@ export type PostContentCreatorLoginResponses = {
 };
 
 export type PostContentCreatorLoginResponse = PostContentCreatorLoginResponses[keyof PostContentCreatorLoginResponses];
+
+export type PostContentCreatorRegisterRequest = {
+    body: SignupRequest;
+    path?: never;
+    query?: never;
+    url: '/content-creator/register';
+};
+
+export type PostContentCreatorRegisterResponses = {
+    /**
+     * Created
+     */
+    201: JwtContentCreatorResponse;
+};
+
+export type PostContentCreatorRegisterResponse = PostContentCreatorRegisterResponses[keyof PostContentCreatorRegisterResponses];
 
 export type CourseGetCoursesRequest = {
     body?: never;
@@ -8439,6 +9123,266 @@ export type DashboardActivityPutDashboardActivitiesByIdResponses = {
 
 export type DashboardActivityPutDashboardActivitiesByIdResponse = DashboardActivityPutDashboardActivitiesByIdResponses[keyof DashboardActivityPutDashboardActivitiesByIdResponses];
 
+export type EducationGetEducationsRequest = {
+    body?: never;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'educationType' | 'course' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        _q?: string;
+        pagination?: {
+            withCount?: boolean;
+        } & ({
+            page: number;
+            pageSize: number;
+        } | {
+            start: number;
+            limit: number;
+        });
+        sort?: 'educationType' | 'course' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'educationType' | 'course' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        populate?: '*' | unknown | Array<unknown>;
+        status?: 'draft' | 'published';
+    };
+    url: '/educations';
+};
+
+export type EducationGetEducationsErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type EducationGetEducationsError = EducationGetEducationsErrors[keyof EducationGetEducationsErrors];
+
+export type EducationGetEducationsResponses = {
+    /**
+     * OK
+     */
+    200: EducationListResponse;
+};
+
+export type EducationGetEducationsResponse = EducationGetEducationsResponses[keyof EducationGetEducationsResponses];
+
+export type EducationPostEducationsRequest = {
+    body: EducationRequest;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'educationType' | 'course' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        status?: 'draft' | 'published';
+    };
+    url: '/educations';
+};
+
+export type EducationPostEducationsErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type EducationPostEducationsError = EducationPostEducationsErrors[keyof EducationPostEducationsErrors];
+
+export type EducationPostEducationsResponses = {
+    /**
+     * OK
+     */
+    200: EducationResponse;
+};
+
+export type EducationPostEducationsResponse = EducationPostEducationsResponses[keyof EducationPostEducationsResponses];
+
+export type EducationDeleteEducationsByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'educationType' | 'course' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        status?: 'draft' | 'published';
+    };
+    url: '/educations/{id}';
+};
+
+export type EducationDeleteEducationsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type EducationDeleteEducationsByIdError = EducationDeleteEducationsByIdErrors[keyof EducationDeleteEducationsByIdErrors];
+
+export type EducationDeleteEducationsByIdResponses = {
+    /**
+     * OK
+     */
+    200: number;
+};
+
+export type EducationDeleteEducationsByIdResponse = EducationDeleteEducationsByIdResponses[keyof EducationDeleteEducationsByIdResponses];
+
+export type EducationGetEducationsByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'educationType' | 'course' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        sort?: 'educationType' | 'course' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'educationType' | 'course' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        status?: 'draft' | 'published';
+    };
+    url: '/educations/{id}';
+};
+
+export type EducationGetEducationsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type EducationGetEducationsByIdError = EducationGetEducationsByIdErrors[keyof EducationGetEducationsByIdErrors];
+
+export type EducationGetEducationsByIdResponses = {
+    /**
+     * OK
+     */
+    200: EducationResponse;
+};
+
+export type EducationGetEducationsByIdResponse = EducationGetEducationsByIdResponses[keyof EducationGetEducationsByIdResponses];
+
+export type EducationPutEducationsByIdRequest = {
+    body: EducationRequest;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'educationType' | 'course' | 'institution' | 'startDate' | 'endDate' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        status?: 'draft' | 'published';
+    };
+    url: '/educations/{id}';
+};
+
+export type EducationPutEducationsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type EducationPutEducationsByIdError = EducationPutEducationsByIdErrors[keyof EducationPutEducationsByIdErrors];
+
+export type EducationPutEducationsByIdResponses = {
+    /**
+     * OK
+     */
+    200: EducationResponse;
+};
+
+export type EducationPutEducationsByIdResponse = EducationPutEducationsByIdResponses[keyof EducationPutEducationsByIdResponses];
+
 export type ExerciseGetExercisesRequest = {
     body?: never;
     path?: never;
@@ -9218,6 +10162,266 @@ export type FeedbackPutFeedbacksByIdResponses = {
 };
 
 export type FeedbackPutFeedbacksByIdResponse = FeedbackPutFeedbacksByIdResponses[keyof FeedbackPutFeedbacksByIdResponses];
+
+export type JobGetJobsRequest = {
+    body?: never;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'company' | 'title' | 'startDate' | 'endDate' | 'description' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        _q?: string;
+        pagination?: {
+            withCount?: boolean;
+        } & ({
+            page: number;
+            pageSize: number;
+        } | {
+            start: number;
+            limit: number;
+        });
+        sort?: 'company' | 'title' | 'startDate' | 'endDate' | 'description' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'company' | 'title' | 'startDate' | 'endDate' | 'description' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        populate?: '*' | unknown | Array<unknown>;
+        status?: 'draft' | 'published';
+    };
+    url: '/jobs';
+};
+
+export type JobGetJobsErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type JobGetJobsError = JobGetJobsErrors[keyof JobGetJobsErrors];
+
+export type JobGetJobsResponses = {
+    /**
+     * OK
+     */
+    200: JobListResponse;
+};
+
+export type JobGetJobsResponse = JobGetJobsResponses[keyof JobGetJobsResponses];
+
+export type JobPostJobsRequest = {
+    body: JobRequest;
+    path?: never;
+    query?: {
+        readonly fields?: Array<'company' | 'title' | 'startDate' | 'endDate' | 'description' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        status?: 'draft' | 'published';
+    };
+    url: '/jobs';
+};
+
+export type JobPostJobsErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type JobPostJobsError = JobPostJobsErrors[keyof JobPostJobsErrors];
+
+export type JobPostJobsResponses = {
+    /**
+     * OK
+     */
+    200: JobResponse;
+};
+
+export type JobPostJobsResponse = JobPostJobsResponses[keyof JobPostJobsResponses];
+
+export type JobDeleteJobsByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'company' | 'title' | 'startDate' | 'endDate' | 'description' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        status?: 'draft' | 'published';
+    };
+    url: '/jobs/{id}';
+};
+
+export type JobDeleteJobsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type JobDeleteJobsByIdError = JobDeleteJobsByIdErrors[keyof JobDeleteJobsByIdErrors];
+
+export type JobDeleteJobsByIdResponses = {
+    /**
+     * OK
+     */
+    200: number;
+};
+
+export type JobDeleteJobsByIdResponse = JobDeleteJobsByIdResponses[keyof JobDeleteJobsByIdResponses];
+
+export type JobGetJobsByIdRequest = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'company' | 'title' | 'startDate' | 'endDate' | 'description' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        filters?: {
+            [key: string]: unknown;
+        };
+        sort?: 'company' | 'title' | 'startDate' | 'endDate' | 'description' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'company' | 'title' | 'startDate' | 'endDate' | 'description' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+            [key: string]: 'asc' | 'desc';
+        } | Array<{
+            [key: string]: 'asc' | 'desc';
+        }>;
+        status?: 'draft' | 'published';
+    };
+    url: '/jobs/{id}';
+};
+
+export type JobGetJobsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type JobGetJobsByIdError = JobGetJobsByIdErrors[keyof JobGetJobsByIdErrors];
+
+export type JobGetJobsByIdResponses = {
+    /**
+     * OK
+     */
+    200: JobResponse;
+};
+
+export type JobGetJobsByIdResponse = JobGetJobsByIdResponses[keyof JobGetJobsByIdResponses];
+
+export type JobPutJobsByIdRequest = {
+    body: JobRequest;
+    path: {
+        id: string;
+    };
+    query?: {
+        readonly fields?: Array<'company' | 'title' | 'startDate' | 'endDate' | 'description' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        populate?: '*' | unknown | Array<unknown>;
+        status?: 'draft' | 'published';
+    };
+    url: '/jobs/{id}';
+};
+
+export type JobPutJobsByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: _Error;
+    /**
+     * Unauthorized
+     */
+    401: _Error;
+    /**
+     * Forbidden
+     */
+    403: _Error;
+    /**
+     * Not Found
+     */
+    404: _Error;
+    /**
+     * Internal Server Error
+     */
+    500: _Error;
+};
+
+export type JobPutJobsByIdError = JobPutJobsByIdErrors[keyof JobPutJobsByIdErrors];
+
+export type JobPutJobsByIdResponses = {
+    /**
+     * OK
+     */
+    200: JobResponse;
+};
+
+export type JobPutJobsByIdResponse = JobPutJobsByIdResponses[keyof JobPutJobsByIdResponses];
 
 export type LectureGetLecturesRequest = {
     body?: never;

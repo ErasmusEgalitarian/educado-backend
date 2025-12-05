@@ -4,6 +4,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
+.border-dash-long {
+  border-style: dashed;
+  border-width: 1.5px;
+  border-image: repeating-conic-gradient();
+  border-color: var(--greyscale-border-default);
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

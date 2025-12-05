@@ -133,10 +133,10 @@ function FormLabel({
   const { error, formItemId } = useFormField();
 
   const textSize = {
-    xs: "font-[600] text-[12px]",
-    sm: "font-[600] text-[16px]",
-    md: "font-[600] text-[16px]",
-    lg: "font-[600] text-[24px]",
+    xs: "font-[700] text-[12px]",
+    sm: "font-[700] text-[16px]",
+    md: "font-[700] text-[16px]",
+    lg: "font-[700] text-[18px]",
   };
 
   const hintIconSize = {
@@ -152,7 +152,7 @@ function FormLabel({
       data-error={!!error}
       data-required={!!required}
       className={cn(
-        "data-[error=true]:text-destructive mb-1",
+        "data-[error=true]:text-destructive mb-2",
         textSize[inputSize],
         className
       )}

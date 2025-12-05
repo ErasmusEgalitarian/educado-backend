@@ -1,13 +1,7 @@
-import {
-  mdiCheckboxBlankCircleOutline,
-  mdiCheckboxBlankOutline,
-  mdiCheckboxMarked,
-  mdiCheckCircleOutline,
-} from "@mdi/js";
+import { mdiCheckboxBlankCircleOutline, mdiCheckCircleOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 
 import { Button } from "@/shared/components/shadcn/button";
-import { cn } from "@/shared/lib/utils";
 
 interface CourseEditorMenuButtonProps {
   isActive: boolean;
@@ -27,36 +21,29 @@ const CourseEditorMenuButton = ({
   // Determine icon based on completion status
   const icon = isCompleted ? (
     <Icon
-      path={mdiCheckboxMarked}
+      path={mdiCheckCircleOutline}
       size={1}
-      className="text-primary-surface-default"
+      className="text-success-surface-default"
     />
   ) : (
     <Icon
-      path={mdiCheckboxBlankOutline}
+      path={mdiCheckboxBlankCircleOutline}
       size={1}
-      className="text-primary-surface-default"
+      className="text-greyscale-text-body"
     />
   );
 
   return (
-    <div
-      className={cn(
-        isActive ? "border-l-4 border-primary-surface-default" : "",
-        "w-full justify-start"
-      )}
+    <Button
+      variant={isActive ? "secondary" : "ghost"}
+      className="w-full justify-start"
+      iconPlacement="left"
+      icon={() => icon}
+      disabled={!canNavigate}
+      onClick={onClick}
     >
-      <Button
-        variant="ghost"
-        className="w-full justify-start"
-        iconPlacement="left"
-        icon={() => icon}
-        disabled={!canNavigate}
-        onClick={onClick}
-      >
-        {label}
-      </Button>
-    </div>
+      {label}
+    </Button>
   );
 };
 

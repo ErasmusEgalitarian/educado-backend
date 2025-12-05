@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FieldValues } from "react-hook-form";
+import { FieldValues, useController } from "react-hook-form";
 
 import { Textarea } from "../shadcn/textarea";
 
@@ -23,6 +23,10 @@ export const FormTextarea = <TFieldValues extends FieldValues>({
   hintTooltip,
   ...textareaProps
 }: FormTextareaProps<TFieldValues>) => {
+    const { field, fieldState } = useController({
+    control,
+    name: fieldName as any,
+  });
   return (
     <FormElementWrapper
       control={control}
@@ -36,7 +40,9 @@ export const FormTextarea = <TFieldValues extends FieldValues>({
       hintTooltip={hintTooltip}
       childProps={{ inputSize, ...textareaProps }}
     >
-      <Textarea inputSize={inputSize} {...textareaProps} />
+      <Textarea inputSize={inputSize} 
+      {...field}
+      {...textareaProps} />
     </FormElementWrapper>
   );
 };
