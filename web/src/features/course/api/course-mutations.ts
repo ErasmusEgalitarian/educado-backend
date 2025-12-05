@@ -118,6 +118,8 @@ export const useUpdateCourseMutation = () => {
   });
 };
 
+      
+
 /**
  * Publish a course (change from draft to published)
  * Used in the review step to make the course visible to students
