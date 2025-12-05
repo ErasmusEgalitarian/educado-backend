@@ -53,12 +53,6 @@
       "target": "api::feedback.feedback",
       "mappedBy": "course"
     },
-    "course_sections": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::course-selection.course-selection",
-      "mappedBy": "course"
-    },
     "course_categories": {
       "type": "relation",
       "relation": "manyToMany",
@@ -75,6 +69,10 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::course-enrollment-relation.course-enrollment-relation",
+    "course_sections": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course-section.course-section",
       "mappedBy": "course"
     },
     "admin_control_at": {
