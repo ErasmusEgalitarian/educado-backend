@@ -155,8 +155,8 @@ jobs:
       - name: Install dependencies (from root)
         run: |
           npm ci --no-audit --no-fund
-          # Install musl-compatible native binaries for Alpine
-          npm install @swc/core-linux-x64-musl --no-save --no-audit --no-fund || true
+          # Install musl-compatible native binaries for Alpine (SWC for TypeScript, Rollup for Vite/admin build)
+          npm install @swc/core-linux-x64-musl @rollup/rollup-linux-x64-musl --no-save --no-audit --no-fund || true
 
       - name: Build
         run: npm run build --workspace=strapi
