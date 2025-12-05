@@ -1,16 +1,15 @@
 /**
- * course-selection controller
+ * activity controller
  */
 
-// src/api/course-selection/controllers/course-selection.ts
 import { factories } from '@strapi/strapi';
 
 export default factories.createCoreController(
-  'api::course-selection.course-selection',
+  'api::activity.activity',
   ({ strapi }) => ({
     async find(ctx) {
       const { results, pagination } = await strapi
-        .service('api::course-selection.course-selection')
+        .service('api::activity.activity')
         .find({
           ...ctx.query,
         });
@@ -22,7 +21,7 @@ export default factories.createCoreController(
       const { id } = ctx.params;
 
       const result = await strapi
-        .documents('api::course-selection.course-selection')
+        .documents('api::activity.activity')
         .findOne({
           documentId: id,
           ...ctx.query,
