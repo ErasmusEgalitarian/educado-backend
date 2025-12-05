@@ -6711,6 +6711,10 @@ export const zErrorResponse = z.object({
     status: z.number().int().optional()
 });
 
+export const zAverageCourseFeedback = z.object({
+    total: z.number()
+});
+
 export const zJwtResponse = z.object({
     accessToken: z.string().optional(),
     userInfo: z.object({
@@ -8401,6 +8405,19 @@ export const zPostCourseStatisticsRequest = z.object({
  * Aggregated statistics object
  */
 export const zPostCourseStatisticsResponse = zCourseStatisticsResponse;
+
+export const zGetCourseStatisticsByCourseIdAverageRequest = z.object({
+    body: z.never().optional(),
+    path: z.object({
+        courseId: z.string()
+    }),
+    query: z.never().optional()
+});
+
+/**
+ * OK - Average rating
+ */
+export const zGetCourseStatisticsByCourseIdAverageResponse = zAverageCourseFeedback;
 
 export const zGetCcDashboardActivityRequest = z.object({
     body: z.never().optional(),

@@ -9,5 +9,14 @@ module.exports = {
         auth: false,
       },
     },
+    {
+      method: "GET",
+      path: "/course-statistics/:courseId/average",
+      handler: "course-statistics-feedback.getAverageCourseFeedback",
+      config: {
+        policies: ['global::is-content-creator'],
+        auth: false,
+      },
+    },
   ],
 };

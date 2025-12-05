@@ -1,0 +1,57 @@
+
+{
+	"paths": {
+		"/course-statistics/{courseId}/average": {
+			"get": {
+				"tags": ["CourseStatistics"],
+				"summary": "Get average feedback rating for a course",
+				"description": "Returns the average feedback rating (1 decimal) for the specified course.",
+				"parameters": [
+					{
+						"name": "courseId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"description": "The `documentId` of the course to calculate the average feedback for"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK - Average rating",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AverageCourseFeedback"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request - missing or invalid `courseId`"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"AverageCourseFeedback": {
+				"type": "object",
+        "required": ["total"],
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "float",
+						"example": 4.2,
+						"description": "Average rating rounded to 1 decimal place"
+					}
+				}
+			}
+		}
+	}
+}
