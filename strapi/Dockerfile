@@ -27,12 +27,12 @@ RUN npm install -g node-gyp
 
 # Install dependencies, then explicitly install musl-compatible native binaries
 # This fixes native module issues on Alpine:
-# - @swc/core for TypeScript compilation
-# - @rollup for Vite/admin build
-# - sharp for image processing (used by @strapi/upload)
+# - @swc/core for TypeScript compilation (explicit musl package)
+# - @rollup for Vite/admin build (explicit musl package)  
+# - @img/sharp-linuxmusl-x64 for sharp image processing (explicit musl prebuilt binary)
 RUN npm config set fetch-retry-maxtimeout 600000 -g && \
     npm ci && \
-    npm install @swc/core-linux-x64-musl @rollup/rollup-linux-x64-musl sharp --os=linux --libc=musl --cpu=x64 --no-save || true
+    npm install @swc/core-linux-x64-musl @rollup/rollup-linux-x64-musl @img/sharp-linuxmusl-x64 --no-save
 
 # Stage 3: Build the application
 FROM node:22-alpine AS builder
