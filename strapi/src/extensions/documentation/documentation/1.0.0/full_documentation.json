@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-12-05T11:03:17.003Z"
+    "x-generation-date": "2025-12-06T16:59:59.776Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -10327,9 +10327,9 @@
                               "statusValue": {
                                 "type": "string",
                                 "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
+                                  "PENDING",
+                                  "APPROVED",
+                                  "REJECTED"
                                 ]
                               },
                               "courseExperience": {
@@ -10538,6 +10538,9 @@
                                     }
                                   }
                                 }
+                              },
+                              "isAdmin": {
+                                "type": "boolean"
                               },
                               "createdAt": {
                                 "type": "string",
@@ -11271,9 +11274,9 @@
               "statusValue": {
                 "type": "string",
                 "enum": [
-                  "TODO1",
-                  "TODO2",
-                  "TODO3"
+                  "PENDING",
+                  "APPROVED",
+                  "REJECTED"
                 ]
               },
               "courseExperience": {
@@ -11348,6 +11351,9 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "isAdmin": {
+                "type": "boolean"
               },
               "locale": {
                 "type": "string"
@@ -11456,9 +11462,9 @@
           "statusValue": {
             "type": "string",
             "enum": [
-              "TODO1",
-              "TODO2",
-              "TODO3"
+              "PENDING",
+              "APPROVED",
+              "REJECTED"
             ]
           },
           "courseExperience": {
@@ -12639,9 +12645,9 @@
                                     "statusValue": {
                                       "type": "string",
                                       "enum": [
-                                        "TODO1",
-                                        "TODO2",
-                                        "TODO3"
+                                        "PENDING",
+                                        "APPROVED",
+                                        "REJECTED"
                                       ]
                                     },
                                     "courseExperience": {
@@ -12781,6 +12787,9 @@
                                           }
                                         }
                                       }
+                                    },
+                                    "isAdmin": {
+                                      "type": "boolean"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -13301,6 +13310,9 @@
                 }
               }
             }
+          },
+          "isAdmin": {
+            "type": "boolean"
           },
           "createdAt": {
             "type": "string",
@@ -14802,9 +14814,9 @@
                           "statusValue": {
                             "type": "string",
                             "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
+                              "PENDING",
+                              "APPROVED",
+                              "REJECTED"
                             ]
                           },
                           "courseExperience": {
@@ -15291,6 +15303,9 @@
                                 }
                               }
                             }
+                          },
+                          "isAdmin": {
+                            "type": "boolean"
                           },
                           "createdAt": {
                             "type": "string",
@@ -17215,9 +17230,9 @@
                       "statusValue": {
                         "type": "string",
                         "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
+                          "PENDING",
+                          "APPROVED",
+                          "REJECTED"
                         ]
                       },
                       "courseExperience": {
@@ -17357,6 +17372,9 @@
                             }
                           }
                         }
+                      },
+                      "isAdmin": {
+                        "type": "boolean"
                       },
                       "createdAt": {
                         "type": "string",
@@ -19165,9 +19183,9 @@
                     "statusValue": {
                       "type": "string",
                       "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
+                        "PENDING",
+                        "APPROVED",
+                        "REJECTED"
                       ]
                     },
                     "courseExperience": {
@@ -19307,6 +19325,9 @@
                           }
                         }
                       }
+                    },
+                    "isAdmin": {
+                      "type": "boolean"
                     },
                     "createdAt": {
                       "type": "string",
@@ -20965,9 +20986,9 @@
                     "statusValue": {
                       "type": "string",
                       "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
+                        "PENDING",
+                        "APPROVED",
+                        "REJECTED"
                       ]
                     },
                     "courseExperience": {
@@ -21107,6 +21128,9 @@
                           }
                         }
                       }
+                    },
+                    "isAdmin": {
+                      "type": "boolean"
                     },
                     "createdAt": {
                       "type": "string",
@@ -21418,9 +21442,9 @@
               "statusValue": {
                 "type": "string",
                 "enum": [
-                  "TODO1",
-                  "TODO2",
-                  "TODO3"
+                  "PENDING",
+                  "APPROVED",
+                  "REJECTED"
                 ]
               },
               "courseExperience": {
@@ -23106,6 +23130,9 @@
                     }
                   }
                 }
+              },
+              "isAdmin": {
+                "type": "boolean"
               },
               "createdAt": {
                 "type": "string",
@@ -26018,9 +26045,9 @@
                     "statusValue": {
                       "type": "string",
                       "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
+                        "PENDING",
+                        "APPROVED",
+                        "REJECTED"
                       ]
                     },
                     "courseExperience": {
@@ -26160,6 +26187,9 @@
                           }
                         }
                       }
+                    },
+                    "isAdmin": {
+                      "type": "boolean"
                     },
                     "createdAt": {
                       "type": "string",
@@ -28393,9 +28423,9 @@
                           "statusValue": {
                             "type": "string",
                             "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
+                              "PENDING",
+                              "APPROVED",
+                              "REJECTED"
                             ]
                           },
                           "courseExperience": {
@@ -28882,6 +28912,9 @@
                                 }
                               }
                             }
+                          },
+                          "isAdmin": {
+                            "type": "boolean"
                           },
                           "createdAt": {
                             "type": "string",
@@ -30411,9 +30444,9 @@
                               "statusValue": {
                                 "type": "string",
                                 "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
+                                  "PENDING",
+                                  "APPROVED",
+                                  "REJECTED"
                                 ]
                               },
                               "courseExperience": {
@@ -30622,6 +30655,9 @@
                                     }
                                   }
                                 }
+                              },
+                              "isAdmin": {
+                                "type": "boolean"
                               },
                               "createdAt": {
                                 "type": "string",
