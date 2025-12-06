@@ -30,7 +30,7 @@ export const CourseQueryFunction = (courseId: string) => ({
           "publishedAt",
         ],
         // Use "*" to populate all relations with their full data including nested fields
-        populate: "course_categories",
+        populate: ["course_categories", "course_sections"],
       },
     });
 
