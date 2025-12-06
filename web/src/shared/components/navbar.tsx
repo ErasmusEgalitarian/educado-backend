@@ -56,7 +56,6 @@ export const Navbar = () => {
   const { clearToken } = useAuthStore((state) => state);
   const [ open, setOpen ] = useState(false)
   const { preferences, setPreferences } = useAuth();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { notifications, setNotifications } = useNotifications();
   const { t } = useTranslation();
   // Logout handler

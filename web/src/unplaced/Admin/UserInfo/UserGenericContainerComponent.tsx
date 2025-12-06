@@ -7,7 +7,7 @@ import AdminServices from "../../services/admin.services";
 import AuthServices from "../../services/auth.services";
 
 import "react-toastify/dist/ReactToastify.css";
-import GenericModalComponent from "@/shared/components/GenericModalComponent";
+import GenericModalComponent from "@/shared/components/generic-modal-component.tsx";
 /*
 This code bassicly extends the GenericModalCompoent
 Where we re use the GenericMopdalComponent, but with the help of the, we add

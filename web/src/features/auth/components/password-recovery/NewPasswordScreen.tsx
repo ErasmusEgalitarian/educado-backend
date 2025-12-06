@@ -2,7 +2,7 @@ import { mdiCheck } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { useEffect, useState } from "react";
 
-import PasswordEye from "@/shared/components/PasswordEye";
+import PasswordEye from "@/shared/components/password-eye.tsx";
 import TextInput from "@/shared/components/TextInput";
 
 interface propsType {

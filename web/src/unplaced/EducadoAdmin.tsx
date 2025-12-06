@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Layout from "../shared/components/Layout";
+import Layout from "@/shared/components/layout.tsx";
 import { InstitutionsTableAdmin } from "./Admin/Institutions/InstitutionsTableAdmin";
 import { UsersTableAdmin } from "./Admin/Users/UsersTableAdmin";
 

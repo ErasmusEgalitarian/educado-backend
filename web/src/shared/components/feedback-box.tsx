@@ -26,7 +26,7 @@ const FeedbackBox: React.FC<FeedbackBoxProps> = ({ id, token }) => {
       if (id !== "" && token !== "") {
         try {
           const response = await CourseServices.getCourseFeedback(
-            `${BACKEND_URL}/api/feedback/${id}`,
+            `${String(BACKEND_URL)}/api/feedback/${id}`,
             token,
           );
           setFeedbacks(response.data);
@@ -38,7 +38,7 @@ const FeedbackBox: React.FC<FeedbackBoxProps> = ({ id, token }) => {
       }
     };
 
-    fetchFeedbacks();
+    void fetchFeedbacks();
   }, [id, token]);
 
   if (loading) return <Loading />;

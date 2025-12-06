@@ -8,7 +8,7 @@ import { Lecture } from "@/course/types/Course";
 import { useApi } from "@/shared/hooks/useAPI";
 import { convertSrcToFile } from "@/shared/lib/fileHelpers";
 
-import { ModalButtonCompont } from "../../../shared/components/ModalButtonCompont";
+import { ModalButtonCompont } from "@/shared/components/modal-button-compont.tsx";
 import RichTextEditor from "../../../shared/components/RichTextEditor";
 import { useNotifications } from "../../../shared/context/NotificationContext";
 import StorageServices from "../../../unplaced/services/storage.services";

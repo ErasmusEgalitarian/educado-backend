@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import { useExercises } from "@/course/context/courseStore";
 import { Exercise } from "@/course/types/Course";
-import { ModalButtonCompont } from "@/shared/components/ModalButtonCompont";
+import { ModalButtonCompont } from "@/shared/components/modal-button-compont.tsx";
 import { useNotifications } from "@/shared/context/NotificationContext";
 
 import { Answer } from "../types/Answer";

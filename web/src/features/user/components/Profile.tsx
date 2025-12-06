@@ -12,8 +12,8 @@ import useAuthStore from "@/auth/hooks/useAuthStore";
 import { tempObjects } from "@/shared/lib/formStates";
 import { contentCreatorGetContentCreatorsById, contentCreatorPutContentCreatorsById } from "@/shared/api/sdk.gen";
 
-import GenericModalComponent from "../../../shared/components/GenericModalComponent";
-import Layout from "../../../shared/components/Layout";
+import GenericModalComponent from "@/shared/components/generic-modal-component.tsx";
+import Layout from "@/shared/components/layout.tsx";
 import { useApi } from "../../../shared/hooks/useAPI";
 import dynamicForms from "../../../unplaced/dynamicForms";
 import AccountServices from "../../../unplaced/services/account.services";

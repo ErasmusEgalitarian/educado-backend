@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 import { getUserToken } from "@/auth/lib/userInfo";
-import GenericModalComponent from "@/shared/components/GenericModalComponent";
+import GenericModalComponent from "@/shared/components/generic-modal-component.tsx";
 import { useNotifications } from "@/shared/context/NotificationContext";
 import { useApi } from "@/shared/hooks/useAPI";
 import AdminServices from "@/unplaced/services/admin.services";

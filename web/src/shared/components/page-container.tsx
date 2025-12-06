@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { useDocumentTitle } from "../hooks/use-document-title";
 
 import { ErrorBoundary } from "./error/error-boundary";
-import { Navbar } from "./Navbar";
+import { Navbar } from "./navbar.tsx";
 
 export const PageContainer = ({
   children,

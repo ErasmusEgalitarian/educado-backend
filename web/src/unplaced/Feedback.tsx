@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import Layout from "../shared/components/Layout";
+import Layout from "@/shared/components/layout.tsx";
 
 const Feedback = () => {
   const [feedbackList, setFeedbackList] = useState<

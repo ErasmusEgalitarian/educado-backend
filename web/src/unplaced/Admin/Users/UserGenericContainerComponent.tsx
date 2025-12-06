@@ -2,7 +2,7 @@
 import { FC, useState } from "react";
 import { toast } from "react-toastify";
 
-import GenericModalComponent from "@/shared/components/GenericModalComponent";
+import GenericModalComponent from "@/shared/components/generic-modal-component.tsx";
 import AdminServices from "@/unplaced/services/admin.services";
 import AuthServices from "@/unplaced/services/auth.services";
 
