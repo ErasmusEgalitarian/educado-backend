@@ -317,6 +317,10 @@ const CourseEditorInformation = forwardRef<
               successMessage={
                 isEditMode ? t("common.updated") : t("common.created")
               }
+              onSuccessComplete={() => {
+                createMutation.reset();
+                updateMutation.reset();
+              }}
             >
               <div className="flex flex-col gap-y-5">
                 <FormInput
