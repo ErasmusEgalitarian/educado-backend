@@ -82,6 +82,18 @@ export const ImageFullscreenPreview = ({
     }
   }, [isOpen]);
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   // Handle zoom
   const handleZoomIn = () => {
     setScale((prev) => Math.min(prev + 0.5, 5));
@@ -208,9 +220,10 @@ export const ImageFullscreenPreview = ({
     >
       <button
         type="button"
-        className="absolute inset-0 bg-black/95 border-none"
+        className="absolute h-screen inset-0 bg-black/95 border-none"
         onClick={onClose}
         onKeyDown={(e) => {
+          e.stopPropagation();
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             onClose();

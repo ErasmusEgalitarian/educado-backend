@@ -29,6 +29,8 @@ interface MediaPickerModalProps {
   fileTypes?: MediaFileType | MediaFileType[];
   /** Maximum number of files for upload. Defaults to 1. */
   maxFiles?: number;
+  /** Maximum file size in bytes. */
+  maxFileSize?: number;
 }
 
 const MediaPickerModal = ({
@@ -37,6 +39,7 @@ const MediaPickerModal = ({
   onSelect,
   fileTypes,
   maxFiles = 1,
+  maxFileSize,
 }: MediaPickerModalProps) => {
   const { t } = useTranslation();
   const [selectedAsset, setSelectedAsset] = useState<UploadFile | null>(null);
@@ -66,7 +69,7 @@ const MediaPickerModal = ({
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="w-[98vw]! h-[85vh]! max-w-none! p-6 flex flex-col overflow-hidden">
         <Tabs
-          defaultValue="enviar"
+          defaultValue="banco"
           className="w-full h-full flex flex-col min-h-0"
         >
           <TabsList className="shrink-0 w-full grid grid-cols-2 bg-transparent p-0 rounded-none">
@@ -92,6 +95,7 @@ const MediaPickerModal = ({
                 <MediaUploadZone
                   fileTypes={fileTypes}
                   maxFiles={maxFiles}
+                  maxFileSize={maxFileSize}
                   onUploadComplete={handleUploadComplete}
                   uploadButtonLabel={t("media.uploadOnly")}
                   secondaryAction={{

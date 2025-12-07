@@ -49,7 +49,7 @@ const MediaOverviewPage = () => {
           </CardHeader>
           <CardContent>
             {showUploader && (
-              <div className="mb-6 space-y-4">
+              <div className="mb-6 space-y-4 w-full">
                 <MediaUploadZone
                   onUploadComplete={() => {
                     void handleUploadComplete();
