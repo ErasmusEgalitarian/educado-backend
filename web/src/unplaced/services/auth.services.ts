@@ -49,13 +49,13 @@ const GetSingleCCApplication = async (id: string | undefined) => {
 };
 
 const AcceptApplication = async (id: string): Promise<unknown> => {
-    axios.patch(`${BACKEND_URL}/api/content-creators/${id}/status`, {
+    return axios.patch(`${BACKEND_URL}/api/content-creators/${id}/status`, {
         statusValue: "APPROVED",
     });
 };
 
-    const RejectApplication = (id: string, rejectionReason: string) => {
-        axios.patch(`${BACKEND_URL}/api/content-creators/${id}/status`, {
+    const RejectApplication = async (id: string, rejectionReason: string) => {
+        return axios.patch(`${BACKEND_URL}/api/content-creators/${id}/status`, {
             statusValue: "REJECTED",
             rejectionReason,
         });
