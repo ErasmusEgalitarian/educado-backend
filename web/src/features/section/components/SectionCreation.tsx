@@ -9,7 +9,7 @@ import { SectionList } from "@/shared/components/dnd/SectionList";
 import GenericModalComponent from "@/shared/components/generic-modal-component.tsx";
 import Layout from "@/shared/components/layout.tsx";
 import Loading from "../../../shared/components/Loading";
-import { ToolTipIcon } from "../../../shared/components/ToolTip/ToolTipIcon";
+import { ToolTipIcon } from "@/shared/components/ToolTip/tool-tip-icon.tsx";
 import { useNotifications } from "../../../shared/context/NotificationContext";
 import { useApi } from "../../../shared/hooks/useAPI";
 import CourseService from "../../../unplaced/services/course.services";

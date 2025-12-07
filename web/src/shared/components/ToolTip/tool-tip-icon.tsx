@@ -3,14 +3,14 @@
 import { mdiInformationSlabCircleOutline } from "@mdi/js";
 import { Icon } from "@mdi/react";
 
-import { ToolTipInfoBox } from "./ToolTipInfoBox";
+import { ToolTipInfoBox } from "./tool-tip-info-box.tsx";
 
 interface Inputs {
   index: number;
   toolTipIndex: number;
   text: string;
   tooltipAmount: number;
-  callBack: Function;
+  callBack: (index: number) => void;
   alignLeftTop: boolean; // New optional prop
 }
 
@@ -25,9 +25,9 @@ export const ToolTipIcon = ({
 }: Inputs) => {
   return (
     <div
-      id={`tooltipIcon${index}`}
+      id={`tooltipIcon${String(index)}`}
       className="flex flex-row space-y-2 text-left"
-      onMouseOver={() => callBack(index)}
+      onMouseOver={() => { callBack(index); }}
     >
       <Icon
         path={mdiInformationSlabCircleOutline}

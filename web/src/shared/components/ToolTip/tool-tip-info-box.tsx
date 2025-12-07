@@ -8,7 +8,7 @@ interface Inputs {
   textContent: string;
   myIndex: number;
   maxIndex: number;
-  callBack: Function;
+  callBack: (value: number) => void;
 }
 
 // ToolTip component
@@ -61,7 +61,7 @@ export const ToolTipInfoBox = ({
             >
               Feshar
             </label>
-          </div>
+           </div>
         ) : // If it is the last page, show the "Voltar/Back" "Feshar/Finish" button
         myIndex === maxIndex - 1 ? (
           <div className="flex w-1/3 space-x-40">

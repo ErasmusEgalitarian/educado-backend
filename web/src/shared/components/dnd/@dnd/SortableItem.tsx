@@ -19,7 +19,7 @@ import { CreateLecture } from "@/lecture/components/CreateLecturePopUp";
 import { SectionArrowIcon } from "@/section/components/SectionArrowIcon";
 import SectionServices from "@/unplaced/services/section.services";
 
-import { ToolTipIcon } from "../../ToolTip/ToolTipIcon";
+import { ToolTipIcon } from "../../ToolTip/tool-tip-icon.tsx";
 import { ComponentList } from "../ComponentList";
 
 interface Props {
