@@ -1,9 +1,7 @@
 import { mdiPlus } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useParams } from "react-router-dom";
 
-import { getUserToken } from "@/auth/lib/userInfo";
 import { useSections } from "@/course/context/courseStore";
 
 interface Inputs {
@@ -11,14 +9,12 @@ interface Inputs {
 }
 
 export const SectionForm = () => {
-  const token = getUserToken();
-  const { id } = useParams();
 
   const { createNewSection } = useSections();
   // React useForm setup
   const { handleSubmit } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = () => {
     createNewSection();
   };
 

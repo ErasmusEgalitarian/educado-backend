@@ -3,12 +3,12 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 
 import { useCourseManagingHelper } from "@/course/hooks/useCourseManagingHelper";
-import { SectionForm } from "@/shared/components/dnd/SectionForm";
-import { SectionList } from "@/shared/components/dnd/SectionList";
+import { SectionForm } from "@/shared/components/dnd/section-form.tsx";
+import { SectionList } from "@/shared/components/dnd/section-list.tsx";
 
 import GenericModalComponent from "@/shared/components/generic-modal-component.tsx";
 import Layout from "@/shared/components/layout.tsx";
-import Loading from "../../../shared/components/Loading";
+import Loading from "@/shared/components/loading.tsx";
 import { ToolTipIcon } from "@/shared/components/ToolTip/tool-tip-icon.tsx";
 import { useNotifications } from "../../../shared/context/NotificationContext";
 import { useApi } from "../../../shared/hooks/useAPI";

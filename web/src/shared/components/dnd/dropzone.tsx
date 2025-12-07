@@ -34,8 +34,8 @@ export const Dropzone: FC<DropzoneProps> = ({
     }
   }, [previewFile]);
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.item(0) || null;
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const selectedFile = e.target.files?.item(0) ?? null;
 
     if (!selectedFile) {
       setPreview(null);
@@ -68,7 +68,7 @@ export const Dropzone: FC<DropzoneProps> = ({
   // Cleanup URLs on unmount
   useEffect(() => {
     return () => {
-      if (preview && preview.startsWith("blob:")) {
+      if (preview?.startsWith("blob:")) {
         URL.revokeObjectURL(preview);
       }
     };

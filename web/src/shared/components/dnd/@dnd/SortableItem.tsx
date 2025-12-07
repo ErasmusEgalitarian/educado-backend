@@ -20,7 +20,7 @@ import { SectionArrowIcon } from "@/section/components/SectionArrowIcon";
 import SectionServices from "@/unplaced/services/section.services";
 
 import { ToolTipIcon } from "../../ToolTip/tool-tip-icon.tsx";
-import { ComponentList } from "../ComponentList";
+import { ComponentList } from "../component-list.tsx";
 
 interface Props {
   sid: string;

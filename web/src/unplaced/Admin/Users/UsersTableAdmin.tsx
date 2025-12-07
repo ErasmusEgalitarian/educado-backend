@@ -9,7 +9,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 
 import { getUserToken } from "@/auth/lib/userInfo";
-import Loading from "@/shared/components/Loading";
+import Loading from "@/shared/components/loading.tsx";
 import AdminServices from "@/unplaced/services/admin.services";
 import ViewUserButton from "@/unplaced/ViewUserButton";
 import { ContentCreator } from "@/user/types/ContentCreator";

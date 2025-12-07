@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import CourseServices from "../../unplaced/services/course.services";
 import { BACKEND_URL } from "../config/environment";
 
-import Loading from "./Loading";
+import Loading from "./loading.tsx";
 
 interface Feedback {
   _id: string;
