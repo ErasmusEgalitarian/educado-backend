@@ -9,7 +9,7 @@ import { useApi } from "@/shared/hooks/useAPI";
 import { convertSrcToFile } from "@/shared/lib/fileHelpers";
 
 import { ModalButtonCompont } from "@/shared/components/modal-button-compont.tsx";
-import RichTextEditor from "../../../shared/components/RichTextEditor";
+import RichTextEditor from "@/shared/components/rich-text-editor.tsx";
 import { useNotifications } from "../../../shared/context/NotificationContext";
 import StorageServices from "../../../unplaced/services/storage.services";
 

@@ -1,18 +1,18 @@
 import React from "react";
 
-interface propTypes {
-  id?: string;
-  placeholder?: string;
-  label?: string;
-  value: string;
-  onChange: (value: string) => void;
-  className?: string;
-  hidePassword?: boolean;
+interface PropTypes {
+  readonly id?: string;
+  readonly placeholder?: string;
+  readonly label?: string;
+  readonly value: string;
+  readonly onChange: (value: string) => void;
+  readonly className?: string;
+  readonly hidePassword?: boolean;
 }
 
 /**
  *
- * @param {propTypes} props properties of the component:
+ * @param {PropTypes} props properties of the component:
  * - `id` the id of the input (optional)
  * - `placeholder`: the placeholder of the input (optional)
  * - `label`: the label of the input (optional)
@@ -20,9 +20,9 @@ interface propTypes {
  * - `onChange`: the function that sets the value of the input
  * - `className`: the class of the input (optional)
  * - `hidePassword`: boolean that indicates if the input is a password (optional (false by default))
- * @returns {JSX.Element} the text input component
+ * @returns {React.JSX.Element} the text input component
  */
-export default function TextInput(props: propTypes): JSX.Element {
+const TextInput(props: Readonly<PropTypes>): React.JSX.Element => {
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     props.onChange(event.target.value);
   }
@@ -37,9 +37,11 @@ export default function TextInput(props: propTypes): JSX.Element {
         type={props.hidePassword ? "password" : "email"}
         onChange={onChange}
         value={props.value}
-        className={"w-full rounded-md mt-0" + props.className}
+        className={`w-full rounded-md mt-0 ${props.className ?? ""}`}
         placeholder={props.placeholder}
       />
     </>
   );
 }
+
+export default TextInput;

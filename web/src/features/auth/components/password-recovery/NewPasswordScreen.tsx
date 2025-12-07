@@ -3,7 +3,7 @@ import { Icon } from "@mdi/react";
 import { useEffect, useState } from "react";
 
 import PasswordEye from "@/shared/components/password-eye.tsx";
-import TextInput from "@/shared/components/TextInput";
+import TextInput from "@/shared/components/text-input.tsx";
 
 interface propsType {
   password: string;

@@ -6,7 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Component } from "@/course/types/Course";
 
 import { ModalButtonCompont } from "@/shared/components/modal-button-compont.tsx";
-import RichTextEditor from "../../../shared/components/RichTextEditor";
+import RichTextEditor from "@/shared/components/rich-text-editor.tsx";
 import { useNotifications } from "../../../shared/context/NotificationContext";
 import { useLectures, useMedia } from "../../course/context/courseStore";
 
