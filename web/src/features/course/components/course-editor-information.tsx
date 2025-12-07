@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "i18next";
@@ -13,11 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import z from "zod";
 
-import type {
-  Course,
-  CourseCategory,
-  UploadFile,
-} from "@/shared/api/types.gen";
+import type { Course, CourseCategory } from "@/shared/api/types.gen";
 import { ErrorDisplay } from "@/shared/components/error/error-display";
 import FormActions from "@/shared/components/form/form-actions";
 import { FormFileUpload } from "@/shared/components/form/form-file-upload";
@@ -61,20 +58,14 @@ export interface CourseEditorInformationRef {
 const courseBasicInfoSchema = z.object({
   title: z.string().min(1, t("validation.required")),
   difficulty: z.union([z.literal("1"), z.literal("2"), z.literal("3")]),
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   course_categories: z
     .array(z.string())
-    .min(1, t("validation.minCategories", { count: 1 }))
-    .optional()
-    .refine((val) => !val || val.length > 0, {
-      message: t("validation.minCategories", { count: 1 }),
-    }),
+    .min(1, t("validation.minCategories", { count: 1 })),
   description: z
     .string()
     .min(16, t("validation.minLength", { count: 16 }))
-    .max(400, t("validation.maxDescription", { count: 400 }))
-    .optional(),
-  image: z.custom<UploadFile>().optional(),
+    .max(400, t("validation.maxDescription", { count: 400 })),
+  image: z.custom<Course["image"]>().optional(),
 });
 
 // Infer the form type from the schema
@@ -130,18 +121,19 @@ const CourseEditorInformation = forwardRef<
       ? {
           title: "",
           difficulty: "1" as "1" | "2" | "3" | undefined,
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          course_categories: [],
+          course_categories: [] as string[],
           description: "",
+          image: undefined as Course["image"],
         }
       : {
           title: course.title,
           difficulty: String(course.difficulty) as "1" | "2" | "3",
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          course_categories: course.course_categories
-            ?.map((cat) => cat.documentId)
-            .filter((id): id is string => id !== undefined),
-          description: course.description,
+          course_categories:
+            course.course_categories
+              ?.map((cat) => cat.documentId)
+              .filter((id): id is string => id !== undefined) ?? [],
+          description: course.description ?? "",
+          image: course.image,
         };
 
   // Init form with React Hook Form + Zod
@@ -163,10 +155,12 @@ const CourseEditorInformation = forwardRef<
       form.reset({
         title: course.title,
         difficulty: String(course.difficulty) as "1" | "2" | "3",
-        categories: course.course_categories
-          ?.map((cat) => cat.documentId)
-          .filter((id): id is string => id !== undefined),
-        description: course.description,
+        course_categories:
+          course.course_categories
+            ?.map((cat) => cat.documentId)
+            .filter((id): id is string => id !== undefined) ?? [],
+        description: course.description ?? "",
+        image: course.image,
       });
     }
   }, [course, form]);
@@ -174,7 +168,7 @@ const CourseEditorInformation = forwardRef<
   // Set field error when categories fail to load
   useEffect(() => {
     if (categoriesError) {
-      form.setError("categories", {
+      form.setError("course_categories", {
         type: "manual",
         message: t("categories.loadingError"),
       });
@@ -200,20 +194,19 @@ const CourseEditorInformation = forwardRef<
 
   const onSubmit = async (values: CourseBasicInfoFormValues) => {
     try {
-      // Image is already an UploadFile from the picker, so we just use its id
-      const imageId = values.image?.id;
+      // Image comes from picker with documentId
+      const imageDocumentId = values.image?.documentId;
 
       // Edit = update mutation
-      if (isEditMode && course.documentId != null && course.documentId !== "") {
+      if (isEditMode && course.documentId) {
         // Update existing course
         const result = await updateMutation.mutateAsync({
           documentId: course.documentId,
           title: values.title,
           difficulty: Number(values.difficulty),
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          course_categories: values.categories,
+          course_categories: values.course_categories,
           description: values.description,
-          image: imageId,
+          image: imageDocumentId,
         });
 
         // Success completion handled by OverlayStatusWrapper's onSuccessComplete
@@ -227,10 +220,9 @@ const CourseEditorInformation = forwardRef<
         const result = await createMutation.mutateAsync({
           title: values.title,
           difficulty: Number(values.difficulty),
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          course_categories: values.categories ?? [],
+          course_categories: values.course_categories,
           description: values.description,
-          image: imageId,
+          image: imageDocumentId,
         });
 
         // Success completion handled by OverlayStatusWrapper's onSuccessComplete
@@ -247,9 +239,9 @@ const CourseEditorInformation = forwardRef<
   };
 
   const handleDismissCategoriesError = () => {
-    form.setFocus("categories");
+    form.setFocus("course_categories");
     // Clear the field error
-    form.clearErrors("categories");
+    form.clearErrors("course_categories");
     // Retry fetching categories
     void refetchCategories();
   };
@@ -286,11 +278,11 @@ const CourseEditorInformation = forwardRef<
   };
 
   if (categoriesError) {
-    form.setFocus("categories");
+    form.setFocus("course_categories");
   }
 
   return (
-    <>
+    <Form {...form}>
       {/* Loading state and error states for categories are passed as props to the card. Mutations are handled inside the card, and through wrapper */}
       <Card
         errorProps={{
@@ -305,149 +297,151 @@ const CourseEditorInformation = forwardRef<
           ],
         }}
       >
-        <Form {...form}>
-          <form
-            id="course-information-form"
-            onSubmit={(e) => {
-              void form.handleSubmit(onSubmit)(e);
-            }}
-          >
-            <CardContent>
-              {/* The overlay replaces the content by measuring height. */}
-              <OverlayStatusWrapper
-                isLoading={mutationLoading}
-                isSuccess={mutationSuccess}
-                loadingMessage={
-                  isEditMode ? t("common.updating") : t("common.creating")
-                }
-                successMessage={
-                  isEditMode ? t("common.updated") : t("common.created")
-                }
-                onSuccessComplete={() => {
-                  createMutation.reset();
-                  updateMutation.reset();
-                }}
-              >
-                <div className="flex flex-col gap-y-5">
-                  <FormInput
+        <form
+          id="course-information-form"
+          onSubmit={(e) => {
+            void form.handleSubmit(onSubmit)(e);
+          }}
+        >
+          <CardContent>
+            {/* The overlay replaces the content by measuring height. */}
+            <OverlayStatusWrapper
+              isLoading={mutationLoading}
+              isSuccess={mutationSuccess}
+              loadingMessage={
+                isEditMode ? t("common.updating") : t("common.creating")
+              }
+              successMessage={
+                isEditMode ? t("common.updated") : t("common.created")
+              }
+              onSuccessComplete={() => {
+                createMutation.reset();
+                updateMutation.reset();
+              }}
+            >
+              <div className="flex flex-col gap-y-5">
+                <FormInput
+                  control={form.control}
+                  fieldName="title"
+                  inputSize="md"
+                  label={t("courseEditor.courseName")}
+                  placeholder={t("courseEditor.courseNamePlaceholder")}
+                  type="text"
+                  isRequired
+                />
+
+                <div className="flex items-start gap-8 w-full">
+                  {/*Field to select a level from a list of options*/}
+                  <div className="flex flex-col w-1/2 space-y-2 text-left ">
+                    <FormSelect
+                      control={form.control}
+                      inputSize="md"
+                      isRequired
+                      fieldName="difficulty"
+                      label={t("courseEditor.level")}
+                      placeholder={t("courseEditor.selectLevel")}
+                      options={Array.from({ length: 3 }, (_, i) => i + 1).map(
+                        (num) => {
+                          return {
+                            label: difficultyToTranslation(t, num),
+                            value: String(num),
+                          };
+                        }
+                      )}
+                    />
+                  </div>
+
+                  {/*Field to choose a category from a list of options*/}
+                  <div className="flex flex-col w-1/2 space-y-2 text-left">
+                    {(() => {
+                      let placeholder = t("categories.select");
+                      if (categoriesLoading) {
+                        placeholder = t("common.loading") + "...";
+                      } else if (categoriesError) {
+                        placeholder = t("common.error");
+                      }
+                      return (
+                        <FormMultiSelect
+                          ref={multiInputRef}
+                          fieldName="course_categories"
+                          control={form.control}
+                          label={t("categories.categories")}
+                          placeholder={placeholder}
+                          options={data.map((category) => ({
+                            label: category.name,
+                            value: category.documentId ?? "",
+                          }))}
+                          onCreateClick={() => {
+                            setIsModalOpen(true);
+                          }}
+                          createLabel={t("categories.create")}
+                        />
+                      );
+                    })()}
+                  </div>
+                </div>
+
+                {/*Field to input the description of the course*/}
+                <div>
+                  <FormTextarea
                     control={form.control}
-                    fieldName="title"
-                    inputSize="md"
-                    label={t("courseEditor.courseName")}
-                    placeholder={t("courseEditor.courseNamePlaceholder")}
-                    type="text"
+                    fieldName="description"
+                    inputSize="sm"
+                    label={t("courseEditor.description")}
+                    placeholder={t("courseEditor.descriptionPlaceholder")}
+                    maxLength={400}
+                    rows={4}
                     isRequired
                   />
-
-                  <div className="flex items-start gap-8 w-full">
-                    {/*Field to select a level from a list of options*/}
-                    <div className="flex flex-col w-1/2 space-y-2 text-left ">
-                      <FormSelect
-                        control={form.control}
-                        inputSize="md"
-                        isRequired
-                        fieldName="difficulty"
-                        label={t("courseEditor.level")}
-                        placeholder={t("courseEditor.selectLevel")}
-                        options={Array.from({ length: 3 }, (_, i) => i + 1).map(
-                          (num) => {
-                            return {
-                              label: difficultyToTranslation(t, num),
-                              value: String(num),
-                            };
-                          }
-                        )}
-                      />
-                    </div>
-
-                    {/*Field to choose a category from a list of options*/}
-                    <div className="flex flex-col w-1/2 space-y-2 text-left">
-                      {(() => {
-                        let placeholder = t("categories.select");
-                        if (categoriesLoading) {
-                          placeholder = t("common.loading") + "...";
-                        } else if (categoriesError) {
-                          placeholder = t("common.error");
-                        }
-                        return (
-                          <FormMultiSelect
-                            ref={multiInputRef}
-                            fieldName="categories"
-                            control={form.control}
-                            label={t("categories.categories")}
-                            placeholder={placeholder}
-                            options={data.map((category) => ({
-                              label: category.name,
-                              value: category.documentId ?? "",
-                            }))}
-                            onCreateClick={() => {
-                              setIsModalOpen(true);
-                            }}
-                            createLabel={t("categories.create")}
-                          />
-                        );
-                      })()}
-                    </div>
+                  <div className="text-right text-sm mt-1 text-greyscale-text-caption">
+                    {form.watch("description").length} / 400{" "}
+                    {t("courseEditor.characters")}
                   </div>
-
-                  {/*Field to input the description of the course*/}
-                  <div>
-                    <FormTextarea
-                      control={form.control}
-                      fieldName="description"
-                      inputSize="sm"
-                      label={t("courseEditor.description")}
-                      placeholder={t("courseEditor.descriptionPlaceholder")}
-                      maxLength={400}
-                      rows={4}
-                      isRequired
-                    />
-                    <div className="text-right text-sm mt-1 text-greyscale-text-caption">
-                      {form.watch("description")?.length ?? 0} / 400{" "}
-                      {t("courseEditor.characters")}
-                    </div>
-                  </div>
-
-                  <FormFileUpload
-                    fileTypes="image"
-                    control={form.control}
-                    name="image"
-                    maxFiles={1}
-                  />
-
-                  {/* Show mutation errors inline, so the form doesnt disappear */}
-                  {mutationError && (
-                    <ErrorDisplay
-                      error={mutationError}
-                      variant="bar"
-                      actions={[
-                        {
-                          label: t("common.dismiss"),
-                          onClick: () => {
-                            createMutation.reset();
-                            updateMutation.reset();
-                          },
-                        },
-                      ]}
-                    />
-                  )}
-                  {categoriesError && (
-                    <ErrorDisplay
-                      error={toAppError(categoriesError)}
-                      variant="bar"
-                      actions={[
-                        {
-                          label: `${t("common.retry")} ${t("common.loading").toLowerCase()} ${t("categories.categories").toLowerCase()}`,
-                          onClick: handleDismissCategoriesError,
-                        },
-                      ]}
-                    />
-                  )}
                 </div>
-              </OverlayStatusWrapper>
-            </CardContent>
-          </form>
-        </Form>
+
+                <FormFileUpload
+                  fileTypes="image"
+                  control={form.control}
+                  name="image"
+                  maxFiles={1}
+                  maxFileSize={10 * 1024 * 1024}
+                  label={t("courseEditor.coverImage")}
+                  description={t("media.maxFileSizeHint", { maxSize: 10 })}
+                  isRequired
+                />
+
+                {/* Show mutation errors inline, so the form doesnt disappear */}
+                {mutationError && (
+                  <ErrorDisplay
+                    error={mutationError}
+                    variant="bar"
+                    actions={[
+                      {
+                        label: t("common.dismiss"),
+                        onClick: () => {
+                          createMutation.reset();
+                          updateMutation.reset();
+                        },
+                      },
+                    ]}
+                  />
+                )}
+                {categoriesError && (
+                  <ErrorDisplay
+                    error={toAppError(categoriesError)}
+                    variant="bar"
+                    actions={[
+                      {
+                        label: `${t("common.retry")} ${t("common.loading").toLowerCase()} ${t("categories.categories").toLowerCase()}`,
+                        onClick: handleDismissCategoriesError,
+                      },
+                    ]}
+                  />
+                )}
+              </div>
+            </OverlayStatusWrapper>
+          </CardContent>
+        </form>
         <CategoryCreateModal
           open={isModalOpen}
           onClose={() => {
@@ -509,7 +503,7 @@ const CourseEditorInformation = forwardRef<
           },
         }}
       />
-    </>
+    </Form>
   );
 });
 

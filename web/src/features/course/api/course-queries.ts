@@ -1,4 +1,3 @@
-import { client } from "@/shared/api/client.gen";
 import { courseGetCoursesById } from "@/shared/api/sdk.gen";
 import type { Course } from "@/shared/api/types.gen";
 
@@ -29,8 +28,8 @@ export const CourseQueryFunction = (courseId: string) => ({
           "updatedAt",
           "publishedAt",
         ],
-        // Use "*" to populate all relations with their full data including nested fields
-        populate: "course_categories",
+        // Populate relations with their full data
+        populate: ["course_categories", "image"],
       },
     });
 
