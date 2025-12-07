@@ -21,7 +21,7 @@ import { useState } from "react";
 import { useSections, useCourse } from "@/course/context/courseStore";
 import { useNotifications } from "@/shared/context/NotificationContext";
 
-import { Item } from "./@dnd/Item";
+import { Item } from "./@dnd/item.tsx";
 import { SortableItem } from "./@dnd/SortableItem";
 
 interface Props {

@@ -3,8 +3,8 @@ import { mdiDotsVerticalCircle } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { forwardRef } from "react";
 
-export const Item = forwardRef(
-  ({ ...props }: { id: any }, ref: React.ForwardedRef<null>) => {
+export const Item = forwardRef(function Item(
+  { ...props }: { id: any }, ref: React.ForwardedRef<null>,) {
     return (
       <div
         {...props}

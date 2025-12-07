@@ -16,7 +16,7 @@ export const LanguageSwitcher = () => {
   const { preferences, setPreferences } = useAuth();
 
    
-  //console.log("[LanguageSwitcher] Render - preferences:", preferences, "setPreferences type:", typeof setPreferences);
+
 
   const currentLanguage = preferences.language;
   const getCurrentLanguageLabel = () => {
