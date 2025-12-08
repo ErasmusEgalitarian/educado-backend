@@ -125,7 +125,7 @@ const CourseEditorPage = () => {
       // Edit = update mutation
       if (isEditMode && docId) {
         // Update existing course
-        const result = await updateMutation.mutateAsync({
+        const result = await unPublishMutation.mutateAsync({
           documentId: docId,
           title: values.title,
           difficulty: Number(values.difficulty),
@@ -134,6 +134,9 @@ const CourseEditorPage = () => {
           image: imageId,
         });
         console.log("Updated draft course:", result);
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
       } else {
         // Create = create mutation
         await createMutation.mutateAsync({
@@ -142,11 +145,8 @@ const CourseEditorPage = () => {
           course_categories: values.categories ?? [],
           description: values.description,
           image: imageId,
+          creator_published_at: undefined,
         });
-
-        setTimeout(() => {
-          navigate("/");
-        }, 1500);
       }
     } catch (error) {
       console.error("Error saving course:", error);
