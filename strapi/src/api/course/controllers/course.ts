@@ -24,6 +24,10 @@ export default factories.createCoreController(
         documentId: id,
         ...ctx.query,
       });
+      const result = await strapi.documents("api::course.course").findOne({
+        documentId: id,
+        ...ctx.query,
+      });
 
       return this.transformResponse(result);
     },
@@ -117,14 +121,14 @@ export default factories.createCoreController(
       // Look up internal ID for image if provided
       let imageId: number | undefined;
       if (imageDocumentId) {
-        const image = await strapi.db.query('plugin::upload.file').findOne({
+        const image = await strapi.db.query("plugin::upload.file").findOne({
           where: { documentId: imageDocumentId },
         });
         imageId = image?.id;
       }
 
       // Create the course with relations
-      const result = await strapi.documents('api::course.course').create({
+      const result = await strapi.documents("api::course.course").create({
         data: {
           title: data?.title,
           description: data?.description,
@@ -132,13 +136,15 @@ export default factories.createCoreController(
           durationHours: data?.durationHours ?? 0,
           numOfRatings: data?.numOfRatings ?? 0,
           numOfSubscriptions: data?.numOfSubscriptions ?? 0,
+          creator_published_at: data?.creator_published_at,
+          admin_control_at: data?.admin_control_at,
           image: imageId,
           ...(categoryDocumentIds.length > 0 && {
             course_categories: { set: categoryDocumentIds },
           }),
         },
-        status: ctx.query?.status as 'draft' | 'published' | undefined,
-        populate: ['course_categories', 'image'],
+        status: ctx.query?.status as "draft" | "published" | undefined,
+        populate: ["course_categories", "image"],
       });
 
       return this.transformResponse(result);
@@ -155,14 +161,14 @@ export default factories.createCoreController(
       // Look up internal ID for image if provided
       let imageId: number | undefined;
       if (imageDocumentId) {
-        const image = await strapi.db.query('plugin::upload.file').findOne({
+        const image = await strapi.db.query("plugin::upload.file").findOne({
           where: { documentId: imageDocumentId },
         });
         imageId = image?.id;
       }
 
       // Update the course with relations
-      const result = await strapi.documents('api::course.course').update({
+      const result = await strapi.documents("api::course.course").update({
         documentId: id,
         data: {
           title: data?.title,
@@ -171,12 +177,14 @@ export default factories.createCoreController(
           durationHours: data?.durationHours ?? 0,
           numOfRatings: data?.numOfRatings,
           numOfSubscriptions: data?.numOfSubscriptions,
+          creator_published_at: data?.creator_published_at,
+          admin_control_at: data?.admin_control_at,
           image: imageId,
           ...(categoryDocumentIds !== undefined && {
             course_categories: { set: categoryDocumentIds },
           }),
         },
-        populate: ['course_categories', 'image'],
+        populate: ["course_categories", "image"],
       });
 
       return this.transformResponse(result);
