@@ -317,18 +317,14 @@ const CourseEditorInformation = forwardRef<
               successMessage={
                 isEditMode ? t("common.updated") : t("common.created")
               }
-              onSuccessComplete={() => {
-                createMutation.reset();
-                updateMutation.reset();
-              }}
             >
               <div className="flex flex-col gap-y-5">
                 <FormInput
                   control={form.control}
                   fieldName="title"
                   inputSize="md"
-                  label={t("courseEditor.courseName")}
-                  placeholder={t("courseEditor.courseNamePlaceholder")}
+                  label={t("courseManager.courseName")}
+                  placeholder={t("courseManager.courseNamePlaceholder")}
                   type="text"
                   isRequired
                 />
@@ -477,7 +473,7 @@ const CourseEditorInformation = forwardRef<
             submitLabel={
               isEditMode
                 ? t("common.saveChanges")
-                : t("courseEditor.createAndContinue")
+                : t("courseManager.createAndContinue")
             }
             submittingLabel={
               isEditMode
