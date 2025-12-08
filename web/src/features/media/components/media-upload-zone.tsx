@@ -144,6 +144,8 @@ interface MediaUploadZoneProps {
   fileTypes?: MediaFileType | MediaFileType[];
   /** Maximum number of files allowed. */
   maxFiles?: number;
+  /** Maximum file size in bytes. */
+  maxFileSize?: number;
   /** Callback when upload completes successfully */
   onUploadComplete?: (files: UploadFile[]) => void;
   /** Whether the component is disabled */
@@ -170,6 +172,7 @@ interface MediaUploadZoneProps {
 export const MediaUploadZone = ({
   fileTypes,
   maxFiles,
+  maxFileSize,
   onUploadComplete,
   disabled = false,
   className,
@@ -321,7 +324,7 @@ export const MediaUploadZone = ({
 
   return (
     <Form {...form}>
-      <div className={cn("space-y-4", className)}>
+      <div className={cn("space-y-4 w-full", className)}>
         {uploadError && (
           <ErrorDisplayWithRetry
             error={uploadError}
@@ -333,6 +336,7 @@ export const MediaUploadZone = ({
         <MediaUploadCard
           fileTypes={fileTypes}
           maxFiles={maxFiles}
+          maxFileSize={maxFileSize}
           onFilesSelected={handleFilesSelected}
           disabled={isDisabled}
         />

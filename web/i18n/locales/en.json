@@ -182,6 +182,8 @@
     "uploadSuccess": "File uploaded successfully",
     "uploadFileSuccess": "Uploaded: {{filename}}",
     "filesRejectedType": "{{count}} file(s) rejected: unsupported file type",
+    "filesRejectedSize": "{{count}} file(s) rejected: exceeds {{maxSize}}MB limit",
+    "maxFileSizeHint": "File must be at most {{maxSize}}MB",
     "dragAndDrop": "Drag and drop files here, or click to select",
     "browseFiles": "Browse Files",
     "browseLibrary": "Browse Library",

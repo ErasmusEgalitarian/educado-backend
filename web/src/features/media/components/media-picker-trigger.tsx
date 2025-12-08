@@ -21,6 +21,8 @@ interface MediaPickerTriggerProps {
   fileTypes?: MediaFileType | MediaFileType[];
   /** Maximum number of files for upload within the modal. Defaults to 1. */
   maxFiles?: number;
+  /** Maximum file size in bytes. */
+  maxFileSize?: number;
   /** Whether the component is disabled */
   disabled?: boolean;
   /** Additional class names */
@@ -49,6 +51,7 @@ export const MediaPickerTrigger = ({
   onChange,
   fileTypes,
   maxFiles = 1,
+  maxFileSize,
   disabled = false,
   className,
 }: MediaPickerTriggerProps) => {
@@ -84,8 +87,9 @@ export const MediaPickerTrigger = ({
   if (value) {
     return (
       <>
-        <button
-          type="button"
+        <div
+          role="button"
+          tabIndex={disabled ? -1 : 0}
           className={cn(
             "relative w-full h-64 rounded-lg border overflow-hidden group cursor-pointer",
             disabled && "opacity-50 cursor-not-allowed",
@@ -93,7 +97,7 @@ export const MediaPickerTrigger = ({
           )}
           onClick={handleClick}
           onKeyDown={handleKeyDown}
-          disabled={disabled}
+          aria-disabled={disabled}
         >
           <MediaAssetPreview
             asset={value}
@@ -112,7 +116,7 @@ export const MediaPickerTrigger = ({
               <Icon path={mdiClose} size={0.65} />
             </Button>
           )}
-        </button>
+        </div>
 
         <MediaPickerModal
           isOpen={isModalOpen}
@@ -120,6 +124,7 @@ export const MediaPickerTrigger = ({
           onSelect={handleSelect}
           fileTypes={fileTypes}
           maxFiles={maxFiles}
+          maxFileSize={maxFileSize}
         />
       </>
     );
@@ -128,13 +133,14 @@ export const MediaPickerTrigger = ({
   // No value: show the trigger card
   return (
     <>
-      <button
-        type="button"
+      <div
+        role="button"
+        tabIndex={disabled ? -1 : 0}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        disabled={disabled}
+        aria-disabled={disabled}
         className={cn(
-          "relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed p-12 transition-all cursor-pointer min-h-48",
+          "relative flex flex-col items-center justify-center w-full rounded-xl border-2 border-dashed p-12 transition-all cursor-pointer min-h-48",
           "border-border bg-muted/30 hover:border-primary/50 hover:bg-muted/50",
           disabled && "opacity-50 cursor-not-allowed",
           className
@@ -147,10 +153,10 @@ export const MediaPickerTrigger = ({
         <p className="text-sm text-muted-foreground text-center max-w-xs mb-4">
           {t("media.clickToSelect")}
         </p>
-        <Button type="button" variant="secondary" disabled={disabled}>
+        <span className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 h-9 px-4 py-2">
           {t("media.browseLibrary")}
-        </Button>
-      </button>
+        </span>
+      </div>
 
       <MediaPickerModal
         isOpen={isModalOpen}
@@ -158,6 +164,7 @@ export const MediaPickerTrigger = ({
         onSelect={handleSelect}
         fileTypes={fileTypes}
         maxFiles={maxFiles}
+        maxFileSize={maxFileSize}
       />
     </>
   );
