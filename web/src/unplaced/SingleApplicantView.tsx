@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import useSWR from "swr";
+import { useQuery } from "@tanstack/react-query";
 
 // Services
 
@@ -28,17 +28,50 @@ const SingleApplicantView = () => {
   const [isRejecting, setIsRejecting] = useState(false);
   const [isAccepting, setIsAccepting] = useState(false);
 
-  //Get data from the relevant route
-  const { data } = useSWR(id, AuthServices.GetSingleCCApplication);
+  // Get data from the relevant route using TanStack Query
+  const {
+    data,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["single-cc-application", id],
+    queryFn: () => AuthServices.GetSingleCCApplication(id!),
+    enabled: !!id,
+  });
 
   const { addNotification } = useNotifications();
+
+  // Navigate away if application does not exist
+  useEffect(() => {
+    if (!isLoading && data && data.data.application == undefined) {
+      navigate("/educado-admin/applications");
+      setTimeout(() => {
+        toast.error("Este usuário não tem candidatura", {
+          hideProgressBar: true,
+        });
+      }, 1);
+    }
+  }, [isLoading, data, navigate]);
+
+  // Loading & error states
+  if (isLoading || !data) return <Loading />;
+
+  if (isError) {
+    return (
+      <Layout meta={`Applicant: ${id?.slice(0, 10)}.`}>
+        <div className="grid place-items-center h-screen pt-20">
+          <p className="text-red-500">Erro ao carregar a candidatura.</p>
+        </div>
+      </Layout>
+    );
+  }
 
   //Function to execute upon accepting an application
   //It will navigate to the applicaitons page, and display a toastify message notifying the user that the content creator was approved
   const handleAccept = async () => {
     setIsAccepting(true); // Set accepting state to true
     AuthServices.AcceptApplication(id!)
-      .then((res) => {
+      .then(() => {
         navigate("/educado-admin/applications");
         addNotification(
           data?.data.applicator.firstName +
@@ -87,21 +120,8 @@ const SingleApplicantView = () => {
       });
   };
 
-  // If no data is found, or until the data is found, show loading page
-  if (!data) return <Loading />;
-
-  // When attempting to view an application that does not exist, user will be navigated back to the applications page
-  if (data?.data.application == undefined) {
-    navigate("/educado-admin/applications");
-    setTimeout(() => {
-      toast.error("Este usuário não tem candidatura", {
-        hideProgressBar: true,
-      });
-    }, 1);
-  }
-
   return (
-    <Layout meta={`Applicant: ${id?.slice(0, 10)}...`}>
+    <Layout meta={`Applicant: ${id?.slice(0, 10)}.`}>
       <div className="grid place-items-center h-screen pt-20">
         <div className="bg-white shadow-sm overflow-hidden rounded-xl">
           <div className="px-4 py-8 sm:px-10">
@@ -157,7 +177,7 @@ const SingleApplicantView = () => {
                     <path
                       className="opacity-75"
                       fill="currentColor"
-                      d="M4 12a8 8 0 018-8v8H4z"
+                      d="M4 12a 8 8 0 018-8v8H4z"
                     />
                   </svg>
                   Processando...

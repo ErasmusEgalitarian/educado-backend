@@ -6,7 +6,7 @@ import {
   mdiChevronRight,
   mdiArrowRight,
 } from "@mdi/js";
-import useSWR from "swr";
+import { useQuery } from "@tanstack/react-query";
 
 import { getUserToken } from "@/auth/lib/userInfo";
 import Loading from "@/shared/components/Loading";
@@ -24,14 +24,24 @@ export const UsersTableAdmin = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const userToken = getUserToken();
-  const { data, mutate } = useSWR("api/user-info", () =>
-    AdminServices.getUserApplications(userToken)
-  );
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: ["user-info", userToken],
+    queryFn: () => AdminServices.getUserApplications(userToken),
+    enabled: !!userToken,
+  });
 
-  if (!data) return <Loading />;
+  if (isLoading || !data) return <Loading />;
+
+  if (isError) {
+    return (
+      <div className="flex justify-center items-center py-10">
+        <p className="text-red-500">Erro ao carregar usuários.</p>
+      </div>
+    );
+  }
 
   const refreshUsers = () => {
-    mutate();
+    void refetch();
   };
 
   const formatDate = (dateString: string) => {
@@ -81,8 +91,7 @@ export const UsersTableAdmin = () => {
     setCurrentPage(totalPages);
   };
 
-  const filteredData = data.filter((userRecord) => {
-    // this will be typed in a better way when a hook is made
+  const filteredData = data.filter((userRecord: UserRecord) => {
     const fieldsToCheck = ["firstName", "lastName", "email"] as const;
 
     return fieldsToCheck.some((field) => {
@@ -157,7 +166,7 @@ export const UsersTableAdmin = () => {
           </tr>
         </thead>
         <tbody>
-          {paginatedData.map((userRecord, key) => {
+          {paginatedData.map((userRecord: UserRecord, key: number) => {
             return (
               <tr
                 key={key}
