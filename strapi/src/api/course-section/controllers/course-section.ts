@@ -38,40 +38,46 @@ export default factories.createCoreController(
       const courseDocumentId = data?.course;
 
       // Create the course section
-      const result = await strapi.documents('api::course-section.course-section').create({
-        data: {
-          title: data?.title,
-          description: data?.description,
-        },
-      });
-
-      // If a course was specified, connect it
-      if (courseDocumentId && result.documentId) {
-        // Find the course's internal ID from its documentId
-        const course = await strapi.documents('api::course.course').findFirst({
-          filters: { documentId: courseDocumentId },
+      try {
+        const result = await strapi.documents('api::course-section.course-section').create({
+          data: {
+            title: data?.title,
+            description: data?.description,
+          },
         });
-
-        if (course) {
-          // Use entity service or db query to set the relation
-          await strapi.db.query('api::course-section.course-section').update({
-            where: { documentId: result.documentId },
-            data: {
-              course: course.id,
-            },
+        
+        // If a course was specified, connect it
+        if (courseDocumentId && result.documentId) {
+          // Find the course's internal ID from its documentId
+          const course = await strapi.documents('api::course.course').findFirst({
+            filters: { documentId: courseDocumentId },
           });
+  
+          if (course) {
+            // Use entity service or db query to set the relation
+            await strapi.db.query('api::course-section.course-section').update({
+              where: { documentId: result.documentId },
+              data: {
+                course: course.id,
+              },
+            });
+          }
+  
+          // Re-fetch with the relation
+          const updated = await strapi.documents('api::course-section.course-section').findOne({
+            documentId: result.documentId,
+            populate: ['course'],
+          });
+  
+          return this.transformResponse(updated);
         }
+  
+        return this.transformResponse(result);
 
-        // Re-fetch with the relation
-        const updated = await strapi.documents('api::course-section.course-section').findOne({
-          documentId: result.documentId,
-          populate: ['course'],
-        });
-
-        return this.transformResponse(updated);
+      } catch (error) {
+        ctx.response.status = 500;
+        ctx.response.body = error;
       }
-
-      return this.transformResponse(result);
     },
   })
 );

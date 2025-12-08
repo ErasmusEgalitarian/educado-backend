@@ -1,6 +1,5 @@
 import { Plus, ChevronLeft, ChevronDown, Trash2, Menu } from "lucide-react";
-import { forwardRef, useImperativeHandle, useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/shared/components/shadcn/button";
@@ -22,11 +21,7 @@ interface CourseEditorSectionsProps {
   onGoBack?: () => void;
 }
 
-export interface CourseEditorSectionsRef {
-  isDirty: () => boolean;
-}
-
-const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSectionsProps>(({ courseId, onComplete, onGoBack }, ref) => {
+const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSectionsProps) => {
   const { t } = useTranslation();
   const [currentSectionEditing, setCurrentSectionEditing] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
@@ -37,8 +32,6 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
   const deleteMutation = CourseSectionDeleteFunction();
   const setPublishMutation = CourseSectionSetPublish();
   
-  const form = useForm<CourseSection>();
-
   const {
     data: queryCourseSections,
     isLoading: queryIsLoading,
@@ -49,7 +42,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
   });
   const [sections, setSections] = useState<Array<CourseSection> | undefined>();
 
-  
+  // Update course sections
   useEffect(() => {
     const run = () => {
       refetch().then(() => {
@@ -59,10 +52,6 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
     run();
   }, [currentSectionEditing, isCreating, queryIsLoading]);
   
-  // Track form dirty state
-  useImperativeHandle(ref, () => ({
-    isDirty: () => form.formState.isDirty || (sections?.length ?? 0) > 0,
-  }));
   
   const updateSection = async(section: CourseSection) => {    
     if (currentSectionEditing === null) return;
@@ -97,23 +86,6 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
     }
   }
 
-  const handleEdit = (section: CourseSection) => {
-    if (currentSectionEditing !== section.documentId) {
-      setCurrentSectionEditing(section.documentId ?? null);
-      setIsCreating(false);
-      return;
-    }
-
-    setCurrentSectionEditing(null);
-    setIsCreating(false);
-  };
-
-  const setDraft = () => {
-    sections?.forEach((section) => {
-      setPublishMutation.mutateAsync(section);
-    });
-  };
-
 
   const handleDelete = async (sectionId: string | undefined) => {
     if(!sectionId) return;
@@ -131,17 +103,6 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
     }
 
   };
-
-  const handleCancel = () => {
-    setIsCreating(false);
-    setCurrentSectionEditing(null);
-  };
-
-  const startCreating = () => {
-    setIsCreating(true);
-    setCurrentSectionEditing(null);
-  };
-
 
   return (
     <div className="flex flex-col gap-y-6">
@@ -162,7 +123,16 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                         ? "border-primary border-2" 
                         : "border-greyscale-border"
                     }`}
-                    onClick={() => { handleEdit(section) }}
+                    onClick={() => { () => {
+                      if (currentSectionEditing !== section.documentId) {
+                        setCurrentSectionEditing(section.documentId ?? null);
+                        setIsCreating(false);
+                        return;
+                      }
+
+                      setCurrentSectionEditing(null);
+                      setIsCreating(false);
+                    }}}
                   >
                     <div className="flex items-center">
                       <h4 className="h-full flex items-center gap-3 font-semibold text-greyscale-text-title">
@@ -258,7 +228,9 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                             <Button
                               type="button"
                               variant="outline"
-                              onClick={handleCancel}
+                              onClick={() => {
+                                
+                              }}
                             >
                               {t("common.cancel")}
                             </Button>
@@ -345,7 +317,10 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
                     <Button
                       type="button"
                       variant="outline"
-                      onClick={handleCancel}
+                      onClick={() => {
+                        setIsCreating(false);
+                        setCurrentSectionEditing(null);
+                      }}
                     >
                       {t("common.cancel")}
                     </Button>
@@ -361,7 +336,10 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
           {/* Add Section Button */}
           {!isCreating && (
             <Button
-              onClick={startCreating}
+              onClick={() => {
+                setIsCreating(true);
+                setCurrentSectionEditing(null);
+              }}
               className="w-full border-dashed"
               variant="outline"
             >
@@ -398,7 +376,9 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
               </Button>
               <Button
                 onClick={() => {
-                  setDraft();
+                  sections?.forEach((section) => {
+                    setPublishMutation.mutateAsync(section);
+                  });
                   onComplete?.()
                 }}
                 disabled={sections?.length === 0}
@@ -411,7 +391,7 @@ const CourseEditorSections = forwardRef<CourseEditorSectionsRef, CourseEditorSec
       </Card>
     </div>
   );
-});
+};
 
 CourseEditorSections.displayName = "CourseEditorSections";
 
