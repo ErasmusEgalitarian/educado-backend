@@ -16,7 +16,7 @@ export default factories.createCoreRouter('api::course-enrollment-relation.cours
         },
         create: {
             auth: false,
-            policies: ['global::is-content-creator'],
+            policies: ['global::is-student-or-content-creator'],
         },
         update: { 
             auth: false,
@@ -24,7 +24,7 @@ export default factories.createCoreRouter('api::course-enrollment-relation.cours
         },
         delete: {
             auth: false,
-            policies: ['global::is-content-creator'],
+            policies: ['global::is-student-or-content-creator'],
         },
     }
 });
