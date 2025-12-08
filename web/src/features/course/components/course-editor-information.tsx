@@ -323,8 +323,8 @@ const CourseEditorInformation = forwardRef<
                   control={form.control}
                   fieldName="title"
                   inputSize="md"
-                  label={t("courseManager.courseName")}
-                  placeholder={t("courseManager.courseNamePlaceholder")}
+                  label={t("courseEditor.courseName")}
+                  placeholder={t("courseEditor.courseNamePlaceholder")}
                   type="text"
                   isRequired
                 />
@@ -473,7 +473,7 @@ const CourseEditorInformation = forwardRef<
             submitLabel={
               isEditMode
                 ? t("common.saveChanges")
-                : t("courseManager.createAndContinue")
+                : t("courseEditor.createAndContinue")
             }
             submittingLabel={
               isEditMode
