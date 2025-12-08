@@ -4,7 +4,7 @@ import { useApi } from "@/shared/hooks/useAPI";
 import { validateEmail, validatePasswords } from "@/unplaced/validation";
 
 import CodeVerification from "./CodeVerification";
-import { NavigationFooter } from "./NavigationFooter";
+import NavigationFooter from "./NavigationFooter";
 import NewPasswordScreen from "./NewPasswordScreen";
 
 interface propTypes {
