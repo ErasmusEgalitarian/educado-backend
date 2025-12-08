@@ -7,7 +7,7 @@
     "displayName": "Course"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -76,6 +76,12 @@
       "relation": "oneToMany",
       "target": "api::course-enrollment-relation.course-enrollment-relation",
       "mappedBy": "course"
+    },
+    "creator_published_at": {
+      "type": "datetime"
+    },
+    "admin_control_at": {
+      "type": "datetime"
     }
   }
 }
