@@ -5,9 +5,9 @@ import {
   mdiChevronLeft,
   mdiChevronRight,
   mdiArrowRight,
+  mdiMagnify,
 } from "@mdi/js";
-import { mdiMagnify } from "@mdi/js";
-import useSWR from "swr";
+import { useQuery } from "@tanstack/react-query";
 
 import { getUserToken } from "@/auth/lib/userInfo";
 import Loading from "@/shared/components/Loading";
@@ -23,17 +23,30 @@ export const InstitutionsTableAdmin = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const userToken = getUserToken();
-  const { data: institutionsResponse, mutate } = useSWR(
-    "api/institutions",
-    () => institutionService.getInstitutions(userToken)
-  );
+  const {
+    data: institutionsResponse,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
+    queryKey: ["institutions", userToken],
+    queryFn: () => institutionService.getInstitutions(userToken),
+    enabled: !!userToken,
+  });
 
-  if (!institutionsResponse) return <Loading />;
+  if (isLoading || !institutionsResponse) return <Loading />;
+
+  if (isError) {
+    return (
+      <div className="container mx-auto flex justify-center items-center py-10">
+        <p className="text-red-500">Erro ao carregar instituições.</p>
+      </div>
+    );
+  }
 
   const filteredData = institutionsResponse.filter((institution) => {
     if (searchTerm === "") return institution;
 
-    // this will be typed in a better way when a hook is made
     const fieldsToCheck = [
       "institutionName",
       "domain",
@@ -141,13 +154,13 @@ export const InstitutionsTableAdmin = () => {
                     <div>
                       <UpdateInstitutionButton
                         institution={institution}
-                        refreshFn={mutate}
+                        refreshFn={refetch}
                       />
                     </div>
                     <div>
                       <DeleteInstitutionButton
                         institutionId={institution._id!}
-                        refreshFn={mutate}
+                        refreshFn={refetch}
                       />
                     </div>
                   </div>
