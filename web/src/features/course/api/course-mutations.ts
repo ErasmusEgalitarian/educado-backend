@@ -45,6 +45,7 @@ export const useCreateCourseMutation = () => {
             description: input.description,
             course_categories: input.course_categories,
             image: input.image,
+            durationHours: 1,
             // Default values for Strapi fields
             numOfRatings: 0,
             numOfSubscriptions: 0,
@@ -92,6 +93,7 @@ export const useUpdateCourseMutation = () => {
             difficulty: input.difficulty,
             description: input.description,
             course_categories: input.course_categories,
+            durationHours: 1,
             image: input.image,
             creator_published_at: new Date().toISOString(),
           },
@@ -117,8 +119,6 @@ export const useUpdateCourseMutation = () => {
   });
 };
 
-      
-
 /**
  * Publish a course (change from draft to published)
  * Used in the review step to make the course visible to students
@@ -138,6 +138,7 @@ export const usePublishCourseMutation = () => {
           // Do not send documentId in body; Strapi expects ID only in path
           data: {
             ...dataWithoutId,
+            durationHours: 1,
             creator_published_at: new Date().toISOString(),
           },
         },
@@ -199,6 +200,7 @@ export const useUnpublishCourseMutation = () => {
           // Do not send documentId in body; Strapi expects ID only in path
           data: {
             ...dataWithoutId,
+            durationHours: 1,
             creator_published_at: "",
           },
         },

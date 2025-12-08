@@ -510,8 +510,8 @@ export type Certificate = {
                         documentId?: string;
                     }>;
                 }>;
-                creator_published_at?: string;
                 admin_control_at?: string;
+                creator_published_at?: string;
                 createdAt?: string;
                 updatedAt?: string;
                 publishedAt?: string;
@@ -1191,8 +1191,8 @@ export type ContentCreator = {
                             documentId?: string;
                         }>;
                     }>;
-                    creator_published_at?: string;
                     admin_control_at?: string;
+                    creator_published_at?: string;
                     createdAt?: string;
                     updatedAt?: string;
                     publishedAt?: string;
@@ -1350,8 +1350,8 @@ export type CourseRequest = {
         course_categories?: Array<number | string>;
         content_creators?: Array<number | string>;
         course_enrollment_relations?: Array<number | string>;
-        creator_published_at?: string;
         admin_control_at?: string;
+        creator_published_at?: string;
         locale?: string;
         localizations?: Array<number | string>;
     };
@@ -1938,8 +1938,8 @@ export type Course = {
                 id?: number;
                 documentId?: string;
             }>;
-            creator_published_at?: string;
             admin_control_at?: string;
+            creator_published_at?: string;
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -1994,8 +1994,8 @@ export type Course = {
         id?: number;
         documentId?: string;
     }>;
-    creator_published_at?: string;
     admin_control_at?: string;
+    creator_published_at?: string;
     createdAt?: string;
     updatedAt?: string;
     publishedAt?: string;
@@ -2584,8 +2584,8 @@ export type CourseCategory = {
             id?: number;
             documentId?: string;
         }>;
-        creator_published_at?: string;
         admin_control_at?: string;
+        creator_published_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -3191,8 +3191,8 @@ export type CourseEnrollmentRelation = {
             id?: number;
             documentId?: string;
         }>;
-        creator_published_at?: string;
         admin_control_at?: string;
+        creator_published_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -3745,8 +3745,8 @@ export type CourseSelection = {
             id?: number;
             documentId?: string;
         }>;
-        creator_published_at?: string;
         admin_control_at?: string;
+        creator_published_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -4754,8 +4754,8 @@ export type Feedback = {
             id?: number;
             documentId?: string;
         }>;
-        creator_published_at?: string;
         admin_control_at?: string;
+        creator_published_at?: string;
         createdAt?: string;
         updatedAt?: string;
         publishedAt?: string;
@@ -5579,8 +5579,8 @@ export type Student = {
                 id?: number;
                 documentId?: string;
             }>;
-            creator_published_at?: string;
             admin_control_at?: string;
+            creator_published_at?: string;
             createdAt?: string;
             updatedAt?: string;
             publishedAt?: string;
@@ -6145,8 +6145,8 @@ export type UserLog = {
                         documentId?: string;
                     }>;
                 }>;
-                creator_published_at?: string;
                 admin_control_at?: string;
+                creator_published_at?: string;
                 createdAt?: string;
                 updatedAt?: string;
                 publishedAt?: string;
@@ -7126,7 +7126,7 @@ export type CourseGetCoursesRequest = {
     body?: never;
     path?: never;
     query?: {
-        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'creator_published_at' | 'admin_control_at' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'admin_control_at' | 'creator_published_at' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
         filters?: {
             [key: string]: unknown;
         };
@@ -7140,7 +7140,7 @@ export type CourseGetCoursesRequest = {
             start: number;
             limit: number;
         });
-        sort?: 'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'creator_published_at' | 'admin_control_at' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'creator_published_at' | 'admin_control_at' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+        sort?: 'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'admin_control_at' | 'creator_published_at' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'admin_control_at' | 'creator_published_at' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
             [key: string]: 'asc' | 'desc';
         } | Array<{
             [key: string]: 'asc' | 'desc';
@@ -7188,7 +7188,7 @@ export type CoursePostCoursesRequest = {
     body: CourseRequest;
     path?: never;
     query?: {
-        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'creator_published_at' | 'admin_control_at' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'admin_control_at' | 'creator_published_at' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
         populate?: '*' | 'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | Array<'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'content_creators' | 'course_enrollment_relations'>;
     };
     url: '/courses';
@@ -7234,7 +7234,7 @@ export type CourseDeleteCoursesByIdRequest = {
         id: string;
     };
     query?: {
-        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'creator_published_at' | 'admin_control_at' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'admin_control_at' | 'creator_published_at' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
         populate?: '*' | 'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | Array<'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'content_creators' | 'course_enrollment_relations'>;
         filters?: {
             [key: string]: unknown;
@@ -7283,12 +7283,12 @@ export type CourseGetCoursesByIdRequest = {
         id: string;
     };
     query?: {
-        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'creator_published_at' | 'admin_control_at' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'admin_control_at' | 'creator_published_at' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
         populate?: '*' | 'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | Array<'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'content_creators' | 'course_enrollment_relations'>;
         filters?: {
             [key: string]: unknown;
         };
-        sort?: 'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'creator_published_at' | 'admin_control_at' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'creator_published_at' | 'admin_control_at' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
+        sort?: 'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'admin_control_at' | 'creator_published_at' | 'createdAt' | 'updatedAt' | 'publishedAt' | Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'admin_control_at' | 'creator_published_at' | 'createdAt' | 'updatedAt' | 'publishedAt'> | {
             [key: string]: 'asc' | 'desc';
         } | Array<{
             [key: string]: 'asc' | 'desc';
@@ -7337,7 +7337,7 @@ export type CoursePutCoursesByIdRequest = {
         id: string;
     };
     query?: {
-        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'creator_published_at' | 'admin_control_at' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
+        readonly fields?: Array<'title' | 'description' | 'difficulty' | 'durationHours' | 'numOfRatings' | 'numOfSubscriptions' | 'admin_control_at' | 'creator_published_at' | 'createdAt' | 'updatedAt' | 'publishedAt'>;
         populate?: '*' | 'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'content_creators' | 'course_enrollment_relations' | Array<'image' | 'feedbacks' | 'course_sections' | 'course_categories' | 'content_creators' | 'course_enrollment_relations'>;
     };
     url: '/courses/{id}';

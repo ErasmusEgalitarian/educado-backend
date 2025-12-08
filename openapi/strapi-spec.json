@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "x-powered-by": "strapi",
-  "x-strapi-version": "5.31.2",
+  "x-strapi-version": "5.31.3",
   "info": {
     "title": "strapi",
     "description": "API documentation for strapi v0.1.0",
@@ -2400,8 +2400,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
-                  "creator_published_at",
                   "admin_control_at",
+                  "creator_published_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2426,8 +2426,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
-                  "creator_published_at",
                   "admin_control_at",
+                  "creator_published_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2527,8 +2527,8 @@
                     "durationHours",
                     "numOfRatings",
                     "numOfSubscriptions",
-                    "creator_published_at",
                     "admin_control_at",
+                    "creator_published_at",
                     "createdAt",
                     "updatedAt",
                     "publishedAt"
@@ -2545,8 +2545,8 @@
                       "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
-                      "creator_published_at",
                       "admin_control_at",
+                      "creator_published_at",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -2564,8 +2564,8 @@
                       "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
-                      "creator_published_at",
                       "admin_control_at",
+                      "creator_published_at",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -2592,8 +2592,8 @@
                         "durationHours",
                         "numOfRatings",
                         "numOfSubscriptions",
-                        "creator_published_at",
                         "admin_control_at",
+                        "creator_published_at",
                         "createdAt",
                         "updatedAt",
                         "publishedAt"
@@ -2741,8 +2741,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
-                  "creator_published_at",
                   "admin_control_at",
+                  "creator_published_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2901,8 +2901,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
-                  "creator_published_at",
                   "admin_control_at",
+                  "creator_published_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2969,8 +2969,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
-                  "creator_published_at",
                   "admin_control_at",
+                  "creator_published_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2996,8 +2996,8 @@
                     "durationHours",
                     "numOfRatings",
                     "numOfSubscriptions",
-                    "creator_published_at",
                     "admin_control_at",
+                    "creator_published_at",
                     "createdAt",
                     "updatedAt",
                     "publishedAt"
@@ -3014,8 +3014,8 @@
                       "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
-                      "creator_published_at",
                       "admin_control_at",
+                      "creator_published_at",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -3033,8 +3033,8 @@
                       "durationHours",
                       "numOfRatings",
                       "numOfSubscriptions",
-                      "creator_published_at",
                       "admin_control_at",
+                      "creator_published_at",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -3061,8 +3061,8 @@
                         "durationHours",
                         "numOfRatings",
                         "numOfSubscriptions",
-                        "creator_published_at",
                         "admin_control_at",
+                        "creator_published_at",
                         "createdAt",
                         "updatedAt",
                         "publishedAt"
@@ -3177,8 +3177,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
-                  "creator_published_at",
                   "admin_control_at",
+                  "creator_published_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -3335,8 +3335,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
-                  "creator_published_at",
                   "admin_control_at",
+                  "creator_published_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -3403,8 +3403,8 @@
                   "durationHours",
                   "numOfRatings",
                   "numOfSubscriptions",
-                  "creator_published_at",
                   "admin_control_at",
+                  "creator_published_at",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -22234,13 +22234,12 @@
                             }
                           }
                         },
-                        "creator_published_at": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
                         "admin_control_at": {
                           "type": "string",
                           "format": "date-time"
+                        },
+                        "creator_published_at": {
+                          "type": "string"
                         },
                         "createdAt": {
                           "type": "string",
@@ -24497,13 +24496,12 @@
                                   }
                                 }
                               },
-                              "creator_published_at": {
-                                "type": "string",
-                                "format": "date-time"
-                              },
                               "admin_control_at": {
                                 "type": "string",
                                 "format": "date-time"
+                              },
+                              "creator_published_at": {
+                                "type": "string"
                               },
                               "createdAt": {
                                 "type": "string",
@@ -25063,13 +25061,12 @@
                   "example": "string or id"
                 }
               },
-              "creator_published_at": {
-                "type": "string",
-                "format": "date-time"
-              },
               "admin_control_at": {
                 "type": "string",
                 "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
               },
               "locale": {
                 "type": "string"
@@ -26958,13 +26955,12 @@
                         }
                       }
                     },
-                    "creator_published_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
                     "admin_control_at": {
                       "type": "string",
                       "format": "date-time"
+                    },
+                    "creator_published_at": {
+                      "type": "string"
                     },
                     "createdAt": {
                       "type": "string",
@@ -27140,13 +27136,12 @@
               }
             }
           },
-          "creator_published_at": {
-            "type": "string",
-            "format": "date-time"
-          },
           "admin_control_at": {
             "type": "string",
             "format": "date-time"
+          },
+          "creator_published_at": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -29046,13 +29041,12 @@
                     }
                   }
                 },
-                "creator_published_at": {
-                  "type": "string",
-                  "format": "date-time"
-                },
                 "admin_control_at": {
                   "type": "string",
                   "format": "date-time"
+                },
+                "creator_published_at": {
+                  "type": "string"
                 },
                 "createdAt": {
                   "type": "string",
@@ -31010,13 +31004,12 @@
                   }
                 }
               },
-              "creator_published_at": {
-                "type": "string",
-                "format": "date-time"
-              },
               "admin_control_at": {
                 "type": "string",
                 "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -32824,13 +32817,12 @@
                   }
                 }
               },
-              "creator_published_at": {
-                "type": "string",
-                "format": "date-time"
-              },
               "admin_control_at": {
                 "type": "string",
                 "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -36061,13 +36053,12 @@
                   }
                 }
               },
-              "creator_published_at": {
-                "type": "string",
-                "format": "date-time"
-              },
               "admin_control_at": {
                 "type": "string",
                 "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -38797,13 +38788,12 @@
                         }
                       }
                     },
-                    "creator_published_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
                     "admin_control_at": {
                       "type": "string",
                       "format": "date-time"
+                    },
+                    "creator_published_at": {
+                      "type": "string"
                     },
                     "createdAt": {
                       "type": "string",
@@ -40628,13 +40618,12 @@
                             }
                           }
                         },
-                        "creator_published_at": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
                         "admin_control_at": {
                           "type": "string",
                           "format": "date-time"
+                        },
+                        "creator_published_at": {
+                          "type": "string"
                         },
                         "createdAt": {
                           "type": "string",

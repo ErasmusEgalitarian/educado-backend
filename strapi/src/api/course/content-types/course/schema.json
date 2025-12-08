@@ -77,11 +77,11 @@
       "target": "api::course-enrollment-relation.course-enrollment-relation",
       "mappedBy": "course"
     },
-    "creator_published_at": {
-      "type": "datetime"
-    },
     "admin_control_at": {
       "type": "datetime"
+    },
+    "creator_published_at": {
+      "type": "string"
     }
   }
 }

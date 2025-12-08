@@ -259,7 +259,7 @@ const CourseEditorPage = () => {
             className="w-full"
             variant="secondary"
           >
-            {createMutation.isPending || updateMutation.isPending ? (
+            {unPublishMutation.isPending || updateMutation.isPending ? (
               <>
                 <GlobalLoader variant="spinner" size={0.8} />
                 {t("common.saving")}...
