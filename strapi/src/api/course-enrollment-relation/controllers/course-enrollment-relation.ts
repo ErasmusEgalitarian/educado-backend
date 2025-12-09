@@ -30,7 +30,7 @@ export default factories.createCoreController(
         return this.transformResponse(result);
     },
     async create(ctx) {
-        const authHeader = ctx.request.headers.authorization;
+        const authHeader = ctx.request?.headers?.authorization;
         const secretKey = process.env.JWT_SECRET;
 
         // If there's an auth header, validate that students can only create enrollments for themselves
