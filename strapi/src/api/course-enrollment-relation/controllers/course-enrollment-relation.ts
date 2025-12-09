@@ -69,11 +69,9 @@ export default factories.createCoreController(
                 }
             } catch (error) {
                 // If JWT verification fails, let the policy handle it
-                if (!(error instanceof ForbiddenError)) {
-                    // Continue with the request - policy will handle auth
-                } else {
+                if (error instanceof ForbiddenError) {
                     throw error;
-                }
+                } 
             }
         }
 
@@ -167,7 +165,7 @@ export default factories.createCoreController(
         }
     },
     async delete(ctx) {
-        const authHeader = ctx.request.headers.authorization;
+        const authHeader = ctx.request?.headers?.authorization;;
         const secretKey = process.env.JWT_SECRET;
 
         // If there's an auth header, validate that students can only delete their own enrollments
