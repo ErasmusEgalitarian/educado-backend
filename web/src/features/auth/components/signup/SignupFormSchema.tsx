@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useFormContext, useFieldArray } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import i18n from "i18n/i18n";
 import { z } from "zod";
 
 import { MonthYearInput } from "@/auth/components/signup/MonthYearInput";
@@ -20,11 +22,7 @@ import {
 import { Checkbox } from "@/shared/components/shadcn/checkbox";
 
 const maxChars = 400;
-const STATUS = ["Em andamento", "Concluída"] as const;
-const STATUS_OPTIONS = STATUS.map((type) => ({
-  value: type,
-  label: type,
-}));
+
 
 const educationSchema = z.object({
   educationType: z.string().min(1, "Campo obrigatório"),
@@ -65,6 +63,7 @@ export const formSchema = z.object({
 });
 
 export const MotivationForm = () => {
+  const { t } = useTranslation();
   const { control, watch } = useFormContext();
   const currentLength =
     (watch("motivation") as string | undefined)?.length ?? 0;
@@ -73,7 +72,7 @@ export const MotivationForm = () => {
       <FormTextarea
         control={control}
         fieldName="motivation"
-        placeholder="Escreva aqui por que você quer fazer parte do projeto"
+        placeholder={t("registration.motivation")}
         rows={3}
         maxLength={maxChars}
         className="resize-none placeholder:text-greyscale-text-body font-['Montserrat'] border-greyscale-border-lighter"
@@ -89,12 +88,19 @@ export const MotivationForm = () => {
 };
 
 export const EducationForm = () => {
+  const { t } = useTranslation();
   const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "educations",
   });
   const initializedRef = useRef(false);
+
+  const STATUS = [(t("registration.inProgress")), (t("registration.finished"))] as const;
+const STATUS_OPTIONS = STATUS.map((type) => ({
+  value: type,
+  label: type,
+}));
 
   useEffect(() => {
     if (!initializedRef.current && fields.length === 0) {
@@ -116,7 +122,7 @@ export const EducationForm = () => {
         <Card key={field.id} className="mb-4">
           <CardHeader>
             <CardTitle className="text-greyscale-text-caption font-bold font-['Montserrat']">
-              {`Experincia acedmica ${index + 1}`}
+              {t("registration.experience")} {`${index + 1}`} 
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -124,50 +130,50 @@ export const EducationForm = () => {
               <FormSelect
                 control={control}
                 fieldName={`educations.${index}.educationType`}
-                label="Formação"
+                label={t("registration.eduOptsLabel")}
                 options={EDUCATION_OPTIONS}
-                placeholder="Superior"
+                placeholder={t("registration.eduOptsPlaceholder")}
                 isRequired
                 wrapperClassName="[&_[role=combobox]]:h-[59px] [&_[data-slot=select-trigger]]:text-base [&_[data-slot=select-value]]:text-base [&_[data-slot=select-value]]:font-['Montserrat'] [&_[role=combobox]]:border-greyscale-border-lighter [&_[role=combobox]]:text-greyscale-text-body"
               />
               <FormSelect
                 control={control}
                 fieldName={`educations.${index}.isInProgress`}
-                label="Status"
+                label={t("registration.eduStatusLabel")}
                 options={STATUS_OPTIONS}
-                placeholder="Em andamento"
+                placeholder={t("registration.eduStatusLabel")}
                 isRequired
                 wrapperClassName="[&_[role=combobox]]:h-[59px] [&_[data-slot=select-trigger]]:text-base [&_[data-slot=select-value]]:text-base [&_[data-slot=select-value]]:font-['Montserrat'] [&_[role=combobox]]:border-greyscale-border-lighter [&_[role=combobox]]:text-greyscale-text-body"
               />
               <FormInput
                 control={control}
                 fieldName={`educations.${index}.course`}
-                placeholder="Curso"
-                label="Curso"
+                placeholder={t("registration.courseLabel")}
+                label={t("registration.courseLabel")}
                 isRequired
                 className="h-[59px] border-greyscale-border-lighter placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
               />
               <FormInput
                 control={control}
                 fieldName={`educations.${index}.institution`}
-                placeholder="Instituição"
-                label="Instituição"
+                placeholder={t("registration.institutionLabel")}
+                label={t("registration.institutionLabel")}
                 isRequired
                 className="h-[59px] border-greyscale-border-lighter placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
               />
               <MonthYearInput
                 control={control}
                 name={`educations.${index}.acedemicStartDate`}
-                label="Início"
-                placeholder="Mês / Ano"
+                label={t("registration.institutionStart")}
+                placeholder={t("registration.monthYear")}
                 className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
                 isRequired
               />
               <MonthYearInput
                 control={control}
                 name={`educations.${index}.acedemicEndDate`}
-                label="Fim"
-                placeholder="Mês / Ano"
+                label={t("registration.institutionEnd")}
+                placeholder={t("registration.monthYear")}
                 className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
                 isRequired
               />
@@ -180,7 +186,7 @@ export const EducationForm = () => {
                     style={{ fontSize: "14px", lineHeight: "17px" }}
                     onClick={() => remove(index)}
                   >
-                    <img src={deleteIcon} /> Remover formação
+                    <img src={deleteIcon} /> {t("registration.removeForm")}
                   </Button>
                 </CardFooter>
               </div>
@@ -207,7 +213,7 @@ export const EducationForm = () => {
           }
           className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
         >
-          <img src={plusIcon} /> Adicionar outra formação
+          <img src={plusIcon} /> {t("registration.addForm")}
         </Button>
       </div>
     </>
@@ -215,6 +221,7 @@ export const EducationForm = () => {
 };
 
 export const ExperienceForm = () => {
+    const { t } = useTranslation();
   const { control, watch, setValue } = useFormContext();
   const currentLength =
     (watch(`jobs.0.description`) as string | undefined)?.length ?? 0;
@@ -258,24 +265,24 @@ export const ExperienceForm = () => {
                 <FormInput
                   control={control}
                   fieldName={`jobs.${index}.organization`}
-                  placeholder="Exemplos: Apple, Microsoft, etc."
-                  label="Empresa"
+                  placeholder={t("registration.experienceExamplePlaceholder")}
+                  label={t("registration.Company")}
                   isRequired
                   className="h-[59px] border-greyscale-border-lighter placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
                 />
                 <FormInput
                   control={control}
                   fieldName={`jobs.${index}.jobTitle`}
-                  placeholder="Product Designer"
-                  label="Cargo"
+                  placeholder={t("registration.Product Designer")}
+                  label={t("registration.Position")}
                   isRequired
                   className="h-[59px] border-greyscale-border-lighter placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
                 />
                 <MonthYearInput
                   control={control}
                   name={`jobs.${index}.jobStartDate`}
-                  label="Início"
-                  placeholder="Mês / Ano"
+                  label={t("registration.start")}
+                  placeholder={t("registration.monthYear")}
                   className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
                   isRequired={true}
                 />
@@ -283,7 +290,7 @@ export const ExperienceForm = () => {
                   control={control}
                   name={`jobs.${index}.jobEndDate`}
                   label="Fim"
-                  placeholder="Mês / Ano"
+                  placeholder={t("registration.monthYear")}
                   className="h-[59px] placeholder:text-greyscale-text-body font-['Montserrat'] shadow-none"
                   isRequired={!isCurrent}
                   disabled={isCurrent}
@@ -316,7 +323,7 @@ export const ExperienceForm = () => {
                     className="font-['Montserrat'] font-normal text-greyscale-text-body cursor-pointer"
                     style={{ fontSize: "16px", lineHeight: "20.8px" }}
                   >
-                    Meu emprego atual
+                    {t("registration.currentJob")}
                   </label>
                 </div>
 
@@ -324,8 +331,8 @@ export const ExperienceForm = () => {
                   <FormTextarea
                     control={control}
                     fieldName={`jobs.${index}.description`}
-                    placeholder="Escreva aqui as suas responsabilidades"
-                    label="Descrição das atividades"
+                    placeholder={t("registration.responsibilities")}
+                    label={t("registration.activityDescription")}
                     rows={3}
                     maxLength={maxChars}
                     className="resize-none placeholder:text-greyscale-text-body font-['Montserrat'] border-greyscale-border-lighter"
@@ -337,7 +344,7 @@ export const ExperienceForm = () => {
                 className="text-right font-normal font-['Montserrat'] text-greyscale-text-caption py-2"
                 style={{ fontSize: "14px", lineHeight: "17px" }}
               >
-                {currentLength} / {maxChars} caracteres
+                {currentLength} / {maxChars} {t("registration.characters")}
                 <CardFooter className="justify-end col-start-2 px-0 pt-3">
                   <Button
                     variant="link"
@@ -345,7 +352,7 @@ export const ExperienceForm = () => {
                     style={{ fontSize: "14px", lineHeight: "17px" }}
                     onClick={() => remove(index)}
                   >
-                    <img src={deleteIcon} /> Remover experiência
+                    <img src={deleteIcon} /> {t("registration.removeExperience")}
                   </Button>
                 </CardFooter>
               </div>
@@ -372,7 +379,7 @@ export const ExperienceForm = () => {
           }
           className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
         >
-          <img src={plusIcon} /> Adicionar outra experiência
+          <img src={plusIcon} /> {t("registration.addAnotherExperience")}
         </Button>
       </div>
     </>

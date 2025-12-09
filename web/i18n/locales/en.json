@@ -55,11 +55,7 @@
     "size": "Size",
     "uploaded": "Uploaded"
   },
-  "form": {
-    "submit": "Submit",
-    "submitting": "Submitting",
-    "reset": "Reset"
-  },
+  "form": { "submit": "Submit", "submitting": "Submitting", "reset": "Reset" },
   "validation": {
     "required": "This field is required",
     "minLength": "Must be at least {{count}} characters",
@@ -244,14 +240,14 @@
       "rotate": "Rotate"
     }
   },
-   "multiSelect": {
+  "multiSelect": {
     "createCategory": "Create category",
     "EnterCategoryTitle": "Enter a short and clear category title.",
     "newCategory": "New Category",
     "creatingCategory": "Creating Category",
     "minNameLength": "Category name must be at least {{count}} characters"
   },
-    "carousel": {
+  "carousel": {
     "title1": "Join us to transform lives through your knowledge",
     "section1": "We offer access to personalized content for people in need, improving living conditions and job opportunities.",
     "title2": "For content creators",
@@ -259,27 +255,66 @@
     "title3": "Sign up now and help make a difference!",
     "section3": "Be part of a community that makes it easier to access relevant content and encourages knowledge sharing in a simple and practical way."
   },
-  "login":{
-    "back-button":"Back",
-    "welcome-back":"Welcome back!",
-    "email":"Email",
-    "password":"Password",
-    "login-button":"Log In",
-    "forgot-password":"Forgot your password?",
-    "no-account":"Don't have an account yet?",
-    "register-now":"Register now",
-    "email-error":"INCORRECT EMAIL OR PASSWORD. PLEASE TRY AGAIN."
+  "login": {
+    "back-button": "Back",
+    "welcome-back": "Welcome back!",
+    "email": "Email",
+    "password": "Password",
+    "login-button": "Log In",
+    "forgot-password": "Forgot your password?",
+    "no-account": "Don't have an account yet?",
+    "register-now": "Register now",
+    "email-error": "INCORRECT EMAIL OR PASSWORD. PLEASE TRY AGAIN."
   },
-  "welcome":
-  {
+  "auth": {
+    "backButton": "Back",
+    "welcomeBack": "Welcome back!",
+    "email": "Email",
+    "password": "Password",
+    "logIn": "Log in",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don’t have an account yet?",
+    "registerNow": "Register now",
+    "emailError": "INCORRECT EMAIL OR PASSWORD. PLEASE TRY AGAIN.",
+    "pendingApprovalTitle": "Awaiting approval",
+    "pendingApprovalText": "Your registration is under review and you will receive a response within x days. Keep an eye on your email — we’ll let you know as soon as everything is ready!",
+    "close": "Close"
+  },
+  "registration": {
+    "experience": "Academic experience",
+    "inProgress": "In progress",
+    "finished": "Completed",
+    "motivation": "Write here why you want to be part of the project",
+    "removeExperience": "Remove experience",
+    "characters": "characters",
+    "eduOptsLabel": "Education",
+    "eduOptsPlaceholder": "Higher education",
+    "activityDescription": "Description of activities",
+    "eduStatusLabel": "Status",
+    "eduStatusPlaceholder": "In progress",
+    "responsibilities": "Write your responsibilities here",
+    "currentJob": "My current job",
+    "courseLabel": "Course",
+    "institutionLabel": "Institution",
+    "institutionStart": "Start",
+    "monthYear": "Month / Year",
+    "institutionEnd": "End",
+    "end": "End",
+    "Product Designer": "Product Designer",
+    "start": "Start",
+    "removeForm": "Remove education",
+    "addForm": "Add another education",
+    "Position": "Position",
+    "experienceExamplePlaceholder": "Examples: Apple, Microsoft, etc.",
+    "Company": "Company",
+    "addAnotherExperience": "Add another experience"
+},
+"welcome": {
     "title": "Welcome to EDUCADO!",
     "subtitle": "Sign up now and help promote your work and reach a wider audience through content creation.",
     "register-button": "Register",
     "login-text": "Already have an account?",
     "login-button": "Sign in"
   },
-  "notifications":
-  {
-    "published-course": "Published course"
-  }
+  "notifications": { "published-course": "Published course" }
 }
