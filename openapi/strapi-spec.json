@@ -22124,6 +22124,9 @@
                               "isAdmin": {
                                 "type": "boolean"
                               },
+                              "rejectionReason": {
+                                "type": "string"
+                              },
                               "createdAt": {
                                 "type": "string",
                                 "format": "date-time"
@@ -22936,6 +22939,9 @@
               },
               "isAdmin": {
                 "type": "boolean"
+              },
+              "rejectionReason": {
+                "type": "string"
               },
               "locale": {
                 "type": "string"
@@ -24373,6 +24379,9 @@
                                     "isAdmin": {
                                       "type": "boolean"
                                     },
+                                    "rejectionReason": {
+                                      "type": "string"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -24895,6 +24904,9 @@
           },
           "isAdmin": {
             "type": "boolean"
+          },
+          "rejectionReason": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -26888,6 +26900,9 @@
                           },
                           "isAdmin": {
                             "type": "boolean"
+                          },
+                          "rejectionReason": {
+                            "type": "string"
                           },
                           "createdAt": {
                             "type": "string",
@@ -28958,6 +28973,9 @@
                       "isAdmin": {
                         "type": "boolean"
                       },
+                      "rejectionReason": {
+                        "type": "string"
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -30911,6 +30929,9 @@
                     "isAdmin": {
                       "type": "boolean"
                     },
+                    "rejectionReason": {
+                      "type": "string"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -32713,6 +32734,9 @@
                     },
                     "isAdmin": {
                       "type": "boolean"
+                    },
+                    "rejectionReason": {
+                      "type": "string"
                     },
                     "createdAt": {
                       "type": "string",
@@ -35940,6 +35964,9 @@
                     "isAdmin": {
                       "type": "boolean"
                     },
+                    "rejectionReason": {
+                      "type": "string"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -38665,6 +38692,9 @@
                           "isAdmin": {
                             "type": "boolean"
                           },
+                          "rejectionReason": {
+                            "type": "string"
+                          },
                           "createdAt": {
                             "type": "string",
                             "format": "date-time"
@@ -40407,6 +40437,9 @@
                               },
                               "isAdmin": {
                                 "type": "boolean"
+                              },
+                              "rejectionReason": {
+                                "type": "string"
                               },
                               "createdAt": {
                                 "type": "string",

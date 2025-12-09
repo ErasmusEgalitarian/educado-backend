@@ -124,6 +124,10 @@
     "isAdmin": {
       "type": "boolean",
       "default": false
+    },
+    "rejectionReason": {
+      "type": "string",
+      "maxLength": 100
     }
   }
 }

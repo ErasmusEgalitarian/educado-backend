@@ -547,6 +547,10 @@ export interface ApiContentCreatorContentCreator
         minLength: 8;
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    rejectionReason: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
     statusValue: Schema.Attribute.Enumeration<
       ['PENDING', 'APPROVED', 'REJECTED']
     > &

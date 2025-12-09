@@ -74,16 +74,7 @@ export default factories.createCoreController('api::content-creator.content-crea
                 });
             }
 
-
-            interface JwtContentCreatorPayload {
-                documentId: string;
-                firstName: string;
-                lastName: string;
-                email: string;
-                verifiedAt: Date | null;
-                isAdmin: boolean;
-            }
-        const jwtContentCreator : JwtContentCreatorPayload  = {
+        const jwtContentCreator : ContentCreator  = {
             documentId: user.documentId,
             firstName: user.firstName,
             lastName: user.lastName,
@@ -107,7 +98,7 @@ export default factories.createCoreController('api::content-creator.content-crea
                 firstName: user.firstName,
                 lastName: user.lastName,
                 verifiedAt: user.verifiedAt ? new Date(user.verifiedAt).toISOString() : null,
-                isAdmin: !!user.isAdmin,
+                isAdmin: user.isAdmin,
                 role: user.isAdmin ? "admin" : "creator",
             },
         });
@@ -137,21 +128,18 @@ export default factories.createCoreController('api::content-creator.content-crea
         }
 
         if (statusValue === "REJECTED") {
-            (data as any).rejectionReason = rejectionReason ?? null;
+            data.rejectionReason = rejectionReason ?? null;
         }
 
        try{
-            await strapi.documents("api::content-creator.content-creator")
+            const updateAndPublish = await strapi.documents("api::content-creator.content-creator")
                .update({
                    documentId: id,
+                   status: "published",
                    data,
                });
 
-           const published = await strapi.documents("api::content-creator.content-creator").publish({
-               documentId: id,
-           });
-
-           return ctx.send(published);
+           return ctx.send(updateAndPublish);
 
        } catch (err) {
            strapi.log.error("Error in content-creator.updateStatus", err);
