@@ -41,19 +41,19 @@ const jobSchema = z.object({
   description: z.string().max(maxChars),
   isCurrentJob: z.boolean().default(false),
 })
-.refine(
-  (data) => {
-    if (data.isCurrentJob) {
-         return data.jobEndDate.length === 0;   
-    } else {
-      return typeof data.jobEndDate === "string" && data.jobEndDate.length > 0;
+  .refine(
+    (data) => {
+      if (data.isCurrentJob) {
+        return data.jobEndDate.length === 0;
+      } else {
+        return typeof data.jobEndDate === "string" && data.jobEndDate.length > 0;
+      }
+    },
+    {
+      message: "Data de fim é obrigatória, exceto em empregos atuais.",
+      path: ["jobEndDate"],
     }
-  },
-  {
-    message: "Data de fim é obrigatória, exceto em empregos atuais.",
-    path: ["jobEndDate"],
-  }
-);
+  );
 
 
 export const formSchema = z.object({
@@ -97,10 +97,10 @@ export const EducationForm = () => {
   const initializedRef = useRef(false);
 
   const STATUS = [(t("registration.inProgress")), (t("registration.finished"))] as const;
-const STATUS_OPTIONS = STATUS.map((type) => ({
-  value: type,
-  label: type,
-}));
+  const STATUS_OPTIONS = STATUS.map((type) => ({
+    value: type,
+    label: type,
+  }));
 
   useEffect(() => {
     if (!initializedRef.current && fields.length === 0) {
@@ -122,7 +122,7 @@ const STATUS_OPTIONS = STATUS.map((type) => ({
         <Card key={field.id} className="mb-4">
           <CardHeader>
             <CardTitle className="text-greyscale-text-caption font-bold font-['Montserrat']">
-              {t("registration.experience")} {`${index + 1}`} 
+              {t("registration.experience")} {`${index + 1}`}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -186,7 +186,7 @@ const STATUS_OPTIONS = STATUS.map((type) => ({
                     style={{ fontSize: "14px", lineHeight: "17px" }}
                     onClick={() => remove(index)}
                   >
-                    <img src={deleteIcon} /> {t("registration.removeForm")}
+                    <img src={deleteIcon} alt="" /> {t("registration.removeForm")}
                   </Button>
                 </CardFooter>
               </div>
@@ -213,7 +213,7 @@ const STATUS_OPTIONS = STATUS.map((type) => ({
           }
           className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
         >
-          <img src={plusIcon} /> {t("registration.addForm")}
+          <img src={plusIcon} alt="" /> {t("registration.addForm")}
         </Button>
       </div>
     </>
@@ -221,7 +221,7 @@ const STATUS_OPTIONS = STATUS.map((type) => ({
 };
 
 export const ExperienceForm = () => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
   const { control, watch, setValue } = useFormContext();
   const currentLength =
     (watch(`jobs.0.description`) as string | undefined)?.length ?? 0;
@@ -252,7 +252,7 @@ export const ExperienceForm = () => {
     <>
       {fields.map((field, index) => {
         const isCurrent = Boolean(jobs?.[index]?.isCurrentJob);
-          
+
 
         return (
           <Card key={field.id} className="mb-4">
@@ -352,7 +352,7 @@ export const ExperienceForm = () => {
                     style={{ fontSize: "14px", lineHeight: "17px" }}
                     onClick={() => remove(index)}
                   >
-                    <img src={deleteIcon} /> {t("registration.removeExperience")}
+                    <img src={deleteIcon} alt="" /> {t("registration.removeExperience")}
                   </Button>
                 </CardFooter>
               </div>
@@ -379,7 +379,7 @@ export const ExperienceForm = () => {
           }
           className="w-full border-greyscale-border-default border-dash-long font-['Montserrat'] text-greyscale-text-body font-normal"
         >
-          <img src={plusIcon} /> {t("registration.addAnotherExperience")}
+          <img src={plusIcon} alt="" /> {t("registration.addAnotherExperience")}
         </Button>
       </div>
     </>
