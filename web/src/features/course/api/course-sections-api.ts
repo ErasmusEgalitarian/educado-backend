@@ -72,8 +72,8 @@ export const CourseSectionSetPublish = () => {
       if(!section.documentId) return `Error: course section ${section.documentId} is undefined`;
 
       return await courseSectionPutCourseSectionsById ({
-        query: { status: "published" },
         path: { id: section.documentId },
+        query: { status: "published" },
         body: {
           data: {
             title: section.title,

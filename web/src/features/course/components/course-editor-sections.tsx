@@ -17,8 +17,8 @@ import { SectionForm } from "./SectionForm";
 
 interface CourseEditorSectionsProps {
   courseId: string;
-  onComplete: () => void;
-  onGoBack: () => void;
+  onComplete?: () => void;
+  onGoBack?: () => void;
 }
 
 const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSectionsProps) => {

@@ -12,7 +12,7 @@ interface SectionFormProps {
     handleCancel: (documentId: string | null) => void,
     updateOrCreateSection: (section: CourseSection) => void,
 }
-// todo finish this
+
 export const SectionForm = ({ courseSection, isEditing, handleCancel, updateOrCreateSection }: SectionFormProps) => {
     
     const [section, setSection] = useState(courseSection ?? {title: ""});
