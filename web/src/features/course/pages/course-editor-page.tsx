@@ -124,7 +124,7 @@ const CourseEditorPage = () => {
           documentId: docId,
           title: values.title,
           difficulty: Number(values.difficulty),
-          course_categories: values.categories,
+          course_categories: values.course_categories,
           description: values.description,
           image: imageId,
         });
@@ -136,9 +136,10 @@ const CourseEditorPage = () => {
         await createMutation.mutateAsync({
           title: values.title,
           difficulty: Number(values.difficulty),
-          course_categories: values.categories,
+          course_categories: values.course_categories,
           description: values.description,
           image: imageId,
+          durationHours: 1,
           creator_published_at: "",
         });
         setTimeout(() => {

@@ -82,11 +82,19 @@ export const CourseCard = ({ course }: { course: Course }) => {
       <CardContent className="flex-1">
         <div className="flex items-center justify-between">
           <div className="flex flex-wrap gap-2">
-            {(course.course_categories ?? []).map((category) => (
-              <Badge key={category.id} variant="outline">
-                {category.name}
-              </Badge>
-            ))}
+            {(course.course_categories ?? []).map((category) => {
+              // Cast to include the name field that exists at runtime
+              const cat = category as {
+                documentId?: string;
+                id?: number;
+                name?: string;
+              };
+              return (
+                <Badge key={cat.documentId ?? cat.id} variant="outline">
+                  {cat.name}
+                </Badge>
+              );
+            })}
           </div>
 
           <p className="text-sm text-gray-600">
