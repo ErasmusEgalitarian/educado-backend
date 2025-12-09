@@ -3,30 +3,29 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/shared/components/shadcn/button";
-import { Card, CardContent, CardHeader} from "@/shared/components/shadcn/card";
+import { Card, CardContent} from "@/shared/components/shadcn/card";
 import { 
   CourseSectionCreateFunction,
   CourseSectionDeleteFunction, 
   CourseSectionQueryFunction, 
   CourseSectionSetPublish, 
-  CourseSectionUpdateFunction } from "@/course/api/course-sections-api";
+  CourseSectionUpdateFunction} from "@/course/api/course-sections-api";
 import { useQuery } from "@tanstack/react-query";
 import { CourseSection } from "@/shared/api/types.gen";
-import { Input } from "@/shared/components/shadcn/input";
 import GlobalLoader from "@/shared/components/global-loader";
+import { SectionForm } from "./SectionForm";
 
 interface CourseEditorSectionsProps {
   courseId: string;
-  onComplete?: () => void;
-  onGoBack?: () => void;
+  onComplete: () => void;
+  onGoBack: () => void;
 }
 
 const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSectionsProps) => {
   const { t } = useTranslation();
   const [currentSectionEditing, setCurrentSectionEditing] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
-  const [newSection, setNewSection] = useState<CourseSection>({title: ""});
-
+  
   const createMutation = CourseSectionCreateFunction();
   const updateMutation = CourseSectionUpdateFunction();
   const deleteMutation = CourseSectionDeleteFunction();
@@ -123,7 +122,7 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
                         ? "border-primary border-2" 
                         : "border-greyscale-border"
                     }`}
-                    onClick={() => { () => {
+                    onClick={() => {
                       if (currentSectionEditing !== section.documentId) {
                         setCurrentSectionEditing(section.documentId ?? null);
                         setIsCreating(false);
@@ -132,7 +131,7 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
 
                       setCurrentSectionEditing(null);
                       setIsCreating(false);
-                    }}}
+                    }}
                   >
                     <div className="flex items-center">
                       <h4 className="h-full flex items-center gap-3 font-semibold text-greyscale-text-title">
@@ -162,179 +161,29 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
                     </div>
                   </Button>
                   {(currentSectionEditing == section.documentId) && (
-                    <Card className="rounded-sm border border-primary-surface-default pt-0 overflow-hidden">
-                      <CardHeader className="bg-primary-surface-default p-6 text-white font-bold">
-                        {t("courseEditor.editSection")}
-                      </CardHeader>
-                      <CardContent className="pt-6">
-                        <div className="space-y-4">
-                          <div className="grid grid-cols-1 gap-4">
-                            <p className="font-bold">
-                              {t("common.name")} <span className="text-red-500">*</span>
-                            </p>
-                            <Input
-                              onChange={(event) => {
-                                setSections(sections.map(section => (section.documentId == currentSectionEditing ? {...section, title: event.target.value} : section)))
-                              }}
-                              value = {section.title || ""}
-                              label={t("common.name")}
-                              placeholder={t("common.name")}
-                            />
-
-
-                            <p className="font-bold">
-                              {t("courseEditor.description")} <span className="text-red-500">*</span>
-                            </p>
-                            <Input
-                              onChange={(event) => {
-                                setSections(sections.map(section => (section.documentId == currentSectionEditing ? {...section, description: event.target.value} : section)))
-                              }}
-                              value = {section.description || ""}
-                              label={t("courseEditor.description")}
-                              placeholder={t("courseEditor.descriptionPlaceholder")}
-                            />
-      
-                            <hr />
-                            <div className="grid grid-cols-[1fr_25px_1fr] gap-2">
-                              <Button
-                                type="button"
-                                onClick={() => { console.log("Add lesson") }}
-                                className="w-full border-dashed"
-                                variant="outline"
-                              >
-                                <div className="w-full flex flex-row items-center justify-center">
-                                  <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
-                                  {t("courseEditor.addLesson")}
-                                </div>
-                              </Button>
-                              <span className="flex items-center justify-center text-greyscale-text-disabled">
-                                {t("common.or")}
-                              </span>
-                              <Button
-                                type="button"
-                                onClick={() => { console.log("Add exercise")}}
-                                className="w-full border-dashed flex"
-                                variant="outline"
-                              >
-                                <div className="w-full flex flex-row items-center justify-center">
-                                  <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
-                                  {t("courseEditor.addExercise")}
-                                </div>
-                              </Button>
-                            </div>
-                          </div>
-      
-                          <div className="flex gap-2 justify-end">
-                            <Button
-                              type="button"
-                              variant="outline"
-                              onClick={() => {
-                                
-                              }}
-                            >
-                              {t("common.cancel")}
-                            </Button>
-                            <Button onClick={() => {
-                              updateSection(section);
-                              setNewSection({ // reset for next section creation
-                                title: "",
-                                description: "",
-                                activities: undefined,
-                              })
-                            }}>
-                              {t("common.update")}
-                            </Button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                    <SectionForm 
+                      courseSection={section}
+                      isEditing={!isCreating}
+                      updateOrCreateSection={isCreating ? createSection : updateSection}
+                      handleCancel={(documentId: string | null) => {
+                        setCurrentSectionEditing(documentId);
+                      }}
+                    />
                   )}
                 </Card>
               ))}
             </div>
           )}
 
-          {isCreating && (
-            <Card className="rounded-sm border border-primary-surface-default pt-0 overflow-hidden">
-              <CardHeader className="bg-primary-surface-default p-6 text-white font-bold">
-                { t("courseEditor.createNewSection")}
-              </CardHeader>
-              <CardContent className="pt-6">
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 gap-4">
-                    <p className="font-bold">
-                      {t("common.name")} <span className="text-red-500">*</span>
-                    </p>
-                    <Input
-                      onChange={(event) => {
-                        setNewSection({...newSection, title: event.target.value});
-                      }}
-                      label={t("common.name")}
-                      placeholder={t("common.name")}
-                    />
-
-                    <p className="font-bold">
-                      {t("courseEditor.description")} <span className="text-red-500">*</span>
-                    </p>
-                    <Input
-                      onChange={(event) => {
-                        setNewSection({...newSection, description: event.target.value});
-                      }}
-                      label={t("courseEditor.description")}
-                      placeholder={t("courseEditor.descriptionPlaceholder")}
-                    />
-                    <hr />
-                    <div className="grid grid-cols-[1fr_25px_1fr] gap-2">
-                      <Button
-                        type="button"
-                        onClick={() => { console.log("Add lesson") }}
-                        className="w-full border-dashed"
-                        variant="outline"
-                      >
-                        <div className="w-full flex flex-row items-center justify-center">
-                          <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
-                          {t("courseEditor.addLesson")}
-                        </div>
-                      </Button>
-                      <span className="flex items-center justify-center text-greyscale-text-disabled">
-                        {t("common.or")}
-                      </span>
-                      <Button
-                        type="button"
-                        onClick={() => { console.log("Add exercise")}}
-                        className="w-full border-dashed flex"
-                        variant="outline"
-                      >
-                        <div className="w-full flex flex-row items-center justify-center">
-                          <Plus size={16} className="mr-2 text-greyscale-text-disabled" />
-                          {t("courseEditor.addExercise")}
-                        </div>
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-2 justify-end">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={() => {
-                        setIsCreating(false);
-                        setCurrentSectionEditing(null);
-                      }}
-                    >
-                      {t("common.cancel")}
-                    </Button>
-                    <Button onClick={() => createSection(newSection)}>
-                      {t("common.create")}
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Add Section Button */}
-          {!isCreating && (
+          {isCreating ? (
+            <SectionForm 
+              isEditing={!isCreating}
+              updateOrCreateSection={createSection}
+              handleCancel={() => {
+                setIsCreating(false);
+              }}
+            />
+          ) : (
             <Button
               onClick={() => {
                 setIsCreating(true);
