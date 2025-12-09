@@ -72,8 +72,9 @@ export const createCourseColumns = ({
           </Badge>
         );
       },
-      // Pass-through filter: always returns true because actual filtering
-      // is done server-side via Strapi's status parameter (handled in usePaginatedData)
+      // The filterFN is modified to handle "draft" and "published" string values
+      // for client-side filtering. This is required because by default a date or the absence
+      // of a date, does not represent a "boolean" state directly.
       filterFn: (row, _columnId, filterValue) => {
         const publishedAt = row.getValue<string | null>("creator_published_at");
         const isDraft = publishedAt === null || publishedAt.trim() === "";
