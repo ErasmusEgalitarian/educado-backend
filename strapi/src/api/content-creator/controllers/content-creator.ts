@@ -1,16 +1,12 @@
-/**
- * content-creator controller
- */
-
 import { factories } from '@strapi/strapi'
-import  jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import bcrypt from 'bcryptjs';
 import { errorCodes } from '../../../helpers/errorCodes';
 import { sendVerificationEmail } from '../../../helpers/email';
 
-export default factories.createCoreController('api::content-creator.content-creator',({strapi}) => ({
-    async register(ctx){
-        try{
+export default factories.createCoreController('api::content-creator.content-creator', ({ strapi }) => ({
+    async register(ctx) {
+        try {
             console.log("Registration request received:", ctx.request.body);
             const institutionalMails = ["student.aau.dk"];
 
@@ -23,36 +19,26 @@ export default factories.createCoreController('api::content-creator.content-crea
                 jobs = [],
                 educations = [],
             } = ctx.request.body;
-
-
             if (!firstName || !lastName || !email || !password) {
                 return ctx.badRequest("Missing required fields.");
             }
-
             if (!Array.isArray(jobs) || jobs.length === 0) {
                 return ctx.badRequest("At least one job is required");
             }
-
             if (!Array.isArray(educations) || educations.length === 0) {
                 return ctx.badRequest("At least one education is required");
             }
-
             const existing = await strapi.db.query('api::content-creator.content-creator').findOne({
                 where: { email },
             });
 
-            if (existing){
+            if (existing) {
                 console.log("Email already in use:", email);
                 return ctx.badRequest('Email already in use')
             }
-
-
-
             const domain = email.split('@')[1]?.toLowerCase();
             const isTrusted = institutionalMails.includes(domain)
             const confirmationDate = isTrusted ? new Date() : null;
-
-
 
             const jobDocs = await Promise.all(
                 jobs.map((job) =>
@@ -68,8 +54,6 @@ export default factories.createCoreController('api::content-creator.content-crea
                     })
                 )
             );
-
-
             const educationDocs = await Promise.all(
                 educations.map((edu) =>
                     strapi.documents("api::education.education").create({
@@ -85,16 +69,12 @@ export default factories.createCoreController('api::content-creator.content-crea
                     })
                 )
             );
-
             const currentCompany =
                 jobDocs.find((j) => !j.endDate || j.endDate.trim() === "")?.company ??
                 jobs[0]?.company ?? // fallback to first job
                 null;
-
-
-
             const newUser = await strapi.documents('api::content-creator.content-creator').create({
-                data:{
+                data: {
                     email: email,
                     password: password,
                     firstName: firstName,
@@ -106,10 +86,7 @@ export default factories.createCoreController('api::content-creator.content-crea
                     educations: educationDocs.map((e) => e.documentId),
                 },
                 status: "published"
-
             })
-
-
             // Utility functions
             function generateTokenCode(length) {
                 let result = '';
@@ -120,7 +97,6 @@ export default factories.createCoreController('api::content-creator.content-crea
                 }
                 return result;
             }
-
             const code = generateTokenCode(4);
             sendVerificationEmail(newUser, code);
 
@@ -132,19 +108,11 @@ export default factories.createCoreController('api::content-creator.content-crea
                     ? `User registered and auto-approved on ${confirmationDate!.toISOString()}.`
                     : 'Registration successful. Waiting for admin approval.',
             });
-
-
-
-
-
         }
-        catch(err){
+        catch (err) {
             console.error("Registration error:", err);
-            ctx.badRequest('Registration failed', {error: err.message});
+            ctx.badRequest('Registration failed', { error: err.message });
         }
-
-
-
     },
     async login(ctx) {
         try {
@@ -154,27 +122,24 @@ export default factories.createCoreController('api::content-creator.content-crea
             const user = await strapi.documents('api::content-creator.content-creator').findFirst({
                 filters: { email: email.toLowerCase() },
             });
-
             if (!user) {
                 return ctx.badRequest('Invalid email or password', {
-                    error: { code: errorCodes.E0106.code, message: errorCodes.E0106.message }});
+                    error: { code: errorCodes.E0106.code, message: errorCodes.E0106.message }
+                });
             }
-
             const isValidPassword = await bcrypt.compare(password, user.password);
 
             if (!isValidPassword) {
                 return ctx.badRequest('Invalid email or password', {
-                    error: { code: errorCodes.E0106.code, message: errorCodes.E0106.message }});
+                    error: { code: errorCodes.E0106.code, message: errorCodes.E0106.message }
+                });
             }
-
             if (user.verifiedAt == null) {
                 return ctx.badRequest('Admin approval is required.', {
-                    error: { code: errorCodes.E1001.code, message: errorCodes.E1001.message }});
+                    error: { code: errorCodes.E1001.code, message: errorCodes.E1001.message }
+                });
             }
-
-
-
-            const jwtContentCreator : ContentCreator = {
+            const jwtContentCreator: ContentCreator = {
                 documentId: user.documentId,
                 firstName: user.firstName,
                 lastName: user.lastName,
@@ -203,5 +168,18 @@ export default factories.createCoreController('api::content-creator.content-crea
             console.error(err);
             return ctx.internalServerError('Something went wrong');
         }
+    },
+        async update(ctx) {
+        // Remove password from the request if it's empty or not provided
+        if (ctx.request.body?.data) {
+            const password = ctx.request.body.data.password;
+            // Trim and check for undefined, null, empty string, and whitespace
+            if (typeof password !== 'string' || password.trim() === '') {
+                delete ctx.request.body.data.password;
+            }
+        }
+
+        // Call the default update controller
+        return await super.update(ctx);
     },
 }));
