@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { mdiFloppy, mdiCheckCircle } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useQuery } from "@tanstack/react-query";

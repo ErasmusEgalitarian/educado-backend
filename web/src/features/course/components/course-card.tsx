@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-import { Course } from "@/shared/api/types.gen";
+import { Course, CourseCategory } from "@/shared/api/types.gen";
 import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
 import {
@@ -84,11 +84,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
           <div className="flex flex-wrap gap-2">
             {(course.course_categories ?? []).map((category) => {
               // Cast to include the name field that exists at runtime
-              const cat = category as {
-                documentId?: string;
-                id?: number;
-                name?: string;
-              };
+              const cat = category as CourseCategory
               return (
                 <Badge key={cat.documentId ?? cat.id} variant="outline">
                   {cat.name}

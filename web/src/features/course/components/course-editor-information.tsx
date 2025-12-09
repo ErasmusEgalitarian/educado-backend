@@ -224,7 +224,7 @@ const CourseEditorInformation = forwardRef<
           course_categories: values.course_categories,
           description: values.description,
           image: imageDocumentId,
-          durationHours: 0,
+          durationHours: 1,
           creator_published_at: new Date().toISOString(),
         });
 
