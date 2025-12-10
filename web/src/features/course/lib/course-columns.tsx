@@ -51,22 +51,46 @@ export const createCourseColumns = ({
       },
     },
     {
-      accessorKey: "publishedAt",
+      accessorKey: "creator_published_at",
       header: t("publication.status"),
       cell: ({ row }) => {
-        const publishedAt = row.getValue<string | null>("publishedAt");
-        const isDraft = publishedAt === null;
+        const publishedAt = row.getValue<string | null>("creator_published_at");
+        const isPublished = publishedAt !== null && publishedAt.trim() !== "";
         return (
-          <Badge variant={isDraft ? "outline" : "default"}>
-            {isDraft
-              ? t("publication.unpublished")
-              : t("publication.published")}
+          <Badge
+            variant="outline"
+            className={
+              "whitespace-nowrap text-xs font-medium px-2 py-0.5 " +
+              (isPublished
+                ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                : "border-amber-200 bg-amber-50 text-amber-800")
+            }
+          >
+            {isPublished
+              ? t("publication.published")
+              : t("publication.unpublished")}
           </Badge>
         );
       },
-      // Pass-through filter: always returns true because actual filtering
-      // is done server-side via Strapi's status parameter (handled in usePaginatedData)
-      filterFn: () => true,
+      // The filterFN is modified to handle "draft" and "published" string values
+      // for client-side filtering. This is required because by default a date or the absence
+      // of a date, does not represent a "boolean" state directly.
+      filterFn: (row, _columnId, filterValue) => {
+        const publishedAt = row.getValue<string | null>("creator_published_at");
+        const isDraft = publishedAt === null || publishedAt.trim() === "";
+        if (Array.isArray(filterValue)) {
+          const lookup = new Set(
+            (filterValue as unknown[]).map((v) => String(v).toLowerCase())
+          );
+          return isDraft ? lookup.has("draft") : lookup.has("published");
+        }
+        if (typeof filterValue === "string") {
+          const needle = filterValue.trim().toLowerCase();
+          if (needle === "") return true;
+          return isDraft ? needle === "draft" : needle === "published";
+        }
+        return true;
+      },
       meta: {
         sortable: true,
         visibleByDefault: true,

@@ -121,9 +121,9 @@ const SingleApplicantView = () => {
   };
 
   return (
-    <Layout meta={`Applicant: ${id?.slice(0, 10)}.`}>
-      <div className="grid place-items-center h-screen pt-20">
-        <div className="bg-white shadow-sm overflow-hidden rounded-xl">
+    <Layout meta={`Applicant: ${id?.slice(0, 10)}...`}>
+      <div className="flex justify-center py-10 px-4">
+        <div className="bg-white shadow-sm overflow-hidden rounded-xl w-full max-w-4xl">
           <div className="px-4 py-8 sm:px-10">
             <h3 className="leading-6 text-2xl font-bold text-gray-900">
               Candidato:{" "}
