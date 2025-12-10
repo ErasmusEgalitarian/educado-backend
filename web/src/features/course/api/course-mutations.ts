@@ -38,9 +38,6 @@ export const useCreateCourseMutation = () => {
   return useMutation({
     mutationFn: async (input: CourseCreateInput) => {
       const response = await coursePostCourses({
-        query: {
-          status: "draft",
-        },
         body: {
           data: {
             title: input.title,
@@ -48,10 +45,12 @@ export const useCreateCourseMutation = () => {
             description: input.description,
             course_categories: input.course_categories,
             image: input.image,
+            durationHours: 1,
             // Default values for Strapi fields
             numOfRatings: 0,
             numOfSubscriptions: 0,
-            // IMPORTANT: Don't set publishedAt - draft has no publishedAt
+            creator_published_at: input.creator_published_at,
+            admin_control_at: undefined,
           },
         },
       });
@@ -94,7 +93,9 @@ export const useUpdateCourseMutation = () => {
             difficulty: input.difficulty,
             description: input.description,
             course_categories: input.course_categories,
+            durationHours: 1,
             image: input.image,
+            creator_published_at: new Date().toISOString(),
           },
         },
       });
@@ -118,8 +119,6 @@ export const useUpdateCourseMutation = () => {
   });
 };
 
-      
-
 /**
  * Publish a course (change from draft to published)
  * Used in the review step to make the course visible to students
@@ -135,10 +134,13 @@ export const usePublishCourseMutation = () => {
       const { documentId, ...dataWithoutId } = input;
       const response = await coursePutCoursesById({
         path: { id: documentId },
-        query: { status: "published" },
         body: {
           // Do not send documentId in body; Strapi expects ID only in path
-          data: { ...dataWithoutId },
+          data: {
+            ...dataWithoutId,
+            durationHours: 1,
+            creator_published_at: new Date().toISOString(),
+          },
         },
       });
 
@@ -182,6 +184,43 @@ export const useDeleteCourseMutation = () => {
         queryKey: ["courses"],
         exact: false,
       });
+    },
+  });
+};
+
+export const useUnpublishCourseMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (input: CourseUpdateInput) => {
+      const { documentId, ...dataWithoutId } = input;
+      const response = await coursePutCoursesById({
+        path: { id: documentId },
+        body: {
+          // Do not send documentId in body; Strapi expects ID only in path
+          data: {
+            ...dataWithoutId,
+            durationHours: 1,
+            creator_published_at: "",
+          },
+        },
+      });
+
+      return response;
+    },
+    onSuccess: (data) => {
+      // Invalidate the courses query and set updated course data
+      // exact: false ensures all queries starting with ["courses"] are invalidated
+      void queryClient.invalidateQueries({
+        queryKey: ["courses"],
+        exact: false,
+      });
+
+      const courseId = data?.data?.documentId;
+
+      if (courseId != null) {
+        queryClient.setQueryData(courseQuery(courseId), data?.data);
+      }
     },
   });
 };

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-12-08T16:11:24.680Z"
+    "x-generation-date": "2025-12-09T15:22:56.867Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -10690,6 +10690,13 @@
                             }
                           }
                         },
+                        "admin_control_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "creator_published_at": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -12945,6 +12952,13 @@
                                   }
                                 }
                               },
+                              "admin_control_at": {
+                                "type": "string",
+                                "format": "date-time"
+                              },
+                              "creator_published_at": {
+                                "type": "string"
+                              },
                               "createdAt": {
                                 "type": "string",
                                 "format": "date-time"
@@ -13502,6 +13516,13 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
               },
               "locale": {
                 "type": "string"
@@ -15390,6 +15411,13 @@
                         }
                       }
                     },
+                    "admin_control_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "creator_published_at": {
+                      "type": "string"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -15563,6 +15591,13 @@
                 }
               }
             }
+          },
+          "admin_control_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creator_published_at": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -17461,6 +17496,13 @@
                       }
                     }
                   }
+                },
+                "admin_control_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "creator_published_at": {
+                  "type": "string"
                 },
                 "createdAt": {
                   "type": "string",
@@ -19418,6 +19460,13 @@
                   }
                 }
               },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
+              },
               "createdAt": {
                 "type": "string",
                 "format": "date-time"
@@ -21224,6 +21273,13 @@
                   }
                 }
               },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
+              },
               "createdAt": {
                 "type": "string",
                 "format": "date-time"
@@ -22714,6 +22770,13 @@
                                         }
                                       }
                                     }
+                                  },
+                                  "admin_control_at": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                  },
+                                  "creator_published_at": {
+                                    "type": "string"
                                   },
                                   "createdAt": {
                                     "type": "string",
@@ -26289,6 +26352,13 @@
                   }
                 }
               },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
+              },
               "createdAt": {
                 "type": "string",
                 "format": "date-time"
@@ -29017,6 +29087,13 @@
                         }
                       }
                     },
+                    "admin_control_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "creator_published_at": {
+                      "type": "string"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -30839,6 +30916,13 @@
                               }
                             }
                           }
+                        },
+                        "admin_control_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "creator_published_at": {
+                          "type": "string"
                         },
                         "createdAt": {
                           "type": "string",

@@ -74,6 +74,7 @@ type CourseBasicInfoFormValues = z.infer<typeof courseBasicInfoSchema>;
 /* -------------------------------------------------------------------------- */
 /*                                  Component                                 */
 /* -------------------------------------------------------------------------- */
+
 const CourseEditorInformation = forwardRef<
   CourseEditorInformationRef,
   CourseEditorInformationProps
@@ -223,6 +224,8 @@ const CourseEditorInformation = forwardRef<
           course_categories: values.course_categories,
           description: values.description,
           image: imageDocumentId,
+          durationHours: 1,
+          creator_published_at: new Date().toISOString(),
         });
 
         // Success completion handled by OverlayStatusWrapper's onSuccessComplete
@@ -314,10 +317,6 @@ const CourseEditorInformation = forwardRef<
               successMessage={
                 isEditMode ? t("common.updated") : t("common.created")
               }
-              onSuccessComplete={() => {
-                createMutation.reset();
-                updateMutation.reset();
-              }}
             >
               <div className="flex flex-col gap-y-5">
                 <FormInput
