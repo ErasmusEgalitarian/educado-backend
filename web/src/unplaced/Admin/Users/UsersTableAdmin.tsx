@@ -236,7 +236,7 @@ export const UsersTableAdmin = () => {
               {t("common.name")}
             </th>
             <th scope="col" className="p-5" style={{ width: "25%" }}>
-              {t("login.email")}
+              {t("auth.email")}
             </th>
             <th scope="col" className="p-5" style={{ width: "20%" }}>
               {t("common.actions")}

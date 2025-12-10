@@ -119,7 +119,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
             </div>
             <div className="flex flex-col items-center bg-white p-2 md:p-4 rounded-r-lg mt-4">
               <dt className="text-[#166276] text-base font-bold font-['Lato']">
-                  {t("login.email")}
+                  {t("auth.email")}
               </dt>
               <dd
                 id="email"

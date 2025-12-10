@@ -107,7 +107,7 @@ const UserGenericContainerComponent: React.FC<
         </div>
         <div className="flex flex-col bg-white p-4 md:p-6 rounded-r-lg mt-4">
           <dt className="text-[#166276] text-base font-bold font-lato">
-              {t("login.email")}
+              {t("auth.email")}
           </dt>
           <dd
             id="email"
