@@ -27,7 +27,7 @@ const CourseEditorReview = ({
   const isLoading = publishMutation.isPending;
   const isSuccess = publishMutation.isSuccess;
 
-  const isPublished = course?.publishedAt != null;
+  const isPublished = Boolean(course?.creator_published_at);
   const hasSections = (course?.course_sections?.length ?? 0) > 0;
 
   const getDifficultyLabel = (difficulty?: number) => {
@@ -109,7 +109,7 @@ const CourseEditorReview = ({
                 {t("publication.published")}
               </p>
               <p className="text-sm text-success-text-body">
-                  {t("courseEditorReview.thisCourseIsCurrentlyVisibleToStudents")}
+                {t("courseEditorReview.thisCourseIsCurrentlyVisibleToStudents")}
               </p>
             </div>
           </div>
