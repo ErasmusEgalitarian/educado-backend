@@ -1078,6 +1078,7 @@
                   "companyStart",
                   "companyEnd",
                   "jobDescription",
+                  "isAdmin",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -1113,6 +1114,7 @@
                   "companyStart",
                   "companyEnd",
                   "jobDescription",
+                  "isAdmin",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -1223,6 +1225,7 @@
                     "companyStart",
                     "companyEnd",
                     "jobDescription",
+                    "isAdmin",
                     "createdAt",
                     "updatedAt",
                     "publishedAt"
@@ -1250,6 +1253,7 @@
                       "companyStart",
                       "companyEnd",
                       "jobDescription",
+                      "isAdmin",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -1278,6 +1282,7 @@
                       "companyStart",
                       "companyEnd",
                       "jobDescription",
+                      "isAdmin",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -1315,6 +1320,7 @@
                         "companyStart",
                         "companyEnd",
                         "jobDescription",
+                        "isAdmin",
                         "createdAt",
                         "updatedAt",
                         "publishedAt"
@@ -1481,6 +1487,7 @@
                   "companyStart",
                   "companyEnd",
                   "jobDescription",
+                  "isAdmin",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -1658,6 +1665,7 @@
                   "companyStart",
                   "companyEnd",
                   "jobDescription",
+                  "isAdmin",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -1729,6 +1737,7 @@
                   "companyStart",
                   "companyEnd",
                   "jobDescription",
+                  "isAdmin",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -1765,6 +1774,7 @@
                     "companyStart",
                     "companyEnd",
                     "jobDescription",
+                    "isAdmin",
                     "createdAt",
                     "updatedAt",
                     "publishedAt"
@@ -1792,6 +1802,7 @@
                       "companyStart",
                       "companyEnd",
                       "jobDescription",
+                      "isAdmin",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -1820,6 +1831,7 @@
                       "companyStart",
                       "companyEnd",
                       "jobDescription",
+                      "isAdmin",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -1857,6 +1869,7 @@
                         "companyStart",
                         "companyEnd",
                         "jobDescription",
+                        "isAdmin",
                         "createdAt",
                         "updatedAt",
                         "publishedAt"
@@ -1996,6 +2009,7 @@
                   "companyStart",
                   "companyEnd",
                   "jobDescription",
+                  "isAdmin",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2171,6 +2185,7 @@
                   "companyStart",
                   "companyEnd",
                   "jobDescription",
+                  "isAdmin",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2242,6 +2257,7 @@
                   "companyStart",
                   "companyEnd",
                   "jobDescription",
+                  "isAdmin",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -13983,6 +13999,58 @@
         }
       }
     },
+    "/user-info": {
+      "get": {
+        "operationId": "user-info/get/user_info",
+        "parameters": [],
+        "responses": {
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "tags": [
+          "user-info"
+        ]
+      }
+    },
+    "/user-info/{id}": {
+      "get": {
+        "operationId": "user-info/get/user_info_by_id",
+        "parameters": [],
+        "responses": {
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "tags": [
+          "user-info"
+        ]
+      }
+    },
     "/user-logs": {
       "get": {
         "operationId": "user-log/get/user_logs",
@@ -14938,6 +15006,287 @@
         },
         "tags": [
           "user-log"
+        ]
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "operationId": "users-permissions/get/users_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          },
+          {
+            "name": "populate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "*"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {}
+                }
+              ]
+            },
+            "x-strapi-serialize": "querystring"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users-Permissions-User"
+                },
+                "example": {
+                  "id": 1,
+                  "username": "foo",
+                  "email": "foo@strapi.io",
+                  "provider": "local",
+                  "confirmed": false,
+                  "blocked": false,
+                  "createdAt": "2022-05-19T17:35:35.096Z",
+                  "updatedAt": "2022-05-19T17:35:35.096Z"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users-permissions"
+        ]
+      },
+      "delete": {
+        "operationId": "users-permissions/delete/users_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns deleted user info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Users-Permissions-User"
+                    }
+                  ]
+                },
+                "example": {
+                  "id": 1,
+                  "username": "foo",
+                  "email": "foo@strapi.io",
+                  "provider": "local",
+                  "confirmed": false,
+                  "blocked": false,
+                  "createdAt": "2022-05-19T17:35:35.096Z",
+                  "updatedAt": "2022-05-19T17:35:35.096Z"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users-permissions"
+        ]
+      },
+      "put": {
+        "operationId": "users-permissions/put/users_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns updated user info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Users-Permissions-User"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "role": {
+                          "$ref": "#/components/schemas/Users-Permissions-Role"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "id": 1,
+                  "username": "foo",
+                  "email": "foo@strapi.io",
+                  "provider": "local",
+                  "confirmed": false,
+                  "blocked": false,
+                  "createdAt": "2022-05-19T17:35:35.096Z",
+                  "updatedAt": "2022-05-19T17:35:35.096Z",
+                  "role": {
+                    "id": 1,
+                    "name": "X",
+                    "description": "Default role given to authenticated user.",
+                    "type": "authenticated",
+                    "createdAt": "2022-05-19T17:35:35.096Z",
+                    "updatedAt": "2022-06-04T07:11:59.551Z"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users-permissions"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "username",
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "username": "foo",
+                "email": "foo@strapi.io",
+                "password": "foo-password"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}/role": {
+      "patch": {
+        "operationId": "users/patch/users_by_id_role",
+        "parameters": [],
+        "responses": {
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "tags": [
+          "users"
         ]
       }
     },
@@ -19676,261 +20025,6 @@
         ]
       }
     },
-    "/users/{id}": {
-      "get": {
-        "operationId": "users-permissions/get/users_by_id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string"
-            }
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              ]
-            },
-            "x-strapi-serialize": "querystring"
-          },
-          {
-            "name": "populate",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "anyOf": [
-                {
-                  "type": "string",
-                  "const": "*"
-                },
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                {
-                  "type": "object",
-                  "propertyNames": {
-                    "type": "string"
-                  },
-                  "additionalProperties": {}
-                }
-              ]
-            },
-            "x-strapi-serialize": "querystring"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns a user",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Users-Permissions-User"
-                },
-                "example": {
-                  "id": 1,
-                  "username": "foo",
-                  "email": "foo@strapi.io",
-                  "provider": "local",
-                  "confirmed": false,
-                  "blocked": false,
-                  "createdAt": "2022-05-19T17:35:35.096Z",
-                  "updatedAt": "2022-05-19T17:35:35.096Z"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "users-permissions"
-        ]
-      },
-      "put": {
-        "operationId": "users-permissions/put/users_by_id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns updated user info",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/Users-Permissions-User"
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "role": {
-                          "$ref": "#/components/schemas/Users-Permissions-Role"
-                        }
-                      }
-                    }
-                  ]
-                },
-                "example": {
-                  "id": 1,
-                  "username": "foo",
-                  "email": "foo@strapi.io",
-                  "provider": "local",
-                  "confirmed": false,
-                  "blocked": false,
-                  "createdAt": "2022-05-19T17:35:35.096Z",
-                  "updatedAt": "2022-05-19T17:35:35.096Z",
-                  "role": {
-                    "id": 1,
-                    "name": "X",
-                    "description": "Default role given to authenticated user.",
-                    "type": "authenticated",
-                    "createdAt": "2022-05-19T17:35:35.096Z",
-                    "updatedAt": "2022-06-04T07:11:59.551Z"
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "users-permissions"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "username",
-                  "email",
-                  "password"
-                ],
-                "properties": {
-                  "email": {
-                    "type": "string"
-                  },
-                  "username": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
-                }
-              },
-              "example": {
-                "username": "foo",
-                "email": "foo@strapi.io",
-                "password": "foo-password"
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "operationId": "users-permissions/delete/users_by_id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns deleted user info",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/Users-Permissions-User"
-                    }
-                  ]
-                },
-                "example": {
-                  "id": 1,
-                  "username": "foo",
-                  "email": "foo@strapi.io",
-                  "provider": "local",
-                  "confirmed": false,
-                  "blocked": false,
-                  "createdAt": "2022-05-19T17:35:35.096Z",
-                  "updatedAt": "2022-05-19T17:35:35.096Z"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "users-permissions"
-        ]
-      }
-    },
     "/roles/{id}": {
       "get": {
         "operationId": "users-permissions/get/roles_by_id",
@@ -21815,9 +21909,9 @@
                               "statusValue": {
                                 "type": "string",
                                 "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
+                                  "PENDING",
+                                  "APPROVED",
+                                  "REJECTED"
                                 ]
                               },
                               "courseExperience": {
@@ -22026,6 +22120,12 @@
                                     }
                                   }
                                 }
+                              },
+                              "isAdmin": {
+                                "type": "boolean"
+                              },
+                              "rejectionReason": {
+                                "type": "string"
                               },
                               "createdAt": {
                                 "type": "string",
@@ -22759,9 +22859,9 @@
               "statusValue": {
                 "type": "string",
                 "enum": [
-                  "TODO1",
-                  "TODO2",
-                  "TODO3"
+                  "PENDING",
+                  "APPROVED",
+                  "REJECTED"
                 ]
               },
               "courseExperience": {
@@ -22836,6 +22936,12 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "isAdmin": {
+                "type": "boolean"
+              },
+              "rejectionReason": {
+                "type": "string"
               },
               "locale": {
                 "type": "string"
@@ -22944,9 +23050,9 @@
           "statusValue": {
             "type": "string",
             "enum": [
-              "TODO1",
-              "TODO2",
-              "TODO3"
+              "PENDING",
+              "APPROVED",
+              "REJECTED"
             ]
           },
           "courseExperience": {
@@ -24127,9 +24233,9 @@
                                     "statusValue": {
                                       "type": "string",
                                       "enum": [
-                                        "TODO1",
-                                        "TODO2",
-                                        "TODO3"
+                                        "PENDING",
+                                        "APPROVED",
+                                        "REJECTED"
                                       ]
                                     },
                                     "courseExperience": {
@@ -24269,6 +24375,12 @@
                                           }
                                         }
                                       }
+                                    },
+                                    "isAdmin": {
+                                      "type": "boolean"
+                                    },
+                                    "rejectionReason": {
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -24789,6 +24901,12 @@
                 }
               }
             }
+          },
+          "isAdmin": {
+            "type": "boolean"
+          },
+          "rejectionReason": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -26290,9 +26408,9 @@
                           "statusValue": {
                             "type": "string",
                             "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
+                              "PENDING",
+                              "APPROVED",
+                              "REJECTED"
                             ]
                           },
                           "courseExperience": {
@@ -26779,6 +26897,12 @@
                                 }
                               }
                             }
+                          },
+                          "isAdmin": {
+                            "type": "boolean"
+                          },
+                          "rejectionReason": {
+                            "type": "string"
                           },
                           "createdAt": {
                             "type": "string",
@@ -28703,9 +28827,9 @@
                       "statusValue": {
                         "type": "string",
                         "enum": [
-                          "TODO1",
-                          "TODO2",
-                          "TODO3"
+                          "PENDING",
+                          "APPROVED",
+                          "REJECTED"
                         ]
                       },
                       "courseExperience": {
@@ -28845,6 +28969,12 @@
                             }
                           }
                         }
+                      },
+                      "isAdmin": {
+                        "type": "boolean"
+                      },
+                      "rejectionReason": {
+                        "type": "string"
                       },
                       "createdAt": {
                         "type": "string",
@@ -30653,9 +30783,9 @@
                     "statusValue": {
                       "type": "string",
                       "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
+                        "PENDING",
+                        "APPROVED",
+                        "REJECTED"
                       ]
                     },
                     "courseExperience": {
@@ -30795,6 +30925,12 @@
                           }
                         }
                       }
+                    },
+                    "isAdmin": {
+                      "type": "boolean"
+                    },
+                    "rejectionReason": {
+                      "type": "string"
                     },
                     "createdAt": {
                       "type": "string",
@@ -32453,9 +32589,9 @@
                     "statusValue": {
                       "type": "string",
                       "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
+                        "PENDING",
+                        "APPROVED",
+                        "REJECTED"
                       ]
                     },
                     "courseExperience": {
@@ -32595,6 +32731,12 @@
                           }
                         }
                       }
+                    },
+                    "isAdmin": {
+                      "type": "boolean"
+                    },
+                    "rejectionReason": {
+                      "type": "string"
                     },
                     "createdAt": {
                       "type": "string",
@@ -35676,9 +35818,9 @@
                     "statusValue": {
                       "type": "string",
                       "enum": [
-                        "TODO1",
-                        "TODO2",
-                        "TODO3"
+                        "PENDING",
+                        "APPROVED",
+                        "REJECTED"
                       ]
                     },
                     "courseExperience": {
@@ -35818,6 +35960,12 @@
                           }
                         }
                       }
+                    },
+                    "isAdmin": {
+                      "type": "boolean"
+                    },
+                    "rejectionReason": {
+                      "type": "string"
                     },
                     "createdAt": {
                       "type": "string",
@@ -38051,9 +38199,9 @@
                           "statusValue": {
                             "type": "string",
                             "enum": [
-                              "TODO1",
-                              "TODO2",
-                              "TODO3"
+                              "PENDING",
+                              "APPROVED",
+                              "REJECTED"
                             ]
                           },
                           "courseExperience": {
@@ -38540,6 +38688,12 @@
                                 }
                               }
                             }
+                          },
+                          "isAdmin": {
+                            "type": "boolean"
+                          },
+                          "rejectionReason": {
+                            "type": "string"
                           },
                           "createdAt": {
                             "type": "string",
@@ -40069,9 +40223,9 @@
                               "statusValue": {
                                 "type": "string",
                                 "enum": [
-                                  "TODO1",
-                                  "TODO2",
-                                  "TODO3"
+                                  "PENDING",
+                                  "APPROVED",
+                                  "REJECTED"
                                 ]
                               },
                               "courseExperience": {
@@ -40280,6 +40434,12 @@
                                     }
                                   }
                                 }
+                              },
+                              "isAdmin": {
+                                "type": "boolean"
+                              },
+                              "rejectionReason": {
+                                "type": "string"
                               },
                               "createdAt": {
                                 "type": "string",

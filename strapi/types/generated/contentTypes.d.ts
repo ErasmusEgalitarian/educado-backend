@@ -524,6 +524,7 @@ export interface ApiContentCreatorContentCreator
         maxLength: 40;
         minLength: 1;
       }>;
+    isAdmin: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     jobDescription: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 400;
@@ -546,8 +547,15 @@ export interface ApiContentCreatorContentCreator
         minLength: 8;
       }>;
     publishedAt: Schema.Attribute.DateTime;
-    statusValue: Schema.Attribute.Enumeration<['TODO1', 'TODO2', 'TODO3']> &
-      Schema.Attribute.Required;
+    rejectionReason: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    statusValue: Schema.Attribute.Enumeration<
+      ['PENDING', 'APPROVED', 'REJECTED']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'PENDING'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
