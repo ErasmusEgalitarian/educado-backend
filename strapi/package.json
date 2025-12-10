@@ -27,6 +27,7 @@
     "generate-merged-spec": "cross-env ENV_PATH=../.env strapi openapi generate --output ../openapi/strapi-spec.json && ts-node src/extensions/documentation/run-merge-spec.ts && npm run copy-spec"
   },
   "dependencies": {
+    "@radix-ui/react-use-controllable-state": "^1.2.2",
     "@strapi/plugin-cloud": "5.31.3",
     "@strapi/plugin-documentation": "5.31.3",
     "@strapi/plugin-users-permissions": "5.31.3",
