@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { getUserInfo } from "@/auth/lib/userInfo";
 import { getCcDashboardActivity, postCourseStatistics } from "@/shared/api/sdk.gen";
-import { CourseStatisticsResponse, DashboardActivity } from "@/shared/api/types.gen";
+import { DashboardActivity, CourseStatisticsResponse } from "@/shared/api/types.gen";
 import {
   Select,
   SelectContent,

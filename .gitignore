@@ -149,3 +149,4 @@ vite.config.ts.timestamp-*
 # mise
 .mise.local.toml
 mise.local.toml
+repos/

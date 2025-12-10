@@ -184,6 +184,8 @@
     "uploadSuccess": "Arquivo enviado com sucesso",
     "uploadFileSuccess": "Enviado: {{filename}}",
     "filesRejectedType": "{{count}} arquivo(s) rejeitado(s): tipo de arquivo não suportado",
+    "filesRejectedSize": "{{count}} arquivo(s) rejeitado(s): excede o limite de {{maxSize}}MB",
+    "maxFileSizeHint": "O arquivo deve conter no máximo {{maxSize}}MB",
     "dragAndDrop": "Arraste e solte arquivos aqui, ou clique para selecionar",
     "browseFiles": "Procurar Arquivos",
     "browseLibrary": "Procurar Biblioteca",

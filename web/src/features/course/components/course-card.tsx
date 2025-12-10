@@ -65,7 +65,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
             {course.title}
           </CardTitle>
         </div>
-        <div className="w-full border-t border-[#C1CFD7] my-2 mx-auto" />
+        <div className="w-full border-t border-greyscale-border-lighter my-2 mx-auto" />
       </CardHeader>
       <CardContent className="flex-1">
         <div className="flex items-center justify-between">

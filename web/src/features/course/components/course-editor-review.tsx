@@ -109,7 +109,7 @@ const CourseEditorReview = ({
                 {t("publication.published")}
               </p>
               <p className="text-sm text-success-text-body">
-                This course is currently visible to students
+                  {t("courseEditorReview.thisCourseIsCurrentlyVisibleToStudents")}
               </p>
             </div>
           </div>
