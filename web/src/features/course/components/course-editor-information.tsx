@@ -41,6 +41,7 @@ import {
 } from "../api/course-mutations";
 import { difficultyToTranslation } from "../lib/difficulty-to-translation";
 
+
 import CategoryCreateModal from "./category-create-modal";
 
 /* ------------------------------- Interfaces ------------------------------- */

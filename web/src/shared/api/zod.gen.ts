@@ -457,9 +457,9 @@ export const zCertificate = z.object({
                         'TODO3'
                     ]).optional(),
                     statusValue: z.enum([
-                        'TODO1',
-                        'TODO2',
-                        'TODO3'
+                        'PENDING',
+                        'APPROVED',
+                        'REJECTED'
                     ]).optional(),
                     courseExperience: z.string().optional(),
                     institution: z.string().optional(),
@@ -525,6 +525,51 @@ export const zCertificate = z.object({
                             documentId: z.string().optional()
                         })).optional()
                     })).optional(),
+                    profilePicture: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional(),
+                        name: z.string().optional(),
+                        alternativeText: z.string().optional(),
+                        caption: z.string().optional(),
+                        width: z.number().int().optional(),
+                        height: z.number().int().optional(),
+                        formats: z.unknown().optional(),
+                        hash: z.string().optional(),
+                        ext: z.string().optional(),
+                        mime: z.string().optional(),
+                        size: z.number().optional(),
+                        url: z.string().optional(),
+                        previewUrl: z.string().optional(),
+                        provider: z.string().optional(),
+                        provider_metadata: z.unknown().optional(),
+                        related: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional(),
+                        folder: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        folderPath: z.string().optional(),
+                        createdAt: z.string().datetime().optional(),
+                        updatedAt: z.string().datetime().optional(),
+                        publishedAt: z.string().datetime().optional(),
+                        createdBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        updatedBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        locale: z.string().optional(),
+                        localizations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional()
+                    }).optional(),
+                    isAdmin: z.boolean().optional(),
+                    rejectionReason: z.string().optional(),
                     createdAt: z.string().datetime().optional(),
                     updatedAt: z.string().datetime().optional(),
                     publishedAt: z.string().datetime().optional(),
@@ -719,9 +764,9 @@ export const zContentCreatorRequest = z.object({
             'TODO3'
         ]),
         statusValue: z.enum([
-            'TODO1',
-            'TODO2',
-            'TODO3'
+            'PENDING',
+            'APPROVED',
+            'REJECTED'
         ]),
         courseExperience: z.string(),
         institution: z.string(),
@@ -744,6 +789,12 @@ export const zContentCreatorRequest = z.object({
             z.number().int(),
             z.string()
         ])).optional(),
+        profilePicture: z.union([
+            z.number().int(),
+            z.string()
+        ]).optional(),
+        isAdmin: z.boolean().optional(),
+        rejectionReason: z.string().optional(),
         locale: z.string().optional(),
         localizations: z.array(z.union([
             z.number().int(),
@@ -766,9 +817,9 @@ export const zContentCreator = z.object({
         'TODO3'
     ]),
     statusValue: z.enum([
-        'TODO1',
-        'TODO2',
-        'TODO3'
+        'PENDING',
+        'APPROVED',
+        'REJECTED'
     ]),
     courseExperience: z.string(),
     institution: z.string(),
@@ -1143,9 +1194,9 @@ export const zContentCreator = z.object({
                             'TODO3'
                         ]).optional(),
                         statusValue: z.enum([
-                            'TODO1',
-                            'TODO2',
-                            'TODO3'
+                            'PENDING',
+                            'APPROVED',
+                            'REJECTED'
                         ]).optional(),
                         courseExperience: z.string().optional(),
                         institution: z.string().optional(),
@@ -1189,6 +1240,51 @@ export const zContentCreator = z.object({
                                 documentId: z.string().optional()
                             })).optional()
                         })).optional(),
+                        profilePicture: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional(),
+                            name: z.string().optional(),
+                            alternativeText: z.string().optional(),
+                            caption: z.string().optional(),
+                            width: z.number().int().optional(),
+                            height: z.number().int().optional(),
+                            formats: z.unknown().optional(),
+                            hash: z.string().optional(),
+                            ext: z.string().optional(),
+                            mime: z.string().optional(),
+                            size: z.number().optional(),
+                            url: z.string().optional(),
+                            previewUrl: z.string().optional(),
+                            provider: z.string().optional(),
+                            provider_metadata: z.unknown().optional(),
+                            related: z.array(z.object({
+                                id: z.number().optional(),
+                                documentId: z.string().optional()
+                            })).optional(),
+                            folder: z.object({
+                                id: z.number().optional(),
+                                documentId: z.string().optional()
+                            }).optional(),
+                            folderPath: z.string().optional(),
+                            createdAt: z.string().datetime().optional(),
+                            updatedAt: z.string().datetime().optional(),
+                            publishedAt: z.string().datetime().optional(),
+                            createdBy: z.object({
+                                id: z.number().optional(),
+                                documentId: z.string().optional()
+                            }).optional(),
+                            updatedBy: z.object({
+                                id: z.number().optional(),
+                                documentId: z.string().optional()
+                            }).optional(),
+                            locale: z.string().optional(),
+                            localizations: z.array(z.object({
+                                id: z.number().optional(),
+                                documentId: z.string().optional()
+                            })).optional()
+                        }).optional(),
+                        isAdmin: z.boolean().optional(),
+                        rejectionReason: z.string().optional(),
                         createdAt: z.string().datetime().optional(),
                         updatedAt: z.string().datetime().optional(),
                         publishedAt: z.string().datetime().optional(),
@@ -1355,6 +1451,51 @@ export const zContentCreator = z.object({
         id: z.number().optional(),
         documentId: z.string().optional()
     })).optional(),
+    profilePicture: z.object({
+        id: z.number().optional(),
+        documentId: z.string().optional(),
+        name: z.string().optional(),
+        alternativeText: z.string().optional(),
+        caption: z.string().optional(),
+        width: z.number().int().optional(),
+        height: z.number().int().optional(),
+        formats: z.unknown().optional(),
+        hash: z.string().optional(),
+        ext: z.string().optional(),
+        mime: z.string().optional(),
+        size: z.number().optional(),
+        url: z.string().optional(),
+        previewUrl: z.string().optional(),
+        provider: z.string().optional(),
+        provider_metadata: z.unknown().optional(),
+        related: z.array(z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        })).optional(),
+        folder: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        folderPath: z.string().optional(),
+        createdAt: z.string().datetime().optional(),
+        updatedAt: z.string().datetime().optional(),
+        publishedAt: z.string().datetime().optional(),
+        createdBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        updatedBy: z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        }).optional(),
+        locale: z.string().optional(),
+        localizations: z.array(z.object({
+            id: z.number().optional(),
+            documentId: z.string().optional()
+        })).optional()
+    }).optional(),
+    isAdmin: z.boolean().optional(),
+    rejectionReason: z.string().optional(),
     createdAt: z.string().datetime().optional(),
     updatedAt: z.string().datetime().optional(),
     publishedAt: z.string().datetime().optional(),
@@ -1836,9 +1977,9 @@ export const zCourse = z.object({
                     'TODO3'
                 ]).optional(),
                 statusValue: z.enum([
-                    'TODO1',
-                    'TODO2',
-                    'TODO3'
+                    'PENDING',
+                    'APPROVED',
+                    'REJECTED'
                 ]).optional(),
                 courseExperience: z.string().optional(),
                 institution: z.string().optional(),
@@ -1991,6 +2132,51 @@ export const zCourse = z.object({
                         documentId: z.string().optional()
                     })).optional()
                 })).optional(),
+                profilePicture: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    name: z.string().optional(),
+                    alternativeText: z.string().optional(),
+                    caption: z.string().optional(),
+                    width: z.number().int().optional(),
+                    height: z.number().int().optional(),
+                    formats: z.unknown().optional(),
+                    hash: z.string().optional(),
+                    ext: z.string().optional(),
+                    mime: z.string().optional(),
+                    size: z.number().optional(),
+                    url: z.string().optional(),
+                    previewUrl: z.string().optional(),
+                    provider: z.string().optional(),
+                    provider_metadata: z.unknown().optional(),
+                    related: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional(),
+                    folder: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    folderPath: z.string().optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
+                }).optional(),
+                isAdmin: z.boolean().optional(),
+                rejectionReason: z.string().optional(),
                 createdAt: z.string().datetime().optional(),
                 updatedAt: z.string().datetime().optional(),
                 publishedAt: z.string().datetime().optional(),
@@ -2606,9 +2792,9 @@ export const zCourseCategory = z.object({
                 'TODO3'
             ]).optional(),
             statusValue: z.enum([
-                'TODO1',
-                'TODO2',
-                'TODO3'
+                'PENDING',
+                'APPROVED',
+                'REJECTED'
             ]).optional(),
             courseExperience: z.string().optional(),
             institution: z.string().optional(),
@@ -2652,6 +2838,51 @@ export const zCourseCategory = z.object({
                     documentId: z.string().optional()
                 })).optional()
             })).optional(),
+            profilePicture: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                name: z.string().optional(),
+                alternativeText: z.string().optional(),
+                caption: z.string().optional(),
+                width: z.number().int().optional(),
+                height: z.number().int().optional(),
+                formats: z.unknown().optional(),
+                hash: z.string().optional(),
+                ext: z.string().optional(),
+                mime: z.string().optional(),
+                size: z.number().optional(),
+                url: z.string().optional(),
+                previewUrl: z.string().optional(),
+                provider: z.string().optional(),
+                provider_metadata: z.unknown().optional(),
+                related: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional(),
+                folder: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                folderPath: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            }).optional(),
+            isAdmin: z.boolean().optional(),
+            rejectionReason: z.string().optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -3231,9 +3462,9 @@ export const zCourseEnrollmentRelation = z.object({
                 'TODO3'
             ]).optional(),
             statusValue: z.enum([
-                'TODO1',
-                'TODO2',
-                'TODO3'
+                'PENDING',
+                'APPROVED',
+                'REJECTED'
             ]).optional(),
             courseExperience: z.string().optional(),
             institution: z.string().optional(),
@@ -3277,6 +3508,51 @@ export const zCourseEnrollmentRelation = z.object({
                     documentId: z.string().optional()
                 })).optional()
             })).optional(),
+            profilePicture: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                name: z.string().optional(),
+                alternativeText: z.string().optional(),
+                caption: z.string().optional(),
+                width: z.number().int().optional(),
+                height: z.number().int().optional(),
+                formats: z.unknown().optional(),
+                hash: z.string().optional(),
+                ext: z.string().optional(),
+                mime: z.string().optional(),
+                size: z.number().optional(),
+                url: z.string().optional(),
+                previewUrl: z.string().optional(),
+                provider: z.string().optional(),
+                provider_metadata: z.unknown().optional(),
+                related: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional(),
+                folder: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                folderPath: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            }).optional(),
+            isAdmin: z.boolean().optional(),
+            rejectionReason: z.string().optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -3806,9 +4082,9 @@ export const zCourseSelection = z.object({
                 'TODO3'
             ]).optional(),
             statusValue: z.enum([
-                'TODO1',
-                'TODO2',
-                'TODO3'
+                'PENDING',
+                'APPROVED',
+                'REJECTED'
             ]).optional(),
             courseExperience: z.string().optional(),
             institution: z.string().optional(),
@@ -3852,6 +4128,51 @@ export const zCourseSelection = z.object({
                     documentId: z.string().optional()
                 })).optional()
             })).optional(),
+            profilePicture: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                name: z.string().optional(),
+                alternativeText: z.string().optional(),
+                caption: z.string().optional(),
+                width: z.number().int().optional(),
+                height: z.number().int().optional(),
+                formats: z.unknown().optional(),
+                hash: z.string().optional(),
+                ext: z.string().optional(),
+                mime: z.string().optional(),
+                size: z.number().optional(),
+                url: z.string().optional(),
+                previewUrl: z.string().optional(),
+                provider: z.string().optional(),
+                provider_metadata: z.unknown().optional(),
+                related: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional(),
+                folder: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                folderPath: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            }).optional(),
+            isAdmin: z.boolean().optional(),
+            rejectionReason: z.string().optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -4845,9 +5166,9 @@ export const zFeedback = z.object({
                 'TODO3'
             ]).optional(),
             statusValue: z.enum([
-                'TODO1',
-                'TODO2',
-                'TODO3'
+                'PENDING',
+                'APPROVED',
+                'REJECTED'
             ]).optional(),
             courseExperience: z.string().optional(),
             institution: z.string().optional(),
@@ -4891,6 +5212,51 @@ export const zFeedback = z.object({
                     documentId: z.string().optional()
                 })).optional()
             })).optional(),
+            profilePicture: z.object({
+                id: z.number().optional(),
+                documentId: z.string().optional(),
+                name: z.string().optional(),
+                alternativeText: z.string().optional(),
+                caption: z.string().optional(),
+                width: z.number().int().optional(),
+                height: z.number().int().optional(),
+                formats: z.unknown().optional(),
+                hash: z.string().optional(),
+                ext: z.string().optional(),
+                mime: z.string().optional(),
+                size: z.number().optional(),
+                url: z.string().optional(),
+                previewUrl: z.string().optional(),
+                provider: z.string().optional(),
+                provider_metadata: z.unknown().optional(),
+                related: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional(),
+                folder: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                folderPath: z.string().optional(),
+                createdAt: z.string().datetime().optional(),
+                updatedAt: z.string().datetime().optional(),
+                publishedAt: z.string().datetime().optional(),
+                createdBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                updatedBy: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                }).optional(),
+                locale: z.string().optional(),
+                localizations: z.array(z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional()
+                })).optional()
+            }).optional(),
+            isAdmin: z.boolean().optional(),
+            rejectionReason: z.string().optional(),
             createdAt: z.string().datetime().optional(),
             updatedAt: z.string().datetime().optional(),
             publishedAt: z.string().datetime().optional(),
@@ -5596,9 +5962,9 @@ export const zStudent = z.object({
                     'TODO3'
                 ]).optional(),
                 statusValue: z.enum([
-                    'TODO1',
-                    'TODO2',
-                    'TODO3'
+                    'PENDING',
+                    'APPROVED',
+                    'REJECTED'
                 ]).optional(),
                 courseExperience: z.string().optional(),
                 institution: z.string().optional(),
@@ -5751,6 +6117,51 @@ export const zStudent = z.object({
                         documentId: z.string().optional()
                     })).optional()
                 })).optional(),
+                profilePicture: z.object({
+                    id: z.number().optional(),
+                    documentId: z.string().optional(),
+                    name: z.string().optional(),
+                    alternativeText: z.string().optional(),
+                    caption: z.string().optional(),
+                    width: z.number().int().optional(),
+                    height: z.number().int().optional(),
+                    formats: z.unknown().optional(),
+                    hash: z.string().optional(),
+                    ext: z.string().optional(),
+                    mime: z.string().optional(),
+                    size: z.number().optional(),
+                    url: z.string().optional(),
+                    previewUrl: z.string().optional(),
+                    provider: z.string().optional(),
+                    provider_metadata: z.unknown().optional(),
+                    related: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional(),
+                    folder: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    folderPath: z.string().optional(),
+                    createdAt: z.string().datetime().optional(),
+                    updatedAt: z.string().datetime().optional(),
+                    publishedAt: z.string().datetime().optional(),
+                    createdBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    updatedBy: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    }).optional(),
+                    locale: z.string().optional(),
+                    localizations: z.array(z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional()
+                    })).optional()
+                }).optional(),
+                isAdmin: z.boolean().optional(),
+                rejectionReason: z.string().optional(),
                 createdAt: z.string().datetime().optional(),
                 updatedAt: z.string().datetime().optional(),
                 publishedAt: z.string().datetime().optional(),
@@ -6239,9 +6650,9 @@ export const zUserLog = z.object({
                         'TODO3'
                     ]).optional(),
                     statusValue: z.enum([
-                        'TODO1',
-                        'TODO2',
-                        'TODO3'
+                        'PENDING',
+                        'APPROVED',
+                        'REJECTED'
                     ]).optional(),
                     courseExperience: z.string().optional(),
                     institution: z.string().optional(),
@@ -6307,6 +6718,51 @@ export const zUserLog = z.object({
                             documentId: z.string().optional()
                         })).optional()
                     })).optional(),
+                    profilePicture: z.object({
+                        id: z.number().optional(),
+                        documentId: z.string().optional(),
+                        name: z.string().optional(),
+                        alternativeText: z.string().optional(),
+                        caption: z.string().optional(),
+                        width: z.number().int().optional(),
+                        height: z.number().int().optional(),
+                        formats: z.unknown().optional(),
+                        hash: z.string().optional(),
+                        ext: z.string().optional(),
+                        mime: z.string().optional(),
+                        size: z.number().optional(),
+                        url: z.string().optional(),
+                        previewUrl: z.string().optional(),
+                        provider: z.string().optional(),
+                        provider_metadata: z.unknown().optional(),
+                        related: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional(),
+                        folder: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        folderPath: z.string().optional(),
+                        createdAt: z.string().datetime().optional(),
+                        updatedAt: z.string().datetime().optional(),
+                        publishedAt: z.string().datetime().optional(),
+                        createdBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        updatedBy: z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        }).optional(),
+                        locale: z.string().optional(),
+                        localizations: z.array(z.object({
+                            id: z.number().optional(),
+                            documentId: z.string().optional()
+                        })).optional()
+                    }).optional(),
+                    isAdmin: z.boolean().optional(),
+                    rejectionReason: z.string().optional(),
                     createdAt: z.string().datetime().optional(),
                     updatedAt: z.string().datetime().optional(),
                     publishedAt: z.string().datetime().optional(),
@@ -7045,6 +7501,8 @@ export const zContentCreatorGetContentCreatorsRequest = z.object({
             'companyStart',
             'companyEnd',
             'jobDescription',
+            'isAdmin',
+            'rejectionReason',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -7082,6 +7540,8 @@ export const zContentCreatorGetContentCreatorsRequest = z.object({
                 'companyStart',
                 'companyEnd',
                 'jobDescription',
+                'isAdmin',
+                'rejectionReason',
                 'createdAt',
                 'updatedAt',
                 'publishedAt'
@@ -7104,6 +7564,8 @@ export const zContentCreatorGetContentCreatorsRequest = z.object({
                 'companyStart',
                 'companyEnd',
                 'jobDescription',
+                'isAdmin',
+                'rejectionReason',
                 'createdAt',
                 'updatedAt',
                 'publishedAt'
@@ -7122,12 +7584,14 @@ export const zContentCreatorGetContentCreatorsRequest = z.object({
             z.enum([
                 'user_logs',
                 'courses',
-                'dashboard_activities'
+                'dashboard_activities',
+                'profilePicture'
             ]),
             z.array(z.enum([
                 'user_logs',
                 'courses',
-                'dashboard_activities'
+                'dashboard_activities',
+                'profilePicture'
             ]))
         ]).optional(),
         status: z.enum([
@@ -7164,6 +7628,8 @@ export const zContentCreatorPostContentCreatorsRequest = z.object({
             'companyStart',
             'companyEnd',
             'jobDescription',
+            'isAdmin',
+            'rejectionReason',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -7173,12 +7639,14 @@ export const zContentCreatorPostContentCreatorsRequest = z.object({
             z.enum([
                 'user_logs',
                 'courses',
-                'dashboard_activities'
+                'dashboard_activities',
+                'profilePicture'
             ]),
             z.array(z.enum([
                 'user_logs',
                 'courses',
-                'dashboard_activities'
+                'dashboard_activities',
+                'profilePicture'
             ]))
         ]).optional(),
         status: z.enum([
@@ -7217,6 +7685,8 @@ export const zContentCreatorDeleteContentCreatorsByIdRequest = z.object({
             'companyStart',
             'companyEnd',
             'jobDescription',
+            'isAdmin',
+            'rejectionReason',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -7226,12 +7696,14 @@ export const zContentCreatorDeleteContentCreatorsByIdRequest = z.object({
             z.enum([
                 'user_logs',
                 'courses',
-                'dashboard_activities'
+                'dashboard_activities',
+                'profilePicture'
             ]),
             z.array(z.enum([
                 'user_logs',
                 'courses',
-                'dashboard_activities'
+                'dashboard_activities',
+                'profilePicture'
             ]))
         ]).optional(),
         filters: z.record(z.unknown()).optional(),
@@ -7271,6 +7743,8 @@ export const zContentCreatorGetContentCreatorsByIdRequest = z.object({
             'companyStart',
             'companyEnd',
             'jobDescription',
+            'isAdmin',
+            'rejectionReason',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -7280,12 +7754,14 @@ export const zContentCreatorGetContentCreatorsByIdRequest = z.object({
             z.enum([
                 'user_logs',
                 'courses',
-                'dashboard_activities'
+                'dashboard_activities',
+                'profilePicture'
             ]),
             z.array(z.enum([
                 'user_logs',
                 'courses',
-                'dashboard_activities'
+                'dashboard_activities',
+                'profilePicture'
             ]))
         ]).optional(),
         filters: z.record(z.unknown()).optional(),
@@ -7308,6 +7784,8 @@ export const zContentCreatorGetContentCreatorsByIdRequest = z.object({
                 'companyStart',
                 'companyEnd',
                 'jobDescription',
+                'isAdmin',
+                'rejectionReason',
                 'createdAt',
                 'updatedAt',
                 'publishedAt'
@@ -7330,6 +7808,8 @@ export const zContentCreatorGetContentCreatorsByIdRequest = z.object({
                 'companyStart',
                 'companyEnd',
                 'jobDescription',
+                'isAdmin',
+                'rejectionReason',
                 'createdAt',
                 'updatedAt',
                 'publishedAt'
@@ -7379,6 +7859,8 @@ export const zContentCreatorPutContentCreatorsByIdRequest = z.object({
             'companyStart',
             'companyEnd',
             'jobDescription',
+            'isAdmin',
+            'rejectionReason',
             'createdAt',
             'updatedAt',
             'publishedAt'
@@ -7388,12 +7870,14 @@ export const zContentCreatorPutContentCreatorsByIdRequest = z.object({
             z.enum([
                 'user_logs',
                 'courses',
-                'dashboard_activities'
+                'dashboard_activities',
+                'profilePicture'
             ]),
             z.array(z.enum([
                 'user_logs',
                 'courses',
-                'dashboard_activities'
+                'dashboard_activities',
+                'profilePicture'
             ]))
         ]).optional(),
         status: z.enum([
@@ -7418,6 +7902,12 @@ export const zPostContentCreatorLoginRequest = z.object({
  * OK
  */
 export const zPostContentCreatorLoginResponse = zJwtResponse;
+
+export const zContentCreatorPatchContentCreatorsByIdStatusRequest = z.object({
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional()
+});
 
 export const zCourseGetCoursesRequest = z.object({
     body: z.never().optional(),
@@ -10153,6 +10643,18 @@ export const zPostStudentVerifyEmailRequest = z.object({
  */
 export const zPostStudentVerifyEmailResponse = zJwtResponse;
 
+export const zUserInfoGetUserInfoRequest = z.object({
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional()
+});
+
+export const zUserInfoGetUserInfoByIdRequest = z.object({
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional()
+});
+
 export const zUserLogGetUserLogsRequest = z.object({
     body: z.never().optional(),
     path: z.never().optional(),
@@ -10362,6 +10864,68 @@ export const zUserLogPutUserLogsByIdRequest = z.object({
  * OK
  */
 export const zUserLogPutUserLogsByIdResponse = zUserLogResponse;
+
+export const zUsersPermissionsDeleteUsersByIdRequest = z.object({
+    body: z.never().optional(),
+    path: z.object({
+        id: z.string()
+    }),
+    query: z.never().optional()
+});
+
+/**
+ * Returns deleted user info
+ */
+export const zUsersPermissionsDeleteUsersByIdResponse = zUsersPermissionsUser;
+
+export const zUsersPermissionsGetUsersByIdRequest = z.object({
+    body: z.never().optional(),
+    path: z.object({
+        id: z.string()
+    }),
+    query: z.object({
+        fields: z.union([
+            z.string(),
+            z.array(z.string())
+        ]).optional(),
+        populate: z.union([
+            z.literal('*'),
+            z.string(),
+            z.array(z.string()),
+            z.record(z.unknown())
+        ]).optional()
+    }).optional()
+});
+
+/**
+ * Returns a user
+ */
+export const zUsersPermissionsGetUsersByIdResponse = zUsersPermissionsUser;
+
+export const zUsersPermissionsPutUsersByIdRequest = z.object({
+    body: z.object({
+        email: z.string(),
+        username: z.string(),
+        password: z.string()
+    }),
+    path: z.object({
+        id: z.string()
+    }),
+    query: z.never().optional()
+});
+
+/**
+ * Returns updated user info
+ */
+export const zUsersPermissionsPutUsersByIdResponse = zUsersPermissionsUser.and(z.object({
+    role: zUsersPermissionsRole.optional()
+}));
+
+export const zUsersPatchUsersByIdRoleRequest = z.object({
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional()
+});
 
 export const zVerificationTokenGetVerificationTokensRequest = z.object({
     body: z.never().optional(),
@@ -11529,62 +12093,6 @@ export const zUsersPermissionsGetUsersMeRequest = z.object({
  * Returns user info
  */
 export const zUsersPermissionsGetUsersMeResponse = zUsersPermissionsUser;
-
-export const zUsersPermissionsDeleteUsersByIdRequest = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        id: z.string()
-    }),
-    query: z.never().optional()
-});
-
-/**
- * Returns deleted user info
- */
-export const zUsersPermissionsDeleteUsersByIdResponse = zUsersPermissionsUser;
-
-export const zUsersPermissionsGetUsersByIdRequest = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        id: z.string()
-    }),
-    query: z.object({
-        fields: z.union([
-            z.string(),
-            z.array(z.string())
-        ]).optional(),
-        populate: z.union([
-            z.literal('*'),
-            z.string(),
-            z.array(z.string()),
-            z.record(z.unknown())
-        ]).optional()
-    }).optional()
-});
-
-/**
- * Returns a user
- */
-export const zUsersPermissionsGetUsersByIdResponse = zUsersPermissionsUser;
-
-export const zUsersPermissionsPutUsersByIdRequest = z.object({
-    body: z.object({
-        email: z.string(),
-        username: z.string(),
-        password: z.string()
-    }),
-    path: z.object({
-        id: z.string()
-    }),
-    query: z.never().optional()
-});
-
-/**
- * Returns updated user info
- */
-export const zUsersPermissionsPutUsersByIdResponse = zUsersPermissionsUser.and(z.object({
-    role: zUsersPermissionsRole.optional()
-}));
 
 export const zUsersPermissionsGetRolesByIdRequest = z.object({
     body: z.never().optional(),

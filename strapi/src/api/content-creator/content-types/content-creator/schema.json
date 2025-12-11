@@ -121,6 +121,12 @@
       "target": "api::dashboard-activity.dashboard-activity",
       "mappedBy": "content_creator"
     },
+    "profilePicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
     "isAdmin": {
       "type": "boolean",
       "default": false

@@ -546,6 +546,7 @@ export interface ApiContentCreatorContentCreator
       Schema.Attribute.SetMinMaxLength<{
         minLength: 8;
       }>;
+    profilePicture: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
     rejectionReason: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{

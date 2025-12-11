@@ -1,9 +1,32 @@
 //Imports
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Modals from "@/auth/components/Modals";
+import { getBaseApiUrl } from "@/shared/config/api-config";
 
-import { BACKEND_URL } from "../../../shared/config/environment";
+//Types
+interface PersonalInformationFormProps {
+  formData: {
+    UserName: string;
+    UserEmail: string;
+    bio?: string;
+    linkedin?: string;
+  };
+  errors: {
+    UserName?: { message?: string };
+    UserEmail?: { message?: string };
+    linkedin?: { message?: string };
+  };
+  handleCharCountBio: () => number;
+  toggleMenu1: boolean;
+  imageClick: () => void;
+  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleProfilePictureDelete: () => void;
+  myRef: React.RefObject<HTMLInputElement>;
+  register: any; // react-hook-form register function
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  profilePictureUrl?: string;
+}
 
 //Exporting UI content&structure of
 export default function PersonalInformationForm({
@@ -13,20 +36,12 @@ export default function PersonalInformationForm({
   toggleMenu1,
   imageClick,
   handleFileChange,
+  handleProfilePictureDelete,
   myRef,
   register,
   handleInputChange,
-}: {
-  formData: any;
-  errors: any;
-  handleCharCountBio: any;
-  toggleMenu1: any;
-  imageClick: any;
-  handleFileChange: any;
-  myRef: any;
-  register: any;
-  handleInputChange: any;
-}) {
+  profilePictureUrl,
+}: PersonalInformationFormProps) {
   //State for pop up modals
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
@@ -42,14 +57,20 @@ export default function PersonalInformationForm({
     setModalInputValue(numericInput);
     setIntError(!/^[0-9]*$/.test(e.target.value));
   };
-  const getUserImage = async () => {
-    const response = await fetch(
-      `http://localhost:8888/api/bucket/${formData.photo}`,
-    );
+
+  // Helper function to construct the full image URL from Strapi
+  // Handles both absolute URLs (starting with http) and relative URLs from Strapi
+  const getImageUrl = (url: string | undefined): string => {
+    if (!url) return "";
+    if (url.startsWith('http')) return url;
+
+    let strapiBase = getBaseApiUrl();
+    if (strapiBase.endsWith('/api')) {
+      strapiBase = strapiBase.slice(0, -4);
+    }
+    return `${strapiBase}${url}`;
   };
-  useEffect(() => {
-    getUserImage();
-  }, []);
+  
   return (
     <>
       {/* content of personal information when drop down button is clicked */}
@@ -57,16 +78,18 @@ export default function PersonalInformationForm({
         /* Image */
         <div className="border border-[#166276] p-4 rounded-b-lg text-left bg-white shadow-xl">
           {/* Display selected image if uploaded, otherwise display icon with initials*/}
-          {formData.photo ? (
-            <img
-              src={`${BACKEND_URL}/api/bucket/${formData.photo}`}
-              className="w-[120px] h-[120px] p-[0px] bg-cyan-800 rounded-[60px] border-2 border-white inline-flex"
-              alt=""
-            />
+          {profilePictureUrl ? (
+            <div className="relative inline-block">
+              <img
+                src={getImageUrl(profilePictureUrl)}
+                className="w-[120px] h-[120px] rounded-full border-2 border-white object-cover"
+                alt="Profile Picture"
+              />
+            </div>
           ) : (
             <div
               onClick={imageClick}
-              className="w-[120px] h-[120px] p-[30px] bg-cyan-800 rounded-[60px] border-2 border-white justify-center items-center gap-[30px] inline-flex"
+              className="w-[120px] h-[120px] p-[30px] bg-cyan-800 rounded-[60px] border-2 border-white justify-center items-center gap-[30px] inline-flex cursor-pointer"
             >
               <div className="text-white text-4xl font-bold font-['Montserrat']">
                 {formData.UserName.charAt(0).toUpperCase()}
@@ -82,13 +105,25 @@ export default function PersonalInformationForm({
             style={{ display: "none" }}
           />
 
-          {/* On button click change image*/}
-          <button
-            className=" p-7 text-center text-cyan-800 text-lg font-bold font-['Montserrat'] underline"
-            onChange={handleFileChange}
-          >
-            Alterar foto de perfil
-          </button>
+          {/* Buttons for changing/deleting profile picture */}
+          <div className="flex gap-4 mt-2">
+            <button
+              type="button"
+              onClick={imageClick}
+              className="p-7 text-center text-cyan-800 text-lg font-bold font-['Montserrat'] underline"
+            >
+              Alterar foto de perfil
+            </button>
+            {profilePictureUrl && (
+              <button
+                type="button"
+                onClick={() => handleProfilePictureDelete()}
+                className="p-7 text-center text-red-500 text-lg font-bold font-['Montserrat'] underline"
+              >
+                Deletar foto
+              </button>
+            )}
+          </div>
           <div className="grid grid-cols-2 gap-3 mt-7">
             {/* Username */}
             <div className="flex flex-col ">

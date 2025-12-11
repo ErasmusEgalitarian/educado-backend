@@ -11,6 +11,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import { tempObjects } from "@/shared/lib/formStates";
 import { contentCreatorGetContentCreatorsById, contentCreatorPutContentCreatorsById } from "@/shared/api/sdk.gen";
+import { getBaseApiUrl, fetchHeaders } from "@/shared/config/api-config";
 
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import Layout from "../../../shared/components/Layout";
@@ -23,6 +24,7 @@ import staticForm from "../../../shared/components/form/staticForm";
 import AcademicExperienceForm from "./academic-experience-form";
 import PersonalInformationForm from "./PersonalInformation";
 import ProfessionalExperienceForm from "./ProfessionalExperience";
+import { useFileUpload } from "@/features/media/hooks/use-file-upload"; 
 
 // TypeScript Interfaces
 interface ContentCreator {
@@ -31,8 +33,8 @@ interface ContentCreator {
   lastName?: string;
   email: string;
   biography?: string;
-  education: "TODO1" | "TODO2" | "TODO3";
-  statusValue: "TODO1" | "TODO2" | "TODO3";
+  education?: string;
+  statusValue?: "PENDING" | "APPROVED" | "REJECTED";
   courseExperience: string;
   institution: string;
   eduStart: string;
@@ -41,6 +43,23 @@ interface ContentCreator {
   currentJobTitle: string;
   companyStart: string;
   verifiedAt?: string;
+  profilePicture?: {
+    id: number;
+    documentId: string;
+    name: string;
+    url: string;
+    alternativeText?: string;
+    caption?: string;
+    width?: number;
+    height?: number;
+    formats?: Record<string, unknown>;
+    hash: string;
+    ext?: string;
+    mime: string;
+    size: number;
+    previewUrl?: string;
+    provider: string;
+  };
 }
 
 // Zod Schema
@@ -63,22 +82,16 @@ type ProfileFormData = z.infer<typeof profileSchema>;
 
 const Profile = () => {
   const {
-    handleFileChange,
     handleCharCountBio,
     formData,
     setFormData,
     handleInputChange,
-    fetchuser,
-    fetchStaticData,
   } = staticForm();
 
   const { emptyAcademicObject, emptyProfessionalObject } = tempObjects();
 
   const {
-    dynamicInputsFilled,
     userID,
-    educationErrorState,
-    experienceErrorState,
     experienceErrors,
     educationErrors,
     handleExperienceInputChange,
@@ -87,13 +100,15 @@ const Profile = () => {
     addNewExperienceForm,
     handleEducationDelete,
     addNewEducationForm,
-    submitError,
     handleEducationInputChange,
     experienceFormData,
     educationFormData,
     fetchDynamicData,
     handleCheckboxChange,
   } = dynamicForms();
+
+  // File upload hook
+  const { uploadFile } = useFileUpload();
 
   // Image click
   const myRef = useRef<HTMLInputElement>(null);
@@ -104,9 +119,7 @@ const Profile = () => {
   // Zod setup for static form
   const {
     register,
-    handleSubmit,
     formState: { errors },
-    setValue,
   } = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
   });
@@ -119,10 +132,7 @@ const Profile = () => {
     useState(false);
   const [isProfessionalExperienceOpen, setIsProfessionalExperienceOpen] =
     useState(false);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
   const [isAccountDeletionModalVisible, setIsAccountDeletionModalVisible] =
-    useState(false);
-  const [areAllFormsFilledCorrect, setAreAllFormsFilledCorrect] =
     useState(false);
   const { clearToken } = useAuthStore((state) => state);
 
@@ -134,6 +144,39 @@ const Profile = () => {
   // State for storing content creator data
   const [contentCreatorData, setContentCreatorData] = useState<ContentCreator | null>(null);
 
+  // Helper function to build content creator update payload
+  // Returns a consistent payload structure with all required fields
+  const buildUpdatePayload = (overrides: Partial<Omit<ContentCreator, 'profilePicture'>> & { profilePicture?: string | number } = {}) => {
+    // Determine valid statusValue - default to PENDING if current value is invalid
+    const validStatusValues: Array<"PENDING" | "APPROVED" | "REJECTED"> = ["PENDING", "APPROVED", "REJECTED"];
+    const currentStatusValue = overrides.statusValue ?? contentCreatorData?.statusValue;
+    const statusValue = (currentStatusValue && validStatusValues.includes(currentStatusValue)) 
+      ? currentStatusValue 
+      : "PENDING";
+
+    const payload: any = {
+      firstName: overrides.firstName ?? contentCreatorData?.firstName ?? "",
+      lastName: overrides.lastName ?? contentCreatorData?.lastName ?? "",
+      biography: overrides.biography ?? contentCreatorData?.biography ?? "",
+      email: overrides.email ?? contentCreatorData?.email ?? "",
+      education: overrides.education ?? contentCreatorData?.education ?? "",
+      statusValue: statusValue,
+      courseExperience: overrides.courseExperience ?? contentCreatorData?.courseExperience ?? "",
+      institution: overrides.institution ?? contentCreatorData?.institution ?? "",
+      eduStart: overrides.eduStart ?? contentCreatorData?.eduStart ?? new Date().toISOString().split('T')[0],
+      eduEnd: overrides.eduEnd ?? contentCreatorData?.eduEnd ?? new Date().toISOString().split('T')[0],
+      currentCompany: overrides.currentCompany ?? contentCreatorData?.currentCompany ?? "",
+      currentJobTitle: overrides.currentJobTitle ?? contentCreatorData?.currentJobTitle ?? "",
+      companyStart: overrides.companyStart ?? contentCreatorData?.companyStart ?? new Date().toISOString().split('T')[0],
+    };
+    
+    if (overrides.profilePicture !== undefined) {
+      payload.profilePicture = overrides.profilePicture;
+    }
+    
+    return payload;
+  };
+
   // Form submit, sends data to backend upon user interaction
   const handleUpdateSubmit = async () => {
     try {
@@ -143,34 +186,33 @@ const Profile = () => {
         return;
       }
 
+      console.log("Form data before submit:", formData);
+
       // Split the name into firstName and lastName
       const nameParts = formData.UserName.trim().split(" ");
       const firstName = nameParts[0] || "";
       const lastName = nameParts.slice(1).join(" ");
 
+      console.log("Name parts:", { firstName, lastName });
+
+      const payload = buildUpdatePayload({
+        firstName: firstName,
+        lastName: lastName || "",
+        biography: formData.bio || "",
+        email: contentCreatorData?.email || formData.UserEmail,
+      });
+
+      console.log("Update payload:", payload);
+
       // Update content creator profile in Strapi
       const response = await contentCreatorPutContentCreatorsById({
         path: { id: documentId },
         body: {
-          data: {
-            firstName: firstName,
-            ...(lastName && { lastName: lastName }), // Only include lastName if it's not empty
-            biography: formData.bio || "",
-            // Note: Keep existing required fields from the current data
-            email: contentCreatorData?.email || formData.UserEmail,
-            password: "", // Send empty string - controller will remove it before processing
-            education: (contentCreatorData?.education || "TODO1") as "TODO1" | "TODO2" | "TODO3",
-            statusValue: (contentCreatorData?.statusValue || "TODO1") as "TODO1" | "TODO2" | "TODO3",
-            courseExperience: contentCreatorData?.courseExperience || "",
-            institution: contentCreatorData?.institution || "",
-            eduStart: contentCreatorData?.eduStart || new Date().toISOString().split('T')[0],
-            eduEnd: contentCreatorData?.eduEnd || new Date().toISOString().split('T')[0],
-            currentCompany: contentCreatorData?.currentCompany || "",
-            currentJobTitle: contentCreatorData?.currentJobTitle || "",
-            companyStart: contentCreatorData?.companyStart || new Date().toISOString().split('T')[0],
-          },
+          data: payload,
         },
       });
+
+      console.log("Update response:", response);
 
       if (response) {
         // Update local storage with new name
@@ -189,28 +231,150 @@ const Profile = () => {
         
         // Invalidate and refetch the content creator query to get fresh data
         queryClient.invalidateQueries({ queryKey: ['contentCreator', documentId] });
-        
-        // Disable submit button after successful submission
-        setAreAllFormsFilledCorrect(false);
-        setHasSubmitted(true);
       }
     } catch (error) {
-      if (error instanceof Error) toast.error(error.message);
+      console.error("Error updating profile:", error);
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Erro ao atualizar perfil");
+      }
+    }
+  };
+
+  // Handle profile picture upload
+  const handleProfilePictureUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      // Validate file type using mimetype
+      const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+      if (!allowedMimeTypes.includes(file.type)) {
+        toast.error('Por favor, selecione um arquivo de imagem válido (JPEG, PNG, GIF ou WebP)');
+        return;
+      }
+
+      // file size sat til (max 5MB) - could be changed 
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (file.size > maxSize) {
+        toast.error('A imagem deve ter no máximo 5MB');
+        return;
+      }
+
+      const documentId = localStorage.getItem("id");
+      if (!documentId) {
+        toast.error("Erro: ID do usuário não encontrado");
+        return;
+      }
+
+      // Upload the file with upload hook
+      const uploadResult = await uploadFile([{
+        file,
+        filename: file.name,
+        alt: "Profile Picture",
+        caption: "Profile Picture"
+      }]);
+
+      console.log("Upload result:", uploadResult);
+
+      if (!uploadResult || uploadResult.length === 0) {
+        toast.error("Erro ao fazer upload da imagem");
+        return;
+      }
+
+      const fileId = uploadResult[0].id;
+      console.log("File ID extracted:", fileId);
+
+      // Delete existing profile picture if it is there 
+      if (contentCreatorData?.profilePicture?.id) {
+        await handleProfilePictureDelete(false); 
+      }
+
+      // Update content creator with new profile picture
+      const updatePayload = buildUpdatePayload({ profilePicture: fileId });
+      console.log("Profile picture update payload:", updatePayload);
+      
+      const updateResponse = await contentCreatorPutContentCreatorsById({
+        path: { id: documentId },
+        body: {
+          data: updatePayload,
+        },
+      });
+
+      console.log("Profile picture update response:", updateResponse);
+
+      toast.success("Foto de perfil atualizada com sucesso!");
+      
+      // Invalidate and refetch the content creator query
+      queryClient.invalidateQueries({ queryKey: ['contentCreator', documentId] });
+    } catch (error) {
+      console.error("Error uploading profile picture:", error);
+      if (error instanceof Error) {
+        toast.error(`Erro ao fazer upload da foto de perfil: ${error.message}`);
+      } else {
+        toast.error("Erro ao fazer upload da foto de perfil");
+      }
+    }
+  };
+
+  // profile picture delete
+  const handleProfilePictureDelete = async (showToast = true) => {
+    try {
+      const documentId = localStorage.getItem("id");
+      if (!documentId) {
+        toast.error("Erro: ID do usuário não encontrado");
+        return;
+      }
+
+      const profilePictureId = contentCreatorData?.profilePicture?.id;
+      if (!profilePictureId) {
+        if (showToast) {
+          toast.info("Nenhuma foto de perfil para deletar");
+        }
+        return;
+      }
+
+      // Delete the file from upload plugin
+      const baseUrl = getBaseApiUrl();
+      const deleteResponse = await fetch(`${baseUrl}/upload/files/${profilePictureId}`, {
+        method: "DELETE",
+        headers: fetchHeaders(),
+      });
+
+      if (!deleteResponse.ok) {
+        throw new Error("Failed to delete profile picture file");
+      }
+
+      // Update content creator to remove profile picture reference
+      await contentCreatorPutContentCreatorsById({
+        path: { id: documentId },
+        body: {
+          data: buildUpdatePayload(),
+        },
+      });
+
+      if (showToast) {
+        toast.success("Foto de perfil deletada com sucesso!");
+      }
+      
+      // Invalidate and refetch the content creator query
+      queryClient.invalidateQueries({ queryKey: ['contentCreator', documentId] });
+    } catch (error) {
+      console.error("Error deleting profile picture:", error);
+      if (showToast) {
+        toast.error("Erro ao deletar foto de perfil");
+      }
     }
   };
 
   // Effects
 
-  // Reset the submission state whenever the form data changes
-  useEffect(() => {
-    setHasSubmitted(false);
-  }, [educationFormData, experienceFormData, formData]);
-
   // Get query client for cache invalidation
   const queryClient = useQueryClient();
   const documentId = localStorage.getItem("id");
 
-  // Fetch content creator data from Strapi using useQuery
+  // Render and fetch userData
   const { data: fetchedCreatorData, error: creatorError } = useQuery({
     queryKey: ['contentCreator', documentId],
     queryFn: async () => {
@@ -219,6 +383,9 @@ const Profile = () => {
       }
       const response = await contentCreatorGetContentCreatorsById({
         path: { id: documentId },
+        query: {
+          populate: '*',
+        },
       });
       return response?.data || null;
     },
@@ -254,24 +421,6 @@ const Profile = () => {
       fetchDynamicData();
     }
   }, [userID]);
-
-  // Check if forms are filled correctly
-  // TODO: perhaps a check of the personal info form is also needed here?
-  useEffect(() => {
-    setAreAllFormsFilledCorrect(
-      !submitError &&
-      !educationErrorState &&
-      !experienceErrorState &&
-      dynamicInputsFilled("education") &&
-      dynamicInputsFilled("experience")
-    );
-  }, [
-    submitError,
-    educationErrorState,
-    experienceErrorState,
-    educationFormData,
-    experienceFormData,
-  ]);
 
   // Delete account confirmation modal
   const openAccountDeletionModal = () => {
@@ -360,10 +509,12 @@ const Profile = () => {
               handleCharCountBio={handleCharCountBio}
               toggleMenu1={isPersonalInfoOpen}
               imageClick={imageClick}
-              handleFileChange={handleFileChange}
+              handleFileChange={handleProfilePictureUpload}
+              handleProfilePictureDelete={handleProfilePictureDelete}
               myRef={myRef}
               register={register}
               handleInputChange={handleInputChange}
+              profilePictureUrl={contentCreatorData?.profilePicture?.url}
             />
 
             {/* Academic experience form */}
