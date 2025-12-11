@@ -1,4 +1,4 @@
-import Layout from "../../../shared/components/Layout";
+import Layout from "@/shared/components/layout.tsx";
 import CertificateList from "../components/CertificateList";
 
 export default function Certificates() {

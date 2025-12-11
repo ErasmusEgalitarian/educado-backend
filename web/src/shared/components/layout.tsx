@@ -3,9 +3,7 @@ import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
 
 // Components
-import { Navbar } from "./Navbar";
-
-// TODO: Deprecate in favour of PageContainer
+import { Navbar } from "@/shared/components/navbar";
 /**
  * Layout component
  *

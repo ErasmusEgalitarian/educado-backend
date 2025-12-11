@@ -13,7 +13,6 @@ interface GenericModalProps {
   onClose: () => void;
   children?: ReactNode | ReactNode[];
   loading?: boolean;
-  // TODO: with some configuration tailwind types could work and this can be changed
   width?: string;
 }
 

@@ -21,8 +21,8 @@ import { useState } from "react";
 import { useSections, useCourse } from "@/course/context/courseStore";
 import { useNotifications } from "@/shared/context/NotificationContext";
 
-import { Item } from "./@dnd/Item";
-import { SortableItem } from "./@dnd/SortableItem";
+import { Item } from "@/shared/components/dnd/@dnd/item";
+import { SortableItem } from "@/shared/components/dnd/@dnd/SortableItem";
 
 interface Props {
   sections: string[];

@@ -20,8 +20,8 @@ import { Component, useState } from "react";
 
 import { useSections } from "@/course/context/courseStore";
 
-import { Item } from "./@dnd/Item";
-import { SortableComponentItem } from "./@dnd/SortableComponentItem";
+import { Item } from "./@dnd/item.tsx";
+import { SortableComponentItem } from "./@dnd/sortable-component-item.tsx";
 
 interface Props {
   sid: string;

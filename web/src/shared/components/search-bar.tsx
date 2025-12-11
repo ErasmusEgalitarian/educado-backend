@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { mdiMagnify } from "@mdi/js";
 import Icon from "@mdi/react";
+import { useEffect, useState } from "react";
 
 export const SearchBar = ({
   sortingOptions,

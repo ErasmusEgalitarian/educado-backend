@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate, Link, useParams } from "react-router-dom";
 
-import MiniNavbar from "@/shared/components/MiniNavbar";
+import MiniNavbar from "@/shared/components/mini-navbar.tsx";
 import { tempObjects } from "@/shared/lib/formStates";
 import Motivation from "@/user/components/Motivation";
 
 import AcademicExperienceForm from "../features/user/components/academic-experience-form";
 import ProfessionalExperienceForm from "../features/user/components/ProfessionalExperience";
 import { NewApplication } from "../features/user/types/Application";
-import GenericModalComponent from "../shared/components/GenericModalComponent";
+import GenericModalComponent from "@/shared/components/generic-modal-component.tsx";
 import { useApi } from "../shared/hooks/useAPI";
 
 import dynamicForms from "./dynamicForms";

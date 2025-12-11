@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactQuill from "react-quill";
 
 interface RichTextEditorProps {
@@ -37,15 +37,12 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onChange }) => {
   };
 
   return (
-    <div>
-      {/*}
       <ReactQuill
         theme="snow"
         value={value}
         onChange={onChange} // Call parent's onChange function
         modules={modules}
-      />*/}
-    </div>
+      />
   );
 };
 

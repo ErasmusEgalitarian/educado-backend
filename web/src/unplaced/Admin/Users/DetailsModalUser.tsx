@@ -3,7 +3,7 @@
 import GenericModalComponentUser from "@components/Admin/Users/UserGenericContainerComponent";
 import React, { useState } from "react";
 
-import GenericModalComponent from "@/shared/components/GenericModalComponent";
+import GenericModalComponent from "@/shared/components/generic-modal-component.tsx";
 import { Application } from "@/user/types/Application";
 import { ContentCreator } from "@/user/types/ContentCreator";
 import { User } from "@/user/types/User";

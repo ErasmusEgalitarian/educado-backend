@@ -1,6 +1,6 @@
 import PinField from "react-pin-field";
 
-import TextInput from "@/shared/components/TextInput";
+import TextInput from "@/shared/components/text-input.tsx";
 
 interface propsType {
   email: string;

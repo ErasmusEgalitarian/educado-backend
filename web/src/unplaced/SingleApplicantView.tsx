@@ -9,8 +9,8 @@ import { useQuery } from "@tanstack/react-query";
 import AcademicExperience from "../features/user/components/AcademicExperience";
 import ApplicantDetails from "../features/user/components/ApplicantDetails";
 import WorkExperience from "../features/user/components/WorkExperience";
-import Layout from "../shared/components/Layout";
-import Loading from "../shared/components/Loading";
+import Layout from "@/shared/components/layout.tsx";
+import Loading from "@/shared/components/loading.tsx";
 import { useNotifications } from "../shared/context/NotificationContext";
 
 import AuthServices from "./services/auth.services";

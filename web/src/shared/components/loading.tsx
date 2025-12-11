@@ -26,7 +26,7 @@ const Loading: React.FC = () => {
       radial-gradient(farthest-side, #186474 94%, transparent) top/8px 8px no-repeat,
       conic-gradient(transparent 30%, #186474)
     `,
-    WebkitMask:
+    webkitMask:
       "radial-gradient(farthest-side, transparent calc(100% - 8px), black 0)",
     animation: "l13 1s infinite linear",
   };

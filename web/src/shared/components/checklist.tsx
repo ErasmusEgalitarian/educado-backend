@@ -19,7 +19,7 @@ const Checklist: React.FC<ChecklistProps> = ({
   const handleCheckboxClick = (newTick: number) => {
     if (newTick <= highestTick) {
       setTickChange(newTick);
-      navigate(`/courses/manager/${id}/${newTick}`);
+      navigate(`/courses/manager/${id}/${String(newTick)}`);
     }
   };
 
@@ -47,7 +47,7 @@ const Checklist: React.FC<ChecklistProps> = ({
             id="check1"
             disabled={highestTick < 0}
             checked={highestTick >= 0}
-            onChange={() => {}}
+            onChange={() => {/*no operation*/}}
             style={{ outline: "none", boxShadow: "none" }}
           />
           {t("courseEditor.generalInfo")}
@@ -66,7 +66,7 @@ const Checklist: React.FC<ChecklistProps> = ({
             id="check2"
             disabled={highestTick < 1}
             checked={highestTick >= 1}
-            onChange={() => {}}
+            onChange={() => {/*no operation*/}}
             style={{ outline: "none", boxShadow: "none" }}
           />
           {t("courseEditor.createSections")}
@@ -85,7 +85,7 @@ const Checklist: React.FC<ChecklistProps> = ({
             id="check3"
             disabled={highestTick < 2}
             checked={highestTick >= 2}
-            onChange={() => {}}
+            onChange={() => {/*no operation*/}}
             style={{ outline: "none", boxShadow: "none" }}
           />
           {t("courseEditor.reviewCourse")}

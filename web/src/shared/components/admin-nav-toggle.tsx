@@ -1,5 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 
@@ -15,7 +15,7 @@ const AdminNavToggle = () => {
         <div className="inline-flex rounded-full bg-slate-100 px-1 py-1 text-sm md:text-base font-semibold shadow-sm">
             <button
                 type="button"
-                onClick={() => navigate("/courses")}
+                onClick={() => { navigate("/courses"); }}
                 className={
                     "px-20 py-1.5 rounded-full transition " +
                     (isOnCourses
@@ -28,7 +28,7 @@ const AdminNavToggle = () => {
 
             <button
                 type="button"
-                onClick={() => navigate("/educado-admin")}
+                onClick={() => { navigate("/educado-admin"); }}
                 className={
                     "px-20 py-1.5 rounded-full transition " +
                     (isOnAdmin

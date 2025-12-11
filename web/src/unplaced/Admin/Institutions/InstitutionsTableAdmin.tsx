@@ -10,7 +10,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 
 import { getUserToken } from "@/auth/lib/userInfo";
-import Loading from "@/shared/components/Loading";
+import Loading from "@/shared/components/loading.tsx";
 import { institutionService } from "@/unplaced/services/Institution.services";
 
 import { AddInstitutionButton } from "./Actions/AddInstitutionsButton";

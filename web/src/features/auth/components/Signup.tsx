@@ -15,7 +15,7 @@ import { z } from "zod";
 
 import background from "@/shared/assets/background.jpg";
 
-import MiniNavbar from "../../../shared/components/MiniNavbar";
+import MiniNavbar from "@/shared/components/mini-navbar.tsx";
 import { useApi } from "../../../shared/hooks/useAPI";
 import Carousel from "../../../unplaced/archive/Carousel";
 import AuthServices from "../../../unplaced/services/auth.services";

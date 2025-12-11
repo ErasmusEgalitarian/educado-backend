@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 import { getUserToken } from "@/features/auth/lib/userInfo";
 import { Institution } from "@/features/user/types/Institution";
-import GenericModalComponent from "@/shared/components/GenericModalComponent";
+import GenericModalComponent from "@/shared/components/generic-modal-component.tsx";
 import { useNotifications } from "@/shared/context/NotificationContext";
 import { useApi } from "@/shared/hooks/useAPI";
 import { institutionService } from "@/unplaced/services/Institution.services";

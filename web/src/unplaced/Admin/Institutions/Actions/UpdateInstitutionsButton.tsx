@@ -4,7 +4,7 @@ import { mdiPencil } from "@mdi/js";
 import { toast } from "react-toastify";
 
 import { getUserToken } from "@/auth/lib/userInfo";
-import GenericModalComponent from "@/shared/components/GenericModalComponent";
+import GenericModalComponent from "@/shared/components/generic-modal-component.tsx";
 import { useNotifications } from "@/shared/context/NotificationContext";
 import { useApi } from "@/shared/hooks/useAPI";
 import { institutionService } from "@/unplaced/services/Institution.services";

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import CourseServices from "../../unplaced/services/course.services";
-import { BACKEND_URL } from "../config/environment";
+import CourseServices from "@/unplaced/services/course.services";
+import { BACKEND_URL } from "@/shared/config/environment";
 
-import Loading from "./Loading";
+import Loading from "@/shared/components/loading";
 
 interface Feedback {
   _id: string;
@@ -26,7 +26,7 @@ const FeedbackBox: React.FC<FeedbackBoxProps> = ({ id, token }) => {
       if (id !== "" && token !== "") {
         try {
           const response = await CourseServices.getCourseFeedback(
-            `${BACKEND_URL}/api/feedback/${id}`,
+            `${String(BACKEND_URL)}/api/feedback/${id}`,
             token,
           );
           setFeedbacks(response.data);
@@ -38,7 +38,7 @@ const FeedbackBox: React.FC<FeedbackBoxProps> = ({ id, token }) => {
       }
     };
 
-    fetchFeedbacks();
+    void fetchFeedbacks();
   }, [id, token]);
 
   if (loading) return <Loading />;
