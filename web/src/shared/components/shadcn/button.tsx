@@ -18,6 +18,8 @@ const buttonVariants = cva(
           "bg-destructive text-greyscale-text-negative hover:bg-destructive/90 focus-visible:ring-destructive/50",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        toggle:
+          "border border-primary-surface-darker bg-primary-surface-darker text-greyscale-text-negative focus-visible:ring-primary-border-subtle",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         blank: "bg-transparent p-0 hover:bg-transparent hover:text-primary",
@@ -44,7 +46,7 @@ const buttonVariants = cva(
       size: {
         xs: "h-7 px-2.5 py-1 text-xs",
         sm: "h-8 px-3 py-1.5 text-sm",
-        md: "h-9 px-3 py-2 text-sm",
+        md: "h-10 px-3 py-2 text-sm",
         lg: "h-10 px-4 py-2.5 text-base",
         icon: "h-9 w-9",
       },

@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
+import { useAuth } from "@/auth/hooks/use-auth";
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import {
   DropdownMenu,
@@ -53,9 +54,11 @@ export const Navbar = () => {
   const tabPositions = ["left-0", "left-1/3", "left-2/3"];
 
   const { clearToken } = useAuthStore((state) => state);
-  const [open, setOpen] = useState(false);
+  const [ open, setOpen ] = useState(false)
+  const { preferences, setPreferences } = useAuth();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { notifications, setNotifications } = useNotifications();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   // Logout handler
   const handleLogout = () => {
     clearToken();
@@ -92,7 +95,7 @@ export const Navbar = () => {
         </div>
 
         <div className="flex-1 flex justify-center">
-          {userInfo.role === "admin" ? (
+          {/*userInfo.role === "admin"*/ true ? (
             <div className="flex flex-col items-center">
               <div className="flex space-x-16 text-sm font-semibold font-['Montserrat']">
                 {/* Cursos tab */}
@@ -277,9 +280,11 @@ export const Navbar = () => {
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent>
                     <DropdownMenuRadioGroup
-                      value={i18n.language}
+                      value={preferences.language}
                       onValueChange={(value) => {
-                        void i18n.changeLanguage(value);
+                        if (value === "en" || value === "pt") {
+                              setPreferences({ language: value });
+                            }
                       }}
                     >
                       <DropdownMenuRadioItem value="pt">
@@ -294,6 +299,32 @@ export const Navbar = () => {
               </DropdownMenuSub>
               {userInfo.role === "admin" && (
                 <>
+                  <DropdownMenuSub>
+                    <DropdownMenuIconSubTrigger
+                      icon={() => <Icon path={mdiTranslate} size={1} />}
+                    >
+                      {t("language.switchLanguage")}
+                    </DropdownMenuIconSubTrigger>
+                    <DropdownMenuPortal>
+                      <DropdownMenuSubContent>
+                        <DropdownMenuRadioGroup
+                          value={preferences.language}
+                          onValueChange={(value) => {
+                            if (value === "en" || value === "pt") {
+                              setPreferences({ language: value });
+                            }
+                          }}
+                        >
+                          <DropdownMenuRadioItem value="pt">
+                            Português 🇧🇷
+                          </DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="en">
+                            English 🇺🇸
+                          </DropdownMenuRadioItem>
+                        </DropdownMenuRadioGroup>
+                      </DropdownMenuSubContent>
+                    </DropdownMenuPortal>
+                  </DropdownMenuSub>
                   <DropdownMenuSeparator />
                   <DropdownMenuIconItem
                     onClick={() => {

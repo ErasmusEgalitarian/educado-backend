@@ -26,19 +26,20 @@ COPY --from=pruner /app/out/json/ .
 COPY --from=pruner /app/out/package-lock.json ./package-lock.json
 
 # Install dependencies with correct platform binaries for Alpine/musl
-# Using --ignore-scripts to prevent running postinstall before we fix the platform binaries
-RUN npm ci --ignore-scripts
-
-# Explicitly install the correct platform-specific native binaries for Alpine (musl)
-RUN cd /app/web && npm install \
-    lightningcss-linux-x64-musl \
-    @tailwindcss/oxide-linux-x64-musl \
-    --save-optional --ignore-scripts
+# Using npm ci first, then npm rebuild to ensure native modules are built for musl
+RUN npm ci && npm rebuild
 
 # Copy source code from pruned output
 COPY --from=pruner /app/out/full/ .
 
 WORKDIR /app/web
+
+# Explicitly install the correct platform-specific native binaries for Alpine (musl)
+RUN npm install \
+    @rollup/rollup-linux-x64-musl \
+    lightningcss-linux-x64-musl \
+    @tailwindcss/oxide-linux-x64-musl \
+    --save-optional --ignore-scripts
 
 # Expose Vite dev server port
 EXPOSE 5174

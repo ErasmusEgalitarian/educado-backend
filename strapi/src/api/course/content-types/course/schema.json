@@ -7,7 +7,7 @@
     "displayName": "Course"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -43,7 +43,9 @@
     "image": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "feedbacks": {
       "type": "relation",
@@ -74,6 +76,12 @@
       "relation": "oneToMany",
       "target": "api::course-enrollment-relation.course-enrollment-relation",
       "mappedBy": "course"
+    },
+    "admin_control_at": {
+      "type": "datetime"
+    },
+    "creator_published_at": {
+      "type": "string"
     }
   }
 }

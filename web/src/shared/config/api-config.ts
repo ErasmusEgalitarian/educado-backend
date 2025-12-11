@@ -56,6 +56,8 @@ export const configureApiClient = () => {
     return response;
   });
 
+  
+
   // eslint-disable-next-line no-console
   console.log("API Client configured:", {
     baseUrl,

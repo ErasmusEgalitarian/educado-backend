@@ -18,6 +18,8 @@ interface MediaUploadCardProps {
   fileTypes?: MediaFileType | MediaFileType[];
   /** Maximum number of files allowed. If 1, only single file selection. */
   maxFiles?: number;
+  /** Maximum file size in bytes. */
+  maxFileSize?: number;
   /** Callback when files are selected (via click or drag) */
   onFilesSelected: (files: File[]) => void;
   /** Whether the component is disabled */
@@ -39,6 +41,7 @@ interface MediaUploadCardProps {
 export const MediaUploadCard = ({
   fileTypes,
   maxFiles,
+  maxFileSize,
   onFilesSelected,
   disabled = false,
   className,
@@ -77,10 +80,29 @@ export const MediaUploadCard = ({
       let validFiles = allFiles.filter((file) =>
         isFileTypeAllowed(file, fileTypes)
       );
-      const rejectedCount = allFiles.length - validFiles.length;
+      const typeRejectedCount = allFiles.length - validFiles.length;
 
-      if (rejectedCount > 0) {
-        addNotification(t("media.filesRejectedType", { count: rejectedCount }));
+      if (typeRejectedCount > 0) {
+        addNotification(
+          t("media.filesRejectedType", { count: typeRejectedCount })
+        );
+      }
+
+      // Enforce maxFileSize limit
+      if (maxFileSize) {
+        const sizeValidFiles = validFiles.filter(
+          (file) => file.size <= maxFileSize
+        );
+        const sizeRejectedCount = validFiles.length - sizeValidFiles.length;
+        if (sizeRejectedCount > 0) {
+          addNotification(
+            t("media.filesRejectedSize", {
+              count: sizeRejectedCount,
+              maxSize: Math.round(maxFileSize / 1024 / 1024),
+            })
+          );
+        }
+        validFiles = sizeValidFiles;
       }
 
       // Enforce maxFiles limit
@@ -93,12 +115,35 @@ export const MediaUploadCard = ({
         onFilesSelected(validFiles);
       }
     },
-    [disabled, onFilesSelected, fileTypes, maxFiles, addNotification, t]
+    [
+      disabled,
+      onFilesSelected,
+      fileTypes,
+      maxFiles,
+      maxFileSize,
+      addNotification,
+      t,
+    ]
   );
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       let files = Array.from(e.target.files);
+
+      // Enforce maxFileSize limit
+      if (maxFileSize) {
+        const sizeValidFiles = files.filter((file) => file.size <= maxFileSize);
+        const sizeRejectedCount = files.length - sizeValidFiles.length;
+        if (sizeRejectedCount > 0) {
+          addNotification(
+            t("media.filesRejectedSize", {
+              count: sizeRejectedCount,
+              maxSize: Math.round(maxFileSize / 1024 / 1024),
+            })
+          );
+        }
+        files = sizeValidFiles;
+      }
 
       // Enforce maxFiles limit
       if (maxFiles && files.length > maxFiles) {
@@ -106,7 +151,9 @@ export const MediaUploadCard = ({
         files = files.slice(0, maxFiles);
       }
 
-      onFilesSelected(files);
+      if (files.length > 0) {
+        onFilesSelected(files);
+      }
       // Reset input so same file can be selected again
       e.target.value = "";
     }
@@ -119,9 +166,11 @@ export const MediaUploadCard = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if ((e.key === "Enter" || e.key === " ") && !disabled) {
+    const validKeyPressed = e.key === "Enter" || e.key === " ";
+
+    if (validKeyPressed && !disabled) {
       e.preventDefault();
-      handleClick();
+      handleClick(); // Open file dialog
     }
   };
 
@@ -135,7 +184,7 @@ export const MediaUploadCard = ({
       onKeyDown={handleKeyDown}
       disabled={disabled}
       className={cn(
-        "relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed p-12 transition-all cursor-pointer min-h-48",
+        "relative flex flex-col items-center justify-center w-full rounded-xl border-2 border-dashed p-12 transition-all cursor-pointer min-h-48",
         isDragging && !disabled
           ? "border-primary bg-primary/5 scale-[1.02]"
           : "border-border bg-muted/30 hover:border-primary/50 hover:bg-muted/50",
