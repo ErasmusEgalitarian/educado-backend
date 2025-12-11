@@ -6993,6 +6993,13 @@ export type ErrorResponse = {
     status?: number;
 };
 
+export type AverageCourseFeedback = {
+    /**
+     * Average rating rounded to 1 decimal place
+     */
+    total: number;
+};
+
 export type JwtResponse = {
     accessToken?: string;
     userInfo?: {
@@ -8667,6 +8674,38 @@ export type PostCourseStatisticsResponses = {
 };
 
 export type PostCourseStatisticsResponse = PostCourseStatisticsResponses[keyof PostCourseStatisticsResponses];
+
+export type GetCourseStatisticsByCourseIdAverageRequest = {
+    body?: never;
+    path: {
+        /**
+         * The `documentId` of the course to calculate the average feedback for
+         */
+        courseId: string;
+    };
+    query?: never;
+    url: '/course-statistics/{courseId}/average';
+};
+
+export type GetCourseStatisticsByCourseIdAverageErrors = {
+    /**
+     * Bad Request - missing or invalid `courseId`
+     */
+    400: unknown;
+    /**
+     * Internal Server Error
+     */
+    500: unknown;
+};
+
+export type GetCourseStatisticsByCourseIdAverageResponses = {
+    /**
+     * OK - Average rating
+     */
+    200: AverageCourseFeedback;
+};
+
+export type GetCourseStatisticsByCourseIdAverageResponse = GetCourseStatisticsByCourseIdAverageResponses[keyof GetCourseStatisticsByCourseIdAverageResponses];
 
 export type GetCcDashboardActivityRequest = {
     body?: never;

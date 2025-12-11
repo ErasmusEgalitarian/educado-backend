@@ -17,7 +17,6 @@ import StarRating from "@/shared/components/star-rating";
 import { SidebarActivity } from "../components/course-overview-sidebar-activity";
 
 
-
 type PeriodKey = "thisMonth" | "lastSevenDays" | "lastThirtyDays";
 
 const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
@@ -150,7 +149,7 @@ const OverviewSidebar = ({ documentIds }: { documentIds?: string[] }) => {
           {/* Total certificados emitidos */}
           <div>
             <p className="text-greyscale-text-subtle">
-              {t("dashboard.totalCertificates")}
+              {t("dashboard.totalCertificatesIssued")}
             </p>
             <div className="flex items-baseline gap-2">
               <span className="text-4xl font-semibold">{getTotal("certificates")}</span>
