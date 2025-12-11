@@ -1079,6 +1079,7 @@
                   "companyEnd",
                   "jobDescription",
                   "isAdmin",
+                  "rejectionReason",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -1115,6 +1116,7 @@
                   "companyEnd",
                   "jobDescription",
                   "isAdmin",
+                  "rejectionReason",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -1226,6 +1228,7 @@
                     "companyEnd",
                     "jobDescription",
                     "isAdmin",
+                    "rejectionReason",
                     "createdAt",
                     "updatedAt",
                     "publishedAt"
@@ -1254,6 +1257,7 @@
                       "companyEnd",
                       "jobDescription",
                       "isAdmin",
+                      "rejectionReason",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -1283,6 +1287,7 @@
                       "companyEnd",
                       "jobDescription",
                       "isAdmin",
+                      "rejectionReason",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -1321,6 +1326,7 @@
                         "companyEnd",
                         "jobDescription",
                         "isAdmin",
+                        "rejectionReason",
                         "createdAt",
                         "updatedAt",
                         "publishedAt"
@@ -1357,7 +1363,6 @@
                   "enum": [
                     "user_logs",
                     "courses",
-                    "user_logs",
                     "dashboard_activities",
                     "profilePicture"
                   ]
@@ -1369,7 +1374,6 @@
                     "enum": [
                       "user_logs",
                       "courses",
-                      "user_logs",
                       "dashboard_activities",
                       "profilePicture"
                     ]
@@ -1492,6 +1496,7 @@
                   "companyEnd",
                   "jobDescription",
                   "isAdmin",
+                  "rejectionReason",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -1518,7 +1523,6 @@
                   "enum": [
                     "user_logs",
                     "courses",
-                    "user_logs",
                     "dashboard_activities",
                     "profilePicture"
                   ]
@@ -1530,7 +1534,6 @@
                     "enum": [
                       "user_logs",
                       "courses",
-                      "user_logs",
                       "dashboard_activities",
                       "profilePicture"
                     ]
@@ -1674,6 +1677,7 @@
                   "companyEnd",
                   "jobDescription",
                   "isAdmin",
+                  "rejectionReason",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -1700,7 +1704,6 @@
                   "enum": [
                     "user_logs",
                     "courses",
-                    "user_logs",
                     "dashboard_activities",
                     "profilePicture"
                   ]
@@ -1712,7 +1715,6 @@
                     "enum": [
                       "user_logs",
                       "courses",
-                      "user_logs",
                       "dashboard_activities",
                       "profilePicture"
                     ]
@@ -1750,6 +1752,7 @@
                   "companyEnd",
                   "jobDescription",
                   "isAdmin",
+                  "rejectionReason",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -1787,6 +1790,7 @@
                     "companyEnd",
                     "jobDescription",
                     "isAdmin",
+                    "rejectionReason",
                     "createdAt",
                     "updatedAt",
                     "publishedAt"
@@ -1815,6 +1819,7 @@
                       "companyEnd",
                       "jobDescription",
                       "isAdmin",
+                      "rejectionReason",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -1844,6 +1849,7 @@
                       "companyEnd",
                       "jobDescription",
                       "isAdmin",
+                      "rejectionReason",
                       "createdAt",
                       "updatedAt",
                       "publishedAt"
@@ -1882,6 +1888,7 @@
                         "companyEnd",
                         "jobDescription",
                         "isAdmin",
+                        "rejectionReason",
                         "createdAt",
                         "updatedAt",
                         "publishedAt"
@@ -2022,6 +2029,7 @@
                   "companyEnd",
                   "jobDescription",
                   "isAdmin",
+                  "rejectionReason",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2048,7 +2056,6 @@
                   "enum": [
                     "user_logs",
                     "courses",
-                    "user_logs",
                     "dashboard_activities",
                     "profilePicture"
                   ]
@@ -2060,7 +2067,6 @@
                     "enum": [
                       "user_logs",
                       "courses",
-                      "user_logs",
                       "dashboard_activities",
                       "profilePicture"
                     ]
@@ -2202,6 +2208,7 @@
                   "companyEnd",
                   "jobDescription",
                   "isAdmin",
+                  "rejectionReason",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2228,7 +2235,6 @@
                   "enum": [
                     "user_logs",
                     "courses",
-                    "user_logs",
                     "dashboard_activities",
                     "profilePicture"
                   ]
@@ -2240,7 +2246,6 @@
                     "enum": [
                       "user_logs",
                       "courses",
-                      "user_logs",
                       "dashboard_activities",
                       "profilePicture"
                     ]
@@ -2278,6 +2283,7 @@
                   "companyEnd",
                   "jobDescription",
                   "isAdmin",
+                  "rejectionReason",
                   "createdAt",
                   "updatedAt",
                   "publishedAt"
@@ -2397,6 +2403,32 @@
             }
           }
         }
+      }
+    },
+    "/content-creators/{id}/status": {
+      "patch": {
+        "operationId": "content-creator/patch/content_creators_by_id_status",
+        "parameters": [],
+        "responses": {
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "tags": [
+          "content-creator"
+        ]
       }
     },
     "/courses": {
@@ -24505,6 +24537,135 @@
                                         }
                                       }
                                     },
+                                    "profilePicture": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "documentId": {
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "alternativeText": {
+                                          "type": "string"
+                                        },
+                                        "caption": {
+                                          "type": "string"
+                                        },
+                                        "width": {
+                                          "type": "integer"
+                                        },
+                                        "height": {
+                                          "type": "integer"
+                                        },
+                                        "formats": {},
+                                        "hash": {
+                                          "type": "string"
+                                        },
+                                        "ext": {
+                                          "type": "string"
+                                        },
+                                        "mime": {
+                                          "type": "string"
+                                        },
+                                        "size": {
+                                          "type": "number",
+                                          "format": "float"
+                                        },
+                                        "url": {
+                                          "type": "string"
+                                        },
+                                        "previewUrl": {
+                                          "type": "string"
+                                        },
+                                        "provider": {
+                                          "type": "string"
+                                        },
+                                        "provider_metadata": {},
+                                        "related": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "documentId": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "folder": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "number"
+                                            },
+                                            "documentId": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "folderPath": {
+                                          "type": "string"
+                                        },
+                                        "createdAt": {
+                                          "type": "string",
+                                          "format": "date-time"
+                                        },
+                                        "updatedAt": {
+                                          "type": "string",
+                                          "format": "date-time"
+                                        },
+                                        "publishedAt": {
+                                          "type": "string",
+                                          "format": "date-time"
+                                        },
+                                        "createdBy": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "number"
+                                            },
+                                            "documentId": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "updatedBy": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "number"
+                                            },
+                                            "documentId": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "locale": {
+                                          "type": "string"
+                                        },
+                                        "localizations": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "documentId": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
                                     "isAdmin": {
                                       "type": "boolean"
                                     },
@@ -29385,6 +29546,135 @@
                           }
                         }
                       },
+                      "profilePicture": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "alternativeText": {
+                            "type": "string"
+                          },
+                          "caption": {
+                            "type": "string"
+                          },
+                          "width": {
+                            "type": "integer"
+                          },
+                          "height": {
+                            "type": "integer"
+                          },
+                          "formats": {},
+                          "hash": {
+                            "type": "string"
+                          },
+                          "ext": {
+                            "type": "string"
+                          },
+                          "mime": {
+                            "type": "string"
+                          },
+                          "size": {
+                            "type": "number",
+                            "format": "float"
+                          },
+                          "url": {
+                            "type": "string"
+                          },
+                          "previewUrl": {
+                            "type": "string"
+                          },
+                          "provider": {
+                            "type": "string"
+                          },
+                          "provider_metadata": {},
+                          "related": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "folder": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "folderPath": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "publishedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "createdBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "updatedBy": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "locale": {
+                            "type": "string"
+                          },
+                          "localizations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "documentId": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
                       "isAdmin": {
                         "type": "boolean"
                       },
@@ -31348,6 +31638,135 @@
                         }
                       }
                     },
+                    "profilePicture": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "documentId": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "alternativeText": {
+                          "type": "string"
+                        },
+                        "caption": {
+                          "type": "string"
+                        },
+                        "width": {
+                          "type": "integer"
+                        },
+                        "height": {
+                          "type": "integer"
+                        },
+                        "formats": {},
+                        "hash": {
+                          "type": "string"
+                        },
+                        "ext": {
+                          "type": "string"
+                        },
+                        "mime": {
+                          "type": "string"
+                        },
+                        "size": {
+                          "type": "number",
+                          "format": "float"
+                        },
+                        "url": {
+                          "type": "string"
+                        },
+                        "previewUrl": {
+                          "type": "string"
+                        },
+                        "provider": {
+                          "type": "string"
+                        },
+                        "provider_metadata": {},
+                        "related": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "folder": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "documentId": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "folderPath": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "publishedAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "createdBy": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "documentId": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "updatedBy": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "documentId": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "locale": {
+                          "type": "string"
+                        },
+                        "localizations": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "documentId": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
                     "isAdmin": {
                       "type": "boolean"
                     },
@@ -31492,10 +31911,6 @@
                 "type": "string"
               }
             }
-          },
-          "enrollmentDate": {
-            "type": "string",
-            "format": "date"
           },
           "enrollmentDate": {
             "type": "string",

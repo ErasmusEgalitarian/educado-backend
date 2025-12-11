@@ -135,7 +135,7 @@ export const createCourseColumns = ({
       },
     },
     {
-<<<<<<< HEAD
+
       accessorKey: "difficulty",
       header: t("difficulty.difficulty"),
       cell: ({ row }) => {
