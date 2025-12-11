@@ -19,8 +19,8 @@ import { CreateLecture } from "@/lecture/components/CreateLecturePopUp";
 import { SectionArrowIcon } from "@/section/components/SectionArrowIcon";
 import SectionServices from "@/unplaced/services/section.services";
 
-import { ToolTipIcon } from "../../ToolTip/tool-tip-icon.tsx";
-import { ComponentList } from "../component-list.tsx";
+import { ToolTipIcon } from "@/shared/components/ToolTip/tool-tip-icon";
+import { ComponentList } from "@/shared/components/dnd/component-list";
 
 interface Props {
   sid: string;

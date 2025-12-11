@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import CourseServices from "../../unplaced/services/course.services";
-import { BACKEND_URL } from "../config/environment";
+import CourseServices from "@/unplaced/services/course.services";
+import { BACKEND_URL } from "@/shared/config/environment";
 
-import Loading from "./loading.tsx";
+import Loading from "@/shared/components/loading";
 
 interface Feedback {
   _id: string;

@@ -7,7 +7,7 @@ interface PropsType {
  readonly togglePasswordVisibility: () => void;
 }
 
-const PasswordEye= ({
+const PasswordEye: React.FC<PropsType> = ({
   id,
   passwordVisible,
   togglePasswordVisibility,

@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
 
 // Components
-import { Navbar } from "./navbar.tsx";
+import { Navbar } from "@/shared/components/navbar";
 /**
  * Layout component
  *

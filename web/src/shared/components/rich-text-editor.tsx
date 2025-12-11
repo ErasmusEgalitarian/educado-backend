@@ -37,15 +37,12 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onChange }) => {
   };
 
   return (
-    <div>
-      {/*}
       <ReactQuill
         theme="snow"
         value={value}
         onChange={onChange} // Call parent's onChange function
         modules={modules}
-      />*/}
-    </div>
+      />
   );
 };
 

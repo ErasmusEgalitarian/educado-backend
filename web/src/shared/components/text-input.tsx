@@ -22,7 +22,7 @@ interface PropTypes {
  * - `hidePassword`: boolean that indicates if the input is a password (optional (false by default))
  * @returns {React.JSX.Element} the text input component
  */
-const TextInput= (props: Readonly<PropTypes>): React.JSX.Element => {
+const TextInput: React.FC<PropTypes> = (props) => {
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     props.onChange(event.target.value);
   }
