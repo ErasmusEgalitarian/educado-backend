@@ -1,4 +1,4 @@
-/* Tests for controllers */
+/* Tests for controllers*/
 import { getCertificatesStats, getStudentStats, getContentCreatorFeedback, getCoursesStats, filterCoursesBasedOnCid } from "../../../src/api/course-statistics/controllers/course-statistics";
 
 describe('Test statistics', () => {

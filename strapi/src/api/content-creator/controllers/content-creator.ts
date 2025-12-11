@@ -138,31 +138,35 @@ export default factories.createCoreController('api::content-creator.content-crea
                     error: { code: errorCodes.E1001.code, message: errorCodes.E1001.message }
                 });
             }
-            const jwtContentCreator: ContentCreator = {
+
+        const jwtContentCreator : ContentCreator  = {
+            documentId: user.documentId,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            verifiedAt: user.verifiedAt ? new Date(user.verifiedAt) : null,
+            isAdmin: user.isAdmin,
+        }
+        // 3. Generate token
+        const token = jwt.sign(
+            jwtContentCreator,
+            process.env.JWT_SECRET,
+            { expiresIn: '7d' }
+        );
+
+        // 4. Respond with token and user info
+        return ctx.send({
+            accessToken: token,
+            userInfo: {
                 documentId: user.documentId,
+                email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                email: user.email,
-                verifiedAt: user.verifiedAt ? new Date(user.verifiedAt) : null,
-            }
-            // 3. Generate token
-            const token = jwt.sign(
-                jwtContentCreator,
-                process.env.JWT_SECRET,
-                { expiresIn: '7d' }
-            );
-
-            // 4. Respond with token and user info
-            return ctx.send({
-                accessToken: token,
-                userInfo: {
-                    documentId: user.documentId,
-                    email: user.email,
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    verifiedAt: user.verifiedAt ? new Date(user.verifiedAt).toISOString() : null,
-                },
-            });
+                verifiedAt: user.verifiedAt ? new Date(user.verifiedAt).toISOString() : null,
+                isAdmin: user.isAdmin,
+                role: user.isAdmin ? "admin" : "creator",
+            },
+        });
         } catch (err) {
             console.error(err);
             return ctx.internalServerError('Something went wrong');
@@ -180,5 +184,44 @@ export default factories.createCoreController('api::content-creator.content-crea
 
         // Call the default update controller
         return await super.update(ctx);
+    },
+
+    async updateStatus(ctx) {
+        const { id } = ctx.params;
+        const { statusValue, rejectionReason } = ctx.request.body;
+
+        if (!statusValue) {
+            return ctx.badRequest("statusValue is required");
+        }
+
+        const allowed = ["PENDING", "APPROVED", "REJECTED"];
+        if (!allowed.includes(statusValue)) {
+            return ctx.badRequest("Invalid statusValue");
+        }
+
+        const data: Record<string, unknown> = { statusValue };
+
+        if (statusValue === "APPROVED") {
+            data.verifiedAt = new Date().toISOString();
+        }
+
+        if (statusValue === "REJECTED") {
+            data.rejectionReason = rejectionReason ?? null;
+        }
+
+       try{
+            const updateAndPublish = await strapi.documents("api::content-creator.content-creator")
+               .update({
+                   documentId: id,
+                   status: "published",
+                   data,
+               });
+
+           return ctx.send(updateAndPublish);
+
+       } catch (err) {
+           strapi.log.error("Error in content-creator.updateStatus", err);
+           return ctx.internalServerError("Could not update status");
+       }
     },
 }));

@@ -73,8 +73,7 @@ const CourseOverviewPage = () => {
                     "title",
                     "difficulty",
                     "description",
-                    "updatedAt",
-                    "publishedAt",
+                    "creator_published_at",
                     "durationHours",
                   ] as (keyof Course)[]
                 }

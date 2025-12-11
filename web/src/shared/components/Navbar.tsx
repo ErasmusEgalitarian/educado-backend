@@ -95,7 +95,7 @@ export const Navbar = () => {
         </div>
 
         <div className="flex-1 flex justify-center">
-          {userInfo.role === "admin" ? (
+          {/*userInfo.role === "admin"*/ true ? (
             <div className="flex flex-col items-center">
               <div className="flex space-x-16 text-sm font-semibold font-['Montserrat']">
                 {/* Cursos tab */}

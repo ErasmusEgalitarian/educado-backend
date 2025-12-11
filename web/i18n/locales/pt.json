@@ -31,6 +31,7 @@
     "more": "Mais",
     "openMenu": "Abrir menu",
     "actions": "Ações",
+    "mandatory": "Este campo é obrigatório",
     "columns": "Colunas",
     "sort": "Ordenar",
     "sortBy": "Ordenar por",
@@ -62,8 +63,10 @@
   },
   "validation": {
     "required": "Este campo é obrigatório",
+    "title": "O título é obrigatório",
     "minLength": "Deve ter no mínimo {{count}} caracteres",
     "maxLength": "Deve ter no máximo {{count}} caracteres",
+    "invalidLevel": "Nível inválido",
     "minCategories": "Selecione no mínimo {{count}} categorias",
     "maxCategories": "Selecione no máximo {{count}} categorias",
     "maxDescription": "A descrição não pode ter mais de {{count}} caracteres"
@@ -182,6 +185,8 @@
     "uploadSuccess": "Arquivo enviado com sucesso",
     "uploadFileSuccess": "Enviado: {{filename}}",
     "filesRejectedType": "{{count}} arquivo(s) rejeitado(s): tipo de arquivo não suportado",
+    "filesRejectedSize": "{{count}} arquivo(s) rejeitado(s): excede o limite de {{maxSize}}MB",
+    "maxFileSizeHint": "O arquivo deve conter no máximo {{maxSize}}MB",
     "dragAndDrop": "Arraste e solte arquivos aqui, ou clique para selecionar",
     "browseFiles": "Procurar Arquivos",
     "browseLibrary": "Procurar Biblioteca",
@@ -297,7 +302,7 @@
     "experienceExamplePlaceholder":"Exemplos: Apple, Microsoft, etc.",
     "Company":"Empresa",
     "addAnotherExperience":"Adicionar outra experiência"
-    
+
   },
   "welcome": {
     "title": "Boas vindas ao EDUCADO!",
@@ -306,5 +311,40 @@
     "login-text": "Já possui uma conta?",
     "login-button": "Entrar"
   },
-  "notifications": { "publishedCourse": "Curso publicado" }
+  "adminUsers": {
+    "mostRecent": "Mais recentes",
+    "searchUsers": "Buscar usuário",
+    "filterAll": "Todos",
+    "filterPending": "Pendentes",
+    "filterApproved": "Aprovados",
+    "filterRejected": "Recusados",
+    "statusPending": "Aguardando análise",
+    "statusApproved": "Aprovado",
+    "statusRejected": "Recusado",
+    "submittedAt": "Enviado em",
+    "rowsPerPage": "Linhas por página"
+  },
+  "userProfile": {
+    "title": "Perfil de usuário",
+    "status": "Status",
+    "motivations": "Motivações",
+    "academicExperiences": "Experiências acadêmicas",
+    "professionalExperiences": "Experiências profissionais",
+    "reject": "Recusar",
+    "approve": "Aprovar",
+    "rejectApplication": "Rejeitar aplicação",
+    "approveApplication": "Aprovar aplicação",
+    "justifyRejection": "Justifique a rejeição da aplicação",
+    "noMotivation": "Nenhuma motivação informada",
+    "noAcademicExperience": "Nenhuma experiência acadêmica informada",
+    "noProfessionalExperience": "Nenhuma experiência profissional informada",
+    "justification": "Justificativa",
+    "justificationPlaceholder": "Justificativa da análise",
+    "justificationRequired": "Justificativa é obrigatória.",
+    "actionCannotBeUndone": "Essa ação não pode ser desfeita."
+  },
+  "notifications":
+  {
+    "published-course": "Curso publicado"
+  }
 }

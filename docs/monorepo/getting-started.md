@@ -75,6 +75,8 @@ npm run dev:backend
 
 **Wait for**: `Server started on: http://0.0.0.0:1337` message
 
+> **Note**: Make sure Docker Desktop or Docker engine is running before executing these commands, or they will fail.
+
 > **Alternative**: If you prefer manual control, see [Manual Startup](#manual-startup-optional) below.
 
 ---
@@ -272,6 +274,8 @@ npm cache clean --force
 # Remove node_modules and reinstall
 rm -rf node_modules package-lock.json
 npm install
+
+
 ```
 
 ### API Token Not Working
@@ -283,6 +287,18 @@ npm install
 - Ensure no extra spaces around the token
 - Try regenerating the token in Strapi admin
 - Restart the web dev server after updating `.env`
+
+
+### Backend Fails to Start Despite Active PostgreSQL Service (Windows)
+
+**Symptom**: Backend sometimes fails to start and the terminal shows init/database errors.
+
+**Solution**:
+- Press Windows + R
+- Type `services.msc` and press **Enter**
+- Locate the **PostgreSQL** service
+- Right click and stop the service.
+- Restart the backend server.
 
 ---
 

@@ -1,3 +1,5 @@
+
+
 export default {
     routes: [
         {
@@ -16,6 +18,14 @@ export default {
             config: {
                 auth: false,
             },
-        }
-    ],
+        },
+        {
+       method: "PATCH",
+       path: "/content-creators/:id/status",
+       handler: "content-creator.updateStatus",
+       config: {
+              auth: false,
+          },
+    },
+  ],
 };
