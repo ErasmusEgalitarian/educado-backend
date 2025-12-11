@@ -11,6 +11,16 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "password": {
+      "type": "password",
+      "required": false,
+      "minLength": 8
+    },
     "firstName": {
       "type": "string",
       "minLength": 1,
@@ -26,29 +36,8 @@
     "verifiedAt": {
       "type": "date"
     },
-    "biography": {
-      "type": "text",
-      "maxLength": 400,
-      "required": false
-    },
-    "email": {
-      "type": "email",
-      "required": true,
-      "unique": true
-    },
-    "password": {
-      "type": "password",
-      "required": false,
-      "minLength": 8
-    },
-    "education": {
-      "type": "enumeration",
-      "required": true,
-      "enum": [
-        "TODO1",
-        "TODO2",
-        "TODO3"
-      ]
+    "motivation": {
+      "type": "string"
     },
     "statusValue": {
       "type": "enumeration",
@@ -60,49 +49,21 @@
         "REJECTED"
       ]
     },
-    "courseExperience": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 40,
-      "required": true
-    },
-    "institution": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 40,
-      "required": true
-    },
-    "eduStart": {
-      "type": "date",
-      "required": true
-    },
-    "eduEnd": {
-      "type": "date",
-      "required": true
-    },
     "currentCompany": {
       "type": "string",
       "minLength": 1,
       "maxLength": 40,
       "required": true
     },
-    "currentJobTitle": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 40,
-      "required": true
+    "jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job.job"
     },
-    "companyStart": {
-      "type": "date",
-      "required": true
-    },
-    "companyEnd": {
-      "type": "date"
-    },
-    "jobDescription": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 400
+    "educations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::education.education"
     },
     "user_logs": {
       "type": "relation",
