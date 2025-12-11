@@ -1,6 +1,6 @@
 // import commands from "cypress"
 import React from "react";
-import Profile from "../../src/pages/Profile";
+import Profile from "../../src/features/user/components/profile";
 //import commands from './s'
 import { BrowserRouter as Router } from "react-router-dom";
 
