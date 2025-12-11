@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-12-11T10:19:58.690Z"
+    "x-generation-date": "2025-12-11T10:56:52.244Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -11328,6 +11328,14 @@
                               "motivation": {
                                 "type": "string"
                               },
+                              "statusValue": {
+                                "type": "string",
+                                "enum": [
+                                  "PENDING",
+                                  "APPROVED",
+                                  "REJECTED"
+                                ]
+                              },
                               "currentCompany": {
                                 "type": "string"
                               },
@@ -11667,6 +11675,12 @@
                                   }
                                 }
                               },
+                              "isAdmin": {
+                                "type": "boolean"
+                              },
+                              "rejectionReason": {
+                                "type": "string"
+                              },
                               "createdAt": {
                                 "type": "string",
                                 "format": "date-time"
@@ -11811,6 +11825,13 @@
                               }
                             }
                           }
+                        },
+                        "admin_control_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "creator_published_at": {
+                          "type": "string"
                         },
                         "createdAt": {
                           "type": "string",
@@ -12354,6 +12375,7 @@
               "email",
               "firstName",
               "lastName",
+              "statusValue",
               "currentCompany"
             ],
             "type": "object",
@@ -12379,6 +12401,14 @@
               },
               "motivation": {
                 "type": "string"
+              },
+              "statusValue": {
+                "type": "string",
+                "enum": [
+                  "PENDING",
+                  "APPROVED",
+                  "REJECTED"
+                ]
               },
               "currentCompany": {
                 "type": "string"
@@ -12453,6 +12483,12 @@
                   "example": "string or id"
                 }
               },
+              "isAdmin": {
+                "type": "boolean"
+              },
+              "rejectionReason": {
+                "type": "string"
+              },
               "locale": {
                 "type": "string"
               },
@@ -12515,6 +12551,7 @@
           "email",
           "firstName",
           "lastName",
+          "statusValue",
           "currentCompany"
         ],
         "properties": {
@@ -12540,6 +12577,14 @@
           },
           "motivation": {
             "type": "string"
+          },
+          "statusValue": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "APPROVED",
+              "REJECTED"
+            ]
           },
           "currentCompany": {
             "type": "string"
@@ -13840,6 +13885,14 @@
                                     "motivation": {
                                       "type": "string"
                                     },
+                                    "statusValue": {
+                                      "type": "string",
+                                      "enum": [
+                                        "PENDING",
+                                        "APPROVED",
+                                        "REJECTED"
+                                      ]
+                                    },
                                     "currentCompany": {
                                       "type": "string"
                                     },
@@ -13977,6 +14030,12 @@
                                           }
                                         }
                                       }
+                                    },
+                                    "isAdmin": {
+                                      "type": "boolean"
+                                    },
+                                    "rejectionReason": {
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -14122,6 +14181,13 @@
                                     }
                                   }
                                 }
+                              },
+                              "admin_control_at": {
+                                "type": "string",
+                                "format": "date-time"
+                              },
+                              "creator_published_at": {
+                                "type": "string"
                               },
                               "createdAt": {
                                 "type": "string",
@@ -14498,6 +14564,12 @@
               }
             }
           },
+          "isAdmin": {
+            "type": "boolean"
+          },
+          "rejectionReason": {
+            "type": "string"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -14674,6 +14746,13 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
               },
               "locale": {
                 "type": "string"
@@ -15987,6 +16066,14 @@
                           "motivation": {
                             "type": "string"
                           },
+                          "statusValue": {
+                            "type": "string",
+                            "enum": [
+                              "PENDING",
+                              "APPROVED",
+                              "REJECTED"
+                            ]
+                          },
                           "currentCompany": {
                             "type": "string"
                           },
@@ -16604,6 +16691,12 @@
                               }
                             }
                           },
+                          "isAdmin": {
+                            "type": "boolean"
+                          },
+                          "rejectionReason": {
+                            "type": "string"
+                          },
                           "createdAt": {
                             "type": "string",
                             "format": "date-time"
@@ -16671,6 +16764,13 @@
                           }
                         }
                       }
+                    },
+                    "admin_control_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "creator_published_at": {
+                      "type": "string"
                     },
                     "createdAt": {
                       "type": "string",
@@ -16845,6 +16945,13 @@
                 }
               }
             }
+          },
+          "admin_control_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creator_published_at": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -18516,6 +18623,14 @@
                       "motivation": {
                         "type": "string"
                       },
+                      "statusValue": {
+                        "type": "string",
+                        "enum": [
+                          "PENDING",
+                          "APPROVED",
+                          "REJECTED"
+                        ]
+                      },
                       "currentCompany": {
                         "type": "string"
                       },
@@ -18786,6 +18901,12 @@
                           }
                         }
                       },
+                      "isAdmin": {
+                        "type": "boolean"
+                      },
+                      "rejectionReason": {
+                        "type": "string"
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -18853,6 +18974,13 @@
                       }
                     }
                   }
+                },
+                "admin_control_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "creator_published_at": {
+                  "type": "string"
                 },
                 "createdAt": {
                   "type": "string",
@@ -20582,6 +20710,14 @@
                     "motivation": {
                       "type": "string"
                     },
+                    "statusValue": {
+                      "type": "string",
+                      "enum": [
+                        "PENDING",
+                        "APPROVED",
+                        "REJECTED"
+                      ]
+                    },
                     "currentCompany": {
                       "type": "string"
                     },
@@ -20852,6 +20988,12 @@
                         }
                       }
                     },
+                    "isAdmin": {
+                      "type": "boolean"
+                    },
+                    "rejectionReason": {
+                      "type": "string"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -20919,6 +21061,13 @@
                     }
                   }
                 }
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -22498,6 +22647,14 @@
                     "motivation": {
                       "type": "string"
                     },
+                    "statusValue": {
+                      "type": "string",
+                      "enum": [
+                        "PENDING",
+                        "APPROVED",
+                        "REJECTED"
+                      ]
+                    },
                     "currentCompany": {
                       "type": "string"
                     },
@@ -22768,6 +22925,12 @@
                         }
                       }
                     },
+                    "isAdmin": {
+                      "type": "boolean"
+                    },
+                    "rejectionReason": {
+                      "type": "string"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -22835,6 +22998,13 @@
                     }
                   }
                 }
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -23066,6 +23236,14 @@
               },
               "motivation": {
                 "type": "string"
+              },
+              "statusValue": {
+                "type": "string",
+                "enum": [
+                  "PENDING",
+                  "APPROVED",
+                  "REJECTED"
+                ]
               },
               "currentCompany": {
                 "type": "string"
@@ -24443,6 +24621,13 @@
                                       }
                                     }
                                   },
+                                  "admin_control_at": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                  },
+                                  "creator_published_at": {
+                                    "type": "string"
+                                  },
                                   "createdAt": {
                                     "type": "string",
                                     "format": "date-time"
@@ -24882,6 +25067,12 @@
                     }
                   }
                 }
+              },
+              "isAdmin": {
+                "type": "boolean"
+              },
+              "rejectionReason": {
+                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -28269,6 +28460,14 @@
                     "motivation": {
                       "type": "string"
                     },
+                    "statusValue": {
+                      "type": "string",
+                      "enum": [
+                        "PENDING",
+                        "APPROVED",
+                        "REJECTED"
+                      ]
+                    },
                     "currentCompany": {
                       "type": "string"
                     },
@@ -28539,6 +28738,12 @@
                         }
                       }
                     },
+                    "isAdmin": {
+                      "type": "boolean"
+                    },
+                    "rejectionReason": {
+                      "type": "string"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -28606,6 +28811,13 @@
                     }
                   }
                 }
+              },
+              "admin_control_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "creator_published_at": {
+                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -31246,6 +31458,14 @@
                           "motivation": {
                             "type": "string"
                           },
+                          "statusValue": {
+                            "type": "string",
+                            "enum": [
+                              "PENDING",
+                              "APPROVED",
+                              "REJECTED"
+                            ]
+                          },
                           "currentCompany": {
                             "type": "string"
                           },
@@ -31863,6 +32083,12 @@
                               }
                             }
                           },
+                          "isAdmin": {
+                            "type": "boolean"
+                          },
+                          "rejectionReason": {
+                            "type": "string"
+                          },
                           "createdAt": {
                             "type": "string",
                             "format": "date-time"
@@ -31930,6 +32156,13 @@
                           }
                         }
                       }
+                    },
+                    "admin_control_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "creator_published_at": {
+                      "type": "string"
                     },
                     "createdAt": {
                       "type": "string",
@@ -33380,6 +33613,14 @@
                               "motivation": {
                                 "type": "string"
                               },
+                              "statusValue": {
+                                "type": "string",
+                                "enum": [
+                                  "PENDING",
+                                  "APPROVED",
+                                  "REJECTED"
+                                ]
+                              },
                               "currentCompany": {
                                 "type": "string"
                               },
@@ -33719,6 +33960,12 @@
                                   }
                                 }
                               },
+                              "isAdmin": {
+                                "type": "boolean"
+                              },
+                              "rejectionReason": {
+                                "type": "string"
+                              },
                               "createdAt": {
                                 "type": "string",
                                 "format": "date-time"
@@ -33863,6 +34110,13 @@
                               }
                             }
                           }
+                        },
+                        "admin_control_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "creator_published_at": {
+                          "type": "string"
                         },
                         "createdAt": {
                           "type": "string",

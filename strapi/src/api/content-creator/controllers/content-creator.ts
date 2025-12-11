@@ -80,6 +80,7 @@ export default factories.createCoreController('api::content-creator.content-crea
                     lastName: lastName,
                     verifiedAt: confirmationDate,
                     motivation: motivation,
+                    statusValue: "PENDING",
                     currentCompany: currentCompany,
                     jobs: jobDocs.map((j) => j.documentId),
                     educations: educationDocs.map((e) => e.documentId),
