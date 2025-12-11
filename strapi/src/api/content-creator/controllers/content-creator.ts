@@ -1,13 +1,12 @@
 import { factories } from '@strapi/strapi'
 import jwt from "jsonwebtoken";
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import { errorCodes } from '../../../helpers/errorCodes';
 import { sendVerificationEmail } from '../../../helpers/email';
 
 export default factories.createCoreController('api::content-creator.content-creator', ({ strapi }) => ({
     async register(ctx) {
         try {
-            console.log("Registration request received:", ctx.request.body);
             const institutionalMails = ["student.aau.dk"];
 
             const {
@@ -45,10 +44,10 @@ export default factories.createCoreController('api::content-creator.content-crea
                     strapi.documents("api::job.job").create({
                         data: {
                             company: job.company,
-                            Title: job.title,
-                            StartDate: job.startDate,
-                            EndDate: job.endDate,
-                            Description: job.description,
+                            title: job.title,
+                            startDate: job.startDate,
+                            endDate: job.endDate,
+                            description: job.description,
                         },
                         status: "published",
                     })
@@ -63,15 +62,15 @@ export default factories.createCoreController('api::content-creator.content-crea
                             institution: edu.institution,
                             startDate: edu.startDate,
                             endDate: edu.endDate,
-
                         },
                         status: "published",
                     })
                 )
             );
+
             const currentCompany =
-                jobDocs.find((j) => !j.endDate || j.endDate.trim() === "")?.company ??
-                jobs[0]?.company ?? // fallback to first job
+                jobDocs.find((j) => !j.endDate || (typeof j.endDate === 'string' && j.endDate.trim() === ""))?.company ??
+                jobs[0]?.company ??
                 null;
             const newUser = await strapi.documents('api::content-creator.content-creator').create({
                 data: {
@@ -169,7 +168,7 @@ export default factories.createCoreController('api::content-creator.content-crea
             return ctx.internalServerError('Something went wrong');
         }
     },
-        async update(ctx) {
+    async update(ctx) {
         // Remove password from the request if it's empty or not provided
         if (ctx.request.body?.data) {
             const password = ctx.request.body.data.password;
