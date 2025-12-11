@@ -304,6 +304,17 @@ export const postContentCreatorLogin = <ThrowOnError extends boolean = false>(op
     });
 };
 
+export const contentCreatorPatchContentCreatorsByIdStatus = <ThrowOnError extends boolean = false>(options?: Options<ContentCreatorPatchContentCreatorsByIdStatusRequest, ThrowOnError>) => {
+    return (options?.client ?? client).patch<unknown, ContentCreatorPatchContentCreatorsByIdStatusErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zContentCreatorPatchContentCreatorsByIdStatusRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/content-creators/{id}/status',
+        ...options
+    });
+};
+
 export const courseGetCourses = <ThrowOnError extends boolean = false>(options?: Options<CourseGetCoursesRequest, ThrowOnError>) => {
     return (options?.client ?? client).get<CourseGetCoursesResponses, CourseGetCoursesErrors, ThrowOnError, 'data'>({
         querySerializer: {
@@ -1446,6 +1457,28 @@ export const postStudentVerifyEmail = <ThrowOnError extends boolean = false>(opt
     });
 };
 
+export const userInfoGetUserInfo = <ThrowOnError extends boolean = false>(options?: Options<UserInfoGetUserInfoRequest, ThrowOnError>) => {
+    return (options?.client ?? client).get<unknown, UserInfoGetUserInfoErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zUserInfoGetUserInfoRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/user-info',
+        ...options
+    });
+};
+
+export const userInfoGetUserInfoById = <ThrowOnError extends boolean = false>(options?: Options<UserInfoGetUserInfoByIdRequest, ThrowOnError>) => {
+    return (options?.client ?? client).get<unknown, UserInfoGetUserInfoByIdErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zUserInfoGetUserInfoByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/user-info/{id}',
+        ...options
+    });
+};
+
 export const userLogGetUserLogs = <ThrowOnError extends boolean = false>(options?: Options<UserLogGetUserLogsRequest, ThrowOnError>) => {
     return (options?.client ?? client).get<UserLogGetUserLogsResponses, UserLogGetUserLogsErrors, ThrowOnError, 'data'>({
         querySerializer: {
@@ -1533,6 +1566,54 @@ export const userLogPutUserLogsById = <ThrowOnError extends boolean = false>(opt
             'Content-Type': 'application/json',
             ...options.headers
         }
+    });
+};
+
+export const usersPermissionsDeleteUsersById = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsDeleteUsersByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).delete<UsersPermissionsDeleteUsersByIdResponses, UsersPermissionsDeleteUsersByIdErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zUsersPermissionsDeleteUsersByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/users/{id}',
+        ...options
+    });
+};
+
+export const usersPermissionsGetUsersById = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsGetUsersByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).get<UsersPermissionsGetUsersByIdResponses, UsersPermissionsGetUsersByIdErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zUsersPermissionsGetUsersByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/users/{id}',
+        ...options
+    });
+};
+
+export const usersPermissionsPutUsersById = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsPutUsersByIdRequest, ThrowOnError>) => {
+    return (options.client ?? client).put<UsersPermissionsPutUsersByIdResponses, UsersPermissionsPutUsersByIdErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zUsersPermissionsPutUsersByIdRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/users/{id}',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
+export const usersPatchUsersByIdRole = <ThrowOnError extends boolean = false>(options?: Options<UsersPatchUsersByIdRoleRequest, ThrowOnError>) => {
+    return (options?.client ?? client).patch<unknown, UsersPatchUsersByIdRoleErrors, ThrowOnError, 'data'>({
+        requestValidator: async (data) => {
+            return await zUsersPatchUsersByIdRoleRequest.parseAsync(data);
+        },
+        responseStyle: 'data',
+        url: '/users/{id}/role',
+        ...options
     });
 };
 
@@ -1942,43 +2023,6 @@ export const usersPermissionsGetUsersMe = <ThrowOnError extends boolean = false>
         responseStyle: 'data',
         url: '/users/me',
         ...options
-    });
-};
-
-export const usersPermissionsDeleteUsersById = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsDeleteUsersByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).delete<UsersPermissionsDeleteUsersByIdResponses, UsersPermissionsDeleteUsersByIdErrors, ThrowOnError, 'data'>({
-        requestValidator: async (data) => {
-            return await zUsersPermissionsDeleteUsersByIdRequest.parseAsync(data);
-        },
-        responseStyle: 'data',
-        url: '/users/{id}',
-        ...options
-    });
-};
-
-export const usersPermissionsGetUsersById = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsGetUsersByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).get<UsersPermissionsGetUsersByIdResponses, UsersPermissionsGetUsersByIdErrors, ThrowOnError, 'data'>({
-        requestValidator: async (data) => {
-            return await zUsersPermissionsGetUsersByIdRequest.parseAsync(data);
-        },
-        responseStyle: 'data',
-        url: '/users/{id}',
-        ...options
-    });
-};
-
-export const usersPermissionsPutUsersById = <ThrowOnError extends boolean = false>(options: Options<UsersPermissionsPutUsersByIdRequest, ThrowOnError>) => {
-    return (options.client ?? client).put<UsersPermissionsPutUsersByIdResponses, UsersPermissionsPutUsersByIdErrors, ThrowOnError, 'data'>({
-        requestValidator: async (data) => {
-            return await zUsersPermissionsPutUsersByIdRequest.parseAsync(data);
-        },
-        responseStyle: 'data',
-        url: '/users/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
     });
 };
 
