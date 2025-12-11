@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-import { Course, CourseCategory } from "@/shared/api/types.gen";
+import { getCourseStatisticsByCourseIdAverage } from "@/shared/api/sdk.gen";
+import { Course, AverageCourseFeedback, CourseCategory } from "@/shared/api/types.gen";
 import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
 import {
@@ -13,8 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/components/shadcn/card";
-
-import StarRating from "../../../shared/components/star-rating";
+import StarRating from "@/shared/components/star-rating";
 
 /**
  * Displays a course in a card format
@@ -42,6 +43,21 @@ export const CourseCard = ({ course }: { course: Course }) => {
   const handleView = () => {
     toast.info("View course feature coming soon!");
   };
+
+  const [feedbackAverage, setFeedbackAverage] = useState<AverageCourseFeedback>();
+
+  useEffect(() => {
+    const fetchAverageFeedback = async () => {
+      try {
+        const data = await getCourseStatisticsByCourseIdAverage({path: {courseId: course.documentId!}});
+        setFeedbackAverage(data);
+      } catch (error) {
+        console.error("Error fetching course:", error);
+        toast.error(t("common.errorLoadingFeedback"));
+      }
+    };
+    void fetchAverageFeedback();
+  }, [course.documentId, t]);
 
   return (
     <Card className="w-full h-full flex flex-col overflow-hidden">
@@ -100,7 +116,7 @@ export const CourseCard = ({ course }: { course: Course }) => {
           </p>
         </div>
 
-        <StarRating rating={4.2} size="sm" className="mt-2" />
+        <StarRating rating={feedbackAverage?.total} size="sm" className="mt-2" />
       </CardContent>
       <CardFooter className="flex justify-end items-center mt-auto shrink-0">
         <Button

@@ -63,7 +63,8 @@
     "preview": "Preview",
     "type": "Type",
     "size": "Size",
-    "uploaded": "Uploaded"
+    "uploaded": "Uploaded",
+    "errorLoadingFeedback": "Error loading feedback"
   },
   "form": {
     "submit": "Submit",
@@ -193,7 +194,8 @@
     "thisMonth": "This month",
     "totalCertificatesIssued": "Total certificates issued",
     "evaluation": "Evaluation",
-    "activities": "Activities"
+    "activities": "Activities",
+    "totalCertificatesIssued": "Total Certificates Issued"
   },
   "files": {
     "maxFilesExceeded": "Maximum file limit exceeded. You can only upload up to {{count}} files"
