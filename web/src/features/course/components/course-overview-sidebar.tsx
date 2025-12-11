@@ -1,4 +1,3 @@
-
 import {
   Select,
   SelectContent,
@@ -14,7 +13,6 @@ import { getCcDashboardActivity } from "@/shared/api/sdk.gen";
 import { DashboardActivity } from "@/shared/api/types.gen";
 
 const OverviewSidebar = () => {
-
   const [dashboardActivities, setDashboardActivities] = useState<DashboardActivity[]>([]);
 
   useEffect(() => {
@@ -24,8 +22,6 @@ const OverviewSidebar = () => {
     };
     fetchActivities();
   }, []);
-
-
   return (
     <div className="w-2/7 hidden xl:block">
       <div className="text-greyscale-text-body">
