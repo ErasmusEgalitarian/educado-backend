@@ -90,10 +90,7 @@ const Profile = () => {
   const { emptyAcademicObject, emptyProfessionalObject } = tempObjects();
 
   const {
-    dynamicInputsFilled,
     userID,
-    educationErrorState,
-    experienceErrorState,
     experienceErrors,
     educationErrors,
     handleExperienceInputChange,
@@ -102,7 +99,6 @@ const Profile = () => {
     addNewExperienceForm,
     handleEducationDelete,
     addNewEducationForm,
-    submitError,
     handleEducationInputChange,
     experienceFormData,
     educationFormData,
@@ -147,6 +143,33 @@ const Profile = () => {
   // State for storing content creator data
   const [contentCreatorData, setContentCreatorData] = useState<ContentCreator | null>(null);
 
+  // Helper function to build content creator update payload
+  // Returns a consistent payload structure with all required fields
+  const buildUpdatePayload = (overrides: Partial<Omit<ContentCreator, 'profilePicture'>> & { profilePicture?: string | number } = {}) => {
+    const payload: any = {
+      firstName: overrides.firstName ?? contentCreatorData?.firstName ?? "",
+      lastName: overrides.lastName ?? contentCreatorData?.lastName ?? "",
+      biography: overrides.biography ?? contentCreatorData?.biography ?? "",
+      email: overrides.email ?? contentCreatorData?.email ?? "",
+      password: "",
+      education: (overrides.education ?? contentCreatorData?.education ?? "TODO1") as "TODO1" | "TODO2" | "TODO3",
+      statusValue: (overrides.statusValue ?? contentCreatorData?.statusValue ?? "TODO1") as "TODO1" | "TODO2" | "TODO3",
+      courseExperience: overrides.courseExperience ?? contentCreatorData?.courseExperience ?? "",
+      institution: overrides.institution ?? contentCreatorData?.institution ?? "",
+      eduStart: overrides.eduStart ?? contentCreatorData?.eduStart ?? new Date().toISOString().split('T')[0],
+      eduEnd: overrides.eduEnd ?? contentCreatorData?.eduEnd ?? new Date().toISOString().split('T')[0],
+      currentCompany: overrides.currentCompany ?? contentCreatorData?.currentCompany ?? "",
+      currentJobTitle: overrides.currentJobTitle ?? contentCreatorData?.currentJobTitle ?? "",
+      companyStart: overrides.companyStart ?? contentCreatorData?.companyStart ?? new Date().toISOString().split('T')[0],
+    };
+    
+    if (overrides.profilePicture !== undefined) {
+      payload.profilePicture = overrides.profilePicture;
+    }
+    
+    return payload;
+  };
+
   // Form submit, sends data to backend upon user interaction
   const handleUpdateSubmit = async () => {
     try {
@@ -165,10 +188,11 @@ const Profile = () => {
       const response = await contentCreatorPutContentCreatorsById({
         path: { id: documentId },
         body: {
-          data: {
+          data: buildUpdatePayload({
             firstName: firstName,
-            lastName: lastName || "", // Provide empty string if lastName is empty
+            lastName: lastName || "",
             biography: formData.bio || "",
+<<<<<<< HEAD:web/src/features/user/components/profile.tsx
             // Note: Keep existing required fields from the current data
             email: contentCreatorData?.email ?? formData.userEmail,
             password: "", // Send empty string - controller will remove it before processing
@@ -182,6 +206,10 @@ const Profile = () => {
             currentJobTitle: contentCreatorData?.currentJobTitle ?? "",
             companyStart: contentCreatorData?.companyStart ?? new Date().toISOString().split('T')[0],
           },
+=======
+            email: contentCreatorData?.email || formData.UserEmail,
+          }),
+>>>>>>> 4d33468f (feat: update profile picture handling and improve payload structure for content creator):web/src/features/user/components/Profile.tsx
         },
       });
 
@@ -214,9 +242,10 @@ const Profile = () => {
       const file = event.target.files?.[0];
       if (!file) return;
 
-      // Validate file type
-      if (!file.type.startsWith('image/')) {
-        toast.error('Por favor, selecione um arquivo de imagem válido');
+      // Validate file type using mimetype
+      const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+      if (!allowedMimeTypes.includes(file.type)) {
+        toast.error('Por favor, selecione um arquivo de imagem válido (JPEG, PNG, GIF ou WebP)');
         return;
       }
 
@@ -237,7 +266,7 @@ const Profile = () => {
       const uploadedFileIds = await uploadFile([{
         file,
         filename: file.name,
-        alt: `${contentCreatorData?.firstName} ${contentCreatorData?.lastName}`,
+        alt: "Profile Picture",
         caption: "Profile Picture"
       }]);
 
@@ -280,6 +309,7 @@ const Profile = () => {
             companyStart: contentCreatorData?.companyStart || new Date().toISOString().split('T')[0],
             profilePicture: fileId,
           },
+          data: buildUpdatePayload({ profilePicture: fileId }),
         },
       });
 
@@ -325,6 +355,7 @@ const Profile = () => {
       await contentCreatorPutContentCreatorsById({
         path: { id: documentId },
         body: {
+<<<<<<< HEAD:web/src/features/user/components/profile.tsx
           data: {
             firstName: contentCreatorData?.firstName || "",
             lastName: contentCreatorData?.lastName || "",
@@ -341,6 +372,9 @@ const Profile = () => {
             currentJobTitle: contentCreatorData?.currentJobTitle || "",
             companyStart: contentCreatorData?.companyStart || new Date().toISOString().split('T')[0],
           },
+=======
+          data: buildUpdatePayload(),
+>>>>>>> 4d33468f (feat: update profile picture handling and improve payload structure for content creator):web/src/features/user/components/Profile.tsx
         },
       });
 
