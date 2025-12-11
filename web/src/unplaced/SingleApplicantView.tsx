@@ -6,9 +6,9 @@ import { useQuery } from "@tanstack/react-query";
 // Services
 
 // Components
-import AcademicExperience from "../features/user/components/AcademicExperience";
-import ApplicantDetails from "../features/user/components/ApplicantDetails";
-import WorkExperience from "../features/user/components/WorkExperience";
+import AcademicExperience from "@/user/components/academic-experience.tsx";
+import ApplicantDetails from "@/user/components/applicant-details.tsx";
+import WorkExperience from "@/user/components/work-experience.tsx";
 import Layout from "../shared/components/Layout";
 import Loading from "../shared/components/Loading";
 import { useNotifications } from "../shared/context/NotificationContext";

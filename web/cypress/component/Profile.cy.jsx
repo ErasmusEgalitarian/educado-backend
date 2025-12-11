@@ -34,8 +34,8 @@ it("First Form Should not give error if all fields are valid", () => {
   );
   // Fill in the form fields with valid data
   cy.get('.first_form_open').click({force: true});
-  cy.get('input[name="UserName"]')
-  cy.get('input[name="UserEmail"]').type('john.doe@example.com');
+  cy.get('input[name="userName"]')
+  cy.get('input[name="userEmail"]').type('john.doe@example.com');
   cy.get('input[name="linkedin"]').type('https://www.linkedin.com/in/johndoe/');
   cy.get('textarea[name="bio"]').type('this is bio');
 

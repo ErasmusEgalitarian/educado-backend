@@ -1,20 +1,20 @@
 export interface Profile {
   id: string;
-  groups: any[];
+  groups: unknown[];
   firstName: string;
   lastName: string;
   user: string;
-  courseMember: any[];
-  institution: any[];
+  courseMember: unknown[];
+  institution: unknown[];
 }
 
 //Profile page interfaces
 export interface FormData {
-  UserName: string;
-  UserEmail: string;
+  userName: string;
+  userEmail: string;
   bio: string;
   linkedin: string;
-  photo: any;
+  photo: unknown;
 }
 
 export interface EducationFormData {

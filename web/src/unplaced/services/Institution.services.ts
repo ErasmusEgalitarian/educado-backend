@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { Institution } from "../../features/user/types/Institution";
+import { Institution } from "@/user/types/institution.ts";
 import { BACKEND_URL } from "../../shared/config/environment";
 
 const getInstitutions = async (token: string) => {

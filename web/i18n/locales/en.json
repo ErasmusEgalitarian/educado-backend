@@ -63,7 +63,8 @@
     "preview": "Preview",
     "type": "Type",
     "size": "Size",
-    "uploaded": "Uploaded"
+    "uploaded": "Uploaded",
+    "errorLoadingFeedback": "Error loading feedback"
   },
   "form": { "submit": "Submit", "submitting": "Submitting", "reset": "Reset" },
   "validation": {
@@ -162,13 +163,21 @@
     "characters": "characters",
     "newCourse": "New Course",
     "createSections": "Create Sections",
+    "createNewSection": "Create new section",
     "noSections": "No sections yet",
     "reviewCourse": "Review Course",
     "courseDetails": "Course Details",
     "createAndContinue": "Create and continue",
     "saveAsDraft": "Save as draft",
     "unsavedChangesTitle": "Unsaved Changes",
-    "unsavedChangesMessage": "You have unsaved changes. Are you sure you want to leave? Your changes will be lost."
+    "unsavedChangesMessage": "You have unsaved changes. Are you sure you want to leave? Your changes will be lost.",
+    "addLesson": "Add lesson",
+    "addExercise": "Add exercise",
+    "goBack": "Go back",
+    "addNewSection": "Add new section",
+    "editSection": "Edit section",
+    "updateOrAdd": "Sections to be updated or added",
+    "section": "Section"
   },
   "dashboard": {
     "hello": "Hello",
@@ -189,7 +198,8 @@
     "thisMonth": "This month",
     "totalCertificatesIssued": "Total certificates issued",
     "evaluation": "Evaluation",
-    "activities": "Activities"
+    "activities": "Activities",
+    "totalCertificatesIssued": "Total Certificates Issued"
   },
   "files": {
     "maxFilesExceeded": "Maximum file limit exceeded. You can only upload up to {{count}} files"

@@ -30,7 +30,7 @@ export const CourseQueryFunction = (courseId: string) => ({
           "admin_control_at",
         ],
         // Populate relations with their full data
-        populate: ["course_categories", "image"],
+        populate: ["course_categories", "image", "course_sections"],
       },
     });
 

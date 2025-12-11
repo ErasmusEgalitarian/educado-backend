@@ -2,7 +2,7 @@ import { mdiDelete, mdiPlus } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import React, { Fragment } from "react";
 
-export default function AcademicExperienceForm({
+const AcademicExperienceForm = ({
   index,
   educationFormData,
   handleEducationInputChange,
@@ -35,7 +35,7 @@ export default function AcademicExperienceForm({
   addNewEducationForm: (index: number) => void;
   handleEducationDelete: (index: number, id: string | null) => void;
   errors: unknown;
-}>) {
+}>) =>{
   function displayInvalidDateFormatErrMsg(strValue: string, errorMsg: string) {
     if (strValue !== "") {
       return (
@@ -65,9 +65,9 @@ export default function AcademicExperienceForm({
         key={index}
         /* Apply rounded bottom corners if this is the only form or the last in the bottom */
         className={`border border-primary p-4 text-left bg-white shadow-xl font-['Montserrat'] ${
-          (educationFormData?.length === 1 && index === 0) ||
-          (educationFormData?.length > 1 &&
-            index === educationFormData?.length - 1)
+          (educationFormData.length === 1 && index === 0) ||
+          (educationFormData.length > 1 &&
+            index === educationFormData.length - 1)
             ? "rounded-b-lg"
             : ""
         }`}
@@ -86,9 +86,9 @@ export default function AcademicExperienceForm({
             {/* Drop-down */}
             <select
               className="bg-secondary rounded-lg border-none"
-              id={`educationLevel-${index}`}
+              id={`educationLevel-${String(index)}`}
               name="educationLevel"
-              value={educationFormData[index]?.educationLevel || ""}
+              value={educationFormData[index]?.educationLevel ?? ""}
               required={true}
               onChange={(value) => {
                 handleEducationInputChange(value, index);
@@ -110,9 +110,9 @@ export default function AcademicExperienceForm({
             {/* Drop-down */}
             <select
               className="bg-secondary rounded-lg border-none"
-              id={`status-${index}`}
+              id={`status-${String(index)}`}
               name="status"
-              value={educationFormData[index]?.status || ""}
+              value={educationFormData[index]?.status ?? ""}
               required={true}
               onChange={(value) => {
                 handleEducationInputChange(value, index);
@@ -136,11 +136,11 @@ export default function AcademicExperienceForm({
 
             <input
               className="bg-secondary rounded-lg border-none"
-              id={`course-${index}`}
+              id={`course-${String(index)}`}
               placeholder="Curso"
               type="text"
               name="course"
-              value={educationFormData[index]?.course || ""}
+              value={educationFormData[index]?.course ?? ""}
               required={true}
               onChange={(value) => {
                 handleEducationInputChange(value, index);
@@ -154,11 +154,11 @@ export default function AcademicExperienceForm({
 
             <input
               className="bg-secondary rounded-lg border-none"
-              id={`institution-${index}`}
+              id={`institution-${String(index)}`}
               placeholder="Instituição"
               type="text"
               name="institution"
-              value={educationFormData[index]?.institution || ""}
+              value={educationFormData[index]?.institution ?? ""}
               required={true}
               onChange={(value) => {
                 handleEducationInputChange(value, index);
@@ -175,12 +175,12 @@ export default function AcademicExperienceForm({
 
             <input
               className="bg-secondary rounded-lg border-none"
-              id={`educationStartDate-${index}`}
+              id={`educationStartDate-${String(index)}`}
               placeholder="Mês/Ano"
               type="text"
               maxLength={7}
               name="educationStartDate"
-              value={educationFormData[index]?.educationStartDate || ""}
+              value={educationFormData[index]?.educationStartDate ?? ""}
               required={true}
               onChange={(value) => {
                 handleEducationInputChange(value, index);
@@ -200,12 +200,12 @@ export default function AcademicExperienceForm({
 
             <input
               className="bg-secondary rounded-lg border-none"
-              id={`educationEndDate-${index}`}
+              id={`educationEndDate-${String(index)}`}
               placeholder="Mês/Ano"
               type="text"
               maxLength={7}
               name="educationEndDate"
-              value={educationFormData[index]?.educationEndDate || ""}
+              value={educationFormData[index]?.educationEndDate ?? ""}
               required={true}
               onChange={(value) => {
                 handleEducationInputChange(value, index);
@@ -233,7 +233,7 @@ export default function AcademicExperienceForm({
               onClick={() => {
                 handleEducationDelete(
                   index,
-                  educationFormData[index]?._id?.toString() || "",
+                  educationFormData[index]?._id?.toString() ?? "",
                 );
               }}
             >
@@ -246,7 +246,7 @@ export default function AcademicExperienceForm({
         {/* Only visible on last form, otherwise create distance */}
         <div
           className={
-            index === educationFormData?.length - 1
+            index === educationFormData.length - 1
               ? "border-t border-grayMedium py-2 mt-4"
               : "py-30 mt-5"
           }
@@ -254,7 +254,7 @@ export default function AcademicExperienceForm({
 
         {/* Add another form button */}
         {/* Only visible on last created form */}
-        {index === educationFormData?.length - 1 && (
+        {index === educationFormData.length - 1 && (
           <div className="flex items-center justify-center">
             <button
               type="button"
@@ -272,4 +272,6 @@ export default function AcademicExperienceForm({
       </div>
     </Fragment>
   );
-}
+};
+
+export default AcademicExperienceForm;

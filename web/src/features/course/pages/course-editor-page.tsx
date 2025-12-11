@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { mdiFloppy, mdiCheckCircle } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useQuery } from "@tanstack/react-query";
@@ -11,7 +12,6 @@ import { GlobalLoader } from "@/shared/components/global-loader";
 import { PageContainer } from "@/shared/components/page-container";
 import { Button } from "@/shared/components/shadcn/button";
 import { Separator } from "@/shared/components/shadcn/seperator";
-import { useFileUpload } from "@/features/media/hooks/use-file-upload";
 import { toAppError } from "@/shared/lib/error-utilities";
 
 import {
@@ -25,9 +25,7 @@ import CourseEditorInformation, {
 } from "../components/course-editor-information";
 import CourseEditorMenuButton from "../components/course-editor-menu-button";
 import CourseEditorReview from "../components/course-editor-review";
-import CourseEditorSections, {
-  type CourseEditorSectionsRef,
-} from "../components/course-editor-sections";
+import CourseEditorSections from "../components/course-editor-sections";
 import {
   useCourseEditorSteps,
   type CourseEditorStep,
@@ -38,7 +36,6 @@ const CourseEditorPage = () => {
 
   // Refs to access form state from child components. Used to prevent navigation with unsaved changes.
   const informationFormRef = useRef<CourseEditorInformationRef>(null);
-  const sectionsFormRef = useRef<CourseEditorSectionsRef>(null);
 
   const createMutation = useCreateCourseMutation();
   const updateMutation = useUpdateCourseMutation();
@@ -91,7 +88,6 @@ const CourseEditorPage = () => {
     { id: "sections", label: t("courseEditor.createSections") },
     { id: "review", label: t("courseEditor.reviewCourse") },
   ];
-  const { uploadFile } = useFileUpload();
 
   const handleStepComplete = (step: CourseEditorStep, courseId?: string) => {
     // If a courseId is provided (from create operation), store it
@@ -108,16 +104,13 @@ const CourseEditorPage = () => {
 
       const docId = actualCourseId ?? queryCourse?.documentId;
 
-      // Upload image if provided and take first id
-      const imageIds =
-        values.image && values.image.length > 0
-          ? await uploadFile(values.image)
-          : undefined;
-      const imageId = imageIds?.[0];
+      // Image comes from picker with documentId (same as course-editor-information)
+      const imageId = values.image?.documentId;
+
       // Edit = update mutation
       if (isEditMode && docId) {
         // Update existing course
-        const result = await unPublishMutation.mutateAsync({
+        await unPublishMutation.mutateAsync({
           documentId: docId,
           title: values.title,
           difficulty: Number(values.difficulty),
@@ -194,7 +187,6 @@ const CourseEditorPage = () => {
       case "sections":
         return (
           <CourseEditorSections
-            ref={sectionsFormRef}
             courseId={queryCourse?.documentId}
             onComplete={() => {
               handleStepComplete("sections");
@@ -253,7 +245,7 @@ const CourseEditorPage = () => {
           <Separator className="my-6" />
           <Button
             disabled={createMutation.isPending || updateMutation.isPending}
-            onClick={saveAsDraft}
+            onClick={() => void saveAsDraft()}
             className="w-full"
             variant="secondary"
           >

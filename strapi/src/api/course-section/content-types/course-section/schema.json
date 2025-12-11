@@ -1,9 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "course_selections",
+  "collectionName": "course_sections",
   "info": {
-    "singularName": "course-selection",
-    "pluralName": "course-selections",
+    "singularName": "course-section",
+    "pluralName": "course-sections",
     "displayName": "Course Section"
   },
   "options": {
@@ -21,21 +21,16 @@
       "type": "text",
       "maxLength": 400
     },
-    "exercises": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::exercise.exercise"
-    },
-    "lectures": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::lecture.lecture"
-    },
     "course": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::course.course",
       "inversedBy": "course_sections"
+    },
+    "activities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::activity.activity"
     }
   }
 }

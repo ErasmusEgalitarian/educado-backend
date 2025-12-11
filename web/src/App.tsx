@@ -16,7 +16,7 @@ import SignupInfo from "./features/auth/pages/SignupInformation";
 import Welcome from "./features/auth/pages/Welcome";
 import Certificates from "./features/certificates/pages/Certificates";
 import MediaOverviewPage from "./features/media/pages/media-overview-page";
-import Profile from "./features/user/components/Profile";
+import Profile from "./features/user/components/profile";
 import NotFound from "./shared/assets/NotFound";
 import DocsPage from "./shared/docs/pages/docs-page";
 import TestPage from "./test-page";

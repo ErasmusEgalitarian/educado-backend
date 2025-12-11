@@ -54,7 +54,8 @@
     "preview": "Visualizar",
     "type": "Tipo",
     "size": "Tamanho",
-    "uploaded": "Enviado"
+    "uploaded": "Enviado",
+    "errorLoadingFeedback": "Erro ao carregar feedback"
   },
   "form": {
     "submit": "Submeter",
@@ -152,13 +153,21 @@
     "coverImage": "Imagem de Capa",
     "characters": "caracteres",
     "createSections": "Criar Seções",
+    "createNewSection": "Criar nova seção",
     "noSections": "Sem seções ainda",
     "reviewCourse": "Revisar Curso",
     "courseDetails": "Detalhes do Curso",
     "createAndContinue": "Criar e continuar",
     "saveAsDraft": "Salvar como rascunho",
     "unsavedChangesTitle": "Alterações Não Salvas",
-    "unsavedChangesMessage": "Você tem alterações não salvas. Tem certeza que deseja sair? Suas alterações serão perdidas."
+    "unsavedChangesMessage": "Você tem alterações não salvas. Tem certeza que deseja sair? Suas alterações serão perdidas.",
+    "addLesson": "Adicionar Aula",
+    "addExercise": "Adicionar Exercicio",
+    "goBack": "Voltar para anterior",
+    "addNewSection": "Nova seção",
+    "editSection": "Editar seção",
+    "updateOrAdd": "Seções a serem atualizadas ou adicionadas",
+    "section": "Seção"
   },
   "dashboard": {
     "hello": "Olá",
@@ -167,7 +176,8 @@
     "totalStudents": "Total de Alunos",
     "totalCertificates": "Total de Certificados",
     "evaluation": "Avaliação",
-    "activities": "Atividades"
+    "activities": "Atividades",
+    "totalCertificatesIssued": "Total certificados emitidos"
   },
   "files": {
     "maxFilesExceeded": "Limite máximo de arquivos excedido. Você só pode enviar até {{count}} arquivos"

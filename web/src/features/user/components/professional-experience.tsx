@@ -4,7 +4,7 @@ import { Icon } from "@mdi/react";
 import React, { Fragment } from "react";
 
 // Export UI content and structure
-export default function ProfessionalExperienceForm({
+const ProfessionalExperienceForm= ({
   index,
   experienceFormData,
   handleExperienceInputChange,
@@ -13,7 +13,7 @@ export default function ProfessionalExperienceForm({
   handleExperienceDelete,
   handleCountExperience,
   handleCheckboxChange,
-}: {
+}: Readonly<{
   index: number;
   experienceFormData: {
     company: string;
@@ -37,7 +37,7 @@ export default function ProfessionalExperienceForm({
   handleCountExperience: (index: number) => number;
   handleCheckboxChange: (index: number) => void;
   errors: unknown;
-}) {
+}>) => {
   function displayInvalidDateFormatErrMsg(strValue: string, errorMsg: string) {
     if (strValue !== "") {
       return (
@@ -87,11 +87,11 @@ export default function ProfessionalExperienceForm({
 
             <input
               className="bg-secondary rounded-lg border-none"
-              id={`company-${index}`}
+              id={`company-${String(index)}`}
               placeholder="Empresa"
               type="text"
               name="company"
-              value={experienceFormData[index]?.company || ""}
+              value={experienceFormData[index]?.company ?? ""}
               required={true}
               onChange={(value) => {
                 handleExperienceInputChange(value, index);
@@ -105,11 +105,11 @@ export default function ProfessionalExperienceForm({
 
             <input
               className="bg-secondary rounded-lg border-none"
-              id={`jobTitle-${index}`}
+              id={`jobTitle-${String(index)}`}
               placeholder="Cargo"
               type="text"
               name="jobTitle"
-              value={experienceFormData[index]?.jobTitle || ""}
+              value={experienceFormData[index]?.jobTitle ?? ""}
               required={true}
               onChange={(value) => {
                 handleExperienceInputChange(value, index);
@@ -126,12 +126,12 @@ export default function ProfessionalExperienceForm({
 
             <input
               className="bg-secondary rounded-lg border-none"
-              id={`workStartDate-${index}`}
+              id={`workStartDate-${String(index)}`}
               placeholder="Mês/Ano"
               type="text"
               maxLength={7}
               name="workStartDate"
-              value={experienceFormData[index]?.workStartDate || ""}
+              value={experienceFormData[index]?.workStartDate ?? ""}
               required={true}
               onChange={(value) => {
                 handleExperienceInputChange(value, index);
@@ -155,7 +155,7 @@ export default function ProfessionalExperienceForm({
                   ? "opacity-60 cursor-not-allowed"
                   : ""
               }`}
-              id={`workEndDate-${index}`}
+              id={`workEndDate-${String(index)}`}
               placeholder="Mês/Ano"
               type="text"
               maxLength={7}
@@ -189,7 +189,7 @@ export default function ProfessionalExperienceForm({
           <div className="flex items-center col-start-2 gap-2 ml-3">
             <input
               className="border-primary rounded-[2px] cursor-pointer"
-              id={`isCurrentJob-${index}`}
+              id={`isCurrentJob-${String(index)}`}
               name="isCurrentJob"
               type="checkbox"
               checked={experienceFormData[index].isCurrentJob}
@@ -207,7 +207,7 @@ export default function ProfessionalExperienceForm({
               }}
             />
 
-            <label className="cursor-pointer" htmlFor={`isCurrentJob-${index}`}>
+            <label className="cursor-pointer" htmlFor={`isCurrentJob-${String(index)}`}>
               Meu emprego atual
             </label>
           </div>
@@ -219,7 +219,7 @@ export default function ProfessionalExperienceForm({
 
           <textarea
             className="h-[120px] bg-secondary rounded-lg border-none resize-none text-lg font-normal"
-            id={`description-${index}`}
+            id={`description-${String(index)}`}
             placeholder="Escreva aqui as suas responsabilidades"
             maxLength={400}
             name="description"
@@ -231,7 +231,7 @@ export default function ProfessionalExperienceForm({
           />
 
           <div className="text-right text-sm text-grayDark mt-2">
-            {handleCountExperience(index) ?? 0} / 400 caracteres
+            {handleCountExperience(index)} / 400 caracteres
           </div>
         </div>
 
@@ -248,7 +248,7 @@ export default function ProfessionalExperienceForm({
               onClick={() => {
                 handleExperienceDelete(
                   index,
-                  experienceFormData[index]?._id?.toString() || "",
+                  experienceFormData[index]?._id?.toString() ?? "",
                 );
               }}
             >
@@ -288,3 +288,5 @@ export default function ProfessionalExperienceForm({
     </Fragment>
   );
 }
+
+export default ProfessionalExperienceForm;
