@@ -53,7 +53,7 @@ cp .env.example .env
 Open `.env` in your editor and set these **minimum** required variables:
 
 ```env
-VITE_STRAPI_URL=http://localhost:1337
+VITE_STRAPI_URL=http://localhost:1337/api
 VITE_STRAPI_API_TOKEN=           # ← Leave empty for now, we'll fill this in Step 4
 VITE_FRONTEND_PORT=5174
 ```
