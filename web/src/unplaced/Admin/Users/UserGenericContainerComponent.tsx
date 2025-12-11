@@ -9,7 +9,7 @@ import AuthServices from "@/unplaced/services/auth.services";
 import "react-toastify/dist/ReactToastify.css";
 import { AxiosError } from "axios";
 
-import { User } from "@/user/types/User";
+import { User } from "@/user/types/user.ts";
 /*
 This code bassicly extends the GenericModalCompoent
 Where we re use the GenericMopdalComponent, but with the help of the, we add

@@ -8,7 +8,7 @@ import GenericModalComponent from "@/shared/components/GenericModalComponent";
 import { useNotifications } from "@/shared/context/NotificationContext";
 import { useApi } from "@/shared/hooks/useAPI";
 import { institutionService } from "@/unplaced/services/Institution.services";
-import { Institution } from "@/user/types/Institution";
+import { Institution } from "@/user/types/institution.ts";
 
 export const UpdateInstitutionButton = ({
   institution,
