@@ -1,10 +1,12 @@
+import { useMutation } from "@tanstack/react-query";
+
 import { 
   courseSectionDeleteCourseSectionsById, 
   courseSectionGetCourseSections, 
   courseSectionPostCourseSections, 
   courseSectionPutCourseSectionsById } from "@/shared/api/sdk.gen";
 import type { CourseSection } from "@/shared/api/types.gen";
-import { useMutation } from "@tanstack/react-query";
+
 
 export const courseSectionQuery = (courseId: string) => ["course_section", courseId] as const;
 
@@ -17,10 +19,11 @@ export const courseSectionQuery = (courseId: string) => ["course_section", cours
  */
 export const CourseSectionQueryFunction = (courseId: string) => ({
   queryKey: courseSectionQuery(courseId),
-  queryFn: async (): Promise<Array<CourseSection>> => {
+  queryFn: async (): Promise<CourseSection[]> => {
     const courseSectionsResponse = await courseSectionGetCourseSections({
       query: {
         // The linter does not like the next line, but it is correct.
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         "filters[course][documentId][$eq]": courseId,
         status: "draft",
         fields: [
@@ -50,7 +53,7 @@ interface CourseSectionPostProps extends CourseSection {
 export const CourseSectionCreateFunction = () => {
   return useMutation({ 
     mutationFn: async ({ title, description, courseId }: CourseSectionPostProps) => {
-      if(courseId == undefined) return `Error: make sure to provide a course ID for this section`;
+      if(courseId === "") return `Error: make sure to provide a course ID for this section`;
       const response = await courseSectionPostCourseSections({
         body: {
           data: {
@@ -69,7 +72,7 @@ export const CourseSectionCreateFunction = () => {
 export const CourseSectionSetPublish = () => {
   return useMutation ({
     mutationFn: async (section: CourseSection) => {
-      if(!section.documentId) return `Error: course section ${section.documentId} is undefined`;
+      if(!section.documentId) return `Error: course section is undefined`;
 
       return await courseSectionPutCourseSectionsById ({
         path: { id: section.documentId },
@@ -89,7 +92,7 @@ export const CourseSectionSetPublish = () => {
 export const CourseSectionUpdateFunction = () => {
   return useMutation({
     mutationFn: async ({ documentId, title, description }: CourseSection) => {
-      if(!documentId) return `Error: course section ${documentId} is undefined`;
+      if(!documentId) return `Error: course section is undefined`;
 
       return await courseSectionPutCourseSectionsById({
         path: { id: documentId },

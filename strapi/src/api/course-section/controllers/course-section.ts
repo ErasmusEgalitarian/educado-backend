@@ -4,6 +4,8 @@
 
 // src/api/course-section/controllers/course-section.ts
 import { factories } from '@strapi/strapi';
+import { errorCodes } from "../../../helpers/errorCodes";
+
 
 export default factories.createCoreController(
   'api::course-section.course-section',
@@ -75,8 +77,7 @@ export default factories.createCoreController(
         return this.transformResponse(result);
 
       } catch (error) {
-        ctx.response.status = 500;
-        ctx.response.body = error;
+        throw { error: errorCodes['E0019'] }
       }
     },
   })

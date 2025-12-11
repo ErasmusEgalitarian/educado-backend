@@ -1,25 +1,35 @@
-import { Plus, ChevronLeft, ChevronDown, Trash2, Menu } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { 
+  Plus, 
+  ChevronLeft, 
+  ChevronDown, 
+  Trash2, 
+  Menu } from "lucide-react";
+import { 
+  useState, 
+  useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@/shared/components/shadcn/button";
-import { Card, CardContent} from "@/shared/components/shadcn/card";
 import { 
   CourseSectionCreateFunction,
   CourseSectionDeleteFunction, 
   CourseSectionQueryFunction, 
   CourseSectionSetPublish, 
-  CourseSectionUpdateFunction} from "@/course/api/course-sections-api";
-import { useQuery } from "@tanstack/react-query";
+  CourseSectionUpdateFunction } from "@/course/api/course-sections-api";
 import { CourseSection } from "@/shared/api/types.gen";
 import GlobalLoader from "@/shared/components/global-loader";
+import { Button } from "@/shared/components/shadcn/button";
+import { 
+        Card, 
+        CardContent} from "@/shared/components/shadcn/card";
+
 import { SectionForm } from "./SectionForm";
 
 interface CourseEditorSectionsProps {
   courseId: string;
   onComplete?: () => void;
   onGoBack?: () => void;
-}
+};
 
 const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSectionsProps) => {
   const { t } = useTranslation();
@@ -36,20 +46,22 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
     isLoading: queryIsLoading,
     refetch,
   } = useQuery({
-    ...CourseSectionQueryFunction(courseId ?? ""),
+    ...CourseSectionQueryFunction(courseId),
     enabled: true,
   });
-  const [sections, setSections] = useState<Array<CourseSection> | undefined>();
+  const [sections, setSections] = useState<CourseSection[] | undefined>();
 
   // Update course sections
   useEffect(() => {
     const run = () => {
       refetch().then(() => {
         setSections([...(queryCourseSections) ?? []]);
+      }).catch((error) => {
+        throw new Error(`Unable to get course sections, ${error}`);
       });
     };
     run();
-  }, [currentSectionEditing, isCreating, queryIsLoading]);
+  }, [currentSectionEditing, isCreating, queryIsLoading, refetch, queryCourseSections]);
   
   
   const updateSection = async(section: CourseSection) => {    
@@ -58,11 +70,8 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
     try {
       await updateMutation.mutateAsync(section);
     } catch (error) {
-      throw new Error(`Unable to get course sections, try reloading the page`);
+      throw new Error(`Unable to get course sections, ${error}`);
     } finally {  
-      await refetch().then(() => {
-        setSections([...(queryCourseSections) ?? []]);
-      });
       setIsCreating(false);
       setCurrentSectionEditing(null);
     }
@@ -75,11 +84,8 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
         courseId: courseId,
       });
     } catch(error) {
-      throw new Error(`Unable to create course sections, try reloading the page and try again`);
+      throw new Error(`Unable to create course sections, ${error}`);
     } finally {
-      await refetch().then(() => {
-        setSections([...(queryCourseSections) ?? []]);
-      });
       setIsCreating(false);
       setCurrentSectionEditing(null);
     }
@@ -92,11 +98,8 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
     try {
       await deleteMutation.mutateAsync(sectionId);
     } catch(error) {
-      throw new Error(`Unable to delete course sections, try reloading the page and try again`);
+      throw new Error(`Unable to delete course sections, ${error}`);
     } finally {
-      await refetch().then(() => {
-        setSections([...(queryCourseSections) ?? []]);
-      });
       setIsCreating(false);
       setCurrentSectionEditing(null);
     }
@@ -110,20 +113,20 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
           {/* Sections List */}
           {(sections?.length ?? 0) > 0 && (
             <div className="space-y-4">
-              {sections && sections?.map((section, index) => (
+              {sections?.map((section, index) => (
                 <Card
                   key={section.id}
-                  className={`p-0 rounded-sm`}
+                  className="p-0 rounded-sm"
                 >
                   <Button
                     variant="ghost"
                     className={`flex items-center justify-between p-10 ${
-                      currentSectionEditing === section.documentId 
+                      currentSectionEditing == section.documentId 
                         ? "border-primary border-2" 
                         : "border-greyscale-border"
                     }`}
                     onClick={() => {
-                      if (currentSectionEditing !== section.documentId) {
+                      if (currentSectionEditing != section.documentId) {
                         setCurrentSectionEditing(section.documentId ?? null);
                         setIsCreating(false);
                         return;
@@ -144,7 +147,7 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
                       <Button
                         variant="secondary"
                         size="sm"
-                        onClick={() => { handleDelete(section.documentId) }}
+                        onClick={() => { void handleDelete(section.documentId) }}
                         className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
 
                       >
@@ -153,6 +156,7 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
                        <Button
                         variant="secondary"
                         size="sm"
+                        // eslint-disable-next-line no-console
                         onClick={() => { console.log("TODO: make draggable")}}
                         className="text-white hover:text-white rounded-full bg-primary-surface-darker border-none"
                       >
@@ -226,9 +230,12 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
               <Button
                 onClick={() => {
                   sections?.forEach((section) => {
-                    setPublishMutation.mutateAsync(section);
+                    setPublishMutation.mutateAsync(section)
+                      .catch((error) => {
+                        throw new Error(`Unable to publish course sections, ${error}`);
+                      });
                   });
-                  onComplete?.()
+                  onComplete?.();
                 }}
                 disabled={sections?.length === 0}
               >

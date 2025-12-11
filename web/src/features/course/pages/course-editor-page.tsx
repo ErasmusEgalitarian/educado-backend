@@ -187,7 +187,7 @@ const CourseEditorPage = () => {
       case "sections":
         return (
           <CourseEditorSections
-            courseId={queryCourse?.documentId ?? ""}
+            courseId={queryCourse?.documentId}
             onComplete={() => {
               handleStepComplete("sections");
             }}
