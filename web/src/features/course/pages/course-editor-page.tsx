@@ -25,9 +25,7 @@ import CourseEditorInformation, {
 } from "../components/course-editor-information";
 import CourseEditorMenuButton from "../components/course-editor-menu-button";
 import CourseEditorReview from "../components/course-editor-review";
-import CourseEditorSections, {
-  type CourseEditorSectionsRef,
-} from "../components/course-editor-sections";
+import CourseEditorSections from "../components/course-editor-sections";
 import {
   useCourseEditorSteps,
   type CourseEditorStep,
@@ -38,7 +36,6 @@ const CourseEditorPage = () => {
 
   // Refs to access form state from child components. Used to prevent navigation with unsaved changes.
   const informationFormRef = useRef<CourseEditorInformationRef>(null);
-  const sectionsFormRef = useRef<CourseEditorSectionsRef>(null);
 
   const createMutation = useCreateCourseMutation();
   const updateMutation = useUpdateCourseMutation();
@@ -190,7 +187,6 @@ const CourseEditorPage = () => {
       case "sections":
         return (
           <CourseEditorSections
-            ref={sectionsFormRef}
             courseId={queryCourse?.documentId}
             onComplete={() => {
               handleStepComplete("sections");
