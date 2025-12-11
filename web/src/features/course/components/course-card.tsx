@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 import { getCourseStatisticsByCourseIdAverage } from "@/shared/api/sdk.gen";
-import { Course, AverageCourseFeedback } from "@/shared/api/types.gen";
+import { Course, AverageCourseFeedback, CourseCategory } from "@/shared/api/types.gen";
 import { Badge } from "@/shared/components/shadcn/badge";
 import { Button } from "@/shared/components/shadcn/button";
 import {
@@ -56,8 +56,8 @@ export const CourseCard = ({ course }: { course: Course }) => {
         toast.error(t("common.errorLoadingFeedback"));
       }
     };
-    fetchAverageFeedback();
-  }, [course.documentId]);
+    void fetchAverageFeedback();
+  }, [course.documentId, t]);
 
   return (
     <Card className="w-full h-full flex flex-col overflow-hidden">
