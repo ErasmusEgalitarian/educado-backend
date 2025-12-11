@@ -27,7 +27,7 @@ const CourseEditorSections = forwardRef<
     <div className="flex flex-col gap-y-6">
       <div className="rounded-xl p-6 shadow-lg border border-greyscale-border">
         <h2 className="text-2xl font-bold text-greyscale-text-title mb-4">
-          {t("courseManager.createSections")}
+          {t("courseEditor.createSections")}
         </h2>
         <p className="text-greyscale-text-body mb-6">
           Course ID: {courseId ?? "No course ID"}
@@ -51,7 +51,7 @@ const CourseEditorSections = forwardRef<
               onComplete?.();
             }}
           >
-            Skip to Review
+            {t("courseEditor.skipToReview")}
           </Button>
         </div>
       </div>

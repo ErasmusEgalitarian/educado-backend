@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
 import { mdiClose } from "@mdi/js";
 import Icon from "@mdi/react";
+import React, { ReactNode } from "react";
 
 interface GenericModalProps {
   title?: string;
@@ -34,11 +34,10 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
 
   return (
     // Overlay: fixed + full screen + center content
-
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div
         className={`flex flex-col w-[500px] h-[350px] bg-[#f1f9fb] space-y-8 p-10 rounded-xl text-center ${
-          width || ""
+          width ?? ""
         }`}
       >
         {/* Top bar */}
@@ -76,7 +75,7 @@ const GenericModalComponent: React.FC<GenericModalProps> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="h-[2.5rem] min-w-[100px] px-4 whitespace-nowrap items-center justify-center rounded-[15px] text-lg font-bold font-['Montserrat'] bg-[#D62B25] text-white inline-flex transform transition duration-100 ease-in hover:bg-red-700 hover:text-gray-50"
+                className="h-10 min-w-[100px] px-4 whitespace-nowrap items-center justify-center rounded-[15px] text-lg font-bold font-['Montserrat'] bg-[#D62B25] text-white inline-flex transform transition duration-100 ease-in hover:bg-red-700 hover:text-gray-50"
               >
                 {cancelBtnText}
               </button>

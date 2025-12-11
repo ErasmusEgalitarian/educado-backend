@@ -1,6 +1,6 @@
 import { mdiPlus } from "@mdi/js";
 import Icon from "@mdi/react";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -37,11 +37,13 @@ const CourseOverviewPage = () => {
     []
   );
 
+  const [documentIds, setDocumentIds] = useState<string[]>([]);
+
   return (
     <PageContainer title={t("courses.pageTitle")}>
       <div className="flex gap-x-20">
         <div className="w-full">
-          <Card>
+          <Card className="gap-15">
             <CardHeader>
               <CardTitle>
                 <h1 className="text-2xl font-bold">{t("courses.pageTitle")}</h1>
@@ -71,8 +73,7 @@ const CourseOverviewPage = () => {
                     "title",
                     "difficulty",
                     "description",
-                    "updatedAt",
-                    "publishedAt",
+                    "creator_published_at",
                     "durationHours",
                   ] as (keyof Course)[]
                 }
@@ -81,12 +82,13 @@ const CourseOverviewPage = () => {
                   renderMode: "client",
                   clientModeThreshold: 50,
                 }}
+                onFilteredDocumentIds={setDocumentIds}
               />
             </CardContent>
           </Card>
         </div>
         {/* Right sidebar */}
-        <CourseOverviewSidebar />
+        <CourseOverviewSidebar documentIds={documentIds} />
       </div>
     </PageContainer>
   );

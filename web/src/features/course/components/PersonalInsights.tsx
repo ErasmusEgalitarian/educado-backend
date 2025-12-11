@@ -88,7 +88,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
     <div className="w-full h-full">
       {/* Welcome message */}
       <h2 className="text-xl font-bold">
-        {t("courses.hello")} {userInfo.firstName} {userInfo.lastName}
+        {t("dashboard.hello")} {userInfo.firstName} {userInfo.lastName}
       </h2>
       {/* Progress section (stats) */}
       <div className="border-y border-grayMedium my-4 py-4">
@@ -101,7 +101,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
                   {/* Dropdown menu */}
                   <div className="flex items-center">
                     <p className="mr-2 text-grayMedium text-lg">
-                      {t("courses.progress")}:
+                      {t("dashboard.progress")}:
                     </p>
                     <select
                       className="p-1 rounded-md border-grayLight"
@@ -123,7 +123,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
                   {/* Total courses */}
                   <div className="">
                     <p className="font-normal text-lg">
-                      {t("courses.totalCourses")}:
+                      {t("dashboard.totalCourses")}:
                     </p>
                     <p className="font-bold" id="courseAmount">
                       {stats.totalCourses}
@@ -133,7 +133,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
                 <div>
                   {/* Total students */}
                   <p className="font-normal text-lg">
-                    {t("courses.totalStudents")}:
+                    {t("dashboard.totalStudents")}:
                   </p>
                   <p className="font-bold" id="subscribers">
                     {stats.totalStudents}
@@ -143,7 +143,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
                   {/* Total certificados */}{" "}
                   {/* TO DO: get total amount of certificates that have been giving out */}
                   <p className="font-normal text-lg">
-                    {t("courses.totalCertificates")}:
+                    {t("dashboard.totalCertificates")}:
                   </p>
                   <p className="font-bold" id="certificateAmount">
                     {stats.totalCertificates}
@@ -152,7 +152,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
                 <div>
                   {/* Rating */}
                   <p className="font-normal text-lg">
-                    {t("courses.avalation")}:
+                    {t("dashboard.evaluation")}:
                   </p>
                   <div className="w-48 max-w-full">
                     <StarRating
@@ -174,7 +174,7 @@ const PersonalInsights = (props: PersonalInsightsProps) => {
       </div>
       {/* Activities section */}
       <div>
-        <p className="font-bold">{t("courses.activities")}</p>
+        <p className="font-bold">{t("dashboard.activities")}</p>
         <div className="grid grid-cols-4 lg:grid-cols-1 gap-y-2">
           {/* Show activities if the user has > 0 courses */}
           {

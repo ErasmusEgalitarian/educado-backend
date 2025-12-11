@@ -3,7 +3,7 @@
  */
 
 import { factories } from '@strapi/strapi';
-import  jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import bcrypt from 'bcryptjs';
 import { errorCodes } from '../../../helpers/errorCodes';
 
@@ -40,45 +40,47 @@ export default factories.createCoreController('api::content-creator.content-crea
                 delete ctx.request.body.data.password;
             }
         }
-        
+
         // Call the default update controller
         return await super.update(ctx);
     },
-    
+
     async login(ctx) {
         try {
-        // Access request data via ctx.request.body
-        const { email, password } = ctx.request.body;
+            // Access request data via ctx.request.body
+            const { email, password } = ctx.request.body;
 
-        const user = await strapi.documents('api::content-creator.content-creator').findFirst({
-            filters: { email: email.toLowerCase() },
+            const user = await strapi.documents('api::content-creator.content-creator').findFirst({
+                filters: { email: email.toLowerCase() },
             });
 
-        if (!user) {
-            return ctx.badRequest('Invalid email or password', {
-            error: { code: errorCodes.E0106.code, message: errorCodes.E0106.message }});
-        }
+            if (!user) {
+                return ctx.badRequest('Invalid email or password', {
+                    error: { code: errorCodes.E0106.code, message: errorCodes.E0106.message }
+                });
+            }
 
-        const isValidPassword = await bcrypt.compare(password, user.password);
+            const isValidPassword = await bcrypt.compare(password, user.password);
 
-        if (!isValidPassword) {
-            return ctx.badRequest('Invalid email or password', {
-                error: { code: errorCodes.E0106.code, message: errorCodes.E0106.message }});
-        }
+            if (!isValidPassword) {
+                return ctx.badRequest('Invalid email or password', {
+                    error: { code: errorCodes.E0106.code, message: errorCodes.E0106.message }
+                });
+            }
 
-        if (user.verifiedAt == null) {
-            return ctx.badRequest('Admin approval is required.', {
-                error: { code: errorCodes.E1001.code, message: errorCodes.E1001.message }});
-        }
+            if (user.verifiedAt == null) {
+                return ctx.badRequest('Admin approval is required.', {
+                    error: { code: errorCodes.E1001.code, message: errorCodes.E1001.message }
+                });
+            }
 
-
-      
-        const jwtContentCreator : ContentCreator = { 
+        const jwtContentCreator : ContentCreator  = {
             documentId: user.documentId,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
             verifiedAt: user.verifiedAt ? new Date(user.verifiedAt) : null,
+            isAdmin: user.isAdmin,
         }
         // 3. Generate token
         const token = jwt.sign(
@@ -96,11 +98,52 @@ export default factories.createCoreController('api::content-creator.content-crea
                 firstName: user.firstName,
                 lastName: user.lastName,
                 verifiedAt: user.verifiedAt ? new Date(user.verifiedAt).toISOString() : null,
+                isAdmin: user.isAdmin,
+                role: user.isAdmin ? "admin" : "creator",
             },
         });
         } catch (err) {
-        console.error(err);
+            console.error(err);
             return ctx.internalServerError('Something went wrong');
         }
+    },
+
+    async updateStatus(ctx) {
+        const { id } = ctx.params;
+        const { statusValue, rejectionReason } = ctx.request.body;
+
+        if (!statusValue) {
+            return ctx.badRequest("statusValue is required");
+        }
+
+        const allowed = ["PENDING", "APPROVED", "REJECTED"];
+        if (!allowed.includes(statusValue)) {
+            return ctx.badRequest("Invalid statusValue");
+        }
+
+        const data: Record<string, unknown> = { statusValue };
+
+        if (statusValue === "APPROVED") {
+            data.verifiedAt = new Date().toISOString();
+        }
+
+        if (statusValue === "REJECTED") {
+            data.rejectionReason = rejectionReason ?? null;
+        }
+
+       try{
+            const updateAndPublish = await strapi.documents("api::content-creator.content-creator")
+               .update({
+                   documentId: id,
+                   status: "published",
+                   data,
+               });
+
+           return ctx.send(updateAndPublish);
+
+       } catch (err) {
+           strapi.log.error("Error in content-creator.updateStatus", err);
+           return ctx.internalServerError("Could not update status");
+       }
     },
 }));

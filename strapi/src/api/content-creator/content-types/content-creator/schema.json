@@ -53,10 +53,11 @@
     "statusValue": {
       "type": "enumeration",
       "required": true,
+      "default": "PENDING",
       "enum": [
-        "TODO1",
-        "TODO2",
-        "TODO3"
+        "PENDING",
+        "APPROVED",
+        "REJECTED"
       ]
     },
     "courseExperience": {
@@ -103,16 +104,16 @@
       "minLength": 1,
       "maxLength": 400
     },
+    "user_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-log.user-log"
+    },
     "courses": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::course.course",
       "inversedBy": "content_creators"
-    },
-    "user_logs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::user-log.user-log"
     },
     "dashboard_activities": {
       "type": "relation",
@@ -125,6 +126,14 @@
       "multiple": false,
       "required": false,
       "allowedTypes": ["images"]
+    },
+    "isAdmin": {
+      "type": "boolean",
+      "default": false
+    },
+    "rejectionReason": {
+      "type": "string",
+      "maxLength": 100
     }
   }
 }

@@ -1,7 +1,15 @@
-import Icon from "@mdi/react";
 import { mdiCheck } from "@mdi/js";
+import Icon from "@mdi/react";
 import * as React from "react";
-import { useCallback, useContext, useMemo, useState } from "react";
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { useTranslation } from "react-i18next";
 
 import { cn } from "@/shared/lib/utils";
 
@@ -31,11 +39,16 @@ export function useItemSelector() {
   return context;
 }
 
+export interface ItemSelectorController {
+  clearSelection: () => void;
+}
+
 interface ItemSelectorProviderProps {
   children: React.ReactNode;
   selectionLimit?: number | null;
   onSelectionChange?: (selectedIds: string[]) => void;
   defaultSelected?: string[];
+  controllerRef?: React.MutableRefObject<ItemSelectorController | null>;
 }
 
 export const ItemSelectorProvider = ({
@@ -43,10 +56,31 @@ export const ItemSelectorProvider = ({
   selectionLimit = null,
   onSelectionChange,
   defaultSelected = [],
+  controllerRef,
 }: ItemSelectorProviderProps) => {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(
     new Set(defaultSelected)
   );
+
+  // Use ref to always have the latest callback without causing re-renders
+  const onSelectionChangeRef = useRef(onSelectionChange);
+  useEffect(() => {
+    onSelectionChangeRef.current = onSelectionChange;
+  }, [onSelectionChange]);
+
+  const clearSelection = useCallback(() => {
+    setSelectedIds(new Set());
+    onSelectionChangeRef.current?.([]);
+  }, []);
+
+  // Expose methods via controllerRef
+  useEffect(() => {
+    if (controllerRef) {
+      controllerRef.current = {
+        clearSelection,
+      };
+    }
+  }, [controllerRef, clearSelection]);
 
   const toggleSelection = useCallback(
     (id: string) => {
@@ -58,11 +92,11 @@ export const ItemSelectorProvider = ({
           // Check if we can add more items
           newSet.add(id);
         }
-        onSelectionChange?.(Array.from(newSet));
+        onSelectionChangeRef.current?.(Array.from(newSet));
         return newSet;
       });
     },
-    [selectionLimit, onSelectionChange]
+    [selectionLimit]
   );
 
   const selectMultiple = useCallback(
@@ -77,17 +111,12 @@ export const ItemSelectorProvider = ({
             break; // Stop when limit is reached
           }
         }
-        onSelectionChange?.(Array.from(newSet));
+        onSelectionChangeRef.current?.(Array.from(newSet));
         return newSet;
       });
     },
-    [selectionLimit, onSelectionChange]
+    [selectionLimit]
   );
-
-  const clearSelection = useCallback(() => {
-    setSelectedIds(new Set());
-    onSelectionChange?.([]);
-  }, [onSelectionChange]);
 
   const isSelected = useCallback(
     (id: string) => selectedIds.has(id),
@@ -173,6 +202,7 @@ export const SelectableCard = ({
   return (
     <div
       role="button"
+      aria-pressed={selected}
       tabIndex={selectable || selected ? 0 : -1}
       className={cn(
         "relative cursor-pointer transition-all duration-200",
@@ -252,6 +282,7 @@ interface SelectionSummaryProps {
 }
 
 export const SelectionSummary = ({ className }: SelectionSummaryProps) => {
+  const { t } = useTranslation();
   const { selectionCount, selectionLimit, isLimitReached } = useItemSelector();
 
   if (selectionCount === 0) return null;
@@ -259,19 +290,23 @@ export const SelectionSummary = ({ className }: SelectionSummaryProps) => {
   return (
     <div
       className={cn(
-        "flex items-center gap-2 rounded-lg border border-[#c1cfd7] bg-white px-4 py-2 text-sm",
+        "flex h-8 items-center gap-2 rounded-md border border-greyscale-border-default bg-white px-3 text-sm",
         className
       )}
     >
       <span className="font-medium text-[#28363e]">
-        {selectionCount} {selectionCount === 1 ? "item" : "items"} selected
+        {selectionCount === 1
+          ? t("selection.itemSelected", { count: selectionCount })
+          : t("selection.itemsSelected", { count: selectionCount })}
       </span>
       {selectionLimit !== null && (
-        <span className="text-[#628397]">(max {selectionLimit})</span>
+        <span className="text-[#628397]">
+          ({t("selection.max", { limit: selectionLimit })})
+        </span>
       )}
       {isLimitReached && (
-        <span className="ml-2 rounded-full bg-[#f1cc4f] px-2 py-0.5 text-xs font-medium text-[#28363e]">
-          Limit reached
+        <span className="ml-2 rounded-full bg-[#f1cc4f] px-2 text-xs font-medium text-[#28363e]">
+          {t("selection.limitReached")}
         </span>
       )}
     </div>

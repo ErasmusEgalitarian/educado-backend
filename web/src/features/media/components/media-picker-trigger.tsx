@@ -1,0 +1,171 @@
+import { mdiClose, mdiImageSearch } from "@mdi/js";
+import Icon from "@mdi/react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import type { UploadFile } from "@/shared/api/types.gen";
+import { Button } from "@/shared/components/shadcn/button";
+import { cn } from "@/shared/lib/utils";
+
+import { MediaAssetPreview } from "./media-asset-preview";
+import MediaPickerModal from "./media-picker-modal";
+
+import type { MediaFileType } from "../lib/media-utils";
+
+interface MediaPickerTriggerProps {
+  /** Current selected value */
+  value?: UploadFile | null;
+  /** Callback when a file is selected */
+  onChange: (file: UploadFile | null) => void;
+  /** Types of files allowed (image, video, file). */
+  fileTypes?: MediaFileType | MediaFileType[];
+  /** Maximum number of files for upload within the modal. Defaults to 1. */
+  maxFiles?: number;
+  /** Maximum file size in bytes. */
+  maxFileSize?: number;
+  /** Whether the component is disabled */
+  disabled?: boolean;
+  /** Additional class names */
+  className?: string;
+}
+
+/** [Educado]
+ * A picker trigger component that shows:
+ * - A dashed card to open the picker modal (when no value selected)
+ * - A preview of the selected asset with a clear button (when value is selected)
+ *
+ * Opens the MediaPickerModal for browsing existing assets or uploading new ones.
+ *
+ * @param {MediaPickerTriggerProps} props - The component props.
+ * @param {UploadFile | null | undefined} props.value - Currently selected file or null/undefined if none.
+ * @param {(file: UploadFile | null) => void} props.onChange - Callback when a file is selected or cleared.
+ * @param {MediaFileType | MediaFileType[]} [props.fileTypes] - Allowed file types (image, video, file).
+ * @param {number} [props.maxFiles=1] - Maximum number of files for upload within the modal.
+ * @param {boolean} [props.disabled=false] - Whether the component is disabled.
+ * @param {string} [props.className] - Additional class names for styling.
+ *
+ * @returns {React.JSX.Element} The MediaPickerTrigger component.
+ */
+export const MediaPickerTrigger = ({
+  value,
+  onChange,
+  fileTypes,
+  maxFiles = 1,
+  maxFileSize,
+  disabled = false,
+  className,
+}: MediaPickerTriggerProps) => {
+  const { t } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleClick = () => {
+    if (!disabled) {
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const isTriggerKey = e.key === "Enter" || e.key === " ";
+
+    if (isTriggerKey && !disabled) {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
+  const handleSelect = (file: UploadFile) => {
+    onChange(file);
+    setIsModalOpen(false);
+  };
+
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onChange(null);
+  };
+
+  // If we have a value, show the preview with clear button
+  if (value) {
+    return (
+      <>
+        <div
+          role="button"
+          tabIndex={disabled ? -1 : 0}
+          className={cn(
+            "relative w-full h-64 rounded-lg border overflow-hidden group cursor-pointer",
+            disabled && "opacity-50 cursor-not-allowed",
+            className
+          )}
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
+          aria-disabled={disabled}
+        >
+          <MediaAssetPreview
+            asset={value}
+            className="h-full w-full"
+            imageClassName="object-contain"
+            enableFullScreen
+          />
+          {!disabled && (
+            <Button
+              variant="destructive"
+              size="icon"
+              className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+              onClick={handleClear}
+              type="button"
+            >
+              <Icon path={mdiClose} size={0.65} />
+            </Button>
+          )}
+        </div>
+
+        <MediaPickerModal
+          isOpen={isModalOpen}
+          onOpenChange={setIsModalOpen}
+          onSelect={handleSelect}
+          fileTypes={fileTypes}
+          maxFiles={maxFiles}
+          maxFileSize={maxFileSize}
+        />
+      </>
+    );
+  }
+
+  // No value: show the trigger card
+  return (
+    <>
+      <div
+        role="button"
+        tabIndex={disabled ? -1 : 0}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        aria-disabled={disabled}
+        className={cn(
+          "relative flex flex-col items-center justify-center w-full rounded-xl border-2 border-dashed p-12 transition-all cursor-pointer min-h-48",
+          "border-border bg-muted/30 hover:border-primary/50 hover:bg-muted/50",
+          disabled && "opacity-50 cursor-not-allowed",
+          className
+        )}
+      >
+        <div className="mb-4 text-muted-foreground">
+          <Icon path={mdiImageSearch} size={2} />
+        </div>
+        <h3 className="mb-2 text-lg font-semibold">{t("media.selectFile")}</h3>
+        <p className="text-sm text-muted-foreground text-center max-w-xs mb-4">
+          {t("media.clickToSelect")}
+        </p>
+        <span className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 h-9 px-4 py-2">
+          {t("media.browseLibrary")}
+        </span>
+      </div>
+
+      <MediaPickerModal
+        isOpen={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        onSelect={handleSelect}
+        fileTypes={fileTypes}
+        maxFiles={maxFiles}
+        maxFileSize={maxFileSize}
+      />
+    </>
+  );
+};

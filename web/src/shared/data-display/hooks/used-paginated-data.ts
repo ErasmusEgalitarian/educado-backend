@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable no-console */
 import {
   useQuery,
@@ -253,8 +254,25 @@ export default function usePaginatedData<T>(
       if (!response.ok) {
         throw new Error(`Detection request failed: ${response.statusText}`);
       }
-      // We only need the total from Strapi's meta.pagination
-      return response.json() as Promise<PaginatedData<T>>;
+      const json = await response.json() as PaginatedData<T> | T[];
+
+      // Handle both array responses (e.g., /upload/files) and standard Strapi paginated responses
+      if (Array.isArray(json)) {
+        // Convert plain array to paginated format
+        return {
+          data: json,
+          meta: {
+            pagination: {
+              page: 1,
+              pageSize: json.length,
+              pageCount: 1,
+              total: json.length,
+            },
+          },
+        } as PaginatedData<T>;
+      }
+
+      return json;
     },
     enabled: effectiveMode === "auto" && renderMode === undefined, // Only run in auto mode when no override
     staleTime: 1000 * 60 * 5, // Cache the total count for 5 minutes
@@ -385,7 +403,25 @@ export default function usePaginatedData<T>(
       if (!response.ok) {
         throw new Error(`Data request failed: ${response.statusText}`);
       }
-      return response.json() as Promise<PaginatedData<T>>;
+      const json = await response.json() as PaginatedData<T> | T[];
+
+      // Handle both array responses (e.g., /upload/files) and standard Strapi paginated responses
+      if (Array.isArray(json)) {
+        // For array responses, convert to paginated format
+        return {
+          data: json,
+          meta: {
+            pagination: {
+              page: 1,
+              pageSize: json.length,
+              pageCount: 1,
+              total: json.length,
+            },
+          },
+        } as PaginatedData<T>;
+      }
+
+      return json;
     },
     enabled: resolvedMode !== null, // Only run this query once the mode is resolved.
     placeholderData: keepPreviousData, // Shows old data while fetching new, preventing UI flicker.
