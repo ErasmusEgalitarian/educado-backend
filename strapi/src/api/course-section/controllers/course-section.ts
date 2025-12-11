@@ -77,6 +77,7 @@ export default factories.createCoreController(
         return this.transformResponse(result);
 
       } catch (error) {
+        console.log(error);
         throw { error: errorCodes['E0019'] }
       }
     },
