@@ -49,14 +49,11 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
     ...CourseSectionQueryFunction(courseId),
     enabled: true,
   });
-  const [sections, setSections] = useState<CourseSection[] | undefined>();
 
   // Update course sections
   useEffect(() => {
     const run = () => {
-      refetch().then(() => {
-        setSections([...(queryCourseSections) ?? []]);
-      }).catch((error) => {
+      refetch().catch((error: unknown) => {
         throw new Error(`Unable to get course sections, ${error}`);
       });
     };
@@ -111,9 +108,9 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
       <Card className="p-0 shadow-none" >
         <CardContent className="space-y-6 p-0">
           {/* Sections List */}
-          {(sections?.length ?? 0) > 0 && (
+          {(queryCourseSections?.length ?? 0) > 0 && (
             <div className="space-y-4">
-              {sections?.map((section, index) => (
+              {queryCourseSections?.map((section, index) => (
                 <Card
                   key={section.id}
                   className="p-0 rounded-sm"
@@ -229,7 +226,7 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
               </Button>
               <Button
                 onClick={() => {
-                  sections?.forEach((section) => {
+                  queryCourseSections?.forEach((section) => {
                     setPublishMutation.mutateAsync(section)
                       .catch((error) => {
                         throw new Error(`Unable to publish course sections, ${error}`);
@@ -237,7 +234,7 @@ const CourseEditorSections = ({ courseId, onComplete, onGoBack }: CourseEditorSe
                   });
                   onComplete?.();
                 }}
-                disabled={sections?.length === 0}
+                disabled={queryCourseSections?.length === 0}
               >
                 {t("courseEditor.createAndContinue")}
               </Button>
