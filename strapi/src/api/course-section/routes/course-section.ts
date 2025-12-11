@@ -16,15 +16,15 @@ export default factories.createCoreRouter('api::course-section.course-section', 
         },
         create: {
             auth: false,
-            policies: ['global::content-creator'],
+            policies: ['global::is-content-creator'],
         },
         update: {
             auth: false,
-            policies: ['global::content-creator'],
+            policies: ['global::is-content-creator'],
         },
         delete: {
             auth: false,
-            policies: ['global::content-creator'],
+            policies: ['global::is-content-creator'],
         },
     }
 });

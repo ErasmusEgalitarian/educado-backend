@@ -12,19 +12,19 @@ export default factories.createCoreRouter('api::activity.activity', {
         },
         findOne: {
             auth: false,
-            policies: ['global::content-creator'],
+            policies: ['global::is-content-creator'],
         },
         create: {
             auth: false,
-            policies: ['global::content-creator'],
+            policies: ['global::is-content-creator'],
         },
         update: {
             auth: false,
-            policies: ['global::content-creator'],
+            policies: ['global::is-content-creator'],
         },
         delete: {
             auth: false,
-            policies: ['global::content-creator'],
+            policies: ['global::is-content-creator'],
         },
     }
 });
