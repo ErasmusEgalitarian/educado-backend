@@ -19,9 +19,9 @@ import dynamicForms from "@/unplaced/dynamicForms";
 import AccountServices from "@/unplaced/services/account.services";
 import ProfileServices from "@/unplaced/services/profile.services";
 
-import AcademicExperienceForm from "./academic-experience-form";
-import PersonalInformationForm from "./personal-information";
-import ProfessionalExperienceForm from "./professional-experience";
+import AcademicExperienceForm from "@/features/user/components/academic-experience-form";
+import PersonalInformationForm from "@/features/user/components/personal-information";
+import ProfessionalExperienceForm from "@/features/user/components/professional-experience";
 
 // TypeScript Interfaces
 interface ContentCreator {

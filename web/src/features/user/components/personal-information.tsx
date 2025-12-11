@@ -5,7 +5,7 @@ import Modals from "@/auth/components/Modals";
 import { BACKEND_URL } from "@/shared/config/environment";
 
 //Exporting UI content&structure of
-const PersonalInformationForm= ({
+const PersonalInformationForm = ({
   formData,
   errors,
   handleCharCountBio,
