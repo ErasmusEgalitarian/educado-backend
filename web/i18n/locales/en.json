@@ -187,7 +187,6 @@
     "totalCertificates": "Total Certificates",
     "avalation": "Avalation",
     "activities": "Activities",
-    "hello": "Hello",
     "hours": "Hours",
     "workload": "Workload",
     "enrolled": "Enrolled",
@@ -197,9 +196,7 @@
     "createNewCourse": "Create New Course",
     "thisMonth": "This month",
     "totalCertificatesIssued": "Total certificates issued",
-    "evaluation": "Evaluation",
-    "activities": "Activities",
-    "totalCertificatesIssued": "Total Certificates Issued"
+    "evaluation": "Evaluation"
   },
   "files": {
     "maxFilesExceeded": "Maximum file limit exceeded. You can only upload up to {{count}} files"
