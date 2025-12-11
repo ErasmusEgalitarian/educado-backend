@@ -43,21 +43,6 @@ interface PersonalInformationFormProps {
 }
 
 //Exporting UI content&structure of
-const PersonalInformationForm = (props: PersonalInformationFormProps) => {
-  const {
-    formData,
-    errors,
-    handleCharCountBio,
-    toggleMenu1,
-    imageClick,
-    handleFileChange,
-    handleProfilePictureDelete,
-    myRef,
-    register,
-    handleInputChange,
-    profilePictureUrl,
-  } = props;
-//Exporting UI content&structure of
 export default function PersonalInformationForm({
   formData,
   errors,
@@ -290,4 +275,3 @@ export default function PersonalInformationForm({
     </>
   );
 }
-export default PersonalInformationForm;

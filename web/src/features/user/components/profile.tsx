@@ -15,14 +15,15 @@ import { getBaseApiUrl, fetchHeaders } from "@/shared/config/api-config";
 import GenericModalComponent from "../../../shared/components/GenericModalComponent";
 import Layout from "../../../shared/components/Layout";
 import { useApi } from "../../../shared/hooks/useAPI";
+import { tempObjects } from "../../../shared/lib/formStates";
 import dynamicForms from "../../../unplaced/dynamicForms";
 import AccountServices from "../../../unplaced/services/account.services";
 import ProfileServices from "../../../unplaced/services/profile.services";
 import staticForm from "../../../shared/components/form/staticForm";
 
 import AcademicExperienceForm from "./academic-experience-form";
-import PersonalInformationForm from "./PersonalInformation";
-import ProfessionalExperienceForm from "./ProfessionalExperience";
+import PersonalInformationForm from "./personal-information";
+import ProfessionalExperienceForm from "./professional-experience";
 import { useFileUpload } from "@/features/media/hooks/use-file-upload"; 
 
 // TypeScript Interfaces
@@ -207,32 +208,12 @@ const Profile = () => {
       const response = await contentCreatorPutContentCreatorsById({
         path: { id: documentId },
         body: {
-<<<<<<< HEAD:web/src/features/user/components/profile.tsx
           data: buildUpdatePayload({
             firstName: firstName,
             lastName: lastName || "",
             biography: formData.bio || "",
-<<<<<<< HEAD:web/src/features/user/components/profile.tsx
-            // Note: Keep existing required fields from the current data
             email: contentCreatorData?.email ?? formData.userEmail,
-            password: "", // Send empty string - controller will remove it before processing
-            education: (contentCreatorData?.education ?? "TODO1"),
-            statusValue: (contentCreatorData?.statusValue ?? "TODO1"),
-            courseExperience: contentCreatorData?.courseExperience ?? "",
-            institution: contentCreatorData?.institution ?? "",
-            eduStart: contentCreatorData?.eduStart ?? new Date().toISOString().split('T')[0],
-            eduEnd: contentCreatorData?.eduEnd ?? new Date().toISOString().split('T')[0],
-            currentCompany: contentCreatorData?.currentCompany ?? "",
-            currentJobTitle: contentCreatorData?.currentJobTitle ?? "",
-            companyStart: contentCreatorData?.companyStart ?? new Date().toISOString().split('T')[0],
-          },
-=======
-            email: contentCreatorData?.email || formData.UserEmail,
           }),
->>>>>>> 4d33468f (feat: update profile picture handling and improve payload structure for content creator):web/src/features/user/components/Profile.tsx
-=======
-          data: payload,
->>>>>>> c2a90af4 (Refactor course columns, enhance file upload hook, and improve profile component):web/src/features/user/components/Profile.tsx
         },
       });
 
@@ -307,19 +288,8 @@ const Profile = () => {
         return;
       }
 
-<<<<<<< HEAD:web/src/features/user/components/profile.tsx
-      // Extract the file ID from the uploaded file object
-      const uploadedFile = Array.isArray(uploadedFileIds) ? uploadedFileIds[0] : uploadedFileIds;
-      const fileId = uploadedFile?.id || uploadedFile?.documentId;
-
-      if (!fileId) {
-        toast.error("Erro: ID do arquivo não encontrado");
-        return;
-      }
-=======
       const fileId = uploadResult[0].id;
       console.log("File ID extracted:", fileId);
->>>>>>> c2a90af4 (Refactor course columns, enhance file upload hook, and improve profile component):web/src/features/user/components/Profile.tsx
 
       // Delete existing profile picture if it is there 
       if (contentCreatorData?.profilePicture?.id) {
@@ -333,27 +303,7 @@ const Profile = () => {
       const updateResponse = await contentCreatorPutContentCreatorsById({
         path: { id: documentId },
         body: {
-<<<<<<< HEAD:web/src/features/user/components/profile.tsx
-          data: {
-            firstName: contentCreatorData?.firstName || "",
-            lastName: contentCreatorData?.lastName || "",
-            biography: contentCreatorData?.biography,
-            email: contentCreatorData?.email || "noemail@example.com",
-            education: contentCreatorData?.education || "TODO1",
-            statusValue: contentCreatorData?.statusValue || "PENDING",
-            courseExperience: contentCreatorData?.courseExperience || "",
-            institution: contentCreatorData?.institution || "",
-            eduStart: contentCreatorData?.eduStart || new Date().toISOString().split('T')[0],
-            eduEnd: contentCreatorData?.eduEnd || new Date().toISOString().split('T')[0],
-            currentCompany: contentCreatorData?.currentCompany || "",
-            currentJobTitle: contentCreatorData?.currentJobTitle || "",
-            companyStart: contentCreatorData?.companyStart || new Date().toISOString().split('T')[0],
-            profilePicture: fileId,
-          },
-          data: buildUpdatePayload({ profilePicture: fileId }),
-=======
           data: updatePayload,
->>>>>>> c2a90af4 (Refactor course columns, enhance file upload hook, and improve profile component):web/src/features/user/components/Profile.tsx
         },
       });
 
@@ -405,26 +355,7 @@ const Profile = () => {
       await contentCreatorPutContentCreatorsById({
         path: { id: documentId },
         body: {
-<<<<<<< HEAD:web/src/features/user/components/profile.tsx
-          data: {
-            firstName: contentCreatorData?.firstName || "",
-            lastName: contentCreatorData?.lastName || "",
-            biography: contentCreatorData?.biography || "",
-            email: contentCreatorData?.email || "",
-            password: "",
-            education: (contentCreatorData?.education || "TODO1") as "TODO1" | "TODO2" | "TODO3",
-            statusValue: contentCreatorData?.statusValue || "PENDING",
-            courseExperience: contentCreatorData?.courseExperience || "",
-            institution: contentCreatorData?.institution || "",
-            eduStart: contentCreatorData?.eduStart || new Date().toISOString().split('T')[0],
-            eduEnd: contentCreatorData?.eduEnd || new Date().toISOString().split('T')[0],
-            currentCompany: contentCreatorData?.currentCompany || "",
-            currentJobTitle: contentCreatorData?.currentJobTitle || "",
-            companyStart: contentCreatorData?.companyStart || new Date().toISOString().split('T')[0],
-          },
-=======
           data: buildUpdatePayload(),
->>>>>>> 4d33468f (feat: update profile picture handling and improve payload structure for content creator):web/src/features/user/components/Profile.tsx
         },
       });
 
