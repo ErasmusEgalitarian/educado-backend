@@ -12,9 +12,35 @@ export interface FileWithMetadata {
   caption: string;
 }
 
+// Define the single file object type from the API response
+type UploadedFile = {
+  id: number;
+  documentId: string;
+  name: string;
+  alternativeText?: string | null;
+  caption?: string | null;
+  width?: number;
+  height?: number;
+  formats?: { [key: string]: unknown };
+  hash: string;
+  ext?: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl?: string | null;
+  folder?: number;
+  folderPath: string;
+  provider: string;
+  provider_metadata?: { [key: string]: unknown } | null;
+  createdAt: string;
+  updatedAt: string;
+  createdBy?: number;
+  updatedBy?: number;
+};
+
 // eslint-disable-next-line sonarjs/class-name, @typescript-eslint/naming-convention
 interface useFileUploadReturn {
-  uploadFile: (files: FileWithMetadata[]) => Promise<UploadPostResponses[200] | undefined>;
+  uploadFile: (files: FileWithMetadata[]) => Promise<UploadedFile[] | undefined>;
   isUploading: boolean;
 }
 
@@ -64,8 +90,16 @@ export const useFileUpload = (): useFileUploadReturn => {
       // Wait for all uploads to complete
       const uploadedFiles = await Promise.all(uploadPromises);
 
-      // Flatten the results since each upload might return an array
-      const flattenedFiles = uploadedFiles.flat();
+      // Flatten the results since each upload might return a single object or an array
+      const flattenedFiles: UploadedFile[] = [];
+      
+      for (const result of uploadedFiles) {
+        if (Array.isArray(result)) {
+          flattenedFiles.push(...result);
+        } else {
+          flattenedFiles.push(result);
+        }
+      }
 
       return flattenedFiles;
     } catch (error) {

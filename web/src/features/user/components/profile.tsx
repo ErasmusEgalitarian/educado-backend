@@ -10,20 +10,20 @@ import { z } from "zod";
 
 import useAuthStore from "@/auth/hooks/useAuthStore";
 import { contentCreatorGetContentCreatorsById, contentCreatorPutContentCreatorsById } from "@/shared/api/sdk.gen";
-import staticForm from "@/shared/components/form/staticForm";
-import GenericModalComponent from "@/shared/components/GenericModalComponent";
-import Layout from "@/shared/components/Layout";
-import { useApi } from "@/shared/hooks/useAPI";
-import { tempObjects } from "@/shared/lib/formStates";
-import dynamicForms from "@/unplaced/dynamicForms";
-import AccountServices from "@/unplaced/services/account.services";
-import ProfileServices from "@/unplaced/services/profile.services";
-import { useFileUpload } from "@/features/media/hooks/use-file-upload";
 import { getBaseApiUrl, fetchHeaders } from "@/shared/config/api-config";
 
-import AcademicExperienceForm from "@/features/user/components/academic-experience-form";
-import PersonalInformationForm from "@/features/user/components/personal-information";
-import ProfessionalExperienceForm from "@/features/user/components/professional-experience";
+import GenericModalComponent from "../../../shared/components/GenericModalComponent";
+import Layout from "../../../shared/components/Layout";
+import { useApi } from "../../../shared/hooks/useAPI";
+import dynamicForms from "../../../unplaced/dynamicForms";
+import AccountServices from "../../../unplaced/services/account.services";
+import ProfileServices from "../../../unplaced/services/profile.services";
+import staticForm from "../../../shared/components/form/staticForm";
+
+import AcademicExperienceForm from "./academic-experience-form";
+import PersonalInformationForm from "./PersonalInformation";
+import ProfessionalExperienceForm from "./ProfessionalExperience";
+import { useFileUpload } from "@/features/media/hooks/use-file-upload"; 
 
 // TypeScript Interfaces
 interface ContentCreator {
@@ -32,8 +32,8 @@ interface ContentCreator {
   lastName?: string;
   email: string;
   biography?: string;
-  education: "TODO1" | "TODO2" | "TODO3";
-  statusValue: "PENDING" | "APPROVED" | "REJECTED";
+  education?: string;
+  statusValue?: "PENDING" | "APPROVED" | "REJECTED";
   courseExperience: string;
   institution: string;
   eduStart: string;
@@ -146,14 +146,20 @@ const Profile = () => {
   // Helper function to build content creator update payload
   // Returns a consistent payload structure with all required fields
   const buildUpdatePayload = (overrides: Partial<Omit<ContentCreator, 'profilePicture'>> & { profilePicture?: string | number } = {}) => {
+    // Determine valid statusValue - default to PENDING if current value is invalid
+    const validStatusValues: Array<"PENDING" | "APPROVED" | "REJECTED"> = ["PENDING", "APPROVED", "REJECTED"];
+    const currentStatusValue = overrides.statusValue ?? contentCreatorData?.statusValue;
+    const statusValue = (currentStatusValue && validStatusValues.includes(currentStatusValue)) 
+      ? currentStatusValue 
+      : "PENDING";
+
     const payload: any = {
       firstName: overrides.firstName ?? contentCreatorData?.firstName ?? "",
       lastName: overrides.lastName ?? contentCreatorData?.lastName ?? "",
       biography: overrides.biography ?? contentCreatorData?.biography ?? "",
       email: overrides.email ?? contentCreatorData?.email ?? "",
-      password: "",
-      education: (overrides.education ?? contentCreatorData?.education ?? "TODO1") as "TODO1" | "TODO2" | "TODO3",
-      statusValue: (overrides.statusValue ?? contentCreatorData?.statusValue ?? "TODO1") as "TODO1" | "TODO2" | "TODO3",
+      education: overrides.education ?? contentCreatorData?.education ?? "",
+      statusValue: statusValue,
       courseExperience: overrides.courseExperience ?? contentCreatorData?.courseExperience ?? "",
       institution: overrides.institution ?? contentCreatorData?.institution ?? "",
       eduStart: overrides.eduStart ?? contentCreatorData?.eduStart ?? new Date().toISOString().split('T')[0],
@@ -179,15 +185,29 @@ const Profile = () => {
         return;
       }
 
+      console.log("Form data before submit:", formData);
+
       // Split the name into firstName and lastName
       const nameParts = formData.userName.trim().split(" ");
       const firstName = nameParts[0] || "";
       const lastName = nameParts.slice(1).join(" ");
 
+      console.log("Name parts:", { firstName, lastName });
+
+      const payload = buildUpdatePayload({
+        firstName: firstName,
+        lastName: lastName || "",
+        biography: formData.bio || "",
+        email: contentCreatorData?.email || formData.UserEmail,
+      });
+
+      console.log("Update payload:", payload);
+
       // Update content creator profile in Strapi
       const response = await contentCreatorPutContentCreatorsById({
         path: { id: documentId },
         body: {
+<<<<<<< HEAD:web/src/features/user/components/profile.tsx
           data: buildUpdatePayload({
             firstName: firstName,
             lastName: lastName || "",
@@ -210,8 +230,13 @@ const Profile = () => {
             email: contentCreatorData?.email || formData.UserEmail,
           }),
 >>>>>>> 4d33468f (feat: update profile picture handling and improve payload structure for content creator):web/src/features/user/components/Profile.tsx
+=======
+          data: payload,
+>>>>>>> c2a90af4 (Refactor course columns, enhance file upload hook, and improve profile component):web/src/features/user/components/Profile.tsx
         },
       });
+
+      console.log("Update response:", response);
 
       if (response) {
         // Update local storage with new name
@@ -232,7 +257,12 @@ const Profile = () => {
         queryClient.invalidateQueries({ queryKey: ['contentCreator', documentId] });
       }
     } catch (error) {
-      if (error instanceof Error) toast.error(error.message);
+      console.error("Error updating profile:", error);
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Erro ao atualizar perfil");
+      }
     }
   };
 
@@ -263,18 +293,21 @@ const Profile = () => {
       }
 
       // Upload the file with upload hook
-      const uploadedFileIds = await uploadFile([{
+      const uploadResult = await uploadFile([{
         file,
         filename: file.name,
         alt: "Profile Picture",
         caption: "Profile Picture"
       }]);
 
-      if (!uploadedFileIds || uploadedFileIds.length === 0) {
+      console.log("Upload result:", uploadResult);
+
+      if (!uploadResult || uploadResult.length === 0) {
         toast.error("Erro ao fazer upload da imagem");
         return;
       }
 
+<<<<<<< HEAD:web/src/features/user/components/profile.tsx
       // Extract the file ID from the uploaded file object
       const uploadedFile = Array.isArray(uploadedFileIds) ? uploadedFileIds[0] : uploadedFileIds;
       const fileId = uploadedFile?.id || uploadedFile?.documentId;
@@ -283,6 +316,10 @@ const Profile = () => {
         toast.error("Erro: ID do arquivo não encontrado");
         return;
       }
+=======
+      const fileId = uploadResult[0].id;
+      console.log("File ID extracted:", fileId);
+>>>>>>> c2a90af4 (Refactor course columns, enhance file upload hook, and improve profile component):web/src/features/user/components/Profile.tsx
 
       // Delete existing profile picture if it is there 
       if (contentCreatorData?.profilePicture?.id) {
@@ -290,9 +327,13 @@ const Profile = () => {
       }
 
       // Update content creator with new profile picture
-      await contentCreatorPutContentCreatorsById({
+      const updatePayload = buildUpdatePayload({ profilePicture: fileId });
+      console.log("Profile picture update payload:", updatePayload);
+      
+      const updateResponse = await contentCreatorPutContentCreatorsById({
         path: { id: documentId },
         body: {
+<<<<<<< HEAD:web/src/features/user/components/profile.tsx
           data: {
             firstName: contentCreatorData?.firstName || "",
             lastName: contentCreatorData?.lastName || "",
@@ -310,8 +351,13 @@ const Profile = () => {
             profilePicture: fileId,
           },
           data: buildUpdatePayload({ profilePicture: fileId }),
+=======
+          data: updatePayload,
+>>>>>>> c2a90af4 (Refactor course columns, enhance file upload hook, and improve profile component):web/src/features/user/components/Profile.tsx
         },
       });
+
+      console.log("Profile picture update response:", updateResponse);
 
       toast.success("Foto de perfil atualizada com sucesso!");
       
@@ -319,7 +365,11 @@ const Profile = () => {
       queryClient.invalidateQueries({ queryKey: ['contentCreator', documentId] });
     } catch (error) {
       console.error("Error uploading profile picture:", error);
-      toast.error("Erro ao fazer upload da foto de perfil");
+      if (error instanceof Error) {
+        toast.error(`Erro ao fazer upload da foto de perfil: ${error.message}`);
+      } else {
+        toast.error("Erro ao fazer upload da foto de perfil");
+      }
     }
   };
 
