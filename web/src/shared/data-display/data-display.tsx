@@ -10,12 +10,11 @@ import {
   type VisibilityState,
   type PaginationState,
 } from "@tanstack/react-table";
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { ErrorBoundary } from "../components/error/error-boundary";
 import { ErrorDisplay } from "../components/error/error-display";
-import { ItemSelectorProvider } from "../components/item-selector";
 import { toAppError } from "../lib/error-utilities";
 
 import DataDisplayEmptyState from "./data-display-empty-state";
@@ -27,6 +26,10 @@ import DataTable from "./data-table";
 import usePaginatedData, {
   type UsePaginatedDataConfig,
 } from "./hooks/used-paginated-data";
+import {
+  ItemSelectorProvider,
+  type ItemSelectorController,
+} from "./item-selector";
 import { type Status, type StaticFilters } from "./lib/query-params-builder";
 import { getDefaultColumnVisibility } from "./lib/visibility-utility";
 import PaginationBar from "./pagination-bar";
@@ -82,6 +85,9 @@ interface BaseDataDisplayProps<T extends DataDisplayItem> {
   /** Status: 'published' (default) or 'draft'. Controls which version of documents to fetch. */
   status?: Status;
   selection?: DataDisplaySelectionConfig<T>;
+  onFilteredDocumentIds?: (ids: string[]) => void;
+  /** Minimum width for grid items (default: "320px") */
+  gridItemMinWidth?: string;
 }
 
 // Discriminated union based on allowedViewModes
@@ -102,60 +108,10 @@ export interface DataDisplayRef {
   resetFilters: () => void;
   resetSorting: () => void;
   resetGlobalFilter: () => void;
+  resetSelection: () => void;
 }
 /* --------------------------- Exported component --------------------------- */
 
-/**
- * A flexible data display component that supports table and/or grid view modes.
- *
- *
- * @template T - The type of data items to display, must extend DataDisplayItem (Strapi entity with at least a documentId field)
- *
- * @param props - The component props
- * @param props.queryKey - Unique key for React Query to cache and manage the data fetching
- * @param props.urlPath - API endpoint path to fetch data from
- * @param props.columns - Column definitions (always required for sorting/filtering)
- * @param props.allowedViewModes - Which view mode(s) to allow: "table", "grid", or "both"
- * @param props.gridItemRender - Render function for grid items (required when allowedViewModes is "grid" or "both")
- * @param props.emptyState - Custom component to display when no data is available
- * @param props.className - Additional CSS classes to apply to the container
- * @param props.initialPageSize - Number of items per page (default: 20)
- * @param props.fields - Strapi fields to select in the query
- * @param props.populate - Strapi population configuration for related data
- * @param props.config - Additional configuration for data fetching (render mode, threshold)
- *
- * @returns A data display component with pagination, search, and view mode switching
- *
- * @example
- * // Table only
- * <DataDisplay
- *   queryKey={['courses']}
- *   urlPath="/courses"
- *   columns={courseColumns}
- *   allowedViewModes="table"
- * />
- *
- * @example
- * // Grid only
- * <DataDisplay
- *   queryKey={['courses']}
- *   urlPath="/courses"
- *   columns={courseColumns}
- *   allowedViewModes="grid"
- *   gridItemRender={(course) => <CourseCard course={course} />}
- * />
- *
- * @example
- * // Both modes with switcher
- * <DataDisplay
- *   queryKey={['courses']}
- *   urlPath="/courses"
- *   columns={courseColumns}
- *   allowedViewModes="both"
- *   gridItemRender={(course) => <CourseCard course={course} />}
- *   initialPageSize={20}
- * />
- */
 const DataDisplayComponent = <T extends DataDisplayItem>(
   {
     queryKey,
@@ -173,8 +129,11 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
     staticFilters,
     status,
     selection,
+    onFilteredDocumentIds,
+    gridItemMinWidth,
   }: DataDisplayProps<T>,
   ref: React.Ref<DataDisplayRef>
+  
 ) => {
   const { t } = useTranslation();
   const hasTable = allowedViewModes === "table" || allowedViewModes === "both";
@@ -201,24 +160,38 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
     pageSize: initialPageSize,
   });
 
+  const itemSelectorController = React.useRef<ItemSelectorController | null>(
+    null
+  );
+
   // Expose ref methods
-  React.useImperativeHandle(
-    ref,
+  React.useImperativeHandle(ref, () => ({
+    columnFilters,
+    sorting,
+    globalFilter,
+    resetFilters: () => {
+      setColumnFilters([]);
+    },
+    resetSorting: () => {
+      setSorting([]);
+    },
+    resetGlobalFilter: () => {
+      setGlobalFilter("");
+    },
+    resetSelection: () => {
+      itemSelectorController.current?.clearSelection();
+    },
+  }));
+
+  // Memoize tableState to prevent re-renders in usePaginatedData
+  const tableState = useMemo(
     () => ({
-      columnFilters,
+      pagination,
       sorting,
+      columnFilters,
       globalFilter,
-      resetFilters: () => {
-        setColumnFilters([]);
-      },
-      resetSorting: () => {
-        setSorting([]);
-      },
-      resetGlobalFilter: () => {
-        setGlobalFilter("");
-      },
     }),
-    [columnFilters, sorting, globalFilter]
+    [pagination, sorting, columnFilters, globalFilter]
   );
 
   // Fetch data with integrated mode
@@ -232,12 +205,7 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
       config,
       staticFilters,
       status,
-      tableState: {
-        pagination,
-        sorting,
-        columnFilters,
-        globalFilter,
-      },
+      tableState,
     });
 
   const isUsingServerMode = resolvedMode === "server";
@@ -300,17 +268,21 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
   };
 
   // Selection handler - converts IDs to full items
-  const handleSelectionChange = (selectedIds: string[]) => {
-    if (selection?.enabled === true && selection.onChange) {
-      const selectedItems = data.filter(
-        (item) =>
-          item.documentId !== undefined &&
-          item.documentId !== "" &&
-          selectedIds.includes(item.documentId)
-      );
-      selection.onChange(selectedItems);
-    }
-  };
+  // Memoized to prevent re-renders in ItemSelectorProvider
+  const handleSelectionChange = useCallback(
+    (selectedIds: string[]) => {
+      if (selection?.enabled === true && selection.onChange) {
+        const selectedItems = data.filter(
+          (item) =>
+            item.documentId !== undefined &&
+            item.documentId !== "" &&
+            selectedIds.includes(item.documentId)
+        );
+        selection.onChange(selectedItems);
+      }
+    },
+    [selection, data]
+  );
 
   if (error != null) {
     const appError = toAppError(error);
@@ -337,6 +309,39 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
   const filteredRows = isUsingServerMode
     ? []
     : table.getFilteredRowModel().rows;
+
+  // Derive the list of items considered "filtered" from the component's perspective.
+  const filteredItems: DataDisplayItem[] = isUsingServerMode
+    ? (data as DataDisplayItem[])
+    : filteredRows.map((r) => r.original);
+
+  // Extract documentId strings and notify parent when they change
+  const documentIds = filteredItems
+    .map((c) => c.documentId)
+    .filter((id): id is string => typeof id === "string");
+
+  useEffect(() => {
+    onFilteredDocumentIds?.(documentIds);
+    // We join ids for a stable dependency array (array identity changes often)
+  }, [onFilteredDocumentIds, documentIds.join(",")]);
+
+  // If there's an error, render an error card
+  if (error != null) {
+    const appError = toAppError(error);
+    return (
+      <ErrorDisplay
+        error={appError}
+        variant="card"
+        actions={[
+          {
+            label: t("common.retry"),
+            onClick: () => void refetch(),
+            variant: "primary",
+          },
+        ]}
+      />
+    );
+  }
 
   // Calculate display pagination based on mode
   const displayPagination = isUsingServerMode
@@ -381,6 +386,7 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
           gridItemRender={gridItemRender}
           isLoading={isLoading}
           selectable={selection?.enabled === true}
+          itemMinWidth={gridItemMinWidth}
         />
       );
     }
@@ -430,6 +436,7 @@ const DataDisplayComponent = <T extends DataDisplayItem>(
           selectionLimit={selection.limit ?? null}
           onSelectionChange={handleSelectionChange}
           defaultSelected={selection.defaultSelected ?? []}
+          controllerRef={itemSelectorController}
         >
           {content}
         </ItemSelectorProvider>

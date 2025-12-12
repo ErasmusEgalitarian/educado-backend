@@ -12,10 +12,10 @@ import jwt from "jsonwebtoken"
 const { PolicyError } = errors;
 
 export default async (policyContext: any, config: any, { strapi }: { strapi: Core.Strapi }) => {
-    
+
     // Gets secret key from .env
     const secretKey = process.env.JWT_SECRET;
-    let user : any;
+    let user: any;
 
     const authHeader = policyContext.request.ctx.headers.authorization;
 
@@ -44,7 +44,7 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
     }
 
     // Check if user is not verified
-    if(user.verifiedAt == null){
+    if (user.verifiedAt == null) {
         throw new PolicyError("User not verified", {
             policy: 'is-student-or-content-creator',
         });
@@ -53,9 +53,9 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
     try {
         // First, try to find the user in the Student collection
         const student = await strapi.documents('api::student.student').findFirst({
-            filters: { 
-                email: user.email, 
-                documentId: user.documentId 
+            filters: {
+                email: user.email,
+                documentId: user.documentId
             },
         });
 
@@ -66,8 +66,8 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
 
         // If not a student, try to find the user in the Content Creator collection
         const contentCreator = await strapi.documents('api::content-creator.content-creator').findFirst({
-            filters: { 
-                email: user.email, 
+            filters: {
+                email: user.email,
                 documentId: user.documentId
             },
         });
@@ -84,15 +84,14 @@ export default async (policyContext: any, config: any, { strapi }: { strapi: Cor
     } catch (error) {
         // If an error occurs during the query, log it and deny access
         strapi.log.error('Error in is-student-or-content-creator policy:', error);
-        
+
         // Re-throw if it's already a PolicyError
         if (error instanceof PolicyError) {
             throw error;
         }
-        
+
         throw new PolicyError("Database query failed", {
             policy: 'is-student-or-content-creator',
         });
     }
 };
-

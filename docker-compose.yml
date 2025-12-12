@@ -40,7 +40,7 @@ services:
       NODE_ENV: production
       CORS_ORIGIN: ${CORS_ORIGIN}
     volumes:
-      - strapi-uploads:/opt/app/public/uploads
+      - strapi-uploads:/app/strapi/public/uploads
     ports:
       - "1337:1337"
     networks:

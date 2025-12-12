@@ -21,10 +21,6 @@
       "type": "text",
       "maxLength": 600
     },
-    "dateCreated": {
-      "type": "date",
-      "required": true
-    },
     "course": {
       "type": "relation",
       "relation": "manyToOne",

@@ -1,5 +1,5 @@
 // Export only FormActions. Legacy FormSubmitButton name has been removed intentionally.
-import { FieldValues, FormState } from "react-hook-form";
+import { FieldValues, FormState, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/shared/components/shadcn/button";
@@ -12,7 +12,8 @@ import { Button } from "@/shared/components/shadcn/button";
 export interface FormActionsProps<
   TFieldValues extends FieldValues = FieldValues,
 > {
-  readonly formState: FormState<TFieldValues>;
+  /** If not provided, the component will read formState from FormProvider via useFormContext(). */
+  readonly formState?: FormState<TFieldValues>;
   readonly submitLabel?: string;
   readonly submittingLabel?: string;
   readonly showReset?: boolean;
@@ -42,15 +43,32 @@ const FormActions = <TFieldValues extends FieldValues = FieldValues>({
 }: FormActionsProps<TFieldValues>) => {
   const { t } = useTranslation();
 
+  // Allow callers to either pass formState explicitly or let this component
+  // access the current form context. This makes the component easier to use
+  // when wrapped in a FormProvider.
+  // Try to read formState from context if the caller didn't provide it.
+  let ctxFormState: FormState<TFieldValues> | undefined;
+  try {
+    const ctx = useFormContext<TFieldValues>();
+    ctxFormState = ctx.formState;
+  } catch {
+    ctxFormState = undefined;
+  }
+
+  const localFormState: FormState<TFieldValues> | undefined = formState ?? ctxFormState;
+
   /* --------------------------------- Labels --------------------------------- */
   const finalSubmitLabel = submitLabel ?? t("form.submit");
   const finalSubmittingLabel = submittingLabel ?? t("form.submitting") + "...";
   const finalResetLabel = resetLabel ?? t("form.reset");
 
   /* ------------------------------ Button State ------------------------------ */
-  const { isDirty, isValid, isSubmitting } = formState;
-  const canSubmitByState =
-    (allowPristineSubmit || isDirty) && isValid && !isSubmitting;
+  const { isDirty, isValid, isSubmitting } = localFormState ?? {
+    isDirty: false,
+    isValid: true,
+    isSubmitting: false,
+  };
+  const canSubmitByState = (allowPristineSubmit || isDirty) && isValid && !isSubmitting;
 
   const submitDisabled = disableSubmit ?? !canSubmitByState;
   const containerClass = className ?? "flex items-center gap-3";

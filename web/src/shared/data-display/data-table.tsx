@@ -1,9 +1,5 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { type Table as ReactTableType } from "@tanstack/react-table";
-import Icon from "@mdi/react";
-import { mdiCheck, mdiMinus } from "@mdi/js";
 
-import { useItemSelector } from "@/shared/components/item-selector";
 import {
   Table,
   TableBody,
@@ -15,8 +11,11 @@ import { cn } from "@/shared/lib/utils";
 
 import DataTableHeaderCell from "./data-table-header-cell";
 import DataTableRows from "./data-table-rows";
+import { useItemSelector } from "./item-selector";
 
 import type { DataDisplayItem } from "./data-display";
+import Icon from "@mdi/react";
+import { mdiCheck, mdiMinus } from "@mdi/js";
 
 interface DataTableProps<TData extends DataDisplayItem> {
   table: ReactTableType<TData>;

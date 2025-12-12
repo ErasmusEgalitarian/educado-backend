@@ -1,6 +1,6 @@
 // import commands from "cypress"
 import React from "react";
-import Profile from "../../src/pages/Profile";
+import Profile from "../../src/features/user/components/profile";
 //import commands from './s'
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -9,7 +9,7 @@ it("First Form Should not give error if all fields are valid", () => {
   cy.mount(
     <Router>
       <Profile />
-    </Router>,
+    </Router>
   );
   // Fill in the form fields with valid data
   cy.get(".first_form_open").click({ force: true });
@@ -34,8 +34,8 @@ it("First Form Should not give error if all fields are valid", () => {
   );
   // Fill in the form fields with valid data
   cy.get('.first_form_open').click({force: true});
-  cy.get('input[name="UserName"]')
-  cy.get('input[name="UserEmail"]').type('john.doe@example.com');
+  cy.get('input[name="userName"]')
+  cy.get('input[name="userEmail"]').type('john.doe@example.com');
   cy.get('input[name="linkedin"]').type('https://www.linkedin.com/in/johndoe/');
   cy.get('textarea[name="bio"]').type('this is bio');
 
@@ -50,7 +50,7 @@ it("First Form Should give error on user_email field if its not email", () => {
   cy.mount(
     <Router>
       <Profile />
-    </Router>,
+    </Router>
   );
   // Fill in the form fields with valid data
   cy.get(".first_form_open").click({ force: true });
@@ -72,7 +72,7 @@ it("First Form Should give error on linkedin field if its not linkedin url", () 
   cy.mount(
     <Router>
       <Profile />
-    </Router>,
+    </Router>
   );
   // Fill in the form fields with valid data
   cy.get(".first_form_open").click({ force: true });
@@ -95,7 +95,7 @@ it("Second Form Should not give error if all fields are valid", () => {
   cy.mount(
     <Router>
       <Profile />
-    </Router>,
+    </Router>
   );
   // Fill in the form fields with valid data
   cy.get(".second_form_open").click({ force: true });
@@ -113,7 +113,7 @@ it("Second Form Should not give error if all fields are valid", () => {
   cy.mount(
     <Router>
       <Profile />
-    </Router>,
+    </Router>
   );
   // Fill in the form fields with valid data
   cy.get(".second_form_open").click({ force: true });
@@ -131,7 +131,7 @@ it("Second Form Should not give error if all fields are valid", () => {
   cy.mount(
     <Router>
       <Profile />
-    </Router>,
+    </Router>
   );
   // Fill in the form fields with valid data
   cy.get(".second_form_open").click({ force: true });
@@ -150,7 +150,7 @@ it("Third Form Should not give error if all fields are valid", () => {
   cy.mount(
     <Router>
       <Profile />
-    </Router>,
+    </Router>
   );
   // Fill in the form fields with valid data
   cy.get(".third_form_open").click({ force: true });
@@ -168,7 +168,7 @@ it("Third Form Should not give error if all fields are valid", () => {
   cy.mount(
     <Router>
       <Profile />
-    </Router>,
+    </Router>
   );
   // Fill in the form fields with valid data
   cy.get(".third_form_open").click({ force: true });
@@ -186,7 +186,7 @@ it("Third Form Should not give error if all fields are valid", () => {
   cy.mount(
     <Router>
       <Profile />
-    </Router>,
+    </Router>
   );
   // Fill in the form fields with valid data
   cy.get(".third_form_open").click({ force: true });

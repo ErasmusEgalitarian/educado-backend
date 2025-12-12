@@ -759,7 +759,7 @@ const { data, isLoading, error } = usePaginatedData({
 <FormMultiSelect
   control={form.control}
   fieldName="categories"
-  label={t("courseManager.categories")}
+  label={t("categories.categories")}
   disabled={categoriesLoading || !!categoriesError}
   options={data.map((category) => ({
     label: category.name,

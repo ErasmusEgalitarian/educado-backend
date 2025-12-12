@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 
 import { ToggleModalContext } from "../Login";
 
 import { HandleContinueContext } from "./PasswordRecoveryModal";
 
-interface propsType {
+interface NavigationFooterProps {
   codeVerified: boolean;
   isLoading: boolean;
 }
@@ -16,20 +16,23 @@ interface propsType {
  * - `codeVerified`: boolean that indicates if the code has been verified
  * @returns {JSX.Element} the navigation footer component for the modal
  */
-export default function NavigationFooter(props: propsType): JSX.Element {
+const NavigationFooter: React.FC<Readonly<NavigationFooterProps>> = (
+  props
+): React.JSX.Element => {
   const toggleModal = useContext(ToggleModalContext);
   const handleContinue = useContext(HandleContinueContext);
 
   return (
     <div className="">
       <div className="flex items-center justify-between gap-4 w-full mt-8">
-        <label
+        <button
           id="cancel-button"
           onClick={toggleModal}
-          className="underline hover:cursor-point"
+          className="underline hover:cursor-pointer bg-transparent border-none p-0"
+          type="button"
         >
           Cancelar {/** Cancel */}
-        </label>
+        </button>
         <label>
           <button
             id="continue"
@@ -39,11 +42,13 @@ export default function NavigationFooter(props: propsType): JSX.Element {
             {props.isLoading ? (
               <span className="spinner-border animate-spin rounded-full border-2 border-t-transparent w-4 h-4" />
             ) : null}
-            <span>{!props.codeVerified ? "Continuar" : "Redefinir senha"}</span>{" "}
+            <span>{props.codeVerified ? "Redefinir senha" : "Continuar"}</span>{" "}
             {/* Continue if code is not verified, else reset password */}
           </button>
         </label>
       </div>
     </div>
   );
-}
+};
+
+export default NavigationFooter;

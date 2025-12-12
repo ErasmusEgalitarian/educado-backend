@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "activities",
+  "info": {
+    "singularName": "activity",
+    "pluralName": "activities",
+    "displayName": "Activity"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "required": true
+    },
+    "completed": {
+      "type": "boolean"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.video",
+        "content.exercise",
+        "content.description"
+      ]
+    }
+  }
+}

@@ -11,6 +11,16 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "password": {
+      "type": "password",
+      "required": false,
+      "minLength": 8
+    },
     "firstName": {
       "type": "string",
       "minLength": 1,
@@ -26,58 +36,18 @@
     "verifiedAt": {
       "type": "date"
     },
-    "biography": {
-      "type": "text",
-      "maxLength": 400,
-      "required": false
-    },
-    "email": {
-      "type": "email",
-      "required": true,
-      "unique": true
-    },
-    "password": {
-      "type": "password",
-      "required": false,
-      "minLength": 8
-    },
-    "education": {
-      "type": "enumeration",
-      "required": true,
-      "enum": [
-        "TODO1",
-        "TODO2",
-        "TODO3"
-      ]
+    "motivation": {
+      "type": "string"
     },
     "statusValue": {
       "type": "enumeration",
       "required": true,
+      "default": "PENDING",
       "enum": [
-        "TODO1",
-        "TODO2",
-        "TODO3"
+        "PENDING",
+        "APPROVED",
+        "REJECTED"
       ]
-    },
-    "courseExperience": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 40,
-      "required": true
-    },
-    "institution": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 40,
-      "required": true
-    },
-    "eduStart": {
-      "type": "date",
-      "required": true
-    },
-    "eduEnd": {
-      "type": "date",
-      "required": true
     },
     "currentCompany": {
       "type": "string",
@@ -85,23 +55,20 @@
       "maxLength": 40,
       "required": true
     },
-    "currentJobTitle": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 40,
-      "required": true
+    "jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job.job"
     },
-    "companyStart": {
-      "type": "date",
-      "required": true
+    "educations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::education.education"
     },
-    "companyEnd": {
-      "type": "date"
-    },
-    "jobDescription": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 400
+    "user_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-log.user-log"
     },
     "courses": {
       "type": "relation",
@@ -109,16 +76,25 @@
       "target": "api::course.course",
       "inversedBy": "content_creators"
     },
-    "user_logs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::user-log.user-log"
-    },
     "dashboard_activities": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::dashboard-activity.dashboard-activity",
       "mappedBy": "content_creator"
+    },
+    "isAdmin": {
+      "type": "boolean",
+      "default": false
+    },
+    "rejectionReason": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "profilePicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
     }
   }
 }

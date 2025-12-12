@@ -23,4 +23,5 @@ type ContentCreator = {
     lastName: String;
     email: String;
     verifiedAt: Date;
+    isAdmin: boolean;
 };

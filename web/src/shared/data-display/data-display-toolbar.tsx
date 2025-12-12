@@ -13,9 +13,9 @@ import { Icon } from "@mdi/react";
 import { Table } from "@tanstack/react-table";
 import { useTranslation } from "react-i18next";
 
-import { SelectionSummary } from "@/shared/components/item-selector";
 import { Button } from "@/shared/components/shadcn/button";
 import { Input } from "@/shared/components/shadcn/input";
+import { SelectionSummary } from "@/shared/data-display/item-selector";
 
 import {
   DropdownMenu,

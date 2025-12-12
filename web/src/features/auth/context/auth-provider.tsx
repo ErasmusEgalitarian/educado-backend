@@ -4,10 +4,13 @@ import { useCallback, useEffect, useMemo, type ReactNode } from "react";
 
 import { AuthContext } from "@/auth/context/auth-context";
 import { defaultUserPreferences } from "@/auth/types/auth-context";
-import type { AuthContextType, UserPreferences } from "@/auth/types/auth-context";
+import type {
+  AuthContextType,
+  UserPreferences,
+} from "@/auth/types/auth-context";
 import { updateApiClientToken } from "@/shared/config/api-config";
 import { useLocalStorage } from "@/shared/hooks/use-local-storage";
-import type { User } from "@/user/types/User";
+import type { User } from "@/user/types/user.ts";
 
 // https://www.shadcn.io/hooks/use-local-storage
 
@@ -19,30 +22,30 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // Persist auth token (mock)
   const [, setAuthToken, removeAuthToken] = useLocalStorage<string | null>(
     "auth:token",
-    null,
+    null
   );
 
   // Persist user preferences
   const [preferences, setPreferencesLS] = useLocalStorage<UserPreferences>(
     "userPreferences",
-    defaultUserPreferences,
+    defaultUserPreferences
   );
 
   // accepts email/password and returns a user
   const loginSaver = useCallback(
-  async (token: string, user: any): Promise<void> => {
-    try {
-      // just set auth state
-      setAuthToken(token);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      setLoggedInUserLS(user);
-    } catch (error) {
-      console.error("Failed to set auth state:", error);
-      throw error;
-    }
-  },
-  [setAuthToken, setLoggedInUserLS],
-);
+    async (token: string, user: any): Promise<void> => {
+      try {
+        // just set auth state
+        setAuthToken(token);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        setLoggedInUserLS(user);
+      } catch (error) {
+        console.error("Failed to set auth state:", error);
+        throw error;
+      }
+    },
+    [setAuthToken, setLoggedInUserLS]
+  );
 
   // Mock logout: clears user from storage
   const logout = useCallback(() => {
@@ -63,7 +66,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const next = { ...preferences, ...updates };
       setPreferencesLS(next);
     },
-    [preferences, setPreferencesLS],
+    [preferences, setPreferencesLS]
   );
 
   const value = useMemo<AuthContextType>(
@@ -77,7 +80,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       preferences,
       setPreferences,
     }),
-    [loggedInUser, setLoggedInUserLS, loginSaver, logout, preferences, setPreferences],
+    [
+      loggedInUser,
+      setLoggedInUserLS,
+      loginSaver,
+      logout,
+      preferences,
+      setPreferences,
+    ]
   );
 
   // Bootstrap: ensure userPreferences is source of truth for i18n language.
@@ -87,7 +97,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     void import("../../../../i18n/i18n").then(({ default: i18n }) => {
       const storedPrefsRaw = globalThis.localStorage.getItem("userPreferences");
       const hasStoredPrefs = storedPrefsRaw !== null;
-      
+
       if (hasStoredPrefs) {
         // userPreferences exists: it is the source of truth, sync i18n to it
         const desired = preferences.language;
@@ -97,7 +107,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       } else {
         // No userPreferences yet: adopt detected i18n language and persist it
         const detected = i18n.language; // e.g., 'pt' | 'en'
-        const mapped: UserPreferences["language"] = detected === "pt" ? "pt" : "en";
+        const mapped: UserPreferences["language"] =
+          detected === "pt" ? "pt" : "en";
         if (preferences.language !== mapped) {
           setPreferences({ language: mapped });
         }

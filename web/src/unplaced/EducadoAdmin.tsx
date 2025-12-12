@@ -1,12 +1,11 @@
 import { useState } from "react";
 
 import Layout from "../shared/components/Layout";
-
 import { InstitutionsTableAdmin } from "./Admin/Institutions/InstitutionsTableAdmin";
 import { UsersTableAdmin } from "./Admin/Users/UsersTableAdmin";
 
 const EducadoAdmin = () => {
-  type TableOptions = "users" | "institutions" | "courses";
+  type TableOptions = "users" | "institutions";
   const [selectedTable, setSelectedTable] = useState<TableOptions>("users");
 
   let activeTable;
@@ -16,9 +15,6 @@ const EducadoAdmin = () => {
       break;
     case "institutions":
       activeTable = <InstitutionsTableAdmin />;
-      break;
-    case "courses":
-      activeTable = <div>Courses Table Placeholder</div>;
       break;
     default:
       break;
@@ -38,7 +34,7 @@ const EducadoAdmin = () => {
               setSelectedTable("users");
             }}
           >
-            <span>Usuários</span>
+            <span>Users</span>
           </button>
           <button
             id="InstitutionsButton"
@@ -51,20 +47,7 @@ const EducadoAdmin = () => {
               setSelectedTable("institutions");
             }}
           >
-            <span>Instituições</span>
-          </button>
-          <button
-            id="courses-button"
-            className={`flex-1 py-3 ${
-              selectedTable === "courses"
-                ? ""
-                : "bg-white text-normal font-normal text-[#166276]"
-            }`}
-            onClick={() => {
-              setSelectedTable("courses");
-            }}
-          >
-            <span>Cursos</span>
+            <span>Institutions</span>
           </button>
         </div>
         {activeTable}

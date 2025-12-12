@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Icon from "@mdi/react";
 import {
   mdiArrowLeft,
@@ -6,32 +6,48 @@ import {
   mdiChevronRight,
   mdiArrowRight,
 } from "@mdi/js";
-import useSWR from "swr";
+import { useQuery } from "@tanstack/react-query";
 
 import { getUserToken } from "@/auth/lib/userInfo";
 import Loading from "@/shared/components/Loading";
 import AdminServices from "@/unplaced/services/admin.services";
 import ViewUserButton from "@/unplaced/ViewUserButton";
-import { ContentCreator } from "@/user/types/ContentCreator";
-import { User } from "@/user/types/User";
+import { ContentCreator } from "@/user/types/content-creator.ts";
+import { User } from "@/user/types/user.ts";
 
 import AdminToggleButton from "../AdminToggle";
 import DeleteUserButton from "../DeleteUserButton";
+import { useTranslation } from "react-i18next";
 
 export const UsersTableAdmin = () => {
+  const { t,i18n } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const userToken = getUserToken();
-  const { data, mutate } = useSWR("api/user-info", () =>
-    AdminServices.getUserApplications(userToken)
-  );
+  type StatusFilter = "all" | "pending" | "approved" | "rejected";
 
-  if (!data) return <Loading />;
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("pending");
+
+  const userToken = getUserToken();
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: ["user-info", userToken],
+    queryFn: () => AdminServices.getUserApplications(userToken),
+    enabled: !!userToken,
+  });
+
+  if (isLoading || !data) return <Loading />;
+
+  if (isError) {
+    return (
+      <div className="flex justify-center items-center py-10">
+        <p className="text-red-500">Erro ao carregar usuários.</p>
+      </div>
+    );
+  }
 
   const refreshUsers = () => {
-    mutate();
+    void refetch();
   };
 
   const formatDate = (dateString: string) => {
@@ -44,8 +60,13 @@ export const UsersTableAdmin = () => {
       minute: "2-digit",
       second: "2-digit",
     };
+
+  const localeMap: Record<string, string> = {
+      pt: "pt-BR",
+      en: "en-US",
+  };
     let formattedDate = date
-      .toLocaleString("pt-BR", options)
+      .toLocaleString(localeMap[i18n.language] ?? "en-US", options)
       .replace(" às", "");
     formattedDate =
       formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
@@ -81,7 +102,7 @@ export const UsersTableAdmin = () => {
     setCurrentPage(totalPages);
   };
 
-  const filteredData = data.filter((userRecord) => {
+  const filteredBySearch = data.filter((userRecord) => {
     // this will be typed in a better way when a hook is made
     const fieldsToCheck = ["firstName", "lastName", "email"] as const;
 
@@ -92,6 +113,20 @@ export const UsersTableAdmin = () => {
       return valueToCheck.toLowerCase().includes(searchTerm.toLowerCase());
     });
   });
+
+    const filteredData = filteredBySearch.filter((userRecord) => {
+        switch (statusFilter) {
+            case "approved":
+                return userRecord.approved === true;
+            case "rejected":
+                return userRecord.rejected === true;
+            case "pending":
+                return !userRecord.approved && !userRecord.rejected;
+            case "all":
+            default:
+                return true;
+        }
+    });
 
   const paginatedData = filteredData.slice(
     (currentPage - 1) * rowsPerPage,
@@ -106,14 +141,14 @@ export const UsersTableAdmin = () => {
     <div>
       <form className="flex flex-col md:flex-row w-3/4 md:w-full max-w-full md:space-x-4 space-y-3 md:space-y-0 justify-end py-6 -mt-4">
         <select className="block bg-white min-w-[175px] grow-0 border border-slate-300 rounded-md py-2 pr-3 shadow-xs focus:outline-hidden hover:bg-white focus:border-sky-500 focus:ring-1 sm:text-sm">
-          <option value="option1">Mais recentes</option>
+          <option>{t("adminUsers.mostRecent")}</option>
         </select>
         <div className="relative min-w-[225px] grow-0">
           <input
             className="placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-xs focus:outline-hidden hover:bg-white focus:border-sky-500 focus:ring-1 sm:text-sm"
             type="text"
             id="search-term"
-            placeholder="Buscar usuário"
+            placeholder={t("adminUsers.searchUsers")}
             onChange={(event) => {
               setSearchTerm(event.target.value);
             }}
@@ -135,29 +170,85 @@ export const UsersTableAdmin = () => {
         </div>
       </form>
 
+        <div className="flex flex-wrap items-center justify-between pb-4">
+            <div className="inline-flex rounded-full bg-slate-100 p-1 text-xs md:text-sm font-semibold">
+                <button
+                    type="button"
+                    className={
+                        "px-3 md:px-4 py-1 rounded-full transition " +
+                        (statusFilter === "all"
+                            ? "bg-teal-600 text-white"
+                            : "text-slate-600 hover:text-slate-800")
+                    }
+                    onClick={() => setStatusFilter("all")}
+                >
+                    {t("adminUsers.filterAll")}
+                </button>
+
+                <button
+                    type="button"
+                    className={
+                        "px-3 md:px-4 py-1 rounded-full transition " +
+                        (statusFilter === "pending"
+                            ? "bg-teal-600 text-white"
+                            : "text-slate-600 hover:text-slate-800")
+                    }
+                    onClick={() => setStatusFilter("pending")}
+                >
+                    {t("adminUsers.filterPending")}
+                </button>
+
+                <button
+                    type="button"
+                    className={
+                        "px-3 md:px-4 py-1 rounded-full transition " +
+                        (statusFilter === "approved"
+                            ? "bg-teal-600 text-white"
+                            : "text-slate-600 hover:text-slate-800")
+                    }
+                    onClick={() => setStatusFilter("approved")}
+                >
+                    {t("adminUsers.filterApproved")}
+                </button>
+
+                <button
+                    type="button"
+                    className={
+                        "px-3 md:px-4 py-1 rounded-full transition " +
+                        (statusFilter === "rejected"
+                            ? "bg-teal-600 text-white"
+                            : "text-slate-600 hover:text-slate-800")
+                    }
+                    onClick={() => setStatusFilter("rejected")}
+                >
+                    {t("adminUsers.filterRejected")}
+                </button>
+            </div>
+        </div>
+
       <table className="w-full leading-normal mx-auto">
         <thead>
           <tr className="bg-white border-b-4 border-[#166276] text-[#166276] text-left text-base font-base font-['Lato']]">
             <th scope="col" className="p-7" style={{ width: "5%" }}>
-              Admin
+              {t("navbar.admin")}
             </th>
             <th scope="col" className="p-5" style={{ width: "20%" }}>
-              Nome
+              {t("common.name")}
             </th>
             <th scope="col" className="p-5" style={{ width: "25%" }}>
-              Email
+              {t("auth.email")}
             </th>
             <th scope="col" className="p-5" style={{ width: "20%" }}>
-              Status
+              {t("common.actions")}
             </th>
             <th scope="col" className="p-5" style={{ width: "30%" }}>
-              Enviado em
+              {t("adminUsers.submittedAt")}
             </th>
             <th scope="col" className="p-5" style={{ width: "30%" }} />
           </tr>
         </thead>
         <tbody>
-          {paginatedData.map((userRecord, key) => {
+          {paginatedData.map((userRecord: UserRecord, key: number) => {
             return (
               <tr
                 key={key}
@@ -194,10 +285,10 @@ export const UsersTableAdmin = () => {
                     style={{ color: getStatusColor(userRecord) }}
                   >
                     {userRecord.approved
-                      ? "Aprovado"
+                      ? t("adminUsers.statusApproved")
                       : userRecord.rejected
-                        ? "Recusado"
-                        : "Aguardando análise"}
+                        ? t("adminUsers.statusRejected")
+                        : t("adminUsers.statusPending")}
                   </p>
                 </td>
                 <td>
@@ -238,7 +329,7 @@ export const UsersTableAdmin = () => {
 
       <div className="px-5 bg-white py-5 flex flex-row xs:flex-row items-center xs:justify-between justify-end">
         <div className="flex items-center">
-          <span className="text-gray-600">Rows per page:</span>
+          <span className="text-gray-600">{t("adminUsers.rowsPerPage")}</span>
           <div className="relative">
             <select
               className="appearance-none bg-none border-none text-gray-600 focus:ring-0 cursor-pointer"

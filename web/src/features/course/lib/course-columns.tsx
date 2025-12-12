@@ -4,11 +4,11 @@ import {
   mdiStar,
   mdiSquareEditOutline,
   mdiEyeOutline,
+  mdiPublish,
+  mdiPublishOff,
   mdiNumeric1BoxOutline,
   mdiNumeric2BoxOutline,
   mdiNumeric3BoxOutline,
-  mdiPublish,
-  mdiPublishOff,
 } from "@mdi/js";
 import Icon from "@mdi/react";
 import { type CellContext, type ColumnDef } from "@tanstack/react-table";
@@ -51,35 +51,61 @@ export const createCourseColumns = ({
       },
     },
     {
-      accessorKey: "publishedAt",
-      header: t("common.publicationStatus"),
+      accessorKey: "creator_published_at",
+      header: t("publication.status"),
       cell: ({ row }) => {
-        const publishedAt = row.getValue<string | null>("publishedAt");
-        const isDraft = publishedAt === null;
+        const publishedAt = row.getValue<string | null>("creator_published_at");
+        const isPublished = publishedAt !== null && publishedAt.trim() !== "";
         return (
-          <Badge variant={isDraft ? "outline" : "default"}>
-            {isDraft ? t("common.unpublished") : t("common.published")}
+          <Badge
+            variant="outline"
+            className={
+              "whitespace-nowrap text-xs font-medium px-2 py-0.5 " +
+              (isPublished
+                ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                : "border-amber-200 bg-amber-50 text-amber-800")
+            }
+          >
+            {isPublished
+              ? t("publication.published")
+              : t("publication.unpublished")}
           </Badge>
         );
       },
-      // Pass-through filter: always returns true because actual filtering
-      // is done server-side via Strapi's status parameter (handled in usePaginatedData)
-      filterFn: () => true,
+      // The filterFN is modified to handle "draft" and "published" string values
+      // for client-side filtering. This is required because by default a date or the absence
+      // of a date, does not represent a "boolean" state directly.
+      filterFn: (row, _columnId, filterValue) => {
+        const publishedAt = row.getValue<string | null>("creator_published_at");
+        const isDraft = publishedAt === null || publishedAt.trim() === "";
+        if (Array.isArray(filterValue)) {
+          const lookup = new Set(
+            (filterValue as unknown[]).map((v) => String(v).toLowerCase())
+          );
+          return isDraft ? lookup.has("draft") : lookup.has("published");
+        }
+        if (typeof filterValue === "string") {
+          const needle = filterValue.trim().toLowerCase();
+          if (needle === "") return true;
+          return isDraft ? needle === "draft" : needle === "published";
+        }
+        return true;
+      },
       meta: {
         sortable: true,
         visibleByDefault: true,
         quickFilter: {
           type: "select",
           displayType: { where: "both", when: "both" },
-          label: t("common.publicationStatus"),
+          label: t("publication.status"),
           options: [
             {
-              label: t("common.draft"),
+              label: t("publication.draft"),
               value: "draft",
               mdiIcon: mdiPublishOff,
             },
             {
-              label: t("common.published"),
+              label: t("publication.published"),
               value: "published",
               mdiIcon: mdiPublish,
             },
@@ -89,7 +115,7 @@ export const createCourseColumns = ({
     },
     {
       accessorKey: "title",
-      header: t("courseManager.courseName"),
+      header: t("courseEditor.courseName"),
       cell: ({ row }) => {
         const course = row.original;
         return (
@@ -131,17 +157,17 @@ export const createCourseColumns = ({
           label: t("difficulty.difficulty"),
           options: [
             {
-              label: t("courseManager.beginner"),
+              label: t("difficulty.beginner"),
               value: "1",
               mdiIcon: mdiNumeric1BoxOutline,
             },
             {
-              label: t("courseManager.intermediate"),
+              label: t("difficulty.intermediate"),
               value: "2",
               mdiIcon: mdiNumeric2BoxOutline,
             },
             {
-              label: t("courseManager.advanced"),
+              label: t("difficulty.advanced"),
               value: "3",
               mdiIcon: mdiNumeric3BoxOutline,
             },
@@ -164,7 +190,7 @@ export const createCourseColumns = ({
         if (categories.length === 0) {
           return (
             <span className="text-muted-foreground">
-              {t("categories.categoryNotFound")}
+              {t("categories.notFound")}
             </span>
           );
         }
@@ -192,7 +218,10 @@ export const createCourseColumns = ({
       filterFn: (row, _columnId, filterValue) => {
         const categories = (row.original.course_categories ??
           []) as CourseCategory[];
-        const names = categories.map((c) => c.name.toLowerCase());
+        const names = categories
+          .map((c) => c.name)
+          .filter(Boolean)
+          .map((n) => n.toLowerCase());
         if (Array.isArray(filterValue)) {
           const lookup = new Set(
             (filterValue as unknown[]).map((v) => String(v).toLowerCase())
@@ -260,7 +289,7 @@ export const createCourseColumns = ({
         const handleDelete = (e: React.MouseEvent) => {
           e.stopPropagation();
           toast.info(
-            `Delete functionality is not implemented yet: ${documentId ?? "unknown"}`
+            "Delete functionality is not implemented yet: " + String(documentId)
           );
         };
 
@@ -286,7 +315,7 @@ export const createCourseColumns = ({
                   size={0.8}
                   className="mr-2 h-4 w-4"
                 />
-                {t("common.view")} {t("courseManager.course").toLowerCase()}
+                {t("common.view")} {t("courses.course").toLowerCase()}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleEdit}>
                 <Icon
@@ -294,14 +323,14 @@ export const createCourseColumns = ({
                   size={0.8}
                   className="mr-2 h-4 w-4"
                 />
-                {t("common.edit")} {t("courseManager.course").toLowerCase()}
+                {t("common.edit")} {t("courses.course").toLowerCase()}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={handleDelete}
                 className="text-destructive"
               >
-                {t("common.delete")} {t("courseManager.course").toLowerCase()}
+                {t("common.delete")} {t("courses.course").toLowerCase()}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

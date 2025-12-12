@@ -11,10 +11,12 @@ import AccountDeletionRequest from "./features/auth/components/AccountDeletionRe
 import DataDeletionRequest from "./features/auth/components/DataDeletionRequest";
 import Login from "./features/auth/components/Login";
 import PrivacyPolicy from "./features/auth/components/PrivacyPolicy";
-import Signup from "./features/auth/components/Signup";
+import Signup from "./features/auth/pages/Signup";
+import SignupInfo from "./features/auth/pages/SignupInformation";
 import Welcome from "./features/auth/pages/Welcome";
 import Certificates from "./features/certificates/pages/Certificates";
-import Profile from "./features/user/components/Profile";
+import MediaOverviewPage from "./features/media/pages/media-overview-page";
+import Profile from "./features/user/components/profile";
 import NotFound from "./shared/assets/NotFound";
 import DocsPage from "./shared/docs/pages/docs-page";
 import TestPage from "./test-page";
@@ -47,6 +49,15 @@ const App = () => {
       // Homepage is left unused
       path: "/",
       element: <Navigate to="/welcome" />,
+      errorElement: <NotFound />,
+    },
+    {
+      path: "/media",
+      element: (
+        <ProtectedRoute>
+          <MediaOverviewPage />
+        </ProtectedRoute>
+      ),
       errorElement: <NotFound />,
     },
     {
@@ -118,6 +129,15 @@ const App = () => {
       element: (
         <NonProtectedRoute>
           <Signup />
+        </NonProtectedRoute>
+      ),
+      errorElement: <NotFound />,
+    },
+        {
+      path: "/signup/info",
+      element: (
+        <NonProtectedRoute>
+          <SignupInfo />
         </NonProtectedRoute>
       ),
       errorElement: <NotFound />,

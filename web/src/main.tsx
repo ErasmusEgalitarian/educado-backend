@@ -14,6 +14,7 @@ import "./index.css";
 import { configureApiClient } from "./shared/config/api-config";
 import { NotificationProvider } from "./shared/context/NotificationContext";
 
+
 // Initialize and configure the API client
 configureApiClient();
 

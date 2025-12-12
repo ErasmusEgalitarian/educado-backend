@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "course_enrollment_relations",
+  "info": {
+    "singularName": "course-enrollment-relation",
+    "pluralName": "course-enrollment-relations",
+    "displayName": "Course Enrollment Relation"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "inversedBy": "course_enrollment_relations"
+    },
+    "student": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::student.student",
+      "inversedBy": "course_enrollment_relations"
+    },
+    "enrollmentDate": {
+      "type": "date",
+      "required": true
+    }
+  }
+}

@@ -2,10 +2,9 @@ import { useState } from "react";
 import Icon from "@mdi/react";
 import { mdiDelete } from "@mdi/js";
 import { toast } from "react-toastify";
-import { KeyedMutator } from "swr";
 
 import { getUserToken } from "@/features/auth/lib/userInfo";
-import { Institution } from "@/features/user/types/Institution";
+import { Institution } from "@/user/types/institution.ts";
 import GenericModalComponent from "@/shared/components/GenericModalComponent";
 import { useNotifications } from "@/shared/context/NotificationContext";
 import { useApi } from "@/shared/hooks/useAPI";
@@ -16,7 +15,7 @@ export const DeleteInstitutionButton = ({
   refreshFn,
 }: {
   institutionId: string;
-  refreshFn: KeyedMutator<Institution[]>;
+  refreshFn: () => void | Promise<unknown>;
 }) => {
   const [showModal, setShowModal] = useState(false);
   const { call: deleteInstitution, isLoading } = useApi(
@@ -28,7 +27,7 @@ export const DeleteInstitutionButton = ({
   const handleConfirm = async () => {
     try {
       await deleteInstitution(institutionId, getUserToken());
-      refreshFn();
+      await refreshFn();
       addNotification("Instituição deletada com sucesso !");
     } catch (err) {
       toast.error(err as string);
