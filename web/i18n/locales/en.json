@@ -66,11 +66,7 @@
     "uploaded": "Uploaded",
     "errorLoadingFeedback": "Error loading feedback"
   },
-  "form": {
-    "submit": "Submit",
-    "submitting": "Submitting",
-    "reset": "Reset"
-  },
+  "form": { "submit": "Submit", "submitting": "Submitting", "reset": "Reset" },
   "validation": {
     "required": "This field is required",
     "title": "Title is required",
@@ -104,19 +100,6 @@
     "noNotifications": "No notifications",
     "mediaLibrary": "Media Library"
   },
-  "difficulty": {
-    "difficulty": "Difficulty",
-    "beginner": "Beginner",
-    "intermediate": "Intermediate",
-    "advanced": "Advanced"
-  },
-  "rating": {
-    "rating": "Rating",
-    "ratings": "Ratings",
-    "noRatings": "No ratings yet",
-    "averageRating": "Average Rating",
-    "yourRating": "Your Rating"
-  },
   "publication": {
     "status": "Publication Status",
     "publish": "Publish",
@@ -126,6 +109,19 @@
     "unpublish": "Unpublish",
     "unpublishing": "Unpublishing",
     "unpublished": "Unpublished"
+  },
+  "rating": {
+    "rating": "Rating",
+    "ratings": "Ratings",
+    "noRatings": "No ratings yet",
+    "averageRating": "Average Rating",
+    "yourRating": "Your Rating"
+  },
+  "difficulty": {
+    "difficulty": "Difficulty",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
   },
   "categories": {
     "category": "Category",
@@ -191,7 +187,6 @@
     "totalCertificates": "Total Certificates",
     "avalation": "Avalation",
     "activities": "Activities",
-    "hello": "Hello",
     "hours": "Hours",
     "workload": "Workload",
     "enrolled": "Enrolled",
@@ -201,9 +196,7 @@
     "createNewCourse": "Create New Course",
     "thisMonth": "This month",
     "totalCertificatesIssued": "Total certificates issued",
-    "evaluation": "Evaluation",
-    "activities": "Activities",
-    "totalCertificatesIssued": "Total Certificates Issued"
+    "evaluation": "Evaluation"
   },
   "files": {
     "maxFilesExceeded": "Maximum file limit exceeded. You can only upload up to {{count}} files"
@@ -305,16 +298,45 @@
     "welcomeBack": "Welcome back!",
     "email": "Email",
     "password": "Password",
-    "logIn": "Log In",
+    "logIn": "Log in",
     "forgotPassword": "Forgot your password?",
-    "noAccount": "Don't have an account yet?",
+    "noAccount": "Don’t have an account yet?",
     "registerNow": "Register now",
     "emailError": "INCORRECT EMAIL OR PASSWORD. PLEASE TRY AGAIN.",
     "pendingApprovalTitle": "Awaiting approval",
-    "pendingApprovalText": "Your registration is under review and you will receive a response within a few days. Keep an eye on your email, we will notify you as soon as everything is ready!",
+    "pendingApprovalText": "Your registration is under review and you will receive a response within x days. Keep an eye on your email — we’ll let you know as soon as everything is ready!",
     "close": "Close"
   },
-  "welcome": {
+  "registration": {
+    "experience": "Academic experience",
+    "inProgress": "In progress",
+    "finished": "Completed",
+    "motivation": "Write here why you want to be part of the project",
+    "removeExperience": "Remove experience",
+    "characters": "characters",
+    "eduOptsLabel": "Education",
+    "eduOptsPlaceholder": "Higher education",
+    "activityDescription": "Description of activities",
+    "eduStatusLabel": "Status",
+    "eduStatusPlaceholder": "In progress",
+    "responsibilities": "Write your responsibilities here",
+    "currentJob": "My current job",
+    "courseLabel": "Course",
+    "institutionLabel": "Institution",
+    "institutionStart": "Start",
+    "monthYear": "Month / Year",
+    "institutionEnd": "End",
+    "end": "End",
+    "Product Designer": "Product Designer",
+    "start": "Start",
+    "removeForm": "Remove education",
+    "addForm": "Add another education",
+    "Position": "Position",
+    "experienceExamplePlaceholder": "Examples: Apple, Microsoft, etc.",
+    "Company": "Company",
+    "addAnotherExperience": "Add another experience"
+},
+"welcome": {
     "title": "Welcome to EDUCADO!",
     "subtitle": "Sign up now and help promote your work and reach a wider audience through content creation.",
     "register-button": "Register",

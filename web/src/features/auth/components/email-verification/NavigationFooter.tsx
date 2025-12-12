@@ -8,7 +8,7 @@ import { useApi } from "@/shared/hooks/useAPI";
 import AuthServices from "@/unplaced/services/auth.services";
 
 import { ToggleModalContext } from "../Login";
-import { FormDataContext } from "../Signup";
+import { FormDataContext } from "../../pages/Signup";
 
 import { HandleContinueContext } from "./EmailVerificationModal";
 

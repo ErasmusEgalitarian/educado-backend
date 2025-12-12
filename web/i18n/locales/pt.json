@@ -253,11 +253,7 @@
       "altMaxLength": "O texto alternativo deve ter menos de {{count}} caracteres",
       "captionMaxLength": "A legenda deve ter menos de {{count}} caracteres"
     },
-    "preview": {
-      "zoomIn": "Ampliar",
-      "zoomOut": "Reduzir",
-      "rotate": "Girar"
-    }
+    "preview": { "zoomIn": "Ampliar", "zoomOut": "Reduzir", "rotate": "Girar" }
   },
   "carousel": {
     "title1": "Junte-se a nós para transformar vidas a partir do seu conhecimento",
@@ -287,6 +283,36 @@
     "pendingApprovalTitle": "Aguarde aprovação",
     "pendingApprovalText": "Seu cadastro está em análise e você receberá um retorno em até x dias. Fique de olho no seu e-mail, avisaremos assim que tudo estiver pronto!",
     "close": "Fechar"
+  },
+  "registration": {
+    "experience":"Experiencia academica",
+    "inProgress":"Em andamento",
+    "finished":"Concluída",
+    "motivation":"Escreva aqui por que você quer fazer parte do projeto",
+    "removeExperience": "Remover experiência",
+    "characters":"caracteres",
+    "eduOptsLabel":"Formação",
+    "eduOptsPlaceholder":"Superior",
+    "activityDescription":"Descrição das atividades",
+    "eduStatusLabel":"Status",
+    "eduStatusPlaceholder":"Em andamento",
+    "responsibilities": "Escreva aqui as suas responsabilidades",
+    "currentJob": "Meu emprego atual",
+    "courseLabel":"Curso",
+    "institutionLabel":"Instituição",
+    "institutionStart":"Início",
+    "monthYear":"Mês / Ano",
+    "institutionEnd":"Início",
+    "end":"Fim",
+    "Product Designer": "Product Designer",
+    "start": "Início",
+    "removeForm":"Remover formação",
+    "addForm":"Adicionar outra formação",
+    "Position": "Cargo",
+    "experienceExamplePlaceholder":"Exemplos: Apple, Microsoft, etc.",
+    "Company":"Empresa",
+    "addAnotherExperience":"Adicionar outra experiência"
+
   },
   "welcome": {
     "title": "Boas vindas ao EDUCADO!",
