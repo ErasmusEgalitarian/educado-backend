@@ -6,29 +6,6 @@ import { getBaseApiUrl } from "@/shared/config/api-config";
 
 //Types
 interface PersonalInformationFormProps {
-  formData: {
-    UserName: string;
-    UserEmail: string;
-    bio?: string;
-    linkedin?: string;
-  };
-  errors: {
-    UserName?: { message?: string };
-    UserEmail?: { message?: string };
-    linkedin?: { message?: string };
-  };
-  handleCharCountBio: () => number;
-  toggleMenu1: boolean;
-  imageClick: () => void;
-  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleProfilePictureDelete: () => void;
-  myRef: React.RefObject<HTMLInputElement>;
-  register: any; // react-hook-form register function
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  profilePictureUrl?: string;
-}
-
-interface PersonalInformationFormProps {
   formData: any;
   errors: any;
   handleCharCountBio: any;

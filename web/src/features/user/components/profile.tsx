@@ -159,7 +159,7 @@ const Profile = () => {
       lastName: overrides.lastName ?? contentCreatorData?.lastName ?? "",
       biography: overrides.biography ?? contentCreatorData?.biography ?? "",
       email: overrides.email ?? contentCreatorData?.email ?? "",
-      education: overrides.education ?? contentCreatorData?.education ?? "",
+      education: overrides.education ?? contentCreatorData?.education ?? "TODO1",
       statusValue: statusValue,
       courseExperience: overrides.courseExperience ?? contentCreatorData?.courseExperience ?? "",
       institution: overrides.institution ?? contentCreatorData?.institution ?? "",
