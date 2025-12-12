@@ -89,6 +89,12 @@
     "rejectionReason": {
       "type": "string",
       "maxLength": 100
+    },
+    "profilePicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
     }
   }
 }
